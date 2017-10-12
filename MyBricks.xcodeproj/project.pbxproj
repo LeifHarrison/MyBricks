@@ -14,6 +14,7 @@
 		29365B751F8EBF1C00F6730C /* MySetsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29365B741F8EBF1C00F6730C /* MySetsViewController.swift */; };
 		29365B771F8EBF2A00F6730C /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29365B761F8EBF2A00F6730C /* NewsViewController.swift */; };
 		29365B791F8EBF3B00F6730C /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29365B781F8EBF3B00F6730C /* ProfileViewController.swift */; };
+		29365B7C1F8EDAA500F6730C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29365B7B1F8EDAA500F6730C /* LoginViewController.swift */; };
 		295ADFBD1F16AFFC002E6802 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295ADFBC1F16AFFC002E6802 /* AppDelegate.swift */; };
 		295ADFBF1F16AFFD002E6802 /* BrowseThemesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295ADFBE1F16AFFD002E6802 /* BrowseThemesViewController.swift */; };
 		295ADFC11F16AFFD002E6802 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295ADFC01F16AFFD002E6802 /* SearchViewController.swift */; };
@@ -184,6 +185,8 @@
 		29365B741F8EBF1C00F6730C /* MySetsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySetsViewController.swift; sourceTree = "<group>"; };
 		29365B761F8EBF2A00F6730C /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
 		29365B781F8EBF3B00F6730C /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		29365B7B1F8EDAA500F6730C /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		29365B7D1F8EDAEC00F6730C /* MyBricks.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MyBricks.entitlements; sourceTree = "<group>"; };
 		295ADFB91F16AFFC002E6802 /* MyBricks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyBricks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		295ADFBC1F16AFFC002E6802 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		295ADFBE1F16AFFD002E6802 /* BrowseThemesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseThemesViewController.swift; sourceTree = "<group>"; };
@@ -306,6 +309,7 @@
 			isa = PBXGroup;
 			children = (
 				29365B781F8EBF3B00F6730C /* ProfileViewController.swift */,
+				29365B7B1F8EDAA500F6730C /* LoginViewController.swift */,
 			);
 			path = "Tab Profile";
 			sourceTree = "<group>";
@@ -344,6 +348,7 @@
 		295ADFBB1F16AFFC002E6802 /* MyBricks */ = {
 			isa = PBXGroup;
 			children = (
+				29365B7D1F8EDAEC00F6730C /* MyBricks.entitlements */,
 				295ADFBC1F16AFFC002E6802 /* AppDelegate.swift */,
 				295ADFCA1F16AFFD002E6802 /* Info.plist */,
 				29A523361F310243005F2145 /* Extensions */,
@@ -516,6 +521,11 @@
 				TargetAttributes = {
 					295ADFB81F16AFFC002E6802 = {
 						CreatedOnToolsVersion = 9.0;
+						SystemCapabilities = {
+							com.apple.SafariKeychain = {
+								enabled = 1;
+							};
+						};
 					};
 					295ADFCE1F16AFFD002E6802 = {
 						CreatedOnToolsVersion = 9.0;
@@ -728,6 +738,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				29365B7C1F8EDAA500F6730C /* LoginViewController.swift in Sources */,
 				292F4F571F193092006D5F5B /* BricksetServices.swift in Sources */,
 				29CA94A11F8D508A000F1DE3 /* BrowseSetsViewController.swift in Sources */,
 				29CA94A61F8D72DC000F1DE3 /* SetTableViewCell.swift in Sources */,
@@ -906,6 +917,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = MyBricks/MyBricks.entitlements;
 				DEVELOPMENT_TEAM = LY3N4LXUKP;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2";
@@ -923,6 +935,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = MyBricks/MyBricks.entitlements;
 				DEVELOPMENT_TEAM = LY3N4LXUKP;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2";
