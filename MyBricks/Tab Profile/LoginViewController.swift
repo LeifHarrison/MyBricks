@@ -10,26 +10,40 @@ import UIKit
 
 class LoginViewController: UIViewController {
 
+    @IBOutlet weak var usernameField : UITextField!
+    @IBOutlet weak var passwordField : UITextField!
+
+    //--------------------------------------------------------------------------
+    // MARK: - View Lifecycle
+    //--------------------------------------------------------------------------
+
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
+    //--------------------------------------------------------------------------
+    // MARK: - Actions
+    //--------------------------------------------------------------------------
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    @IBAction func login(_ sender: AnyObject?) {
+        if let username = usernameField.text, let password = passwordField.text {
+            BricksetServices.sharedInstance.login(username: username, password: password, completion: { result in
+                print("Result: \(result)")
+                if result.isFailure {
+                    let alert = UIAlertController(title: "Error", message: result.error?.localizedDescription, preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                    self.present(alert, animated: true, completion: nil)
+                }
+                else {
+                    self.dismiss(animated: true, completion: nil)
+                }
+            })
+        }
     }
-    */
+
+    @IBAction func cancel(_ sender: AnyObject?) {
+        dismiss(animated: true, completion: nil)
+    }
 
 }

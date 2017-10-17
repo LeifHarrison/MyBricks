@@ -3,11 +3,24 @@ Brickset API Key: PJ6U-J8Ob-GG1k
 
 https://github.com/Alamofire/Alamofire
 https://github.com/cezheng/Fuzi
+https://github.com/kishikawakatsumi/KeychainAccess
+
+Other Keychain alternatives:
+https://developer.apple.com/library/content/samplecode/GenericKeychain/Introduction/Intro.html#//apple_ref/doc/uid/DTS40007797
+https://gist.github.com/anishparajuli555/dedfdd4aea836de49ac52d13a45a8f84
+https://github.com/macostea/KeychainItemWrapper.swift/blob/master/KeychainItemWrapper.swift
+https://github.com/jrendel/SwiftKeychainWrapper
+https://github.com/matthewpalmer/Locksmith
+https://github.com/granoff/Strongbox
 
 carthage update --no-build
 
 Icons from:
 https://icons8.com/ios
+
+Brickset Login: Rexfelis / agents8369
+
+Profile Label color: #005a88
 
 <?xml version="1.0" encoding="utf-8"?>
 <soap12:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://www.w3.org/2003/05/soap-envelope">

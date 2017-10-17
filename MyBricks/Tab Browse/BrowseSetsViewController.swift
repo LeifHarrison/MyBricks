@@ -49,7 +49,7 @@ class BrowseSetsViewController: UIViewController {
         if allSets.count == 0 {
             activityIndicator?.startAnimating()
             BricksetServices.sharedInstance.getSets(theme: (theme ?? ""), completion: { result in
-                self.allSets = result
+                self.allSets = result.value ?? []
                 self.processSets()
                 self.activityIndicator?.stopAnimating()
                 //print("Result: \(result)")
@@ -58,10 +58,9 @@ class BrowseSetsViewController: UIViewController {
         }
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+    //--------------------------------------------------------------------------
+    // MARK: - Private
+    //--------------------------------------------------------------------------
 
     fileprivate func processSets() {
         for set in allSets {
@@ -76,6 +75,10 @@ class BrowseSetsViewController: UIViewController {
     }
 
 }
+
+//==============================================================================
+// MARK: - UITableViewDataSource
+//==============================================================================
 
 extension BrowseSetsViewController: UITableViewDataSource {
 
@@ -123,6 +126,10 @@ extension BrowseSetsViewController: UITableViewDataSource {
     }
 
 }
+
+//==============================================================================
+// MARK: - UITableViewDataSource
+//==============================================================================
 
 extension BrowseSetsViewController: UITableViewDelegate {
 

@@ -29,19 +29,15 @@ class BrowseThemesViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.title = "Themes"
+        //self.title = "Themes"
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-//        BricksetServices.sharedInstance.login(username: "Rexfelis", password: "agents8369", completion: { result in
-//            print("Result: \(result)")
-//        })
-
         if allThemes.count == 0 {
             activityIndicator?.startAnimating()
             BricksetServices.sharedInstance.getThemes(completion: { result in
-                self.allThemes = result
+                self.allThemes = result.value ?? []
                 self.processThemes()
                 self.activityIndicator?.stopAnimating()
                 //print("Result: \(result)")
@@ -49,6 +45,10 @@ class BrowseThemesViewController: UIViewController {
             })
         }
     }
+
+    //--------------------------------------------------------------------------
+    // MARK: - Private
+    //--------------------------------------------------------------------------
 
     fileprivate func processThemes() {
         for theme in allThemes {
@@ -62,6 +62,10 @@ class BrowseThemesViewController: UIViewController {
         sectionTitles = themesBySection.keys.sorted()
     }
 }
+
+//==============================================================================
+// MARK: - UITableViewDataSource
+//==============================================================================
 
 extension BrowseThemesViewController: UITableViewDataSource {
 
@@ -115,6 +119,10 @@ extension BrowseThemesViewController: UITableViewDataSource {
     }
 
 }
+
+//==============================================================================
+// MARK: - UITableViewDelegate
+//==============================================================================
 
 extension BrowseThemesViewController: UITableViewDelegate {
 

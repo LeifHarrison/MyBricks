@@ -10,31 +10,155 @@ import Foundation
 
 import Alamofire
 import Fuzi
+import KeychainAccess
+
+enum ServiceError : Error {
+    case loginFailed(reason: String)
+}
 
 class BricksetServices {
     static let sharedInstance = BricksetServices()
+    static let serviceName = "com.brickset.userHash"
 
     let baseURL = "https://brickset.com/api/v2.asmx/"
     let apiKey = "PJ6U-J8Ob-GG1k"
 
-    func login(username: String, password: String, completion: @escaping ([String]) -> Void) {
+    class func isLoggedIn() -> Bool {
+        let keychain = Keychain(service: BricksetServices.serviceName)
+        if let username = UserDefaults.standard.value(forKey: "username") as? String, let _ = keychain[username] {
+            return true
+        }
+        else {
+            return false
+        }
+    }
+
+    func checkKey(completion: @escaping (Result<Bool>) -> Void) {
+        let url = baseURL + "checkKey"
+        let parameters = defaultParameters()
+
+        let request = Alamofire.request( url, parameters: parameters)
+        print("Request: \(request)")
+
+        let requestCompletion: (DataResponse<XMLDocument>) -> Void = { response in
+            if let error = response.result.error {
+                print("Error: \(error)")
+                completion(Result.failure(error))
+            }
+            else if let document = response.result.value, let result = document.root?.stringValue {
+                print("Result: \(result)")
+
+                if result.contains("ERROR") {
+                    let array = result.components(separatedBy: ": ")
+                    if array.count > 0 {
+                        let errorDetail = array[1]
+                        completion(Result.failure(ServiceError.loginFailed(reason:errorDetail)))
+                        return
+                    }
+                }
+
+                completion(Result.success(true))
+            }
+        }
+        request.responseXMLDocument(completionHandler: requestCompletion)
+    }
+
+    func checkUserHash(completion: @escaping (Result<Bool>) -> Void) {
+        let url = baseURL + "checkUserHash"
+        var parameters = defaultParameters()
+
+        let keychain = Keychain(service: BricksetServices.serviceName)
+        if let username = UserDefaults.standard.value(forKey: "username") as? String, let userHash = keychain[username] {
+            parameters["userHash"] = userHash
+        }
+
+        let request = Alamofire.request( url, parameters: parameters)
+        print("Request: \(request)")
+
+        let requestCompletion: (DataResponse<XMLDocument>) -> Void = { response in
+            if let error = response.result.error {
+                print("Error: \(error)")
+                completion(Result.failure(error))
+            }
+            else if let document = response.result.value, let result = document.root?.stringValue {
+                print("Result: \(result)")
+
+                if result.contains("ERROR") {
+                    let array = result.components(separatedBy: ": ")
+                    if array.count > 0 {
+                        let errorDetail = array[1]
+                        completion(Result.failure(ServiceError.loginFailed(reason:errorDetail)))
+                        return
+                    }
+                }
+
+                completion(Result.success(true))
+            }
+        }
+        request.responseXMLDocument(completionHandler: requestCompletion)
+    }
+
+    func login(username: String, password: String, completion: @escaping (Result<String>) -> Void) {
         let url = baseURL + "login"
         var parameters = defaultParameters()
         parameters["username"] = username
         parameters["password"] = password
 
         let request = Alamofire.request( url, parameters: parameters)
+        print("Request: \(request)")
 
         let requestCompletion: (DataResponse<XMLDocument>) -> Void = { response in
             if let error = response.result.error {
                 print("Error: \(error)")
+                completion(Result.failure(error))
             }
-            else if let document = response.result.value, let userHash = document.root?.stringValue {
-                print("userHash: \(userHash)")
-                completion([""])
+            else if let document = response.result.value, let result = document.root?.stringValue {
+                print("Result: \(result)")
+
+                if result.contains("ERROR") {
+                    let array = result.components(separatedBy: ": ")
+                    if array.count > 0 {
+                        let errorDetail = array[1]
+                        completion(Result.failure(ServiceError.loginFailed(reason:errorDetail)))
+                        return
+                    }
+                }
+                
+                UserDefaults.standard.setValue(username, forKey: "username")
+                let keychain = Keychain(service: BricksetServices.serviceName)
+                keychain[username] = result
+
+                completion(Result.success(result))
             }
         }
 
+        request.responseXMLDocument(completionHandler: requestCompletion)
+    }
+
+    func getCollectionTotals(completion: @escaping (Result<UserCollectionTotals>) -> Void) {
+        let url = baseURL + "getCollectionTotals"
+        var parameters = defaultParameters()
+
+        let keychain = Keychain(service: BricksetServices.serviceName)
+        if let username = UserDefaults.standard.value(forKey: "username") as? String, let userHash = keychain[username] {
+            parameters["userHash"] = userHash
+        }
+
+        let request = Alamofire.request( url, parameters: parameters)
+        print("Request: \(request)")
+
+        let requestCompletion: (DataResponse<XMLDocument>) -> Void = { response in
+            if let error = response.result.error {
+                print("Error: \(error)")
+                completion(Result.failure(error))
+            }
+            else if let document = response.result.value, let root = document.root {
+                if let collectionTotals = UserCollectionTotals(element: root) {
+                    print("collectionTotals: \(collectionTotals)")
+                    completion(Result.success(collectionTotals))
+                }
+            }
+        }
         request.responseXMLDocument(completionHandler: requestCompletion)
     }
 
@@ -64,10 +188,11 @@ class BricksetServices {
 
         let parameters = defaultParameters()
         let request = Alamofire.request( url, parameters: parameters)
+        print("Request: \(request)")
         request.responseXMLDocument(completionHandler: requestCompletion)
     }
 
-    func getThemes(completion: @escaping ([Theme]) -> Void) {
+    func getThemes(completion: @escaping (Result<[Theme]>) -> Void) {
         let url = baseURL + "getThemes"
 
         let parameters = defaultParameters()
@@ -89,14 +214,14 @@ class BricksetServices {
                         }
                     }
 
-                    completion(themes)
+                    completion(Result.success(themes))
                 }
             }
         }
         request.responseXMLDocument(completionHandler: requestCompletion)
     }
 
-    func getSets(theme: String, completion: @escaping ([Set]) -> Void) {
+    func getSets(theme: String, completion: @escaping (Result<[Set]>) -> Void) {
         let url = baseURL + "getSets"
 
         var parameters = defaultParameters()
@@ -130,7 +255,7 @@ class BricksetServices {
                         }
                     }
 
-                    completion(sets)
+                    completion(Result.success(sets))
                 }
             }
         }
