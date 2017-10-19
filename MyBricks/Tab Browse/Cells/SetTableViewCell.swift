@@ -13,22 +13,40 @@ class SetTableViewCell: UITableViewCell {
     @IBOutlet weak var setImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var setNumberLabel: UILabel!
+    @IBOutlet weak var subthemeLabel: UILabel!
+    @IBOutlet weak var piecesLabel: UILabel!
+    @IBOutlet weak var minifigsLabel: UILabel!
+
+    @IBOutlet weak var retiredView: UIView!
+    @IBOutlet weak var ownedView: UIView!
+    @IBOutlet weak var wantedView: UIView!
+
+    //--------------------------------------------------------------------------
+    // MARK: - Nib Loading
+    //--------------------------------------------------------------------------
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
-    }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+        retiredView.layer.cornerRadius = retiredView.bounds.height / 2
+        ownedView.layer.cornerRadius = ownedView.bounds.height / 2
+        wantedView.layer.cornerRadius = ownedView.bounds.height / 2
     }
+    //--------------------------------------------------------------------------
+    // MARK: - Reuse
+    //--------------------------------------------------------------------------
 
     override func prepareForReuse() {
         super.prepareForReuse()
         setImageView.image = nil
         nameLabel.text = ""
         setNumberLabel.text = ""
+        subthemeLabel.text = ""
+        piecesLabel.text = "0"
+        minifigsLabel.text = "0"
+
+        retiredView.isHidden = true
+        ownedView.isHidden = true
+        wantedView.isHidden = true
     }
 }

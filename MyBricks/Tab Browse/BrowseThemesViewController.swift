@@ -130,10 +130,10 @@ extension BrowseThemesViewController: UITableViewDelegate {
         let sectionTitle = sectionTitles[indexPath.section]
         if let themes = themesBySection[sectionTitle] {
             let theme = themes[indexPath.row]
-            print("Selected Theme: \(theme.name ?? "")")
             if let setsVC = storyboard?.instantiateViewController(withIdentifier: "BrowseSetsViewController") as? BrowseSetsViewController {
                 setsVC.theme = theme.name
                 show(setsVC, sender: self)
+                tableView.deselectRow(at: indexPath, animated: true)
             }
         }
     }

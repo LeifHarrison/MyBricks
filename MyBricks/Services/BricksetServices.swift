@@ -33,6 +33,15 @@ class BricksetServices {
         }
     }
 
+    class func logout() -> Void {
+        let keychain = Keychain(service: BricksetServices.serviceName)
+        if let username = UserDefaults.standard.value(forKey: "username") as? String, let _ = keychain[username] {
+            keychain[username] = nil
+            UserDefaults.standard.removeObject(forKey: "username")
+        }
+
+    }
+
     func checkKey(completion: @escaping (Result<Bool>) -> Void) {
         let url = baseURL + "checkKey"
         let parameters = defaultParameters()
@@ -154,7 +163,6 @@ class BricksetServices {
             }
             else if let document = response.result.value, let root = document.root {
                 if let collectionTotals = UserCollectionTotals(element: root) {
-                    print("collectionTotals: \(collectionTotals)")
                     completion(Result.success(collectionTotals))
                 }
             }
@@ -224,7 +232,7 @@ class BricksetServices {
     func getSets(theme: String, completion: @escaping (Result<[Set]>) -> Void) {
         let url = baseURL + "getSets"
 
-        var parameters = defaultParameters()
+        var parameters = userParameters()
         parameters["query"] = ""
         parameters["theme"] = theme
         parameters["subtheme"] = ""
@@ -263,9 +271,22 @@ class BricksetServices {
     }
 
     fileprivate func defaultParameters() -> Parameters {
-        return ["apiKey": apiKey, "userHash": ""]
+        return ["apiKey": apiKey]
     }
 
+    fileprivate func userParameters() -> Parameters {
+        var parameters = defaultParameters()
+
+        let keychain = Keychain(service: BricksetServices.serviceName)
+        if let username = UserDefaults.standard.value(forKey: "username") as? String, let userHash = keychain[username] {
+            parameters["userHash"] = userHash
+        }
+        else {
+            parameters["userHash"] = ""
+        }
+
+        return parameters
+    }
 
 }
 

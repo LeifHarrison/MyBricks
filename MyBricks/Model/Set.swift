@@ -28,6 +28,9 @@ public struct Set {
     var EAN: String?
     var UPC: String?
 
+    var owned: Bool?
+    var wanted: Bool?
+
     init?(element: XMLElement) {
         setID = element.firstChild(tag: "setID")?.stringValue
         number = element.firstChild(tag: "number")?.stringValue
@@ -45,6 +48,8 @@ public struct Set {
         availability = element.firstChild(tag: "availability")?.stringValue
         EAN = element.firstChild(tag: "EAN")?.stringValue
         UPC = element.firstChild(tag: "UPC")?.stringValue
+        owned = Bool(element.firstChild(tag: "owned")?.stringValue ?? "false")
+        wanted = Bool(element.firstChild(tag: "wanted")?.stringValue ?? "false")
      }
 
 }

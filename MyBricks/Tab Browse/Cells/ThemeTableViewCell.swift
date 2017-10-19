@@ -14,6 +14,10 @@ class ThemeTableViewCell: UITableViewCell {
     @IBOutlet weak var yearsLabel: UILabel!
     @IBOutlet weak var setCountLabel: UILabel!
 
+    //--------------------------------------------------------------------------
+    // MARK: - View Lifecycle
+    //--------------------------------------------------------------------------
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

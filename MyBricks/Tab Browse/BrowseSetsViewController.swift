@@ -100,12 +100,26 @@ extension BrowseSetsViewController: UITableViewDataSource {
             let set = sets[indexPath.row]
             if let cell = tableView.dequeueReusableCell(withIdentifier: "SetTableViewCell", for: indexPath) as? SetTableViewCell
             {
+                if UIScreen.main.scale > 1.5 {
+                    if let urlString = set.largeThumbnailURL, let url = URL(string: urlString) {
+                        cell.setImageView.af_setImage(withURL: url)
+                    }
+                }
+                else {
+                    if let urlString = set.thumbnailURL, let url = URL(string: urlString) {
+                        cell.setImageView.af_setImage(withURL: url)
+                    }
+                }
+
                 cell.nameLabel.text = set.name
                 cell.setNumberLabel.text = set.number
+                cell.subthemeLabel.text = set.subtheme
+                cell.piecesLabel.text = "\(set.pieces ?? 0)"
+                cell.minifigsLabel.text = "\(set.minifigs ?? 0)"
 
-                if let urlString = set.thumbnailURL, let url = URL(string: urlString) {
-                    cell.setImageView.af_setImage(withURL: url)
-                }
+                cell.retiredView.isHidden = true
+                cell.ownedView.isHidden = !(set.owned ?? true)
+                cell.wantedView.isHidden = !cell.ownedView.isHidden || !(set.wanted ?? true)
 
                 return cell
             }
@@ -134,11 +148,15 @@ extension BrowseSetsViewController: UITableViewDataSource {
 extension BrowseSetsViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let sectionTitle = sectionTitles[indexPath.section]
-//        if let themes = themesBySection[sectionTitle] {
-//            let theme = themes[indexPath.row]
-//            print("Selected Theme: \(theme.name ?? "")")
-//        }
+        let sectionTitle = sectionTitles[indexPath.section]
+        if let sets = setsBySection[sectionTitle] {
+            let set = sets[indexPath.row]
+            if let setDetailVC = storyboard?.instantiateViewController(withIdentifier: "SetDetailViewController") as? SetDetailViewController {
+                //setDetailVC.theme = theme.name
+                show(setDetailVC, sender: self)
+                tableView.deselectRow(at: indexPath, animated: true)
+            }
+        }
     }
 }
 
