@@ -15,6 +15,7 @@ public struct UserCollectionTotals {
     var totalDistinctSetsOwned: Int?
     var totalSetsWanted: Int?
     var totalMinifigsOwned: Int?
+    var totalDistinctMinifigsOwned: Int?
     var totalMinifigsWanted: Int?
 
     init?(element: XMLElement) {
@@ -22,6 +23,7 @@ public struct UserCollectionTotals {
         totalDistinctSetsOwned = Int(element.firstChild(tag: "totalDistinctSetsOwned")?.stringValue ?? "0")
         totalSetsWanted = Int(element.firstChild(tag: "totalSetsWanted")?.stringValue ?? "0")
         totalMinifigsOwned = Int(element.firstChild(tag: "totalMinifigsOwned")?.stringValue ?? "0")
+        totalDistinctMinifigsOwned = Int(element.firstChild(tag: "totalDistinctMinifigsOwned")?.stringValue ?? "0")
         totalMinifigsWanted = Int(element.firstChild(tag: "totalMinifigsWanted")?.stringValue ?? "0")
     }
 
@@ -34,7 +36,7 @@ public struct UserCollectionTotals {
     }
 
     func minifigsOwnedDescription() -> String {
-        return "You own \(totalMinifigsOwned ?? 0) minifigs, \(totalMinifigsOwned ?? 0) different"
+        return "You own \(totalMinifigsOwned ?? 0) minifigs, \(totalDistinctMinifigsOwned ?? 0) different"
     }
 
     func minifigsWantedDescription() -> String {

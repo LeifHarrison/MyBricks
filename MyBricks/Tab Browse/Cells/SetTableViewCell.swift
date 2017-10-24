@@ -21,6 +21,8 @@ class SetTableViewCell: UITableViewCell {
     @IBOutlet weak var ownedView: UIView!
     @IBOutlet weak var wantedView: UIView!
 
+    @IBOutlet var retiredSpacingConstraint: NSLayoutConstraint!
+
     //--------------------------------------------------------------------------
     // MARK: - Nib Loading
     //--------------------------------------------------------------------------

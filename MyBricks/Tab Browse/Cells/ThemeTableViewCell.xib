@@ -5,49 +5,49 @@
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="ThemeTableViewCell" customModule="MyBricks" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="82" id="KGk-i7-Jjw" customClass="ThemeTableViewCell" customModule="MyBricks" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="73"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="72.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Theme Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vnI-yD-Drl">
-                        <rect key="frame" x="10" y="6" width="265.5" height="18"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="752" text="Theme Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vnI-yD-Drl">
+                        <rect key="frame" x="10" y="10" width="300" height="19.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Theme Years" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YS2-CY-C1V">
-                        <rect key="frame" x="10" y="27" width="285.5" height="12"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                        <nil key="textColor"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="Theme Years" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YS2-CY-C1V">
+                        <rect key="frame" x="10" y="30" width="73.5" height="14.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="425" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Ym-9P-617">
-                        <rect key="frame" x="285" y="13" width="24.5" height="16"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="425 sets" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Ym-9P-617">
+                        <rect key="frame" x="10" y="46.5" width="300" height="16"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="5Ym-9P-617" firstAttribute="leading" secondItem="vnI-yD-Drl" secondAttribute="trailing" constant="10" id="0sL-yO-wdO"/>
-                    <constraint firstItem="5Ym-9P-617" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="96f-1v-kkK"/>
-                    <constraint firstItem="vnI-yD-Drl" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="6" id="F51-8c-nZh"/>
-                    <constraint firstAttribute="bottom" secondItem="YS2-CY-C1V" secondAttribute="bottom" constant="5" id="H2W-7m-dcS"/>
+                    <constraint firstItem="5Ym-9P-617" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="EU3-uV-hZe"/>
+                    <constraint firstItem="vnI-yD-Drl" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="F51-8c-nZh"/>
                     <constraint firstAttribute="trailing" secondItem="5Ym-9P-617" secondAttribute="trailing" constant="10" id="MHw-Hh-3JJ"/>
-                    <constraint firstItem="YS2-CY-C1V" firstAttribute="top" secondItem="vnI-yD-Drl" secondAttribute="bottom" constant="3" id="WIE-w6-0qB"/>
-                    <constraint firstItem="YS2-CY-C1V" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="5Ym-9P-617" secondAttribute="leading" constant="10" id="cKZ-Gv-Q14"/>
-                    <constraint firstItem="YS2-CY-C1V" firstAttribute="leading" secondItem="vnI-yD-Drl" secondAttribute="leading" id="jol-oM-zey"/>
+                    <constraint firstAttribute="trailing" secondItem="vnI-yD-Drl" secondAttribute="trailing" constant="10" id="SIv-E4-gE7"/>
+                    <constraint firstAttribute="bottom" secondItem="5Ym-9P-617" secondAttribute="bottom" constant="10" id="VZB-wa-3Na"/>
+                    <constraint firstItem="YS2-CY-C1V" firstAttribute="top" secondItem="vnI-yD-Drl" secondAttribute="baseline" constant="5" id="WIE-w6-0qB"/>
+                    <constraint firstItem="5Ym-9P-617" firstAttribute="top" secondItem="YS2-CY-C1V" secondAttribute="baseline" constant="5" id="e9d-4g-LY6"/>
                     <constraint firstItem="vnI-yD-Drl" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="rHY-MN-bfV"/>
+                    <constraint firstItem="YS2-CY-C1V" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="ys7-gh-Fci"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
@@ -56,6 +56,7 @@
                 <outlet property="setCountLabel" destination="5Ym-9P-617" id="6I6-R1-n3b"/>
                 <outlet property="yearsLabel" destination="YS2-CY-C1V" id="Kdv-SU-34Q"/>
             </connections>
+            <point key="canvasLocation" x="34" y="62.5"/>
         </tableViewCell>
     </objects>
 </document>

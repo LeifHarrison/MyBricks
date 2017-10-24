@@ -13,9 +13,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+
+        // Validate that our BrickSet API Key is still valid
+        validateAPIKey()
+
         return true
     }
 
@@ -41,6 +43,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
+    private func validateAPIKey() -> Void {
+        BricksetServices.sharedInstance.checkKey(completion: { result in
+            if let valid = result.value, valid != true {
+                let message = NSLocalizedString("It looks like the BrickSet API key is no longer valid. Please update the application or notify the developer.", comment: "")
+                let alert = UIAlertController(title: "Invalid Key", message: message, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.window?.rootViewController?.present(alert, animated: true, completion: nil)
+            }
+            self.validateUserHash()
+        })
+    }
 
+    private func validateUserHash() -> Void {
+        if BricksetServices.isLoggedIn() {
+            BricksetServices.sharedInstance.checkUserHash(completion: { result in
+                if let valid = result.value, valid != true {
+                    let message = NSLocalizedString("It looks like the userHash is no longer valid.", comment: "")
+                    let alert = UIAlertController(title: "Invalid Key", message: message, preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                    self.window?.rootViewController?.present(alert, animated: true, completion: nil)
+                }
+            })
+        }
+    }
 }
 

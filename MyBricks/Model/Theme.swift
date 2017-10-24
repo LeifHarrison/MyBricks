@@ -26,7 +26,7 @@ public struct Theme {
     }
 
     func yearsDecription() -> String {
-        if let yearFrom = yearFrom, let yearTo = yearTo {
+        if let yearFrom = yearFrom, let yearTo = yearTo, yearTo != yearFrom {
             return "\(yearFrom) - \(yearTo)"
         }
         else if let yearFrom = yearFrom {
@@ -39,4 +39,5 @@ public struct Theme {
             return ""
         }
     }
+    
 }

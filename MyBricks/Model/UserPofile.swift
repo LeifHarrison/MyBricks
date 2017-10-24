@@ -18,6 +18,15 @@ public struct UserProfile {
     var location: String?
     var interests: String?
 
+    init?() {
+        name = "Lego Maniac"
+        memberSince = Date()
+        lastOnline = Date()
+        country = "United States"
+        location = "Legoland, CA"
+        interests = "Star Wars, Ninjago, Chima, Disney, Elves, Architecture"
+    }
+
     init?(element: XMLElement) {
     }
 

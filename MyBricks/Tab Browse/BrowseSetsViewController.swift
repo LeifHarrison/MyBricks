@@ -28,7 +28,7 @@ class BrowseSetsViewController: UIViewController {
         super.viewDidLoad()
         tableView.register(UINib(nibName: "SetTableViewCell", bundle: nil), forCellReuseIdentifier: "SetTableViewCell")
         tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = 61
+        tableView.estimatedRowHeight = UITableViewAutomaticDimension
         tableView.sectionIndexBackgroundColor = UIColor.clear
         //tableView.separatorInset = UIEdgeInsets()
         tableView.tableFooterView = UIView()
@@ -102,12 +102,12 @@ extension BrowseSetsViewController: UITableViewDataSource {
             {
                 if UIScreen.main.scale > 1.5 {
                     if let urlString = set.largeThumbnailURL, let url = URL(string: urlString) {
-                        cell.setImageView.af_setImage(withURL: url)
+                        cell.setImageView.af_setImage(withURL: url, imageTransition: .crossDissolve(0.3))
                     }
                 }
                 else {
                     if let urlString = set.thumbnailURL, let url = URL(string: urlString) {
-                        cell.setImageView.af_setImage(withURL: url)
+                        cell.setImageView.af_setImage(withURL: url, imageTransition: .crossDissolve(0.3))
                     }
                 }
 
@@ -117,10 +117,15 @@ extension BrowseSetsViewController: UITableViewDataSource {
                 cell.piecesLabel.text = "\(set.pieces ?? 0)"
                 cell.minifigsLabel.text = "\(set.minifigs ?? 0)"
 
-                cell.retiredView.isHidden = true
+                cell.retiredView.isHidden = !(set.isRetired())
+                cell.retiredSpacingConstraint.isActive = set.isRetired()
+                
                 cell.ownedView.isHidden = !(set.owned ?? true)
                 cell.wantedView.isHidden = !cell.ownedView.isHidden || !(set.wanted ?? true)
 
+                if cell.hasAmbiguousLayout {
+                    print("\(cell.constraintsAffectingLayout(for: .vertical))")
+                }
                 return cell
             }
         }
@@ -152,7 +157,7 @@ extension BrowseSetsViewController: UITableViewDelegate {
         if let sets = setsBySection[sectionTitle] {
             let set = sets[indexPath.row]
             if let setDetailVC = storyboard?.instantiateViewController(withIdentifier: "SetDetailViewController") as? SetDetailViewController {
-                //setDetailVC.theme = theme.name
+                setDetailVC.currentSet = set
                 show(setDetailVC, sender: self)
                 tableView.deselectRow(at: indexPath, animated: true)
             }

@@ -2,6 +2,8 @@
 Brickset API Key: PJ6U-J8Ob-GG1k
 
 https://github.com/Alamofire/Alamofire
+https://github.com/Alamofire/AlamofireImage
+https://github.com/Alamofire/AlamofireNetworkActivityIndicator
 https://github.com/cezheng/Fuzi
 https://github.com/kishikawakatsumi/KeychainAccess
 

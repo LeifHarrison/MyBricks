@@ -33,6 +33,12 @@ class ProfileViewController: UIViewController {
     var userProfile: UserProfile? = nil
     var collectionTotals: UserCollectionTotals? = nil
 
+    let profileDateFormatter : DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd MMM yyyy"
+        return formatter
+    }()
+
     //--------------------------------------------------------------------------
     // MARK: - View Lifecycle
     //--------------------------------------------------------------------------
@@ -46,6 +52,7 @@ class ProfileViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
+        updateProfileFields()
         updateCollectionFields()
 
         let loggedIn = BricksetServices.isLoggedIn()
@@ -71,6 +78,7 @@ class ProfileViewController: UIViewController {
 
         if (isLoggedIn) {
             transitionViews(fromView: loginView, toView: profileView, animated: animated)
+            updateProfileInformation()
             updateCollectionInformation()
         }
         else {
@@ -96,37 +104,87 @@ class ProfileViewController: UIViewController {
         UIView.animate(withDuration: animated ? 0.5 : 0, animations: fadeOutBlock, completion:transitionBlock)
     }
 
+    // MARK: - Updating Profile Information
+
     fileprivate func updateProfileInformation() {
+
         // TODO: Implement fetching Profile information once profile
         // service is available
+
+        fadeOutProfileFields()
+        profileActivityIndicator.startAnimating()
+
+        // Temporary hack to pretend we're fetching profile information
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+            self.profileActivityIndicator.stopAnimating()
+            self.userProfile = UserProfile()
+            self.updateProfileFields()
+            self.fadeInProfileFields()
+        }
+
+//        BricksetServices.sharedInstance.getUserProfile(completion: { result in
+//            self.profileActivityIndicator.stopAnimating()
+//            if result.isSuccess {
+//                self.userProfile = result.value
+//                self.updateProfileFields()()
+//            }
+//        })
     }
 
     fileprivate func updateProfileFields() -> Void {
         if let profile = self.userProfile {
-            nameField.text = profile.name
-            memberSinceField.text = "\(profile.memberSince ?? Date.init(timeIntervalSinceNow: 0))"
-            lastOnlineField.text = "\(profile.lastOnline ?? Date.init(timeIntervalSinceNow: 0))"
-            countryField.text = profile.country
-            locationField.text = profile.location
-            interestsField.text = profile.interests
+            self.nameField.text = profile.name
+            self.memberSinceField.text = self.profileDateFormatter.string(from: (profile.memberSince ?? Date.init(timeIntervalSinceNow: 0)))
+            self.lastOnlineField.text = self.profileDateFormatter.string(from: (profile.lastOnline ?? Date.init(timeIntervalSinceNow: 0)))
+            self.countryField.text = profile.country
+            self.locationField.text = profile.location
+            self.interestsField.text = profile.interests
         }
         else {
-            nameField.text = nil
-            memberSinceField.text = nil
-            lastOnlineField.text = nil
-            countryField.text = nil
-            locationField.text = nil
-            interestsField.text = nil
+            self.nameField.text = nil
+            self.memberSinceField.text = nil
+            self.lastOnlineField.text = nil
+            self.countryField.text = nil
+            self.locationField.text = nil
+            self.interestsField.text = nil
         }
     }
 
+    fileprivate func fadeOutProfileFields() -> Void {
+        let animations = { () -> Void in
+            self.nameField.alpha = 0.0
+            self.memberSinceField.alpha = 0.0
+            self.lastOnlineField.alpha = 0.0
+            self.countryField.alpha = 0.0
+            self.locationField.alpha = 0.0
+            self.interestsField.alpha = 0.0
+        }
+        UIView.animate(withDuration: 0.25, animations:animations)
+    }
+
+    fileprivate func fadeInProfileFields() -> Void {
+        let animations = { () -> Void in
+            self.nameField.alpha = 1.0
+            self.memberSinceField.alpha = 1.0
+            self.lastOnlineField.alpha = 1.0
+            self.countryField.alpha = 1.0
+            self.locationField.alpha = 1.0
+            self.interestsField.alpha = 1.0
+        }
+        UIView.animate(withDuration: 0.25, animations:animations)
+    }
+
+    // MARK: - Updating Collection Information
+
     fileprivate func updateCollectionInformation() {
+        fadeOutCollectionFields()
         collectionActivityIndicator.startAnimating()
         BricksetServices.sharedInstance.getCollectionTotals(completion: { result in
             self.collectionActivityIndicator.stopAnimating()
             if result.isSuccess {
                 self.collectionTotals = result.value
                 self.updateCollectionFields()
+                self.fadeInCollectionFields()
             }
         })
     }
@@ -146,7 +204,31 @@ class ProfileViewController: UIViewController {
         }
     }
     
+    fileprivate func fadeOutCollectionFields() -> Void {
+        let animations = { () -> Void in
+            self.ownedSetsField.alpha = 0.0
+            self.wantedSetsField.alpha = 0.0
+            self.ownedMinifigsField.alpha = 0.0
+            self.wantedMinifigsField.alpha = 0.0
+        }
+        UIView.animate(withDuration: 0.25, animations:animations)
+    }
+
+    fileprivate func fadeInCollectionFields() -> Void {
+        let animations = { () -> Void in
+            self.ownedSetsField.alpha = 1.0
+            self.wantedSetsField.alpha = 1.0
+            self.ownedMinifigsField.alpha = 1.0
+            self.wantedMinifigsField.alpha = 1.0
+        }
+        UIView.animate(withDuration: 0.25, animations:animations)
+    }
+
 }
+
+//==============================================================================
+// MARK: - UserCollectionTotals extensions
+//==============================================================================
 
 extension UserCollectionTotals {
 
@@ -165,7 +247,7 @@ extension UserCollectionTotals {
     func setsWantedAttributedDescription() -> NSAttributedString {
         let attributedDescription = NSMutableAttributedString(string: "You want ", attributes: UserCollectionTotals.regularAttributes)
         attributedDescription.append(NSAttributedString(string:"\(totalSetsWanted ?? 0)", attributes:UserCollectionTotals.boldAttributes))
-        attributedDescription.append(NSAttributedString(string:" sets, ", attributes:UserCollectionTotals.regularAttributes))
+        attributedDescription.append(NSAttributedString(string:" sets", attributes:UserCollectionTotals.regularAttributes))
         return attributedDescription
     }
 
@@ -173,7 +255,7 @@ extension UserCollectionTotals {
         let attributedDescription = NSMutableAttributedString(string: "You own ", attributes: UserCollectionTotals.regularAttributes)
         attributedDescription.append(NSAttributedString(string:"\(totalMinifigsOwned ?? 0)", attributes:UserCollectionTotals.boldAttributes))
         attributedDescription.append(NSAttributedString(string:" minifigs, ", attributes:UserCollectionTotals.regularAttributes))
-        attributedDescription.append(NSAttributedString(string:"\(totalMinifigsOwned ?? 0)", attributes:UserCollectionTotals.boldAttributes))
+        attributedDescription.append(NSAttributedString(string:"\(totalDistinctMinifigsOwned ?? 0)", attributes:UserCollectionTotals.boldAttributes))
         attributedDescription.append(NSAttributedString(string:" different", attributes:UserCollectionTotals.regularAttributes))
         return attributedDescription
     }
@@ -181,7 +263,7 @@ extension UserCollectionTotals {
     func minifigsWantedAttributedDescription() -> NSAttributedString {
         let attributedDescription = NSMutableAttributedString(string: "You want ", attributes: UserCollectionTotals.regularAttributes)
         attributedDescription.append(NSAttributedString(string:"\(totalMinifigsWanted ?? 0)", attributes:UserCollectionTotals.boldAttributes))
-        attributedDescription.append(NSAttributedString(string:" minifigs, ", attributes:UserCollectionTotals.regularAttributes))
+        attributedDescription.append(NSAttributedString(string:" minifigs", attributes:UserCollectionTotals.regularAttributes))
         return attributedDescription
     }
 

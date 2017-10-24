@@ -11,6 +11,12 @@ import Fuzi
 
 public struct Set {
 
+    let dateFormatter : DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        return formatter
+    }()
+
     var setID: String?
     var number: String?
     var name: String?
@@ -27,6 +33,8 @@ public struct Set {
     var availability: String?
     var EAN: String?
     var UPC: String?
+    var dateAddedToSAH: Date?
+    var dateRemovedFromSAH: Date?
 
     var owned: Bool?
     var wanted: Bool?
@@ -50,7 +58,17 @@ public struct Set {
         UPC = element.firstChild(tag: "UPC")?.stringValue
         owned = Bool(element.firstChild(tag: "owned")?.stringValue ?? "false")
         wanted = Bool(element.firstChild(tag: "wanted")?.stringValue ?? "false")
+
+        if let dateAdded = element.firstChild(tag: "USDateAddedToSAH")?.stringValue {
+            dateAddedToSAH = dateFormatter.date(from: dateAdded)
+        }
+        if let dateRemoved = element.firstChild(tag: "USDateRemovedFromSAH")?.stringValue {
+            dateRemovedFromSAH = dateFormatter.date(from: dateRemoved)
+        }
      }
 
+    func isRetired() -> Bool {
+        return (dateAddedToSAH == nil) || (dateRemovedFromSAH != nil)
+    }
 }
 

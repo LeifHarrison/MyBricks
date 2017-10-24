@@ -13,7 +13,9 @@ import Fuzi
 import KeychainAccess
 
 enum ServiceError : Error {
+    case serviceFailure(reason: String)
     case loginFailed(reason: String)
+    case unknownError
 }
 
 class BricksetServices {
@@ -61,12 +63,21 @@ class BricksetServices {
                     let array = result.components(separatedBy: ": ")
                     if array.count > 0 {
                         let errorDetail = array[1]
-                        completion(Result.failure(ServiceError.loginFailed(reason:errorDetail)))
+                        completion(Result.failure(ServiceError.serviceFailure(reason:errorDetail)))
                         return
                     }
                 }
 
-                completion(Result.success(true))
+                if result.contains("OK") {
+                    completion(Result.success(true))
+                }
+                else if result.contains("INVALIDKEY") {
+                    completion(Result.success(false))
+                }
+                else {
+                    completion(Result.failure(ServiceError.unknownError))
+                }
+
             }
         }
         request.responseXMLDocument(completionHandler: requestCompletion)
@@ -77,9 +88,11 @@ class BricksetServices {
         var parameters = defaultParameters()
 
         let keychain = Keychain(service: BricksetServices.serviceName)
-        if let username = UserDefaults.standard.value(forKey: "username") as? String, let userHash = keychain[username] {
-            parameters["userHash"] = userHash
+        guard let username = UserDefaults.standard.value(forKey: "username") as? String, let userHash = keychain[username] else {
+            completion(Result.failure(ServiceError.unknownError))
+            return
         }
+        parameters["userHash"] = userHash
 
         let request = Alamofire.request( url, parameters: parameters)
         print("Request: \(request)")
@@ -101,7 +114,15 @@ class BricksetServices {
                     }
                 }
 
-                completion(Result.success(true))
+                if result.contains(username) {
+                    completion(Result.success(true))
+                }
+                else if result.contains("INVALID") {
+                    completion(Result.success(false))
+                }
+                else {
+                    completion(Result.failure(ServiceError.unknownError))
+                }
             }
         }
         request.responseXMLDocument(completionHandler: requestCompletion)
