@@ -1,0 +1,30 @@
+PODS:
+  - Alamofire (4.5.1)
+  - AlamofireImage (3.3.0):
+    - Alamofire (~> 4.5)
+  - AlamofireNetworkActivityIndicator (2.2.0):
+    - Alamofire (~> 4.5)
+  - AlamofireRSSParser (2.0.1):
+    - Alamofire
+  - Cosmos (12.0.1)
+  - KeychainAccess (3.1.0)
+
+DEPENDENCIES:
+  - Alamofire
+  - AlamofireImage
+  - AlamofireNetworkActivityIndicator
+  - AlamofireRSSParser
+  - Cosmos
+  - KeychainAccess
+
+SPEC CHECKSUMS:
+  Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
+  AlamofireImage: 2e784dc5d00f04903a52c1d169181469c805c3df
+  AlamofireNetworkActivityIndicator: 81e1630e7cfed22a4e4e82a174c59e651dc4f8ca
+  AlamofireRSSParser: 86243cd156b94b9d97d8f915fa44a0f15bd1bfb7
+  Cosmos: 4a9f57998a08788a1062c7b8eefbc62d2b590f39
+  KeychainAccess: 94c5540b32eabf7bc32bfb976a268e8ea05fd6da
+
+PODFILE CHECKSUM: 7a0321710f51bb5846f2a35b784bfcca4f869884
+
+COCOAPODS: 1.4.0.beta.2

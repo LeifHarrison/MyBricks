@@ -4,8 +4,11 @@ Brickset API Key: PJ6U-J8Ob-GG1k
 https://github.com/Alamofire/Alamofire
 https://github.com/Alamofire/AlamofireImage
 https://github.com/Alamofire/AlamofireNetworkActivityIndicator
+https://github.com/AdeptusAstartes/AlamofireRSSParser
 https://github.com/cezheng/Fuzi
 https://github.com/kishikawakatsumi/KeychainAccess
+https://github.com/danthorpe/Money
+https://github.com/evgenyneu/Cosmos
 
 Other Keychain alternatives:
 https://developer.apple.com/library/content/samplecode/GenericKeychain/Introduction/Intro.html#//apple_ref/doc/uid/DTS40007797
@@ -15,7 +18,11 @@ https://github.com/jrendel/SwiftKeychainWrapper
 https://github.com/matthewpalmer/Locksmith
 https://github.com/granoff/Strongbox
 
-carthage update --no-build
+pod install
+pod update
+
+carthage outdated
+carthage update --platform iOS
 
 Icons from:
 https://icons8.com/ios
@@ -23,28 +30,7 @@ https://icons8.com/ios
 Brickset Login: Rexfelis / agents8369
 
 Profile Label color: #005a88
-
-<?xml version="1.0" encoding="utf-8"?>
-<soap12:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://www.w3.org/2003/05/soap-envelope">
-  <soap12:Body>
-    <getSets xmlns="https://brickset.com/api/">
-      <apiKey>PJ6U-J8Ob-GG1k</apiKey>
-      <userHash></userHash>
-      <query></query>
-      <theme></theme>
-      <subtheme></subtheme>
-      <setNumber></setNumber>
-      <year></year>
-      <owned></owned>
-      <wanted></wanted>
-      <orderBy></orderBy>
-      <pageSize></pageSize>
-      <pageNumber></pageNumber>
-      <userName></userName>
-    </getSets>
-  </soap12:Body>
-</soap12:Envelope>
-
+Section Header Background: #0690D6	6 / 144/ 214
 
 BrickSet API Requests
 1. If possible, addition of theme “logo” image/thumbnail (like those displayed on lego.com).

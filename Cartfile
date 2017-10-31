@@ -1,5 +1,1 @@
-github "Alamofire/Alamofire" ~> 4.0			# Alamofire (networking)
-github "Alamofire/AlamofireImage" ~> 3.0	# AlamofireImage (image loading/caching)
-github "Alamofire/AlamofireNetworkActivityIndicator" ~> 2.0
-github "cezheng/Fuzi" ~> 2.0.0				# Fuzi (XML parsing)
-github "kishikawakatsumi/KeychainAccess"	# KeychainAccess (Keychain wrapper API)
+github "cezheng/Fuzi" ~> 2.0				# Fuzi (XML parsing)
