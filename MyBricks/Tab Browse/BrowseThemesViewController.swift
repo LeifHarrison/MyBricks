@@ -23,7 +23,10 @@ class BrowseThemesViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
         tableView.register(UINib(nibName: "ThemeTableViewCell", bundle: nil), forCellReuseIdentifier: "ThemeTableViewCell")
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = UITableViewAutomaticDimension
         tableView.tableFooterView = UIView()
     }
 

@@ -30,7 +30,6 @@ class BrowseSetsViewController: UIViewController {
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = UITableViewAutomaticDimension
         tableView.sectionIndexBackgroundColor = UIColor.clear
-        //tableView.separatorInset = UIEdgeInsets()
         tableView.tableFooterView = UIView()
     }
 
@@ -147,7 +146,7 @@ extension BrowseSetsViewController: UITableViewDataSource {
 }
 
 //==============================================================================
-// MARK: - UITableViewDataSource
+// MARK: - UITableViewDelegate
 //==============================================================================
 
 extension BrowseSetsViewController: UITableViewDelegate {

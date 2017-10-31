@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="SetDetailPricingTableViewCell" rowHeight="141" id="KGk-i7-Jjw" customClass="SetDetailPricingTableViewCell" customModule="MyBricks" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="99.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="RETAIL PRICE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8ET-hE-7Rn">
+                        <rect key="frame" x="10" y="16" width="118" height="17"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" ambiguous="YES" text="$49.99" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lbT-1v-P6z">
+                        <rect key="frame" x="143" y="15" width="167" height="18"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" ambiguous="YES" text="CURRENT VALUE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l2l-0E-fMy">
+                        <rect key="frame" x="10" y="37.5" width="118" height="17"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" ambiguous="YES" text="New: ~$68, Used: ~$47" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tdf-rz-Ijt">
+                        <rect key="frame" x="143" y="37" width="167" height="18"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" ambiguous="YES" text="PRICE PER PIECE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Fk-Oa-cKw">
+                        <rect key="frame" x="10" y="60.5" width="118" height="17"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" ambiguous="YES" text="5.5p / 6.8c / 6.8c" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Urx-5s-sjc">
+                        <rect key="frame" x="143" y="59.5" width="167" height="18"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                <constraints>
+                    <constraint firstItem="lbT-1v-P6z" firstAttribute="leading" secondItem="8ET-hE-7Rn" secondAttribute="trailing" constant="15" id="0eL-xc-G4Q"/>
+                    <constraint firstItem="lbT-1v-P6z" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="7Vh-fd-Dx5"/>
+                    <constraint firstAttribute="trailing" secondItem="tdf-rz-Ijt" secondAttribute="trailing" constant="10" id="AvY-PR-GsI"/>
+                    <constraint firstItem="l2l-0E-fMy" firstAttribute="leading" secondItem="8ET-hE-7Rn" secondAttribute="leading" id="D4z-0x-DDF"/>
+                    <constraint firstItem="tdf-rz-Ijt" firstAttribute="leading" secondItem="lbT-1v-P6z" secondAttribute="leading" id="DhK-Va-lJV"/>
+                    <constraint firstAttribute="trailing" secondItem="Urx-5s-sjc" secondAttribute="trailing" constant="10" id="HaQ-7n-8f6"/>
+                    <constraint firstItem="Urx-5s-sjc" firstAttribute="firstBaseline" secondItem="3Fk-Oa-cKw" secondAttribute="firstBaseline" id="JUZ-Ah-5gP"/>
+                    <constraint firstItem="lbT-1v-P6z" firstAttribute="firstBaseline" secondItem="8ET-hE-7Rn" secondAttribute="firstBaseline" id="JpG-xo-EdD"/>
+                    <constraint firstItem="Urx-5s-sjc" firstAttribute="leading" secondItem="tdf-rz-Ijt" secondAttribute="leading" id="Kmu-bZ-Evj"/>
+                    <constraint firstAttribute="trailing" secondItem="lbT-1v-P6z" secondAttribute="trailing" constant="10" id="LCs-2f-55x"/>
+                    <constraint firstItem="Urx-5s-sjc" firstAttribute="top" secondItem="tdf-rz-Ijt" secondAttribute="baseline" constant="8" id="PFu-hq-vNr"/>
+                    <constraint firstItem="8ET-hE-7Rn" firstAttribute="width" secondItem="l2l-0E-fMy" secondAttribute="width" id="UFZ-va-ouN"/>
+                    <constraint firstItem="tdf-rz-Ijt" firstAttribute="top" secondItem="lbT-1v-P6z" secondAttribute="baseline" constant="8" id="Uva-PW-GTE"/>
+                    <constraint firstItem="8ET-hE-7Rn" firstAttribute="width" secondItem="3Fk-Oa-cKw" secondAttribute="width" id="VbH-IE-DNY"/>
+                    <constraint firstAttribute="bottom" secondItem="Urx-5s-sjc" secondAttribute="bottom" constant="15" id="ghE-ju-SLU"/>
+                    <constraint firstItem="3Fk-Oa-cKw" firstAttribute="leading" secondItem="l2l-0E-fMy" secondAttribute="leading" id="lGR-Lz-qsx"/>
+                    <constraint firstItem="tdf-rz-Ijt" firstAttribute="firstBaseline" secondItem="l2l-0E-fMy" secondAttribute="firstBaseline" id="x97-be-XVK"/>
+                    <constraint firstItem="8ET-hE-7Rn" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="xEL-wS-Xbh"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="currentValueField" destination="tdf-rz-Ijt" id="YAu-d0-WDH"/>
+                <outlet property="pricePerPieceField" destination="Urx-5s-sjc" id="DsP-ne-vHT"/>
+                <outlet property="retailPriceField" destination="lbT-1v-P6z" id="9ac-GN-Eo9"/>
+            </connections>
+            <point key="canvasLocation" x="34" y="102"/>
+        </tableViewCell>
+    </objects>
+</document>

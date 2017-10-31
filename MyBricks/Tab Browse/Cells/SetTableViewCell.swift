@@ -34,6 +34,7 @@ class SetTableViewCell: UITableViewCell {
         ownedView.layer.cornerRadius = ownedView.bounds.height / 2
         wantedView.layer.cornerRadius = ownedView.bounds.height / 2
     }
+
     //--------------------------------------------------------------------------
     // MARK: - Reuse
     //--------------------------------------------------------------------------
@@ -51,4 +52,5 @@ class SetTableViewCell: UITableViewCell {
         ownedView.isHidden = true
         wantedView.isHidden = true
     }
+    
 }

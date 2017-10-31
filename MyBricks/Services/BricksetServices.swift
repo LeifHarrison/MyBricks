@@ -262,7 +262,7 @@ class BricksetServices {
         parameters["owned"] = ""
         parameters["wanted"] = ""
         parameters["orderBy"] = "Number"
-        parameters["pageSize"] = "50"
+        parameters["pageSize"] = "1000"
         parameters["pageNumber"] = ""
         parameters["userName"] = ""
 

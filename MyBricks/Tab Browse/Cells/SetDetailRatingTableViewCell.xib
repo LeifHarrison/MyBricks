@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="SetDetailRatingTableViewCell" rowHeight="99" id="KGk-i7-Jjw" customClass="SetDetailRatingTableViewCell" customModule="MyBricks" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="99.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" ambiguous="YES" text="RATING" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fjv-3C-wHY">
+                        <rect key="frame" x="16" y="15" width="97" height="17"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" ambiguous="YES" text="YOUR RATING" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5PO-rm-Vw1">
+                        <rect key="frame" x="16" y="58.5" width="97" height="17"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="faY-to-LTH" customClass="CosmosView" customModule="Cosmos">
+                        <rect key="frame" x="128" y="15" width="128.5" height="18"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="rating">
+                                <real key="value" value="3"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="string" keyPath="text" value="(5)"/>
+                            <userDefinedRuntimeAttribute type="color" keyPath="filledColor">
+                                <color key="value" red="0.0" green="0.70980392160000005" blue="0.79607843140000001" alpha="1" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="emptyBorderColor">
+                                <color key="value" red="0.0" green="0.70980392160000005" blue="0.79607843140000001" alpha="1" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="emptyBorderWidth">
+                                <real key="value" value="1"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="emptyColor">
+                                <color key="value" red="0.0" green="0.70980392160000005" blue="0.79607843140000001" alpha="1" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="totalStars">
+                                <integer key="value" value="5"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="starSize">
+                                <real key="value" value="18"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="starMargin">
+                                <real key="value" value="4"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" ambiguous="YES" text="from 1 review" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YWc-2a-fW6">
+                        <rect key="frame" x="128" y="34" width="91.5" height="18"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gvV-tG-pnZ" customClass="CosmosView" customModule="Cosmos">
+                        <rect key="frame" x="128" y="57" width="163.5" height="25"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="rating">
+                                <real key="value" value="3"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="string" keyPath="text" value="(5)"/>
+                            <userDefinedRuntimeAttribute type="number" keyPath="starSize">
+                                <real key="value" value="25"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="starMargin">
+                                <real key="value" value="4"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Fjv-3C-wHY" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="2Iz-BA-bHY"/>
+                    <constraint firstItem="YWc-2a-fW6" firstAttribute="leading" secondItem="faY-to-LTH" secondAttribute="leading" id="8KB-fL-9kT"/>
+                    <constraint firstAttribute="bottom" secondItem="gvV-tG-pnZ" secondAttribute="bottom" constant="15" id="8vb-ds-KeB"/>
+                    <constraint firstItem="faY-to-LTH" firstAttribute="leading" secondItem="Fjv-3C-wHY" secondAttribute="trailing" constant="15" id="EBl-J9-iWs"/>
+                    <constraint firstItem="5PO-rm-Vw1" firstAttribute="leading" secondItem="Fjv-3C-wHY" secondAttribute="leading" id="Gy1-SJ-C94"/>
+                    <constraint firstItem="gvV-tG-pnZ" firstAttribute="leading" secondItem="faY-to-LTH" secondAttribute="leading" id="K2m-dK-wvq"/>
+                    <constraint firstItem="faY-to-LTH" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="TmL-Qc-suH"/>
+                    <constraint firstItem="Fjv-3C-wHY" firstAttribute="width" secondItem="5PO-rm-Vw1" secondAttribute="width" id="XeR-Tf-mdX"/>
+                    <constraint firstItem="YWc-2a-fW6" firstAttribute="top" secondItem="faY-to-LTH" secondAttribute="bottom" constant="3" id="cVZ-rH-jDO"/>
+                    <constraint firstItem="gvV-tG-pnZ" firstAttribute="top" secondItem="YWc-2a-fW6" secondAttribute="bottom" constant="5" id="hI0-Tc-PvV"/>
+                    <constraint firstItem="gvV-tG-pnZ" firstAttribute="centerY" secondItem="5PO-rm-Vw1" secondAttribute="centerY" id="vHy-WN-eSU"/>
+                    <constraint firstItem="faY-to-LTH" firstAttribute="centerY" secondItem="Fjv-3C-wHY" secondAttribute="centerY" id="y9A-CF-Oot"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="reviewsField" destination="YWc-2a-fW6" id="mmj-um-CJh"/>
+                <outlet property="setRatingView" destination="faY-to-LTH" id="Lug-Bp-imw"/>
+                <outlet property="yourRatingView" destination="gvV-tG-pnZ" id="n0D-RN-CMq"/>
+            </connections>
+            <point key="canvasLocation" x="35" y="84.5"/>
+        </tableViewCell>
+    </objects>
+</document>

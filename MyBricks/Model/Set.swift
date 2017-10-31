@@ -19,9 +19,11 @@ public struct Set {
 
     var setID: String?
     var number: String?
+    var numberVariant: String?
     var name: String?
     var year: String?
     var theme: String?
+    var themeGroup: String?
     var subtheme: String?
     var pieces: Int?
     var minifigs: Int?
@@ -29,22 +31,37 @@ public struct Set {
     var largeThumbnailURL: String?
     var imageURL: String?
     var bricksetURL: String?
-    var packagingType: String?
-    var availability: String?
-    var EAN: String?
-    var UPC: String?
-    var dateAddedToSAH: Date?
-    var dateRemovedFromSAH: Date?
-
+    var released: Bool?
     var owned: Bool?
     var wanted: Bool?
+    var quantityOwned: Int?
+    var userNotes: String?
+    var ownedByTotal: Int?
+    var wantedByTotal: Int?
+    var retailPriceUK: String?
+    var retailPriceUS: String?
+    var retailPriceCA: String?
+    var retailPriceEU: String?
+    var dateAddedToSAH: Date?
+    var dateRemovedFromSAH: Date?
+    var rating: Double?
+    var reviewCount: Int?
+    var packagingType: String?
+    var availability: String?
+    var instructionsCount: Int?
+    var additionalImageCount: Int?
+    var EAN: String?
+    var UPC: String?
+    var lastUpdated: Date?
 
     init?(element: XMLElement) {
         setID = element.firstChild(tag: "setID")?.stringValue
         number = element.firstChild(tag: "number")?.stringValue
+        numberVariant = element.firstChild(tag: "numberVariant")?.stringValue
         name = element.firstChild(tag: "name")?.stringValue
         year = element.firstChild(tag: "year")?.stringValue
         theme = element.firstChild(tag: "theme")?.stringValue
+        themeGroup = element.firstChild(tag: "themeGroup")?.stringValue
         subtheme = element.firstChild(tag: "subtheme")?.stringValue
         pieces = Int(element.firstChild(tag: "pieces")?.stringValue ?? "0")
         minifigs = Int(element.firstChild(tag: "minifigs")?.stringValue ?? "0")
@@ -52,19 +69,32 @@ public struct Set {
         largeThumbnailURL = element.firstChild(tag: "largeThumbnailURL")?.stringValue
         imageURL = element.firstChild(tag: "imageURL")?.stringValue
         bricksetURL = element.firstChild(tag: "bricksetURL")?.stringValue
-        packagingType = element.firstChild(tag: "packagingType")?.stringValue
-        availability = element.firstChild(tag: "availability")?.stringValue
-        EAN = element.firstChild(tag: "EAN")?.stringValue
-        UPC = element.firstChild(tag: "UPC")?.stringValue
+        released = Bool(element.firstChild(tag: "released")?.stringValue ?? "false")
         owned = Bool(element.firstChild(tag: "owned")?.stringValue ?? "false")
         wanted = Bool(element.firstChild(tag: "wanted")?.stringValue ?? "false")
-
+        quantityOwned = Int(element.firstChild(tag: "qtyOwned")?.stringValue ?? "0")
+        userNotes = element.firstChild(tag: "userNotes")?.stringValue
+        ownedByTotal = Int(element.firstChild(tag: "ownedByTotal")?.stringValue ?? "0")
+        wantedByTotal = Int(element.firstChild(tag: "wantedByTotal")?.stringValue ?? "0")
+        retailPriceUK = element.firstChild(tag: "UKRetailPrice")?.stringValue
+        retailPriceUS = element.firstChild(tag: "USRetailPrice")?.stringValue
+        retailPriceCA = element.firstChild(tag: "CARetailPrice")?.stringValue
+        retailPriceEU = element.firstChild(tag: "EURetailPrice")?.stringValue
         if let dateAdded = element.firstChild(tag: "USDateAddedToSAH")?.stringValue {
             dateAddedToSAH = dateFormatter.date(from: dateAdded)
         }
         if let dateRemoved = element.firstChild(tag: "USDateRemovedFromSAH")?.stringValue {
             dateRemovedFromSAH = dateFormatter.date(from: dateRemoved)
         }
+        rating = Double(element.firstChild(tag: "rating")?.stringValue ?? "0")
+        reviewCount = Int(element.firstChild(tag: "reviewCount")?.stringValue ?? "0")
+        packagingType = element.firstChild(tag: "packagingType")?.stringValue
+        availability = element.firstChild(tag: "availability")?.stringValue
+        instructionsCount = Int(element.firstChild(tag: "instructionsCount")?.stringValue ?? "0")
+        additionalImageCount = Int(element.firstChild(tag: "additionalImageCount")?.stringValue ?? "0")
+        EAN = element.firstChild(tag: "EAN")?.stringValue
+        UPC = element.firstChild(tag: "UPC")?.stringValue
+
      }
 
     func isRetired() -> Bool {
