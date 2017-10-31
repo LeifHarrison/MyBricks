@@ -24,6 +24,9 @@
 		295ADFC91F16AFFD002E6802 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 295ADFC71F16AFFD002E6802 /* LaunchScreen.storyboard */; };
 		295ADFD41F16AFFD002E6802 /* MyBricksTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295ADFD31F16AFFD002E6802 /* MyBricksTests.swift */; };
 		295ADFDF1F16AFFD002E6802 /* MyBricksUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295ADFDE1F16AFFD002E6802 /* MyBricksUITests.swift */; };
+		2964609E1FA907FC004850F8 /* NewsItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2964609C1FA907FC004850F8 /* NewsItemTableViewCell.swift */; };
+		2964609F1FA907FC004850F8 /* NewsItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2964609D1FA907FC004850F8 /* NewsItemTableViewCell.xib */; };
+		296460A11FA92AA2004850F8 /* NewsItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296460A01FA92AA2004850F8 /* NewsItemViewController.swift */; };
 		2973B5781F96834D002CD0DA /* UserPofile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2973B5771F96834D002CD0DA /* UserPofile.swift */; };
 		297476EE1F1D3DC600FC354B /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297476ED1F1D3DC600FC354B /* Theme.swift */; };
 		297E119F1F9563F500AAE8CB /* UserCollectionTotals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297E119E1F9563F500AAE8CB /* UserCollectionTotals.swift */; };
@@ -104,6 +107,9 @@
 		295ADFDA1F16AFFD002E6802 /* MyBricksUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyBricksUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		295ADFDE1F16AFFD002E6802 /* MyBricksUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyBricksUITests.swift; sourceTree = "<group>"; };
 		295ADFE01F16AFFD002E6802 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2964609C1FA907FC004850F8 /* NewsItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsItemTableViewCell.swift; sourceTree = "<group>"; };
+		2964609D1FA907FC004850F8 /* NewsItemTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewsItemTableViewCell.xib; sourceTree = "<group>"; };
+		296460A01FA92AA2004850F8 /* NewsItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsItemViewController.swift; sourceTree = "<group>"; };
 		2973B5771F96834D002CD0DA /* UserPofile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPofile.swift; sourceTree = "<group>"; };
 		297476ED1F1D3DC600FC354B /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		297C12E81FA3B44900E9D165 /* Cosmos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cosmos.framework; path = Carthage/Build/iOS/Cosmos.framework; sourceTree = "<group>"; };
@@ -192,6 +198,8 @@
 			isa = PBXGroup;
 			children = (
 				29365B761F8EBF2A00F6730C /* NewsViewController.swift */,
+				296460A01FA92AA2004850F8 /* NewsItemViewController.swift */,
+				2964609B1FA907CC004850F8 /* Cells */,
 			);
 			path = "Tab News";
 			sourceTree = "<group>";
@@ -274,6 +282,15 @@
 				295ADFE01F16AFFD002E6802 /* Info.plist */,
 			);
 			path = MyBricksUITests;
+			sourceTree = "<group>";
+		};
+		2964609B1FA907CC004850F8 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				2964609C1FA907FC004850F8 /* NewsItemTableViewCell.swift */,
+				2964609D1FA907FC004850F8 /* NewsItemTableViewCell.xib */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		297476E21F1D351B00FC354B /* Model */ = {
@@ -483,6 +500,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				295ADFC91F16AFFD002E6802 /* LaunchScreen.storyboard in Resources */,
+				2964609F1FA907FC004850F8 /* NewsItemTableViewCell.xib in Resources */,
 				29E86FDC1F31293900A67179 /* ThemeTableViewCell.xib in Resources */,
 				29E8202F1FA7AF22001444C8 /* SetDetailRatingTableViewCell.xib in Resources */,
 				2945A1FE1F9FDB5300827BA7 /* SetDetailTableViewCell.xib in Resources */,
@@ -594,6 +612,7 @@
 				29365B751F8EBF1C00F6730C /* MySetsViewController.swift in Sources */,
 				297476EE1F1D3DC600FC354B /* Theme.swift in Sources */,
 				2973B5781F96834D002CD0DA /* UserPofile.swift in Sources */,
+				2964609E1FA907FC004850F8 /* NewsItemTableViewCell.swift in Sources */,
 				29DFEA141FA29BF500AB0AE8 /* SetDetailCollectionTableViewCell.swift in Sources */,
 				297E119F1F9563F500AAE8CB /* UserCollectionTotals.swift in Sources */,
 				29E820281FA7AEC4001444C8 /* SetDetailPricingTableViewCell.swift in Sources */,
@@ -602,6 +621,7 @@
 				29A523421F310261005F2145 /* UIViewController+Extensions.swift in Sources */,
 				29365B791F8EBF3B00F6730C /* ProfileViewController.swift in Sources */,
 				295ADFBF1F16AFFD002E6802 /* BrowseThemesViewController.swift in Sources */,
+				296460A11FA92AA2004850F8 /* NewsItemViewController.swift in Sources */,
 				2945A1F71F9FD25500827BA7 /* SetDetailImageTableViewCell.swift in Sources */,
 				29CA94A31F8D5132000F1DE3 /* Set.swift in Sources */,
 			);

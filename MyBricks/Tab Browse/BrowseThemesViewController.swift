@@ -34,6 +34,7 @@ class BrowseThemesViewController: UIViewController {
         super.viewWillAppear(animated)
         //self.title = "Themes"
     }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 

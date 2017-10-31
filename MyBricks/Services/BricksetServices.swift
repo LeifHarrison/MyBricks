@@ -9,6 +9,7 @@
 import Foundation
 
 import Alamofire
+import AlamofireRSSParser
 import Fuzi
 import KeychainAccess
 
@@ -191,36 +192,6 @@ class BricksetServices {
         request.responseXMLDocument(completionHandler: requestCompletion)
     }
 
-    func getNews(completion: @escaping ([Theme]) -> Void) {
-        let url = "https://brickset.com/feed"
-
-        let requestCompletion: (DataResponse<XMLDocument>) -> Void = { response in
-            if let error = response.result.error {
-                print("Error: \(error)")
-            }
-            else if let document = response.result.value {
-                print("Document: \(document)")
-//                if let root = document.root {
-//                    var themes: [Theme] = []
-//
-//                    for element in root.children {
-//                        if let theme = Theme(element: element) {
-//                            themes.append(theme)
-//                        }
-//                    }
-//
-//                    completion(themes)
-//                }
-                completion([])
-            }
-        }
-
-        let parameters = defaultParameters()
-        let request = Alamofire.request( url, parameters: parameters)
-        print("Request: \(request)")
-        request.responseXMLDocument(completionHandler: requestCompletion)
-    }
-
     func getThemes(completion: @escaping (Result<[Theme]>) -> Void) {
         let url = baseURL + "getThemes"
 
@@ -289,6 +260,18 @@ class BricksetServices {
             }
         }
         request.responseXMLDocument(completionHandler: requestCompletion)
+    }
+
+    func getNews(completion: @escaping (Result<RSSFeed>) -> Void) {
+        let url = "https://brickset.com/feed"
+        Alamofire.request(url).responseRSS() { (response) -> Void in
+            if let feed: RSSFeed = response.result.value {
+                completion(Result.success(feed))
+            }
+            else {
+                completion(Result.failure(ServiceError.unknownError))
+            }
+        }
     }
 
     fileprivate func defaultParameters() -> Parameters {
