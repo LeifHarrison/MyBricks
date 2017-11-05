@@ -30,11 +30,6 @@ class NewsViewController: UIViewController {
         tableView.tableFooterView = UIView()
     }
 
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(animated)
-//        //self.title = "Themes"
-//    }
-
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
@@ -89,6 +84,7 @@ extension NewsViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let feedItem = feedItems[indexPath.row]
+        print("feedItem = \(feedItem)")
         if let feedItemVC = storyboard?.instantiateViewController(withIdentifier: "NewsItemViewController") as? NewsItemViewController {
             feedItemVC.newsItem = feedItem
             show(feedItemVC, sender: self)
