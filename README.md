@@ -30,15 +30,13 @@ Mobile (iOS) application for interacting with the BrickSet LEGO database.
  
 # Credits
 
-http://www.brickset.com
+Application data graciously provided by **[Brickset](http://www.brickset.com)** using it's web services API.
 
 # Third Party Libraries/Frameworks
 
-https://github.com/Alamofire/Alamofire
-https://github.com/Alamofire/AlamofireImage
-https://github.com/Alamofire/AlamofireNetworkActivityIndicator
-https://github.com/AdeptusAstartes/AlamofireRSSParser
-https://github.com/cezheng/Fuzi
-https://github.com/kishikawakatsumi/KeychainAccess
-https://github.com/danthorpe/Money
-https://github.com/evgenyneu/Cosmos
+* **[Alamofire](https://github.com/Alamofire/Alamofire)** - Swift framework to simplify networking code
+* **[AlamofireImage](https://github.com/Alamofire/AlamofireImage)** - Swift framework to simplify fetching/caching images
+* **[AlamofireNetworkActivityIndicator](https://github.com/Alamofire/AlamofireNetworkActivityIndicator)** - 
+* **[AlamofireRSSParser](https://github.com/AdeptusAstartes/AlamofireRSSParser)** - Swift framework for parsing RSS feeds
+* **[Fuzi](https://github.com/cezheng/Fuzi)** - Framework for parsing XML returned by the Brickset API
+* **[Cosmos](https://github.com/evgenyneu/Cosmos)** - A handy configurable star/rating view

@@ -36,4 +36,3 @@ BrickSet API Requests
 1. If possible, addition of theme “logo” image/thumbnail (like those displayed on lego.com).
 2. Service for fetching a set by UPC
 3. Service(s) for displaying/editing a users’ profile
-4. 
