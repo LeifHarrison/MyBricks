@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		291AC5EE1FAF6FAC000DC9DD /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2921AD8D1FAF6EF200180268 /* Profile.storyboard */; };
+		291AC5EF1FAF6FB0000DC9DD /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2921AD8B1FAF6EE000180268 /* Search.storyboard */; };
+		291AC5F01FAF6FB4000DC9DD /* MySets.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2921AD8A1FAF6ED800180268 /* MySets.storyboard */; };
+		291AC5F21FAF6FC2000DC9DD /* Browse.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2921AD8C1FAF6EEA00180268 /* Browse.storyboard */; };
+		2921AD891FAF6C4000180268 /* News.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2921AD881FAF6C3800180268 /* News.storyboard */; };
 		292F4F571F193092006D5F5B /* BricksetServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292F4F561F193092006D5F5B /* BricksetServices.swift */; };
 		29365B751F8EBF1C00F6730C /* MySetsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29365B741F8EBF1C00F6730C /* MySetsViewController.swift */; };
 		29365B771F8EBF2A00F6730C /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29365B761F8EBF2A00F6730C /* NewsViewController.swift */; };
@@ -83,6 +88,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2921AD881FAF6C3800180268 /* News.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = News.storyboard; path = "/Users/leif/Projects/MyBricks/MyBricks/Tab News/News.storyboard"; sourceTree = "<absolute>"; };
+		2921AD8A1FAF6ED800180268 /* MySets.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = MySets.storyboard; path = "/Users/leif/Projects/MyBricks/MyBricks/Tab My Sets/MySets.storyboard"; sourceTree = "<absolute>"; };
+		2921AD8B1FAF6EE000180268 /* Search.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Search.storyboard; path = "/Users/leif/Projects/MyBricks/MyBricks/Tab Search/Search.storyboard"; sourceTree = "<absolute>"; };
+		2921AD8C1FAF6EEA00180268 /* Browse.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Browse.storyboard; path = "/Users/leif/Projects/MyBricks/MyBricks/Tab Browse/Browse.storyboard"; sourceTree = "<absolute>"; };
+		2921AD8D1FAF6EF200180268 /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Profile.storyboard; path = "/Users/leif/Projects/MyBricks/MyBricks/Tab Profile/Profile.storyboard"; sourceTree = "<absolute>"; };
 		292F4F561F193092006D5F5B /* BricksetServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BricksetServices.swift; sourceTree = "<group>"; };
 		29365B741F8EBF1C00F6730C /* MySetsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySetsViewController.swift; sourceTree = "<group>"; };
 		29365B761F8EBF2A00F6730C /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
@@ -189,6 +199,7 @@
 		29365B701F8EBE7E00F6730C /* Tab My Sets */ = {
 			isa = PBXGroup;
 			children = (
+				2921AD8A1FAF6ED800180268 /* MySets.storyboard */,
 				29365B741F8EBF1C00F6730C /* MySetsViewController.swift */,
 			);
 			path = "Tab My Sets";
@@ -197,6 +208,7 @@
 		29365B711F8EBE9D00F6730C /* Tab News */ = {
 			isa = PBXGroup;
 			children = (
+				2921AD881FAF6C3800180268 /* News.storyboard */,
 				29365B761F8EBF2A00F6730C /* NewsViewController.swift */,
 				296460A01FA92AA2004850F8 /* NewsItemViewController.swift */,
 				2964609B1FA907CC004850F8 /* Cells */,
@@ -207,6 +219,7 @@
 		29365B721F8EBEA600F6730C /* Tab Profile */ = {
 			isa = PBXGroup;
 			children = (
+				2921AD8D1FAF6EF200180268 /* Profile.storyboard */,
 				29365B781F8EBF3B00F6730C /* ProfileViewController.swift */,
 				29365B7B1F8EDAA500F6730C /* LoginViewController.swift */,
 			);
@@ -330,6 +343,7 @@
 		29E86FCB1F3128D600A67179 /* Tab Browse */ = {
 			isa = PBXGroup;
 			children = (
+				2921AD8C1FAF6EEA00180268 /* Browse.storyboard */,
 				295ADFBE1F16AFFD002E6802 /* BrowseThemesViewController.swift */,
 				29CA94A01F8D508A000F1DE3 /* BrowseSetsViewController.swift */,
 				29CCD8ED1F993E12009A39CF /* SetDetailViewController.swift */,
@@ -342,6 +356,7 @@
 		29E86FD61F3128E800A67179 /* Tab Search */ = {
 			isa = PBXGroup;
 			children = (
+				2921AD8B1FAF6EE000180268 /* Search.storyboard */,
 				295ADFC01F16AFFD002E6802 /* SearchViewController.swift */,
 			);
 			path = "Tab Search";
@@ -501,7 +516,10 @@
 			files = (
 				295ADFC91F16AFFD002E6802 /* LaunchScreen.storyboard in Resources */,
 				2964609F1FA907FC004850F8 /* NewsItemTableViewCell.xib in Resources */,
+				291AC5F21FAF6FC2000DC9DD /* Browse.storyboard in Resources */,
+				2921AD891FAF6C4000180268 /* News.storyboard in Resources */,
 				29E86FDC1F31293900A67179 /* ThemeTableViewCell.xib in Resources */,
+				291AC5EF1FAF6FB0000DC9DD /* Search.storyboard in Resources */,
 				29E8202F1FA7AF22001444C8 /* SetDetailRatingTableViewCell.xib in Resources */,
 				2945A1FE1F9FDB5300827BA7 /* SetDetailTableViewCell.xib in Resources */,
 				29DFEA151FA29BF500AB0AE8 /* SetDetailCollectionTableViewCell.xib in Resources */,
@@ -510,6 +528,8 @@
 				29E820291FA7AEC4001444C8 /* SetDetailPricingTableViewCell.xib in Resources */,
 				295ADFC41F16AFFD002E6802 /* Main.storyboard in Resources */,
 				2945A1F81F9FD25500827BA7 /* SetDetailImageTableViewCell.xib in Resources */,
+				291AC5F01FAF6FB4000DC9DD /* MySets.storyboard in Resources */,
+				291AC5EE1FAF6FAC000DC9DD /* Profile.storyboard in Resources */,
 				29CA94A71F8D72DC000F1DE3 /* SetTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
