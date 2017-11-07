@@ -14,7 +14,6 @@ Mobile (iOS) application for interacting with the BrickSet LEGO database.
 
 # To Do
 
-* Move Tab view controllers to separate storyboards
 * Refactor Profile view to use table view cells?
 * Experiment with alternate layout for Set Detail view
 * Implement owned/wanted updates on Set Detail view

@@ -11,6 +11,7 @@
 		291AC5EF1FAF6FB0000DC9DD /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2921AD8B1FAF6EE000180268 /* Search.storyboard */; };
 		291AC5F01FAF6FB4000DC9DD /* MySets.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2921AD8A1FAF6ED800180268 /* MySets.storyboard */; };
 		291AC5F21FAF6FC2000DC9DD /* Browse.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2921AD8C1FAF6EEA00180268 /* Browse.storyboard */; };
+		291AC5F41FB103E4000DC9DD /* MySetsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 291AC5F31FB103E4000DC9DD /* MySetsHeaderView.swift */; };
 		2921AD891FAF6C4000180268 /* News.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2921AD881FAF6C3800180268 /* News.storyboard */; };
 		292F4F571F193092006D5F5B /* BricksetServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292F4F561F193092006D5F5B /* BricksetServices.swift */; };
 		29365B751F8EBF1C00F6730C /* MySetsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29365B741F8EBF1C00F6730C /* MySetsViewController.swift */; };
@@ -88,6 +89,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		291AC5F31FB103E4000DC9DD /* MySetsHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySetsHeaderView.swift; sourceTree = "<group>"; };
 		2921AD881FAF6C3800180268 /* News.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = News.storyboard; path = "/Users/leif/Projects/MyBricks/MyBricks/Tab News/News.storyboard"; sourceTree = "<absolute>"; };
 		2921AD8A1FAF6ED800180268 /* MySets.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = MySets.storyboard; path = "/Users/leif/Projects/MyBricks/MyBricks/Tab My Sets/MySets.storyboard"; sourceTree = "<absolute>"; };
 		2921AD8B1FAF6EE000180268 /* Search.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Search.storyboard; path = "/Users/leif/Projects/MyBricks/MyBricks/Tab Search/Search.storyboard"; sourceTree = "<absolute>"; };
@@ -201,6 +203,7 @@
 			children = (
 				2921AD8A1FAF6ED800180268 /* MySets.storyboard */,
 				29365B741F8EBF1C00F6730C /* MySetsViewController.swift */,
+				291AC5F31FB103E4000DC9DD /* MySetsHeaderView.swift */,
 			);
 			path = "Tab My Sets";
 			sourceTree = "<group>";
@@ -635,6 +638,7 @@
 				2964609E1FA907FC004850F8 /* NewsItemTableViewCell.swift in Sources */,
 				29DFEA141FA29BF500AB0AE8 /* SetDetailCollectionTableViewCell.swift in Sources */,
 				297E119F1F9563F500AAE8CB /* UserCollectionTotals.swift in Sources */,
+				291AC5F41FB103E4000DC9DD /* MySetsHeaderView.swift in Sources */,
 				29E820281FA7AEC4001444C8 /* SetDetailPricingTableViewCell.swift in Sources */,
 				295ADFBD1F16AFFC002E6802 /* AppDelegate.swift in Sources */,
 				29CCD8EE1F993E12009A39CF /* SetDetailViewController.swift in Sources */,
