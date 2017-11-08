@@ -51,35 +51,42 @@ class ProfileViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
-        updateProfileFields()
-        updateCollectionFields()
-
-        let loggedIn = BricksetServices.isLoggedIn()
-        setIsLoggedIn(loggedIn, animated: true)
+        updateDisplay(animated: false)
     }
-
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if BricksetServices.isLoggedIn() {
+            updateProfileInformation()
+            updateCollectionInformation()
+        }
+    }
     //--------------------------------------------------------------------------
     // MARK: - Actions
     //--------------------------------------------------------------------------
 
+    @IBAction func login(_ sender: AnyObject?) {
+        performSegue(withIdentifier: "showLoginView", sender: self)
+    }
+
     @IBAction func logout(_ sender: AnyObject?) {
-        setIsLoggedIn(false, animated: true)
+        BricksetServices.logout()
+        updateDisplay(animated: true)
     }
 
     //--------------------------------------------------------------------------
     // MARK: - Private
     //--------------------------------------------------------------------------
 
-    fileprivate func setIsLoggedIn(_ isLoggedIn: Bool, animated: Bool) {
+    fileprivate func updateDisplay(animated: Bool) {
 
-        let buttonItem = isLoggedIn ? UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logout)) : nil
+        let loggedIn = BricksetServices.isLoggedIn()
+        let buttonItem = loggedIn ? UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logout)) : nil
         navigationItem.setRightBarButton(buttonItem, animated: animated)
 
-        if (isLoggedIn) {
+        if loggedIn {
             transitionViews(fromView: loginView, toView: profileView, animated: animated)
-            updateProfileInformation()
-            updateCollectionInformation()
+            updateProfileFields()
+            updateCollectionFields()
         }
         else {
             transitionViews(fromView: profileView, toView: loginView, animated: animated)
@@ -101,7 +108,7 @@ class ProfileViewController: UIViewController {
             }
             UIView.animate(withDuration: animated ? 0.5 : 0, animations: fadeInBlock, completion:completionBlock)
         }
-        UIView.animate(withDuration: animated ? 0.5 : 0, animations: fadeOutBlock, completion:transitionBlock)
+        UIView.animate(withDuration: animated ? 0.25 : 0, animations: fadeOutBlock, completion:transitionBlock)
     }
 
     // MARK: - Updating Profile Information

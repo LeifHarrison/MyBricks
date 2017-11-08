@@ -22,6 +22,11 @@ class LoginViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        usernameField.becomeFirstResponder()
+    }
+
     //--------------------------------------------------------------------------
     // MARK: - Actions
     //--------------------------------------------------------------------------
@@ -46,4 +51,18 @@ class LoginViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
 
+}
+
+extension LoginViewController: UITextFieldDelegate {
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == usernameField {
+            passwordField.becomeFirstResponder()
+        }
+        else {
+            textField.resignFirstResponder()
+            login(self)
+        }
+        return false
+    }
 }
