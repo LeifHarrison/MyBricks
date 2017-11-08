@@ -145,9 +145,8 @@ extension BrowseSetsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let sectionTitle = sectionTitles[indexPath.section]
         if let sets = setsBySection[sectionTitle] {
-            let browseStoryboard = UIStoryboard(name: "Browse", bundle: nil)
             let set = sets[indexPath.row]
-            if let setDetailVC = browseStoryboard.instantiateViewController(withIdentifier: "SetDetailViewController") as? SetDetailViewController {
+            if let setDetailVC = storyboard?.instantiateViewController(withIdentifier: "SetDetailViewController") as? SetDetailViewController {
                 setDetailVC.currentSet = set
                 show(setDetailVC, sender: self)
                 tableView.deselectRow(at: indexPath, animated: true)

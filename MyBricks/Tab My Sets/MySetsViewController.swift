@@ -24,9 +24,6 @@ class MySetsViewController: UIViewController {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
 
-    var displayMode: DisplayMode = .owned
-    var groupingMode: GroupingMode = .year
-
     var allSets: [Set] = []
     var sectionTitles: [String] = []
     var setsBySection: [String : [Set]] = [:]
@@ -59,42 +56,65 @@ class MySetsViewController: UIViewController {
     //--------------------------------------------------------------------------
 
     @IBAction func toggleSetsShown(_ sender: AnyObject?) {
-        if displayMode == .owned {
-            displayMode = .wanted
-            headerView.showButton.setTitle("WANTED", for: .normal)
+        let fadeOut = { () -> Void in
+            self.headerView.showButtonContainer.alpha = 0.0
         }
-        else if displayMode == .wanted {
-            displayMode = .owned
-            headerView.showButton.setTitle("OWNED", for: .normal)
+        let completion: ((Bool) -> Void) = { (Bool) -> Void in
+            self.displayMode = (self.displayMode == .owned) ? .wanted : .owned
+
+            let fadeIn = { () -> Void in
+                self.headerView.showButtonContainer.alpha = 1.0
+            }
+            UIView.animate(withDuration: 0.1, animations:fadeIn)
+
         }
-        updateSets()
+        UIView.animate(withDuration: 0.1, animations:fadeOut, completion: completion)
+
     }
 
     @IBAction func toggleGrouping(_ sender: AnyObject?) {
-        if groupingMode == .year {
-            groupingMode = .theme
-            headerView.groupButton.setTitle("THEME", for: .normal)
-        }
-        else if groupingMode == .theme {
-            groupingMode = .year
-            headerView.groupButton.setTitle("YEAR", for: .normal)
-        }
-        processSets()
-        self.tableView.reloadData()
+        self.groupingMode = (self.groupingMode == .year) ? .theme : .year
     }
 
+    var displayMode: DisplayMode = .owned {
+        didSet {
+            headerView.showButton.setTitle( displayMode == .owned ? "OWNED" : "WANTED", for: .normal)
+            updateSets()
+        }
+    }
+
+    var groupingMode: GroupingMode = .year {
+        didSet {
+            headerView.groupButton.setTitle( groupingMode == .year ? "YEAR" : "THEME", for: .normal)
+            processSets()
+            self.tableView.reloadData()
+        }
+    }
     //--------------------------------------------------------------------------
     // MARK: - Private
     //--------------------------------------------------------------------------
 
     private func updateSets() {
         activityIndicator?.startAnimating()
+        let fadeOut = { () -> Void in
+            self.tableView.alpha = 0.4
+        }
+        UIView.animate(withDuration: 0.1, animations:fadeOut)
+
         BricksetServices.sharedInstance.getSets(owned: (displayMode == .owned), wanted: (displayMode == .wanted), completion: { result in
             //print("Result: \(result), Value: \(String(describing: result.value))")
             self.allSets = result.value ?? []
             self.processSets()
-            self.activityIndicator?.stopAnimating()
-            self.tableView.reloadData()
+
+            DispatchQueue.main.async(execute: {
+                self.activityIndicator?.stopAnimating()
+                self.tableView.reloadData()
+                let fadeIn = { () -> Void in
+                    self.tableView.alpha = 1.0
+                }
+                UIView.animate(withDuration: 0.2, animations:fadeIn)
+            })
+
         })
     }
 
@@ -118,7 +138,12 @@ class MySetsViewController: UIViewController {
             setsBySection[indexName] = sets
         }
 
-        sectionTitles = setsBySection.keys.sorted(by: >)
+        if groupingMode == .year {
+            sectionTitles = setsBySection.keys.sorted(by: >)
+        }
+        else if groupingMode == .theme {
+            sectionTitles = setsBySection.keys.sorted(by: <)
+        }
     }
 
 }
@@ -194,8 +219,9 @@ extension MySetsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let sectionTitle = sectionTitles[indexPath.section]
         if let sets = setsBySection[sectionTitle] {
+            let browseStoryboard = UIStoryboard(name: "Browse", bundle: nil)
             let set = sets[indexPath.row]
-            if let setDetailVC = storyboard?.instantiateViewController(withIdentifier: "SetDetailViewController") as? SetDetailViewController {
+            if let setDetailVC = browseStoryboard.instantiateViewController(withIdentifier: "SetDetailViewController") as? SetDetailViewController {
                 setDetailVC.currentSet = set
                 show(setDetailVC, sender: self)
                 tableView.deselectRow(at: indexPath, animated: true)
