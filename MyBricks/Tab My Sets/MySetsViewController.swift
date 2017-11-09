@@ -101,7 +101,7 @@ class MySetsViewController: UIViewController {
         }
         UIView.animate(withDuration: 0.1, animations:fadeOut)
 
-        BricksetServices.sharedInstance.getSets(owned: (displayMode == .owned), wanted: (displayMode == .wanted), completion: { result in
+        BricksetServices.shared.getSets(owned: (displayMode == .owned), wanted: (displayMode == .wanted), completion: { result in
             //print("Result: \(result), Value: \(String(describing: result.value))")
             self.allSets = result.value ?? []
             self.processSets()

@@ -22,6 +22,7 @@
 		2945A1F81F9FD25500827BA7 /* SetDetailImageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2945A1F61F9FD25500827BA7 /* SetDetailImageTableViewCell.xib */; };
 		2945A1FD1F9FDB5300827BA7 /* SetDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2945A1FB1F9FDB5300827BA7 /* SetDetailTableViewCell.swift */; };
 		2945A1FE1F9FDB5300827BA7 /* SetDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2945A1FC1F9FDB5300827BA7 /* SetDetailTableViewCell.xib */; };
+		294F187A1FB4EDC20026342F /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294F18791FB4EDC20026342F /* GradientView.swift */; };
 		295ADFBD1F16AFFC002E6802 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295ADFBC1F16AFFC002E6802 /* AppDelegate.swift */; };
 		295ADFBF1F16AFFD002E6802 /* BrowseThemesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295ADFBE1F16AFFD002E6802 /* BrowseThemesViewController.swift */; };
 		295ADFC11F16AFFD002E6802 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295ADFC01F16AFFD002E6802 /* SearchViewController.swift */; };
@@ -105,6 +106,7 @@
 		2945A1F61F9FD25500827BA7 /* SetDetailImageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SetDetailImageTableViewCell.xib; sourceTree = "<group>"; };
 		2945A1FB1F9FDB5300827BA7 /* SetDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetDetailTableViewCell.swift; sourceTree = "<group>"; };
 		2945A1FC1F9FDB5300827BA7 /* SetDetailTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SetDetailTableViewCell.xib; sourceTree = "<group>"; };
+		294F18791FB4EDC20026342F /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		295ADFB91F16AFFC002E6802 /* MyBricks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyBricks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		295ADFBC1F16AFFC002E6802 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		295ADFBE1F16AFFD002E6802 /* BrowseThemesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseThemesViewController.swift; sourceTree = "<group>"; };
@@ -268,7 +270,7 @@
 				29365B7D1F8EDAEC00F6730C /* MyBricks.entitlements */,
 				295ADFBC1F16AFFC002E6802 /* AppDelegate.swift */,
 				295ADFCA1F16AFFD002E6802 /* Info.plist */,
-				29C8525C1F9163B100C0217E /* Common */,
+				29C8525C1F9163B100C0217E /* Support */,
 				29A523361F310243005F2145 /* Extensions */,
 				297476E21F1D351B00FC354B /* Model */,
 				29365B731F8EBEE000F6730C /* Resources */,
@@ -336,11 +338,12 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
-		29C8525C1F9163B100C0217E /* Common */ = {
+		29C8525C1F9163B100C0217E /* Support */ = {
 			isa = PBXGroup;
 			children = (
+				294F18791FB4EDC20026342F /* GradientView.swift */,
 			);
-			path = Common;
+			path = Support;
 			sourceTree = "<group>";
 		};
 		29E86FCB1F3128D600A67179 /* Tab Browse */ = {
@@ -630,6 +633,7 @@
 				29CA94A61F8D72DC000F1DE3 /* SetTableViewCell.swift in Sources */,
 				29365B771F8EBF2A00F6730C /* NewsViewController.swift in Sources */,
 				29E86FDB1F31293900A67179 /* ThemeTableViewCell.swift in Sources */,
+				294F187A1FB4EDC20026342F /* GradientView.swift in Sources */,
 				295ADFC11F16AFFD002E6802 /* SearchViewController.swift in Sources */,
 				2945A1FD1F9FDB5300827BA7 /* SetDetailTableViewCell.swift in Sources */,
 				29365B751F8EBF1C00F6730C /* MySetsViewController.swift in Sources */,

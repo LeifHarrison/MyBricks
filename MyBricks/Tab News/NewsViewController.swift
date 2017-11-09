@@ -34,7 +34,7 @@ class NewsViewController: UIViewController {
         super.viewDidAppear(animated)
 
         activityIndicator?.startAnimating()
-        BricksetServices.sharedInstance.getNews(completion: { result in
+        BricksetServices.shared.getNews(completion: { result in
             self.activityIndicator?.stopAnimating()
             if let value = result.value {
                 self.feed = value

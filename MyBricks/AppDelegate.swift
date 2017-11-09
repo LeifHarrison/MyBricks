@@ -44,7 +44,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     private func validateAPIKey() -> Void {
-        BricksetServices.sharedInstance.checkKey(completion: { result in
+        BricksetServices.shared.checkKey(completion: { result in
             if let valid = result.value, valid != true {
                 let message = NSLocalizedString("It looks like the BrickSet API key is no longer valid. Please update the application or notify the developer.", comment: "")
                 let alert = UIAlertController(title: "Invalid Key", message: message, preferredStyle: .alert)
@@ -57,7 +57,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     private func validateUserHash() -> Void {
         if BricksetServices.isLoggedIn() {
-            BricksetServices.sharedInstance.checkUserHash(completion: { result in
+            BricksetServices.shared.checkUserHash(completion: { result in
                 if let valid = result.value, valid != true {
                     let message = NSLocalizedString("It looks like the userHash is no longer valid.", comment: "")
                     let alert = UIAlertController(title: "Invalid Key", message: message, preferredStyle: .alert)

@@ -40,7 +40,7 @@ class BrowseThemesViewController: UIViewController {
 
         if allThemes.count == 0 {
             activityIndicator?.startAnimating()
-            BricksetServices.sharedInstance.getThemes(completion: { result in
+            BricksetServices.shared.getThemes(completion: { result in
                 self.allThemes = result.value ?? []
                 self.processThemes()
                 self.activityIndicator?.stopAnimating()

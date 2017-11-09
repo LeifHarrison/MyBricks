@@ -20,7 +20,7 @@ enum ServiceError : Error {
 }
 
 class BricksetServices {
-    static let sharedInstance = BricksetServices()
+    static let shared = BricksetServices()
     static let serviceName = "com.brickset.userHash"
 
     let baseURL = "https://brickset.com/api/v2.asmx/"
@@ -43,6 +43,13 @@ class BricksetServices {
             UserDefaults.standard.removeObject(forKey: "username")
         }
 
+    }
+
+    var loginProtectionSpace : URLProtectionSpace? {
+        if let url = URL(string: baseURL) {
+            return URLProtectionSpace(host: url.host!, port: 0, protocol: NSURLProtectionSpaceHTTPS, realm: nil, authenticationMethod: NSURLAuthenticationMethodDefault)
+        }
+        return nil
     }
 
     //--------------------------------------------------------------------------

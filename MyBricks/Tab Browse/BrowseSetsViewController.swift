@@ -47,7 +47,7 @@ class BrowseSetsViewController: UIViewController {
 
         if allSets.count == 0 {
             activityIndicator?.startAnimating()
-            BricksetServices.sharedInstance.getSets(theme: (theme ?? ""), completion: { result in
+            BricksetServices.shared.getSets(theme: (theme ?? ""), completion: { result in
                 self.allSets = result.value ?? []
                 self.processSets()
                 self.activityIndicator?.stopAnimating()

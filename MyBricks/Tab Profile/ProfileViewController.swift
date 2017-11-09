@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import LocalAuthentication
 
 class ProfileViewController: UIViewController {
 
@@ -45,7 +46,6 @@ class ProfileViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         collectionDivider.backgroundColor = UIColor(white: 0.6, alpha: 0.7)
     }
 
@@ -65,7 +65,13 @@ class ProfileViewController: UIViewController {
     //--------------------------------------------------------------------------
 
     @IBAction func login(_ sender: AnyObject?) {
-        performSegue(withIdentifier: "showLoginView", sender: self)
+        if let protectionSpace = BricksetServices.shared.loginProtectionSpace, let credential = URLCredentialStorage.shared.defaultCredential(for: protectionSpace) {
+            print("Credential: \(credential), password: \(String(describing: credential.password))")
+            evaluateBiometricAuthentication(credential: credential)
+        }
+        else {
+            performSegue(withIdentifier: "showLoginView", sender: self)
+        }
     }
 
     @IBAction func logout(_ sender: AnyObject?) {
@@ -186,7 +192,7 @@ class ProfileViewController: UIViewController {
     fileprivate func updateCollectionInformation() {
         fadeOutCollectionFields()
         collectionActivityIndicator.startAnimating()
-        BricksetServices.sharedInstance.getCollectionTotals(completion: { result in
+        BricksetServices.shared.getCollectionTotals(completion: { result in
             self.collectionActivityIndicator.stopAnimating()
             if result.isSuccess {
                 self.collectionTotals = result.value
@@ -231,6 +237,74 @@ class ProfileViewController: UIViewController {
         UIView.animate(withDuration: 0.25, animations:animations)
     }
 
+    fileprivate func evaluateBiometricAuthentication(credential: URLCredential) {
+        let myContext = LAContext()
+        let myLocalizedReasonString = "Login to your Brickset account"
+
+        var authError: NSError?
+        if #available(iOS 8.0, macOS 10.12.1, *) {
+            if myContext.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &authError) {
+                myContext.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: myLocalizedReasonString) { success, evaluateError in
+                    if success {
+                        // User authenticated successfully, take appropriate action
+                        print("Biometric authentication success!")
+                        DispatchQueue.main.async {
+                            self.performLogin(credential: credential)
+                        }
+                    }
+                    else if let error = evaluateError as? LAError {
+                        // User did not authenticate successfully, look at error and take appropriate action
+                        print("Biometric authentication error: \(String(describing: evaluateError))")
+                        if error.code == LAError.userFallback {
+                            DispatchQueue.main.async {
+                                self.performSegue(withIdentifier: "showLoginView", sender: self)
+                            }
+                        }
+                        else if error.code == LAError.userCancel {
+                            return
+                        }
+                        else {
+                            DispatchQueue.main.async {
+                                self.displayLocalAuthenticationError(error: error)
+                            }
+                        }
+                    }
+                }
+            }
+            else {
+                // Could not evaluate policy; look at authError and present an appropriate message to user
+                print("Biometric authentication error: \(String(describing: authError))")
+                DispatchQueue.main.async {
+                    self.performSegue(withIdentifier: "showLoginView", sender: self)
+                }
+            }
+        }
+        else {
+            // Fallback on earlier versions
+            print("Biometric authentication not supported.")
+            performSegue(withIdentifier: "showLoginView", sender: self)
+        }
+    }
+
+    fileprivate func performLogin(credential: URLCredential) {
+        if let username = credential.user, let password = credential.password {
+            BricksetServices.shared.login(username: username, password: password, completion: { result in
+                print("Result: \(result)")
+                if result.isSuccess {
+                    self.updateDisplay(animated: true)
+                    self.updateProfileInformation()
+                    self.updateCollectionInformation()
+                }
+                else {
+                    let alert = UIAlertController(title: "Error", message: result.error?.localizedDescription, preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                    self.present(alert, animated: true, completion: nil)
+                    self.performSegue(withIdentifier: "showLoginView", sender: self)
+                }
+            })
+        }
+
+    }
 }
 
 //==============================================================================
