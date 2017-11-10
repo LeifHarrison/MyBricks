@@ -47,8 +47,6 @@
 		29DFEA151FA29BF500AB0AE8 /* SetDetailCollectionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29DFEA131FA29BF500AB0AE8 /* SetDetailCollectionTableViewCell.xib */; };
 		29DFEA181FA29C1100AB0AE8 /* SetDetailNotesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29DFEA161FA29C1100AB0AE8 /* SetDetailNotesTableViewCell.swift */; };
 		29DFEA191FA29C1100AB0AE8 /* SetDetailNotesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29DFEA171FA29C1100AB0AE8 /* SetDetailNotesTableViewCell.xib */; };
-		29E820231FA7A6CF001444C8 /* Fuzi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29E820221FA7A6CF001444C8 /* Fuzi.framework */; };
-		29E820241FA7A6CF001444C8 /* Fuzi.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 29E820221FA7A6CF001444C8 /* Fuzi.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		29E820281FA7AEC4001444C8 /* SetDetailPricingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E820261FA7AEC4001444C8 /* SetDetailPricingTableViewCell.swift */; };
 		29E820291FA7AEC4001444C8 /* SetDetailPricingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29E820271FA7AEC4001444C8 /* SetDetailPricingTableViewCell.xib */; };
 		29E8202E1FA7AF22001444C8 /* SetDetailRatingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E8202C1FA7AF22001444C8 /* SetDetailRatingTableViewCell.swift */; };
@@ -82,7 +80,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				29E820241FA7A6CF001444C8 /* Fuzi.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -126,14 +123,9 @@
 		296460A01FA92AA2004850F8 /* NewsItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsItemViewController.swift; sourceTree = "<group>"; };
 		2973B5771F96834D002CD0DA /* UserPofile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPofile.swift; sourceTree = "<group>"; };
 		297476ED1F1D3DC600FC354B /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
-		297C12E81FA3B44900E9D165 /* Cosmos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cosmos.framework; path = Carthage/Build/iOS/Cosmos.framework; sourceTree = "<group>"; };
 		297E119E1F9563F500AAE8CB /* UserCollectionTotals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCollectionTotals.swift; sourceTree = "<group>"; };
 		29A523411F310261005F2145 /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
-		29C729B61F97CE0800E28D2D /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
-		29C729B81F97CE0F00E28D2D /* AlamofireImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AlamofireImage.framework; path = Carthage/Build/iOS/AlamofireImage.framework; sourceTree = "<group>"; };
-		29C729BA1F97CE1400E28D2D /* AlamofireNetworkActivityIndicator.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AlamofireNetworkActivityIndicator.framework; path = Carthage/Build/iOS/AlamofireNetworkActivityIndicator.framework; sourceTree = "<group>"; };
-		29C729BC1F97CE1800E28D2D /* Fuzi.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fuzi.framework; path = Carthage/Build/iOS/Fuzi.framework; sourceTree = "<group>"; };
-		29C729BE1F97CE1C00E28D2D /* KeychainAccess.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KeychainAccess.framework; path = Carthage/Build/iOS/KeychainAccess.framework; sourceTree = "<group>"; };
+		29AF63FA1FB66445001B14AD /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 		29CA94A01F8D508A000F1DE3 /* BrowseSetsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseSetsViewController.swift; sourceTree = "<group>"; };
 		29CA94A21F8D5132000F1DE3 /* Set.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Set.swift; sourceTree = "<group>"; };
 		29CA94A41F8D72DC000F1DE3 /* SetTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetTableViewCell.swift; sourceTree = "<group>"; };
@@ -143,7 +135,6 @@
 		29DFEA131FA29BF500AB0AE8 /* SetDetailCollectionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SetDetailCollectionTableViewCell.xib; sourceTree = "<group>"; };
 		29DFEA161FA29C1100AB0AE8 /* SetDetailNotesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetDetailNotesTableViewCell.swift; sourceTree = "<group>"; };
 		29DFEA171FA29C1100AB0AE8 /* SetDetailNotesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SetDetailNotesTableViewCell.xib; sourceTree = "<group>"; };
-		29E820221FA7A6CF001444C8 /* Fuzi.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fuzi.framework; path = Carthage/Build/iOS/Fuzi.framework; sourceTree = "<group>"; };
 		29E820261FA7AEC4001444C8 /* SetDetailPricingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetDetailPricingTableViewCell.swift; sourceTree = "<group>"; };
 		29E820271FA7AEC4001444C8 /* SetDetailPricingTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SetDetailPricingTableViewCell.xib; sourceTree = "<group>"; };
 		29E8202C1FA7AF22001444C8 /* SetDetailRatingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetDetailRatingTableViewCell.swift; sourceTree = "<group>"; };
@@ -162,7 +153,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				29E820231FA7A6CF001444C8 /* Fuzi.framework in Frameworks */,
 				71EA93350D446E8447D819DE /* Pods_MyBricks.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -187,12 +177,6 @@
 		292F4F541F192CA2006D5F5B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				297C12E81FA3B44900E9D165 /* Cosmos.framework */,
-				29C729BE1F97CE1C00E28D2D /* KeychainAccess.framework */,
-				29C729BC1F97CE1800E28D2D /* Fuzi.framework */,
-				29C729BA1F97CE1400E28D2D /* AlamofireNetworkActivityIndicator.framework */,
-				29C729B81F97CE0F00E28D2D /* AlamofireImage.framework */,
-				29C729B61F97CE0800E28D2D /* Alamofire.framework */,
 				8C7DD5EA6F08ABC5549DF63C /* Pods_MyBricks.framework */,
 				A148411968C617C0F1616A5A /* Pods_MyBricksTests.framework */,
 				9D94ECA9368FE445BFD6F31C /* Pods_MyBricksUITests.framework */,
@@ -256,7 +240,6 @@
 		295ADFB01F16AFFC002E6802 = {
 			isa = PBXGroup;
 			children = (
-				29E820221FA7A6CF001444C8 /* Fuzi.framework */,
 				295ADFBB1F16AFFC002E6802 /* MyBricks */,
 				295ADFD21F16AFFD002E6802 /* MyBricksTests */,
 				295ADFDD1F16AFFD002E6802 /* MyBricksUITests */,
@@ -350,6 +333,7 @@
 				294F18791FB4EDC20026342F /* GradientView.swift */,
 				295ADFCA1F16AFFD002E6802 /* Info.plist */,
 				29365B7D1F8EDAEC00F6730C /* MyBricks.entitlements */,
+				29AF63FA1FB66445001B14AD /* README.md */,
 			);
 			path = Support;
 			sourceTree = "<group>";
@@ -610,6 +594,7 @@
 				"${BUILT_PRODUCTS_DIR}/AlamofireNetworkActivityIndicator/AlamofireNetworkActivityIndicator.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireRSSParser/AlamofireRSSParser.framework",
 				"${BUILT_PRODUCTS_DIR}/Cosmos/Cosmos.framework",
+				"${BUILT_PRODUCTS_DIR}/Fuzi/Fuzi.framework",
 				"${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -619,6 +604,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireNetworkActivityIndicator.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireRSSParser.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cosmos.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Fuzi.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -828,10 +814,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = MyBricks/Support/MyBricks.entitlements;
 				DEVELOPMENT_TEAM = LY3N4LXUKP;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				HEADER_SEARCH_PATHS = (
 					"$(SDKROOT)/usr/include/libxml2",
 					"$(inherited)",
@@ -871,10 +854,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = MyBricks/Support/MyBricks.entitlements;
 				DEVELOPMENT_TEAM = LY3N4LXUKP;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				HEADER_SEARCH_PATHS = (
 					"$(SDKROOT)/usr/include/libxml2",
 					"$(inherited)",

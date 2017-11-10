@@ -7,6 +7,7 @@ PODS:
   - AlamofireRSSParser (2.0.1):
     - Alamofire
   - Cosmos (12.0.1)
+  - Fuzi (2.0.1)
   - KeychainAccess (3.1.0)
 
 DEPENDENCIES:
@@ -15,6 +16,7 @@ DEPENDENCIES:
   - AlamofireNetworkActivityIndicator
   - AlamofireRSSParser
   - Cosmos
+  - Fuzi
   - KeychainAccess
 
 SPEC CHECKSUMS:
@@ -23,8 +25,9 @@ SPEC CHECKSUMS:
   AlamofireNetworkActivityIndicator: 81e1630e7cfed22a4e4e82a174c59e651dc4f8ca
   AlamofireRSSParser: 86243cd156b94b9d97d8f915fa44a0f15bd1bfb7
   Cosmos: 4a9f57998a08788a1062c7b8eefbc62d2b590f39
+  Fuzi: f64983dea705491d3aedd32351247a09523e7efd
   KeychainAccess: 94c5540b32eabf7bc32bfb976a268e8ea05fd6da
 
-PODFILE CHECKSUM: 7a0321710f51bb5846f2a35b784bfcca4f869884
+PODFILE CHECKSUM: 0d5ecac3e90525064988366283d8af01dcea02a4
 
 COCOAPODS: 1.4.0.beta.2
