@@ -93,10 +93,10 @@
             </objects>
             <point key="canvasLocation" x="1548" y="-344"/>
         </scene>
-        <!--Browse-->
+        <!--Browse Navigation Controller-->
         <scene sceneID="LdE-zl-Apx">
             <objects>
-                <navigationController storyboardIdentifier="UINavigationController-dp1-MC-w1l" title="Browse" id="dp1-MC-w1l" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="BrowseNavigationController" id="dp1-MC-w1l" userLabel="Browse Navigation Controller" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Browse" image="shop" id="05e-Dp-QYm"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="lcI-EP-I7r">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>

@@ -23,6 +23,7 @@ class MySetsViewController: UIViewController {
     @IBOutlet weak var headerView: MySetsHeaderView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var loginView: UIView!
 
     var allSets: [Set] = []
     var sectionTitles: [String] = []
@@ -39,14 +40,12 @@ class MySetsViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        headerView.showButton.setTitle( displayMode == .owned ? "OWNED" : "WANTED", for: .normal)
-        headerView.groupButton.setTitle( groupingMode == .year ? "YEAR" : "THEME", for: .normal)
-
+        updateDisplay()
     }
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-
-        if allSets.count == 0 {
+        if BricksetServices.isLoggedIn() {
             updateSets()
         }
     }
@@ -54,6 +53,21 @@ class MySetsViewController: UIViewController {
     //--------------------------------------------------------------------------
     // MARK: - Actions
     //--------------------------------------------------------------------------
+
+    @IBAction func login(_ sender: AnyObject?) {
+        if let protectionSpace = BricksetServices.shared.loginProtectionSpace, let credential = URLCredentialStorage.shared.defaultCredential(for: protectionSpace) {
+            print("Credential: \(credential), password: \(String(describing: credential.password))")
+            evaluateBiometricAuthentication(credential: credential, completion: { (result) in
+                self.updateDisplay()
+                if BricksetServices.isLoggedIn() {
+                    self.updateSets()
+                }
+            })
+        }
+        else {
+            showLoginView()
+        }
+    }
 
     @IBAction func toggleSetsShown(_ sender: AnyObject?) {
         let fadeOut = { () -> Void in
@@ -76,6 +90,10 @@ class MySetsViewController: UIViewController {
         self.groupingMode = (self.groupingMode == .year) ? .theme : .year
     }
 
+    //--------------------------------------------------------------------------
+    // MARK: - Public
+    //--------------------------------------------------------------------------
+
     var displayMode: DisplayMode = .owned {
         didSet {
             headerView.showButton.setTitle( displayMode == .owned ? "OWNED" : "WANTED", for: .normal)
@@ -90,9 +108,26 @@ class MySetsViewController: UIViewController {
             self.tableView.reloadData()
         }
     }
+
     //--------------------------------------------------------------------------
     // MARK: - Private
     //--------------------------------------------------------------------------
+
+    private func updateDisplay() {
+        if BricksetServices.isLoggedIn() {
+            headerView.isHidden = false
+            tableView.isHidden = false
+            loginView.isHidden = true
+
+            headerView.showButton.setTitle( displayMode == .owned ? "OWNED" : "WANTED", for: .normal)
+            headerView.groupButton.setTitle( groupingMode == .year ? "YEAR" : "THEME", for: .normal)
+        }
+        else {
+            headerView.isHidden = true
+            tableView.isHidden = true
+            loginView.isHidden = false
+        }
+    }
 
     private func updateSets() {
         activityIndicator?.startAnimating()

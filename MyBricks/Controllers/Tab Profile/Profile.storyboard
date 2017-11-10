@@ -11,10 +11,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Profile-->
+        <!--Profile Navigation Controller-->
         <scene sceneID="IG3-AS-Qsf">
             <objects>
-                <navigationController storyboardIdentifier="UINavigationController-Jq9-jH-Ad1" title="Profile" id="Jq9-jH-Ad1" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="ProfileNavigationController" id="Jq9-jH-Ad1" userLabel="Profile Navigation Controller" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Profile" image="contact_card" id="iSL-0G-DLt"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="6f4-9G-ZoY">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -28,10 +28,10 @@
             </objects>
             <point key="canvasLocation" x="780" y="2569"/>
         </scene>
-        <!--Profile-->
+        <!--Profile View-->
         <scene sceneID="d7z-Al-fgk">
             <objects>
-                <viewController storyboardIdentifier="ProfileViewController" title="Profile" id="KQN-99-oaK" customClass="ProfileViewController" customModule="MyBricks" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ProfileViewController" title="Profile" id="KQN-99-oaK" userLabel="Profile View" customClass="ProfileViewController" customModule="MyBricks" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="0qf-Yk-svM">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -389,10 +389,10 @@
             </objects>
             <point key="canvasLocation" x="1548" y="2568.6656671664168"/>
         </scene>
-        <!--Login-->
+        <!--Login View-->
         <scene sceneID="zNM-DN-9lF">
             <objects>
-                <viewController title="Login" id="CRl-O7-t69" customClass="LoginViewController" customModule="MyBricks" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" title="Login" id="CRl-O7-t69" userLabel="Login View" customClass="LoginViewController" customModule="MyBricks" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Boi-D7-bK9">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

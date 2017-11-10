@@ -15,10 +15,10 @@
         </array>
     </customFonts>
     <scenes>
-        <!--Search-->
+        <!--Search Navigation Controller-->
         <scene sceneID="vFE-9H-FgR">
             <objects>
-                <navigationController storyboardIdentifier="UINavigationController-Ucy-47-mLs" id="Ucy-47-mLs" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="SearchNavigationController" id="Ucy-47-mLs" userLabel="Search Navigation Controller" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Search" image="search" id="2Wc-BZ-oUU"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="0N0-d9-xIx">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -76,7 +76,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="8Mc-QV-cXp">
+                            <searchBar contentMode="redraw" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8Mc-QV-cXp">
                                 <rect key="frame" x="1" y="64" width="375" height="56"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
@@ -114,20 +114,8 @@
                         <viewLayoutGuide key="safeArea" id="O1u-W8-tvY"/>
                     </view>
                     <navigationItem key="navigationItem" title="Search" id="196-3i-fAu"/>
-                    <connections>
-                        <outlet property="searchDisplayController" destination="IZe-UC-Q9d" id="yLM-xA-q0y"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
-                <searchDisplayController id="IZe-UC-Q9d">
-                    <connections>
-                        <outlet property="delegate" destination="8rJ-Kc-sve" id="L2c-Ge-1Bl"/>
-                        <outlet property="searchBar" destination="8Mc-QV-cXp" id="y5M-bD-I5M"/>
-                        <outlet property="searchContentsController" destination="8rJ-Kc-sve" id="57W-Z2-XLG"/>
-                        <outlet property="searchResultsDataSource" destination="8rJ-Kc-sve" id="wtQ-Fa-50D"/>
-                        <outlet property="searchResultsDelegate" destination="8rJ-Kc-sve" id="BAR-0l-0Qw"/>
-                    </connections>
-                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="1548" y="376"/>
         </scene>

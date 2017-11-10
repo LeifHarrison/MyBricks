@@ -53,6 +53,7 @@ class ProfileViewController: UIViewController {
         super.viewWillAppear(animated)
         updateDisplay(animated: false)
     }
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if BricksetServices.isLoggedIn() {
@@ -60,6 +61,7 @@ class ProfileViewController: UIViewController {
             updateCollectionInformation()
         }
     }
+
     //--------------------------------------------------------------------------
     // MARK: - Actions
     //--------------------------------------------------------------------------

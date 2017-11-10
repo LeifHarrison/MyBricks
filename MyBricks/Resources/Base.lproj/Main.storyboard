@@ -33,7 +33,7 @@
         <!--News-->
         <scene sceneID="d5j-Iz-EEQ">
             <objects>
-                <viewControllerPlaceholder storyboardName="News" referencedIdentifier="UINavigationController-g3N-iC-N29" id="G5q-SI-gf4" userLabel="News" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="News" referencedIdentifier="NewsNavigationController" id="G5q-SI-gf4" userLabel="News" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="K09-6x-SH5"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Aby-UY-cWJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -43,7 +43,7 @@
         <!--Profile-->
         <scene sceneID="RYo-rb-j6E">
             <objects>
-                <viewControllerPlaceholder storyboardName="Profile" referencedIdentifier="UINavigationController-Jq9-jH-Ad1" id="Cch-sC-pu5" userLabel="Profile" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="Profile" referencedIdentifier="ProfileNavigationController" id="Cch-sC-pu5" userLabel="Profile" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="pdf-Au-vRb"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="T09-k5-tqd" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -53,7 +53,7 @@
         <!--Browse-->
         <scene sceneID="x8J-rb-Qon">
             <objects>
-                <viewControllerPlaceholder storyboardName="Browse" referencedIdentifier="UINavigationController-dp1-MC-w1l" id="eue-5k-jsv" userLabel="Browse" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="Browse" referencedIdentifier="BrowseNavigationController" id="eue-5k-jsv" userLabel="Browse" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="0vT-cB-xuq"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="p3p-YH-fZf" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -63,7 +63,7 @@
         <!--Search-->
         <scene sceneID="Mma-qn-gzr">
             <objects>
-                <viewControllerPlaceholder storyboardName="Search" referencedIdentifier="UINavigationController-Ucy-47-mLs" id="oiQ-6B-cdg" userLabel="Search" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="Search" referencedIdentifier="SearchNavigationController" id="oiQ-6B-cdg" userLabel="Search" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="6gB-wK-RA3"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Lns-RB-gg6" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -73,7 +73,7 @@
         <!--My Sets-->
         <scene sceneID="aY9-o8-ZXt">
             <objects>
-                <viewControllerPlaceholder storyboardName="MySets" referencedIdentifier="UINavigationController-j8O-R4-BDI" id="EX4-gY-hqu" userLabel="My Sets" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="MySets" referencedIdentifier="MySetsNavigationController" id="EX4-gY-hqu" userLabel="My Sets" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="dFs-ad-3bS"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xjm-2s-I4d" userLabel="First Responder" sceneMemberID="firstResponder"/>

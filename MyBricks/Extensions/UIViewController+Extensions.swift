@@ -11,6 +11,83 @@ import LocalAuthentication
 
 extension UIViewController {
 
+    func evaluateBiometricAuthentication(credential: URLCredential, completion: @escaping ((Bool)->Void)) {
+        let myContext = LAContext()
+        let myLocalizedReasonString = "Login to your Brickset account"
+
+        var authError: NSError?
+        if #available(iOS 8.0, macOS 10.12.1, *) {
+            if myContext.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &authError) {
+                myContext.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: myLocalizedReasonString) { success, evaluateError in
+                    if success {
+                        // User authenticated successfully, take appropriate action
+                        print("Biometric authentication success!")
+                        DispatchQueue.main.async {
+                            self.performLogin(credential: credential, completion: completion)
+                        }
+                    }
+                    else if let error = evaluateError as? LAError {
+                        // User did not authenticate successfully, look at error and take appropriate action
+                        print("Biometric authentication error: \(String(describing: evaluateError))")
+                        if error.code == LAError.userFallback {
+                            DispatchQueue.main.async {
+                                self.showLoginView()
+                            }
+                        }
+                        else if error.code == LAError.userCancel {
+                            DispatchQueue.main.async {
+                                completion(false)
+                            }
+                            return
+                        }
+                        else {
+                            DispatchQueue.main.async {
+                                self.displayLocalAuthenticationError(error: error)
+                            }
+                        }
+                    }
+                }
+            }
+            else if let error = authError as? LAError {
+                // Could not evaluate policy; look at authError and present an appropriate message to user
+                print("Biometric authentication error: \(String(describing: error))")
+                showLoginView()
+            }
+        }
+        else {
+            // Fallback on earlier versions
+            print("Biometric authentication not supported.")
+            showLoginView()
+        }
+    }
+
+    func showLoginView() {
+        let profileStoryboard = UIStoryboard(name: "Profile", bundle: nil)
+        if let loginVC = profileStoryboard.instantiateViewController(withIdentifier: "LoginViewController") as? LoginViewController {
+            present(loginVC, animated: true, completion: nil)
+        }
+    }
+
+    func performLogin(credential: URLCredential, completion: @escaping ((Bool)->Void)) {
+        if let username = credential.user, let password = credential.password {
+            BricksetServices.shared.login(username: username, password: password, completion: { result in
+                print("Result: \(result)")
+                if result.isSuccess {
+                    completion(true)
+                }
+                else {
+                    let alert = UIAlertController(title: "Error", message: result.error?.localizedDescription, preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
+                        completion(true)
+                    }))
+                    self.present(alert, animated: true, completion: nil)
+                    self.performSegue(withIdentifier: "showLoginView", sender: self)
+                }
+            })
+        }
+
+    }
+
     func displayLocalAuthenticationError(error:LAError) {
         var message = ""
         switch error.code {

@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--News-->
+        <!--News Navigation Controller-->
         <scene sceneID="7TU-Z5-giv">
             <objects>
-                <navigationController storyboardIdentifier="UINavigationController-g3N-iC-N29" title="News" id="g3N-iC-N29" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="NewsNavigationController" id="g3N-iC-N29" userLabel="News Navigation Controller" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="News" image="news" id="KDQ-aT-1dN"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="S9p-Rg-hjJ">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>

@@ -10,6 +10,9 @@ import UIKit
 
 class MySetsHeaderView: UIView {
 
+    @IBOutlet weak var contentContainer: UIView!
+    @IBOutlet weak var dividerView: UIView!
+
     @IBOutlet weak var showTitleLabel: UILabel!
     @IBOutlet weak var showButtonContainer: UIView!
     @IBOutlet weak var showButton: UIButton!
