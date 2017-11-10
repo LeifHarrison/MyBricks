@@ -5,6 +5,19 @@ Mobile (iOS) application for interacting with the BrickSet LEGO database.
 
 # Getting Started
 
+### Requirements
+
+* Xcode 9.1 or greater (https://developer.apple.com/xcode/)
+* CocoaPods 5.0 or greater (https://cocoapods.org)
+
+### Building
+
+* Clone the source to your local machine using `git clone <URL>` (repository URL can be copied from the 'Clone or Download' button above)
+* Open a terminal and go to the directory where you cloned the source
+* Install the required CocoaPods using `pod install`
+* Open the project in Xcode - use the xcworkspace rather than xcodeproj, or you will get build errors from the CocoaPods dependencies not building
+* Build and run using the Xcode Simulator
+
 # Future Enhancements
 
 * local/offline storage of set data
