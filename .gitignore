@@ -1,3 +1,4 @@
+*.xcuserdatad
 Cartfile.resolved
 Carthage
 Pods

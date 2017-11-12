@@ -9,11 +9,6 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="Helvetica.ttc">
-            <string>Helvetica</string>
-        </array>
-    </customFonts>
     <scenes>
         <!--Search Navigation Controller-->
         <scene sceneID="vFE-9H-FgR">
@@ -83,41 +78,46 @@
                                     <outlet property="delegate" destination="8rJ-Kc-sve" id="fg4-UO-8z2"/>
                                 </connections>
                             </searchBar>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="Search View" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="zEq-FU-wV5">
-                                <rect key="frame" x="87" y="344.5" width="201.5" height="42"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="36"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Not Implemented Yet" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NDk-cv-Gan">
-                                <rect key="frame" x="111.5" y="394" width="153" height="19.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="61" sectionHeaderHeight="35" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="t39-YW-Rlf">
+                                <rect key="frame" x="0.0" y="120" width="375" height="547"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="8rJ-Kc-sve" id="h2K-R2-CmS"/>
+                                    <outlet property="delegate" destination="8rJ-Kc-sve" id="PfT-rO-UcF"/>
+                                </connections>
+                            </tableView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="qqy-YC-hbi">
+                                <rect key="frame" x="169" y="347" width="37" height="37"/>
+                                <color key="color" red="0.47058823529999999" green="0.47058823529999999" blue="0.47058823529999999" alpha="1" colorSpace="calibratedRGB"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="O1u-W8-tvY" firstAttribute="bottom" secondItem="Ubn-dB-9Km" secondAttribute="bottom" id="0wx-dK-1nI"/>
+                            <constraint firstItem="qqy-YC-hbi" firstAttribute="centerY" secondItem="O1u-W8-tvY" secondAttribute="centerY" id="3n9-bI-uLq"/>
                             <constraint firstItem="8Mc-QV-cXp" firstAttribute="leading" secondItem="O1u-W8-tvY" secondAttribute="leading" constant="1" id="73a-6g-B6M"/>
-                            <constraint firstItem="NDk-cv-Gan" firstAttribute="top" secondItem="zEq-FU-wV5" secondAttribute="bottom" constant="8" symbolic="YES" id="Day-4N-Vmt"/>
+                            <constraint firstItem="O1u-W8-tvY" firstAttribute="trailing" secondItem="t39-YW-Rlf" secondAttribute="trailing" id="8zE-7U-BVq"/>
                             <constraint firstItem="8Mc-QV-cXp" firstAttribute="top" secondItem="O1u-W8-tvY" secondAttribute="top" id="Ft7-JG-GuX"/>
-                            <constraint firstItem="NDk-cv-Gan" firstAttribute="centerX" secondItem="zEq-FU-wV5" secondAttribute="centerX" id="JgO-Fn-dHn"/>
+                            <constraint firstItem="qqy-YC-hbi" firstAttribute="centerX" secondItem="O1u-W8-tvY" secondAttribute="centerX" id="QRx-UT-ehs"/>
                             <constraint firstItem="8Mc-QV-cXp" firstAttribute="trailing" secondItem="O1u-W8-tvY" secondAttribute="trailing" constant="1" id="Rn4-xW-Q68"/>
                             <constraint firstItem="Ubn-dB-9Km" firstAttribute="leading" secondItem="O1u-W8-tvY" secondAttribute="leading" id="Uwo-cH-hh2"/>
                             <constraint firstItem="Ubn-dB-9Km" firstAttribute="trailing" secondItem="O1u-W8-tvY" secondAttribute="trailing" id="aWf-5G-Ukk"/>
-                            <constraint firstItem="O1u-W8-tvY" firstAttribute="centerX" secondItem="zEq-FU-wV5" secondAttribute="centerX" id="qqM-NS-xev"/>
-                            <constraint firstItem="O1u-W8-tvY" firstAttribute="centerY" secondItem="zEq-FU-wV5" secondAttribute="centerY" id="qzY-Ky-pLD"/>
+                            <constraint firstItem="O1u-W8-tvY" firstAttribute="bottom" secondItem="t39-YW-Rlf" secondAttribute="bottom" id="eaM-AJ-mAZ"/>
+                            <constraint firstItem="t39-YW-Rlf" firstAttribute="top" secondItem="8Mc-QV-cXp" secondAttribute="bottom" id="giL-Nl-eGz"/>
                             <constraint firstItem="Ubn-dB-9Km" firstAttribute="top" secondItem="O1u-W8-tvY" secondAttribute="top" id="x2z-av-Vkj"/>
+                            <constraint firstItem="t39-YW-Rlf" firstAttribute="leading" secondItem="O1u-W8-tvY" secondAttribute="leading" id="zFu-3x-YmO"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="O1u-W8-tvY"/>
                     </view>
                     <navigationItem key="navigationItem" title="Search" id="196-3i-fAu"/>
+                    <connections>
+                        <outlet property="activityIndicator" destination="qqy-YC-hbi" id="vf2-dv-72Z"/>
+                        <outlet property="tableView" destination="t39-YW-Rlf" id="rsT-LK-Q0C"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1548" y="376"/>
+            <point key="canvasLocation" x="1548" y="375.56221889055473"/>
         </scene>
     </scenes>
     <resources>

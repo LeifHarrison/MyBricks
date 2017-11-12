@@ -61,6 +61,9 @@ class BrowseSetsViewController: UIViewController {
     //--------------------------------------------------------------------------
 
     fileprivate func processSets() {
+        sectionTitles.removeAll()
+        setsBySection.removeAll()
+
         for set in allSets {
             if let year = set.year {
                 let indexName = String(year)

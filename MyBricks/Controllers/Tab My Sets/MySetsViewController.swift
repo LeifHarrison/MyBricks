@@ -154,12 +154,10 @@ class MySetsViewController: UIViewController {
     }
 
     private func processSets() {
-
         sectionTitles.removeAll()
         setsBySection.removeAll()
 
         for set in allSets {
-
             var indexName = "All"
             if groupingMode == .year, let year = set.year {
                 indexName = String(year)

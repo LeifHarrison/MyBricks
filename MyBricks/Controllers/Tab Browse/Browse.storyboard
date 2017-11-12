@@ -118,9 +118,45 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="61" sectionHeaderHeight="35" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Yef-yh-eIU">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2XD-nU-vls" customClass="GradientView" customModule="MyBricks" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="startColor">
+                                        <color key="value" white="0.94999999999999996" alpha="1" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="endColor">
+                                        <color key="value" white="0.84999999999999998" alpha="1" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="startPointX">
+                                        <real key="value" value="0.5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="startPointY">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="endPointX">
+                                        <real key="value" value="0.5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="endPointY">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowX">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowY">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowBlur">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                                        <color key="value" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="61" sectionHeaderHeight="35" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Yef-yh-eIU">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <outlet property="dataSource" destination="MRb-SQ-ur7" id="ufC-2H-dEI"/>
                                     <outlet property="delegate" destination="MRb-SQ-ur7" id="FdO-15-lQO"/>
@@ -134,11 +170,15 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="qdN-fG-EvY" firstAttribute="bottom" secondItem="Yef-yh-eIU" secondAttribute="bottom" id="0eI-l4-ZAo"/>
+                            <constraint firstItem="qdN-fG-EvY" firstAttribute="top" secondItem="2XD-nU-vls" secondAttribute="top" id="4Jc-Zu-8jp"/>
                             <constraint firstItem="qdN-fG-EvY" firstAttribute="trailing" secondItem="Yef-yh-eIU" secondAttribute="trailing" id="DWa-4G-H9H"/>
                             <constraint firstItem="Nlz-OW-ZkI" firstAttribute="centerY" secondItem="qdN-fG-EvY" secondAttribute="centerY" id="Z8F-YC-v38"/>
+                            <constraint firstItem="2XD-nU-vls" firstAttribute="leading" secondItem="qdN-fG-EvY" secondAttribute="leading" id="Zc9-Sc-NlZ"/>
                             <constraint firstItem="Yef-yh-eIU" firstAttribute="leading" secondItem="qdN-fG-EvY" secondAttribute="leading" id="cKC-Cz-813"/>
                             <constraint firstItem="Nlz-OW-ZkI" firstAttribute="centerX" secondItem="qdN-fG-EvY" secondAttribute="centerX" id="dtp-X2-EkC"/>
+                            <constraint firstItem="qdN-fG-EvY" firstAttribute="bottom" secondItem="2XD-nU-vls" secondAttribute="bottom" id="f4k-fz-KXC"/>
                             <constraint firstItem="qdN-fG-EvY" firstAttribute="top" secondItem="Yef-yh-eIU" secondAttribute="top" id="l61-fp-iFq"/>
+                            <constraint firstItem="qdN-fG-EvY" firstAttribute="trailing" secondItem="2XD-nU-vls" secondAttribute="trailing" id="nMw-PC-MUU"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="qdN-fG-EvY"/>
                     </view>
@@ -161,9 +201,45 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="32" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="jFW-oa-sVJ">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sQe-Ys-HZa" customClass="GradientView" customModule="MyBricks" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="startColor">
+                                        <color key="value" white="0.94999999999999996" alpha="1" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="endColor">
+                                        <color key="value" white="0.84999999999999998" alpha="1" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="startPointX">
+                                        <real key="value" value="0.5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="startPointY">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="endPointX">
+                                        <real key="value" value="0.5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="endPointY">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowX">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowY">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowBlur">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                                        <color key="value" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="32" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="jFW-oa-sVJ">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <outlet property="dataSource" destination="td7-Ab-YI8" id="2QN-Vm-ee8"/>
                                     <outlet property="delegate" destination="td7-Ab-YI8" id="Nk2-a2-3pd"/>
@@ -172,10 +248,14 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="sQe-Ys-HZa" firstAttribute="leading" secondItem="eHx-p9-3Rk" secondAttribute="leading" id="5d0-nk-bRg"/>
+                            <constraint firstItem="eHx-p9-3Rk" firstAttribute="bottom" secondItem="sQe-Ys-HZa" secondAttribute="bottom" id="7Yh-SY-BdH"/>
                             <constraint firstItem="jFW-oa-sVJ" firstAttribute="top" secondItem="eHx-p9-3Rk" secondAttribute="top" id="8KN-3O-1Dm"/>
                             <constraint firstItem="jFW-oa-sVJ" firstAttribute="leading" secondItem="eHx-p9-3Rk" secondAttribute="leading" id="8Ma-AJ-4Sq"/>
                             <constraint firstItem="eHx-p9-3Rk" firstAttribute="trailing" secondItem="jFW-oa-sVJ" secondAttribute="trailing" id="HDu-ic-mUc"/>
                             <constraint firstItem="eHx-p9-3Rk" firstAttribute="bottom" secondItem="jFW-oa-sVJ" secondAttribute="bottom" id="JIx-rm-FsV"/>
+                            <constraint firstItem="eHx-p9-3Rk" firstAttribute="trailing" secondItem="sQe-Ys-HZa" secondAttribute="trailing" id="eTq-yu-Lal"/>
+                            <constraint firstItem="sQe-Ys-HZa" firstAttribute="top" secondItem="eHx-p9-3Rk" secondAttribute="top" id="sXS-De-hj5"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="eHx-p9-3Rk"/>
                     </view>
