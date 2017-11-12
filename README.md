@@ -28,28 +28,27 @@ Mobile (iOS) application for interacting with the BrickSet LEGO database.
 * Open the project in Xcode - use the xcworkspace rather than xcodeproj, or you will get build errors from the CocoaPods dependencies not building
 * Build and run using the Xcode Simulator
 
+# To Do
+
+- [ ] Experiment with alternate (more compact) layout for Set Detail view
+- [ ] Implement display of set description in Set Detail view
+- [ ] Implement owned/wanted updates on Set Detail view
+- [ ] Implement filtering on Sets List view
+- [ ] Implement filtering on My Sets view
+- [ ] Implement force touch actions on Set List view
+- [ ] Implement support for additional images in Set Detail view
+- [ ] Implement support for instructions in Set Detail view
+- [ ] Implement TouchID support for login
+- [ ] Implement About/Credits views
+- [ ] Refactor Profile view to use table view cells
+ 
 # Future Enhancements
 
-* local/offline storage of set data
+* Local/offline storage of set data (using Core Data)
 * View parts list for sets (using Rebrickable API?)
 * View set instructions
 * iPad support, iPad specific layouts
 
-# To Do
-
-* Refactor Profile view to use table view cells?
-* Experiment with alternate layout for Set Detail view
-* Implement owned/wanted updates on Set Detail view
-* Implement basic Search view
-* Implement filtering on Sets List view
-* Implement basic My Sets view
-* Implement filter on My Sets view
-* Implement force touch actions on Set List view?
-* Implement support for additional images in Set Detail view
-* Implement displat of set description in Set Detail view
-* Implement TouchID support for login
-* Implement About/Credits views
- 
 # Credits
 
 Application data graciously provided by **[Brickset](http://www.brickset.com)** using it's web services API.
