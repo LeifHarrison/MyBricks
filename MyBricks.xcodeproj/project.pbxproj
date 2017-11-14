@@ -342,7 +342,6 @@
 			isa = PBXGroup;
 			children = (
 				29E86FD71F3128F800A67179 /* Cells */,
-				29E86FD81F3128FF00A67179 /* Views */,
 				294F187C1FB519A60026342F /* Browse.storyboard */,
 				29CA94A01F8D508A000F1DE3 /* BrowseSetsViewController.swift */,
 				295ADFBE1F16AFFD002E6802 /* BrowseThemesViewController.swift */,
@@ -381,13 +380,6 @@
 				29E86FDA1F31293900A67179 /* ThemeTableViewCell.xib */,
 			);
 			path = Cells;
-			sourceTree = "<group>";
-		};
-		29E86FD81F3128FF00A67179 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Views;
 			sourceTree = "<group>";
 		};
 		FF63C2F8FBB7E309CDB9D36A /* Pods */ = {

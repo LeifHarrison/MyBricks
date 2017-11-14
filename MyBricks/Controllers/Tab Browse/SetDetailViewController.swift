@@ -204,7 +204,7 @@ extension SetDetailTableViewCell {
 extension SetDetailPricingTableViewCell {
 
     func populateWithSet(set : Set) -> Void {
-        retailPriceField.text = "US$\(set.retailPriceUS ?? "-") / CA$\(set.retailPriceCA ?? "-")"
+        retailPriceField.text = "🇺🇸 $\(set.retailPriceUS ?? "-") | 🇨🇦 $\(set.retailPriceCA ?? "-") | 🇬🇧 £\(set.retailPriceUK ?? "-") | 🇪🇺 €\(set.retailPriceEU ?? "-")"
         currentValueField.text = "-"
         pricePerPieceField.text = "-"
     }
