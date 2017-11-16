@@ -16,10 +16,7 @@
 		29365B771F8EBF2A00F6730C /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29365B761F8EBF2A00F6730C /* NewsViewController.swift */; };
 		29365B791F8EBF3B00F6730C /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29365B781F8EBF3B00F6730C /* ProfileViewController.swift */; };
 		29365B7C1F8EDAA500F6730C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29365B7B1F8EDAA500F6730C /* LoginViewController.swift */; };
-		2945A1F71F9FD25500827BA7 /* SetDetailImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2945A1F51F9FD25500827BA7 /* SetDetailImageTableViewCell.swift */; };
-		2945A1F81F9FD25500827BA7 /* SetDetailImageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2945A1F61F9FD25500827BA7 /* SetDetailImageTableViewCell.xib */; };
 		2945A1FD1F9FDB5300827BA7 /* SetDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2945A1FB1F9FDB5300827BA7 /* SetDetailTableViewCell.swift */; };
-		2945A1FE1F9FDB5300827BA7 /* SetDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2945A1FC1F9FDB5300827BA7 /* SetDetailTableViewCell.xib */; };
 		294F187A1FB4EDC20026342F /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294F18791FB4EDC20026342F /* GradientView.swift */; };
 		294F187D1FB519A70026342F /* Browse.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 294F187C1FB519A60026342F /* Browse.storyboard */; };
 		294F187F1FB519ED0026342F /* MySets.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 294F187E1FB519ED0026342F /* MySets.storyboard */; };
@@ -43,14 +40,7 @@
 		29CA94A61F8D72DC000F1DE3 /* SetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29CA94A41F8D72DC000F1DE3 /* SetTableViewCell.swift */; };
 		29CA94A71F8D72DC000F1DE3 /* SetTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29CA94A51F8D72DC000F1DE3 /* SetTableViewCell.xib */; };
 		29CCD8EE1F993E12009A39CF /* SetDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29CCD8ED1F993E12009A39CF /* SetDetailViewController.swift */; };
-		29DFEA141FA29BF500AB0AE8 /* SetDetailCollectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29DFEA121FA29BF500AB0AE8 /* SetDetailCollectionTableViewCell.swift */; };
-		29DFEA151FA29BF500AB0AE8 /* SetDetailCollectionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29DFEA131FA29BF500AB0AE8 /* SetDetailCollectionTableViewCell.xib */; };
-		29DFEA181FA29C1100AB0AE8 /* SetDetailNotesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29DFEA161FA29C1100AB0AE8 /* SetDetailNotesTableViewCell.swift */; };
-		29DFEA191FA29C1100AB0AE8 /* SetDetailNotesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29DFEA171FA29C1100AB0AE8 /* SetDetailNotesTableViewCell.xib */; };
-		29E820281FA7AEC4001444C8 /* SetDetailPricingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E820261FA7AEC4001444C8 /* SetDetailPricingTableViewCell.swift */; };
-		29E820291FA7AEC4001444C8 /* SetDetailPricingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29E820271FA7AEC4001444C8 /* SetDetailPricingTableViewCell.xib */; };
-		29E8202E1FA7AF22001444C8 /* SetDetailRatingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E8202C1FA7AF22001444C8 /* SetDetailRatingTableViewCell.swift */; };
-		29E8202F1FA7AF22001444C8 /* SetDetailRatingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29E8202D1FA7AF22001444C8 /* SetDetailRatingTableViewCell.xib */; };
+		29DFEA141FA29BF500AB0AE8 /* SetCollectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29DFEA121FA29BF500AB0AE8 /* SetCollectionTableViewCell.swift */; };
 		29E86FDB1F31293900A67179 /* ThemeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E86FD91F31293900A67179 /* ThemeTableViewCell.swift */; };
 		29E86FDC1F31293900A67179 /* ThemeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29E86FDA1F31293900A67179 /* ThemeTableViewCell.xib */; };
 		71EA93350D446E8447D819DE /* Pods_MyBricks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C7DD5EA6F08ABC5549DF63C /* Pods_MyBricks.framework */; };
@@ -97,10 +87,7 @@
 		29365B781F8EBF3B00F6730C /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		29365B7B1F8EDAA500F6730C /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		29365B7D1F8EDAEC00F6730C /* MyBricks.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MyBricks.entitlements; sourceTree = "<group>"; };
-		2945A1F51F9FD25500827BA7 /* SetDetailImageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetDetailImageTableViewCell.swift; sourceTree = "<group>"; };
-		2945A1F61F9FD25500827BA7 /* SetDetailImageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SetDetailImageTableViewCell.xib; sourceTree = "<group>"; };
 		2945A1FB1F9FDB5300827BA7 /* SetDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetDetailTableViewCell.swift; sourceTree = "<group>"; };
-		2945A1FC1F9FDB5300827BA7 /* SetDetailTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SetDetailTableViewCell.xib; sourceTree = "<group>"; };
 		294F18791FB4EDC20026342F /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		294F187C1FB519A60026342F /* Browse.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Browse.storyboard; sourceTree = "<group>"; };
 		294F187E1FB519ED0026342F /* MySets.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MySets.storyboard; sourceTree = "<group>"; };
@@ -131,14 +118,7 @@
 		29CA94A41F8D72DC000F1DE3 /* SetTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetTableViewCell.swift; sourceTree = "<group>"; };
 		29CA94A51F8D72DC000F1DE3 /* SetTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SetTableViewCell.xib; sourceTree = "<group>"; };
 		29CCD8ED1F993E12009A39CF /* SetDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetDetailViewController.swift; sourceTree = "<group>"; };
-		29DFEA121FA29BF500AB0AE8 /* SetDetailCollectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetDetailCollectionTableViewCell.swift; sourceTree = "<group>"; };
-		29DFEA131FA29BF500AB0AE8 /* SetDetailCollectionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SetDetailCollectionTableViewCell.xib; sourceTree = "<group>"; };
-		29DFEA161FA29C1100AB0AE8 /* SetDetailNotesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetDetailNotesTableViewCell.swift; sourceTree = "<group>"; };
-		29DFEA171FA29C1100AB0AE8 /* SetDetailNotesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SetDetailNotesTableViewCell.xib; sourceTree = "<group>"; };
-		29E820261FA7AEC4001444C8 /* SetDetailPricingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetDetailPricingTableViewCell.swift; sourceTree = "<group>"; };
-		29E820271FA7AEC4001444C8 /* SetDetailPricingTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SetDetailPricingTableViewCell.xib; sourceTree = "<group>"; };
-		29E8202C1FA7AF22001444C8 /* SetDetailRatingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetDetailRatingTableViewCell.swift; sourceTree = "<group>"; };
-		29E8202D1FA7AF22001444C8 /* SetDetailRatingTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SetDetailRatingTableViewCell.xib; sourceTree = "<group>"; };
+		29DFEA121FA29BF500AB0AE8 /* SetCollectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetCollectionTableViewCell.swift; sourceTree = "<group>"; };
 		29E86FD91F31293900A67179 /* ThemeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeTableViewCell.swift; sourceTree = "<group>"; };
 		29E86FDA1F31293900A67179 /* ThemeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ThemeTableViewCell.xib; sourceTree = "<group>"; };
 		593F839198E1796EC36B980B /* Pods-MyBricks.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyBricks.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MyBricks/Pods-MyBricks.debug.xcconfig"; sourceTree = "<group>"; };
@@ -362,18 +342,8 @@
 		29E86FD71F3128F800A67179 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				29DFEA121FA29BF500AB0AE8 /* SetDetailCollectionTableViewCell.swift */,
-				29DFEA131FA29BF500AB0AE8 /* SetDetailCollectionTableViewCell.xib */,
-				2945A1F51F9FD25500827BA7 /* SetDetailImageTableViewCell.swift */,
-				2945A1F61F9FD25500827BA7 /* SetDetailImageTableViewCell.xib */,
-				29DFEA161FA29C1100AB0AE8 /* SetDetailNotesTableViewCell.swift */,
-				29DFEA171FA29C1100AB0AE8 /* SetDetailNotesTableViewCell.xib */,
-				29E820261FA7AEC4001444C8 /* SetDetailPricingTableViewCell.swift */,
-				29E820271FA7AEC4001444C8 /* SetDetailPricingTableViewCell.xib */,
-				29E8202C1FA7AF22001444C8 /* SetDetailRatingTableViewCell.swift */,
-				29E8202D1FA7AF22001444C8 /* SetDetailRatingTableViewCell.xib */,
+				29DFEA121FA29BF500AB0AE8 /* SetCollectionTableViewCell.swift */,
 				2945A1FB1F9FDB5300827BA7 /* SetDetailTableViewCell.swift */,
-				2945A1FC1F9FDB5300827BA7 /* SetDetailTableViewCell.xib */,
 				29CA94A41F8D72DC000F1DE3 /* SetTableViewCell.swift */,
 				29CA94A51F8D72DC000F1DE3 /* SetTableViewCell.xib */,
 				29E86FD91F31293900A67179 /* ThemeTableViewCell.swift */,
@@ -510,15 +480,9 @@
 				2921AD891FAF6C4000180268 /* News.storyboard in Resources */,
 				29E86FDC1F31293900A67179 /* ThemeTableViewCell.xib in Resources */,
 				291AC5EF1FAF6FB0000DC9DD /* Search.storyboard in Resources */,
-				29E8202F1FA7AF22001444C8 /* SetDetailRatingTableViewCell.xib in Resources */,
-				2945A1FE1F9FDB5300827BA7 /* SetDetailTableViewCell.xib in Resources */,
-				29DFEA151FA29BF500AB0AE8 /* SetDetailCollectionTableViewCell.xib in Resources */,
 				294F187F1FB519ED0026342F /* MySets.storyboard in Resources */,
 				295ADFC61F16AFFD002E6802 /* Assets.xcassets in Resources */,
-				29DFEA191FA29C1100AB0AE8 /* SetDetailNotesTableViewCell.xib in Resources */,
-				29E820291FA7AEC4001444C8 /* SetDetailPricingTableViewCell.xib in Resources */,
 				295ADFC41F16AFFD002E6802 /* Main.storyboard in Resources */,
-				2945A1F81F9FD25500827BA7 /* SetDetailImageTableViewCell.xib in Resources */,
 				291AC5EE1FAF6FAC000DC9DD /* Profile.storyboard in Resources */,
 				29CA94A71F8D72DC000F1DE3 /* SetTableViewCell.xib in Resources */,
 			);
@@ -612,10 +576,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				29365B7C1F8EDAA500F6730C /* LoginViewController.swift in Sources */,
-				29E8202E1FA7AF22001444C8 /* SetDetailRatingTableViewCell.swift in Sources */,
 				292F4F571F193092006D5F5B /* BricksetServices.swift in Sources */,
 				29CA94A11F8D508A000F1DE3 /* BrowseSetsViewController.swift in Sources */,
-				29DFEA181FA29C1100AB0AE8 /* SetDetailNotesTableViewCell.swift in Sources */,
 				29CA94A61F8D72DC000F1DE3 /* SetTableViewCell.swift in Sources */,
 				29365B771F8EBF2A00F6730C /* NewsViewController.swift in Sources */,
 				29E86FDB1F31293900A67179 /* ThemeTableViewCell.swift in Sources */,
@@ -626,17 +588,15 @@
 				297476EE1F1D3DC600FC354B /* Theme.swift in Sources */,
 				2973B5781F96834D002CD0DA /* UserPofile.swift in Sources */,
 				2964609E1FA907FC004850F8 /* NewsItemTableViewCell.swift in Sources */,
-				29DFEA141FA29BF500AB0AE8 /* SetDetailCollectionTableViewCell.swift in Sources */,
+				29DFEA141FA29BF500AB0AE8 /* SetCollectionTableViewCell.swift in Sources */,
 				297E119F1F9563F500AAE8CB /* UserCollectionTotals.swift in Sources */,
 				291AC5F41FB103E4000DC9DD /* MySetsHeaderView.swift in Sources */,
-				29E820281FA7AEC4001444C8 /* SetDetailPricingTableViewCell.swift in Sources */,
 				295ADFBD1F16AFFC002E6802 /* AppDelegate.swift in Sources */,
 				29CCD8EE1F993E12009A39CF /* SetDetailViewController.swift in Sources */,
 				29A523421F310261005F2145 /* UIViewController+Extensions.swift in Sources */,
 				29365B791F8EBF3B00F6730C /* ProfileViewController.swift in Sources */,
 				295ADFBF1F16AFFD002E6802 /* BrowseThemesViewController.swift in Sources */,
 				296460A11FA92AA2004850F8 /* NewsItemViewController.swift in Sources */,
-				2945A1F71F9FD25500827BA7 /* SetDetailImageTableViewCell.swift in Sources */,
 				29CA94A31F8D5132000F1DE3 /* Set.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

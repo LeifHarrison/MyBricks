@@ -100,5 +100,30 @@ public struct Set {
     func isRetired() -> Bool {
         return (dateAddedToSAH == nil) || (dateRemovedFromSAH != nil)
     }
+    
+    func themeDetail() -> String? {
+        if let theme = theme, let subtheme = subtheme {
+            return "\(theme) / \(subtheme)"
+        }
+        else if let theme = theme {
+            return theme
+        }
+        else {
+            return ""
+        }
+    }
+    
+    func availabilityDetail() -> String? {
+        if let availability = availability, let packagingType = packagingType {
+            return "\(availability) / \(packagingType)"
+        }
+        else if let availability = availability {
+            return availability
+        }
+        else {
+            return packagingType ?? ""
+        }
+    }
+
 }
 
