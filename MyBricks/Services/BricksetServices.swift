@@ -205,11 +205,12 @@ class BricksetServices {
         print("Request: \(request)")
 
         let requestCompletion: (DataResponse<XMLDocument>) -> Void = { response in
-            //print("Document: \(document)")
             if let error = response.result.error {
                 print("Error: \(error)")
+                completion(Result.failure(error))
             }
             else if let document = response.result.value {
+                //print("Document: \(document)")
                 if let root = document.root {
                     var sets: [Set] = []
 
@@ -226,7 +227,7 @@ class BricksetServices {
         request.responseXMLDocument(completionHandler: requestCompletion)
     }
 
-    func getSet(setID: String, completion: @escaping (Result<Set>) -> Void) {
+    func getSet(setID: String, completion: @escaping (Result<SetDetail>) -> Void) {
         let url = baseURL + "getSet"
 
         var parameters = userParameters()
@@ -236,20 +237,27 @@ class BricksetServices {
         print("Request: \(request)")
 
         let requestCompletion: (DataResponse<XMLDocument>) -> Void = { response in
-            //print("Document: \(document)")
             if let error = response.result.error {
                 print("Error: \(error)")
+                completion(Result.failure(error))
             }
             else if let document = response.result.value {
+                //print("Document: \(document)")
                 if let root = document.root {
-                    var sets: [Set] = []
+                    var sets: [SetDetail] = []
 
                     for element in root.children {
-                        if let set = Set(element: element) {
+                        if let set = SetDetail(element: element) {
                             sets.append(set)
                         }
                     }
 
+                    if sets.count == 1, let firstSet = sets.first {
+                        completion(Result.success(firstSet))
+                    }
+                    else {
+                        completion(Result.failure(ServiceError.unknownError))
+                    }
                 }
             }
         }
@@ -268,6 +276,7 @@ class BricksetServices {
             //print("Document: \(document)")
             if let error = response.result.error {
                 print("Error: \(error)")
+                completion(Result.failure(error))
             }
             else if let document = response.result.value {
                 if let root = document.root {

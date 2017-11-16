@@ -34,6 +34,7 @@
 		2973B5781F96834D002CD0DA /* UserPofile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2973B5771F96834D002CD0DA /* UserPofile.swift */; };
 		297476EE1F1D3DC600FC354B /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297476ED1F1D3DC600FC354B /* Theme.swift */; };
 		297E119F1F9563F500AAE8CB /* UserCollectionTotals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297E119E1F9563F500AAE8CB /* UserCollectionTotals.swift */; };
+		298FC8311FBA45940094D6DF /* BarcodeScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298FC8301FBA45940094D6DF /* BarcodeScannerViewController.swift */; };
 		29A523421F310261005F2145 /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A523411F310261005F2145 /* UIViewController+Extensions.swift */; };
 		29CA94A11F8D508A000F1DE3 /* BrowseSetsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29CA94A01F8D508A000F1DE3 /* BrowseSetsViewController.swift */; };
 		29CA94A31F8D5132000F1DE3 /* Set.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29CA94A21F8D5132000F1DE3 /* Set.swift */; };
@@ -43,6 +44,7 @@
 		29DFEA141FA29BF500AB0AE8 /* SetCollectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29DFEA121FA29BF500AB0AE8 /* SetCollectionTableViewCell.swift */; };
 		29E86FDB1F31293900A67179 /* ThemeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E86FD91F31293900A67179 /* ThemeTableViewCell.swift */; };
 		29E86FDC1F31293900A67179 /* ThemeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29E86FDA1F31293900A67179 /* ThemeTableViewCell.xib */; };
+		29FCC3461FBA14F500079032 /* SetDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FCC3451FBA14F500079032 /* SetDetail.swift */; };
 		71EA93350D446E8447D819DE /* Pods_MyBricks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C7DD5EA6F08ABC5549DF63C /* Pods_MyBricks.framework */; };
 /* End PBXBuildFile section */
 
@@ -111,6 +113,7 @@
 		2973B5771F96834D002CD0DA /* UserPofile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPofile.swift; sourceTree = "<group>"; };
 		297476ED1F1D3DC600FC354B /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		297E119E1F9563F500AAE8CB /* UserCollectionTotals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCollectionTotals.swift; sourceTree = "<group>"; };
+		298FC8301FBA45940094D6DF /* BarcodeScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeScannerViewController.swift; sourceTree = "<group>"; };
 		29A523411F310261005F2145 /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
 		29AF63FA1FB66445001B14AD /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 		29CA94A01F8D508A000F1DE3 /* BrowseSetsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseSetsViewController.swift; sourceTree = "<group>"; };
@@ -121,6 +124,7 @@
 		29DFEA121FA29BF500AB0AE8 /* SetCollectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetCollectionTableViewCell.swift; sourceTree = "<group>"; };
 		29E86FD91F31293900A67179 /* ThemeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeTableViewCell.swift; sourceTree = "<group>"; };
 		29E86FDA1F31293900A67179 /* ThemeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ThemeTableViewCell.xib; sourceTree = "<group>"; };
+		29FCC3451FBA14F500079032 /* SetDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetDetail.swift; sourceTree = "<group>"; };
 		593F839198E1796EC36B980B /* Pods-MyBricks.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyBricks.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MyBricks/Pods-MyBricks.debug.xcconfig"; sourceTree = "<group>"; };
 		8C7DD5EA6F08ABC5549DF63C /* Pods_MyBricks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyBricks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C22940D3A15FE3E6B89AED7 /* Pods-MyBricks.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyBricks.release.xcconfig"; path = "Pods/Target Support Files/Pods-MyBricks/Pods-MyBricks.release.xcconfig"; sourceTree = "<group>"; };
@@ -284,6 +288,7 @@
 			children = (
 				297476ED1F1D3DC600FC354B /* Theme.swift */,
 				29CA94A21F8D5132000F1DE3 /* Set.swift */,
+				29FCC3451FBA14F500079032 /* SetDetail.swift */,
 				297E119E1F9563F500AAE8CB /* UserCollectionTotals.swift */,
 				2973B5771F96834D002CD0DA /* UserPofile.swift */,
 			);
@@ -333,6 +338,7 @@
 		29E86FD61F3128E800A67179 /* Tab Search */ = {
 			isa = PBXGroup;
 			children = (
+				298FC8301FBA45940094D6DF /* BarcodeScannerViewController.swift */,
 				2921AD8B1FAF6EE000180268 /* Search.storyboard */,
 				295ADFC01F16AFFD002E6802 /* SearchViewController.swift */,
 			);
@@ -549,6 +555,7 @@
 				"${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireNetworkActivityIndicator/AlamofireNetworkActivityIndicator.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireRSSParser/AlamofireRSSParser.framework",
+				"${BUILT_PRODUCTS_DIR}/BarcodeScanner/BarcodeScanner.framework",
 				"${BUILT_PRODUCTS_DIR}/Cosmos/Cosmos.framework",
 				"${BUILT_PRODUCTS_DIR}/Fuzi/Fuzi.framework",
 				"${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework",
@@ -559,6 +566,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireNetworkActivityIndicator.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireRSSParser.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BarcodeScanner.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cosmos.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Fuzi.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
@@ -582,6 +590,7 @@
 				29365B771F8EBF2A00F6730C /* NewsViewController.swift in Sources */,
 				29E86FDB1F31293900A67179 /* ThemeTableViewCell.swift in Sources */,
 				294F187A1FB4EDC20026342F /* GradientView.swift in Sources */,
+				298FC8311FBA45940094D6DF /* BarcodeScannerViewController.swift in Sources */,
 				295ADFC11F16AFFD002E6802 /* SearchViewController.swift in Sources */,
 				2945A1FD1F9FDB5300827BA7 /* SetDetailTableViewCell.swift in Sources */,
 				29365B751F8EBF1C00F6730C /* MySetsViewController.swift in Sources */,
@@ -597,6 +606,7 @@
 				29365B791F8EBF3B00F6730C /* ProfileViewController.swift in Sources */,
 				295ADFBF1F16AFFD002E6802 /* BrowseThemesViewController.swift in Sources */,
 				296460A11FA92AA2004850F8 /* NewsItemViewController.swift in Sources */,
+				29FCC3461FBA14F500079032 /* SetDetail.swift in Sources */,
 				29CA94A31F8D5132000F1DE3 /* Set.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

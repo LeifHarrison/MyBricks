@@ -20,6 +20,7 @@ class SetDetailViewController: UIViewController {
     var sections: [TableSection] = [ .detail ]
 
     var currentSet : Set?
+    var detailSet : SetDetail?
     var currentSetImage : UIImage?
 
     //--------------------------------------------------------------------------
@@ -50,7 +51,19 @@ class SetDetailViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+
+        if let set = currentSet, let setID = set.setID {
+            BricksetServices.shared.getSet(setID: setID, completion: { result in
+                self.detailSet = result.value
+                //print("Result \(String(describing: self.detailSet))")
+            })
+        }
+
     }
+
+    //--------------------------------------------------------------------------
+    // MARK: - Private
+    //--------------------------------------------------------------------------
 
 }
 

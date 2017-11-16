@@ -13,5 +13,6 @@ target 'MyBricks' do
   pod 'Fuzi'
   pod 'KeychainAccess'
   pod 'Cosmos'
+  pod 'BarcodeScanner'
 
 end

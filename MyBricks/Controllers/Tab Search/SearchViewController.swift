@@ -7,12 +7,14 @@
 //
 
 import UIKit
+import BarcodeScanner
 
 class SearchViewController: UIViewController {
 
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
-    
+    @IBOutlet weak var instructionsLabel: UILabel!
+
     var theme : String?
     
     var allSets: [Set] = []
@@ -35,6 +37,21 @@ class SearchViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+    }
+
+    //--------------------------------------------------------------------------
+    // MARK: - Actions
+    //--------------------------------------------------------------------------
+
+    @IBAction func showBarcodeScanner(_ sender: AnyObject?) {
+        performSegue(withIdentifier: "showBarcodeScanner", sender: self)
+
+//        let controller = BarcodeScannerController()
+//        controller.codeDelegate = self
+//        controller.errorDelegate = self
+//        controller.dismissalDelegate = self
+//        controller.barCodeFocusViewType = .twoDimensions
+//        present(controller, animated: true, completion: nil)
     }
 
     //--------------------------------------------------------------------------
@@ -167,3 +184,41 @@ extension SearchViewController: UITableViewDelegate {
     }
 
 }
+
+//==============================================================================
+// MARK: - BarcodeScannerCodeDelegate
+//==============================================================================
+
+extension SearchViewController: BarcodeScannerCodeDelegate {
+
+    func barcodeScanner(_ controller: BarcodeScannerController, didCaptureCode code: String, type: String) {
+        print(code)
+        controller.reset()
+    }
+
+}
+
+//==============================================================================
+// MARK: - BarcodeScannerErrorDelegate
+//==============================================================================
+
+extension SearchViewController: BarcodeScannerErrorDelegate {
+
+    func barcodeScanner(_ controller: BarcodeScannerController, didReceiveError error: Error) {
+        print(error)
+    }
+
+}
+
+//==============================================================================
+// MARK: - BarcodeScannerDismissalDelegate
+//==============================================================================
+
+extension SearchViewController: BarcodeScannerDismissalDelegate {
+
+    func barcodeScannerDidDismiss(_ controller: BarcodeScannerController) {
+        controller.dismiss(animated: true, completion: nil)
+    }
+
+}
+
