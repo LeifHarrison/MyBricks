@@ -12,6 +12,9 @@ import LocalAuthentication
 class ProfileViewController: UIViewController {
 
     @IBOutlet weak var loginView: UIView!
+    @IBOutlet weak var instructionLabel: UILabel!
+    @IBOutlet weak var loginButton: UIButton!
+
     @IBOutlet weak var profileView: UIView!
 
     @IBOutlet weak var profileDetailView: UIView!
@@ -46,7 +49,10 @@ class ProfileViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        addGradientBackground()
+        
         collectionDivider.backgroundColor = UIColor(white: 0.6, alpha: 0.7)
+        loginButton.layer.cornerRadius = 5.0
     }
 
     override func viewWillAppear(_ animated: Bool) {

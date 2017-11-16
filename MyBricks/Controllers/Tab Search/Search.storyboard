@@ -35,42 +35,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ubn-dB-9Km" customClass="GradientView" customModule="MyBricks" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="startColor">
-                                        <color key="value" white="0.94999999999999996" alpha="1" colorSpace="calibratedWhite"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="endColor">
-                                        <color key="value" white="0.84999999999999998" alpha="1" colorSpace="calibratedWhite"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="startPointX">
-                                        <real key="value" value="0.5"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="startPointY">
-                                        <real key="value" value="0.0"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="endPointX">
-                                        <real key="value" value="0.5"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="endPointY">
-                                        <real key="value" value="1"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowX">
-                                        <real key="value" value="0.0"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowY">
-                                        <real key="value" value="0.0"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowBlur">
-                                        <real key="value" value="0.0"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
-                                        <color key="value" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </view>
                             <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="8Mc-QV-cXp">
                                 <rect key="frame" x="1" y="64" width="375" height="56"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -125,7 +89,6 @@ Search by scanning a barcode</string>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="O1u-W8-tvY" firstAttribute="bottom" secondItem="Ubn-dB-9Km" secondAttribute="bottom" id="0wx-dK-1nI"/>
                             <constraint firstItem="O1u-W8-tvY" firstAttribute="trailing" secondItem="k3a-CI-M01" secondAttribute="trailing" constant="75" id="1mu-Qv-Tqd"/>
                             <constraint firstItem="k3a-CI-M01" firstAttribute="top" secondItem="O1u-W8-tvY" secondAttribute="top" constant="220" id="3B4-ct-rsj"/>
                             <constraint firstItem="qqy-YC-hbi" firstAttribute="centerY" secondItem="O1u-W8-tvY" secondAttribute="centerY" id="3n9-bI-uLq"/>
@@ -135,11 +98,8 @@ Search by scanning a barcode</string>
                             <constraint firstItem="8Mc-QV-cXp" firstAttribute="top" secondItem="O1u-W8-tvY" secondAttribute="top" id="Ft7-JG-GuX"/>
                             <constraint firstItem="qqy-YC-hbi" firstAttribute="centerX" secondItem="O1u-W8-tvY" secondAttribute="centerX" id="QRx-UT-ehs"/>
                             <constraint firstItem="8Mc-QV-cXp" firstAttribute="trailing" secondItem="O1u-W8-tvY" secondAttribute="trailing" constant="1" id="Rn4-xW-Q68"/>
-                            <constraint firstItem="Ubn-dB-9Km" firstAttribute="leading" secondItem="O1u-W8-tvY" secondAttribute="leading" id="Uwo-cH-hh2"/>
-                            <constraint firstItem="Ubn-dB-9Km" firstAttribute="trailing" secondItem="O1u-W8-tvY" secondAttribute="trailing" id="aWf-5G-Ukk"/>
                             <constraint firstItem="O1u-W8-tvY" firstAttribute="bottom" secondItem="t39-YW-Rlf" secondAttribute="bottom" id="eaM-AJ-mAZ"/>
                             <constraint firstItem="t39-YW-Rlf" firstAttribute="top" secondItem="8Mc-QV-cXp" secondAttribute="bottom" id="giL-Nl-eGz"/>
-                            <constraint firstItem="Ubn-dB-9Km" firstAttribute="top" secondItem="O1u-W8-tvY" secondAttribute="top" id="x2z-av-Vkj"/>
                             <constraint firstItem="t39-YW-Rlf" firstAttribute="leading" secondItem="O1u-W8-tvY" secondAttribute="leading" id="zFu-3x-YmO"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="O1u-W8-tvY"/>
@@ -171,9 +131,9 @@ Search by scanning a barcode</string>
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BvF-3P-eNg">
-                                <rect key="frame" x="15" y="40.5" width="48" height="30"/>
-                                <state key="normal" title="Cancel">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BvF-3P-eNg">
+                                <rect key="frame" x="15" y="35.5" width="41" height="41"/>
+                                <state key="normal" image="cancel">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -185,16 +145,16 @@ Search by scanning a barcode</string>
                                 <state key="normal" image="flashOff"/>
                             </button>
                             <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kzq-L9-L4k">
-                                <rect key="frame" x="0.0" y="609" width="375" height="58"/>
+                                <rect key="frame" x="0.0" y="600" width="375" height="67"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="c9n-Qh-KtX">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="58"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="67"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" verticalHuggingPriority="252" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" image="info" translatesAutoresizingMaskIntoConstraints="NO" id="NdL-Ok-V2p">
-                                            <rect key="frame" x="15" y="15" width="30" height="27"/>
+                                            <rect key="frame" x="15" y="20" width="30" height="27"/>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Place the barcode within the window to scan. The search will start automatically." textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="usu-w1-yGh">
-                                            <rect key="frame" x="55" y="12.5" width="305" height="33.5"/>
+                                            <rect key="frame" x="60" y="17.5" width="300" height="33.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -202,28 +162,99 @@ Search by scanning a barcode</string>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="NdL-Ok-V2p" firstAttribute="leading" secondItem="c9n-Qh-KtX" secondAttribute="leading" constant="15" id="54N-fO-YFf"/>
-                                        <constraint firstItem="NdL-Ok-V2p" firstAttribute="top" secondItem="c9n-Qh-KtX" secondAttribute="top" constant="15" id="XoJ-IQ-Au6"/>
+                                        <constraint firstItem="NdL-Ok-V2p" firstAttribute="top" secondItem="c9n-Qh-KtX" secondAttribute="top" constant="20" id="XoJ-IQ-Au6"/>
                                         <constraint firstItem="usu-w1-yGh" firstAttribute="centerY" secondItem="NdL-Ok-V2p" secondAttribute="centerY" id="Y37-aE-7QI"/>
                                         <constraint firstAttribute="trailing" secondItem="usu-w1-yGh" secondAttribute="trailing" constant="15" id="mib-GN-aJw"/>
-                                        <constraint firstItem="usu-w1-yGh" firstAttribute="leading" secondItem="NdL-Ok-V2p" secondAttribute="trailing" constant="10" id="vg7-2g-2w0"/>
+                                        <constraint firstItem="usu-w1-yGh" firstAttribute="leading" secondItem="NdL-Ok-V2p" secondAttribute="trailing" constant="15" id="vg7-2g-2w0"/>
                                     </constraints>
                                 </view>
                                 <blurEffect style="light"/>
                             </visualEffectView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YHa-GE-lsD">
+                                <rect key="frame" x="47" y="226.5" width="280" height="154"/>
+                                <color key="backgroundColor" white="1" alpha="0.5" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="280" id="auv-98-vS3"/>
+                                    <constraint firstAttribute="height" constant="154" id="n9F-0B-GFU"/>
+                                </constraints>
+                            </view>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZO5-qJ-Pwa">
+                                <rect key="frame" x="60" y="250" width="255" height="163"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No camera detected" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RZb-Rw-YCt">
+                                        <rect key="frame" x="0.0" y="10" width="255" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <color key="textColor" white="0.84999999999999998" alpha="0.80000000000000004" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uim-e5-4NE">
+                                        <rect key="frame" x="0.0" y="51" width="255" height="48"/>
+                                        <attributedString key="attributedText">
+                                            <fragment content="Barcode scanning not supported on this device">
+                                                <attributes>
+                                                    <color key="NSColor" white="0.84999999999999998" alpha="0.80000000000000004" colorSpace="calibratedWhite"/>
+                                                    <font key="NSFont" metaFont="system" size="18"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="5" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                        </attributedString>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gnH-2v-Jh2">
+                                        <rect key="frame" x="67.5" y="134" width="120" height="29"/>
+                                        <color key="backgroundColor" red="0.0" green="0.43240571020000002" blue="0.60304111240000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="120" id="ZF4-Dd-hJJ"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <state key="normal" title="Test Barcodes">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="showBarcodeTestMenu:" destination="1ar-8a-lmi" eventType="touchUpInside" id="wd5-L7-3Pi"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="gnH-2v-Jh2" firstAttribute="centerX" secondItem="ZO5-qJ-Pwa" secondAttribute="centerX" id="1Vj-Kv-Foz"/>
+                                    <constraint firstItem="RZb-Rw-YCt" firstAttribute="leading" secondItem="ZO5-qJ-Pwa" secondAttribute="leading" id="6TN-lj-0i5"/>
+                                    <constraint firstItem="uim-e5-4NE" firstAttribute="leading" secondItem="ZO5-qJ-Pwa" secondAttribute="leading" id="9rB-WM-zwx"/>
+                                    <constraint firstAttribute="bottom" secondItem="gnH-2v-Jh2" secondAttribute="bottom" id="BaL-QZ-cFK"/>
+                                    <constraint firstAttribute="trailing" secondItem="RZb-Rw-YCt" secondAttribute="trailing" id="RNz-Tp-VpX"/>
+                                    <constraint firstAttribute="trailing" secondItem="uim-e5-4NE" secondAttribute="trailing" id="TGg-Id-h2Q"/>
+                                    <constraint firstItem="uim-e5-4NE" firstAttribute="top" secondItem="RZb-Rw-YCt" secondAttribute="bottom" constant="20" id="fgq-ht-SHc"/>
+                                    <constraint firstItem="gnH-2v-Jh2" firstAttribute="top" secondItem="uim-e5-4NE" secondAttribute="bottom" constant="35" id="pbO-kK-Q8G"/>
+                                    <constraint firstItem="RZb-Rw-YCt" firstAttribute="top" secondItem="ZO5-qJ-Pwa" secondAttribute="top" constant="10" id="xgX-Q5-N3h"/>
+                                </constraints>
+                            </view>
                         </subviews>
-                        <color key="backgroundColor" white="0.94999999999999996" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Kzq-L9-L4k" firstAttribute="bottom" secondItem="X4K-59-Knt" secondAttribute="bottom" id="2fQ-Ez-koq"/>
+                            <constraint firstItem="YHa-GE-lsD" firstAttribute="centerY" secondItem="O2L-QK-unw" secondAttribute="centerY" constant="-40" id="5Yj-KF-yYq"/>
+                            <constraint firstItem="ZO5-qJ-Pwa" firstAttribute="leading" secondItem="O2L-QK-unw" secondAttribute="leading" constant="60" id="P8T-HJ-Wq0"/>
                             <constraint firstItem="O2L-QK-unw" firstAttribute="trailing" secondItem="juK-NZ-bNN" secondAttribute="trailing" constant="15" id="WgG-5Q-rHl"/>
                             <constraint firstItem="Kzq-L9-L4k" firstAttribute="leading" secondItem="O2L-QK-unw" secondAttribute="leading" id="X2q-JV-ceH"/>
                             <constraint firstItem="BvF-3P-eNg" firstAttribute="leading" secondItem="O2L-QK-unw" secondAttribute="leading" constant="15" id="Yyy-fe-297"/>
                             <constraint firstItem="BvF-3P-eNg" firstAttribute="centerY" secondItem="juK-NZ-bNN" secondAttribute="centerY" id="azd-pA-r48"/>
+                            <constraint firstItem="YHa-GE-lsD" firstAttribute="centerX" secondItem="O2L-QK-unw" secondAttribute="centerX" id="bcc-6d-DAE"/>
                             <constraint firstItem="juK-NZ-bNN" firstAttribute="top" secondItem="O2L-QK-unw" secondAttribute="top" constant="15" id="huo-S6-uCR"/>
+                            <constraint firstItem="O2L-QK-unw" firstAttribute="trailing" secondItem="ZO5-qJ-Pwa" secondAttribute="trailing" constant="60" id="rRE-f5-vfe"/>
                             <constraint firstItem="Kzq-L9-L4k" firstAttribute="trailing" secondItem="O2L-QK-unw" secondAttribute="trailing" id="ssb-MB-rGO"/>
-                            <constraint firstItem="O2L-QK-unw" firstAttribute="bottom" secondItem="NdL-Ok-V2p" secondAttribute="bottom" constant="16" id="zBj-Ym-UqD"/>
+                            <constraint firstItem="ZO5-qJ-Pwa" firstAttribute="top" secondItem="O2L-QK-unw" secondAttribute="top" constant="230" id="uq0-fc-81N"/>
+                            <constraint firstItem="O2L-QK-unw" firstAttribute="bottom" secondItem="NdL-Ok-V2p" secondAttribute="bottom" constant="20" id="zBj-Ym-UqD"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="O2L-QK-unw"/>
                     </view>
+                    <connections>
+                        <outlet property="cancelButton" destination="BvF-3P-eNg" id="JPe-Fk-K5E"/>
+                        <outlet property="flashButton" destination="juK-NZ-bNN" id="Dh8-Dx-VM4"/>
+                        <outlet property="focusView" destination="YHa-GE-lsD" id="JSS-WM-Eal"/>
+                        <outlet property="instructionView" destination="Kzq-L9-L4k" id="Jyi-Iv-Cgx"/>
+                        <outlet property="noCameraView" destination="ZO5-qJ-Pwa" id="xWp-Tc-Ndv"/>
+                        <outlet property="testBarcodesButton" destination="gnH-2v-Jh2" id="nDv-3T-pMN"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BMb-gk-BYU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -232,6 +263,7 @@ Search by scanning a barcode</string>
     </scenes>
     <resources>
         <image name="barcode_scan" width="24" height="24"/>
+        <image name="cancel" width="41" height="41"/>
         <image name="flashOff" width="41" height="41"/>
         <image name="info" width="30" height="27"/>
         <image name="search" width="30" height="30"/>

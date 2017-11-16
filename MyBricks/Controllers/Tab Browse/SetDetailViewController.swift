@@ -29,6 +29,7 @@ class SetDetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        addGradientBackground()
 
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.sectionIndexBackgroundColor = UIColor.clear

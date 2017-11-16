@@ -20,10 +20,13 @@ enum GroupingMode: Int {
 
 class MySetsViewController: UIViewController {
 
+    @IBOutlet weak var loginView: UIView!
+    @IBOutlet weak var instructionLabel: UILabel!
+    @IBOutlet weak var loginButton: UIButton!
+
     @IBOutlet weak var headerView: MySetsHeaderView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var loginView: UIView!
 
     var allSets: [Set] = []
     var sectionTitles: [String] = []
@@ -35,6 +38,9 @@ class MySetsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        addGradientBackground()
+
+        loginButton.layer.cornerRadius = 5.0
         tableView.tableFooterView = UIView()
     }
 

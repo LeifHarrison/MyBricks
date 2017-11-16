@@ -7,7 +7,8 @@
 //
 
 import UIKit
-import BarcodeScanner
+
+import AVFoundation
 
 class SearchViewController: UIViewController {
 
@@ -27,12 +28,28 @@ class SearchViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        addGradientBackground()
         
         tableView.register(UINib(nibName: "SetTableViewCell", bundle: nil), forCellReuseIdentifier: "SetTableViewCell")
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = UITableViewAutomaticDimension
         tableView.sectionIndexBackgroundColor = UIColor.clear
         tableView.tableFooterView = UIView()
+
+        //if AVCaptureDevice.default(for: AVMediaType.video) == nil {
+        if AVCaptureDevice.default(for: AVMediaType.video) == nil && !UIDevice.isSimulator {
+            navigationItem.setRightBarButtonItems([], animated: false)
+
+            let instructionsText = NSLocalizedString("Search for Lego sets by title, set number, theme or subtheme", comment: "")
+            let attributedInstructions = NSMutableAttributedString(string: instructionsText)
+
+            let paragraphStyle = NSMutableParagraphStyle()
+            paragraphStyle.lineSpacing = 10
+            paragraphStyle.alignment = .center
+            attributedInstructions.addAttribute(NSAttributedStringKey.paragraphStyle, value:paragraphStyle, range:NSMakeRange(0, attributedInstructions.length))
+
+            instructionsLabel.attributedText = attributedInstructions
+        }
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -189,36 +206,36 @@ extension SearchViewController: UITableViewDelegate {
 // MARK: - BarcodeScannerCodeDelegate
 //==============================================================================
 
-extension SearchViewController: BarcodeScannerCodeDelegate {
-
-    func barcodeScanner(_ controller: BarcodeScannerController, didCaptureCode code: String, type: String) {
-        print(code)
-        controller.reset()
-    }
-
-}
+//extension SearchViewController: BarcodeScannerCodeDelegate {
+//
+//    func barcodeScanner(_ controller: BarcodeScannerController, didCaptureCode code: String, type: String) {
+//        print(code)
+//        controller.reset()
+//    }
+//
+//}
 
 //==============================================================================
 // MARK: - BarcodeScannerErrorDelegate
 //==============================================================================
 
-extension SearchViewController: BarcodeScannerErrorDelegate {
-
-    func barcodeScanner(_ controller: BarcodeScannerController, didReceiveError error: Error) {
-        print(error)
-    }
-
-}
+//extension SearchViewController: BarcodeScannerErrorDelegate {
+//
+//    func barcodeScanner(_ controller: BarcodeScannerController, didReceiveError error: Error) {
+//        print(error)
+//    }
+//
+//}
 
 //==============================================================================
 // MARK: - BarcodeScannerDismissalDelegate
 //==============================================================================
 
-extension SearchViewController: BarcodeScannerDismissalDelegate {
-
-    func barcodeScannerDidDismiss(_ controller: BarcodeScannerController) {
-        controller.dismiss(animated: true, completion: nil)
-    }
-
-}
+//extension SearchViewController: BarcodeScannerDismissalDelegate {
+//
+//    func barcodeScannerDidDismiss(_ controller: BarcodeScannerController) {
+//        controller.dismiss(animated: true, completion: nil)
+//    }
+//
+//}
 

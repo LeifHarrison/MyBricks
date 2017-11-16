@@ -24,6 +24,7 @@ class NewsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        addGradientBackground()
 
         tableView.register(UINib(nibName: "NewsItemTableViewCell", bundle: nil), forCellReuseIdentifier: "NewsItemTableViewCell")
         tableView.rowHeight = UITableViewAutomaticDimension

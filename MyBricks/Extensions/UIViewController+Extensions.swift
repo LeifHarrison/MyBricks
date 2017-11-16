@@ -11,6 +11,34 @@ import LocalAuthentication
 
 extension UIViewController {
 
+    func addGradientBackground() {
+        let gradientView = GradientView(frame: view.bounds)
+        gradientView.translatesAutoresizingMaskIntoConstraints = false
+        gradientView.startColor = UIColor(white: 0.95, alpha: 1.0)
+        gradientView.endColor = UIColor(white: 0.85, alpha: 1.0)
+        gradientView.startPointX = 0.5
+        gradientView.startPointY = 0
+        gradientView.endPointX = 0.5
+        gradientView.endPointY = 1
+        view.insertSubview(gradientView, at: 0)
+
+        if #available(iOS 11, *) {
+            let guide = view.safeAreaLayoutGuide
+            let top = gradientView.topAnchor.constraint(equalTo: guide.topAnchor)
+            let bottom = guide.bottomAnchor.constraint(equalTo: gradientView.bottomAnchor)
+            let leading = gradientView.leadingAnchor.constraint(equalTo: guide.leadingAnchor)
+            let trailing = guide.trailingAnchor.constraint(equalTo: gradientView.trailingAnchor)
+            NSLayoutConstraint.activate([top, bottom, leading, trailing])
+        }
+        else {
+            let top = gradientView.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor)
+            let bottom = bottomLayoutGuide.topAnchor.constraint(equalTo: gradientView.bottomAnchor)
+            let leading = gradientView.leadingAnchor.constraint(equalTo: view.leadingAnchor)
+            let trailing = view.trailingAnchor.constraint(equalTo: gradientView.trailingAnchor)
+            NSLayoutConstraint.activate([top, bottom, leading, trailing])
+        }
+    }
+
     func evaluateBiometricAuthentication(credential: URLCredential, completion: @escaping ((Bool)->Void)) {
         let myContext = LAContext()
         let myLocalizedReasonString = "Login to your Brickset account"

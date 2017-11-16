@@ -36,57 +36,31 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oeW-L2-tfy" customClass="GradientView" customModule="MyBricks" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="startColor">
-                                        <color key="value" white="0.90000000000000002" alpha="1" colorSpace="calibratedWhite"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="endColor">
-                                        <color key="value" white="0.69999999999999996" alpha="1" colorSpace="calibratedWhite"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="startPointX">
-                                        <real key="value" value="0.5"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="startPointY">
-                                        <real key="value" value="0.0"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="endPointX">
-                                        <real key="value" value="0.5"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="endPointY">
-                                        <real key="value" value="1"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowX">
-                                        <real key="value" value="0.0"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowY">
-                                        <real key="value" value="0.0"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowBlur">
-                                        <real key="value" value="0.0"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
-                                        <color key="value" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </view>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SN8-WA-Ueu">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <subviews>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Log in to view and update your set collection and wanted list" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Ak-jr-FD6">
-                                        <rect key="frame" x="30" y="242.5" width="315" height="38.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Ak-jr-FD6">
+                                        <rect key="frame" x="60" y="180" width="255" height="48.5"/>
+                                        <attributedString key="attributedText">
+                                            <fragment content="Log in to view and update your set collection and wanted list">
+                                                <attributes>
+                                                    <color key="NSColor" white="0.20000000000000001" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <font key="NSFont" metaFont="system" size="16"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="10" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                        </attributedString>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yzk-sT-wH9">
-                                        <rect key="frame" x="152.5" y="306.5" width="70" height="30"/>
+                                        <rect key="frame" x="97.5" y="274" width="180" height="29"/>
+                                        <color key="backgroundColor" red="0.0" green="0.35294117650000001" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="70" id="5oh-mS-Dv4"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="180" id="5oh-mS-Dv4"/>
                                         </constraints>
-                                        <state key="normal" title="Login"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <state key="normal" title="LOGIN"/>
                                         <connections>
                                             <action selector="login:" destination="KQN-99-oaK" eventType="touchUpInside" id="tb3-lE-0VI"/>
                                         </connections>
@@ -94,11 +68,11 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="right" secondItem="1Ak-jr-FD6" secondAttribute="right" constant="30" id="9L9-6Y-R8t"/>
-                                    <constraint firstItem="yzk-sT-wH9" firstAttribute="top" secondItem="1Ak-jr-FD6" secondAttribute="baseline" constant="30" id="FtM-VO-82K"/>
-                                    <constraint firstItem="1Ak-jr-FD6" firstAttribute="left" secondItem="SN8-WA-Ueu" secondAttribute="left" constant="30" id="PGE-tZ-opr"/>
+                                    <constraint firstAttribute="right" secondItem="1Ak-jr-FD6" secondAttribute="right" constant="60" id="9L9-6Y-R8t"/>
+                                    <constraint firstItem="yzk-sT-wH9" firstAttribute="top" secondItem="1Ak-jr-FD6" secondAttribute="baseline" constant="50" id="FtM-VO-82K"/>
+                                    <constraint firstItem="1Ak-jr-FD6" firstAttribute="left" secondItem="SN8-WA-Ueu" secondAttribute="left" constant="60" id="PGE-tZ-opr"/>
                                     <constraint firstItem="yzk-sT-wH9" firstAttribute="centerX" secondItem="SN8-WA-Ueu" secondAttribute="centerX" id="ZxV-FH-4L0"/>
-                                    <constraint firstItem="1Ak-jr-FD6" firstAttribute="centerY" secondItem="SN8-WA-Ueu" secondAttribute="centerY" constant="-40" id="raG-ge-fAe"/>
+                                    <constraint firstItem="1Ak-jr-FD6" firstAttribute="top" secondItem="SN8-WA-Ueu" secondAttribute="top" constant="180" id="wYY-UN-bcc"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QAp-Si-HxX">
@@ -353,12 +327,8 @@
                             <constraint firstItem="QAp-Si-HxX" firstAttribute="leading" secondItem="jJk-GK-0dn" secondAttribute="leading" id="Hy8-qk-lWi"/>
                             <constraint firstItem="SN8-WA-Ueu" firstAttribute="leading" secondItem="jJk-GK-0dn" secondAttribute="leading" id="IFC-1T-W7B"/>
                             <constraint firstItem="jJk-GK-0dn" firstAttribute="bottom" secondItem="QAp-Si-HxX" secondAttribute="bottom" id="S6I-C3-fXF"/>
-                            <constraint firstItem="oeW-L2-tfy" firstAttribute="trailing" secondItem="jJk-GK-0dn" secondAttribute="trailing" id="ZPG-zw-cCY"/>
-                            <constraint firstItem="jJk-GK-0dn" firstAttribute="bottom" secondItem="oeW-L2-tfy" secondAttribute="bottom" id="eXb-zW-ZQj"/>
-                            <constraint firstItem="oeW-L2-tfy" firstAttribute="leading" secondItem="jJk-GK-0dn" secondAttribute="leading" id="gXw-3W-5de"/>
                             <constraint firstItem="jJk-GK-0dn" firstAttribute="trailing" secondItem="QAp-Si-HxX" secondAttribute="trailing" id="i0l-aj-Jy7"/>
                             <constraint firstItem="QAp-Si-HxX" firstAttribute="top" secondItem="jJk-GK-0dn" secondAttribute="top" id="keB-vf-Fip"/>
-                            <constraint firstItem="oeW-L2-tfy" firstAttribute="top" secondItem="jJk-GK-0dn" secondAttribute="top" id="t0h-su-Qhc"/>
                             <constraint firstItem="jJk-GK-0dn" firstAttribute="bottom" secondItem="SN8-WA-Ueu" secondAttribute="bottom" id="uSH-0t-nKf"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="jJk-GK-0dn"/>
@@ -369,9 +339,11 @@
                         <outlet property="collectionDetailView" destination="jFh-Qd-QMe" id="Orp-7q-Waj"/>
                         <outlet property="collectionDivider" destination="eqB-4i-jpQ" id="h8N-Nq-iqJ"/>
                         <outlet property="countryField" destination="gFF-f4-utN" id="WlH-kP-xbo"/>
+                        <outlet property="instructionLabel" destination="1Ak-jr-FD6" id="PMd-VY-C7M"/>
                         <outlet property="interestsField" destination="ZXP-TM-bsa" id="xkM-Xz-9rd"/>
                         <outlet property="lastOnlineField" destination="Zny-40-TV7" id="Wxa-QX-po4"/>
                         <outlet property="locationField" destination="fIY-ri-o5q" id="nAc-rC-Iqe"/>
+                        <outlet property="loginButton" destination="yzk-sT-wH9" id="ioV-d9-qwE"/>
                         <outlet property="loginView" destination="SN8-WA-Ueu" id="zZQ-kw-Zgt"/>
                         <outlet property="memberSinceField" destination="tUP-Dq-aqg" id="1vp-J0-nMp"/>
                         <outlet property="nameField" destination="gFi-25-Al4" id="jmH-qN-HJ2"/>

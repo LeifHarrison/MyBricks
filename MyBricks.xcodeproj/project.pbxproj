@@ -32,6 +32,7 @@
 		2964609F1FA907FC004850F8 /* NewsItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2964609D1FA907FC004850F8 /* NewsItemTableViewCell.xib */; };
 		296460A11FA92AA2004850F8 /* NewsItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296460A01FA92AA2004850F8 /* NewsItemViewController.swift */; };
 		2973B5781F96834D002CD0DA /* UserPofile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2973B5771F96834D002CD0DA /* UserPofile.swift */; };
+		2973F3441FBE173800861125 /* UIDevice+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2973F3431FBE173800861125 /* UIDevice+Extensions.swift */; };
 		297476EE1F1D3DC600FC354B /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297476ED1F1D3DC600FC354B /* Theme.swift */; };
 		297E119F1F9563F500AAE8CB /* UserCollectionTotals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297E119E1F9563F500AAE8CB /* UserCollectionTotals.swift */; };
 		298FC8311FBA45940094D6DF /* BarcodeScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298FC8301FBA45940094D6DF /* BarcodeScannerViewController.swift */; };
@@ -111,6 +112,7 @@
 		2964609D1FA907FC004850F8 /* NewsItemTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewsItemTableViewCell.xib; sourceTree = "<group>"; };
 		296460A01FA92AA2004850F8 /* NewsItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsItemViewController.swift; sourceTree = "<group>"; };
 		2973B5771F96834D002CD0DA /* UserPofile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPofile.swift; sourceTree = "<group>"; };
+		2973F3431FBE173800861125 /* UIDevice+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+Extensions.swift"; sourceTree = "<group>"; };
 		297476ED1F1D3DC600FC354B /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		297E119E1F9563F500AAE8CB /* UserCollectionTotals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCollectionTotals.swift; sourceTree = "<group>"; };
 		298FC8301FBA45940094D6DF /* BarcodeScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeScannerViewController.swift; sourceTree = "<group>"; };
@@ -298,6 +300,7 @@
 		29A523361F310243005F2145 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				2973F3431FBE173800861125 /* UIDevice+Extensions.swift */,
 				29A523411F310261005F2145 /* UIViewController+Extensions.swift */,
 			);
 			path = Extensions;
@@ -602,6 +605,7 @@
 				291AC5F41FB103E4000DC9DD /* MySetsHeaderView.swift in Sources */,
 				295ADFBD1F16AFFC002E6802 /* AppDelegate.swift in Sources */,
 				29CCD8EE1F993E12009A39CF /* SetDetailViewController.swift in Sources */,
+				2973F3441FBE173800861125 /* UIDevice+Extensions.swift in Sources */,
 				29A523421F310261005F2145 /* UIViewController+Extensions.swift in Sources */,
 				29365B791F8EBF3B00F6730C /* ProfileViewController.swift in Sources */,
 				295ADFBF1F16AFFD002E6802 /* BrowseThemesViewController.swift in Sources */,
