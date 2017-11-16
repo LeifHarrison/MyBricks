@@ -2,6 +2,11 @@
 
 Mobile (iOS) application for interacting with the BrickSet LEGO database.
 
+* Browse the catalog of current and retired LEGO sets.
+* Search for a specific set by number, name, or theme, or scan the barcode to look up the set details.
+* Track the sets/minifigures you own, or want using your Brickset.com web account
+* Read the latest news from Brickset.com
+
 # Screenshots
 
 <img src="Screenshots/Browse.png" width="23%"></img>
