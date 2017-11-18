@@ -34,6 +34,8 @@ class SetCollectionTableViewCell: UITableViewCell {
         notesTextView.layer.borderColor = UIColor.darkGray.cgColor
         notesTextView.layer.borderWidth = 1.0
         notesTextView.layer.cornerRadius = 5.0
+
+        prepareForReuse()
     }
     
     //--------------------------------------------------------------------------

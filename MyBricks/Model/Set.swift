@@ -38,10 +38,6 @@ public struct Set {
     var userNotes: String?
     var ownedByTotal: Int?
     var wantedByTotal: Int?
-    var retailPriceUK: String?
-    var retailPriceUS: String?
-    var retailPriceCA: String?
-    var retailPriceEU: String?
     var dateAddedToSAH: Date?
     var dateRemovedFromSAH: Date?
     var rating: Double?
@@ -53,6 +49,8 @@ public struct Set {
     var EAN: String?
     var UPC: String?
     var lastUpdated: Date?
+
+    var retailPrices: [SetRetailPrice] = []
 
     init?(element: XMLElement) {
         setID = element.firstChild(tag: "setID")?.stringValue
@@ -76,10 +74,6 @@ public struct Set {
         userNotes = element.firstChild(tag: "userNotes")?.stringValue
         ownedByTotal = Int(element.firstChild(tag: "ownedByTotal")?.stringValue ?? "0")
         wantedByTotal = Int(element.firstChild(tag: "wantedByTotal")?.stringValue ?? "0")
-        retailPriceUK = element.firstChild(tag: "UKRetailPrice")?.stringValue
-        retailPriceUS = element.firstChild(tag: "USRetailPrice")?.stringValue
-        retailPriceCA = element.firstChild(tag: "CARetailPrice")?.stringValue
-        retailPriceEU = element.firstChild(tag: "EURetailPrice")?.stringValue
         if let dateAdded = element.firstChild(tag: "USDateAddedToSAH")?.stringValue {
             dateAddedToSAH = dateFormatter.date(from: dateAdded)
         }
@@ -95,12 +89,57 @@ public struct Set {
         EAN = element.firstChild(tag: "EAN")?.stringValue
         UPC = element.firstChild(tag: "UPC")?.stringValue
 
+        if let retailPriceUS = element.firstChild(tag: "USRetailPrice")?.stringValue {
+            retailPrices.append(SetRetailPrice(locale: Locale(identifier: "en_US"), price: retailPriceUS))
+        }
+        if let retailPriceCA = element.firstChild(tag: "CARetailPrice")?.stringValue {
+            retailPrices.append(SetRetailPrice(locale: Locale(identifier: "en_CA"), price: retailPriceCA))
+        }
+        if let retailPriceUK = element.firstChild(tag: "UKRetailPrice")?.stringValue {
+            retailPrices.append(SetRetailPrice(locale: Locale(identifier: "en_GB"), price: retailPriceUK))
+        }
+        if let retailPriceEU = element.firstChild(tag: "EURetailPrice")?.stringValue {
+            retailPrices.append(SetRetailPrice(locale: Locale(identifier: "en_EU"), price: retailPriceEU))
+        }
      }
+
+    //--------------------------------------------------------------------------
+    // MARK: - Computed Properties
+    //--------------------------------------------------------------------------
+
+    var fullSetNumber: String {
+        if let variant = numberVariant {
+            return (number ?? "") + "-" + variant
+        }
+        else {
+            return number ?? ""
+        }
+    }
+
+    var preferredPriceString: String? {
+        var preferredPrice = retailPrices.first
+        for price in retailPrices {
+            if Locale.current.currencyCode == price.locale.currencyCode {
+                preferredPrice = price
+            }
+        }
+
+        if let price = preferredPrice {
+            let flag = price.locale.emojiFlag ?? "🇺🇸"
+            let currencySymbol = price.locale.currencySymbol ?? "$"
+            return (flag + " " + currencySymbol + price.price)
+        }
+        return nil
+    }
+
+    //--------------------------------------------------------------------------
+    // MARK: - View Lifecycle
+    //--------------------------------------------------------------------------
 
     func isRetired() -> Bool {
         return (dateAddedToSAH == nil) || (dateRemovedFromSAH != nil)
     }
-    
+
     func themeDetail() -> String? {
         if let theme = theme, let subtheme = subtheme {
             return "\(theme) / \(subtheme)"
@@ -115,13 +154,13 @@ public struct Set {
     
     func availabilityDetail() -> String? {
         if let availability = availability, let packagingType = packagingType {
-            return "\(availability) / \(packagingType)"
+            return "\(availability.capitalized) / \(packagingType.capitalized)"
         }
         else if let availability = availability {
-            return availability
+            return availability.capitalized
         }
         else {
-            return packagingType ?? ""
+            return packagingType?.capitalized ?? ""
         }
     }
 

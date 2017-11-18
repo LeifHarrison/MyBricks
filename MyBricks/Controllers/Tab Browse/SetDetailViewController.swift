@@ -9,7 +9,7 @@
 import UIKit
 
 enum TableSection: Int {
-    case detail, reviews, instructions, collection, barcodes
+    case image, detail, reviews, instructions, parts, collection, barcodes
 }
 
 class SetDetailViewController: UIViewController {
@@ -17,7 +17,7 @@ class SetDetailViewController: UIViewController {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
 
-    var sections: [TableSection] = [ .detail ]
+    var sections: [TableSection] = [ .image, .detail, .parts ]
 
     var currentSet : Set?
     var detailSet : SetDetail?
@@ -38,13 +38,16 @@ class SetDetailViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+
+        title = currentSet?.fullSetNumber
+
         if let reviewCount = currentSet?.reviewCount, reviewCount > 0 {
             sections.append(.reviews)
         }
         if let instructionsCount = currentSet?.instructionsCount, instructionsCount > 0 {
             sections.append(.instructions)
         }
+
         if BricksetServices.isLoggedIn() {
             sections.append(.collection)
         }
@@ -83,7 +86,7 @@ extension SetDetailViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        print("cellForRowAt: \(indexPath)")
+        //print("cellForRowAt: \(indexPath)")
         
         guard let set = currentSet else {
             return UITableViewCell()
@@ -92,17 +95,18 @@ extension SetDetailViewController: UITableViewDataSource {
         let section = sections[indexPath.section]
         switch section {
 
-            case .detail :
-                if let cell = tableView.dequeueReusableCell(withIdentifier: "SetDetailTableViewCell", for: indexPath) as? SetDetailTableViewCell {
+            case .image :
+                if let cell = tableView.dequeueReusableCell(withIdentifier: "SetImageTableViewCell", for: indexPath) as? SetImageTableViewCell {
                     cell.populateWithSet(set: set)
-                    
-                    // Populate the image separately, so we can reload the cell when the image finishes loading
+
+                    // Populate the image ourselves, so we can reload the cell when the image finishes loading
                     if let image = currentSetImage {
                         cell.setImageView.image = image
                     }
                     else if let urlString = set.imageURL, let url = URL(string: urlString) {
                         cell.setImageView?.af_setImage(withURL: url) { response in
                             if let image = response.result.value {
+                                print("image size: \(image.size)")
                                 self.currentSetImage = image
                                 DispatchQueue.main.async(execute: {
                                     tableView.reloadRows(at: [indexPath], with: .fade)
@@ -111,6 +115,13 @@ extension SetDetailViewController: UITableViewDataSource {
                         }
                     }
 
+                    return cell
+                }
+
+
+            case .detail :
+                if let cell = tableView.dequeueReusableCell(withIdentifier: "SetDetailTableViewCell", for: indexPath) as? SetDetailTableViewCell {
+                    cell.populateWithSet(set: set)
                     return cell
                 }
 
@@ -127,14 +138,21 @@ extension SetDetailViewController: UITableViewDataSource {
                     return cell
                 }
 
+            case .parts :
+                if let cell = tableView.dequeueReusableCell(withIdentifier: "SetPartsTableViewCell", for: indexPath) as? SetPartsTableViewCell {
+                    cell.populateWithSet(set: set)
+                    return cell
+                }
+
             case .reviews :
-                let cell = tableView.dequeueReusableCell(withIdentifier: "DisclosureCell", for: indexPath)
-                cell.textLabel?.text = "Reviews"
-                return cell
+                if let cell = tableView.dequeueReusableCell(withIdentifier: "SetReviewsTableViewCell", for: indexPath) as? SetReviewsTableViewCell {
+                    cell.populateWithSet(set: set)
+                    return cell
+                }
             
             case .instructions :
-                let cell = tableView.dequeueReusableCell(withIdentifier: "DisclosureCell", for: indexPath)
-                cell.textLabel?.text = "Instructions"
+                let cell = tableView.dequeueReusableCell(withIdentifier: "SetInstructionsTableViewCell", for: indexPath)
+                cell.textLabel?.text = "Instructions (\(set.instructionsCount ?? 0))"
                 return cell
             
             default :
@@ -156,18 +174,22 @@ extension SetDetailViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         let section = sections[indexPath.section]
         switch section {
+            case .image         : return 260.0
             case .detail        : return 260.0
             case .collection    : return 280.0
+            case .parts         : return 280.0
+            case .reviews       : return 280.0
+            case .instructions  : return 280.0
             default             : return 30.0
         }
     }
 
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        print("willDisplay: \(cell), forRowAt: \(indexPath)")
+        //print("willDisplay: \(cell), forRowAt: \(indexPath)")
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("Did Select Row")
+        //print("Did Select Row")
     }
 
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int){
