@@ -1,5 +1,5 @@
 //
-//  Theme.swift
+//  SetTheme.swift
 //  MyBricks
 //
 //  Created by Leif Harrison on 7/17/17.
@@ -9,7 +9,7 @@
 import Foundation
 import Fuzi
 
-public struct Theme {
+public struct SetTheme {
 
     var name: String?
     var setCount: Int?

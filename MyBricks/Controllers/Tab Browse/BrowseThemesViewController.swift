@@ -13,9 +13,9 @@ class BrowseThemesViewController: UIViewController {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
 
-    var allThemes: [Theme] = []
+    var allThemes: [SetTheme] = []
     var sectionTitles: [String] = []
-    var themesBySection: [String : [Theme]] = [:]
+    var themesBySection: [String : [SetTheme]] = [:]
 
     //--------------------------------------------------------------------------
     // MARK: - View Lifecycle
@@ -59,7 +59,7 @@ class BrowseThemesViewController: UIViewController {
         for theme in allThemes {
             if let name = theme.name {
                 let indexName = String(name.prefix(1))
-                var themes: [Theme] = themesBySection[indexName] ?? []
+                var themes: [SetTheme] = themesBySection[indexName] ?? []
                 themes.append(theme)
                 themesBySection[indexName] = themes
            }
@@ -148,22 +148,21 @@ extension BrowseThemesViewController: UITableViewDelegate {
     }
 }
 
-
 //==============================================================================
-// MARK: - Theme extensions
+// MARK: - SetTheme extensions
 //==============================================================================
 
-extension Theme {
+extension SetTheme {
 
     static let textColor = UIColor(white:0.1, alpha:1.0)
     static let regularAttributes = [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 12), NSAttributedStringKey.foregroundColor: textColor]
     static let boldAttributes = [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 12, weight: .bold), NSAttributedStringKey.foregroundColor: textColor]
 
     func setsAttributedDescription() -> NSAttributedString {
-        let attributedDescription = NSMutableAttributedString(string:"\( setCount ?? 0)", attributes:Theme.boldAttributes)
-        attributedDescription.append(NSAttributedString(string:" sets", attributes:Theme.regularAttributes))
+        let attributedDescription = NSMutableAttributedString(string:"\( setCount ?? 0)", attributes:SetTheme.boldAttributes)
+        attributedDescription.append(NSAttributedString(string:" sets", attributes:SetTheme.regularAttributes))
         if let subthemeCount = subThemeCount, subthemeCount > 0 {
-            attributedDescription.append(NSAttributedString(string:", ", attributes:Theme.regularAttributes))
+            attributedDescription.append(NSAttributedString(string:", ", attributes:SetTheme.regularAttributes))
             attributedDescription.append(subthemesAttributedDescription())
         }
 
@@ -171,8 +170,8 @@ extension Theme {
     }
 
     func subthemesAttributedDescription() -> NSAttributedString {
-        let attributedDescription = NSMutableAttributedString(string:"\( subThemeCount ?? 0)", attributes:Theme.boldAttributes)
-        attributedDescription.append(NSAttributedString(string:" subthemes", attributes:Theme.regularAttributes))
+        let attributedDescription = NSMutableAttributedString(string:"\( subThemeCount ?? 0)", attributes:SetTheme.boldAttributes)
+        attributedDescription.append(NSAttributedString(string:" subthemes", attributes:SetTheme.regularAttributes))
         return attributedDescription
     }
 

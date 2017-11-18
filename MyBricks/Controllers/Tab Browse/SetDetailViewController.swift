@@ -189,7 +189,28 @@ extension SetDetailViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //print("Did Select Row")
+        let section = sections[indexPath.section]
+
+        if section == .reviews {
+            if let vc = storyboard?.instantiateViewController(withIdentifier: "ReviewsViewController") as? ReviewsViewController {
+                vc.currentSet = currentSet
+                show(vc, sender: self)
+            }
+        }
+        if section == .instructions {
+            if let vc = storyboard?.instantiateViewController(withIdentifier: "InstructionsViewController") as? InstructionsViewController {
+                vc.currentSet = currentSet
+                show(vc, sender: self)
+            }
+        }
+        if section == .parts {
+            if let vc = storyboard?.instantiateViewController(withIdentifier: "PartsListViewController") as? PartsListViewController {
+                vc.currentSet = currentSet
+                show(vc, sender: self)
+            }
+        }
+
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int){

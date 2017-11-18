@@ -11,12 +11,6 @@ import Fuzi
 
 public struct Set {
 
-    let dateFormatter : DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd"
-        return formatter
-    }()
-
     var setID: String?
     var number: String?
     var numberVariant: String?
@@ -75,10 +69,10 @@ public struct Set {
         ownedByTotal = Int(element.firstChild(tag: "ownedByTotal")?.stringValue ?? "0")
         wantedByTotal = Int(element.firstChild(tag: "wantedByTotal")?.stringValue ?? "0")
         if let dateAdded = element.firstChild(tag: "USDateAddedToSAH")?.stringValue {
-            dateAddedToSAH = dateFormatter.date(from: dateAdded)
+            dateAddedToSAH = BricksetServices.shortDateFormatter.date(from: dateAdded)
         }
         if let dateRemoved = element.firstChild(tag: "USDateRemovedFromSAH")?.stringValue {
-            dateRemovedFromSAH = dateFormatter.date(from: dateRemoved)
+            dateRemovedFromSAH = BricksetServices.shortDateFormatter.date(from: dateRemoved)
         }
         rating = Double(element.firstChild(tag: "rating")?.stringValue ?? "0")
         reviewCount = Int(element.firstChild(tag: "reviewCount")?.stringValue ?? "0")

@@ -20,8 +20,21 @@ enum ServiceError : Error {
 }
 
 class BricksetServices {
+
     static let shared = BricksetServices()
     static let serviceName = "com.brickset.userHash"
+
+    static let shortDateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        return formatter
+    }()
+
+    static let longDateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS"
+        return formatter
+    }()
 
     let baseURL = "https://brickset.com/api/v2.asmx/"
     let apiKey = "PJ6U-J8Ob-GG1k"
@@ -264,8 +277,39 @@ class BricksetServices {
         request.responseXMLDocument(completionHandler: requestCompletion)
     }
 
+    func getReviews(setID: String, completion: @escaping (Result<[SetReview]>) -> Void) {
+        let url = baseURL + "getReviews"
 
-    func getThemes(completion: @escaping (Result<[Theme]>) -> Void) {
+        var parameters = defaultParameters()
+        parameters["setID"] = setID
+
+        let request = Alamofire.request( url, parameters: parameters)
+        print("Request: \(request)")
+
+        let requestCompletion: (DataResponse<XMLDocument>) -> Void = { response in
+            //print("Document: \(document)")
+            if let error = response.result.error {
+                print("Error: \(error)")
+                completion(Result.failure(error))
+            }
+            else if let document = response.result.value {
+                if let root = document.root {
+                    var reviews: [SetReview] = []
+
+                    for element in root.children {
+                        if let review = SetReview(element: element) {
+                            reviews.append(review)
+                        }
+                    }
+
+                    completion(Result.success(reviews))
+                }
+            }
+        }
+        request.responseXMLDocument(completionHandler: requestCompletion)
+    }
+
+    func getThemes(completion: @escaping (Result<[SetTheme]>) -> Void) {
         let url = baseURL + "getThemes"
 
         let parameters = defaultParameters()
@@ -280,10 +324,10 @@ class BricksetServices {
             }
             else if let document = response.result.value {
                 if let root = document.root {
-                    var themes: [Theme] = []
+                    var themes: [SetTheme] = []
 
                     for element in root.children {
-                        if let theme = Theme(element: element) {
+                        if let theme = SetTheme(element: element) {
                             themes.append(theme)
                         }
                     }
