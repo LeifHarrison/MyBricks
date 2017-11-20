@@ -11,21 +11,39 @@ import Cosmos
 
 class SetReviewTableViewCell: UITableViewCell {
 
+    let maxTextHeight: CGFloat = 150
+    
+    let defaultStarSize: Double = 18
+    let smallStarSize: Double = 16
+    let defaultStarMargin: CGFloat = 2
+    let smallStarMargin: CGFloat = 1
+
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var authorLabel: UILabel!
     @IBOutlet weak var overallRatingView: CosmosView!
+    @IBOutlet weak var ratingContainerView: UIView!
     @IBOutlet weak var buildingRatingView: CosmosView!
     @IBOutlet weak var partsRatingView: CosmosView!
     @IBOutlet weak var playabilityRatingView: CosmosView!
     @IBOutlet weak var valueRatingView: CosmosView!
-    @IBOutlet weak var reviewTextView: UITextView!
+    @IBOutlet weak var reviewContainerView: UIView!
+    @IBOutlet weak var reviewTextLabel: UILabel!
+    @IBOutlet weak var moreButton: UIButton!
 
+    var moreButtonTapped : (() -> Void)? = nil
+    
     //--------------------------------------------------------------------------
     // MARK: - Nib Loading
     //--------------------------------------------------------------------------
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        moreButton.layer.cornerRadius = moreButton.bounds.height / 2
+
+//        reviewTextView.layer.borderColor = UIColor(white: 0.7, alpha: 0.8).cgColor
+//        reviewTextView.layer.borderWidth = 1.0
+        
         prepareForReuse()
     }
 
@@ -35,13 +53,52 @@ class SetReviewTableViewCell: UITableViewCell {
 
     override func prepareForReuse() {
         super.prepareForReuse()
+        titleLabel.text = nil
+        authorLabel.text = nil
+        overallRatingView.rating = 0
+        buildingRatingView.rating = 0
+        partsRatingView.rating = 0
+        playabilityRatingView.rating = 0
+        valueRatingView.rating = 0
+        reviewTextLabel.text = nil
+        moreButton.isHidden = true
     }
 
+    //--------------------------------------------------------------------------
+    // MARK: - Property Observers
+    //--------------------------------------------------------------------------
+    
+    var useSmallLayout: Bool = false {
+        didSet {
+            if useSmallLayout {
+                overallRatingView.settings.starSize = smallStarSize
+                buildingRatingView.settings.starSize = smallStarSize
+                partsRatingView.settings.starSize = smallStarSize
+                playabilityRatingView.settings.starSize = smallStarSize
+                valueRatingView.settings.starSize = smallStarSize
+            }
+            else {
+                overallRatingView.settings.starSize = defaultStarSize + 2
+                buildingRatingView.settings.starSize = defaultStarSize
+                partsRatingView.settings.starSize = defaultStarSize
+                playabilityRatingView.settings.starSize = defaultStarSize
+                valueRatingView.settings.starSize = defaultStarSize
+            }
+        }
+    }
+    //--------------------------------------------------------------------------
+    // MARK: - Actions
+    //--------------------------------------------------------------------------
+    
+    @IBAction func moreButtonTapped(_ sender: UIButton) {
+        moreButtonTapped?()
+    }
+    
     //--------------------------------------------------------------------------
     // MARK: - Public
     //--------------------------------------------------------------------------
 
-    func populateWithSetReview(review : SetReview) -> Void {
+    func populateWithSetReview(review: SetReview) -> Void {
         titleLabel.text = review.title
         authorLabel.attributedText = review.authorAndDateAttributedDecription()
         overallRatingView.rating = Double(review.overallRating ?? 0)
@@ -49,8 +106,20 @@ class SetReviewTableViewCell: UITableViewCell {
         partsRatingView.rating = Double(review.parts ?? 0)
         playabilityRatingView.rating = Double(review.playability ?? 0)
         valueRatingView.rating = Double(review.valueForMoney ?? 0)
-        reviewTextView.attributedText = review.formattedReview()
-        print("contentSize: \(reviewTextView.contentSize)")
+
+        if let reviewText = review.formattedReview() {
+            reviewTextLabel.attributedText = reviewText
+            
+            let maxSize = CGSize(width: reviewTextLabel.frame.size.width, height: CGFloat.greatestFiniteMagnitude)
+            let textSize = reviewTextLabel.sizeThatFits(maxSize)
+            if textSize.height < maxTextHeight {
+                //textViewHeightConstraint.constant = textSize.height + reviewTextView.layoutMargins.top + reviewTextView.layoutMargins.bottom
+                moreButton.isHidden = true
+            }
+            else {
+                moreButton.isHidden = false
+            }
+        }
     }
 
 }
@@ -102,20 +171,6 @@ extension SetReview {
 
                 let fullRange = NSMakeRange(0, formattedReview.length)
 
-//                // Center and add some spacing to any attached images
-//                formattedReview.enumerateAttribute(NSAttributedStringKey.attachment, in:fullRange, options: []) { (value, range, stop) in
-//                    if (value != nil) {
-//                        let paragraphStyle = formattedReview.attribute(.paragraphStyle, at: range.location, longestEffectiveRange: nil, in: range)
-//                        print("paragraphStyle: \(String(describing: paragraphStyle))")
-//                        if let style = paragraphStyle as? NSParagraphStyle {
-//                            let newStyle = style.mutableCopy() as! NSMutableParagraphStyle
-//                            newStyle.alignment = .center
-//                            newStyle.paragraphSpacing = 15
-//                            formattedReview.addAttribute(.paragraphStyle, value: newStyle, range: range)
-//                        }
-//                    }
-//                }
-//
                 // Change fonts to something a bit more readable
                 formattedReview.enumerateAttribute(.font, in: fullRange, options: []) { (value, range, stop) in
                     if let font = value as? UIFont {

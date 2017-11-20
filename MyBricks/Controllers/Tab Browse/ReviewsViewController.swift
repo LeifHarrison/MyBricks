@@ -51,6 +51,9 @@ class ReviewsViewController: UIViewController {
     // MARK: - Private
     //--------------------------------------------------------------------------
 
+    private func showFullReview(_ cell: SetReviewTableViewCell) {
+        print("Show full review...")
+    }
 }
 
 //==============================================================================
@@ -71,11 +74,16 @@ extension ReviewsViewController: UITableViewDataSource {
         let review = reviews[indexPath.row]
         if let cell = tableView.dequeueReusableCell(withIdentifier: "SetReviewTableViewCell", for: indexPath) as? SetReviewTableViewCell {
             cell.populateWithSetReview(review: review)
+            cell.useSmallLayout = (tableView.frame.size.width < 375)
+
+            cell.moreButtonTapped = {
+                self.showFullReview(cell)
+            }
+            
             return cell
         }
         return UITableViewCell()
     }
-
 
 }
 
@@ -85,13 +93,15 @@ extension ReviewsViewController: UITableViewDataSource {
 
 extension ReviewsViewController: UITableViewDelegate {
 
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let review = reviews[indexPath.row]
-//        if let setsVC = storyboard?.instantiateViewController(withIdentifier: "BrowseSetsViewController") as? BrowseSetsViewController {
-//            setsVC.theme = theme.name
-//            show(setsVC, sender: self)
-//            tableView.deselectRow(at: indexPath, animated: true)
-//        }
-//    }
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        print("cell height = \(cell.frame.size.height)")
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let cell = tableView.cellForRow(at: indexPath) as? SetReviewTableViewCell {
+            showFullReview(cell)
+        }
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
 
 }
