@@ -16,10 +16,6 @@ extension UIViewController {
         gradientView.translatesAutoresizingMaskIntoConstraints = false
         gradientView.startColor = UIColor(white: 0.95, alpha: 1.0)
         gradientView.endColor = UIColor(white: 0.85, alpha: 1.0)
-        gradientView.startPointX = 0.5
-        gradientView.startPointY = 0
-        gradientView.endPointX = 0.5
-        gradientView.endPointY = 1
         view.insertSubview(gradientView, at: 0)
 
         if #available(iOS 11, *) {

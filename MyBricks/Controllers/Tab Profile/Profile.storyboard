@@ -369,42 +369,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R9U-Fg-QNP" customClass="GradientView" customModule="MyBricks" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="startColor">
-                                        <color key="value" white="0.90000000000000002" alpha="1" colorSpace="calibratedWhite"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="endColor">
-                                        <color key="value" white="0.69999999999999996" alpha="1" colorSpace="calibratedWhite"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="startPointX">
-                                        <real key="value" value="0.5"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="startPointY">
-                                        <real key="value" value="0.0"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="endPointX">
-                                        <real key="value" value="0.5"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="endPointY">
-                                        <real key="value" value="1"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowX">
-                                        <real key="value" value="0.0"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowY">
-                                        <real key="value" value="0.0"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowBlur">
-                                        <real key="value" value="0.0"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
-                                        <color key="value" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PFm-s2-aEo">
                                 <rect key="frame" x="312" y="35" width="48" height="30"/>
                                 <state key="normal" title="Cancel"/>
@@ -453,13 +417,9 @@
                             <constraint firstItem="cGw-kb-o5Y" firstAttribute="leading" secondItem="jgg-Xd-3OH" secondAttribute="leading" constant="20" id="52s-Sk-yY3"/>
                             <constraint firstItem="JlT-vq-xet" firstAttribute="top" secondItem="cGw-kb-o5Y" secondAttribute="bottom" constant="10" id="53n-Wg-Ht5"/>
                             <constraint firstItem="cGw-kb-o5Y" firstAttribute="top" secondItem="lzW-U6-xEL" secondAttribute="bottom" constant="20" id="6WG-HR-Paj"/>
-                            <constraint firstItem="jgg-Xd-3OH" firstAttribute="bottom" secondItem="R9U-Fg-QNP" secondAttribute="bottom" id="6aA-Z3-sED"/>
                             <constraint firstItem="9R3-NO-sYB" firstAttribute="leading" secondItem="jgg-Xd-3OH" secondAttribute="leading" constant="30" id="8AG-DL-oqy"/>
                             <constraint firstItem="jgg-Xd-3OH" firstAttribute="trailing" secondItem="cGw-kb-o5Y" secondAttribute="trailing" constant="20" id="AqJ-zI-nn4"/>
-                            <constraint firstItem="R9U-Fg-QNP" firstAttribute="leading" secondItem="jgg-Xd-3OH" secondAttribute="leading" id="Csz-XX-XeB"/>
                             <constraint firstItem="jgg-Xd-3OH" firstAttribute="trailing" secondItem="JlT-vq-xet" secondAttribute="trailing" constant="20" id="L0E-Cg-upm"/>
-                            <constraint firstItem="R9U-Fg-QNP" firstAttribute="top" secondItem="jgg-Xd-3OH" secondAttribute="top" id="L7y-Q1-6jR"/>
-                            <constraint firstItem="jgg-Xd-3OH" firstAttribute="trailing" secondItem="R9U-Fg-QNP" secondAttribute="trailing" id="SQ1-da-GWP"/>
                             <constraint firstItem="JlT-vq-xet" firstAttribute="leading" secondItem="jgg-Xd-3OH" secondAttribute="leading" constant="20" id="SdT-VG-Z95"/>
                             <constraint firstItem="jgg-Xd-3OH" firstAttribute="trailing" secondItem="9R3-NO-sYB" secondAttribute="trailing" constant="30" id="TwC-SN-lfe"/>
                             <constraint firstItem="lzW-U6-xEL" firstAttribute="centerX" secondItem="jgg-Xd-3OH" secondAttribute="centerX" id="gQ1-zu-myg"/>

@@ -28,7 +28,10 @@ class SetReviewTableViewCell: UITableViewCell {
     @IBOutlet weak var valueRatingView: CosmosView!
     @IBOutlet weak var reviewContainerView: UIView!
     @IBOutlet weak var reviewTextLabel: UILabel!
+    @IBOutlet weak var moreContainer: UIView!
     @IBOutlet weak var moreButton: UIButton!
+
+    @IBOutlet var moreConstraint: NSLayoutConstraint!
 
     var moreButtonTapped : (() -> Void)? = nil
     
@@ -41,9 +44,6 @@ class SetReviewTableViewCell: UITableViewCell {
         
         moreButton.layer.cornerRadius = moreButton.bounds.height / 2
 
-//        reviewTextView.layer.borderColor = UIColor(white: 0.7, alpha: 0.8).cgColor
-//        reviewTextView.layer.borderWidth = 1.0
-        
         prepareForReuse()
     }
 
@@ -61,7 +61,8 @@ class SetReviewTableViewCell: UITableViewCell {
         playabilityRatingView.rating = 0
         valueRatingView.rating = 0
         reviewTextLabel.text = nil
-        moreButton.isHidden = true
+        moreContainer.isHidden = false
+        moreConstraint.isActive = true
     }
 
     //--------------------------------------------------------------------------
@@ -98,7 +99,7 @@ class SetReviewTableViewCell: UITableViewCell {
     // MARK: - Public
     //--------------------------------------------------------------------------
 
-    func populateWithSetReview(review: SetReview) -> Void {
+    func populateWithSetReview(_ review: SetReview) -> Void {
         titleLabel.text = review.title
         authorLabel.attributedText = review.authorAndDateAttributedDecription()
         overallRatingView.rating = Double(review.overallRating ?? 0)
@@ -112,13 +113,10 @@ class SetReviewTableViewCell: UITableViewCell {
             
             let maxSize = CGSize(width: reviewTextLabel.frame.size.width, height: CGFloat.greatestFiniteMagnitude)
             let textSize = reviewTextLabel.sizeThatFits(maxSize)
-            if textSize.height < maxTextHeight {
-                //textViewHeightConstraint.constant = textSize.height + reviewTextView.layoutMargins.top + reviewTextView.layoutMargins.bottom
-                moreButton.isHidden = true
-            }
-            else {
-                moreButton.isHidden = false
-            }
+            //print("text height = \(textSize.height)")
+            let showMore = (textSize.height > maxTextHeight)
+            moreContainer.isHidden = !showMore
+            moreConstraint.isActive = showMore
         }
     }
 

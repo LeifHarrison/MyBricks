@@ -10,61 +10,43 @@ import UIKit
 
 @IBDesignable class GradientView: UIView {
 
-    @IBInspectable var startColor: UIColor = .blue {
+    @IBInspectable var startColor: UIColor = UIColor(white: 0.8, alpha: 1.0) {
         didSet {
             setNeedsLayout()
         }
     }
 
-    @IBInspectable var endColor: UIColor = .green {
+    @IBInspectable var endColor: UIColor = UIColor(white: 0.95, alpha: 1.0) {
         didSet {
             setNeedsLayout()
         }
     }
 
-    @IBInspectable var shadowColor: UIColor = .yellow {
+    @IBInspectable var shadowColor: UIColor = .clear {
         didSet {
             setNeedsLayout()
         }
     }
 
-    @IBInspectable var shadowX: CGFloat = 0 {
+    @IBInspectable var shadowOffset: CGSize = CGSize.zero {
         didSet {
             setNeedsLayout()
         }
     }
 
-    @IBInspectable var shadowY: CGFloat = -3 {
+    @IBInspectable var shadowRadius: CGFloat = 3 {
         didSet {
             setNeedsLayout()
         }
     }
 
-    @IBInspectable var shadowBlur: CGFloat = 3 {
+    @IBInspectable var startPoint: CGPoint = CGPoint(x: 0.5, y: 0) {
         didSet {
             setNeedsLayout()
         }
     }
 
-    @IBInspectable var startPointX: CGFloat = 0 {
-        didSet {
-            setNeedsLayout()
-        }
-    }
-
-    @IBInspectable var startPointY: CGFloat = 0 {
-        didSet {
-            setNeedsLayout()
-        }
-    }
-
-    @IBInspectable var endPointX: CGFloat = 0 {
-        didSet {
-            setNeedsLayout()
-        }
-    }
-
-    @IBInspectable var endPointY: CGFloat = 0 {
+    @IBInspectable var endPoint: CGPoint = CGPoint(x: 0.5, y: 1) {
         didSet {
             setNeedsLayout()
         }
@@ -83,12 +65,12 @@ import UIKit
     override func layoutSubviews() {
         let gradientLayer = layer as! CAGradientLayer
         gradientLayer.colors = [startColor.cgColor, endColor.cgColor]
-        gradientLayer.startPoint = CGPoint(x: startPointX, y: startPointY)
-        gradientLayer.endPoint = CGPoint(x: endPointX, y: endPointY)
+        gradientLayer.startPoint = startPoint
+        gradientLayer.endPoint = endPoint
         layer.cornerRadius = cornerRadius
         layer.shadowColor = shadowColor.cgColor
-        layer.shadowOffset = CGSize(width: shadowX, height: shadowY)
-        layer.shadowRadius = shadowBlur
+        layer.shadowOffset = shadowOffset
+        layer.shadowRadius = shadowRadius
         layer.shadowOpacity = 1
     }
 }

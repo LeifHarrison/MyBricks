@@ -56,7 +56,7 @@ class SetCollectionTableViewCell: UITableViewCell {
     // MARK: - Public
     //--------------------------------------------------------------------------
     
-    func populateWithSet(set : Set) -> Void {
+    func populateWithSet(_ set : Set) -> Void {
         ownedCheckboxButton.isSelected = set.owned ?? false
         wantedCheckboxButton.isSelected = set.wanted ?? false
         ownedCountField.text = "\(set.quantityOwned ?? 0)"

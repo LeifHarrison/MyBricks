@@ -52,5 +52,23 @@ class SetTableViewCell: UITableViewCell {
         ownedView.isHidden = true
         wantedView.isHidden = true
     }
-    
+
+    //--------------------------------------------------------------------------
+    // MARK: - Public
+    //--------------------------------------------------------------------------
+
+    func populateWithSet(_ set : Set) -> Void {
+        nameLabel.text = set.name
+        setNumberLabel.text = set.number
+        subthemeLabel.text = set.subtheme
+        piecesLabel.text = "\(set.pieces ?? 0)"
+        minifigsLabel.text = "\(set.minifigs ?? 0)"
+
+        retiredView.isHidden = !(set.isRetired())
+        retiredSpacingConstraint.isActive = set.isRetired()
+
+        ownedView.isHidden = !(set.owned ?? true)
+        wantedView.isHidden = !ownedView.isHidden || !(set.wanted ?? true)
+    }
+
 }

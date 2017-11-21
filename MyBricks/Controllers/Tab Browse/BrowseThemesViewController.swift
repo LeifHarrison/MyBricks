@@ -25,17 +25,11 @@ class BrowseThemesViewController: UIViewController {
         super.viewDidLoad()
         addGradientBackground()
 
-        tableView.register(UINib(nibName: "ThemeTableViewCell", bundle: nil), forCellReuseIdentifier: "ThemeTableViewCell")
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = UITableViewAutomaticDimension
         tableView.tableFooterView = UIView()
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        //self.title = "Themes"
-    }
-    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
@@ -66,6 +60,7 @@ class BrowseThemesViewController: UIViewController {
         }
         sectionTitles = themesBySection.keys.sorted()
     }
+    
 }
 
 //==============================================================================
@@ -90,25 +85,8 @@ extension BrowseThemesViewController: UITableViewDataSource {
         let sectionTitle = sectionTitles[indexPath.section]
         if let themes = themesBySection[sectionTitle] {
             let theme = themes[indexPath.row]
-            if let cell = tableView.dequeueReusableCell(withIdentifier: "ThemeTableViewCell", for: indexPath) as? ThemeTableViewCell
-            {
-                cell.nameLabel.text = theme.name
-                cell.yearsLabel.text = theme.yearsDecription()
-
-                if let setCount = theme.setCount, setCount > 0 {
-                    cell.setCountLabel.attributedText = theme.setsAttributedDescription()
-                    if setCount > 0 {
-                        cell.selectionStyle = .default
-                        cell.accessoryType = .disclosureIndicator
-                    }
-                }
-                else if let subthemeCount = theme.subThemeCount, subthemeCount > 0 {
-                    cell.setCountLabel.attributedText = theme.subthemesAttributedDescription()
-                }
-                else {
-                    cell.setCountLabel.text = ""
-                }
-
+            if let cell = tableView.dequeueReusableCell(withIdentifier: "ThemeTableViewCell", for: indexPath) as? ThemeTableViewCell {
+                cell.populateWithTheme(theme)
                 return cell
             }
         }
@@ -148,31 +126,3 @@ extension BrowseThemesViewController: UITableViewDelegate {
     }
 }
 
-//==============================================================================
-// MARK: - SetTheme extensions
-//==============================================================================
-
-extension SetTheme {
-
-    static let textColor = UIColor(white:0.1, alpha:1.0)
-    static let regularAttributes = [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 12), NSAttributedStringKey.foregroundColor: textColor]
-    static let boldAttributes = [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 12, weight: .bold), NSAttributedStringKey.foregroundColor: textColor]
-
-    func setsAttributedDescription() -> NSAttributedString {
-        let attributedDescription = NSMutableAttributedString(string:"\( setCount ?? 0)", attributes:SetTheme.boldAttributes)
-        attributedDescription.append(NSAttributedString(string:" sets", attributes:SetTheme.regularAttributes))
-        if let subthemeCount = subThemeCount, subthemeCount > 0 {
-            attributedDescription.append(NSAttributedString(string:", ", attributes:SetTheme.regularAttributes))
-            attributedDescription.append(subthemesAttributedDescription())
-        }
-
-        return attributedDescription
-    }
-
-    func subthemesAttributedDescription() -> NSAttributedString {
-        let attributedDescription = NSMutableAttributedString(string:"\( subThemeCount ?? 0)", attributes:SetTheme.boldAttributes)
-        attributedDescription.append(NSAttributedString(string:" subthemes", attributes:SetTheme.regularAttributes))
-        return attributedDescription
-    }
-
-}

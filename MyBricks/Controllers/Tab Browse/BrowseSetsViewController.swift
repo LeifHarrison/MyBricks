@@ -28,7 +28,6 @@ class BrowseSetsViewController: UIViewController {
         super.viewDidLoad()
         addGradientBackground()
 
-        tableView.register(UINib(nibName: "SetTableViewCell", bundle: nil), forCellReuseIdentifier: "SetTableViewCell")
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = UITableViewAutomaticDimension
         tableView.sectionIndexBackgroundColor = UIColor.clear
@@ -101,8 +100,8 @@ extension BrowseSetsViewController: UITableViewDataSource {
         let sectionTitle = sectionTitles[indexPath.section]
         if let sets = setsBySection[sectionTitle] {
             let set = sets[indexPath.row]
-            if let cell = tableView.dequeueReusableCell(withIdentifier: "SetTableViewCell", for: indexPath) as? SetTableViewCell
-            {
+            if let cell = tableView.dequeueReusableCell(withIdentifier: "SetTableViewCell", for: indexPath) as? SetTableViewCell {
+                cell.populateWithSet(set)
                 if UIScreen.main.scale > 1.5 {
                     if let urlString = set.largeThumbnailURL, let url = URL(string: urlString) {
                         cell.setImageView.af_setImage(withURL: url, imageTransition: .crossDissolve(0.3))
@@ -114,21 +113,6 @@ extension BrowseSetsViewController: UITableViewDataSource {
                     }
                 }
 
-                cell.nameLabel.text = set.name
-                cell.setNumberLabel.text = set.number
-                cell.subthemeLabel.text = set.subtheme
-                cell.piecesLabel.text = "\(set.pieces ?? 0)"
-                cell.minifigsLabel.text = "\(set.minifigs ?? 0)"
-
-                cell.retiredView.isHidden = !(set.isRetired())
-                cell.retiredSpacingConstraint.isActive = set.isRetired()
-                
-                cell.ownedView.isHidden = !(set.owned ?? true)
-                cell.wantedView.isHidden = !cell.ownedView.isHidden || !(set.wanted ?? true)
-
-                if cell.hasAmbiguousLayout {
-                    print("\(cell.constraintsAffectingLayout(for: .vertical))")
-                }
                 return cell
             }
         }

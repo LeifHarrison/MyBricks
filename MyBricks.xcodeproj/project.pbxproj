@@ -50,11 +50,9 @@
 		29CA94A11F8D508A000F1DE3 /* BrowseSetsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29CA94A01F8D508A000F1DE3 /* BrowseSetsViewController.swift */; };
 		29CA94A31F8D5132000F1DE3 /* Set.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29CA94A21F8D5132000F1DE3 /* Set.swift */; };
 		29CA94A61F8D72DC000F1DE3 /* SetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29CA94A41F8D72DC000F1DE3 /* SetTableViewCell.swift */; };
-		29CA94A71F8D72DC000F1DE3 /* SetTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29CA94A51F8D72DC000F1DE3 /* SetTableViewCell.xib */; };
 		29CCD8EE1F993E12009A39CF /* SetDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29CCD8ED1F993E12009A39CF /* SetDetailViewController.swift */; };
 		29DFEA141FA29BF500AB0AE8 /* SetCollectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29DFEA121FA29BF500AB0AE8 /* SetCollectionTableViewCell.swift */; };
 		29E86FDB1F31293900A67179 /* ThemeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E86FD91F31293900A67179 /* ThemeTableViewCell.swift */; };
-		29E86FDC1F31293900A67179 /* ThemeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 29E86FDA1F31293900A67179 /* ThemeTableViewCell.xib */; };
 		29FCC3461FBA14F500079032 /* SetDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FCC3451FBA14F500079032 /* SetDetail.swift */; };
 		71EA93350D446E8447D819DE /* Pods_MyBricks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C7DD5EA6F08ABC5549DF63C /* Pods_MyBricks.framework */; };
 /* End PBXBuildFile section */
@@ -141,11 +139,9 @@
 		29CA94A01F8D508A000F1DE3 /* BrowseSetsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseSetsViewController.swift; sourceTree = "<group>"; };
 		29CA94A21F8D5132000F1DE3 /* Set.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Set.swift; sourceTree = "<group>"; };
 		29CA94A41F8D72DC000F1DE3 /* SetTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetTableViewCell.swift; sourceTree = "<group>"; };
-		29CA94A51F8D72DC000F1DE3 /* SetTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SetTableViewCell.xib; sourceTree = "<group>"; };
 		29CCD8ED1F993E12009A39CF /* SetDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetDetailViewController.swift; sourceTree = "<group>"; };
 		29DFEA121FA29BF500AB0AE8 /* SetCollectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetCollectionTableViewCell.swift; sourceTree = "<group>"; };
 		29E86FD91F31293900A67179 /* ThemeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeTableViewCell.swift; sourceTree = "<group>"; };
-		29E86FDA1F31293900A67179 /* ThemeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ThemeTableViewCell.xib; sourceTree = "<group>"; };
 		29FCC3451FBA14F500079032 /* SetDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetDetail.swift; sourceTree = "<group>"; };
 		593F839198E1796EC36B980B /* Pods-MyBricks.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyBricks.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MyBricks/Pods-MyBricks.debug.xcconfig"; sourceTree = "<group>"; };
 		8C7DD5EA6F08ABC5549DF63C /* Pods_MyBricks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyBricks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -384,9 +380,7 @@
 				296EB6E11FBF5E5700D4D3C6 /* SetPartsTableViewCell.swift */,
 				296EB6DF1FBF5E4500D4D3C6 /* SetReviewsTableViewCell.swift */,
 				29CA94A41F8D72DC000F1DE3 /* SetTableViewCell.swift */,
-				29CA94A51F8D72DC000F1DE3 /* SetTableViewCell.xib */,
 				29E86FD91F31293900A67179 /* ThemeTableViewCell.swift */,
-				29E86FDA1F31293900A67179 /* ThemeTableViewCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -517,13 +511,11 @@
 				295ADFC91F16AFFD002E6802 /* LaunchScreen.storyboard in Resources */,
 				2964609F1FA907FC004850F8 /* NewsItemTableViewCell.xib in Resources */,
 				2921AD891FAF6C4000180268 /* News.storyboard in Resources */,
-				29E86FDC1F31293900A67179 /* ThemeTableViewCell.xib in Resources */,
 				291AC5EF1FAF6FB0000DC9DD /* Search.storyboard in Resources */,
 				294F187F1FB519ED0026342F /* MySets.storyboard in Resources */,
 				295ADFC61F16AFFD002E6802 /* Assets.xcassets in Resources */,
 				295ADFC41F16AFFD002E6802 /* Main.storyboard in Resources */,
 				291AC5EE1FAF6FAC000DC9DD /* Profile.storyboard in Resources */,
-				29CA94A71F8D72DC000F1DE3 /* SetTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

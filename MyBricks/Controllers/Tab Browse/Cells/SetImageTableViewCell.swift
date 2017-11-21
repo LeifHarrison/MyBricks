@@ -40,7 +40,7 @@ class SetImageTableViewCell: UITableViewCell {
     // MARK: - Public
     //--------------------------------------------------------------------------
 
-    func populateWithSet(set : Set) -> Void {
+    func populateWithSet(_ set : Set) -> Void {
         yearLabel.text = set.year
     }
 

@@ -39,7 +39,7 @@ class SetPartsTableViewCell: UITableViewCell {
     // MARK: - Public
     //--------------------------------------------------------------------------
 
-    func populateWithSet(set : Set) -> Void {
+    func populateWithSet(_ set : Set) -> Void {
         partsLabel.text = "Parts List"
         piecesLabel.text = "\(set.pieces ?? 0)"
         minifiguresLabel.text = "\(set.minifigs ?? 0)"

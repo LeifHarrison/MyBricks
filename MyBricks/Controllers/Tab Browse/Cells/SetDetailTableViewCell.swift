@@ -45,7 +45,7 @@ class SetDetailTableViewCell: UITableViewCell {
     // MARK: - Public
     //--------------------------------------------------------------------------
     
-    func populateWithSet(set : Set) -> Void {
+    func populateWithSet(_ set : Set) -> Void {
         setNameField.text = set.name
         setNumberField.text = set.fullSetNumber
         themeField.text = set.themeDetail()

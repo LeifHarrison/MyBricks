@@ -50,7 +50,7 @@ class SetReviewsTableViewCell: UITableViewCell {
     // MARK: - Public
     //--------------------------------------------------------------------------
 
-    func populateWithSet(set : Set) -> Void {
+    func populateWithSet(_ set : Set) -> Void {
         titleLabel.text = "Reviews (\(set.reviewCount ?? 0))"
         ratingView.rating = set.rating ?? 0
     }

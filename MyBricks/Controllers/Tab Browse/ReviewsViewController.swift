@@ -39,8 +39,22 @@ class ReviewsViewController: UIViewController {
         if let set = currentSet, let setID = set.setID {
             self.activityIndicator?.startAnimating()
             BricksetServices.shared.getReviews(setID: setID, completion: { result in
-                self.reviews = result.value ?? []
                 self.activityIndicator?.stopAnimating()
+                self.reviews = result.value ?? []
+                if let value = result.value {
+                    self.reviews = value.sorted {
+                        if let date1 = $0.datePosted, let date2 = $1.datePosted {
+                            return date1 > date2
+                        }
+                        else if let _ = $0.datePosted {
+                            return false
+                        }
+                        else if let _ = $0.datePosted {
+                            return true
+                        }
+                        return true
+                    }
+                }
                 self.tableView.reloadData()
             })
         }
@@ -53,6 +67,33 @@ class ReviewsViewController: UIViewController {
 
     private func showFullReview(_ cell: SetReviewTableViewCell) {
         print("Show full review...")
+        var textViewFrame =  view.convert(cell.reviewTextLabel.frame, from: cell.reviewContainerView)
+        print("textViewFrame: \(textViewFrame)")
+        textViewFrame = textViewFrame.offsetBy(dx: -5, dy: -5)
+        let expandingView = UITextView(frame: textViewFrame)
+        expandingView.backgroundColor = UIColor.clear
+        expandingView.attributedText = cell.reviewTextLabel.attributedText
+        view.addSubview(expandingView)
+
+        let blurEffect = UIBlurEffect(style: .light)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.alpha = 0.0
+        blurEffectView.frame = view.bounds
+        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        view.insertSubview(blurEffectView, belowSubview: expandingView)
+
+        let colorOverlay = UIView(frame: view.bounds)
+        colorOverlay.backgroundColor = UIColor(white: 1.0, alpha: 0.1)
+        colorOverlay.alpha = 0.0
+        colorOverlay.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        view.insertSubview(colorOverlay, belowSubview: expandingView)
+
+        let endFrame = view.bounds.insetBy(dx: 10, dy: 10)
+        UIView.animate(withDuration: 0.5, animations: {
+            expandingView.frame = endFrame
+            blurEffectView.alpha = 1.0
+            colorOverlay.alpha = 1.0
+        })
     }
 }
 
@@ -73,7 +114,7 @@ extension ReviewsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let review = reviews[indexPath.row]
         if let cell = tableView.dequeueReusableCell(withIdentifier: "SetReviewTableViewCell", for: indexPath) as? SetReviewTableViewCell {
-            cell.populateWithSetReview(review: review)
+            cell.populateWithSetReview(review)
             cell.useSmallLayout = (tableView.frame.size.width < 375)
 
             cell.moreButtonTapped = {
@@ -93,10 +134,12 @@ extension ReviewsViewController: UITableViewDataSource {
 
 extension ReviewsViewController: UITableViewDelegate {
 
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        print("cell height = \(cell.frame.size.height)")
-    }
-    
+//    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+//        if let reviewCell = cell as? SetReviewTableViewCell {
+//            print("text label height = \(reviewCell.reviewTextLabel.frame.size.height)")
+//        }
+//    }
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let cell = tableView.cellForRow(at: indexPath) as? SetReviewTableViewCell {
             showFullReview(cell)

@@ -97,7 +97,7 @@ extension SetDetailViewController: UITableViewDataSource {
 
             case .image :
                 if let cell = tableView.dequeueReusableCell(withIdentifier: "SetImageTableViewCell", for: indexPath) as? SetImageTableViewCell {
-                    cell.populateWithSet(set: set)
+                    cell.populateWithSet(set)
 
                     // Populate the image ourselves, so we can reload the cell when the image finishes loading
                     if let image = currentSetImage {
@@ -121,7 +121,7 @@ extension SetDetailViewController: UITableViewDataSource {
 
             case .detail :
                 if let cell = tableView.dequeueReusableCell(withIdentifier: "SetDetailTableViewCell", for: indexPath) as? SetDetailTableViewCell {
-                    cell.populateWithSet(set: set)
+                    cell.populateWithSet(set)
                     return cell
                 }
 
@@ -140,13 +140,13 @@ extension SetDetailViewController: UITableViewDataSource {
 
             case .parts :
                 if let cell = tableView.dequeueReusableCell(withIdentifier: "SetPartsTableViewCell", for: indexPath) as? SetPartsTableViewCell {
-                    cell.populateWithSet(set: set)
+                    cell.populateWithSet(set)
                     return cell
                 }
 
             case .reviews :
                 if let cell = tableView.dequeueReusableCell(withIdentifier: "SetReviewsTableViewCell", for: indexPath) as? SetReviewsTableViewCell {
-                    cell.populateWithSet(set: set)
+                    cell.populateWithSet(set)
                     return cell
                 }
             
