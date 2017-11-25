@@ -47,6 +47,9 @@
 		297E119F1F9563F500AAE8CB /* UserCollectionTotals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297E119E1F9563F500AAE8CB /* UserCollectionTotals.swift */; };
 		298FC8311FBA45940094D6DF /* BarcodeScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298FC8301FBA45940094D6DF /* BarcodeScannerViewController.swift */; };
 		29A523421F310261005F2145 /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A523411F310261005F2145 /* UIViewController+Extensions.swift */; };
+		29C111A11FC3F0F6007CBDB4 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C111A01FC3F0F6007CBDB4 /* UIView+Extensions.swift */; };
+		29C111A31FC4893E007CBDB4 /* ReviewDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C111A21FC4893E007CBDB4 /* ReviewDetailViewController.swift */; };
+		29C111A51FC48988007CBDB4 /* ReviewDetailAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C111A41FC48988007CBDB4 /* ReviewDetailAnimator.swift */; };
 		29CA94A11F8D508A000F1DE3 /* BrowseSetsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29CA94A01F8D508A000F1DE3 /* BrowseSetsViewController.swift */; };
 		29CA94A31F8D5132000F1DE3 /* Set.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29CA94A21F8D5132000F1DE3 /* Set.swift */; };
 		29CA94A61F8D72DC000F1DE3 /* SetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29CA94A41F8D72DC000F1DE3 /* SetTableViewCell.swift */; };
@@ -136,6 +139,9 @@
 		298FC8301FBA45940094D6DF /* BarcodeScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeScannerViewController.swift; sourceTree = "<group>"; };
 		29A523411F310261005F2145 /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
 		29AF63FA1FB66445001B14AD /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
+		29C111A01FC3F0F6007CBDB4 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
+		29C111A21FC4893E007CBDB4 /* ReviewDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewDetailViewController.swift; sourceTree = "<group>"; };
+		29C111A41FC48988007CBDB4 /* ReviewDetailAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewDetailAnimator.swift; sourceTree = "<group>"; };
 		29CA94A01F8D508A000F1DE3 /* BrowseSetsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseSetsViewController.swift; sourceTree = "<group>"; };
 		29CA94A21F8D5132000F1DE3 /* Set.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Set.swift; sourceTree = "<group>"; };
 		29CA94A41F8D72DC000F1DE3 /* SetTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetTableViewCell.swift; sourceTree = "<group>"; };
@@ -318,9 +324,10 @@
 		29A523361F310243005F2145 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				2973F3431FBE173800861125 /* UIDevice+Extensions.swift */,
-				29A523411F310261005F2145 /* UIViewController+Extensions.swift */,
 				296EB6E51FBFAA6000D4D3C6 /* Locale+Extensions.swift */,
+				2973F3431FBE173800861125 /* UIDevice+Extensions.swift */,
+				29C111A01FC3F0F6007CBDB4 /* UIView+Extensions.swift */,
+				29A523411F310261005F2145 /* UIViewController+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -356,6 +363,8 @@
 				2949A94C1FBFBEB500676D59 /* ReviewsViewController.swift */,
 				2949A94E1FBFBEC800676D59 /* InstructionsViewController.swift */,
 				2949A9501FBFBEE000676D59 /* PartsListViewController.swift */,
+				29C111A21FC4893E007CBDB4 /* ReviewDetailViewController.swift */,
+				29C111A41FC48988007CBDB4 /* ReviewDetailAnimator.swift */,
 			);
 			path = "Tab Browse";
 			sourceTree = "<group>";
@@ -612,9 +621,11 @@
 				292F4F571F193092006D5F5B /* BricksetServices.swift in Sources */,
 				29CA94A11F8D508A000F1DE3 /* BrowseSetsViewController.swift in Sources */,
 				29CA94A61F8D72DC000F1DE3 /* SetTableViewCell.swift in Sources */,
+				29C111A51FC48988007CBDB4 /* ReviewDetailAnimator.swift in Sources */,
 				2949A9531FBFDAED00676D59 /* SetReview.swift in Sources */,
 				29365B771F8EBF2A00F6730C /* NewsViewController.swift in Sources */,
 				29E86FDB1F31293900A67179 /* ThemeTableViewCell.swift in Sources */,
+				29C111A11FC3F0F6007CBDB4 /* UIView+Extensions.swift in Sources */,
 				294F187A1FB4EDC20026342F /* GradientView.swift in Sources */,
 				298FC8311FBA45940094D6DF /* BarcodeScannerViewController.swift in Sources */,
 				295ADFC11F16AFFD002E6802 /* SearchViewController.swift in Sources */,
@@ -641,6 +652,7 @@
 				296460A11FA92AA2004850F8 /* NewsItemViewController.swift in Sources */,
 				29FCC3461FBA14F500079032 /* SetDetail.swift in Sources */,
 				296EB6DE1FBF5E3600D4D3C6 /* SetImageTableViewCell.swift in Sources */,
+				29C111A31FC4893E007CBDB4 /* ReviewDetailViewController.swift in Sources */,
 				2949A9511FBFBEE000676D59 /* PartsListViewController.swift in Sources */,
 				296EB6E61FBFAA6000D4D3C6 /* Locale+Extensions.swift in Sources */,
 				29CA94A31F8D5132000F1DE3 /* Set.swift in Sources */,

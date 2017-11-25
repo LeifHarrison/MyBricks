@@ -27,11 +27,12 @@ class SetReviewTableViewCell: UITableViewCell {
     @IBOutlet weak var playabilityRatingView: CosmosView!
     @IBOutlet weak var valueRatingView: CosmosView!
     @IBOutlet weak var reviewContainerView: UIView!
-    @IBOutlet weak var reviewTextLabel: UILabel!
+    @IBOutlet weak var reviewTextView: UITextView!
     @IBOutlet weak var moreContainer: UIView!
     @IBOutlet weak var moreButton: UIButton!
 
-    @IBOutlet var moreConstraint: NSLayoutConstraint!
+    @IBOutlet var textHeightConstraint: NSLayoutConstraint!
+    @IBOutlet var moreSpacingConstraint: NSLayoutConstraint!
 
     var moreButtonTapped : (() -> Void)? = nil
     
@@ -41,9 +42,7 @@ class SetReviewTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        
         moreButton.layer.cornerRadius = moreButton.bounds.height / 2
-
         prepareForReuse()
     }
 
@@ -60,9 +59,11 @@ class SetReviewTableViewCell: UITableViewCell {
         partsRatingView.rating = 0
         playabilityRatingView.rating = 0
         valueRatingView.rating = 0
-        reviewTextLabel.text = nil
+        reviewTextView.text = nil
+        
         moreContainer.isHidden = false
-        moreConstraint.isActive = true
+        moreSpacingConstraint.isActive = true
+        textHeightConstraint.isActive = true
     }
 
     //--------------------------------------------------------------------------
@@ -109,14 +110,17 @@ class SetReviewTableViewCell: UITableViewCell {
         valueRatingView.rating = Double(review.valueForMoney ?? 0)
 
         if let reviewText = review.formattedReview() {
-            reviewTextLabel.attributedText = reviewText
+            reviewTextView.attributedText = reviewText
             
-            let maxSize = CGSize(width: reviewTextLabel.frame.size.width, height: CGFloat.greatestFiniteMagnitude)
-            let textSize = reviewTextLabel.sizeThatFits(maxSize)
+            let maxSize = CGSize(width: reviewTextView.frame.size.width, height: CGFloat.greatestFiniteMagnitude)
+            let textSize = reviewTextView.sizeThatFits(maxSize)
             //print("text height = \(textSize.height)")
             let showMore = (textSize.height > maxTextHeight)
             moreContainer.isHidden = !showMore
-            moreConstraint.isActive = showMore
+            moreSpacingConstraint.isActive = showMore
+            textHeightConstraint.isActive = showMore
+            
+            self.selectionStyle = showMore ? .default : .none
         }
     }
 
@@ -167,9 +171,8 @@ extension SetReview {
 
                 formattedReview.beginEditing()
 
-                let fullRange = NSMakeRange(0, formattedReview.length)
-
                 // Change fonts to something a bit more readable
+                let fullRange = NSMakeRange(0, formattedReview.length)
                 formattedReview.enumerateAttribute(.font, in: fullRange, options: []) { (value, range, stop) in
                     if let font = value as? UIFont {
                         let isBold = font.fontDescriptor.symbolicTraits.contains(.traitBold)

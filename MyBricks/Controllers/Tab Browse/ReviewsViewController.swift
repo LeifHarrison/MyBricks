@@ -16,6 +16,9 @@ class ReviewsViewController: UIViewController {
     var currentSet : Set?
     var reviews : [SetReview] = []
 
+    let transition = ReviewDetailAnimator()
+    var expandedCell: SetReviewTableViewCell? = nil
+
     //--------------------------------------------------------------------------
     // MARK: - View Lifecycle
     //--------------------------------------------------------------------------
@@ -65,36 +68,24 @@ class ReviewsViewController: UIViewController {
     // MARK: - Private
     //--------------------------------------------------------------------------
 
-    private func showFullReview(_ cell: SetReviewTableViewCell) {
+    lazy var animatedTextView: UITextView = {
+        let textView = UITextView()
+        textView.backgroundColor = UIColor.clear
+        return textView
+    }()
+
+    private func showFullReview(_ review: SetReview, fromCell cell: SetReviewTableViewCell) {
         print("Show full review...")
-        var textViewFrame =  view.convert(cell.reviewTextLabel.frame, from: cell.reviewContainerView)
-        print("textViewFrame: \(textViewFrame)")
-        textViewFrame = textViewFrame.offsetBy(dx: -5, dy: -5)
-        let expandingView = UITextView(frame: textViewFrame)
-        expandingView.backgroundColor = UIColor.clear
-        expandingView.attributedText = cell.reviewTextLabel.attributedText
-        view.addSubview(expandingView)
+        expandedCell = cell
+        
+        let reviewDetailVC = storyboard!.instantiateViewController(withIdentifier: "ReviewDetailViewController") as! ReviewDetailViewController
+        reviewDetailVC.modalPresentationStyle = .overFullScreen
+        reviewDetailVC.review =  review
+        reviewDetailVC.transitioningDelegate = self
+        present(reviewDetailVC, animated: true, completion: nil)
 
-        let blurEffect = UIBlurEffect(style: .light)
-        let blurEffectView = UIVisualEffectView(effect: blurEffect)
-        blurEffectView.alpha = 0.0
-        blurEffectView.frame = view.bounds
-        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        view.insertSubview(blurEffectView, belowSubview: expandingView)
-
-        let colorOverlay = UIView(frame: view.bounds)
-        colorOverlay.backgroundColor = UIColor(white: 1.0, alpha: 0.1)
-        colorOverlay.alpha = 0.0
-        colorOverlay.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        view.insertSubview(colorOverlay, belowSubview: expandingView)
-
-        let endFrame = view.bounds.insetBy(dx: 10, dy: 10)
-        UIView.animate(withDuration: 0.5, animations: {
-            expandingView.frame = endFrame
-            blurEffectView.alpha = 1.0
-            colorOverlay.alpha = 1.0
-        })
     }
+    
 }
 
 //==============================================================================
@@ -118,7 +109,7 @@ extension ReviewsViewController: UITableViewDataSource {
             cell.useSmallLayout = (tableView.frame.size.width < 375)
 
             cell.moreButtonTapped = {
-                self.showFullReview(cell)
+                self.showFullReview(review, fromCell: cell)
             }
             
             return cell
@@ -134,17 +125,46 @@ extension ReviewsViewController: UITableViewDataSource {
 
 extension ReviewsViewController: UITableViewDelegate {
 
-//    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-//        if let reviewCell = cell as? SetReviewTableViewCell {
-//            print("text label height = \(reviewCell.reviewTextLabel.frame.size.height)")
-//        }
-//    }
-
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let review = reviews[indexPath.row]
         if let cell = tableView.cellForRow(at: indexPath) as? SetReviewTableViewCell {
-            showFullReview(cell)
+            showFullReview(review, fromCell: cell)
         }
         tableView.deselectRow(at: indexPath, animated: true)
     }
 
+}
+
+//==============================================================================
+// MARK: - UIViewControllerTransitioningDelegate
+//==============================================================================
+
+extension ReviewsViewController: UIViewControllerTransitioningDelegate {
+    
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        transition.presenting = true
+
+        if let originFrame = expandedCell?.reviewContainerView.frame {
+            transition.originFrame = view.convert(originFrame, from: expandedCell?.contentView)
+        }
+        
+        var finalFrame = tableView.frame
+        if let navBar = navigationController?.navigationBar {
+            finalFrame.origin.y -= navBar.frame.size.height
+            finalFrame.size.height += navBar.frame.size.height
+        }
+        if let tabBar = tabBarController?.tabBar {
+            finalFrame.size.height += tabBar.frame.size.height
+        }
+        transition.finalFrame = finalFrame
+        
+        return transition
+    }
+    
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        transition.presenting = false
+        transition.dismissCompletion = { }
+        return transition
+    }
+    
 }
