@@ -9,7 +9,7 @@
 import UIKit
 
 enum TableSection: Int {
-    case image, detail, reviews, instructions, parts, collection, barcodes
+    case image, detail, reviews, instructions, parts, collection, description, barcodes
 }
 
 class SetDetailViewController: UIViewController {
@@ -20,7 +20,7 @@ class SetDetailViewController: UIViewController {
     var sections: [TableSection] = [ .image, .detail, .parts ]
 
     var currentSet : Set?
-    var detailSet : SetDetail?
+    var setDetail : SetDetail?
     var currentSetImage : UIImage?
 
     //--------------------------------------------------------------------------
@@ -58,8 +58,15 @@ class SetDetailViewController: UIViewController {
 
         if let set = currentSet, let setID = set.setID {
             BricksetServices.shared.getSet(setID: setID, completion: { result in
-                self.detailSet = result.value
-                //print("Result \(String(describing: self.detailSet))")
+                if result.isSuccess {
+                    //print("Result \(String(describing: result.value))")
+                    self.setDetail = result.value
+                    self.sections.append(.description)
+                    if let index = self.sections.index(of: .description) {
+                        self.tableView.insertSections([index], with: .fade)
+                        //self.tableView.reloadSections([index], with: .fade)
+                    }
+                }
             })
         }
 
@@ -125,19 +132,6 @@ extension SetDetailViewController: UITableViewDataSource {
                     return cell
                 }
 
-            case .collection :
-                if let cell = tableView.dequeueReusableCell(withIdentifier: "SetCollectionTableViewCell", for: indexPath) as? SetCollectionTableViewCell {
-                    cell.ownedCheckboxButton.isSelected = set.owned ?? false
-                    cell.wantedCheckboxButton.isSelected = set.wanted ?? false
-                    cell.ownedCountField.text = "\(set.quantityOwned ?? 0)"
-
-                    cell.yourRatingView.didFinishTouchingCosmos = { rating in
-                        print("rating = \(rating)")
-                    }
-
-                    return cell
-                }
-
             case .parts :
                 if let cell = tableView.dequeueReusableCell(withIdentifier: "SetPartsTableViewCell", for: indexPath) as? SetPartsTableViewCell {
                     cell.populateWithSet(set)
@@ -154,6 +148,27 @@ extension SetDetailViewController: UITableViewDataSource {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "SetInstructionsTableViewCell", for: indexPath)
                 cell.textLabel?.text = "Instructions (\(set.instructionsCount ?? 0))"
                 return cell
+            
+            case .collection :
+                if let cell = tableView.dequeueReusableCell(withIdentifier: "SetCollectionTableViewCell", for: indexPath) as? SetCollectionTableViewCell {
+                    cell.ownedCheckboxButton.isSelected = set.owned ?? false
+                    cell.wantedCheckboxButton.isSelected = set.wanted ?? false
+                    cell.ownedCountField.text = "\(set.quantityOwned ?? 0)"
+                    
+                    cell.yourRatingView.didFinishTouchingCosmos = { rating in
+                        print("rating = \(rating)")
+                    }
+                    
+                    return cell
+                }
+            
+            case .description :
+                if let cell = tableView.dequeueReusableCell(withIdentifier: "SetDescriptionTableViewCell", for: indexPath) as? SetDescriptionTableViewCell {
+                    if let detail = setDetail {
+                        cell.populate(with: detail)
+                    }
+                    return cell
+                }
             
             default :
                 return UITableViewCell()
@@ -174,12 +189,13 @@ extension SetDetailViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         let section = sections[indexPath.section]
         switch section {
-            case .image         : return 260.0
-            case .detail        : return 260.0
+            case .image         : return 240.0
+            case .detail        : return 180.0
             case .collection    : return 280.0
-            case .parts         : return 280.0
-            case .reviews       : return 280.0
-            case .instructions  : return 280.0
+            case .parts         : return 44.0
+            case .reviews       : return 44.0
+            case .instructions  : return 44.0
+            case .description   : return 140.0
             default             : return 30.0
         }
     }

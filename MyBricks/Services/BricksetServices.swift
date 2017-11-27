@@ -309,6 +309,38 @@ class BricksetServices {
         request.responseXMLDocument(completionHandler: requestCompletion)
     }
 
+    func getInstructions(setID: String, completion: @escaping (Result<[SetInstructions]>) -> Void) {
+        let url = baseURL + "getInstructions"
+        
+        var parameters = defaultParameters()
+        parameters["setID"] = setID
+        
+        let request = Alamofire.request( url, parameters: parameters)
+        print("Request: \(request)")
+        
+        let requestCompletion: (DataResponse<XMLDocument>) -> Void = { response in
+            //print("Document: \(document)")
+            if let error = response.result.error {
+                print("Error: \(error)")
+                completion(Result.failure(error))
+            }
+            else if let document = response.result.value {
+                if let root = document.root {
+                    var instructions: [SetInstructions] = []
+                    
+                    for element in root.children {
+                        if let instruction = SetInstructions(element: element) {
+                            instructions.append(instruction)
+                        }
+                    }
+                    
+                    completion(Result.success(instructions))
+                }
+            }
+        }
+        request.responseXMLDocument(completionHandler: requestCompletion)
+    }
+    
     func getThemes(completion: @escaping (Result<[SetTheme]>) -> Void) {
         let url = baseURL + "getThemes"
 

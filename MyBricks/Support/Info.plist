@@ -20,6 +20,19 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSExceptionDomains</key>
+		<dict>
+			<key>lego.com</key>
+			<dict>
+	      <key>NSIncludesSubdomains</key>
+	      <true/>
+	      <key>NSExceptionAllowsInsecureHTTPLoads</key>
+	      <true/>
+	    </dict>
+		</dict>
+	</dict>
 	<key>NSCameraUsageDescription</key>
 	<string>scan Lego barcodes to search for sets</string>
 	<key>UILaunchStoryboardName</key>

@@ -32,10 +32,6 @@ class ReviewsViewController: UIViewController {
         tableView.tableFooterView = UIView()
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
@@ -75,7 +71,6 @@ class ReviewsViewController: UIViewController {
     }()
 
     private func showFullReview(_ review: SetReview, fromCell cell: SetReviewTableViewCell) {
-        print("Show full review...")
         expandedCell = cell
         
         let reviewDetailVC = storyboard!.instantiateViewController(withIdentifier: "ReviewDetailViewController") as! ReviewDetailViewController
