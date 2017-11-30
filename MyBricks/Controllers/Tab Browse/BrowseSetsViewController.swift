@@ -15,6 +15,7 @@ class BrowseSetsViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
 
     var theme : String?
+    var showUnreleased: Bool = false
     
     var allSets: [Set] = []
     var sectionTitles: [String] = []
@@ -66,6 +67,10 @@ class BrowseSetsViewController: UIViewController {
         setsBySection.removeAll()
 
         for set in allSets {
+            // By default, don't show unreleased sets
+            if let released = set.released, released != true && !showUnreleased {
+                continue
+            }
             if let year = set.year {
                 let indexName = String(year)
                 var sets: [Set] = setsBySection[indexName] ?? []
