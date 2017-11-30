@@ -15,13 +15,7 @@ class SearchViewController: UIViewController {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var instructionsLabel: UILabel!
-
-    var theme : String?
     
-    var allSets: [Set] = []
-    var sectionTitles: [String] = []
-    var setsBySection: [String : [Set]] = [:]
-
     //--------------------------------------------------------------------------
     // MARK: - View Lifecycle
     //--------------------------------------------------------------------------
@@ -30,13 +24,11 @@ class SearchViewController: UIViewController {
         super.viewDidLoad()
         addGradientBackground()
         
-        tableView.register(UINib(nibName: "SetTableViewCell", bundle: nil), forCellReuseIdentifier: "SetTableViewCell")
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = UITableViewAutomaticDimension
         tableView.sectionIndexBackgroundColor = UIColor.clear
         tableView.tableFooterView = UIView()
 
-        //if AVCaptureDevice.default(for: AVMediaType.video) == nil {
         if AVCaptureDevice.default(for: AVMediaType.video) == nil && !UIDevice.isSimulator {
             navigationItem.setRightBarButtonItems([], animated: false)
 
@@ -61,35 +53,31 @@ class SearchViewController: UIViewController {
     //--------------------------------------------------------------------------
 
     @IBAction func showBarcodeScanner(_ sender: AnyObject?) {
-        performSegue(withIdentifier: "showBarcodeScanner", sender: self)
-
-//        let controller = BarcodeScannerController()
-//        controller.codeDelegate = self
-//        controller.errorDelegate = self
-//        controller.dismissalDelegate = self
-//        controller.barCodeFocusViewType = .twoDimensions
-//        present(controller, animated: true, completion: nil)
+        if let controller = storyboard?.instantiateViewController(withIdentifier: "BarcodeScannerViewController") as? BarcodeScannerViewController {
+            controller.delegate = self
+            present(controller, animated: true, completion: nil)
+        }
     }
 
     //--------------------------------------------------------------------------
     // MARK: - Private
     //--------------------------------------------------------------------------
     
-    fileprivate func processSets() {
-        sectionTitles.removeAll()
-        setsBySection.removeAll()
-        
-        for set in allSets {
-            if let year = set.year {
-                let indexName = String(year)
-                var sets: [Set] = setsBySection[indexName] ?? []
-                sets.append(set)
-                setsBySection[indexName] = sets
-            }
+    fileprivate func showDetail(forSet set: Set) {
+        let browseStoryboard = UIStoryboard(name: "Browse", bundle: nil)
+        if let setDetailVC = browseStoryboard.instantiateViewController(withIdentifier: "SetDetailViewController") as? SetDetailViewController {
+            setDetailVC.currentSet = set
+            show(setDetailVC, sender: self)
         }
-        sectionTitles = setsBySection.keys.sorted(by: >)
     }
     
+    fileprivate func showResults(_ results: [Set]) {
+        let browseStoryboard = UIStoryboard(name: "Browse", bundle: nil)
+        if let browseVC = browseStoryboard.instantiateViewController(withIdentifier: "BrowseSetsViewController") as? BrowseSetsViewController {
+            browseVC.allSets = results
+            show(browseVC, sender: self)
+        }
+    }
 }
 
 extension SearchViewController: UISearchBarDelegate {
@@ -99,16 +87,31 @@ extension SearchViewController: UISearchBarDelegate {
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
         if let searchText = searchBar.text {
             print("searchText: \(searchText)")
             
             activityIndicator?.startAnimating()
             BricksetServices.shared.getSets(query: searchText, completion: { result in
-                self.allSets = result.value ?? []
-                print("Results Count: \(self.allSets.count)")
-                self.processSets()
                 self.activityIndicator?.stopAnimating()
-                self.tableView.reloadData()
+
+                if let sets = result.value {
+                    print("Results Count: \(sets.count)")
+                    if sets.count == 1 {
+                        // If we only found a single set, go immediately to set detail
+                        self.showDetail(forSet: sets.first!)
+                    }
+                    else if sets.count > 1 {
+                        // If we found more than one, go to Browse Sets
+                        self.showResults(sets)
+                    }
+                    else {
+                        // Otherwise, show 'No Results' view
+                    }
+                }
+                else {
+                    // Show 'No Results' view
+                }
             })
 
         }
@@ -126,57 +129,15 @@ extension SearchViewController: UISearchBarDelegate {
 extension SearchViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return sectionTitles.count
+        return 0
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let sectionTitle = sectionTitles[section]
-        if let sets = setsBySection[sectionTitle] {
-            return sets.count
-        }
         return 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let sectionTitle = sectionTitles[indexPath.section]
-        if let sets = setsBySection[sectionTitle] {
-            let set = sets[indexPath.row]
-            if let cell = tableView.dequeueReusableCell(withIdentifier: "SetTableViewCell", for: indexPath) as? SetTableViewCell
-            {
-                if UIScreen.main.scale > 1.5 {
-                    if let urlString = set.largeThumbnailURL, let url = URL(string: urlString) {
-                        cell.setImageView.af_setImage(withURL: url, imageTransition: .crossDissolve(0.3))
-                    }
-                }
-                else {
-                    if let urlString = set.thumbnailURL, let url = URL(string: urlString) {
-                        cell.setImageView.af_setImage(withURL: url, imageTransition: .crossDissolve(0.3))
-                    }
-                }
-                
-                cell.nameLabel.text = set.name
-                cell.setNumberLabel.text = set.number
-                cell.subthemeLabel.text = set.subtheme
-                cell.piecesLabel.text = "\(set.pieces ?? 0)"
-                cell.minifigsLabel.text = "\(set.minifigs ?? 0)"
-                
-                cell.retiredView.isHidden = !(set.isRetired())
-                cell.retiredSpacingConstraint.isActive = set.isRetired()
-                
-                cell.ownedView.isHidden = !(set.owned ?? true)
-                cell.wantedView.isHidden = !cell.ownedView.isHidden || !(set.wanted ?? true)
-                
-                if cell.hasAmbiguousLayout {
-                    print("\(cell.constraintsAffectingLayout(for: .vertical))")
-                }
-                return cell
-            }
-        }
         return UITableViewCell()
-    }
-    
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return sectionTitles[section]
     }
     
 }
@@ -188,16 +149,6 @@ extension SearchViewController: UITableViewDataSource {
 extension SearchViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let sectionTitle = sectionTitles[indexPath.section]
-        if let sets = setsBySection[sectionTitle] {
-            let browseStoryboard = UIStoryboard(name: "Browse", bundle: nil)
-            let set = sets[indexPath.row]
-            if let setDetailVC = browseStoryboard.instantiateViewController(withIdentifier: "SetDetailViewController") as? SetDetailViewController {
-                setDetailVC.currentSet = set
-                show(setDetailVC, sender: self)
-                tableView.deselectRow(at: indexPath, animated: true)
-            }
-        }
     }
 
 }
@@ -206,36 +157,35 @@ extension SearchViewController: UITableViewDelegate {
 // MARK: - BarcodeScannerCodeDelegate
 //==============================================================================
 
-//extension SearchViewController: BarcodeScannerCodeDelegate {
-//
-//    func barcodeScanner(_ controller: BarcodeScannerController, didCaptureCode code: String, type: String) {
-//        print(code)
-//        controller.reset()
-//    }
-//
-//}
+extension SearchViewController: BarcodeScannerDelegate {
 
-//==============================================================================
-// MARK: - BarcodeScannerErrorDelegate
-//==============================================================================
+    func barcodeScanner(_ controller: BarcodeScannerViewController, didCaptureCode code: String, type: String) {
+        print("didCaptureCode: \(code), type: \(type)")
+        
+        BricksetServices.shared.getSets(query: code, completion: { result in
+            if result.isSuccess {
+                if let sets = result.value {
+                    print("Results Count: \(sets.count)")
+                    // If we only found a single set, go immediately to set detail
+                    if sets.count == 1 {
+                        self.showDetail(forSet: sets.first!)
+                    }
+                }
+            }
+            controller.dismiss(animated: true, completion: {
+                //self.tableView.reloadData()
+            })
+        })
 
-//extension SearchViewController: BarcodeScannerErrorDelegate {
-//
-//    func barcodeScanner(_ controller: BarcodeScannerController, didReceiveError error: Error) {
-//        print(error)
-//    }
-//
-//}
+        //controller.reset()
+    }
 
-//==============================================================================
-// MARK: - BarcodeScannerDismissalDelegate
-//==============================================================================
+    func barcodeScanner(_ controller: BarcodeScannerViewController, didReceiveError error: Error) {
+        print(error)
+    }
 
-//extension SearchViewController: BarcodeScannerDismissalDelegate {
-//
-//    func barcodeScannerDidDismiss(_ controller: BarcodeScannerController) {
-//        controller.dismiss(animated: true, completion: nil)
-//    }
-//
-//}
+    func barcodeScannerDidDismiss(_ controller: BarcodeScannerViewController) {
+        controller.dismiss(animated: true, completion: nil)
+    }
 
+}

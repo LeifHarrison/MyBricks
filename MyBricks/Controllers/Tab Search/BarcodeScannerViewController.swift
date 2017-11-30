@@ -9,6 +9,18 @@
 import UIKit
 import AVFoundation
 
+// MARK: - Delegates
+
+protocol BarcodeScannerDelegate: class {
+    func barcodeScanner(_ controller: BarcodeScannerViewController, didCaptureCode code: String, type: String)
+    func barcodeScanner(_ controller: BarcodeScannerViewController, didReceiveError error: Error)
+    func barcodeScannerDidDismiss(_ controller: BarcodeScannerViewController)
+}
+
+extension AVMetadataObject.ObjectType {
+    public static let upca: AVMetadataObject.ObjectType = AVMetadataObject.ObjectType(rawValue: "org.gs1.UPC-A")
+}
+
 class BarcodeScannerViewController: UIViewController {
 
     @IBOutlet weak var cancelButton: UIButton!
@@ -17,6 +29,8 @@ class BarcodeScannerViewController: UIViewController {
     @IBOutlet weak var instructionView: UIView!
     @IBOutlet weak var noCameraView: UIView!
     @IBOutlet weak var testBarcodesButton: UIView!
+
+    weak var delegate: BarcodeScannerDelegate?
 
     let metadata = [
         AVMetadataObject.ObjectType.aztec,
@@ -41,6 +55,9 @@ class BarcodeScannerViewController: UIViewController {
     lazy var captureSession: AVCaptureSession = AVCaptureSession()
     /// Video preview layer.
     var videoPreviewLayer: AVCaptureVideoPreviewLayer?
+
+    var isOneTimeSearch = true
+    var locked = false
 
     //--------------------------------------------------------------------------
     // MARK: - View Lifecycle
@@ -103,15 +120,15 @@ class BarcodeScannerViewController: UIViewController {
 
     @IBAction func showBarcodeTestMenu(_ sender: UIButton) {
         let testItems = [
-            [ "name" : "Invalid Code",              "code" : "3732300201",    "type" : "UPCA" ],
-            [ "name" : "Not Found",                 "code" : "010101010105",  "type" : "UPCA" ],
-            [ "name" : "Test 1",            "code" : "673419292177",  "type" : "UPCA" ]
+            [ "name" : "Invalid Code",      "code" : "3732300201",    "type" : "UPCA" ],
+            [ "name" : "Not Found",         "code" : "010101010105",  "type" : "UPCA" ],
+            [ "name" : "Stephanie's House", "code" : "673419265102",  "type" : "org.gs1.UPC-A" ]
         ]
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
 
         for item in testItems {
             let action = UIAlertAction(title: item["name"], style: .default) { (action) in
-                //self.processUPC(item["code"]!, withType: item["type"]!, isWatermark: false)
+                self.delegate?.barcodeScanner(self, didCaptureCode: item["code"]!, type: item["type"]!)
             }
             alertController.addAction(action)
         }
@@ -163,8 +180,9 @@ class BarcodeScannerViewController: UIViewController {
         do {
             let input = try AVCaptureDeviceInput(device: device)
             captureSession.addInput(input)
-        } catch {
-            //errorDelegate?.barcodeScanner(self, didReceiveError: error)
+        }
+        catch {
+            delegate?.barcodeScanner(self, didReceiveError: error)
         }
 
         let output = AVCaptureMetadataOutput()
@@ -181,11 +199,11 @@ class BarcodeScannerViewController: UIViewController {
             videoPreviewLayer.frame = view.layer.bounds
             if let connection = videoPreviewLayer.connection, connection.isVideoOrientationSupported {
                 switch (UIApplication.shared.statusBarOrientation) {
-                case .portrait: connection.videoOrientation = .portrait
-                case .landscapeRight: connection.videoOrientation = .landscapeRight
-                case .landscapeLeft: connection.videoOrientation = .landscapeLeft
-                case .portraitUpsideDown: connection.videoOrientation = .portraitUpsideDown
-                default: connection.videoOrientation = .portrait
+                    case .portrait: connection.videoOrientation = .portrait
+                    case .landscapeRight: connection.videoOrientation = .landscapeRight
+                    case .landscapeLeft: connection.videoOrientation = .landscapeLeft
+                    case .portraitUpsideDown: connection.videoOrientation = .portraitUpsideDown
+                    default: connection.videoOrientation = .portrait
                 }
             }
         }
@@ -196,7 +214,7 @@ class BarcodeScannerViewController: UIViewController {
 extension BarcodeScannerViewController: AVCaptureMetadataOutputObjectsDelegate {
 
     public func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
-        //guard !locked else { return }
+        guard !locked else { return }
         guard !metadataObjects.isEmpty else { return }
 
         guard
@@ -205,20 +223,20 @@ extension BarcodeScannerViewController: AVCaptureMetadataOutputObjectsDelegate {
             metadata.contains(metadataObj.type)
             else { return }
 
-//        if isOneTimeSearch {
-//            locked = true
-//        }
+        if isOneTimeSearch {
+            locked = true
+        }
 
-//        var rawType = metadataObj.type.rawValue
+        var rawType = metadataObj.type.rawValue
 
         // UPC-A is an EAN-13 barcode with a zero prefix.
         // See: https://stackoverflow.com/questions/22767584/ios7-barcode-scanner-api-adds-a-zero-to-upca-barcode-format
         if metadataObj.type == AVMetadataObject.ObjectType.ean13 && code.hasPrefix("0") {
             code = String(code.dropFirst())
-            //rawType = AVMetadataObject.ObjectType.upca.rawValue
+            rawType = AVMetadataObject.ObjectType.upca.rawValue
         }
 
-//        codeDelegate?.barcodeScanner(self, didCaptureCode: code, type: rawType)
+        delegate?.barcodeScanner(self, didCaptureCode: code, type: rawType)
 //        animateFlash(whenProcessing: isOneTimeSearch)
     }
 }

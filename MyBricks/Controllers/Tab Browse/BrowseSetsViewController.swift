@@ -17,10 +17,15 @@ class BrowseSetsViewController: UIViewController {
     var theme : String?
     var showUnreleased: Bool = false
     
-    var allSets: [Set] = []
     var sectionTitles: [String] = []
     var setsBySection: [String : [Set]] = [:]
 
+    var allSets: [Set] = [] {
+        didSet {
+            self.processSets()
+        }
+    }
+    
     //--------------------------------------------------------------------------
     // MARK: - View Lifecycle
     //--------------------------------------------------------------------------
@@ -50,9 +55,8 @@ class BrowseSetsViewController: UIViewController {
         if allSets.count == 0 {
             activityIndicator?.startAnimating()
             BricksetServices.shared.getSets(theme: (theme ?? ""), completion: { result in
-                self.allSets = result.value ?? []
-                self.processSets()
                 self.activityIndicator?.stopAnimating()
+                self.allSets = result.value ?? []
                 self.tableView.reloadData()
             })
         }

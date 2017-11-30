@@ -126,7 +126,7 @@ Search by scanning a barcode</string>
         <!--Barcode Scanner View Controller-->
         <scene sceneID="Zs5-mW-xa4">
             <objects>
-                <viewController id="1ar-8a-lmi" customClass="BarcodeScannerViewController" customModule="MyBricks" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="BarcodeScannerViewController" id="1ar-8a-lmi" customClass="BarcodeScannerViewController" customModule="MyBricks" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="X4K-59-Knt">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
