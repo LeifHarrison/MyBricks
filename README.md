@@ -4,7 +4,7 @@ Mobile (iOS) application for interacting with the BrickSet LEGO database.
 
 * Browse the catalog of current and retired LEGO sets.
 * Search for a specific set by number, name, or theme, or scan the barcode to look up the set details.
-* Track the sets/minifigures you own, or want using your Brickset.com web account
+* Track the sets/minifigures you own or want using your Brickset.com web account
 * Read the latest news from Brickset.com
 
 # Screenshots
@@ -16,7 +16,7 @@ Mobile (iOS) application for interacting with the BrickSet LEGO database.
 <img src="Screenshots/MySets.png" width="23%"></img>
 <img src="Screenshots/News.png" width="23%"></img>
 <img src="Screenshots/News2.png" width="23%"></img>
-<img src="Screenshots/Profile.png" width="23%"></img> 
+<img src="Screenshots/Profile.png" width="23%"></img>
 
 # Getting Started
 
@@ -35,23 +35,22 @@ Mobile (iOS) application for interacting with the BrickSet LEGO database.
 
 # To Do
 
-- [ ] Experiment with alternate (more compact) layout for Set Detail view
-- [ ] Implement display of set description in Set Detail view
+- [x] Experiment with alternate (more compact) layout for Set Detail view
+- [x] Implement display of set description in Set Detail view
 - [ ] Implement owned/wanted updates on Set Detail view
 - [ ] Implement filtering on Sets List view
 - [ ] Implement filtering on My Sets view
 - [ ] Implement force touch actions on Set List view
 - [ ] Implement support for additional images in Set Detail view
-- [ ] Implement support for instructions in Set Detail view
+- [x] Implement support for instructions in Set Detail view
 - [ ] Implement TouchID support for login
 - [ ] Implement About/Credits views
 - [ ] Refactor Profile view to use table view cells
- 
+
 # Future Enhancements
 
 * Local/offline storage of set data (using Core Data)
 * View parts list for sets (using Rebrickable API?)
-* View set instructions
 * iPad support, iPad specific layouts
 
 # Credits
@@ -62,7 +61,7 @@ Application data graciously provided by **[Brickset](http://www.brickset.com)** 
 
 * **[Alamofire](https://github.com/Alamofire/Alamofire)** - Swift framework to simplify networking code
 * **[AlamofireImage](https://github.com/Alamofire/AlamofireImage)** - Swift framework to simplify fetching/caching images
-* **[AlamofireNetworkActivityIndicator](https://github.com/Alamofire/AlamofireNetworkActivityIndicator)** - 
+* **[AlamofireNetworkActivityIndicator](https://github.com/Alamofire/AlamofireNetworkActivityIndicator)** -
 * **[AlamofireRSSParser](https://github.com/AdeptusAstartes/AlamofireRSSParser)** - Swift framework for parsing RSS feeds
 * **[Fuzi](https://github.com/cezheng/Fuzi)** - Framework for parsing XML returned by the Brickset API
 * **[Cosmos](https://github.com/evgenyneu/Cosmos)** - A handy configurable star/rating view
