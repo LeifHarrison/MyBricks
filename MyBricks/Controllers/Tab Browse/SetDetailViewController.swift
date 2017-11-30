@@ -33,6 +33,8 @@ class SetDetailViewController: UIViewController {
 
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.sectionIndexBackgroundColor = UIColor.clear
+        tableView.separatorColor = UIColor(white: 0.3, alpha: 0.8)
+        tableView.separatorInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
         tableView.tableFooterView = UIView()
     }
 
