@@ -52,10 +52,27 @@ class InstructionsViewController: UIViewController {
     // MARK: - Private
     //--------------------------------------------------------------------------
 
+    private func showProgressView(forCell cell: InstructionsTableViewCell) {
+        cell.progressView.alpha = 0.0
+        cell.progressView.isHidden = false
+        let animations: (() -> Void) = {
+            cell.progressView.alpha = 1.0
+        }
+        UIView.animate(withDuration: 0.2, animations: animations)
+    }
+
+    private func flashProgressView(forCell cell: InstructionsTableViewCell) {
+        let animations: (() -> Void) = {
+            cell.progressView.alpha = 0.5
+        }
+        UIView.animate(withDuration: 0.2, animations: animations)
+    }
+
     private func previewInstructions(_ instructions: SetInstructions, fromCell cell: InstructionsTableViewCell) -> Void {
         let destination = DownloadRequest.suggestedDownloadDestination()
         
         if let urlString = instructions.url {
+            showProgressView(forCell: cell)
             Alamofire.download(urlString, to: destination)
                 .downloadProgress { (progress) in
                     cell.progressView.progress = Float(progress.fractionCompleted)
@@ -115,10 +132,10 @@ extension InstructionsViewController: UITableViewDataSource {
 extension InstructionsViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let instruction = instructions[indexPath.row]
-//        if let cell = tableView.cellForRow(at: indexPath) as? InstructionsTableViewCell {
-//            showFullReview(review, fromCell: cell)
-//        }
+        let instruction = instructions[indexPath.row]
+        if let cell = tableView.cellForRow(at: indexPath) as? InstructionsTableViewCell {
+            self.previewInstructions(instruction, fromCell: cell)
+        }
         tableView.deselectRow(at: indexPath, animated: true)
     }
     

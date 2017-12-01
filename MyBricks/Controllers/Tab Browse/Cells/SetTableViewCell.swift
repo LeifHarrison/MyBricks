@@ -17,11 +17,8 @@ class SetTableViewCell: UITableViewCell {
     @IBOutlet weak var piecesLabel: UILabel!
     @IBOutlet weak var minifigsLabel: UILabel!
 
-    @IBOutlet weak var retiredView: UIView!
     @IBOutlet weak var ownedView: UIView!
     @IBOutlet weak var wantedView: UIView!
-
-    @IBOutlet var retiredSpacingConstraint: NSLayoutConstraint!
 
     //--------------------------------------------------------------------------
     // MARK: - Nib Loading
@@ -30,7 +27,6 @@ class SetTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
 
-        retiredView.layer.cornerRadius = retiredView.bounds.height / 2
         ownedView.layer.cornerRadius = ownedView.bounds.height / 2
         wantedView.layer.cornerRadius = ownedView.bounds.height / 2
     }
@@ -48,7 +44,6 @@ class SetTableViewCell: UITableViewCell {
         piecesLabel.text = "0"
         minifigsLabel.text = "0"
 
-        retiredView.isHidden = true
         ownedView.isHidden = true
         wantedView.isHidden = true
     }
@@ -63,9 +58,6 @@ class SetTableViewCell: UITableViewCell {
         subthemeLabel.text = set.subtheme
         piecesLabel.text = "\(set.pieces ?? 0)"
         minifigsLabel.text = "\(set.minifigs ?? 0)"
-
-        retiredView.isHidden = !(set.isRetired())
-        retiredSpacingConstraint.isActive = set.isRetired()
 
         ownedView.isHidden = !(set.owned ?? true)
         wantedView.isHidden = !ownedView.isHidden || !(set.wanted ?? true)

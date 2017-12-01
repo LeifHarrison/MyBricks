@@ -228,9 +228,6 @@ extension MySetsViewController: UITableViewDataSource {
                 cell.piecesLabel.text = "\(set.pieces ?? 0)"
                 cell.minifigsLabel.text = "\(set.minifigs ?? 0)"
 
-                cell.retiredView.isHidden = !(set.isRetired())
-                cell.retiredSpacingConstraint.isActive = set.isRetired()
-
                 cell.ownedView.isHidden = !(set.owned ?? true)
                 cell.wantedView.isHidden = !cell.ownedView.isHidden || !(set.wanted ?? true)
 
