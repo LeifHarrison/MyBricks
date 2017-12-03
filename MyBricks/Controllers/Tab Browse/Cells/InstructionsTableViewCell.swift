@@ -3,7 +3,7 @@
 //  MyBricks
 //
 //  Created by Leif on 11/25/17.
-//  Copyright © 2017 Catsreach. All rights reserved.
+//  Copyright © 2017 Leif Harrison. All rights reserved.
 //
 
 import UIKit
