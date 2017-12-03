@@ -25,28 +25,18 @@ class BarcodeScannerViewController: UIViewController {
 
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var flashButton: UIButton!
-    @IBOutlet weak var focusView: UIView!
+    @IBOutlet weak var previewView: PreviewView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var instructionView: UIView!
     @IBOutlet weak var noCameraView: UIView!
     @IBOutlet weak var testBarcodesButton: UIView!
 
     weak var delegate: BarcodeScannerDelegate?
 
-    let metadata = [
-        AVMetadataObject.ObjectType.aztec,
-        AVMetadataObject.ObjectType.code128,
-        AVMetadataObject.ObjectType.code39,
-        AVMetadataObject.ObjectType.code39Mod43,
-        AVMetadataObject.ObjectType.code93,
-        AVMetadataObject.ObjectType.dataMatrix,
+    let allowedMetadataObjectTypes = [
         AVMetadataObject.ObjectType.ean13,
         AVMetadataObject.ObjectType.ean8,
-        AVMetadataObject.ObjectType.face,
-        AVMetadataObject.ObjectType.interleaved2of5,
-        AVMetadataObject.ObjectType.itf14,
-        AVMetadataObject.ObjectType.pdf417,
-        AVMetadataObject.ObjectType.qr,
-        AVMetadataObject.ObjectType.upce,
+        AVMetadataObject.ObjectType.upce
     ]
 
     /// Video capture device.
@@ -66,34 +56,21 @@ class BarcodeScannerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        focusView.backgroundColor = UIColor.clear
-        focusView.layer.borderColor = UIColor(white: 0.9, alpha: 0.9).cgColor
-        focusView.layer.borderWidth = 3.0
-        focusView.layer.cornerRadius = 4.0
-
         testBarcodesButton.layer.cornerRadius = 5.0
 
-        // [[AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo] count]
         if let _ = self.captureDevice {
-            videoPreviewLayer = AVCaptureVideoPreviewLayer(session: self.captureSession)
-            videoPreviewLayer?.videoGravity = AVLayerVideoGravity.resizeAspectFill
-            if let previewLayer = videoPreviewLayer {
-                view.layer.insertSublayer(previewLayer, at: 0)
-            }
-
             setupCamera()
         }
         else {
             // Device doesn't support video capture. Display informational
             // overlay and, on the simulator, a "Test Barcodes" button
-            noCameraView.isHidden = false
+            //noCameraView.isHidden = false
             if UIDevice.isSimulator {
                 testBarcodesButton.isHidden = false
             }
 
             // Hide everything else
-            focusView.isHidden = true
-            flashButton.isHidden = true
+            //previewView.isHidden = true
             instructionView.isHidden = true
         }
     }
@@ -104,17 +81,43 @@ class BarcodeScannerViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        updateLayout()
         if let _ = self.captureDevice {
             captureSession.startRunning()
         }
     }
 
+    override func viewWillDisappear(_ animated: Bool) {
+        activityIndicator?.stopAnimating()
+        captureSession.stopRunning()
+        super.viewWillDisappear(animated)
+    }
+
+    //--------------------------------------------------------------------------
+    // MARK: - View Layout
+    //--------------------------------------------------------------------------
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        for output in captureSession.outputs {
+            if let metadataOutput = output as? AVCaptureMetadataOutput {
+                let regionOfInterest = previewView.regionOfInterest
+                metadataOutput.rectOfInterest = previewView.videoPreviewLayer.metadataOutputRectConverted(fromLayerRect: regionOfInterest)
+            }
+        }
+    }
+    
     //--------------------------------------------------------------------------
     // MARK: - Actions
     //--------------------------------------------------------------------------
 
-    @IBAction func cancel(_ sender: AnyObject?) {
+    @IBAction func toggleTorch(_ sender: UIButton?) {
+        if let selected = sender?.isSelected {
+            toggleTorch(on: !selected)
+            sender?.isSelected = !selected
+        }
+    }
+    
+    @IBAction func cancel(_ sender: UIButton?) {
         dismiss(animated: true, completion: nil)
     }
 
@@ -144,7 +147,7 @@ class BarcodeScannerViewController: UIViewController {
     // MARK: - Private
     //--------------------------------------------------------------------------
 
-    func setupCamera() {
+    private func setupCamera() {
         guard let _ = self.captureDevice else {
             return
         }
@@ -172,7 +175,7 @@ class BarcodeScannerViewController: UIViewController {
     }
 
     // Sets up capture input, output and session.
-    func setupSession() {
+    private func setupSession() {
         guard let device = self.captureDevice else {
             return
         }
@@ -188,28 +191,35 @@ class BarcodeScannerViewController: UIViewController {
         let output = AVCaptureMetadataOutput()
         captureSession.addOutput(output)
         output.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
-        output.metadataObjectTypes = metadata
-        videoPreviewLayer?.session = captureSession
-
-        view.setNeedsLayout()
+        output.metadataObjectTypes = allowedMetadataObjectTypes
+        previewView.videoPreviewLayer.session = captureSession
     }
 
-    func updateLayout() {
-        if let videoPreviewLayer = videoPreviewLayer {
-            videoPreviewLayer.frame = view.layer.bounds
-            if let connection = videoPreviewLayer.connection, connection.isVideoOrientationSupported {
-                switch (UIApplication.shared.statusBarOrientation) {
-                    case .portrait: connection.videoOrientation = .portrait
-                    case .landscapeRight: connection.videoOrientation = .landscapeRight
-                    case .landscapeLeft: connection.videoOrientation = .landscapeLeft
-                    case .portraitUpsideDown: connection.videoOrientation = .portraitUpsideDown
-                    default: connection.videoOrientation = .portrait
-                }
+    func toggleTorch(on: Bool) {
+        guard let device = AVCaptureDevice.default(for: AVMediaType.video) else {
+            return
+        }
+        
+        if device.hasTorch {
+            do {
+                try device.lockForConfiguration()
+                device.torchMode = on ? .on : .off
+                device.unlockForConfiguration()
             }
+            catch {
+                print("Torch could not be used")
+            }
+        } else {
+            print("Torch is not available")
         }
     }
+    
 
 }
+
+//==============================================================================
+// MARK: - AVCaptureMetadataOutputObjectsDelegate
+//==============================================================================
 
 extension BarcodeScannerViewController: AVCaptureMetadataOutputObjectsDelegate {
 
@@ -217,26 +227,30 @@ extension BarcodeScannerViewController: AVCaptureMetadataOutputObjectsDelegate {
         guard !locked else { return }
         guard !metadataObjects.isEmpty else { return }
 
-        guard
-            let metadataObj = metadataObjects[0] as? AVMetadataMachineReadableCodeObject,
-            var code = metadataObj.stringValue,
-            metadata.contains(metadataObj.type)
-            else { return }
-
-        if isOneTimeSearch {
-            locked = true
+        guard let metadataObject = metadataObjects[0] as? AVMetadataMachineReadableCodeObject, allowedMetadataObjectTypes.contains(metadataObject.type) else {
+            return
         }
 
-        var rawType = metadataObj.type.rawValue
+        guard var code = metadataObject.stringValue else {
+            return
+        }
 
+        AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
+        captureSession.stopRunning()
+
+        var rawType = metadataObject.type.rawValue
+        
         // UPC-A is an EAN-13 barcode with a zero prefix.
         // See: https://stackoverflow.com/questions/22767584/ios7-barcode-scanner-api-adds-a-zero-to-upca-barcode-format
-        if metadataObj.type == AVMetadataObject.ObjectType.ean13 && code.hasPrefix("0") {
+        if metadataObject.type == AVMetadataObject.ObjectType.ean13 && code.hasPrefix("0") {
             code = String(code.dropFirst())
             rawType = AVMetadataObject.ObjectType.upca.rawValue
         }
 
+        DispatchQueue.main.async {
+            self.activityIndicator?.startAnimating()
+        }
+
         delegate?.barcodeScanner(self, didCaptureCode: code, type: rawType)
-//        animateFlash(whenProcessing: isOneTimeSearch)
     }
 }

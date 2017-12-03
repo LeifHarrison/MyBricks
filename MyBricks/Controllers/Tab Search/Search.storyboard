@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -51,10 +50,28 @@
                                 </connections>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k3a-CI-M01">
-                                <rect key="frame" x="75" y="284" width="225" height="107"/>
+                                <rect key="frame" x="55" y="284" width="265" height="121"/>
                                 <attributedString key="attributedText">
                                     <fragment>
                                         <string key="content">Search for Lego sets by title, set number, theme or subtheme
+</string>
+                                        <attributes>
+                                            <color key="NSColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <font key="NSFont" size="18" name=".AppleSystemUIFont"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="5" paragraphSpacing="5" paragraphSpacingBefore="5" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content="OR">
+                                        <attributes>
+                                            <color key="NSColor" white="0.20428240740740741" alpha="1" colorSpace="calibratedWhite"/>
+                                            <font key="NSFont" size="18" name=".AppleSystemUIFontEmphasized"/>
+                                            <font key="NSOriginalFont" size="15" name=".AppleSystemUIFontEmphasized"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="5" paragraphSpacing="5" paragraphSpacingBefore="5" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment>
+                                        <string key="content" base64-UTF8="YES">
+Cg
 </string>
                                         <attributes>
                                             <color key="NSColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -62,20 +79,10 @@
                                             <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="5" paragraphSpacing="5" paragraphSpacingBefore="5" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
                                     </fragment>
-                                    <fragment content="OR">
-                                        <attributes>
-                                            <color key="NSColor" white="0.20428240740740741" alpha="1" colorSpace="calibratedWhite"/>
-                                            <font key="NSFont" size="15" name=".AppleSystemUIFontEmphasized"/>
-                                            <font key="NSOriginalFont" size="15" name=".AppleSystemUIFontEmphasized"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="5" paragraphSpacing="5" paragraphSpacingBefore="5" tighteningFactorForTruncation="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                    <fragment>
-                                        <string key="content">
-Search by scanning a barcode</string>
+                                    <fragment content="Search by scanning a barcode">
                                         <attributes>
                                             <color key="NSColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                            <font key="NSFont" size="15" name=".AppleSystemUIFont"/>
+                                            <font key="NSFont" size="18" name=".AppleSystemUIFont"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="5" paragraphSpacing="5" paragraphSpacingBefore="5" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
                                     </fragment>
@@ -89,11 +96,11 @@ Search by scanning a barcode</string>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="O1u-W8-tvY" firstAttribute="trailing" secondItem="k3a-CI-M01" secondAttribute="trailing" constant="75" id="1mu-Qv-Tqd"/>
+                            <constraint firstItem="O1u-W8-tvY" firstAttribute="trailing" secondItem="k3a-CI-M01" secondAttribute="trailing" constant="55" id="1mu-Qv-Tqd"/>
                             <constraint firstItem="k3a-CI-M01" firstAttribute="top" secondItem="O1u-W8-tvY" secondAttribute="top" constant="220" id="3B4-ct-rsj"/>
                             <constraint firstItem="qqy-YC-hbi" firstAttribute="centerY" secondItem="O1u-W8-tvY" secondAttribute="centerY" id="3n9-bI-uLq"/>
                             <constraint firstItem="8Mc-QV-cXp" firstAttribute="leading" secondItem="O1u-W8-tvY" secondAttribute="leading" constant="1" id="73a-6g-B6M"/>
-                            <constraint firstItem="k3a-CI-M01" firstAttribute="leading" secondItem="O1u-W8-tvY" secondAttribute="leading" constant="75" id="8HT-Vc-jQS"/>
+                            <constraint firstItem="k3a-CI-M01" firstAttribute="leading" secondItem="O1u-W8-tvY" secondAttribute="leading" constant="55" id="8HT-Vc-jQS"/>
                             <constraint firstItem="O1u-W8-tvY" firstAttribute="trailing" secondItem="t39-YW-Rlf" secondAttribute="trailing" id="8zE-7U-BVq"/>
                             <constraint firstItem="8Mc-QV-cXp" firstAttribute="top" secondItem="O1u-W8-tvY" secondAttribute="top" id="Ft7-JG-GuX"/>
                             <constraint firstItem="qqy-YC-hbi" firstAttribute="centerX" secondItem="O1u-W8-tvY" secondAttribute="centerX" id="QRx-UT-ehs"/>
@@ -131,18 +138,26 @@ Search by scanning a barcode</string>
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YHa-GE-lsD" customClass="PreviewView" customModule="MyBricks" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="1" alpha="0.5" colorSpace="calibratedWhite"/>
+                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BvF-3P-eNg">
                                 <rect key="frame" x="15" y="35.5" width="41" height="41"/>
-                                <state key="normal" image="cancel">
+                                <state key="normal" image="flashOff">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <state key="selected" image="flashOn"/>
                                 <connections>
-                                    <action selector="cancel:" destination="1ar-8a-lmi" eventType="touchUpInside" id="9EN-oz-0fR"/>
+                                    <action selector="toggleTorch:" destination="1ar-8a-lmi" eventType="touchUpInside" id="Fn1-3u-Yd7"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="juK-NZ-bNN">
                                 <rect key="frame" x="319" y="35" width="41" height="41"/>
-                                <state key="normal" image="flashOff"/>
+                                <state key="normal" image="cancel"/>
+                                <connections>
+                                    <action selector="cancel:" destination="1ar-8a-lmi" eventType="touchUpInside" id="621-s7-xPp"/>
+                                </connections>
                             </button>
                             <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kzq-L9-L4k">
                                 <rect key="frame" x="0.0" y="600" width="375" height="67"/>
@@ -154,7 +169,7 @@ Search by scanning a barcode</string>
                                             <rect key="frame" x="15" y="20" width="30" height="27"/>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Place the barcode within the window to scan. The search will start automatically." textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="usu-w1-yGh">
-                                            <rect key="frame" x="60" y="17.5" width="300" height="33.5"/>
+                                            <rect key="frame" x="60" y="17" width="300" height="33.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -170,25 +185,17 @@ Search by scanning a barcode</string>
                                 </view>
                                 <blurEffect style="light"/>
                             </visualEffectView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YHa-GE-lsD">
-                                <rect key="frame" x="47" y="226.5" width="280" height="154"/>
-                                <color key="backgroundColor" white="1" alpha="0.5" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="280" id="auv-98-vS3"/>
-                                    <constraint firstAttribute="height" constant="154" id="n9F-0B-GFU"/>
-                                </constraints>
-                            </view>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZO5-qJ-Pwa">
-                                <rect key="frame" x="60" y="250" width="255" height="163"/>
+                                <rect key="frame" x="60" y="250" width="255" height="109"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No camera detected" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RZb-Rw-YCt">
-                                        <rect key="frame" x="0.0" y="10" width="255" height="21"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="255" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         <color key="textColor" white="0.84999999999999998" alpha="0.80000000000000004" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uim-e5-4NE">
-                                        <rect key="frame" x="0.0" y="51" width="255" height="48"/>
+                                        <rect key="frame" x="0.0" y="41" width="255" height="48"/>
                                         <attributedString key="attributedText">
                                             <fragment content="Barcode scanning not supported on this device">
                                                 <attributes>
@@ -200,59 +207,67 @@ Search by scanning a barcode</string>
                                         </attributedString>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gnH-2v-Jh2">
-                                        <rect key="frame" x="67.5" y="134" width="120" height="29"/>
-                                        <color key="backgroundColor" red="0.0" green="0.43240571020000002" blue="0.60304111240000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="120" id="ZF4-Dd-hJJ"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <state key="normal" title="Test Barcodes">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="showBarcodeTestMenu:" destination="1ar-8a-lmi" eventType="touchUpInside" id="wd5-L7-3Pi"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="gnH-2v-Jh2" firstAttribute="centerX" secondItem="ZO5-qJ-Pwa" secondAttribute="centerX" id="1Vj-Kv-Foz"/>
                                     <constraint firstItem="RZb-Rw-YCt" firstAttribute="leading" secondItem="ZO5-qJ-Pwa" secondAttribute="leading" id="6TN-lj-0i5"/>
                                     <constraint firstItem="uim-e5-4NE" firstAttribute="leading" secondItem="ZO5-qJ-Pwa" secondAttribute="leading" id="9rB-WM-zwx"/>
-                                    <constraint firstAttribute="bottom" secondItem="gnH-2v-Jh2" secondAttribute="bottom" id="BaL-QZ-cFK"/>
+                                    <constraint firstAttribute="bottom" secondItem="uim-e5-4NE" secondAttribute="bottom" constant="20" id="B2T-iJ-pMH"/>
                                     <constraint firstAttribute="trailing" secondItem="RZb-Rw-YCt" secondAttribute="trailing" id="RNz-Tp-VpX"/>
                                     <constraint firstAttribute="trailing" secondItem="uim-e5-4NE" secondAttribute="trailing" id="TGg-Id-h2Q"/>
                                     <constraint firstItem="uim-e5-4NE" firstAttribute="top" secondItem="RZb-Rw-YCt" secondAttribute="bottom" constant="20" id="fgq-ht-SHc"/>
-                                    <constraint firstItem="gnH-2v-Jh2" firstAttribute="top" secondItem="uim-e5-4NE" secondAttribute="bottom" constant="35" id="pbO-kK-Q8G"/>
-                                    <constraint firstItem="RZb-Rw-YCt" firstAttribute="top" secondItem="ZO5-qJ-Pwa" secondAttribute="top" constant="10" id="xgX-Q5-N3h"/>
+                                    <constraint firstItem="RZb-Rw-YCt" firstAttribute="top" secondItem="ZO5-qJ-Pwa" secondAttribute="top" id="xgX-Q5-N3h"/>
                                 </constraints>
                             </view>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" verticalHuggingPriority="252" horizontalCompressionResistancePriority="752" verticalCompressionResistancePriority="752" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gnH-2v-Jh2">
+                                <rect key="frame" x="127" y="414.5" width="120" height="29"/>
+                                <color key="backgroundColor" red="0.0" green="0.43240571020000002" blue="0.60304111240000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="120" id="ZF4-Dd-hJJ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <state key="normal" title="Test Barcodes">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="showBarcodeTestMenu:" destination="1ar-8a-lmi" eventType="touchUpInside" id="wd5-L7-3Pi"/>
+                                </connections>
+                            </button>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="TBg-nE-zDG">
+                                <rect key="frame" x="169" y="410" width="37" height="37"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Kzq-L9-L4k" firstAttribute="bottom" secondItem="X4K-59-Knt" secondAttribute="bottom" id="2fQ-Ez-koq"/>
-                            <constraint firstItem="YHa-GE-lsD" firstAttribute="centerY" secondItem="O2L-QK-unw" secondAttribute="centerY" constant="-40" id="5Yj-KF-yYq"/>
+                            <constraint firstAttribute="top" secondItem="YHa-GE-lsD" secondAttribute="top" id="3vY-W7-bqe"/>
+                            <constraint firstItem="gnH-2v-Jh2" firstAttribute="centerX" secondItem="O2L-QK-unw" secondAttribute="centerX" id="44u-lc-Zoe"/>
+                            <constraint firstAttribute="bottom" secondItem="YHa-GE-lsD" secondAttribute="bottom" id="KyR-YQ-Fn2"/>
+                            <constraint firstItem="gnH-2v-Jh2" firstAttribute="top" secondItem="ZO5-qJ-Pwa" secondAttribute="bottom" constant="55.5" id="Lgj-Yl-SQv"/>
                             <constraint firstItem="ZO5-qJ-Pwa" firstAttribute="leading" secondItem="O2L-QK-unw" secondAttribute="leading" constant="60" id="P8T-HJ-Wq0"/>
                             <constraint firstItem="O2L-QK-unw" firstAttribute="trailing" secondItem="juK-NZ-bNN" secondAttribute="trailing" constant="15" id="WgG-5Q-rHl"/>
                             <constraint firstItem="Kzq-L9-L4k" firstAttribute="leading" secondItem="O2L-QK-unw" secondAttribute="leading" id="X2q-JV-ceH"/>
                             <constraint firstItem="BvF-3P-eNg" firstAttribute="leading" secondItem="O2L-QK-unw" secondAttribute="leading" constant="15" id="Yyy-fe-297"/>
+                            <constraint firstItem="TBg-nE-zDG" firstAttribute="centerX" secondItem="O2L-QK-unw" secondAttribute="centerX" id="abx-SW-ROs"/>
                             <constraint firstItem="BvF-3P-eNg" firstAttribute="centerY" secondItem="juK-NZ-bNN" secondAttribute="centerY" id="azd-pA-r48"/>
-                            <constraint firstItem="YHa-GE-lsD" firstAttribute="centerX" secondItem="O2L-QK-unw" secondAttribute="centerX" id="bcc-6d-DAE"/>
+                            <constraint firstItem="O2L-QK-unw" firstAttribute="bottom" secondItem="TBg-nE-zDG" secondAttribute="bottom" constant="220" id="gXS-Fe-CKb"/>
                             <constraint firstItem="juK-NZ-bNN" firstAttribute="top" secondItem="O2L-QK-unw" secondAttribute="top" constant="15" id="huo-S6-uCR"/>
                             <constraint firstItem="O2L-QK-unw" firstAttribute="trailing" secondItem="ZO5-qJ-Pwa" secondAttribute="trailing" constant="60" id="rRE-f5-vfe"/>
                             <constraint firstItem="Kzq-L9-L4k" firstAttribute="trailing" secondItem="O2L-QK-unw" secondAttribute="trailing" id="ssb-MB-rGO"/>
+                            <constraint firstAttribute="trailing" secondItem="YHa-GE-lsD" secondAttribute="trailing" id="uZb-8w-Ted"/>
                             <constraint firstItem="ZO5-qJ-Pwa" firstAttribute="top" secondItem="O2L-QK-unw" secondAttribute="top" constant="230" id="uq0-fc-81N"/>
+                            <constraint firstItem="YHa-GE-lsD" firstAttribute="leading" secondItem="X4K-59-Knt" secondAttribute="leading" id="wzn-RS-xzR"/>
                             <constraint firstItem="O2L-QK-unw" firstAttribute="bottom" secondItem="NdL-Ok-V2p" secondAttribute="bottom" constant="20" id="zBj-Ym-UqD"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="O2L-QK-unw"/>
                     </view>
                     <connections>
-                        <outlet property="cancelButton" destination="BvF-3P-eNg" id="JPe-Fk-K5E"/>
-                        <outlet property="flashButton" destination="juK-NZ-bNN" id="Dh8-Dx-VM4"/>
-                        <outlet property="focusView" destination="YHa-GE-lsD" id="JSS-WM-Eal"/>
+                        <outlet property="activityIndicator" destination="TBg-nE-zDG" id="Ym4-rr-4Ud"/>
+                        <outlet property="cancelButton" destination="juK-NZ-bNN" id="bFA-Qq-vkt"/>
+                        <outlet property="flashButton" destination="BvF-3P-eNg" id="yqz-5x-2gz"/>
                         <outlet property="instructionView" destination="Kzq-L9-L4k" id="Jyi-Iv-Cgx"/>
                         <outlet property="noCameraView" destination="ZO5-qJ-Pwa" id="xWp-Tc-Ndv"/>
+                        <outlet property="previewView" destination="YHa-GE-lsD" id="3t6-tV-paG"/>
                         <outlet property="testBarcodesButton" destination="gnH-2v-Jh2" id="nDv-3T-pMN"/>
                     </connections>
                 </viewController>
@@ -265,6 +280,7 @@ Search by scanning a barcode</string>
         <image name="barcode_scan" width="24" height="24"/>
         <image name="cancel" width="41" height="41"/>
         <image name="flashOff" width="41" height="41"/>
+        <image name="flashOn" width="41" height="41"/>
         <image name="info" width="30" height="27"/>
         <image name="search" width="30" height="30"/>
     </resources>

@@ -293,7 +293,7 @@
                         <viewLayoutGuide key="safeArea" id="qdN-fG-EvY"/>
                     </view>
                     <navigationItem key="navigationItem" title="Browse" id="8Rd-VA-m7j">
-                        <barButtonItem key="rightBarButtonItem" image="filter" style="plain" id="SV2-Rb-SQT">
+                        <barButtonItem key="rightBarButtonItem" image="filter" id="SV2-Rb-SQT">
                             <connections>
                                 <action selector="changeFilters:" destination="MRb-SQ-ur7" id="x68-le-6ag"/>
                             </connections>
@@ -1324,7 +1324,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aMK-nj-6R3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5680.8000000000002" y="-656.22188905547227"/>
+            <point key="canvasLocation" x="5373" y="-657"/>
         </scene>
     </scenes>
     <resources>

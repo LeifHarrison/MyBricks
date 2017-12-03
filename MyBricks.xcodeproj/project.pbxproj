@@ -59,6 +59,7 @@
 		29CCD8EE1F993E12009A39CF /* SetDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29CCD8ED1F993E12009A39CF /* SetDetailViewController.swift */; };
 		29DFEA141FA29BF500AB0AE8 /* SetCollectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29DFEA121FA29BF500AB0AE8 /* SetCollectionTableViewCell.swift */; };
 		29E86FDB1F31293900A67179 /* ThemeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E86FD91F31293900A67179 /* ThemeTableViewCell.swift */; };
+		29F60F5B1FD3769E00DF2E48 /* PreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F60F5A1FD3769E00DF2E48 /* PreviewView.swift */; };
 		29FCC3461FBA14F500079032 /* SetDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FCC3451FBA14F500079032 /* SetDetail.swift */; };
 		71EA93350D446E8447D819DE /* Pods_MyBricks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C7DD5EA6F08ABC5549DF63C /* Pods_MyBricks.framework */; };
 /* End PBXBuildFile section */
@@ -154,6 +155,7 @@
 		29CCD8ED1F993E12009A39CF /* SetDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetDetailViewController.swift; sourceTree = "<group>"; };
 		29DFEA121FA29BF500AB0AE8 /* SetCollectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetCollectionTableViewCell.swift; sourceTree = "<group>"; };
 		29E86FD91F31293900A67179 /* ThemeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeTableViewCell.swift; sourceTree = "<group>"; };
+		29F60F5A1FD3769E00DF2E48 /* PreviewView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreviewView.swift; sourceTree = "<group>"; };
 		29FCC3451FBA14F500079032 /* SetDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetDetail.swift; sourceTree = "<group>"; };
 		593F839198E1796EC36B980B /* Pods-MyBricks.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyBricks.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MyBricks/Pods-MyBricks.debug.xcconfig"; sourceTree = "<group>"; };
 		8C7DD5EA6F08ABC5549DF63C /* Pods_MyBricks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyBricks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -379,6 +381,7 @@
 		29E86FD61F3128E800A67179 /* Tab Search */ = {
 			isa = PBXGroup;
 			children = (
+				29F60F5C1FD376A200DF2E48 /* Views */,
 				298FC8301FBA45940094D6DF /* BarcodeScannerViewController.swift */,
 				2921AD8B1FAF6EE000180268 /* Search.storyboard */,
 				295ADFC01F16AFFD002E6802 /* SearchViewController.swift */,
@@ -401,6 +404,14 @@
 				29E86FD91F31293900A67179 /* ThemeTableViewCell.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		29F60F5C1FD376A200DF2E48 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				29F60F5A1FD3769E00DF2E48 /* PreviewView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		FF63C2F8FBB7E309CDB9D36A /* Pods */ = {
@@ -633,6 +644,7 @@
 				29C111A51FC48988007CBDB4 /* ReviewDetailAnimator.swift in Sources */,
 				2949A9531FBFDAED00676D59 /* SetReview.swift in Sources */,
 				29365B771F8EBF2A00F6730C /* NewsViewController.swift in Sources */,
+				29F60F5B1FD3769E00DF2E48 /* PreviewView.swift in Sources */,
 				29E86FDB1F31293900A67179 /* ThemeTableViewCell.swift in Sources */,
 				29C111A11FC3F0F6007CBDB4 /* UIView+Extensions.swift in Sources */,
 				294F187A1FB4EDC20026342F /* GradientView.swift in Sources */,
@@ -842,7 +854,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/MyBricks/Support/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -882,7 +894,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/MyBricks/Support/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",

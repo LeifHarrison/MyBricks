@@ -37,50 +37,44 @@ extension UIViewController {
 
     func evaluateBiometricAuthentication(credential: URLCredential, completion: @escaping ((Bool)->Void)) {
         let myContext = LAContext()
-        let myLocalizedReasonString = "Login to your Brickset account"
 
         var authError: NSError?
-        if #available(iOS 8.0, macOS 10.12.1, *) {
-            if myContext.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &authError) {
-                myContext.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: myLocalizedReasonString) { success, evaluateError in
-                    if success {
-                        // User authenticated successfully, take appropriate action
-                        print("Biometric authentication success!")
+        if myContext.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &authError) {
+            let myLocalizedReasonString = NSLocalizedString("Login to your Brickset account", comment: "")
+            myContext.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: myLocalizedReasonString) { success, evaluateError in
+                if success {
+                    // User authenticated successfully, take appropriate action
+                    print("Biometric authentication success!")
+                    DispatchQueue.main.async {
+                        self.performLogin(credential: credential, completion: completion)
+                    }
+                }
+                else if let error = evaluateError as? LAError {
+                    // User did not authenticate successfully, look at error and take appropriate action
+                    print("Biometric authentication error: \(String(describing: evaluateError))")
+                    if error.code == LAError.userFallback {
                         DispatchQueue.main.async {
-                            self.performLogin(credential: credential, completion: completion)
+                            self.showLoginView()
                         }
                     }
-                    else if let error = evaluateError as? LAError {
-                        // User did not authenticate successfully, look at error and take appropriate action
-                        print("Biometric authentication error: \(String(describing: evaluateError))")
-                        if error.code == LAError.userFallback {
-                            DispatchQueue.main.async {
-                                self.showLoginView()
-                            }
+                    else if error.code == LAError.userCancel {
+                        DispatchQueue.main.async {
+                            completion(false)
                         }
-                        else if error.code == LAError.userCancel {
-                            DispatchQueue.main.async {
-                                completion(false)
-                            }
-                            return
-                        }
-                        else {
-                            DispatchQueue.main.async {
-                                self.displayLocalAuthenticationError(error: error)
-                            }
+                        return
+                    }
+                    else {
+                        DispatchQueue.main.async {
+                            self.showAlertWith(title: "Authentication Failed", message: self.evaluateAuthenticationPolicyMessage(forErrorCode: error.errorCode))
+                            self.displayLocalAuthenticationError(error: error)
                         }
                     }
                 }
             }
-            else if let error = authError as? LAError {
-                // Could not evaluate policy; look at authError and present an appropriate message to user
-                print("Biometric authentication error: \(String(describing: error))")
-                showLoginView()
-            }
         }
-        else {
-            // Fallback on earlier versions
-            print("Biometric authentication not supported.")
+        else if let error = authError as? LAError {
+            // Could not evaluate policy; look at authError and present an appropriate message to user
+            print("Biometric authentication error: \(String(describing: error))")
             showLoginView()
         }
     }
@@ -112,30 +106,65 @@ extension UIViewController {
 
     }
 
-    func displayLocalAuthenticationError(error:LAError) {
+    func evaluatePolicyFailErrorMessage(forErrorCode errorCode: Int) -> String {
         var message = ""
-        switch error.code {
-        case LAError.authenticationFailed:
-            message = "Authentication was not successful because the user failed to provide valid credentials."
-            break
-        case LAError.userCancel:
-            message = "Authentication was canceled by the user"
-            break
-        case LAError.userFallback:
-            message = "Authentication was canceled because the user tapped the fallback button"
-            break
-        case LAError.touchIDNotEnrolled:
-            message = "Authentication could not start because Touch ID has no enrolled fingers."
-        case LAError.passcodeNotSet:
-            message = "Passcode is not set on the device."
-            break
-        case LAError.systemCancel:
-            message = "Authentication was canceled by system"
-            break
-        default:
-            message = error.localizedDescription
+        if #available(iOS 11.0, macOS 10.13, *) {
+            switch errorCode {
+                case LAError.biometryNotAvailable.rawValue:
+                    message = "Authentication could not start because the device does not support biometric authentication."
+                case LAError.biometryLockout.rawValue:
+                    message = "Authentication could not continue because the user has been locked out of biometric authentication, due to failing authentication too many times."
+                case LAError.biometryNotEnrolled.rawValue:
+                    message = "Authentication could not start because the user has not enrolled in biometric authentication."
+                default:
+                    message = "Did not find error code on LAError object"
+            }
         }
+        else {
+            switch errorCode {
+                case LAError.touchIDLockout.rawValue:
+                    message = "Too many failed attempts."
+                case LAError.touchIDNotAvailable.rawValue:
+                    message = "TouchID is not available on the device"
+                case LAError.touchIDNotEnrolled.rawValue:
+                    message = "TouchID is not enrolled on the device"
+                default:
+                    message = "Did not find error code on LAError object"
+            }
+        }
+        
+        return message;
+    }
+    
+    func evaluateAuthenticationPolicyMessage(forErrorCode errorCode: Int) -> String {
+        var message = ""
+        
+        switch errorCode {
+            case LAError.authenticationFailed.rawValue:
+                message = "The user failed to provide valid credentials"
+            case LAError.appCancel.rawValue:
+                message = "Authentication was cancelled by application"
+            case LAError.invalidContext.rawValue:
+                message = "The context is invalid"
+            case LAError.notInteractive.rawValue:
+                message = "Not interactive"
+            case LAError.passcodeNotSet.rawValue:
+                message = "Passcode is not set on the device"
+            case LAError.systemCancel.rawValue:
+                message = "Authentication was cancelled by the system"
+            case LAError.userCancel.rawValue:
+                message = "The user did cancel"
+            case LAError.userFallback.rawValue:
+                message = "The user chose to use the fallback"
+            default:
+                message = evaluatePolicyFailErrorMessage(forErrorCode: errorCode)
+        }
+        
+        return message
+    }
 
+    func displayLocalAuthenticationError(error:LAError) {
+        let message = evaluateAuthenticationPolicyMessage(forErrorCode: error.errorCode)
         self.showAlertWith(title: "Authentication Failed", message: message)
     }
 

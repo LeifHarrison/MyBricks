@@ -250,47 +250,40 @@ class ProfileViewController: UIViewController {
         let myLocalizedReasonString = "Login to your Brickset account"
 
         var authError: NSError?
-        if #available(iOS 8.0, macOS 10.12.1, *) {
-            if myContext.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &authError) {
-                myContext.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: myLocalizedReasonString) { success, evaluateError in
-                    if success {
-                        // User authenticated successfully, take appropriate action
-                        print("Biometric authentication success!")
-                        DispatchQueue.main.async {
-                            self.performLogin(credential: credential)
-                        }
-                    }
-                    else if let error = evaluateError as? LAError {
-                        // User did not authenticate successfully, look at error and take appropriate action
-                        print("Biometric authentication error: \(String(describing: evaluateError))")
-                        if error.code == LAError.userFallback {
-                            DispatchQueue.main.async {
-                                self.performSegue(withIdentifier: "showLoginView", sender: self)
-                            }
-                        }
-                        else if error.code == LAError.userCancel {
-                            return
-                        }
-                        else {
-                            DispatchQueue.main.async {
-                                self.displayLocalAuthenticationError(error: error)
-                            }
-                        }
+        if myContext.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &authError) {
+            myContext.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: myLocalizedReasonString) { success, evaluateError in
+                if success {
+                    // User authenticated successfully, take appropriate action
+                    print("Biometric authentication success!")
+                    DispatchQueue.main.async {
+                        self.performLogin(credential: credential)
                     }
                 }
-            }
-            else {
-                // Could not evaluate policy; look at authError and present an appropriate message to user
-                print("Biometric authentication error: \(String(describing: authError))")
-                DispatchQueue.main.async {
-                    self.performSegue(withIdentifier: "showLoginView", sender: self)
+                else if let error = evaluateError as? LAError {
+                    // User did not authenticate successfully, look at error and take appropriate action
+                    print("Biometric authentication error: \(String(describing: evaluateError))")
+                    if error.code == LAError.userFallback {
+                        DispatchQueue.main.async {
+                            self.performSegue(withIdentifier: "showLoginView", sender: self)
+                        }
+                    }
+                    else if error.code == LAError.userCancel {
+                        return
+                    }
+                    else {
+                        DispatchQueue.main.async {
+                            self.displayLocalAuthenticationError(error: error)
+                        }
+                    }
                 }
             }
         }
         else {
-            // Fallback on earlier versions
-            print("Biometric authentication not supported.")
-            performSegue(withIdentifier: "showLoginView", sender: self)
+            // Could not evaluate policy; look at authError and present an appropriate message to user
+            print("Biometric authentication error: \(String(describing: authError))")
+            DispatchQueue.main.async {
+                self.performSegue(withIdentifier: "showLoginView", sender: self)
+            }
         }
     }
 
