@@ -11,11 +11,16 @@
 		291AC5EF1FAF6FB0000DC9DD /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2921AD8B1FAF6EE000180268 /* Search.storyboard */; };
 		291AC5F41FB103E4000DC9DD /* MySetsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 291AC5F31FB103E4000DC9DD /* MySetsHeaderView.swift */; };
 		2921AD891FAF6C4000180268 /* News.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2921AD881FAF6C3800180268 /* News.storyboard */; };
+		2928611D1FD50D24005F15D8 /* SearchHistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2928611C1FD50D24005F15D8 /* SearchHistoryTableViewCell.swift */; };
 		292F4F571F193092006D5F5B /* BricksetServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292F4F561F193092006D5F5B /* BricksetServices.swift */; };
 		29365B751F8EBF1C00F6730C /* MySetsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29365B741F8EBF1C00F6730C /* MySetsViewController.swift */; };
 		29365B771F8EBF2A00F6730C /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29365B761F8EBF2A00F6730C /* NewsViewController.swift */; };
 		29365B791F8EBF3B00F6730C /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29365B781F8EBF3B00F6730C /* ProfileViewController.swift */; };
 		29365B7C1F8EDAA500F6730C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29365B7B1F8EDAA500F6730C /* LoginViewController.swift */; };
+		293C9A6E1FD495C70058DA59 /* MyBricks.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 293C9A6C1FD495C70058DA59 /* MyBricks.xcdatamodeld */; };
+		293C9A701FD496BB0058DA59 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 293C9A6F1FD496BB0058DA59 /* DataManager.swift */; };
+		2940FD821FD4EAF400F860F3 /* SearchHistoryItem+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2940FD801FD4EAF400F860F3 /* SearchHistoryItem+CoreDataProperties.swift */; };
+		2940FD831FD4EAF400F860F3 /* SearchHistoryItem+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2940FD811FD4EAF400F860F3 /* SearchHistoryItem+CoreDataClass.swift */; };
 		2945A1FD1F9FDB5300827BA7 /* SetDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2945A1FB1F9FDB5300827BA7 /* SetDetailTableViewCell.swift */; };
 		2949A94D1FBFBEB500676D59 /* ReviewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2949A94C1FBFBEB500676D59 /* ReviewsViewController.swift */; };
 		2949A94F1FBFBEC800676D59 /* InstructionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2949A94E1FBFBEC800676D59 /* InstructionsViewController.swift */; };
@@ -99,12 +104,17 @@
 		2921AD881FAF6C3800180268 /* News.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = News.storyboard; sourceTree = "<group>"; };
 		2921AD8B1FAF6EE000180268 /* Search.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Search.storyboard; sourceTree = "<group>"; };
 		2921AD8D1FAF6EF200180268 /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
+		2928611C1FD50D24005F15D8 /* SearchHistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHistoryTableViewCell.swift; sourceTree = "<group>"; };
 		292F4F561F193092006D5F5B /* BricksetServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BricksetServices.swift; sourceTree = "<group>"; };
 		29365B741F8EBF1C00F6730C /* MySetsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySetsViewController.swift; sourceTree = "<group>"; };
 		29365B761F8EBF2A00F6730C /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
 		29365B781F8EBF3B00F6730C /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		29365B7B1F8EDAA500F6730C /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		29365B7D1F8EDAEC00F6730C /* MyBricks.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MyBricks.entitlements; sourceTree = "<group>"; };
+		293C9A6D1FD495C70058DA59 /* MyBricks.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MyBricks.xcdatamodel; sourceTree = "<group>"; };
+		293C9A6F1FD496BB0058DA59 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		2940FD801FD4EAF400F860F3 /* SearchHistoryItem+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "SearchHistoryItem+CoreDataProperties.swift"; path = "MyBricks/CoreData/Entities/SearchHistoryItem+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
+		2940FD811FD4EAF400F860F3 /* SearchHistoryItem+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "SearchHistoryItem+CoreDataClass.swift"; path = "MyBricks/CoreData/Entities/SearchHistoryItem+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
 		2945A1FB1F9FDB5300827BA7 /* SetDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetDetailTableViewCell.swift; sourceTree = "<group>"; };
 		2949A94C1FBFBEB500676D59 /* ReviewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsViewController.swift; sourceTree = "<group>"; };
 		2949A94E1FBFBEC800676D59 /* InstructionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionsViewController.swift; sourceTree = "<group>"; };
@@ -190,6 +200,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		290F179D1FD8D37E0002C70B /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				290F179E1FD8D3880002C70B /* Views */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		290F179E1FD8D3880002C70B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				294F18791FB4EDC20026342F /* GradientView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		2928611B1FD50D0A005F15D8 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				2928611C1FD50D24005F15D8 /* SearchHistoryTableViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		292F4F541F192CA2006D5F5B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -241,6 +275,25 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		293C9A6B1FD495A00058DA59 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				2940FD7F1FD4EADF00F860F3 /* Entities */,
+				293C9A6C1FD495C70058DA59 /* MyBricks.xcdatamodeld */,
+				293C9A6F1FD496BB0058DA59 /* DataManager.swift */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		2940FD7F1FD4EADF00F860F3 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				2940FD811FD4EAF400F860F3 /* SearchHistoryItem+CoreDataClass.swift */,
+				2940FD801FD4EAF400F860F3 /* SearchHistoryItem+CoreDataProperties.swift */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
 		294F187B1FB5185A0026342F /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -278,6 +331,9 @@
 		295ADFBB1F16AFFC002E6802 /* MyBricks */ = {
 			isa = PBXGroup;
 			children = (
+				290F179D1FD8D37E0002C70B /* Common */,
+				295ADFBC1F16AFFC002E6802 /* AppDelegate.swift */,
+				293C9A6B1FD495A00058DA59 /* CoreData */,
 				294F187B1FB5185A0026342F /* Controllers */,
 				29A523361F310243005F2145 /* Extensions */,
 				297476E21F1D351B00FC354B /* Model */,
@@ -352,8 +408,6 @@
 		29C8525C1F9163B100C0217E /* Support */ = {
 			isa = PBXGroup;
 			children = (
-				295ADFBC1F16AFFC002E6802 /* AppDelegate.swift */,
-				294F18791FB4EDC20026342F /* GradientView.swift */,
 				295ADFCA1F16AFFD002E6802 /* Info.plist */,
 				29365B7D1F8EDAEC00F6730C /* MyBricks.entitlements */,
 				29AF63FA1FB66445001B14AD /* README.md */,
@@ -368,12 +422,12 @@
 				294F187C1FB519A60026342F /* Browse.storyboard */,
 				29CA94A01F8D508A000F1DE3 /* BrowseSetsViewController.swift */,
 				295ADFBE1F16AFFD002E6802 /* BrowseThemesViewController.swift */,
-				29CCD8ED1F993E12009A39CF /* SetDetailViewController.swift */,
-				2949A94C1FBFBEB500676D59 /* ReviewsViewController.swift */,
 				2949A94E1FBFBEC800676D59 /* InstructionsViewController.swift */,
 				2949A9501FBFBEE000676D59 /* PartsListViewController.swift */,
-				29C111A21FC4893E007CBDB4 /* ReviewDetailViewController.swift */,
 				29C111A41FC48988007CBDB4 /* ReviewDetailAnimator.swift */,
+				29C111A21FC4893E007CBDB4 /* ReviewDetailViewController.swift */,
+				2949A94C1FBFBEB500676D59 /* ReviewsViewController.swift */,
+				29CCD8ED1F993E12009A39CF /* SetDetailViewController.swift */,
 			);
 			path = "Tab Browse";
 			sourceTree = "<group>";
@@ -381,6 +435,7 @@
 		29E86FD61F3128E800A67179 /* Tab Search */ = {
 			isa = PBXGroup;
 			children = (
+				2928611B1FD50D0A005F15D8 /* Cells */,
 				29F60F5C1FD376A200DF2E48 /* Views */,
 				298FC8301FBA45940094D6DF /* BarcodeScannerViewController.swift */,
 				2921AD8B1FAF6EE000180268 /* Search.storyboard */,
@@ -650,9 +705,11 @@
 				294F187A1FB4EDC20026342F /* GradientView.swift in Sources */,
 				298FC8311FBA45940094D6DF /* BarcodeScannerViewController.swift in Sources */,
 				295ADFC11F16AFFD002E6802 /* SearchViewController.swift in Sources */,
+				2940FD821FD4EAF400F860F3 /* SearchHistoryItem+CoreDataProperties.swift in Sources */,
 				29C111A91FCA411B007CBDB4 /* InstructionsTableViewCell.swift in Sources */,
 				2949A94F1FBFBEC800676D59 /* InstructionsViewController.swift in Sources */,
 				2945A1FD1F9FDB5300827BA7 /* SetDetailTableViewCell.swift in Sources */,
+				293C9A701FD496BB0058DA59 /* DataManager.swift in Sources */,
 				29365B751F8EBF1C00F6730C /* MySetsViewController.swift in Sources */,
 				297476EE1F1D3DC600FC354B /* SetTheme.swift in Sources */,
 				2973B5781F96834D002CD0DA /* UserPofile.swift in Sources */,
@@ -662,6 +719,8 @@
 				297E119F1F9563F500AAE8CB /* UserCollectionTotals.swift in Sources */,
 				296EB6E21FBF5E5700D4D3C6 /* SetPartsTableViewCell.swift in Sources */,
 				296EB6E01FBF5E4500D4D3C6 /* SetReviewsTableViewCell.swift in Sources */,
+				293C9A6E1FD495C70058DA59 /* MyBricks.xcdatamodeld in Sources */,
+				2928611D1FD50D24005F15D8 /* SearchHistoryTableViewCell.swift in Sources */,
 				291AC5F41FB103E4000DC9DD /* MySetsHeaderView.swift in Sources */,
 				295ADFBD1F16AFFC002E6802 /* AppDelegate.swift in Sources */,
 				29CCD8EE1F993E12009A39CF /* SetDetailViewController.swift in Sources */,
@@ -676,6 +735,7 @@
 				296460A11FA92AA2004850F8 /* NewsItemViewController.swift in Sources */,
 				29FCC3461FBA14F500079032 /* SetDetail.swift in Sources */,
 				296EB6DE1FBF5E3600D4D3C6 /* SetImageTableViewCell.swift in Sources */,
+				2940FD831FD4EAF400F860F3 /* SearchHistoryItem+CoreDataClass.swift in Sources */,
 				29C111A31FC4893E007CBDB4 /* ReviewDetailViewController.swift in Sources */,
 				2949A9511FBFBEE000676D59 /* PartsListViewController.swift in Sources */,
 				296EB6E61FBFAA6000D4D3C6 /* Locale+Extensions.swift in Sources */,
@@ -1023,6 +1083,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		293C9A6C1FD495C70058DA59 /* MyBricks.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				293C9A6D1FD495C70058DA59 /* MyBricks.xcdatamodel */,
+			);
+			currentVersion = 293C9A6D1FD495C70058DA59 /* MyBricks.xcdatamodel */;
+			path = MyBricks.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 295ADFB11F16AFFC002E6802 /* Project object */;
 }
