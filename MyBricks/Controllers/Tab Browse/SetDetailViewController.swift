@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 enum TableSection: Int {
     case image, detail, reviews, instructions, parts, collection, description, barcodes
@@ -19,9 +20,11 @@ class SetDetailViewController: UIViewController {
 
     var sections: [TableSection] = [ .image, .detail, .parts ]
 
-    var currentSet : Set?
-    var setDetail : SetDetail?
-    var currentSetImage : UIImage?
+    var currentSet: Set?
+    var setDetail: SetDetail?
+    var currentSetImage: UIImage?
+    
+    var setDetailRequest: DataRequest? = nil
 
     //--------------------------------------------------------------------------
     // MARK: - View Lifecycle
@@ -43,41 +46,55 @@ class SetDetailViewController: UIViewController {
 
         title = currentSet?.fullSetNumber
 
+        sections = [ .image, .detail, .parts ]
         if let reviewCount = currentSet?.reviewCount, reviewCount > 0 {
             sections.append(.reviews)
         }
         if let instructionsCount = currentSet?.instructionsCount, instructionsCount > 0 {
             sections.append(.instructions)
         }
-
         if BricksetServices.isLoggedIn() {
             sections.append(.collection)
+        }
+        if setDetail != nil {
+            sections.append(.description)
         }
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-
-        if let set = currentSet, let setID = set.setID {
-            BricksetServices.shared.getSet(setID: setID, completion: { result in
-                if result.isSuccess {
-                    //print("Result \(String(describing: result.value))")
-                    self.setDetail = result.value
-                    self.sections.append(.description)
-                    if let index = self.sections.index(of: .description) {
-                        self.tableView.insertSections([index], with: .fade)
-                        //self.tableView.reloadSections([index], with: .fade)
-                    }
-                }
-            })
+        if setDetail == nil {
+            fetchSetDetail()
         }
-
     }
 
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        if let request = self.setDetailRequest {
+            request.cancel()
+        }
+    }
+    
     //--------------------------------------------------------------------------
     // MARK: - Private
     //--------------------------------------------------------------------------
 
+    private func fetchSetDetail() {
+        if let set = currentSet, let setID = set.setID {
+            setDetailRequest = BricksetServices.shared.getSet(setID: setID, completion: { [weak self] result in
+                self?.setDetailRequest = nil
+                if result.isSuccess, let detail = result.value {
+                    self?.setDetail = detail
+                    if let setDescription = detail.setDescription, setDescription.count > 0 {
+                        self?.sections.append(.description)
+                        if let index = self?.sections.index(of: .description) {
+                            self?.tableView.insertSections([index], with: .fade)
+                        }
+                    }
+                }
+            })
+        }
+    }
 }
 
 //==============================================================================

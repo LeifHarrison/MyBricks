@@ -240,7 +240,7 @@ class BricksetServices {
         request.responseXMLDocument(completionHandler: requestCompletion)
     }
 
-    func getSet(setID: String, completion: @escaping (Result<SetDetail>) -> Void) {
+    func getSet(setID: String, completion: @escaping (Result<SetDetail>) -> Void) -> DataRequest {
         let url = baseURL + "getSet"
 
         var parameters = userParameters()
@@ -275,6 +275,7 @@ class BricksetServices {
             }
         }
         request.responseXMLDocument(completionHandler: requestCompletion)
+        return request
     }
 
     func getReviews(setID: String, completion: @escaping (Result<[SetReview]>) -> Void) {

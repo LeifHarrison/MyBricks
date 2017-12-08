@@ -51,7 +51,7 @@ extension SetDetail {
     static let authorAttributes = [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 16, weight: .bold), NSAttributedStringKey.foregroundColor: UIColor.blue]
     
     func formattedDescription() -> NSAttributedString? {
-        if let string = self.description {
+        if let string = self.setDescription {
             if let data = string.data(using: String.Encoding.utf8, allowLossyConversion: true) {
                 let options: [NSAttributedString.DocumentReadingOptionKey:Any] = [
                     .documentType:NSAttributedString.DocumentType.html,

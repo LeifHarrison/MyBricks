@@ -37,6 +37,8 @@ Mobile (iOS) application for interacting with the BrickSet LEGO database.
 
 - [x] Experiment with alternate (more compact) layout for Set Detail view
 - [x] Implement display of set description in Set Detail view
+- [x] Implement UPC/EAN scanning support
+- [x] Implement search history
 - [ ] Implement owned/wanted updates on Set Detail view
 - [ ] Implement filtering on Sets List view
 - [ ] Implement filtering on My Sets view

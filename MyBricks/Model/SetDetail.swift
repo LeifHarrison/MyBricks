@@ -12,14 +12,14 @@ import Fuzi
 public struct SetDetail {
 
     var setID: String?
-    var description: String?
+    var setDescription: String?
     var lastUpdated: Date?
 
     init?(element: XMLElement) {
         // XML for this is essentially identical to Set, but we're only really
         // interested in the description
         setID = element.firstChild(tag: "setID")?.stringValue
-        description = element.firstChild(tag: "description")?.stringValue
+        setDescription = element.firstChild(tag: "description")?.stringValue
     }
 
 }

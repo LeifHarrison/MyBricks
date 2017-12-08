@@ -262,12 +262,12 @@ class ProfileViewController: UIViewController {
                 else if let error = evaluateError as? LAError {
                     // User did not authenticate successfully, look at error and take appropriate action
                     print("Biometric authentication error: \(String(describing: evaluateError))")
-                    if error.code == LAError.userFallback {
+                    if error.code.rawValue == kLAErrorUserFallback {
                         DispatchQueue.main.async {
                             self.performSegue(withIdentifier: "showLoginView", sender: self)
                         }
                     }
-                    else if error.code == LAError.userCancel {
+                    else if error.code.rawValue == kLAErrorUserCancel {
                         return
                     }
                     else {
