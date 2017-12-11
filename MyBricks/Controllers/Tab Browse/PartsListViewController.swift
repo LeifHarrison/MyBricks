@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class PartsListViewController: UIViewController {
 
@@ -14,6 +15,7 @@ class PartsListViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
 
     var currentSet : Set?
+    var elements : [Element] = []
 
     //--------------------------------------------------------------------------
     // MARK: - View Lifecycle
@@ -24,7 +26,9 @@ class PartsListViewController: UIViewController {
         addGradientBackground()
 
         tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.sectionIndexBackgroundColor = UIColor.clear
+        tableView.estimatedRowHeight = UITableViewAutomaticDimension
+        tableView.separatorColor = UIColor(white: 0.3, alpha: 0.8)
+        tableView.separatorInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
         tableView.tableFooterView = UIView()
     }
 
@@ -35,12 +39,25 @@ class PartsListViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-//        if let set = currentSet, let setID = set.setID {
-//            BricksetServices.shared.getSet(setID: setID, completion: { result in
-//                self.detailSet = result.value
-//            })
-//        }
-
+        if let set = currentSet {
+            let setNumber = set.fullSetNumber
+            self.activityIndicator?.startAnimating()
+            let completion: (Result<GetPartsResponse>) -> Void = { result in
+                self.activityIndicator?.stopAnimating()
+                //print("Result: \(result)")
+                if result.isSuccess {
+                    if let results = result.value?.results {
+                        self.elements = results
+                        print("Count: \(String(describing: self.elements.count))")
+                        self.tableView.reloadData()
+                    }
+                }
+                else {
+                    // Display alert
+                }
+            }
+            RebrickableServices.shared.getParts(setNumber: setNumber, completion: completion)
+        }
     }
 
     //--------------------------------------------------------------------------
@@ -56,15 +73,23 @@ class PartsListViewController: UIViewController {
 extension PartsListViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 0
+        return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return elements.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         //print("cellForRowAt: \(indexPath)")
+        let element = elements[indexPath.row]
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "PartsListTableViewCell", for: indexPath) as? PartsListTableViewCell {
+            cell.populateWithElement(element)
+            if let urlString = element.part?.imageURL, let url = URL(string: urlString) {
+                cell.partImageView.af_setImage(withURL: url, imageTransition: .crossDissolve(0.3))
+            }
+            return cell
+        }
         return UITableViewCell()
     }
     
