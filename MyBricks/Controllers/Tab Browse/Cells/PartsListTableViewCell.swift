@@ -24,6 +24,7 @@ class PartsListTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         quantityView.layer.cornerRadius = quantityView.bounds.height / 2
+        prepareForReuse()
     }
     
     //--------------------------------------------------------------------------
