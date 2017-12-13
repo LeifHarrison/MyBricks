@@ -39,12 +39,16 @@ Mobile (iOS) application for interacting with the BrickSet LEGO database.
 - [x] Implement display of set description in Set Detail view
 - [x] Implement UPC/EAN scanning support
 - [x] Implement search history
+- [x] Implement support for instructions in Set Detail view
+- [x] Implement support for parts list in Set Detail view
 - [ ] Implement owned/wanted updates on Set Detail view
 - [ ] Implement filtering on Sets List view
 - [ ] Implement filtering on My Sets view
+- [ ] Implement filtering on Parts List view
+- [ ] Add part detail view
+- [ ] Add more detail to price information (new view with prices in all available currencies + current prices from Bricklink)
 - [ ] Implement force touch actions on Set List view
 - [ ] Implement support for additional images in Set Detail view
-- [x] Implement support for instructions in Set Detail view
 - [ ] Implement TouchID support for login
 - [ ] Implement About/Credits views
 - [ ] Refactor Profile view to use table view cells
