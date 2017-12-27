@@ -582,6 +582,9 @@
                                                             <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <state key="normal" image="checkbox"/>
                                                             <state key="selected" image="checkbox_checked"/>
+                                                            <connections>
+                                                                <action selector="toggleSetOwned:" destination="BVf-gI-5hY" eventType="touchUpInside" id="DL9-2Q-kY9"/>
+                                                            </connections>
                                                         </button>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="I own" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f7q-0K-Jn9">
                                                             <rect key="frame" x="32" y="3.5" width="36.5" height="18"/>
@@ -589,7 +592,7 @@
                                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <textField opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" adjustsFontSizeToFit="NO" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="Knm-Ei-AVH">
+                                                        <textField opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="0" textAlignment="center" adjustsFontSizeToFit="NO" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="Knm-Ei-AVH">
                                                             <rect key="frame" x="73.5" y="-0.5" width="40" height="26"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="26" id="Exe-bN-QdD"/>
@@ -597,7 +600,10 @@
                                                             </constraints>
                                                             <nil key="textColor"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                            <textInputTraits key="textInputTraits"/>
+                                                            <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad" returnKeyType="done" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
+                                                            <connections>
+                                                                <outlet property="delegate" destination="BVf-gI-5hY" id="i5u-cK-JMN"/>
+                                                            </connections>
                                                         </textField>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="of this set" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GR5-4h-aBY">
                                                             <rect key="frame" x="118.5" y="3.5" width="216.5" height="18"/>
@@ -632,6 +638,9 @@
                                                             <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <state key="normal" image="checkbox"/>
                                                             <state key="selected" image="checkbox_checked"/>
+                                                            <connections>
+                                                                <action selector="toggleSetWanted:" destination="BVf-gI-5hY" eventType="touchUpInside" id="Z1f-hq-zjG"/>
+                                                            </connections>
                                                         </button>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="I want this set" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gih-cw-cse">
                                                             <rect key="frame" x="32" y="3.5" width="303" height="18"/>
@@ -669,6 +678,9 @@
                                                     <color key="textColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="BVf-gI-5hY" id="5lL-qk-Lz0"/>
+                                                    </connections>
                                                 </textView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="253" horizontalCompressionResistancePriority="752" verticalCompressionResistancePriority="751" text="My Rating" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xod-28-pq3">
                                                     <rect key="frame" x="50" y="86.5" width="67.5" height="17"/>
@@ -696,6 +708,9 @@
                                                 <constraint firstItem="zW2-jX-GPK" firstAttribute="leading" secondItem="Mq3-MR-hjW" secondAttribute="leading" constant="15" id="tzm-ag-VtE"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <constraints>
+                                            <constraint firstItem="Knm-Ei-AVH" firstAttribute="leading" secondItem="BVf-gI-5hY" secondAttribute="leading" constant="93.5" id="sP5-nW-DbL"/>
+                                        </constraints>
                                         <connections>
                                             <outlet property="notesTextView" destination="dMP-qh-aHT" id="vD0-dH-Xeg"/>
                                             <outlet property="ownedCheckboxButton" destination="ydp-gG-gXe" id="ACG-9b-FfQ"/>

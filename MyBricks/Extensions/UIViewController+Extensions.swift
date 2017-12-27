@@ -35,6 +35,16 @@ extension UIViewController {
         }
     }
 
+    func hideKeyboardWhenViewTapped() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
+    
     func evaluateBiometricAuthentication(credential: URLCredential, completion: @escaping ((Bool)->Void)) {
         let myContext = LAContext()
 

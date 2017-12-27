@@ -378,12 +378,7 @@ class BricksetServices {
 
     func getCollectionTotals(completion: @escaping (Result<UserCollectionTotals>) -> Void) {
         let url = baseURL + "getCollectionTotals"
-        var parameters = defaultParameters()
-
-        let keychain = Keychain(service: BricksetServices.serviceName)
-        if let username = UserDefaults.standard.value(forKey: "username") as? String, let userHash = keychain[username] {
-            parameters["userHash"] = userHash
-        }
+        let parameters = userParameters()
 
         let request = Alamofire.request( url, parameters: parameters)
         print("Request: \(request)")
@@ -402,6 +397,114 @@ class BricksetServices {
         request.responseXMLDocument(completionHandler: requestCompletion)
     }
 
+    func setCollectionOwns(setID: String, owned: Bool, completion: @escaping (Result<Bool>) -> Void) {
+        let url = baseURL + "setCollection_owns"
+
+        var parameters = userParameters()
+        parameters["setID"] = setID
+        parameters["owned"] = owned
+
+        let request = Alamofire.request( url, method: .post, parameters: parameters)
+        print("Request: \(request)")
+        
+        let requestCompletion: (DataResponse<XMLDocument>) -> Void = { response in
+            if let error = response.result.error {
+                print("Error: \(error)")
+                completion(Result.failure(error))
+            }
+            else if let document = response.result.value, let result = document.root?.stringValue {
+                if result.contains("OK") {
+                    completion(Result.success(true))
+                }
+                else {
+                    completion(Result.failure(ServiceError.unknownError))
+                }
+            }
+        }
+        request.responseXMLDocument(completionHandler: requestCompletion)
+    }
+    
+    func setCollectionWants(setID: String, wanted: Bool, completion: @escaping (Result<Bool>) -> Void) {
+        let url = baseURL + "setCollection_wants"
+        
+        var parameters = userParameters()
+        parameters["setID"] = setID
+        parameters["wanted"] = wanted
+        
+        let request = Alamofire.request( url, method: .post, parameters: parameters)
+        print("Request: \(request)")
+        
+        let requestCompletion: (DataResponse<XMLDocument>) -> Void = { response in
+            if let error = response.result.error {
+                print("Error: \(error)")
+                completion(Result.failure(error))
+            }
+            else if let document = response.result.value, let result = document.root?.stringValue {
+                if result.contains("OK") {
+                    completion(Result.success(true))
+                }
+                else {
+                    completion(Result.failure(ServiceError.unknownError))
+                }
+            }
+        }
+        request.responseXMLDocument(completionHandler: requestCompletion)
+    }
+    
+    func setCollectionQuantityOwned(setID: String, quantityOwned: Int, completion: @escaping (Result<Bool>) -> Void) {
+        let url = baseURL + "setCollection_qtyOwned"
+        
+        var parameters = userParameters()
+        parameters["setID"] = setID
+        parameters["qtyOwned"] = quantityOwned
+        
+        let request = Alamofire.request( url, method: .post, parameters: parameters)
+        print("Request: \(request)")
+        
+        let requestCompletion: (DataResponse<XMLDocument>) -> Void = { response in
+            if let error = response.result.error {
+                print("Error: \(error)")
+                completion(Result.failure(error))
+            }
+            else if let document = response.result.value, let result = document.root?.stringValue {
+                if result.contains("OK") {
+                    completion(Result.success(true))
+                }
+                else {
+                    completion(Result.failure(ServiceError.unknownError))
+                }
+            }
+        }
+        request.responseXMLDocument(completionHandler: requestCompletion)
+    }
+    
+    func setCollectionUserNotes(setID: String, notes: String, completion: @escaping (Result<Bool>) -> Void) {
+        let url = baseURL + "setCollection_userNotes"
+        
+        var parameters = userParameters()
+        parameters["setID"] = setID
+        parameters["notes"] = notes
+        
+        let request = Alamofire.request( url, method: .post, parameters: parameters)
+        print("Request: \(request)")
+        
+        let requestCompletion: (DataResponse<XMLDocument>) -> Void = { response in
+            if let error = response.result.error {
+                print("Error: \(error)")
+                completion(Result.failure(error))
+            }
+            else if let document = response.result.value, let result = document.root?.stringValue {
+                if result.contains("OK") {
+                    completion(Result.success(true))
+                }
+                else {
+                    completion(Result.failure(ServiceError.unknownError))
+                }
+            }
+        }
+        request.responseXMLDocument(completionHandler: requestCompletion)
+    }
+    
     //--------------------------------------------------------------------------
     // MARK: - RSS Feeds
     //--------------------------------------------------------------------------

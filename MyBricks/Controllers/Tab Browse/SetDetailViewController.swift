@@ -32,8 +32,11 @@ class SetDetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
         addGradientBackground()
 
+        hideKeyboardWhenViewTapped()
+        
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.sectionIndexBackgroundColor = UIColor.clear
         tableView.separatorColor = UIColor(white: 0.3, alpha: 0.8)
@@ -59,6 +62,9 @@ class SetDetailViewController: UIViewController {
         if setDetail != nil {
             sections.append(.description)
         }
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(with:)), name: .UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(with:)), name: .UIKeyboardWillHide, object: nil)
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -70,11 +76,18 @@ class SetDetailViewController: UIViewController {
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        view.endEditing(true)
         if let request = self.setDetailRequest {
             request.cancel()
         }
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        NotificationCenter.default.removeObserver(self, name: .UIKeyboardDidShow, object: nil)
+        NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillHide, object: nil)
+        super.viewDidDisappear(animated)
+    }
+
     //--------------------------------------------------------------------------
     // MARK: - Private
     //--------------------------------------------------------------------------
@@ -95,6 +108,31 @@ class SetDetailViewController: UIViewController {
             })
         }
     }
+    
+    @objc private func keyboardWillShow(with notification: Notification) {
+        guard let userInfo = notification.userInfo as? [String: AnyObject],
+            let keyboardFrame = (userInfo[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue
+            else { return }
+        
+        var contentInset = self.tableView.contentInset
+        contentInset.bottom += keyboardFrame.height
+        
+        self.tableView.contentInset = contentInset
+        self.tableView.scrollIndicatorInsets = contentInset
+
+        if let section = sections.index(of: .collection) {
+            let indexPath = IndexPath(row: 0, section: section)
+            self.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+        }
+    }
+    
+    @objc private func keyboardWillHide(with notification: Notification) {
+        var contentInset = self.tableView.contentInset
+        contentInset.bottom = 0
+        
+        self.tableView.contentInset = contentInset
+        self.tableView.scrollIndicatorInsets = contentInset
+    }
 }
 
 //==============================================================================
@@ -114,7 +152,7 @@ extension SetDetailViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         //print("cellForRowAt: \(indexPath)")
         
-        guard let set = currentSet else {
+        guard var set = currentSet else {
             return UITableViewCell()
         }
 
@@ -173,11 +211,60 @@ extension SetDetailViewController: UITableViewDataSource {
                     cell.ownedCheckboxButton.isSelected = set.owned ?? false
                     cell.wantedCheckboxButton.isSelected = set.wanted ?? false
                     cell.ownedCountField.text = "\(set.quantityOwned ?? 0)"
+                    //cell.yourRatingView.rating = set.youRating
+                    cell.notesTextView.text = set.userNotes
                     
                     cell.yourRatingView.didFinishTouchingCosmos = { rating in
                         print("rating = \(rating)")
                     }
-                    
+                    cell.toggleSetOwned = {
+                        print("toggleSetOwned")
+                        if let setID = set.setID, let owned = set.owned {
+                            BricksetServices.shared.setCollectionOwns(setID: setID, owned: !owned, completion: { result in
+                                if result.isSuccess {
+                                    set.owned = !owned
+                                    set.quantityOwned = !owned ? 1 : nil
+                                    cell.populateWithSet(set)
+                                }
+                            })
+                        }
+                    }
+                    cell.toggleSetWanted = {
+                        print("toggleSetWanted")
+                        if let setID = set.setID, let wanted = set.wanted {
+                            BricksetServices.shared.setCollectionWants(setID: setID, wanted: !wanted, completion: { result in
+                                if result.isSuccess {
+                                    set.wanted = !wanted
+                                    cell.populateWithSet(set)
+                                }
+                            })
+                        }
+                    }
+                    cell.updateQuantityOwned = { newQuantity in
+                        print("updateQuantityOwned")
+                        if let setID = set.setID {
+                            BricksetServices.shared.setCollectionQuantityOwned(setID: setID, quantityOwned: newQuantity, completion: { result in
+                                if result.isSuccess {
+                                    set.owned = (newQuantity > 0) ? true : false
+                                    set.quantityOwned = newQuantity
+                                    cell.populateWithSet(set)
+                                }
+                            })
+                        }
+                    }
+                    cell.updateUserNotes = { newNotes in
+                        print("updateUserNotes")
+                        if let setID = set.setID {
+                            BricksetServices.shared.setCollectionUserNotes(setID: setID, notes: newNotes, completion: { result in
+                                if result.isSuccess {
+                                    set.userNotes = newNotes
+                                    cell.populateWithSet(set)
+                                }
+                            })
+                        }
+
+                    }
+
                     return cell
                 }
             
