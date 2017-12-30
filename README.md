@@ -11,7 +11,11 @@ Mobile (iOS) application for interacting with the BrickSet LEGO database.
 
 <img src="Screenshots/Browse.png" width="23%"></img>
 <img src="Screenshots/Browse2.png" width="23%"></img>
-<img src="Screenshots/Browse3.png" width="23%"></img>
+<img src="Screenshots/SetDetail.png" width="23%"></img>
+<img src="Screenshots/PartsList.png" width="23%"></img>
+<img src="Screenshots/Reviews.png" width="23%"></img>
+<img src="Screenshots/Instructions1.png" width="23%"></img>
+<img src="Screenshots/Instructions2.png" width="23%"></img>
 <img src="Screenshots/Search.png" width="23%"></img>
 <img src="Screenshots/MySets.png" width="23%"></img>
 <img src="Screenshots/News.png" width="23%"></img>
@@ -41,22 +45,22 @@ Mobile (iOS) application for interacting with the BrickSet LEGO database.
 - [x] Implement search history
 - [x] Implement support for instructions in Set Detail view
 - [x] Implement support for parts list in Set Detail view
-- [ ] Implement owned/wanted updates on Set Detail view
+- [x] Implement owned/wanted updates on Set Detail view
+- [x] View parts list for sets (using Rebrickable API)
 - [ ] Implement filtering on Sets List view
 - [ ] Implement filtering on My Sets view
 - [ ] Implement filtering on Parts List view
 - [ ] Add part detail view
 - [ ] Add more detail to price information (new view with prices in all available currencies + current prices from Bricklink)
-- [ ] Implement force touch actions on Set List view
 - [ ] Implement support for additional images in Set Detail view
 - [ ] Implement TouchID support for login
 - [ ] Implement About/Credits views
 - [ ] Refactor Profile view to use table view cells
+- [ ] Implement force touch actions on Set List view
 
 # Future Enhancements
 
 * Local/offline storage of set data (using Core Data)
-* View parts list for sets (using Rebrickable API?)
 * iPad support, iPad specific layouts
 
 # Credits
