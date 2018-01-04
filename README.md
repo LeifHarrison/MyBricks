@@ -17,6 +17,7 @@ Mobile (iOS) application for interacting with the BrickSet LEGO database.
 <img src="Screenshots/Instructions1.png" width="23%"></img>
 <img src="Screenshots/Instructions2.png" width="23%"></img>
 <img src="Screenshots/Search.png" width="23%"></img>
+<img src="Screenshots/Scan.png" width="23%"></img>
 <img src="Screenshots/MySets.png" width="23%"></img>
 <img src="Screenshots/News.png" width="23%"></img>
 <img src="Screenshots/News2.png" width="23%"></img>

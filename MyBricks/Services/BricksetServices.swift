@@ -83,7 +83,7 @@ class BricksetServices {
                 completion(Result.failure(error))
             }
             else if let document = response.result.value, let result = document.root?.stringValue {
-                print("Result: \(result)")
+                print("checkKey: \(result)")
 
                 if result.contains("ERROR") {
                     let array = result.components(separatedBy: ": ")
@@ -125,7 +125,7 @@ class BricksetServices {
                 completion(Result.failure(error))
             }
             else if let document = response.result.value, let result = document.root?.stringValue {
-                print("Result: \(result)")
+                //print("Result: \(result)")
 
                 if result.contains("ERROR") {
                     let array = result.components(separatedBy: ": ")
@@ -168,7 +168,7 @@ class BricksetServices {
                 completion(Result.failure(error))
             }
             else if let document = response.result.value, let result = document.root?.stringValue {
-                print("Result: \(result)")
+                print("checkUserHash: \(result)")
 
                 if result.contains("ERROR") {
                     let array = result.components(separatedBy: ": ")

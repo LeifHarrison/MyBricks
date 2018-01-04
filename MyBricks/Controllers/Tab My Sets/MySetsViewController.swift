@@ -143,7 +143,7 @@ class MySetsViewController: UIViewController {
         UIView.animate(withDuration: 0.1, animations:fadeOut)
 
         BricksetServices.shared.getSets(owned: (displayMode == .owned), wanted: (displayMode == .wanted), completion: { result in
-            //print("Result: \(result), Value: \(String(describing: result.value))")
+            //print("Result: \(result)")
             self.allSets = result.value ?? []
             self.processSets()
 

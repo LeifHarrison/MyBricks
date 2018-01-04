@@ -17,6 +17,8 @@ class SearchViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var instructionsLabel: UILabel!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var noResultsView: UIView!
+    @IBOutlet weak var tryAgainButton: UIButton!
 
     var searchHistoryItems: [SearchHistoryItem] = []
     
@@ -33,6 +35,8 @@ class SearchViewController: UIViewController {
         tableView.sectionIndexBackgroundColor = UIColor.clear
         tableView.tableFooterView = UIView()
 
+        tryAgainButton.layer.cornerRadius = tryAgainButton.bounds.height / 2
+
         if AVCaptureDevice.default(for: AVMediaType.video) == nil && !UIDevice.isSimulator {
             navigationItem.setRightBarButtonItems([], animated: false)
 
@@ -48,84 +52,149 @@ class SearchViewController: UIViewController {
         }
     }
 
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        let moc = DataManager.shared.persistentContainer.viewContext
-        let historyFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "SearchHistoryItem")
-        historyFetch.sortDescriptors = [NSSortDescriptor(key: #keyPath(SearchHistoryItem.searchDate), ascending: false)]
-
-        do {
-            searchHistoryItems = try moc.fetch(historyFetch) as! [SearchHistoryItem]
-            tableView.reloadData()
-        }
-        catch {
-            fatalError("Failed to fetch search history: \(error)")
-        }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        updateSearchHistory()
+        showInstructions(animated: true)
     }
-
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+        hideNoResultsView(animated: false)
+    }
+    
     //--------------------------------------------------------------------------
     // MARK: - Actions
     //--------------------------------------------------------------------------
 
     @IBAction func showBarcodeScanner(_ sender: AnyObject?) {
         if let controller = storyboard?.instantiateViewController(withIdentifier: "BarcodeScannerViewController") as? BarcodeScannerViewController {
+            hideInstructions(animated: true)
             controller.delegate = self
             present(controller, animated: true, completion: nil)
         }
     }
 
+    @IBAction func tryAgain(_ sender: AnyObject?) {
+        noResultsView.isHidden = false
+
+        if searchHistoryItems.count > 0 {
+            let lastItem = searchHistoryItems[0]
+            if lastItem.searchType == .scan {
+                showBarcodeScanner(self)
+            }
+            else {
+                searchBar.becomeFirstResponder()
+            }
+        }
+        else {
+            searchBar.becomeFirstResponder()
+        }
+
+    }
+    
     //--------------------------------------------------------------------------
     // MARK: - Private
     //--------------------------------------------------------------------------
     
     fileprivate func performSearch(forBarcode code: String) {
+        print("performSearch forBarcode: \(code)")
+        hideInstructions(animated: true)
         activityIndicator?.startAnimating()
         BricksetServices.shared.getSets(query: code, completion: { result in
             self.activityIndicator?.stopAnimating()
             self.saveSearch(withType: .scan, searchTerm: code)
-            if result.isSuccess {
-                if let sets = result.value {
-                    // If we only found a single set, go immediately to set detail
-                    if sets.count == 1 {
-                        self.showDetail(forSet: sets.first!)
-                    }
+            if result.isSuccess, let sets = result.value {
+                if sets.count == 0 {
+                    self.showNoResultsView(animated: true)
                 }
+                else if sets.count == 1 {
+                    // If we only found a single set, go immediately to set detail
+                    self.showDetail(forSet: sets.first!)
+                }
+                else {
+                    // If we found more than one, go to Browse Sets
+                    self.showResults(sets)
+                }
+            }
+            else {
+                self.showNoResultsView(animated: false)
             }
         })
     }
     
     fileprivate func performSearch(forText searchText: String) {
+        print("performSearch forText: \(searchText)")
+        hideInstructions(animated: true)
         activityIndicator?.startAnimating()
         BricksetServices.shared.getSets(query: searchText, completion: { result in
             self.activityIndicator?.stopAnimating()
             self.saveSearch(withType: .search, searchTerm: searchText)
+
             if result.isSuccess, let sets = result.value {
-                if sets.count == 1 {
+                if sets.count == 0 {
+                    self.showNoResultsView(animated: false)
+                }
+                else if sets.count == 1 {
                     // If we only found a single set, go immediately to set detail
                     self.showDetail(forSet: sets.first!)
                 }
-                else if sets.count > 1 {
+                else {
                     // If we found more than one, go to Browse Sets
                     self.showResults(sets)
                 }
-                else {
-                    // Otherwise, show 'No Results' view
-                }
             }
             else {
-                // Show 'No Results' view
+                self.showNoResultsView(animated: false)
             }
         })
     }
     
     fileprivate func saveSearch(withType searchType: SearchType, searchTerm: String) {
+        let container = DataManager.shared.persistentContainer
+        
+        container.performBackgroundTask( { (context) in
+            let request: NSFetchRequest<NSFetchRequestResult> = SearchHistoryItem.fetchRequest()
+            request.predicate = NSPredicate(format: "searchTerm == %@", searchTerm)
+            do {
+                let fetchedItems = try context.fetch(request) as! [SearchHistoryItem]
+                if fetchedItems.count >= 1 {
+                    if let firstItem = fetchedItems.first {
+                        firstItem.searchDate = Date() as NSDate
+                        try context.save()
+                    }
+                }
+                else {
+                    let searchItem = SearchHistoryItem(context: context)
+                    searchItem.searchType = searchType
+                    searchItem.searchTerm = searchTerm
+                    searchItem.searchDate = Date() as NSDate
+                    try context.save()
+                }
+            }
+            catch {
+                fatalError("Failed to fetch search history items: \(error)")
+            }
+            DispatchQueue.main.async {
+                self.updateSearchHistory()
+            }
+        })
+    
+
+    }
+    
+    private func updateSearchHistory() {
         let context = DataManager.shared.persistentContainer.viewContext
-        let searchItem = NSEntityDescription.insertNewObject(forEntityName: "SearchHistoryItem", into: context) as! SearchHistoryItem
-        searchItem.searchType = searchType
-        searchItem.searchTerm = searchTerm
-        searchItem.searchDate = Date() as NSDate
-        DataManager.shared.saveContext()
+        let historyFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "SearchHistoryItem")
+        historyFetch.sortDescriptors = [NSSortDescriptor(key: #keyPath(SearchHistoryItem.searchDate), ascending: false)]
+        
+        do {
+            searchHistoryItems = try context.fetch(historyFetch) as! [SearchHistoryItem]
+            tableView.reloadData()
+        }
+        catch {
+            fatalError("Failed to fetch search history: \(error)")
+        }
     }
     
     fileprivate func showDetail(forSet set: Set) {
@@ -144,6 +213,34 @@ class SearchViewController: UIViewController {
         }
     }
     
+    //--------------------------------------------------------------------------
+    // MARK: - Supplementary Views
+    //--------------------------------------------------------------------------
+
+    fileprivate func showInstructions(animated: Bool) {
+        instructionsLabel.fadeIn()
+    }
+    
+    fileprivate func hideInstructions(animated: Bool) {
+        instructionsLabel.fadeOut()
+    }
+
+    fileprivate func showNoResultsView(animated: Bool) {
+        noResultsView.fadeIn()
+    }
+    
+    fileprivate func hideNoResultsView(animated: Bool) {
+        noResultsView.fadeOut()
+    }
+    
+    fileprivate func showSearchHistory(animated: Bool) {
+        tableView.fadeIn()
+    }
+    
+    fileprivate func hideSearchHistory(animated: Bool) {
+        tableView.fadeOut()
+    }
+    
 }
 
 //==============================================================================
@@ -153,35 +250,13 @@ class SearchViewController: UIViewController {
 extension SearchViewController: UISearchBarDelegate {
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-
-        tableView.alpha = 0.0
-        tableView.isHidden = false
-
-        // Show search history
-        let animations: (() -> Void) = {
-            self.tableView.alpha = 1.0
-            self.instructionsLabel.alpha = 0.0
-        }
-        let completion: ((Bool) -> Void) = { (Bool) -> Void in
-            self.instructionsLabel.isHidden = true
-        }
-        UIView.animate(withDuration: 0.3, animations: animations, completion: completion)
+        hideInstructions(animated: true)
+        hideNoResultsView(animated: true)
+        showSearchHistory(animated: true)
     }
     
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        
-        instructionsLabel.alpha = 0.0
-        instructionsLabel.isHidden = false
-        
-        // Hide search history
-        let animations: (() -> Void) = {
-            self.tableView.alpha = 0.0
-            self.instructionsLabel.alpha = 1.0
-        }
-        let completion: ((Bool) -> Void) = { (Bool) -> Void in
-            self.tableView.isHidden = true
-        }
-        UIView.animate(withDuration: 0.3, animations: animations, completion: completion)
+        hideSearchHistory(animated: true)
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -193,6 +268,7 @@ extension SearchViewController: UISearchBarDelegate {
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
+        showInstructions(animated: true)
     }
 }
 
@@ -247,8 +323,9 @@ extension SearchViewController: UITableViewDelegate {
 extension SearchViewController: BarcodeScannerDelegate {
 
     func barcodeScanner(_ controller: BarcodeScannerViewController, didCaptureCode code: String, type: String) {
-        controller.dismiss(animated: true, completion: nil)
-        performSearch(forBarcode: code)
+        controller.dismiss(animated: true, completion: {
+            self.performSearch(forBarcode: code)
+        })
     }
 
     func barcodeScanner(_ controller: BarcodeScannerViewController, didReceiveError error: Error) {

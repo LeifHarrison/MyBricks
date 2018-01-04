@@ -64,13 +64,11 @@ class BarcodeScannerViewController: UIViewController {
         else {
             // Device doesn't support video capture. Display informational
             // overlay and, on the simulator, a "Test Barcodes" button
-            //noCameraView.isHidden = false
             if UIDevice.isSimulator {
                 testBarcodesButton.isHidden = false
             }
 
             // Hide everything else
-            //previewView.isHidden = true
             instructionView.isHidden = true
         }
     }
@@ -125,6 +123,7 @@ class BarcodeScannerViewController: UIViewController {
         let testItems = [
             [ "name" : "Invalid Code",      "code" : "3732300201",    "type" : "UPCA" ],
             [ "name" : "Not Found",         "code" : "010101010105",  "type" : "UPCA" ],
+            [ "name" : "Mia's Tree House",  "code" : "673419280044",  "type" : "org.gs1.UPC-A" ],
             [ "name" : "Stephanie's House", "code" : "673419265102",  "type" : "org.gs1.UPC-A" ]
         ]
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
@@ -155,7 +154,6 @@ class BarcodeScannerViewController: UIViewController {
         let authorizationStatus = AVCaptureDevice.authorizationStatus(for: AVMediaType.video)
         if authorizationStatus == .authorized {
             setupSession()
-            //status = Status(state: .scanning)
         }
         else if authorizationStatus == .notDetermined {
             let completion = { (granted: Bool) -> Void in
@@ -163,14 +161,9 @@ class BarcodeScannerViewController: UIViewController {
                     if granted {
                         self.setupSession()
                     }
-
-                    //self.status = granted ? Status(state: .scanning) : Status(state: .unauthorized)
                 }
             }
             AVCaptureDevice.requestAccess(for: AVMediaType.video, completionHandler: completion)
-        }
-        else {
-            //status = Status(state: .unauthorized)
         }
     }
 

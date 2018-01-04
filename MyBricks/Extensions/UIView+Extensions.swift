@@ -18,4 +18,27 @@ extension UIView {
         NSLayoutConstraint.activate([top, bottom, leading, trailing])
     }
     
+    func fadeIn(duration: TimeInterval = 0.3) {
+        if isHidden == false, alpha == 1.0 { return }
+        
+        self.alpha = 0.0
+        self.isHidden = false
+        
+        let animations: (() -> Void) = {
+            self.alpha = 1.0
+        }
+        UIView.animate(withDuration: duration, animations: animations, completion: nil)
+    }
+    
+    func fadeOut(duration: TimeInterval = 0.3) {
+        if isHidden { return }
+
+        let animations: (() -> Void) = {
+            self.alpha = 0.0
+        }
+        let completion: ((Bool) -> Void) = { (Bool) -> Void in
+            self.isHidden = true
+        }
+        UIView.animate(withDuration: duration, animations: animations, completion: completion)
+    }
 }

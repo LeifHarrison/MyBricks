@@ -5,6 +5,7 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -122,6 +123,47 @@ Cg
                                 </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tpd-sT-jyn">
+                                <rect key="frame" x="55" y="244" width="265" height="159.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No results found." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vqf-bm-173">
+                                        <rect key="frame" x="0.0" y="0.0" width="265" height="24"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sorry we could not find what you were looking for." textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8W8-ws-T8o">
+                                        <rect key="frame" x="0.0" y="44.5" width="265" height="43"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZTy-JG-MWJ">
+                                        <rect key="frame" x="73" y="127.5" width="119" height="32"/>
+                                        <color key="backgroundColor" name="bricksetLightGreen"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
+                                        <inset key="contentEdgeInsets" minX="15" minY="5" maxX="15" maxY="5"/>
+                                        <state key="normal" title="Try Again?">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="tryAgain:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="hgP-AQ-MMj"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="8W8-ws-T8o" firstAttribute="leading" secondItem="Tpd-sT-jyn" secondAttribute="leading" id="6nT-zs-pFB"/>
+                                    <constraint firstItem="vqf-bm-173" firstAttribute="top" secondItem="Tpd-sT-jyn" secondAttribute="top" id="8UG-D3-hll"/>
+                                    <constraint firstItem="8W8-ws-T8o" firstAttribute="top" secondItem="vqf-bm-173" secondAttribute="bottom" constant="20" id="Eep-6R-v32"/>
+                                    <constraint firstItem="ZTy-JG-MWJ" firstAttribute="top" secondItem="8W8-ws-T8o" secondAttribute="bottom" constant="40" id="GBF-E5-NaD"/>
+                                    <constraint firstItem="ZTy-JG-MWJ" firstAttribute="centerX" secondItem="Tpd-sT-jyn" secondAttribute="centerX" id="caf-17-66I"/>
+                                    <constraint firstAttribute="bottom" secondItem="ZTy-JG-MWJ" secondAttribute="bottom" id="dZp-AO-YO5"/>
+                                    <constraint firstItem="vqf-bm-173" firstAttribute="leading" secondItem="Tpd-sT-jyn" secondAttribute="leading" id="fNJ-JO-agi"/>
+                                    <constraint firstAttribute="trailing" secondItem="vqf-bm-173" secondAttribute="trailing" id="g31-3t-CIc"/>
+                                    <constraint firstAttribute="trailing" secondItem="8W8-ws-T8o" secondAttribute="trailing" id="yrf-yD-6mb"/>
+                                </constraints>
+                            </view>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="qqy-YC-hbi">
                                 <rect key="frame" x="169" y="347" width="37" height="37"/>
                                 <color key="color" red="0.47058823529999999" green="0.47058823529999999" blue="0.47058823529999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -138,8 +180,11 @@ Cg
                             <constraint firstItem="8Mc-QV-cXp" firstAttribute="top" secondItem="O1u-W8-tvY" secondAttribute="top" id="Ft7-JG-GuX"/>
                             <constraint firstItem="qqy-YC-hbi" firstAttribute="centerX" secondItem="O1u-W8-tvY" secondAttribute="centerX" id="QRx-UT-ehs"/>
                             <constraint firstItem="8Mc-QV-cXp" firstAttribute="trailing" secondItem="O1u-W8-tvY" secondAttribute="trailing" constant="1" id="Rn4-xW-Q68"/>
+                            <constraint firstItem="Tpd-sT-jyn" firstAttribute="leading" secondItem="O1u-W8-tvY" secondAttribute="leading" constant="55" id="UBE-c6-foU"/>
+                            <constraint firstItem="O1u-W8-tvY" firstAttribute="trailing" secondItem="Tpd-sT-jyn" secondAttribute="trailing" constant="55" id="VGx-q6-BzT"/>
                             <constraint firstItem="O1u-W8-tvY" firstAttribute="bottom" secondItem="t39-YW-Rlf" secondAttribute="bottom" id="eaM-AJ-mAZ"/>
                             <constraint firstItem="t39-YW-Rlf" firstAttribute="top" secondItem="8Mc-QV-cXp" secondAttribute="bottom" id="giL-Nl-eGz"/>
+                            <constraint firstItem="Tpd-sT-jyn" firstAttribute="top" secondItem="O1u-W8-tvY" secondAttribute="top" constant="180" id="isX-l5-vqU"/>
                             <constraint firstItem="t39-YW-Rlf" firstAttribute="leading" secondItem="O1u-W8-tvY" secondAttribute="leading" id="zFu-3x-YmO"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="O1u-W8-tvY"/>
@@ -155,8 +200,10 @@ Cg
                     <connections>
                         <outlet property="activityIndicator" destination="qqy-YC-hbi" id="vf2-dv-72Z"/>
                         <outlet property="instructionsLabel" destination="k3a-CI-M01" id="7Db-Yt-mTh"/>
+                        <outlet property="noResultsView" destination="Tpd-sT-jyn" id="LUQ-JL-FEE"/>
                         <outlet property="searchBar" destination="8Mc-QV-cXp" id="bSt-fN-SPu"/>
                         <outlet property="tableView" destination="t39-YW-Rlf" id="rsT-LK-Q0C"/>
+                        <outlet property="tryAgainButton" destination="ZTy-JG-MWJ" id="pv2-u2-zWa"/>
                         <segue destination="1ar-8a-lmi" kind="presentation" identifier="showBarcodeScanner" id="Boh-mN-Dam"/>
                     </connections>
                 </viewController>
@@ -317,5 +364,8 @@ Cg
         <image name="flashOn" width="41" height="41"/>
         <image name="info" width="30" height="27"/>
         <image name="search" width="30" height="30"/>
+        <namedColor name="bricksetLightGreen">
+            <color red="0.62745098039215685" green="0.83529411764705885" blue="0.10196078431372549" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>
