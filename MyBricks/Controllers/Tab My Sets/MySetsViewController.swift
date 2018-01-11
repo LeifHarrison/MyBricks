@@ -8,18 +8,20 @@
 
 import UIKit
 
-enum DisplayMode: Int {
-    case owned
-    case wanted
-}
-
-enum GroupingMode: Int {
-    case year
-    case theme
-}
+import Alamofire
 
 class MySetsViewController: UIViewController {
 
+    enum DisplayMode: Int {
+        case owned
+        case wanted
+    }
+    
+    enum GroupingMode: Int {
+        case year
+        case theme
+    }
+    
     @IBOutlet weak var loginView: UIView!
     @IBOutlet weak var instructionLabel: UILabel!
     @IBOutlet weak var loginButton: UIButton!
@@ -27,6 +29,8 @@ class MySetsViewController: UIViewController {
     @IBOutlet weak var headerView: MySetsHeaderView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
+
+    var mySetsRequest: Request? = nil
 
     var allSets: [Set] = []
     var sectionTitles: [String] = []
@@ -56,6 +60,13 @@ class MySetsViewController: UIViewController {
         }
     }
 
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        if let request = self.mySetsRequest {
+            request.cancel()
+        }
+    }
+    
     //--------------------------------------------------------------------------
     // MARK: - Actions
     //--------------------------------------------------------------------------
@@ -136,26 +147,41 @@ class MySetsViewController: UIViewController {
     }
 
     private func updateSets() {
-        activityIndicator?.startAnimating()
+
+        if let request = self.mySetsRequest {
+            request.cancel()
+        }
+        
         let fadeOut = { () -> Void in
             self.tableView.alpha = 0.4
         }
         UIView.animate(withDuration: 0.1, animations:fadeOut)
 
-        BricksetServices.shared.getSets(owned: (displayMode == .owned), wanted: (displayMode == .wanted), completion: { result in
+        activityIndicator?.startAnimating()
+        let request = GetSetsRequest(owned: (displayMode == .owned), wanted: (displayMode == .wanted))
+        self.mySetsRequest = BricksetServices.shared.getSets(request, completion: { result in
             //print("Result: \(result)")
-            self.allSets = result.value ?? []
-            self.processSets()
+            self.activityIndicator?.stopAnimating()
 
-            DispatchQueue.main.async(execute: {
-                self.activityIndicator?.stopAnimating()
+            if result.isSuccess {
+                self.allSets = result.value ?? []
+                self.processSets()
+                
                 self.tableView.reloadData()
                 let fadeIn = { () -> Void in
                     self.tableView.alpha = 1.0
                 }
                 UIView.animate(withDuration: 0.2, animations:fadeIn)
-            })
+            }
+            else {
+                if let error = result.error as? URLError, error.code == .cancelled { return }
+                else if let error = result.error {
+                    print("Error loading sets: \(error)")
+                }
+            }
 
+//            DispatchQueue.main.async(execute: {
+//            })
         })
     }
 

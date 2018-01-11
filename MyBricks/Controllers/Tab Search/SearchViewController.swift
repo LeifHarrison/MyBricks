@@ -8,6 +8,7 @@
 
 import UIKit
 
+import Alamofire
 import AVFoundation
 import CoreData
 
@@ -19,6 +20,8 @@ class SearchViewController: UIViewController {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var noResultsView: UIView!
     @IBOutlet weak var tryAgainButton: UIButton!
+
+    var searchRequest: Request? = nil
 
     var searchHistoryItems: [SearchHistoryItem] = []
     
@@ -61,6 +64,9 @@ class SearchViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(true)
         hideNoResultsView(animated: false)
+        if let request = self.searchRequest {
+            request.cancel()
+        }
     }
     
     //--------------------------------------------------------------------------
@@ -99,38 +105,27 @@ class SearchViewController: UIViewController {
     
     fileprivate func performSearch(forBarcode code: String) {
         print("performSearch forBarcode: \(code)")
-        hideInstructions(animated: true)
-        activityIndicator?.startAnimating()
-        BricksetServices.shared.getSets(query: code, completion: { result in
-            self.activityIndicator?.stopAnimating()
-            self.saveSearch(withType: .scan, searchTerm: code)
-            if result.isSuccess, let sets = result.value {
-                if sets.count == 0 {
-                    self.showNoResultsView(animated: true)
-                }
-                else if sets.count == 1 {
-                    // If we only found a single set, go immediately to set detail
-                    self.showDetail(forSet: sets.first!)
-                }
-                else {
-                    // If we found more than one, go to Browse Sets
-                    self.showResults(sets)
-                }
-            }
-            else {
-                self.showNoResultsView(animated: false)
-            }
-        })
+        performSearch(searchType: .scan, searchTerm: code)
     }
     
     fileprivate func performSearch(forText searchText: String) {
         print("performSearch forText: \(searchText)")
+        performSearch(searchType: .search, searchTerm: searchText)
+    }
+    
+    fileprivate func performSearch(searchType: SearchType, searchTerm: String) {
+        
+        if let request = self.searchRequest {
+            request.cancel()
+        }
+
         hideInstructions(animated: true)
         activityIndicator?.startAnimating()
-        BricksetServices.shared.getSets(query: searchText, completion: { result in
+        let request = GetSetsRequest(query: searchTerm)
+        self.searchRequest = BricksetServices.shared.getSets(request, completion: { result in
             self.activityIndicator?.stopAnimating()
-            self.saveSearch(withType: .search, searchTerm: searchText)
-
+            self.saveSearch(withType: searchType, searchTerm: searchTerm)
+            
             if result.isSuccess, let sets = result.value {
                 if sets.count == 0 {
                     self.showNoResultsView(animated: false)

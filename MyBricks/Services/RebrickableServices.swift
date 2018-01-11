@@ -52,28 +52,12 @@ class RebrickableServices {
                         completion(.success(decodedResponse))
                     }
                     catch {
-                        print("Error trying to convert data to JSON: ")
-                        print(error)
                         completion(.failure(error))
                     }
                 case .failure(let error):
                     print("Error: \(error)")
                     completion(.failure(error))
             }
-
-//            if let data = response.result.value {
-//                if let jsonDict = json as? [ String: AnyObject ] {
-//                    if let results = jsonDict["results"] as? [[String: AnyObject]] {
-//                        for resultElement in results {
-//                            print("result element = \(resultElement)")
-//                        }
-//                    }
-//                }
-//            }
-//            else {
-//                let error = (response.result.value  as? [[String : AnyObject]])
-//                print(error as Any)
-//            }
         }
         request.responseData(completionHandler: requestCompletion)
         return request

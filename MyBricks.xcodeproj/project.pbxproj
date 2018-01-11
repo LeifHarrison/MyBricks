@@ -51,6 +51,7 @@
 		2973F3441FBE173800861125 /* UIDevice+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2973F3431FBE173800861125 /* UIDevice+Extensions.swift */; };
 		297476EE1F1D3DC600FC354B /* SetTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297476ED1F1D3DC600FC354B /* SetTheme.swift */; };
 		297E119F1F9563F500AAE8CB /* UserCollectionTotals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297E119E1F9563F500AAE8CB /* UserCollectionTotals.swift */; };
+		298F10901FFF3BC800CC14E9 /* GetSetsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298F108F1FFF3BC800CC14E9 /* GetSetsRequest.swift */; };
 		298FC8311FBA45940094D6DF /* BarcodeScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298FC8301FBA45940094D6DF /* BarcodeScannerViewController.swift */; };
 		29A523421F310261005F2145 /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A523411F310261005F2145 /* UIViewController+Extensions.swift */; };
 		29AE22CF1FCB9A6500744045 /* SetDescriptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AE22CE1FCB9A6500744045 /* SetDescriptionTableViewCell.swift */; };
@@ -158,6 +159,7 @@
 		2973F3431FBE173800861125 /* UIDevice+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+Extensions.swift"; sourceTree = "<group>"; };
 		297476ED1F1D3DC600FC354B /* SetTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetTheme.swift; sourceTree = "<group>"; };
 		297E119E1F9563F500AAE8CB /* UserCollectionTotals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCollectionTotals.swift; sourceTree = "<group>"; };
+		298F108F1FFF3BC800CC14E9 /* GetSetsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetSetsRequest.swift; sourceTree = "<group>"; };
 		298FC8301FBA45940094D6DF /* BarcodeScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarcodeScannerViewController.swift; sourceTree = "<group>"; };
 		29A523411F310261005F2145 /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
 		29AE22CE1FCB9A6500744045 /* SetDescriptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetDescriptionTableViewCell.swift; sourceTree = "<group>"; };
@@ -439,6 +441,7 @@
 			isa = PBXGroup;
 			children = (
 				29D30CA21FDDD8F60076DB85 /* GetPartsResponse.swift */,
+				298F108F1FFF3BC800CC14E9 /* GetSetsRequest.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -736,6 +739,7 @@
 				298FC8311FBA45940094D6DF /* BarcodeScannerViewController.swift in Sources */,
 				295ADFC11F16AFFD002E6802 /* SearchViewController.swift in Sources */,
 				2940FD821FD4EAF400F860F3 /* SearchHistoryItem+CoreDataProperties.swift in Sources */,
+				298F10901FFF3BC800CC14E9 /* GetSetsRequest.swift in Sources */,
 				29B9514D1FDBCC8B0049147E /* Element.swift in Sources */,
 				29C111A91FCA411B007CBDB4 /* InstructionsTableViewCell.swift in Sources */,
 				2949A94F1FBFBEC800676D59 /* InstructionsViewController.swift in Sources */,

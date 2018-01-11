@@ -7,6 +7,8 @@
 //
 
 import UIKit
+
+import Alamofire
 import AlamofireImage
 
 class BrowseSetsViewController: UIViewController {
@@ -16,6 +18,7 @@ class BrowseSetsViewController: UIViewController {
 
     var theme : String?
     var showUnreleased: Bool = false
+    var browseRequest: Request? = nil
     
     var sectionTitles: [String] = []
     var setsBySection: [String : [Set]] = [:]
@@ -53,15 +56,17 @@ class BrowseSetsViewController: UIViewController {
         super.viewDidAppear(animated)
 
         if allSets.count == 0 {
-            activityIndicator?.startAnimating()
-            BricksetServices.shared.getSets(theme: (theme ?? ""), completion: { result in
-                self.activityIndicator?.stopAnimating()
-                self.allSets = result.value ?? []
-                self.tableView.reloadData()
-            })
+            fetchSets()
         }
     }
 
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        if let request = self.browseRequest {
+            request.cancel()
+        }
+    }
+    
     //--------------------------------------------------------------------------
     // MARK: - Actions
     //--------------------------------------------------------------------------
@@ -74,6 +79,25 @@ class BrowseSetsViewController: UIViewController {
     // MARK: - Private
     //--------------------------------------------------------------------------
 
+    private func fetchSets() {
+        activityIndicator?.startAnimating()
+        let request = GetSetsRequest(theme: (theme ?? ""))
+        self.browseRequest = BricksetServices.shared.getSets(request, completion: { [weak self] result in
+            guard let strongSelf = self else { return }
+            strongSelf.activityIndicator?.stopAnimating()
+            if result.isSuccess {
+                strongSelf.allSets = result.value ?? []
+                strongSelf.tableView.reloadData()
+            }
+            else {
+                if let error = result.error as? URLError, error.code == .cancelled { return }
+                else if let error = result.error {
+                    print("Error loading sets: \(error)")
+                }
+            }
+        })
+    }
+    
     fileprivate func processSets() {
         sectionTitles.removeAll()
         setsBySection.removeAll()

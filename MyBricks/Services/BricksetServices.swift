@@ -79,7 +79,6 @@ class BricksetServices {
 
         let requestCompletion: (DataResponse<XMLDocument>) -> Void = { response in
             if let error = response.result.error {
-                print("Error: \(error)")
                 completion(Result.failure(error))
             }
             else if let document = response.result.value, let result = document.root?.stringValue {
@@ -121,7 +120,6 @@ class BricksetServices {
 
         let requestCompletion: (DataResponse<XMLDocument>) -> Void = { response in
             if let error = response.result.error {
-                print("Error: \(error)")
                 completion(Result.failure(error))
             }
             else if let document = response.result.value, let result = document.root?.stringValue {
@@ -164,7 +162,6 @@ class BricksetServices {
 
         let requestCompletion: (DataResponse<XMLDocument>) -> Void = { response in
             if let error = response.result.error {
-                print("Error: \(error)")
                 completion(Result.failure(error))
             }
             else if let document = response.result.value, let result = document.root?.stringValue {
@@ -198,17 +195,17 @@ class BricksetServices {
     //--------------------------------------------------------------------------
 
     // Retrieve a list of sets. All parameters except apiKey are optional but must be passed as blanks if not used.
-    func getSets(query: String? = "", theme: String? = "", subtheme: String? = "", setNumber: String? = "", owned: Bool = false, wanted: Bool = false, completion: @escaping (Result<[Set]>) -> Void) {
+    @discardableResult func getSets(_ request: GetSetsRequest, completion: @escaping (Result<[Set]>) -> Void) -> Request {
         let url = baseURL + "getSets"
 
         var parameters = userParameters()
-        parameters["query"] = query
-        parameters["theme"] = theme
-        parameters["subtheme"] = subtheme
-        parameters["setNumber"] = setNumber
+        parameters["query"] = request.query
+        parameters["theme"] = request.theme
+        parameters["subtheme"] = request.subtheme
+        parameters["setNumber"] = request.setNumber
         parameters["year"] = ""
-        parameters["owned"] = owned ? "1" : ""
-        parameters["wanted"] = wanted ? "1" : ""
+        parameters["owned"] = request.owned ? "1" : ""
+        parameters["wanted"] = request.wanted ? "1" : ""
         parameters["orderBy"] = "Number"
         parameters["pageSize"] = "1000"
         parameters["pageNumber"] = ""
@@ -219,7 +216,6 @@ class BricksetServices {
 
         let requestCompletion: (DataResponse<XMLDocument>) -> Void = { response in
             if let error = response.result.error {
-                print("Error: \(error)")
                 completion(Result.failure(error))
             }
             else if let document = response.result.value {
@@ -238,6 +234,7 @@ class BricksetServices {
             }
         }
         request.responseXMLDocument(completionHandler: requestCompletion)
+        return request
     }
 
     func getSet(setID: String, completion: @escaping (Result<SetDetail>) -> Void) -> DataRequest {
@@ -251,7 +248,6 @@ class BricksetServices {
 
         let requestCompletion: (DataResponse<XMLDocument>) -> Void = { response in
             if let error = response.result.error {
-                print("Error: \(error)")
                 completion(Result.failure(error))
             }
             else if let document = response.result.value {
@@ -290,7 +286,6 @@ class BricksetServices {
         let requestCompletion: (DataResponse<XMLDocument>) -> Void = { response in
             //print("Document: \(document)")
             if let error = response.result.error {
-                print("Error: \(error)")
                 completion(Result.failure(error))
             }
             else if let document = response.result.value {
@@ -322,7 +317,6 @@ class BricksetServices {
         let requestCompletion: (DataResponse<XMLDocument>) -> Void = { response in
             //print("Document: \(document)")
             if let error = response.result.error {
-                print("Error: \(error)")
                 completion(Result.failure(error))
             }
             else if let document = response.result.value {
@@ -352,7 +346,6 @@ class BricksetServices {
         let requestCompletion: (DataResponse<XMLDocument>) -> Void = { response in
             //print("Document: \(document)")
             if let error = response.result.error {
-                print("Error: \(error)")
                 completion(Result.failure(error))
             }
             else if let document = response.result.value {
@@ -385,7 +378,6 @@ class BricksetServices {
 
         let requestCompletion: (DataResponse<XMLDocument>) -> Void = { response in
             if let error = response.result.error {
-                print("Error: \(error)")
                 completion(Result.failure(error))
             }
             else if let document = response.result.value, let root = document.root {
@@ -409,7 +401,6 @@ class BricksetServices {
         
         let requestCompletion: (DataResponse<XMLDocument>) -> Void = { response in
             if let error = response.result.error {
-                print("Error: \(error)")
                 completion(Result.failure(error))
             }
             else if let document = response.result.value, let result = document.root?.stringValue {
@@ -436,7 +427,6 @@ class BricksetServices {
         
         let requestCompletion: (DataResponse<XMLDocument>) -> Void = { response in
             if let error = response.result.error {
-                print("Error: \(error)")
                 completion(Result.failure(error))
             }
             else if let document = response.result.value, let result = document.root?.stringValue {
@@ -463,7 +453,6 @@ class BricksetServices {
         
         let requestCompletion: (DataResponse<XMLDocument>) -> Void = { response in
             if let error = response.result.error {
-                print("Error: \(error)")
                 completion(Result.failure(error))
             }
             else if let document = response.result.value, let result = document.root?.stringValue {
@@ -490,7 +479,6 @@ class BricksetServices {
         
         let requestCompletion: (DataResponse<XMLDocument>) -> Void = { response in
             if let error = response.result.error {
-                print("Error: \(error)")
                 completion(Result.failure(error))
             }
             else if let document = response.result.value, let result = document.root?.stringValue {
@@ -549,34 +537,26 @@ class BricksetServices {
 // MARK: - DataRequest Extension (XML Parsing)
 //==============================================================================
 
-enum BackendError: Error {
-    case network(error: Error) // Capture any underlying Error from the URLSession API
-    case dataSerialization(error: Error)
-    case jsonSerialization(error: Error)
-    case xmlSerialization(error: Error)
-    case objectSerialization(reason: String)
-}
-
 extension DataRequest {
 
     public static func XMLResponseSerializer() -> DataResponseSerializer<XMLDocument> {
         return DataResponseSerializer { request, response, data, error in
             // Pass through any underlying URLSession error to the .network case.
-            guard error == nil else { return .failure(BackendError.network(error: error!)) }
+            guard error == nil else { return .failure(error!) }
 
             // Use Alamofire's existing data serializer to extract the data, passing the error as nil, as it has
             // already been handled.
             let result = Request.serializeResponseData(response: response, data: data, error: nil)
 
             guard case let .success(validData) = result else {
-                return .failure(BackendError.dataSerialization(error: result.error! as! AFError))
+                return .failure(result.error!)
             }
 
             do {
                 let xml = try XMLDocument(data: validData)
                 return .success(xml)
             } catch {
-                return .failure(BackendError.xmlSerialization(error: error))
+                return .failure(error)
             }
         }
     }
