@@ -6,8 +6,8 @@ PODS:
     - Alamofire (~> 4.5)
   - AlamofireRSSParser (2.1.0):
     - Alamofire
-  - BarcodeScanner (3.0.0)
-  - Cosmos (12.0.1)
+  - BarcodeScanner (3.0.1)
+  - Cosmos (13.0.0)
   - Fuzi (2.0.1)
   - KeychainAccess (3.1.0)
 
@@ -26,8 +26,8 @@ SPEC CHECKSUMS:
   AlamofireImage: 2e784dc5d00f04903a52c1d169181469c805c3df
   AlamofireNetworkActivityIndicator: 81e1630e7cfed22a4e4e82a174c59e651dc4f8ca
   AlamofireRSSParser: 5fed94de51ff88ea48496d7dfa6e3274100d90d6
-  BarcodeScanner: 4ba61e8b2d50da7b17685085d4bb8e1a0c14613e
-  Cosmos: 4a9f57998a08788a1062c7b8eefbc62d2b590f39
+  BarcodeScanner: c1dd3174997dacde30fd0aae949691b65bc184fc
+  Cosmos: af3973becc045af335b64498c9812034876b7661
   Fuzi: f64983dea705491d3aedd32351247a09523e7efd
   KeychainAccess: 94c5540b32eabf7bc32bfb976a268e8ea05fd6da
 
