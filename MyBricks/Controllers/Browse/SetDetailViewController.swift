@@ -9,12 +9,19 @@
 import UIKit
 import Alamofire
 
-enum TableSection: Int {
-    case image, detail, reviews, instructions, parts, collection, description, barcodes
-}
-
 class SetDetailViewController: UIViewController {
 
+    enum TableSection: Int {
+        case image
+        case detail
+        case reviews
+        case instructions
+        case parts
+        case collection
+        case description
+        case barcodes
+    }
+    
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
 

@@ -59,6 +59,7 @@
 		29B9514D1FDBCC8B0049147E /* Element.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B9514C1FDBCC8B0049147E /* Element.swift */; };
 		29B9514F1FDBCC950049147E /* Part.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B9514E1FDBCC950049147E /* Part.swift */; };
 		29B951511FDBCCA00049147E /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B951501FDBCCA00049147E /* Color.swift */; };
+		29BA70112012A1AD00D34D93 /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BA70102012A1AD00D34D93 /* FilterViewController.swift */; };
 		29C111A11FC3F0F6007CBDB4 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C111A01FC3F0F6007CBDB4 /* UIView+Extensions.swift */; };
 		29C111A31FC4893E007CBDB4 /* ReviewDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C111A21FC4893E007CBDB4 /* ReviewDetailViewController.swift */; };
 		29C111A51FC48988007CBDB4 /* ReviewDetailAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C111A41FC48988007CBDB4 /* ReviewDetailAnimator.swift */; };
@@ -75,6 +76,13 @@
 		29F60F5B1FD3769E00DF2E48 /* PreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F60F5A1FD3769E00DF2E48 /* PreviewView.swift */; };
 		29FCC3461FBA14F500079032 /* SetDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FCC3451FBA14F500079032 /* SetDetail.swift */; };
 		71EA93350D446E8447D819DE /* Pods_MyBricks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C7DD5EA6F08ABC5549DF63C /* Pods_MyBricks.framework */; };
+		9B5CA746201946CE00B09BCB /* FilterSelectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5CA745201946CE00B09BCB /* FilterSelectionTableViewCell.swift */; };
+		9B92EFA4201FC062007610BD /* FilterOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B92EFA3201FC062007610BD /* FilterOptions.swift */; };
+		9B92EFA9201FCC66007610BD /* SetSubtheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B92EFA7201FCC65007610BD /* SetSubtheme.swift */; };
+		9B92EFAA201FCC66007610BD /* SetYear.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B92EFA8201FCC66007610BD /* SetYear.swift */; };
+		9B92EFAC201FE06D007610BD /* FilterSelectThemeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B92EFAB201FE06D007610BD /* FilterSelectThemeTableViewController.swift */; };
+		9B92EFAE201FE084007610BD /* FilterSelectSubthemeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B92EFAD201FE084007610BD /* FilterSelectSubthemeViewController.swift */; };
+		9B92EFB0201FE09D007610BD /* FilterSelectYearViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B92EFAF201FE09D007610BD /* FilterSelectYearViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -168,6 +176,7 @@
 		29B9514C1FDBCC8B0049147E /* Element.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Element.swift; sourceTree = "<group>"; };
 		29B9514E1FDBCC950049147E /* Part.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Part.swift; sourceTree = "<group>"; };
 		29B951501FDBCCA00049147E /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		29BA70102012A1AD00D34D93 /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		29C111A01FC3F0F6007CBDB4 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		29C111A21FC4893E007CBDB4 /* ReviewDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewDetailViewController.swift; sourceTree = "<group>"; };
 		29C111A41FC48988007CBDB4 /* ReviewDetailAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewDetailAnimator.swift; sourceTree = "<group>"; };
@@ -185,6 +194,13 @@
 		29FCC3451FBA14F500079032 /* SetDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetDetail.swift; sourceTree = "<group>"; };
 		593F839198E1796EC36B980B /* Pods-MyBricks.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyBricks.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MyBricks/Pods-MyBricks.debug.xcconfig"; sourceTree = "<group>"; };
 		8C7DD5EA6F08ABC5549DF63C /* Pods_MyBricks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyBricks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9B5CA745201946CE00B09BCB /* FilterSelectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterSelectionTableViewCell.swift; sourceTree = "<group>"; };
+		9B92EFA3201FC062007610BD /* FilterOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterOptions.swift; sourceTree = "<group>"; };
+		9B92EFA7201FCC65007610BD /* SetSubtheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetSubtheme.swift; sourceTree = "<group>"; };
+		9B92EFA8201FCC66007610BD /* SetYear.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetYear.swift; sourceTree = "<group>"; };
+		9B92EFAB201FE06D007610BD /* FilterSelectThemeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterSelectThemeTableViewController.swift; sourceTree = "<group>"; };
+		9B92EFAD201FE084007610BD /* FilterSelectSubthemeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterSelectSubthemeViewController.swift; sourceTree = "<group>"; };
+		9B92EFAF201FE09D007610BD /* FilterSelectYearViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterSelectYearViewController.swift; sourceTree = "<group>"; };
 		9C22940D3A15FE3E6B89AED7 /* Pods-MyBricks.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyBricks.release.xcconfig"; path = "Pods/Target Support Files/Pods-MyBricks/Pods-MyBricks.release.xcconfig"; sourceTree = "<group>"; };
 		9D94ECA9368FE445BFD6F31C /* Pods_MyBricksUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyBricksUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A148411968C617C0F1616A5A /* Pods_MyBricksTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyBricksTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -347,8 +363,8 @@
 		295ADFBB1F16AFFC002E6802 /* MyBricks */ = {
 			isa = PBXGroup;
 			children = (
-				290F179D1FD8D37E0002C70B /* Common */,
 				295ADFBC1F16AFFC002E6802 /* AppDelegate.swift */,
+				290F179D1FD8D37E0002C70B /* Common */,
 				293C9A6B1FD495A00058DA59 /* CoreData */,
 				294F187B1FB5185A0026342F /* Controllers */,
 				29A523361F310243005F2145 /* Extensions */,
@@ -390,17 +406,9 @@
 		297476E21F1D351B00FC354B /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				29CA94A21F8D5132000F1DE3 /* Set.swift */,
-				29FCC3451FBA14F500079032 /* SetDetail.swift */,
-				296EB6E31FBFA71A00D4D3C6 /* SetRetailPrice.swift */,
-				297476ED1F1D3DC600FC354B /* SetTheme.swift */,
-				297E119E1F9563F500AAE8CB /* UserCollectionTotals.swift */,
-				2973B5771F96834D002CD0DA /* UserPofile.swift */,
-				2949A9521FBFDAED00676D59 /* SetReview.swift */,
-				29C111A61FCA2E94007CBDB4 /* SetInstructions.swift */,
-				29B9514C1FDBCC8B0049147E /* Element.swift */,
-				29B9514E1FDBCC950049147E /* Part.swift */,
-				29B951501FDBCCA00049147E /* Color.swift */,
+				9B92EFA5201FC08A007610BD /* Brickset */,
+				9B92EFA6201FC098007610BD /* Rebrickable */,
+				9B92EFA3201FC062007610BD /* FilterOptions.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -453,6 +461,10 @@
 				294F187C1FB519A60026342F /* Browse.storyboard */,
 				29CA94A01F8D508A000F1DE3 /* BrowseSetsViewController.swift */,
 				295ADFBE1F16AFFD002E6802 /* BrowseThemesViewController.swift */,
+				9B92EFAD201FE084007610BD /* FilterSelectSubthemeViewController.swift */,
+				9B92EFAB201FE06D007610BD /* FilterSelectThemeTableViewController.swift */,
+				9B92EFAF201FE09D007610BD /* FilterSelectYearViewController.swift */,
+				29BA70102012A1AD00D34D93 /* FilterViewController.swift */,
 				2949A94E1FBFBEC800676D59 /* InstructionsViewController.swift */,
 				2949A9501FBFBEE000676D59 /* PartsListViewController.swift */,
 				29C111A41FC48988007CBDB4 /* ReviewDetailAnimator.swift */,
@@ -478,7 +490,9 @@
 		29E86FD71F3128F800A67179 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				9B5CA745201946CE00B09BCB /* FilterSelectionTableViewCell.swift */,
 				29C111A81FCA411B007CBDB4 /* InstructionsTableViewCell.swift */,
+				29D30CA41FDE1A690076DB85 /* PartsListTableViewCell.swift */,
 				29DFEA121FA29BF500AB0AE8 /* SetCollectionTableViewCell.swift */,
 				29AE22CE1FCB9A6500744045 /* SetDescriptionTableViewCell.swift */,
 				2945A1FB1F9FDB5300827BA7 /* SetDetailTableViewCell.swift */,
@@ -488,7 +502,6 @@
 				2949A9541FBFE05E00676D59 /* SetReviewTableViewCell.swift */,
 				29CA94A41F8D72DC000F1DE3 /* SetTableViewCell.swift */,
 				29E86FD91F31293900A67179 /* ThemeTableViewCell.swift */,
-				29D30CA41FDE1A690076DB85 /* PartsListTableViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -499,6 +512,33 @@
 				29F60F5A1FD3769E00DF2E48 /* PreviewView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		9B92EFA5201FC08A007610BD /* Brickset */ = {
+			isa = PBXGroup;
+			children = (
+				29CA94A21F8D5132000F1DE3 /* Set.swift */,
+				29FCC3451FBA14F500079032 /* SetDetail.swift */,
+				29C111A61FCA2E94007CBDB4 /* SetInstructions.swift */,
+				296EB6E31FBFA71A00D4D3C6 /* SetRetailPrice.swift */,
+				2949A9521FBFDAED00676D59 /* SetReview.swift */,
+				9B92EFA7201FCC65007610BD /* SetSubtheme.swift */,
+				297476ED1F1D3DC600FC354B /* SetTheme.swift */,
+				9B92EFA8201FCC66007610BD /* SetYear.swift */,
+				297E119E1F9563F500AAE8CB /* UserCollectionTotals.swift */,
+				2973B5771F96834D002CD0DA /* UserPofile.swift */,
+			);
+			path = Brickset;
+			sourceTree = "<group>";
+		};
+		9B92EFA6201FC098007610BD /* Rebrickable */ = {
+			isa = PBXGroup;
+			children = (
+				29B951501FDBCCA00049147E /* Color.swift */,
+				29B9514C1FDBCC8B0049147E /* Element.swift */,
+				29B9514E1FDBCC950049147E /* Part.swift */,
+			);
+			path = Rebrickable;
 			sourceTree = "<group>";
 		};
 		FF63C2F8FBB7E309CDB9D36A /* Pods */ = {
@@ -733,6 +773,8 @@
 				291DEE9D1FE27604004906E4 /* UIResponder+Extensions.swift in Sources */,
 				29365B771F8EBF2A00F6730C /* NewsViewController.swift in Sources */,
 				29F60F5B1FD3769E00DF2E48 /* PreviewView.swift in Sources */,
+				9B92EFAE201FE084007610BD /* FilterSelectSubthemeViewController.swift in Sources */,
+				9B92EFAC201FE06D007610BD /* FilterSelectThemeTableViewController.swift in Sources */,
 				29E86FDB1F31293900A67179 /* ThemeTableViewCell.swift in Sources */,
 				29C111A11FC3F0F6007CBDB4 /* UIView+Extensions.swift in Sources */,
 				294F187A1FB4EDC20026342F /* GradientView.swift in Sources */,
@@ -751,6 +793,7 @@
 				297476EE1F1D3DC600FC354B /* SetTheme.swift in Sources */,
 				2973B5781F96834D002CD0DA /* UserPofile.swift in Sources */,
 				2964609E1FA907FC004850F8 /* NewsItemTableViewCell.swift in Sources */,
+				9B92EFA4201FC062007610BD /* FilterOptions.swift in Sources */,
 				29AE22CF1FCB9A6500744045 /* SetDescriptionTableViewCell.swift in Sources */,
 				29D30CA31FDDD8F60076DB85 /* GetPartsResponse.swift in Sources */,
 				29DFEA141FA29BF500AB0AE8 /* SetCollectionTableViewCell.swift in Sources */,
@@ -758,12 +801,14 @@
 				296EB6E21FBF5E5700D4D3C6 /* SetPartsTableViewCell.swift in Sources */,
 				296EB6E01FBF5E4500D4D3C6 /* SetReviewsTableViewCell.swift in Sources */,
 				293C9A6E1FD495C70058DA59 /* MyBricks.xcdatamodeld in Sources */,
+				9B92EFB0201FE09D007610BD /* FilterSelectYearViewController.swift in Sources */,
 				2928611D1FD50D24005F15D8 /* SearchHistoryTableViewCell.swift in Sources */,
 				291AC5F41FB103E4000DC9DD /* MySetsHeaderView.swift in Sources */,
 				295ADFBD1F16AFFC002E6802 /* AppDelegate.swift in Sources */,
 				29CCD8EE1F993E12009A39CF /* SetDetailViewController.swift in Sources */,
 				29C111A71FCA2E94007CBDB4 /* SetInstructions.swift in Sources */,
 				29B9514B1FDBA73E0049147E /* RebrickableServices.swift in Sources */,
+				9B92EFA9201FCC66007610BD /* SetSubtheme.swift in Sources */,
 				2973F3441FBE173800861125 /* UIDevice+Extensions.swift in Sources */,
 				29A523421F310261005F2145 /* UIViewController+Extensions.swift in Sources */,
 				29B9514F1FDBCC950049147E /* Part.swift in Sources */,
@@ -772,9 +817,12 @@
 				295ADFBF1F16AFFD002E6802 /* BrowseThemesViewController.swift in Sources */,
 				296EB6E41FBFA71A00D4D3C6 /* SetRetailPrice.swift in Sources */,
 				2949A94D1FBFBEB500676D59 /* ReviewsViewController.swift in Sources */,
+				9B5CA746201946CE00B09BCB /* FilterSelectionTableViewCell.swift in Sources */,
 				296460A11FA92AA2004850F8 /* NewsItemViewController.swift in Sources */,
 				29FCC3461FBA14F500079032 /* SetDetail.swift in Sources */,
 				296EB6DE1FBF5E3600D4D3C6 /* SetImageTableViewCell.swift in Sources */,
+				9B92EFAA201FCC66007610BD /* SetYear.swift in Sources */,
+				29BA70112012A1AD00D34D93 /* FilterViewController.swift in Sources */,
 				2940FD831FD4EAF400F860F3 /* SearchHistoryItem+CoreDataClass.swift in Sources */,
 				29C111A31FC4893E007CBDB4 /* ReviewDetailViewController.swift in Sources */,
 				2949A9511FBFBEE000676D59 /* PartsListViewController.swift in Sources */,

@@ -16,7 +16,7 @@ class BrowseSetsViewController: UIViewController {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
 
-    var theme : String?
+    var filterOptions: FilterOptions? = nil
     var showUnreleased: Bool = false
     var browseRequest: Request? = nil
     
@@ -45,8 +45,8 @@ class BrowseSetsViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if let theme = self.theme {
-            self.title = theme
+        if let options = self.filterOptions, let theme = options.selectedTheme {
+            self.title = theme.name
         }
         else {
             self.title = "Sets"
@@ -71,8 +71,15 @@ class BrowseSetsViewController: UIViewController {
     // MARK: - Actions
     //--------------------------------------------------------------------------
 
-    @IBAction func changeFilters(_ sender: UIBarButtonItem) {
-        print("Change filters...")
+    @IBAction func showFilters(_ sender: UIBarButtonItem) {
+        print("Show filters...")
+        
+        if let filterVC = storyboard?.instantiateViewController(withIdentifier: "FilterViewController") as? FilterViewController {
+            filterVC.filterOptions = self.filterOptions
+            
+            let navController = UINavigationController(rootViewController: filterVC)
+            show(navController, sender: self)
+        }
     }
     
     //--------------------------------------------------------------------------
@@ -81,21 +88,23 @@ class BrowseSetsViewController: UIViewController {
 
     private func fetchSets() {
         activityIndicator?.startAnimating()
-        let request = GetSetsRequest(theme: (theme ?? ""))
-        self.browseRequest = BricksetServices.shared.getSets(request, completion: { [weak self] result in
-            guard let strongSelf = self else { return }
-            strongSelf.activityIndicator?.stopAnimating()
-            if result.isSuccess {
-                strongSelf.allSets = result.value ?? []
-                strongSelf.tableView.reloadData()
-            }
-            else {
-                if let error = result.error as? URLError, error.code == .cancelled { return }
-                else if let error = result.error {
-                    print("Error loading sets: \(error)")
+        if let options = filterOptions {
+            let request = GetSetsRequest(theme: options.selectedTheme?.name, subtheme: options.selectedSubtheme?.subtheme)
+            self.browseRequest = BricksetServices.shared.getSets(request, completion: { [weak self] result in
+                guard let strongSelf = self else { return }
+                strongSelf.activityIndicator?.stopAnimating()
+                if result.isSuccess {
+                    strongSelf.allSets = result.value ?? []
+                    strongSelf.tableView.reloadData()
                 }
-            }
-        })
+                else {
+                    if let error = result.error as? URLError, error.code == .cancelled { return }
+                    else if let error = result.error {
+                        print("Error loading sets: \(error)")
+                    }
+                }
+            })
+        }
     }
     
     fileprivate func processSets() {

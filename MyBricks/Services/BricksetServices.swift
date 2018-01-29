@@ -189,7 +189,102 @@ class BricksetServices {
         }
         request.responseXMLDocument(completionHandler: requestCompletion)
     }
+    
+    //--------------------------------------------------------------------------
+    // MARK: - Themes/Subthemes/Years
+    //--------------------------------------------------------------------------
+    
+    func getThemes(completion: @escaping (Result<[SetTheme]>) -> Void) {
+        let url = baseURL + "getThemes"
+        
+        let parameters = defaultParameters()
+        let request = Alamofire.request( url, parameters: parameters)
+        print("Request: \(request)")
+        
+        let requestCompletion: (DataResponse<XMLDocument>) -> Void = { response in
+            //print("Document: \(document)")
+            if let error = response.result.error {
+                completion(Result.failure(error))
+            }
+            else if let document = response.result.value {
+                if let root = document.root {
+                    var themes: [SetTheme] = []
+                    
+                    for element in root.children {
+                        if let theme = SetTheme(element: element) {
+                            themes.append(theme)
+                        }
+                    }
+                    
+                    completion(Result.success(themes))
+                }
+            }
+        }
+        request.responseXMLDocument(completionHandler: requestCompletion)
+    }
+    
+    func getSubthemes(theme: String, completion: @escaping (Result<[SetSubtheme]>) -> Void) {
+        let url = baseURL + "getSubthemes"
+        
+        var parameters = defaultParameters()
+        parameters["theme"] = theme
 
+        let request = Alamofire.request( url, parameters: parameters)
+        print("Request: \(request)")
+        
+        let requestCompletion: (DataResponse<XMLDocument>) -> Void = { response in
+            //print("Document: \(document)")
+            if let error = response.result.error {
+                completion(Result.failure(error))
+            }
+            else if let document = response.result.value {
+                if let root = document.root {
+                    var subthemes: [SetSubtheme] = []
+                    
+                    for element in root.children {
+                        if let theme = SetSubtheme(element: element) {
+                            subthemes.append(theme)
+                        }
+                    }
+                    
+                    completion(Result.success(subthemes))
+                }
+            }
+        }
+        request.responseXMLDocument(completionHandler: requestCompletion)
+    }
+    
+    func getYears(theme: String, completion: @escaping (Result<[SetYear]>) -> Void) {
+        let url = baseURL + "getThemes"
+        
+        var parameters = defaultParameters()
+        parameters["theme"] = theme
+        
+        let request = Alamofire.request( url, parameters: parameters)
+        print("Request: \(request)")
+        
+        let requestCompletion: (DataResponse<XMLDocument>) -> Void = { response in
+            //print("Document: \(document)")
+            if let error = response.result.error {
+                completion(Result.failure(error))
+            }
+            else if let document = response.result.value {
+                if let root = document.root {
+                    var years: [SetYear] = []
+                    
+                    for element in root.children {
+                        if let theme = SetYear(element: element) {
+                            years.append(theme)
+                        }
+                    }
+                    
+                    completion(Result.success(years))
+                }
+            }
+        }
+        request.responseXMLDocument(completionHandler: requestCompletion)
+    }
+    
     //--------------------------------------------------------------------------
     // MARK: - Sets
     //--------------------------------------------------------------------------
@@ -199,11 +294,11 @@ class BricksetServices {
         let url = baseURL + "getSets"
 
         var parameters = userParameters()
-        parameters["query"] = request.query
-        parameters["theme"] = request.theme
-        parameters["subtheme"] = request.subtheme
-        parameters["setNumber"] = request.setNumber
-        parameters["year"] = ""
+        parameters["query"] = request.query ?? ""
+        parameters["theme"] = request.theme ?? ""
+        parameters["subtheme"] = request.subtheme ?? ""
+        parameters["setNumber"] = request.setNumber ?? ""
+        parameters["year"] = request.year ?? ""
         parameters["owned"] = request.owned ? "1" : ""
         parameters["wanted"] = request.wanted ? "1" : ""
         parameters["orderBy"] = "Number"
@@ -336,35 +431,6 @@ class BricksetServices {
         request.responseXMLDocument(completionHandler: requestCompletion)
     }
     
-    func getThemes(completion: @escaping (Result<[SetTheme]>) -> Void) {
-        let url = baseURL + "getThemes"
-
-        let parameters = defaultParameters()
-        let request = Alamofire.request( url, parameters: parameters)
-        print("Request: \(request)")
-
-        let requestCompletion: (DataResponse<XMLDocument>) -> Void = { response in
-            //print("Document: \(document)")
-            if let error = response.result.error {
-                completion(Result.failure(error))
-            }
-            else if let document = response.result.value {
-                if let root = document.root {
-                    var themes: [SetTheme] = []
-
-                    for element in root.children {
-                        if let theme = SetTheme(element: element) {
-                            themes.append(theme)
-                        }
-                    }
-
-                    completion(Result.success(themes))
-                }
-            }
-        }
-        request.responseXMLDocument(completionHandler: requestCompletion)
-    }
-
     //--------------------------------------------------------------------------
     // MARK: - Set Collection Management
     //--------------------------------------------------------------------------

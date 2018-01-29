@@ -34,14 +34,7 @@ class BrowseThemesViewController: UIViewController {
         super.viewDidAppear(animated)
 
         if allThemes.count == 0 {
-            activityIndicator?.startAnimating()
-            BricksetServices.shared.getThemes(completion: { result in
-                self.allThemes = result.value ?? []
-                self.processThemes()
-                self.activityIndicator?.stopAnimating()
-                //print("Result: \(result)")
-                self.tableView.reloadData()
-            })
+            fetchThemes()
         }
     }
 
@@ -49,14 +42,23 @@ class BrowseThemesViewController: UIViewController {
     // MARK: - Private
     //--------------------------------------------------------------------------
 
+    fileprivate func fetchThemes() {
+        activityIndicator?.startAnimating()
+        BricksetServices.shared.getThemes(completion: { result in
+            self.allThemes = result.value ?? []
+            self.processThemes()
+            self.activityIndicator?.stopAnimating()
+            //print("Result: \(result)")
+            self.tableView.reloadData()
+        })
+    }
+    
     fileprivate func processThemes() {
         for theme in allThemes {
-            if let name = theme.name {
-                let indexName = String(name.prefix(1))
-                var themes: [SetTheme] = themesBySection[indexName] ?? []
-                themes.append(theme)
-                themesBySection[indexName] = themes
-           }
+            let indexName = String(theme.name.prefix(1))
+            var themes: [SetTheme] = themesBySection[indexName] ?? []
+            themes.append(theme)
+            themesBySection[indexName] = themes
         }
         sectionTitles = themesBySection.keys.sorted()
     }
@@ -117,12 +119,18 @@ extension BrowseThemesViewController: UITableViewDelegate {
         let sectionTitle = sectionTitles[indexPath.section]
         if let themes = themesBySection[sectionTitle] {
             let theme = themes[indexPath.row]
-            if let setsVC = storyboard?.instantiateViewController(withIdentifier: "BrowseSetsViewController") as? BrowseSetsViewController {
-                setsVC.theme = theme.name
-                show(setsVC, sender: self)
-                tableView.deselectRow(at: indexPath, animated: true)
+            if let browseVC = storyboard?.instantiateViewController(withIdentifier: "BrowseSetsViewController") as? BrowseSetsViewController {
+                
+                var filterOptions = FilterOptions()
+                filterOptions.selectedTheme = theme
+                filterOptions.availableThemes = allThemes
+                
+                browseVC.filterOptions = filterOptions
+                show(browseVC, sender: self)
             }
         }
+        
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
 

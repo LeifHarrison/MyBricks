@@ -10,7 +10,8 @@ import Foundation
 import CoreData
 
 enum SearchType: Int16 {
-    case search, scan
+    case scan
+    case search
 }
 
 extension SearchHistoryItem {

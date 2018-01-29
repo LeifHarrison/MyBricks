@@ -7,7 +7,9 @@
 //
 
 import UIKit
+
 import AlamofireNetworkActivityIndicator
+import LocalAuthentication
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

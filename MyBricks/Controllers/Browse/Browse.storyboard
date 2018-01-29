@@ -294,7 +294,7 @@
                     <navigationItem key="navigationItem" title="Browse" id="8Rd-VA-m7j">
                         <barButtonItem key="rightBarButtonItem" image="filter" id="SV2-Rb-SQT">
                             <connections>
-                                <action selector="changeFilters:" destination="MRb-SQ-ur7" id="x68-le-6ag"/>
+                                <action selector="showFilters:" destination="MRb-SQ-ur7" id="p45-xr-L8x"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -307,6 +307,83 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KMv-Wx-yoN" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2340" y="-344"/>
+        </scene>
+        <!--Filter View Controller-->
+        <scene sceneID="w5c-5j-OVF">
+            <objects>
+                <viewController storyboardIdentifier="FilterViewController" id="TdO-jc-W4l" customClass="FilterViewController" customModule="MyBricks" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="jJw-eh-ehC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xt9-CO-chH">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="r2h-Zb-E7O" customClass="FilterSelectionTableViewCell" customModule="MyBricks" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="r2h-Zb-E7O" id="HmQ-nE-Wcw">
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="252" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="Theme" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ibd-sG-6wy">
+                                                    <rect key="frame" x="15" y="11" width="58.5" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Architecture" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="83l-ej-g7B">
+                                                    <rect key="frame" x="237.5" y="12" width="89.5" height="19.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="83l-ej-g7B" secondAttribute="trailing" constant="15" id="5xl-C1-VyQ"/>
+                                                <constraint firstItem="83l-ej-g7B" firstAttribute="centerY" secondItem="HmQ-nE-Wcw" secondAttribute="centerY" id="8xs-5i-K8F"/>
+                                                <constraint firstItem="Ibd-sG-6wy" firstAttribute="centerY" secondItem="HmQ-nE-Wcw" secondAttribute="centerY" id="Ds3-dj-ny1"/>
+                                                <constraint firstItem="83l-ej-g7B" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Ibd-sG-6wy" secondAttribute="trailing" constant="15" id="dOc-Ix-n0u"/>
+                                                <constraint firstItem="Ibd-sG-6wy" firstAttribute="leading" secondItem="HmQ-nE-Wcw" secondAttribute="leading" constant="15" id="yIV-bL-5nZ"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="TdO-jc-W4l" id="etm-aQ-46N"/>
+                                    <outlet property="delegate" destination="TdO-jc-W4l" id="tJY-mY-u8H"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="xt9-CO-chH" firstAttribute="top" secondItem="8Gj-fx-nU3" secondAttribute="top" id="ZrK-5L-DAp"/>
+                            <constraint firstItem="xt9-CO-chH" firstAttribute="bottom" secondItem="8Gj-fx-nU3" secondAttribute="bottom" id="ZwD-oe-1k8"/>
+                            <constraint firstItem="xt9-CO-chH" firstAttribute="trailing" secondItem="8Gj-fx-nU3" secondAttribute="trailing" id="aKi-bC-wBd"/>
+                            <constraint firstItem="xt9-CO-chH" firstAttribute="leading" secondItem="jJw-eh-ehC" secondAttribute="leading" id="aNS-Qf-sF1"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="8Gj-fx-nU3"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="i1k-cf-QY9">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="idq-aC-d1q">
+                            <connections>
+                                <action selector="cancel:" destination="TdO-jc-W4l" id="ypH-pC-yu6"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Apply" id="gQF-pO-Vfp">
+                            <connections>
+                                <action selector="applyFilters:" destination="TdO-jc-W4l" id="Arj-uR-dYu"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="xt9-CO-chH" id="grP-Nq-27Q"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LpO-Ag-Glm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2340" y="429"/>
         </scene>
         <!--Set Detail View Controller-->
         <scene sceneID="h6N-WJ-8Bg">

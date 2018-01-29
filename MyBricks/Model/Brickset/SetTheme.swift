@@ -11,14 +11,18 @@ import Fuzi
 
 public struct SetTheme {
 
-    var name: String?
+    var name: String
     var setCount: Int?
     var subThemeCount: Int?
     var yearFrom: Int?
     var yearTo: Int?
 
     init?(element: XMLElement) {
-        self.name = element.firstChild(tag: "theme")?.stringValue
+        guard let xmlName = element.firstChild(tag: "theme")?.stringValue else {
+            return nil
+        }
+        
+        name = xmlName
         setCount = Int(element.firstChild(tag: "setCount")?.stringValue ?? "0")
         subThemeCount = Int(element.firstChild(tag: "subThemeCount")?.stringValue ?? "0")
         yearFrom = Int(element.firstChild(tag: "yearFrom")?.stringValue ?? "0")
