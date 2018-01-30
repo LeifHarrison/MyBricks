@@ -9,7 +9,7 @@
 import Foundation
 import Fuzi
 
-public struct Set {
+struct Set {
 
     var setID: String?
     var number: String?

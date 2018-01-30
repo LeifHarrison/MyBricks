@@ -9,7 +9,7 @@
 import Foundation
 import Fuzi
 
-public struct SetTheme {
+struct SetTheme {
 
     var name: String
     var setCount: Int?
@@ -44,4 +44,12 @@ public struct SetTheme {
         }
     }
     
+}
+
+extension SetTheme: Equatable {
+
+    static func == (lhs: SetTheme, rhs: SetTheme) -> Bool {
+        return lhs.name == rhs.name
+    }
+
 }

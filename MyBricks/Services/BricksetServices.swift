@@ -255,7 +255,7 @@ class BricksetServices {
     }
     
     func getYears(theme: String, completion: @escaping (Result<[SetYear]>) -> Void) {
-        let url = baseURL + "getThemes"
+        let url = baseURL + "getYears"
         
         var parameters = defaultParameters()
         parameters["theme"] = theme

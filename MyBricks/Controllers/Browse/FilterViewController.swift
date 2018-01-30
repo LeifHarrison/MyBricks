@@ -8,6 +8,11 @@
 
 import UIKit
 
+protocol FilterViewControllerDelegate: class {
+    func filterViewController(_ controller: FilterViewController, didUpdateFilterOptions filterOptions: FilterOptions)
+}
+
+
 class FilterViewController: UIViewController {
 
     enum TableSection: Int {
@@ -48,6 +53,8 @@ class FilterViewController: UIViewController {
 
     var filterOptions: FilterOptions? = nil
 
+    weak var delegate: FilterViewControllerDelegate?
+
     private var sections: [TableSection] = []
     
     //--------------------------------------------------------------------------
@@ -56,7 +63,10 @@ class FilterViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        addGradientBackground()
+
         self.title = "Filter"
+
         tableView.tableFooterView = UIView()
     }
 
@@ -79,6 +89,9 @@ class FilterViewController: UIViewController {
     }
     
     @IBAction func applyFilters(_ sender: AnyObject?) {
+        if let options = self.filterOptions {
+            delegate?.filterViewController(self, didUpdateFilterOptions: options)
+        }
         dismiss(animated: true, completion: nil)
     }
     
@@ -86,22 +99,25 @@ class FilterViewController: UIViewController {
     // MARK: - Private
     //--------------------------------------------------------------------------
     
-    fileprivate func fetchSubthemes() {
-        if var options = filterOptions, let theme = options.selectedTheme?.name {
-            activityIndicator?.startAnimating()
-            BricksetServices.shared.getSubthemes(theme: theme, completion: { result in
-                self.activityIndicator?.stopAnimating()
-
-                if result.isSuccess {
-                    options.availableSubthemes = result.value ?? []
-                }
-                //print("Result: \(result)")
-                //self.tableView.reloadData()
-            })
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let viewController = segue.destination as? FilterSelectThemeViewController {
+            if let themes = filterOptions?.availableThemes {
+                viewController.availableThemes = themes
+            }
+            viewController.currentTheme = filterOptions?.selectedTheme
+            viewController.delegate = self
+        }
+        else if let viewController = segue.destination as? FilterSelectSubthemeViewController {
+            viewController.currentTheme = filterOptions?.selectedTheme
+            viewController.delegate = self
+            viewController.selectedSubtheme = filterOptions?.selectedSubtheme
+        }
+        else if let viewController = segue.destination as? FilterSelectYearViewController {
+            viewController.currentTheme = filterOptions?.selectedTheme
+            viewController.delegate = self
+            viewController.selectedYear = filterOptions?.selectedYear
         }
     }
-    
-
 }
 
 //==============================================================================
@@ -155,6 +171,67 @@ extension FilterViewController: UITableViewDataSource {
 extension FilterViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // TODO: Display more part detail?
+        let section = sections[indexPath.section]
+        if section == .general, let row = TableRowGeneral(indexPath: indexPath) {
+            switch row {
+            case .theme: performSegue(withIdentifier: "showSelectThemeView", sender: self)
+            case .subtheme: performSegue(withIdentifier: "showSelectSubthemeView", sender: self)
+            case .year: performSegue(withIdentifier: "showSelectYearView", sender: self)
+            }
+        }
+        tableView.deselectRow(at: indexPath, animated: true)
     }
+}
+
+//==============================================================================
+// MARK: - FilterSelectThemeViewControllerDelegate
+//==============================================================================
+
+extension FilterViewController: FilterSelectThemeViewControllerDelegate {
+    
+    func selectThemeController(_ controller: FilterSelectThemeViewController, didSelectTheme theme: SetTheme?) {
+        print("Selected theme = \(String(describing: theme))")
+        if var options = self.filterOptions {
+            options.selectedTheme = theme
+            options.selectedSubtheme = nil
+            options.selectedYear = nil
+            self.filterOptions = options
+            tableView.reloadData()
+        }
+    }
+    
+}
+
+//==============================================================================
+// MARK: - FilterSelectSubthemeViewControllerDelegate
+//==============================================================================
+
+extension FilterViewController: FilterSelectSubthemeViewControllerDelegate {
+    
+    func selectSubthemeController(_ controller: FilterSelectSubthemeViewController, didSelectSubtheme subtheme: SetSubtheme?) {
+        print("Selected subtheme = \(String(describing: subtheme))")
+        if var options = self.filterOptions {
+            options.selectedSubtheme = subtheme
+            self.filterOptions = options
+            tableView.reloadData()
+        }
+    }
+    
+}
+
+//==============================================================================
+// MARK: - FilterSelectSubthemeViewControllerDelegate
+//==============================================================================
+
+extension FilterViewController: FilterSelectYearViewControllerDelegate {
+    
+    func selectYearController(_ controller: FilterSelectYearViewController, didSelectYear year: SetYear?) {
+        print("Selected year = \(String(describing: year))")
+        if var options = self.filterOptions {
+            options.selectedYear = year
+            self.filterOptions = options
+            tableView.reloadData()
+        }
+    }
+    
 }

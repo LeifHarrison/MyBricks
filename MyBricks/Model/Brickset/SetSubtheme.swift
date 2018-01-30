@@ -9,7 +9,7 @@
 import Foundation
 import Fuzi
 
-public struct SetSubtheme {
+struct SetSubtheme {
 
     var theme: String
     var subtheme: String
@@ -18,7 +18,7 @@ public struct SetSubtheme {
     var yearTo: Int?
 
     init?(element: XMLElement) {
-        guard let xmlTheme = element.firstChild(tag: "theme")?.stringValue, let xmlSubtheme = element.firstChild(tag: "theme")?.stringValue else {
+        guard let xmlTheme = element.firstChild(tag: "theme")?.stringValue, let xmlSubtheme = element.firstChild(tag: "subtheme")?.stringValue else {
             return nil
         }
         
@@ -42,6 +42,14 @@ public struct SetSubtheme {
         else {
             return ""
         }
+    }
+    
+}
+
+extension SetSubtheme: Equatable {
+    
+    static func == (lhs: SetSubtheme, rhs: SetSubtheme) -> Bool {
+        return lhs.theme == rhs.theme && lhs.subtheme == rhs.subtheme
     }
     
 }

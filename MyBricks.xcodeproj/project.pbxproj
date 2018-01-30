@@ -83,6 +83,8 @@
 		9B92EFAC201FE06D007610BD /* FilterSelectThemeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B92EFAB201FE06D007610BD /* FilterSelectThemeTableViewController.swift */; };
 		9B92EFAE201FE084007610BD /* FilterSelectSubthemeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B92EFAD201FE084007610BD /* FilterSelectSubthemeViewController.swift */; };
 		9B92EFB0201FE09D007610BD /* FilterSelectYearViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B92EFAF201FE09D007610BD /* FilterSelectYearViewController.swift */; };
+		9BFFDEA92020E3C90070C812 /* Filter.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BFFDEA82020E3C90070C812 /* Filter.storyboard */; };
+		9BFFDEAB20212E5F0070C812 /* SetDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BFFDEAA20212E5F0070C812 /* SetDetail.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -201,6 +203,8 @@
 		9B92EFAB201FE06D007610BD /* FilterSelectThemeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterSelectThemeTableViewController.swift; sourceTree = "<group>"; };
 		9B92EFAD201FE084007610BD /* FilterSelectSubthemeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterSelectSubthemeViewController.swift; sourceTree = "<group>"; };
 		9B92EFAF201FE09D007610BD /* FilterSelectYearViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterSelectYearViewController.swift; sourceTree = "<group>"; };
+		9BFFDEA82020E3C90070C812 /* Filter.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Filter.storyboard; sourceTree = "<group>"; };
+		9BFFDEAA20212E5F0070C812 /* SetDetail.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SetDetail.storyboard; sourceTree = "<group>"; };
 		9C22940D3A15FE3E6B89AED7 /* Pods-MyBricks.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyBricks.release.xcconfig"; path = "Pods/Target Support Files/Pods-MyBricks/Pods-MyBricks.release.xcconfig"; sourceTree = "<group>"; };
 		9D94ECA9368FE445BFD6F31C /* Pods_MyBricksUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyBricksUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A148411968C617C0F1616A5A /* Pods_MyBricksTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyBricksTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -459,6 +463,8 @@
 			children = (
 				29E86FD71F3128F800A67179 /* Cells */,
 				294F187C1FB519A60026342F /* Browse.storyboard */,
+				9BFFDEAA20212E5F0070C812 /* SetDetail.storyboard */,
+				9BFFDEA82020E3C90070C812 /* Filter.storyboard */,
 				29CA94A01F8D508A000F1DE3 /* BrowseSetsViewController.swift */,
 				295ADFBE1F16AFFD002E6802 /* BrowseThemesViewController.swift */,
 				9B92EFAD201FE084007610BD /* FilterSelectSubthemeViewController.swift */,
@@ -665,10 +671,12 @@
 			files = (
 				294F187D1FB519A70026342F /* Browse.storyboard in Resources */,
 				295ADFC91F16AFFD002E6802 /* LaunchScreen.storyboard in Resources */,
+				9BFFDEA92020E3C90070C812 /* Filter.storyboard in Resources */,
 				2964609F1FA907FC004850F8 /* NewsItemTableViewCell.xib in Resources */,
 				2921AD891FAF6C4000180268 /* News.storyboard in Resources */,
 				291AC5EF1FAF6FB0000DC9DD /* Search.storyboard in Resources */,
 				294F187F1FB519ED0026342F /* MySets.storyboard in Resources */,
+				9BFFDEAB20212E5F0070C812 /* SetDetail.storyboard in Resources */,
 				295ADFC61F16AFFD002E6802 /* Assets.xcassets in Resources */,
 				295ADFC41F16AFFD002E6802 /* Main.storyboard in Resources */,
 				291AC5EE1FAF6FAC000DC9DD /* Profile.storyboard in Resources */,

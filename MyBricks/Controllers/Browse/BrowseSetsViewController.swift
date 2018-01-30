@@ -74,7 +74,9 @@ class BrowseSetsViewController: UIViewController {
     @IBAction func showFilters(_ sender: UIBarButtonItem) {
         print("Show filters...")
         
-        if let filterVC = storyboard?.instantiateViewController(withIdentifier: "FilterViewController") as? FilterViewController {
+        let filterStoryboard = UIStoryboard(name: "Filter", bundle: nil)
+        if let filterVC = filterStoryboard.instantiateInitialViewController() as? FilterViewController {
+            filterVC.delegate = self
             filterVC.filterOptions = self.filterOptions
             
             let navController = UINavigationController(rootViewController: filterVC)
@@ -89,7 +91,7 @@ class BrowseSetsViewController: UIViewController {
     private func fetchSets() {
         activityIndicator?.startAnimating()
         if let options = filterOptions {
-            let request = GetSetsRequest(theme: options.selectedTheme?.name, subtheme: options.selectedSubtheme?.subtheme)
+            let request = GetSetsRequest(theme: options.selectedTheme?.name, subtheme: options.selectedSubtheme?.subtheme, year: options.selectedYear?.year)
             self.browseRequest = BricksetServices.shared.getSets(request, completion: { [weak self] result in
                 guard let strongSelf = self else { return }
                 strongSelf.activityIndicator?.stopAnimating()
@@ -193,5 +195,19 @@ extension BrowseSetsViewController: UITableViewDelegate {
         }
     }
 
+}
+
+//==============================================================================
+// MARK: - FilterViewControllerDelegate
+//==============================================================================
+
+extension BrowseSetsViewController: FilterViewControllerDelegate {
+    
+    func filterViewController(_ controller: FilterViewController, didUpdateFilterOptions filterOptions: FilterOptions) {
+        print("didUpdateFilterOptions: \(filterOptions)")
+        self.filterOptions = filterOptions
+        fetchSets()
+    }
+    
 }
 

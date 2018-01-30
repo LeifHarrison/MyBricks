@@ -9,7 +9,7 @@
 import Foundation
 import Fuzi
 
-public struct SetYear {
+struct SetYear {
 
     var theme: String
     var year: String
@@ -26,4 +26,12 @@ public struct SetYear {
         setCount = Int(element.firstChild(tag: "setCount")?.stringValue ?? "0")
     }
 
+}
+
+extension SetYear: Equatable {
+    
+    static func == (lhs: SetYear, rhs: SetYear) -> Bool {
+        return lhs.theme == rhs.theme && lhs.year == rhs.year
+    }
+    
 }

@@ -8,13 +8,22 @@
 
 import UIKit
 
+protocol FilterSelectThemeViewControllerDelegate: class {
+    func selectThemeController(_ controller: FilterSelectThemeViewController, didSelectTheme theme: SetTheme?)
+}
+
 class FilterSelectThemeViewController: UIViewController {
 
+    let cellIdentifier = "SelectThemeCell"
+    
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
 
+    var currentTheme: SetTheme? = nil
     var availableThemes: [SetTheme] = []
     
+    weak var delegate: FilterSelectThemeViewControllerDelegate?
+
     //--------------------------------------------------------------------------
     // MARK: - View Lifecycle
     //--------------------------------------------------------------------------
@@ -23,6 +32,13 @@ class FilterSelectThemeViewController: UIViewController {
         super.viewDidLoad()
         self.title = "Select Theme"
         tableView.tableFooterView = UIView()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if let selectedTheme = currentTheme, let selectedIndex = availableThemes.index(of: selectedTheme) {
+            tableView.selectRow(at: IndexPath(row: selectedIndex, section: 0), animated: false, scrollPosition: .middle)
+        }
     }
     
 }
@@ -42,7 +58,10 @@ extension FilterSelectThemeViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        let theme = availableThemes[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
+        cell.textLabel?.text = theme.name
+        return cell
     }
     
 }
@@ -54,6 +73,9 @@ extension FilterSelectThemeViewController: UITableViewDataSource {
 extension FilterSelectThemeViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // TODO: Display more part detail?
+        let theme = availableThemes[indexPath.row]
+        delegate?.selectThemeController(self, didSelectTheme: theme)
+        navigationController?.popViewController(animated: true)
     }
+    
 }
