@@ -31,7 +31,6 @@ class NewsItemViewController: UIViewController {
         super.viewWillAppear(animated)
 
         if let newsItem = self.newsItem {
-            print("newsItem = \(String(describing: newsItem))")
             titleLabel.text = newsItem.title
             autherAndDateLabel.attributedText = newsItem.authorAndDateAttributedDecription()
             contentTextView.attributedText = newsItem.formattedDescription()
@@ -69,7 +68,6 @@ extension RSSItem {
                 formattedDescription.enumerateAttribute(NSAttributedStringKey.attachment, in:fullRange, options: []) { (value, range, stop) in
                     if (value != nil) {
                         let paragraphStyle = formattedDescription.attribute(.paragraphStyle, at: range.location, longestEffectiveRange: nil, in: range)
-                        print("paragraphStyle: \(String(describing: paragraphStyle))")
                         if let style = paragraphStyle as? NSParagraphStyle {
                             let newStyle = style.mutableCopy() as! NSMutableParagraphStyle
                             newStyle.alignment = .center

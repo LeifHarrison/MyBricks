@@ -160,7 +160,6 @@ class MySetsViewController: UIViewController {
         activityIndicator?.startAnimating()
         let request = GetSetsRequest(owned: (displayMode == .owned), wanted: (displayMode == .wanted))
         self.mySetsRequest = BricksetServices.shared.getSets(request, completion: { result in
-            //print("Result: \(result)")
             self.activityIndicator?.stopAnimating()
 
             if result.isSuccess {
@@ -179,9 +178,6 @@ class MySetsViewController: UIViewController {
                     print("Error loading sets: \(error)")
                 }
             }
-
-//            DispatchQueue.main.async(execute: {
-//            })
         })
     }
 
@@ -257,9 +253,6 @@ extension MySetsViewController: UITableViewDataSource {
                 cell.ownedView.isHidden = !(set.owned ?? true)
                 cell.wantedView.isHidden = !cell.ownedView.isHidden || !(set.wanted ?? true)
 
-                if cell.hasAmbiguousLayout {
-                    print("\(cell.constraintsAffectingLayout(for: .vertical))")
-                }
                 return cell
             }
         }

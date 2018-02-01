@@ -48,7 +48,6 @@ class BrowseThemesViewController: UIViewController {
             self.allThemes = result.value ?? []
             self.processThemes()
             self.activityIndicator?.stopAnimating()
-            //print("Result: \(result)")
             self.tableView.reloadData()
         })
     }

@@ -42,7 +42,6 @@ class NewsViewController: UIViewController {
                 self.feedItems = value.items
             }
 
-            //print("Result: \(result)")
             self.tableView.reloadData()
         })
     }
@@ -85,7 +84,6 @@ extension NewsViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let feedItem = feedItems[indexPath.row]
-        print("feedItem = \(feedItem)")
         if let feedItemVC = storyboard?.instantiateViewController(withIdentifier: "NewsItemViewController") as? NewsItemViewController {
             feedItemVC.newsItem = feedItem
             show(feedItemVC, sender: self)

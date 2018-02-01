@@ -104,12 +104,10 @@ class SearchViewController: UIViewController {
     //--------------------------------------------------------------------------
     
     fileprivate func performSearch(forBarcode code: String) {
-        print("performSearch forBarcode: \(code)")
         performSearch(searchType: .scan, searchTerm: code)
     }
     
     fileprivate func performSearch(forText searchText: String) {
-        print("performSearch forText: \(searchText)")
         performSearch(searchType: .search, searchTerm: searchText)
     }
     

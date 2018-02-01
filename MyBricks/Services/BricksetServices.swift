@@ -123,8 +123,6 @@ class BricksetServices {
                 completion(Result.failure(error))
             }
             else if let document = response.result.value, let result = document.root?.stringValue {
-                //print("Result: \(result)")
-
                 if result.contains("ERROR") {
                     let array = result.components(separatedBy: ": ")
                     if array.count > 0 {
@@ -202,7 +200,6 @@ class BricksetServices {
         print("Request: \(request)")
         
         let requestCompletion: (DataResponse<XMLDocument>) -> Void = { response in
-            //print("Document: \(document)")
             if let error = response.result.error {
                 completion(Result.failure(error))
             }
@@ -233,7 +230,6 @@ class BricksetServices {
         print("Request: \(request)")
         
         let requestCompletion: (DataResponse<XMLDocument>) -> Void = { response in
-            //print("Document: \(document)")
             if let error = response.result.error {
                 completion(Result.failure(error))
             }
@@ -264,7 +260,6 @@ class BricksetServices {
         print("Request: \(request)")
         
         let requestCompletion: (DataResponse<XMLDocument>) -> Void = { response in
-            //print("Document: \(document)")
             if let error = response.result.error {
                 completion(Result.failure(error))
             }
@@ -314,7 +309,6 @@ class BricksetServices {
                 completion(Result.failure(error))
             }
             else if let document = response.result.value {
-                //print("Document: \(document)")
                 if let root = document.root {
                     var sets: [Set] = []
 
@@ -346,7 +340,6 @@ class BricksetServices {
                 completion(Result.failure(error))
             }
             else if let document = response.result.value {
-                //print("Document: \(document)")
                 if let root = document.root {
                     var sets: [SetDetail] = []
 
@@ -379,7 +372,6 @@ class BricksetServices {
         print("Request: \(request)")
 
         let requestCompletion: (DataResponse<XMLDocument>) -> Void = { response in
-            //print("Document: \(document)")
             if let error = response.result.error {
                 completion(Result.failure(error))
             }
@@ -410,7 +402,6 @@ class BricksetServices {
         print("Request: \(request)")
         
         let requestCompletion: (DataResponse<XMLDocument>) -> Void = { response in
-            //print("Document: \(document)")
             if let error = response.result.error {
                 completion(Result.failure(error))
             }

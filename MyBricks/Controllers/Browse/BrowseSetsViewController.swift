@@ -72,8 +72,6 @@ class BrowseSetsViewController: UIViewController {
     //--------------------------------------------------------------------------
 
     @IBAction func showFilters(_ sender: UIBarButtonItem) {
-        print("Show filters...")
-        
         let filterStoryboard = UIStoryboard(name: "Filter", bundle: nil)
         if let filterVC = filterStoryboard.instantiateInitialViewController() as? FilterViewController {
             filterVC.delegate = self
@@ -204,7 +202,6 @@ extension BrowseSetsViewController: UITableViewDelegate {
 extension BrowseSetsViewController: FilterViewControllerDelegate {
     
     func filterViewController(_ controller: FilterViewController, didUpdateFilterOptions filterOptions: FilterOptions) {
-        print("didUpdateFilterOptions: \(filterOptions)")
         self.filterOptions = filterOptions
         fetchSets()
     }

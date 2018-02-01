@@ -190,7 +190,6 @@ extension FilterViewController: UITableViewDelegate {
 extension FilterViewController: FilterSelectThemeViewControllerDelegate {
     
     func selectThemeController(_ controller: FilterSelectThemeViewController, didSelectTheme theme: SetTheme?) {
-        print("Selected theme = \(String(describing: theme))")
         if var options = self.filterOptions {
             options.selectedTheme = theme
             options.selectedSubtheme = nil
@@ -209,7 +208,6 @@ extension FilterViewController: FilterSelectThemeViewControllerDelegate {
 extension FilterViewController: FilterSelectSubthemeViewControllerDelegate {
     
     func selectSubthemeController(_ controller: FilterSelectSubthemeViewController, didSelectSubtheme subtheme: SetSubtheme?) {
-        print("Selected subtheme = \(String(describing: subtheme))")
         if var options = self.filterOptions {
             options.selectedSubtheme = subtheme
             self.filterOptions = options
@@ -226,7 +224,6 @@ extension FilterViewController: FilterSelectSubthemeViewControllerDelegate {
 extension FilterViewController: FilterSelectYearViewControllerDelegate {
     
     func selectYearController(_ controller: FilterSelectYearViewController, didSelectYear year: SetYear?) {
-        print("Selected year = \(String(describing: year))")
         if var options = self.filterOptions {
             options.selectedYear = year
             self.filterOptions = options
