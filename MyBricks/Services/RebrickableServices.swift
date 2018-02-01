@@ -40,9 +40,7 @@ class RebrickableServices {
             "Accept": "application/json"
         ]
 
-        let request = Alamofire.request( url, method: .get, headers: headers )
-        print("Request: \(request)")
-        
+        let request = Alamofire.request( url, method: .get, headers: headers )        
         let requestCompletion: ((DataResponse<Data>) -> Void) = { response in
             switch response.result {
                 case .success(let data):

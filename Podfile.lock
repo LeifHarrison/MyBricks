@@ -4,10 +4,11 @@ PODS:
     - Alamofire (~> 4.5)
   - AlamofireNetworkActivityIndicator (2.2.0):
     - Alamofire (~> 4.5)
+  - AlamofireNetworkActivityLogger (2.2.0):
+    - Alamofire (~> 4.0)
   - AlamofireRSSParser (2.1.0):
     - Alamofire
-  - BarcodeScanner (3.0.3)
-  - Cosmos (13.0.0)
+  - Cosmos (14.0.0)
   - Fuzi (2.0.1)
   - KeychainAccess (3.1.0)
 
@@ -15,8 +16,8 @@ DEPENDENCIES:
   - Alamofire
   - AlamofireImage
   - AlamofireNetworkActivityIndicator
+  - AlamofireNetworkActivityLogger
   - AlamofireRSSParser
-  - BarcodeScanner
   - Cosmos
   - Fuzi
   - KeychainAccess
@@ -25,12 +26,12 @@ SPEC CHECKSUMS:
   Alamofire: f41a599bd63041760b26d393ec1069d9d7b917f4
   AlamofireImage: 2e784dc5d00f04903a52c1d169181469c805c3df
   AlamofireNetworkActivityIndicator: 81e1630e7cfed22a4e4e82a174c59e651dc4f8ca
+  AlamofireNetworkActivityLogger: a7ae1842988b3f6248a49213268375bd27b515f0
   AlamofireRSSParser: 5fed94de51ff88ea48496d7dfa6e3274100d90d6
-  BarcodeScanner: 0ecc25fb8b37e1d34cae9838a4b18b19df2786a2
-  Cosmos: af3973becc045af335b64498c9812034876b7661
+  Cosmos: 6dd44b65d587033e690ae1c350c875d262a23fda
   Fuzi: f64983dea705491d3aedd32351247a09523e7efd
   KeychainAccess: 94c5540b32eabf7bc32bfb976a268e8ea05fd6da
 
-PODFILE CHECKSUM: bbfab72e9e334204a29ed95b09eeea992122ea50
+PODFILE CHECKSUM: 8b58ab1fad3d0bc5e946dd8e6d92a6faea5b0813
 
 COCOAPODS: 1.4.0

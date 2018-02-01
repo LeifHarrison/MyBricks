@@ -9,10 +9,10 @@ target 'MyBricks' do
   pod 'Alamofire'
   pod 'AlamofireImage'
   pod 'AlamofireNetworkActivityIndicator'
+  pod 'AlamofireNetworkActivityLogger'
   pod 'AlamofireRSSParser'
   pod 'Fuzi'
   pod 'KeychainAccess'
   pod 'Cosmos'
-  pod 'BarcodeScanner'
 
 end

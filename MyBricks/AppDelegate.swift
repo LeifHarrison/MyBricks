@@ -9,6 +9,7 @@
 import UIKit
 
 import AlamofireNetworkActivityIndicator
+import AlamofireNetworkActivityLogger
 import LocalAuthentication
 
 @UIApplicationMain
@@ -19,9 +20,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 
         NetworkActivityIndicatorManager.shared.isEnabled = true
+        NetworkActivityLogger.shared.startLogging()
 
-        // Validate that our BrickSet API Key is still valid
-        validateAPIKey()
+        // Don't log image URL requests
+        let imagePredicate = NSPredicate { (object, _) in
+            if let request = object as? NSURLRequest, let url = request.url {
+                return url.lastPathComponent.hasSuffix(".jpg")
+            }
+            return false
+        }
+        NetworkActivityLogger.shared.filterPredicate = imagePredicate
+        
+        validateAPIKey() // Validate that our BrickSet API Key is still valid
 
         return true
     }

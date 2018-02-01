@@ -75,15 +75,11 @@ class BricksetServices {
         let parameters = defaultParameters()
 
         let request = Alamofire.request( url, parameters: parameters)
-        print("Request: \(request)")
-
         let requestCompletion: (DataResponse<XMLDocument>) -> Void = { response in
             if let error = response.result.error {
                 completion(Result.failure(error))
             }
             else if let document = response.result.value, let result = document.root?.stringValue {
-                print("checkKey: \(result)")
-
                 if result.contains("ERROR") {
                     let array = result.components(separatedBy: ": ")
                     if array.count > 0 {
@@ -116,8 +112,6 @@ class BricksetServices {
         parameters["password"] = password
 
         let request = Alamofire.request( url, parameters: parameters)
-        print("Request: \(request)")
-
         let requestCompletion: (DataResponse<XMLDocument>) -> Void = { response in
             if let error = response.result.error {
                 completion(Result.failure(error))
@@ -156,15 +150,11 @@ class BricksetServices {
         parameters["userHash"] = userHash
 
         let request = Alamofire.request( url, parameters: parameters)
-        print("Request: \(request)")
-
         let requestCompletion: (DataResponse<XMLDocument>) -> Void = { response in
             if let error = response.result.error {
                 completion(Result.failure(error))
             }
             else if let document = response.result.value, let result = document.root?.stringValue {
-                print("checkUserHash: \(result)")
-
                 if result.contains("ERROR") {
                     let array = result.components(separatedBy: ": ")
                     if array.count > 0 {
@@ -197,8 +187,6 @@ class BricksetServices {
         
         let parameters = defaultParameters()
         let request = Alamofire.request( url, parameters: parameters)
-        print("Request: \(request)")
-        
         let requestCompletion: (DataResponse<XMLDocument>) -> Void = { response in
             if let error = response.result.error {
                 completion(Result.failure(error))
@@ -227,8 +215,6 @@ class BricksetServices {
         parameters["theme"] = theme
 
         let request = Alamofire.request( url, parameters: parameters)
-        print("Request: \(request)")
-        
         let requestCompletion: (DataResponse<XMLDocument>) -> Void = { response in
             if let error = response.result.error {
                 completion(Result.failure(error))
@@ -257,8 +243,6 @@ class BricksetServices {
         parameters["theme"] = theme
         
         let request = Alamofire.request( url, parameters: parameters)
-        print("Request: \(request)")
-        
         let requestCompletion: (DataResponse<XMLDocument>) -> Void = { response in
             if let error = response.result.error {
                 completion(Result.failure(error))
@@ -302,8 +286,6 @@ class BricksetServices {
         parameters["userName"] = ""
 
         let request = Alamofire.request( url, parameters: parameters)
-        print("Request: \(request)")
-
         let requestCompletion: (DataResponse<XMLDocument>) -> Void = { response in
             if let error = response.result.error {
                 completion(Result.failure(error))
@@ -333,8 +315,6 @@ class BricksetServices {
         parameters["setID"] = setID
 
         let request = Alamofire.request( url, parameters: parameters)
-        print("Request: \(request)")
-
         let requestCompletion: (DataResponse<XMLDocument>) -> Void = { response in
             if let error = response.result.error {
                 completion(Result.failure(error))
@@ -369,8 +349,6 @@ class BricksetServices {
         parameters["setID"] = setID
 
         let request = Alamofire.request( url, parameters: parameters)
-        print("Request: \(request)")
-
         let requestCompletion: (DataResponse<XMLDocument>) -> Void = { response in
             if let error = response.result.error {
                 completion(Result.failure(error))
@@ -399,8 +377,6 @@ class BricksetServices {
         parameters["setID"] = setID
         
         let request = Alamofire.request( url, parameters: parameters)
-        print("Request: \(request)")
-        
         let requestCompletion: (DataResponse<XMLDocument>) -> Void = { response in
             if let error = response.result.error {
                 completion(Result.failure(error))
@@ -431,8 +407,6 @@ class BricksetServices {
         let parameters = userParameters()
 
         let request = Alamofire.request( url, parameters: parameters)
-        print("Request: \(request)")
-
         let requestCompletion: (DataResponse<XMLDocument>) -> Void = { response in
             if let error = response.result.error {
                 completion(Result.failure(error))
@@ -454,8 +428,6 @@ class BricksetServices {
         parameters["owned"] = owned
 
         let request = Alamofire.request( url, method: .post, parameters: parameters)
-        print("Request: \(request)")
-        
         let requestCompletion: (DataResponse<XMLDocument>) -> Void = { response in
             if let error = response.result.error {
                 completion(Result.failure(error))
@@ -480,8 +452,6 @@ class BricksetServices {
         parameters["wanted"] = wanted
         
         let request = Alamofire.request( url, method: .post, parameters: parameters)
-        print("Request: \(request)")
-        
         let requestCompletion: (DataResponse<XMLDocument>) -> Void = { response in
             if let error = response.result.error {
                 completion(Result.failure(error))
@@ -506,8 +476,6 @@ class BricksetServices {
         parameters["qtyOwned"] = quantityOwned
         
         let request = Alamofire.request( url, method: .post, parameters: parameters)
-        print("Request: \(request)")
-        
         let requestCompletion: (DataResponse<XMLDocument>) -> Void = { response in
             if let error = response.result.error {
                 completion(Result.failure(error))
@@ -531,9 +499,7 @@ class BricksetServices {
         parameters["setID"] = setID
         parameters["notes"] = notes
         
-        let request = Alamofire.request( url, method: .post, parameters: parameters)
-        print("Request: \(request)")
-        
+        let request = Alamofire.request( url, method: .post, parameters: parameters)        
         let requestCompletion: (DataResponse<XMLDocument>) -> Void = { response in
             if let error = response.result.error {
                 completion(Result.failure(error))
