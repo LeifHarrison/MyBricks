@@ -338,6 +338,7 @@
 				29365B711F8EBE9D00F6730C /* News */,
 				29365B721F8EBEA600F6730C /* Profile */,
 				29E86FD61F3128E800A67179 /* Search */,
+				9B85355B202389BA00D77DF9 /* SetDetail */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -463,20 +464,13 @@
 			children = (
 				29E86FD71F3128F800A67179 /* Cells */,
 				294F187C1FB519A60026342F /* Browse.storyboard */,
-				9BFFDEAA20212E5F0070C812 /* SetDetail.storyboard */,
-				9BFFDEA82020E3C90070C812 /* Filter.storyboard */,
 				29CA94A01F8D508A000F1DE3 /* BrowseSetsViewController.swift */,
 				295ADFBE1F16AFFD002E6802 /* BrowseThemesViewController.swift */,
+				9BFFDEA82020E3C90070C812 /* Filter.storyboard */,
 				9B92EFAD201FE084007610BD /* FilterSelectSubthemeViewController.swift */,
 				9B92EFAB201FE06D007610BD /* FilterSelectThemeTableViewController.swift */,
 				9B92EFAF201FE09D007610BD /* FilterSelectYearViewController.swift */,
 				29BA70102012A1AD00D34D93 /* FilterViewController.swift */,
-				2949A94E1FBFBEC800676D59 /* InstructionsViewController.swift */,
-				2949A9501FBFBEE000676D59 /* PartsListViewController.swift */,
-				29C111A41FC48988007CBDB4 /* ReviewDetailAnimator.swift */,
-				29C111A21FC4893E007CBDB4 /* ReviewDetailViewController.swift */,
-				2949A94C1FBFBEB500676D59 /* ReviewsViewController.swift */,
-				29CCD8ED1F993E12009A39CF /* SetDetailViewController.swift */,
 			);
 			path = Browse;
 			sourceTree = "<group>";
@@ -497,15 +491,6 @@
 			isa = PBXGroup;
 			children = (
 				9B5CA745201946CE00B09BCB /* FilterSelectionTableViewCell.swift */,
-				29C111A81FCA411B007CBDB4 /* InstructionsTableViewCell.swift */,
-				29D30CA41FDE1A690076DB85 /* PartsListTableViewCell.swift */,
-				29DFEA121FA29BF500AB0AE8 /* SetCollectionTableViewCell.swift */,
-				29AE22CE1FCB9A6500744045 /* SetDescriptionTableViewCell.swift */,
-				2945A1FB1F9FDB5300827BA7 /* SetDetailTableViewCell.swift */,
-				296EB6DD1FBF5E3600D4D3C6 /* SetImageTableViewCell.swift */,
-				296EB6E11FBF5E5700D4D3C6 /* SetPartsTableViewCell.swift */,
-				296EB6DF1FBF5E4500D4D3C6 /* SetReviewsTableViewCell.swift */,
-				2949A9541FBFE05E00676D59 /* SetReviewTableViewCell.swift */,
 				29CA94A41F8D72DC000F1DE3 /* SetTableViewCell.swift */,
 				29E86FD91F31293900A67179 /* ThemeTableViewCell.swift */,
 			);
@@ -518,6 +503,37 @@
 				29F60F5A1FD3769E00DF2E48 /* PreviewView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		9B85355B202389BA00D77DF9 /* SetDetail */ = {
+			isa = PBXGroup;
+			children = (
+				9B85355C202389D200D77DF9 /* Cells */,
+				2949A94E1FBFBEC800676D59 /* InstructionsViewController.swift */,
+				2949A9501FBFBEE000676D59 /* PartsListViewController.swift */,
+				29C111A41FC48988007CBDB4 /* ReviewDetailAnimator.swift */,
+				29C111A21FC4893E007CBDB4 /* ReviewDetailViewController.swift */,
+				2949A94C1FBFBEB500676D59 /* ReviewsViewController.swift */,
+				9BFFDEAA20212E5F0070C812 /* SetDetail.storyboard */,
+				29CCD8ED1F993E12009A39CF /* SetDetailViewController.swift */,
+			);
+			path = SetDetail;
+			sourceTree = "<group>";
+		};
+		9B85355C202389D200D77DF9 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				29C111A81FCA411B007CBDB4 /* InstructionsTableViewCell.swift */,
+				29D30CA41FDE1A690076DB85 /* PartsListTableViewCell.swift */,
+				29DFEA121FA29BF500AB0AE8 /* SetCollectionTableViewCell.swift */,
+				29AE22CE1FCB9A6500744045 /* SetDescriptionTableViewCell.swift */,
+				2945A1FB1F9FDB5300827BA7 /* SetDetailTableViewCell.swift */,
+				296EB6DD1FBF5E3600D4D3C6 /* SetImageTableViewCell.swift */,
+				296EB6E11FBF5E5700D4D3C6 /* SetPartsTableViewCell.swift */,
+				296EB6DF1FBF5E4500D4D3C6 /* SetReviewsTableViewCell.swift */,
+				2949A9541FBFE05E00676D59 /* SetReviewTableViewCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		9B92EFA5201FC08A007610BD /* Brickset */ = {

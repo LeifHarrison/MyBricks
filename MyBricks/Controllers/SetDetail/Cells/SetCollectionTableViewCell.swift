@@ -166,7 +166,6 @@ class SetCollectionTableViewCell: UITableViewCell {
 extension SetCollectionTableViewCell: UITextFieldDelegate {
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        print("textFieldDidBeginEditing")
         previousQuantityOwned = Int(ownedCountField.text ?? "0") ?? 0
     }
     
@@ -178,7 +177,6 @@ extension SetCollectionTableViewCell: UITextFieldDelegate {
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        print("textFieldDidEndEditing")
         let newQuantity = Int(ownedCountField.text ?? "0") ?? 0
         if newQuantity != previousQuantityOwned {
             updateQuantityOwned?(newQuantity)
@@ -194,12 +192,10 @@ extension SetCollectionTableViewCell: UITextFieldDelegate {
 extension SetCollectionTableViewCell: UITextViewDelegate {
     
     func textViewDidBeginEditing(_ textView: UITextView) {
-        print("textViewDidBeginEditing")
         previousNotesText = notesTextView.text ?? ""
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
-        print("textViewDidEndEditing")
         let newNotes = notesTextView.text ?? ""
         if newNotes != previousNotesText {
             updateUserNotes?(newNotes)

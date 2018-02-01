@@ -43,11 +43,9 @@ class PartsListViewController: UIViewController {
             self.activityIndicator?.startAnimating()
             let completion: (Result<GetPartsResponse>) -> Void = { result in
                 self.activityIndicator?.stopAnimating()
-                //print("Result: \(result)")
                 if result.isSuccess {
                     if let results = result.value?.results {
                         self.elements = results
-                        print("Count: \(String(describing: self.elements.count))")
                         self.tableView.reloadData()
                     }
                 }

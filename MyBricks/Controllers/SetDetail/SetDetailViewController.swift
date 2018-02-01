@@ -157,7 +157,6 @@ extension SetDetailViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        //print("cellForRowAt: \(indexPath)")
         
         guard var set = currentSet else {
             return UITableViewCell()
@@ -177,7 +176,6 @@ extension SetDetailViewController: UITableViewDataSource {
                     else if let urlString = set.imageURL, let url = URL(string: urlString) {
                         cell.setImageView?.af_setImage(withURL: url) { response in
                             if let image = response.result.value {
-                                print("image size: \(image.size)")
                                 self.currentSetImage = image
                                 DispatchQueue.main.async(execute: {
                                     tableView.reloadRows(at: [indexPath], with: .fade)
@@ -225,7 +223,6 @@ extension SetDetailViewController: UITableViewDataSource {
                         print("rating = \(rating)")
                     }
                     cell.toggleSetOwned = {
-                        print("toggleSetOwned")
                         if let setID = set.setID, let owned = set.owned {
                             BricksetServices.shared.setCollectionOwns(setID: setID, owned: !owned, completion: { result in
                                 if result.isSuccess {
@@ -237,7 +234,6 @@ extension SetDetailViewController: UITableViewDataSource {
                         }
                     }
                     cell.toggleSetWanted = {
-                        print("toggleSetWanted")
                         if let setID = set.setID, let wanted = set.wanted {
                             BricksetServices.shared.setCollectionWants(setID: setID, wanted: !wanted, completion: { result in
                                 if result.isSuccess {
@@ -248,7 +244,6 @@ extension SetDetailViewController: UITableViewDataSource {
                         }
                     }
                     cell.updateQuantityOwned = { newQuantity in
-                        print("updateQuantityOwned")
                         if let setID = set.setID {
                             BricksetServices.shared.setCollectionQuantityOwned(setID: setID, quantityOwned: newQuantity, completion: { result in
                                 if result.isSuccess {
@@ -260,7 +255,6 @@ extension SetDetailViewController: UITableViewDataSource {
                         }
                     }
                     cell.updateUserNotes = { newNotes in
-                        print("updateUserNotes")
                         if let setID = set.setID {
                             BricksetServices.shared.setCollectionUserNotes(setID: setID, notes: newNotes, completion: { result in
                                 if result.isSuccess {
@@ -313,10 +307,6 @@ extension SetDetailViewController: UITableViewDelegate {
         }
     }
 
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        //print("willDisplay: \(cell), forRowAt: \(indexPath)")
-    }
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let section = sections[indexPath.section]
 

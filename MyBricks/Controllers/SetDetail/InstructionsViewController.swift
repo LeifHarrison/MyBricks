@@ -79,7 +79,6 @@ class InstructionsViewController: UIViewController {
                 }
                 .validate()
                 .responseData { ( response ) in
-                    print(response.destinationURL!)
                     let docInteractionController = UIDocumentInteractionController(url: response.destinationURL!)
                     docInteractionController.delegate = self
                     docInteractionController.presentPreview(animated: true)
