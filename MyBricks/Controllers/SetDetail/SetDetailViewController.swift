@@ -13,6 +13,7 @@ class SetDetailViewController: UIViewController {
 
     enum TableSection: Int {
         case image
+        case additionalImages
         case detail
         case reviews
         case instructions
@@ -129,6 +130,12 @@ class SetDetailViewController: UIViewController {
                 self?.setImagesRequest = nil
                 if result.isSuccess, let images = result.value {
                     self?.setImages = images
+                    if let imageSectionIndex = self?.sections.index(of: .image) {
+                        self?.sections.insert(.additionalImages, at: imageSectionIndex+1)
+                        if let index = self?.sections.index(of: .additionalImages) {
+                            self?.tableView.insertSections([index], with: .fade)
+                        }
+                    }
                 }
             })
         }
@@ -246,6 +253,14 @@ extension SetDetailViewController: UITableViewDataSource {
                 }
 
 
+            case .additionalImages :
+                if let cell = tableView.dequeueReusableCell(withIdentifier: "AdditionalImagesTableViewCell", for: indexPath) as? AdditionalImagesTableViewCell {
+                    if let images = setImages {
+                        cell.populateWithSetImages(images)
+                    }
+                    return cell
+                }
+            
             case .detail :
                 if let cell = tableView.dequeueReusableCell(withIdentifier: "SetDetailTableViewCell", for: indexPath) as? SetDetailTableViewCell {
                     cell.populateWithSet(set)
@@ -356,6 +371,7 @@ extension SetDetailViewController: UITableViewDelegate {
         var estimatedHeight: CGFloat = 44.0
         switch section {
             case .image         : estimatedHeight = 242.0
+            case .additionalImages : estimatedHeight = 100.0
             case .detail        : estimatedHeight = 180.0
             case .collection    : estimatedHeight = 280.0
             case .description   : estimatedHeight = 140.0

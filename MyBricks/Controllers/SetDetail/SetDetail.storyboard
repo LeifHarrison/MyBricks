@@ -106,8 +106,42 @@
                                             <outlet property="zoomButton" destination="1Q3-QP-M6M" id="87V-Gu-WWY"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="AdditionalImagesTableViewCell" rowHeight="101" id="c1D-aV-dRm" customClass="AdditionalImagesTableViewCell" customModule="MyBricks" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="273" width="375" height="101"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="c1D-aV-dRm" id="60B-RX-f1j">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="100.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZhM-1D-eie">
+                                                    <rect key="frame" x="0.0" y="-10" width="375" height="119.5"/>
+                                                    <subviews>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" distribution="equalSpacing" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="rZy-0A-qEw">
+                                                            <rect key="frame" x="20" y="20" width="335" height="80"/>
+                                                        </stackView>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="rZy-0A-qEw" firstAttribute="top" secondItem="ZhM-1D-eie" secondAttribute="top" constant="20" id="5BP-TJ-MU6"/>
+                                                        <constraint firstAttribute="bottom" secondItem="rZy-0A-qEw" secondAttribute="bottom" constant="20" id="7Ff-9s-Cby"/>
+                                                        <constraint firstAttribute="trailing" secondItem="rZy-0A-qEw" secondAttribute="trailing" constant="20" id="QCJ-Yz-Yly"/>
+                                                        <constraint firstAttribute="height" priority="750" constant="100" id="VlX-YO-Vgh"/>
+                                                        <constraint firstItem="rZy-0A-qEw" firstAttribute="leading" secondItem="ZhM-1D-eie" secondAttribute="leading" constant="20" id="wY9-Jz-PGa"/>
+                                                    </constraints>
+                                                </scrollView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="ZhM-1D-eie" firstAttribute="leading" secondItem="60B-RX-f1j" secondAttribute="leading" id="8Cj-af-LjX"/>
+                                                <constraint firstAttribute="trailing" secondItem="ZhM-1D-eie" secondAttribute="trailing" id="Kga-SD-YOR"/>
+                                                <constraint firstItem="ZhM-1D-eie" firstAttribute="top" secondItem="60B-RX-f1j" secondAttribute="top" id="heF-Hj-rhw"/>
+                                                <constraint firstAttribute="bottom" secondItem="ZhM-1D-eie" secondAttribute="bottom" id="pP6-ld-LYc"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="stackView" destination="rZy-0A-qEw" id="HYk-dQ-PSR"/>
+                                        </connections>
+                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SetDetailTableViewCell" rowHeight="180" id="a5E-Ob-arQ" customClass="SetDetailTableViewCell" customModule="MyBricks" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="273" width="375" height="180"/>
+                                        <rect key="frame" x="0.0" y="374" width="375" height="180"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="a5E-Ob-arQ" id="XwS-QB-BnB">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="179.5"/>
@@ -180,7 +214,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="default" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SetReviewsTableViewCell" id="3cN-c7-921" customClass="SetReviewsTableViewCell" customModule="MyBricks" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="453" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="554" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="3cN-c7-921" id="5NI-zR-a9F">
                                             <rect key="frame" x="0.0" y="0.0" width="342" height="43.5"/>
@@ -212,7 +246,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="default" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SetPartsTableViewCell" id="3M7-H5-Oj1" customClass="SetPartsTableViewCell" customModule="MyBricks" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="497" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="598" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="3M7-H5-Oj1" id="tF4-e3-qEw">
                                             <rect key="frame" x="0.0" y="0.0" width="342" height="43.5"/>
@@ -286,7 +320,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="default" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SetInstructionsTableViewCell" textLabel="fwe-p0-3a0" style="IBUITableViewCellStyleDefault" id="xWD-UC-kop">
-                                        <rect key="frame" x="0.0" y="541" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="642" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="xWD-UC-kop" id="yTg-6K-or6">
                                             <rect key="frame" x="0.0" y="0.0" width="342" height="43.5"/>
@@ -303,7 +337,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SetCollectionTableViewCell" rowHeight="280" id="BVf-gI-5hY" customClass="SetCollectionTableViewCell" customModule="MyBricks" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="585" width="375" height="280"/>
+                                        <rect key="frame" x="0.0" y="686" width="375" height="280"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="BVf-gI-5hY" id="Mq3-MR-hjW">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="279.5"/>
@@ -461,7 +495,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SetDescriptionTableViewCell" rowHeight="140" id="Z61-IU-eKW" customClass="SetDescriptionTableViewCell" customModule="MyBricks" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="865" width="375" height="140"/>
+                                        <rect key="frame" x="0.0" y="966" width="375" height="140"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Z61-IU-eKW" id="NDP-hi-NN1">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="139.5"/>
