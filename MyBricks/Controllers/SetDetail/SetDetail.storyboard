@@ -6,6 +6,7 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -22,19 +23,37 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SetImageTableViewCell" rowHeight="241" id="jKm-8g-xw3" customClass="SetImageTableViewCell" customModule="MyBricks" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleAspectFit" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SetImageTableViewCell" rowHeight="241" id="jKm-8g-xw3" customClass="SetImageTableViewCell" customModule="MyBricks" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="32" width="375" height="241"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jKm-8g-xw3" id="Lfu-31-VgY">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="240.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="252" verticalHuggingPriority="252" horizontalCompressionResistancePriority="752" verticalCompressionResistancePriority="751" image="image_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="lvs-9T-EAQ">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="252" verticalHuggingPriority="252" horizontalCompressionResistancePriority="752" verticalCompressionResistancePriority="751" image="image_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="lvs-9T-EAQ">
                                                     <rect key="frame" x="20" y="20" width="335" height="200"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="200" placeholder="YES" id="TrR-1F-9cY"/>
+                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" priority="750" constant="200" id="TrR-1F-9cY"/>
                                                     </constraints>
                                                 </imageView>
+                                                <view contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="eTD-gl-z6V">
+                                                    <rect key="frame" x="20" y="20" width="81" height="25.5"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="Number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iS3-3Y-gP1">
+                                                            <rect key="frame" x="10" y="3" width="61" height="19.5"/>
+                                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="1" alpha="0.5" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="trailing" secondItem="iS3-3Y-gP1" secondAttribute="trailing" constant="10" id="1Yl-vb-g7W"/>
+                                                        <constraint firstItem="iS3-3Y-gP1" firstAttribute="leading" secondItem="eTD-gl-z6V" secondAttribute="leading" constant="10" id="eqd-Sg-i5x"/>
+                                                        <constraint firstItem="iS3-3Y-gP1" firstAttribute="top" secondItem="eTD-gl-z6V" secondAttribute="top" constant="3" id="fhG-jC-4tp"/>
+                                                        <constraint firstAttribute="bottom" secondItem="iS3-3Y-gP1" secondAttribute="bottom" constant="3" id="nzq-ek-bAy"/>
+                                                    </constraints>
+                                                </view>
                                                 <view contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="Stm-82-2MM">
                                                     <rect key="frame" x="301" y="20" width="54" height="25.5"/>
                                                     <subviews>
@@ -53,20 +72,38 @@
                                                         <constraint firstItem="Pek-NQ-uxK" firstAttribute="top" secondItem="Stm-82-2MM" secondAttribute="top" constant="3" id="Zgv-7U-b1d"/>
                                                     </constraints>
                                                 </view>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Q3-QP-M6M">
+                                                    <rect key="frame" x="315" y="180.5" width="40" height="40"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="40" id="4mX-3g-OXN"/>
+                                                        <constraint firstAttribute="width" constant="40" id="XyL-TY-gKa"/>
+                                                    </constraints>
+                                                    <state key="normal" image="zoom"/>
+                                                    <connections>
+                                                        <action selector="zoomButtonTapped:" destination="jKm-8g-xw3" eventType="touchUpInside" id="Ayk-QM-KXu"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="1Q3-QP-M6M" secondAttribute="bottom" constant="20" id="66A-XZ-ZYL"/>
                                                 <constraint firstAttribute="trailing" secondItem="lvs-9T-EAQ" secondAttribute="trailing" constant="20" id="6Ug-Za-4Dj"/>
                                                 <constraint firstAttribute="trailing" secondItem="Stm-82-2MM" secondAttribute="trailing" constant="20" id="CSU-r8-IV5"/>
+                                                <constraint firstItem="eTD-gl-z6V" firstAttribute="leading" secondItem="Lfu-31-VgY" secondAttribute="leading" constant="20" id="Re0-B0-ULe"/>
                                                 <constraint firstItem="lvs-9T-EAQ" firstAttribute="leading" secondItem="Lfu-31-VgY" secondAttribute="leading" constant="20" id="fWm-DD-OIe"/>
-                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="lvs-9T-EAQ" secondAttribute="bottom" constant="20" id="laL-zW-oBt"/>
+                                                <constraint firstItem="eTD-gl-z6V" firstAttribute="top" secondItem="Lfu-31-VgY" secondAttribute="top" constant="20" id="jMg-tT-vLI"/>
+                                                <constraint firstAttribute="bottom" secondItem="lvs-9T-EAQ" secondAttribute="bottom" constant="20" id="laL-zW-oBt"/>
+                                                <constraint firstAttribute="trailing" secondItem="1Q3-QP-M6M" secondAttribute="trailing" constant="20" id="pPA-4L-sEX"/>
                                                 <constraint firstItem="Stm-82-2MM" firstAttribute="top" secondItem="Lfu-31-VgY" secondAttribute="top" constant="20" id="paA-sN-6GZ"/>
                                                 <constraint firstItem="lvs-9T-EAQ" firstAttribute="top" secondItem="Lfu-31-VgY" secondAttribute="top" constant="20" id="rza-kW-LcU"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="numberBackgroundView" destination="eTD-gl-z6V" id="e2D-o1-Wjb"/>
+                                            <outlet property="numberLabel" destination="iS3-3Y-gP1" id="6vl-v5-kvu"/>
                                             <outlet property="setImageView" destination="lvs-9T-EAQ" id="Fgf-ys-EyZ"/>
                                             <outlet property="yearBackgroundView" destination="Stm-82-2MM" id="hK8-Hv-QAD"/>
                                             <outlet property="yearLabel" destination="Pek-NQ-uxK" id="j4D-ZQ-Nhp"/>
+                                            <outlet property="zoomButton" destination="1Q3-QP-M6M" id="87V-Gu-WWY"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SetDetailTableViewCell" rowHeight="180" id="a5E-Ob-arQ" customClass="SetDetailTableViewCell" customModule="MyBricks" customModuleProvider="target">
@@ -473,11 +510,73 @@
                         <segue destination="r15-l5-xF4" kind="show" identifier="showInstructions" id="qsy-9y-eYQ"/>
                         <segue destination="2gf-gh-Zwe" kind="show" identifier="showPartsList" id="C0K-AL-Af4"/>
                         <segue destination="wfp-nZ-QTb" kind="show" identifier="showReviews" id="6cb-CZ-qye"/>
+                        <segue destination="YhP-0y-ZgU" kind="presentation" identifier="showImageDetailView" modalPresentationStyle="overFullScreen" id="uR5-6F-GkT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b1X-3e-diC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3125.5999999999999" y="-344.07796101949026"/>
+        </scene>
+        <!--Image Detail View Controller-->
+        <scene sceneID="pNn-24-W0B">
+            <objects>
+                <viewController id="YhP-0y-ZgU" customClass="ImageDetailViewController" customModule="MyBricks" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="NSX-T3-xbL">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sEI-9Q-GI5">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="XqH-Gv-A08">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                    </imageView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="XqH-Gv-A08" secondAttribute="trailing" id="6ax-96-rCg"/>
+                                    <constraint firstAttribute="bottom" secondItem="XqH-Gv-A08" secondAttribute="bottom" id="FK8-64-PLU"/>
+                                    <constraint firstItem="XqH-Gv-A08" firstAttribute="top" secondItem="sEI-9Q-GI5" secondAttribute="top" id="OLl-ql-PtK"/>
+                                    <constraint firstItem="XqH-Gv-A08" firstAttribute="leading" secondItem="sEI-9Q-GI5" secondAttribute="leading" id="oVc-kd-0p5"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="delegate" destination="YhP-0y-ZgU" id="ZEK-Qh-nqJ"/>
+                                </connections>
+                            </scrollView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qe6-1U-o9j">
+                                <rect key="frame" x="314" y="40" width="41" height="41"/>
+                                <state key="normal" image="cancel"/>
+                                <connections>
+                                    <action selector="close:" destination="YhP-0y-ZgU" eventType="touchUpInside" id="WKG-V2-vbE"/>
+                                </connections>
+                            </button>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Wkd-wi-AYp">
+                                <rect key="frame" x="169" y="325" width="37" height="37"/>
+                                <color key="color" name="bricksetDarkGreen"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="SDQ-fk-PDK" firstAttribute="bottom" secondItem="sEI-9Q-GI5" secondAttribute="bottom" id="B4v-zl-Caw"/>
+                            <constraint firstItem="Wkd-wi-AYp" firstAttribute="centerX" secondItem="SDQ-fk-PDK" secondAttribute="centerX" id="Qof-by-fU0"/>
+                            <constraint firstItem="sEI-9Q-GI5" firstAttribute="top" secondItem="SDQ-fk-PDK" secondAttribute="top" id="VVj-L1-16v"/>
+                            <constraint firstItem="SDQ-fk-PDK" firstAttribute="trailing" secondItem="Qe6-1U-o9j" secondAttribute="trailing" constant="20" id="hT9-Ch-Wgl"/>
+                            <constraint firstItem="SDQ-fk-PDK" firstAttribute="trailing" secondItem="sEI-9Q-GI5" secondAttribute="trailing" id="sZ6-6s-esP"/>
+                            <constraint firstItem="sEI-9Q-GI5" firstAttribute="leading" secondItem="SDQ-fk-PDK" secondAttribute="leading" id="vbN-ev-A0V"/>
+                            <constraint firstItem="Wkd-wi-AYp" firstAttribute="centerY" secondItem="SDQ-fk-PDK" secondAttribute="centerY" id="wUk-zp-F2E"/>
+                            <constraint firstItem="Qe6-1U-o9j" firstAttribute="top" secondItem="SDQ-fk-PDK" secondAttribute="top" constant="20" id="zF5-v1-Xky"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="SDQ-fk-PDK"/>
+                    </view>
+                    <connections>
+                        <outlet property="activityIndicator" destination="Wkd-wi-AYp" id="XxH-BV-PkN"/>
+                        <outlet property="closeButton" destination="Qe6-1U-o9j" id="2S3-Pa-Q0B"/>
+                        <outlet property="imageView" destination="XqH-Gv-A08" id="HIZ-eK-JxQ"/>
+                        <outlet property="scrollView" destination="sEI-9Q-GI5" id="5QU-dE-g4X"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HWT-7W-P0H" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4029.5999999999999" y="-344.07796101949026"/>
         </scene>
         <!--Instructions-->
         <scene sceneID="2FU-zI-S89">
@@ -1128,10 +1227,15 @@
     </scenes>
     <resources>
         <image name="brick" width="25" height="25"/>
+        <image name="cancel" width="41" height="41"/>
         <image name="checkbox" width="25" height="25"/>
         <image name="checkbox_checked" width="25" height="25"/>
         <image name="image_placeholder" width="50" height="50"/>
         <image name="lego_head" width="25" height="25"/>
         <image name="view" width="25" height="25"/>
+        <image name="zoom" width="100" height="100"/>
+        <namedColor name="bricksetDarkGreen">
+            <color red="0.2196078431372549" green="0.65098039215686276" blue="0.22745098039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

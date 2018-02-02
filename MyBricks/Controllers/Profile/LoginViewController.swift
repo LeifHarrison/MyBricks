@@ -35,7 +35,6 @@ class LoginViewController: UIViewController {
     @IBAction func login(_ sender: AnyObject?) {
         if let username = usernameField.text, let password = passwordField.text {
             BricksetServices.shared.login(username: username, password: password, completion: { result in
-                print("Result: \(result)")
                 if result.isSuccess {
                     let myContext = LAContext()
                     let myLocalizedReasonString = "Login to your Brickset account"

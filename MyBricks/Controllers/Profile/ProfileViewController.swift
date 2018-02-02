@@ -290,7 +290,6 @@ class ProfileViewController: UIViewController {
     fileprivate func performLogin(credential: URLCredential) {
         if let username = credential.user, let password = credential.password {
             BricksetServices.shared.login(username: username, password: password, completion: { result in
-                print("Result: \(result)")
                 if result.isSuccess {
                     self.updateDisplay(animated: true)
                     self.updateProfileInformation()

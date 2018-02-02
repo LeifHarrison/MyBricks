@@ -76,6 +76,8 @@
 		29F60F5B1FD3769E00DF2E48 /* PreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F60F5A1FD3769E00DF2E48 /* PreviewView.swift */; };
 		29FCC3461FBA14F500079032 /* SetDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FCC3451FBA14F500079032 /* SetDetail.swift */; };
 		71EA93350D446E8447D819DE /* Pods_MyBricks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C7DD5EA6F08ABC5549DF63C /* Pods_MyBricks.framework */; };
+		9B2804CF2023CE970026FC73 /* SetImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2804CE2023CE970026FC73 /* SetImage.swift */; };
+		9B5450372024E2DD0021074D /* ImageDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5450362024E2DD0021074D /* ImageDetailViewController.swift */; };
 		9B5CA746201946CE00B09BCB /* FilterSelectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5CA745201946CE00B09BCB /* FilterSelectionTableViewCell.swift */; };
 		9B92EFA4201FC062007610BD /* FilterOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B92EFA3201FC062007610BD /* FilterOptions.swift */; };
 		9B92EFA9201FCC66007610BD /* SetSubtheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B92EFA7201FCC65007610BD /* SetSubtheme.swift */; };
@@ -196,6 +198,8 @@
 		29FCC3451FBA14F500079032 /* SetDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetDetail.swift; sourceTree = "<group>"; };
 		593F839198E1796EC36B980B /* Pods-MyBricks.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyBricks.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MyBricks/Pods-MyBricks.debug.xcconfig"; sourceTree = "<group>"; };
 		8C7DD5EA6F08ABC5549DF63C /* Pods_MyBricks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyBricks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9B2804CE2023CE970026FC73 /* SetImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetImage.swift; sourceTree = "<group>"; };
+		9B5450362024E2DD0021074D /* ImageDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDetailViewController.swift; sourceTree = "<group>"; };
 		9B5CA745201946CE00B09BCB /* FilterSelectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterSelectionTableViewCell.swift; sourceTree = "<group>"; };
 		9B92EFA3201FC062007610BD /* FilterOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterOptions.swift; sourceTree = "<group>"; };
 		9B92EFA7201FCC65007610BD /* SetSubtheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetSubtheme.swift; sourceTree = "<group>"; };
@@ -509,6 +513,7 @@
 			isa = PBXGroup;
 			children = (
 				9B85355C202389D200D77DF9 /* Cells */,
+				9B5450362024E2DD0021074D /* ImageDetailViewController.swift */,
 				2949A94E1FBFBEC800676D59 /* InstructionsViewController.swift */,
 				2949A9501FBFBEE000676D59 /* PartsListViewController.swift */,
 				29C111A41FC48988007CBDB4 /* ReviewDetailAnimator.swift */,
@@ -541,6 +546,7 @@
 			children = (
 				29CA94A21F8D5132000F1DE3 /* Set.swift */,
 				29FCC3451FBA14F500079032 /* SetDetail.swift */,
+				9B2804CE2023CE970026FC73 /* SetImage.swift */,
 				29C111A61FCA2E94007CBDB4 /* SetInstructions.swift */,
 				296EB6E31FBFA71A00D4D3C6 /* SetRetailPrice.swift */,
 				2949A9521FBFDAED00676D59 /* SetReview.swift */,
@@ -801,6 +807,7 @@
 				9B92EFAC201FE06D007610BD /* FilterSelectThemeTableViewController.swift in Sources */,
 				29E86FDB1F31293900A67179 /* ThemeTableViewCell.swift in Sources */,
 				29C111A11FC3F0F6007CBDB4 /* UIView+Extensions.swift in Sources */,
+				9B5450372024E2DD0021074D /* ImageDetailViewController.swift in Sources */,
 				294F187A1FB4EDC20026342F /* GradientView.swift in Sources */,
 				298FC8311FBA45940094D6DF /* BarcodeScannerViewController.swift in Sources */,
 				295ADFC11F16AFFD002E6802 /* SearchViewController.swift in Sources */,
@@ -820,6 +827,7 @@
 				9B92EFA4201FC062007610BD /* FilterOptions.swift in Sources */,
 				29AE22CF1FCB9A6500744045 /* SetDescriptionTableViewCell.swift in Sources */,
 				29D30CA31FDDD8F60076DB85 /* GetPartsResponse.swift in Sources */,
+				9B2804CF2023CE970026FC73 /* SetImage.swift in Sources */,
 				29DFEA141FA29BF500AB0AE8 /* SetCollectionTableViewCell.swift in Sources */,
 				297E119F1F9563F500AAE8CB /* UserCollectionTotals.swift in Sources */,
 				296EB6E21FBF5E5700D4D3C6 /* SetPartsTableViewCell.swift in Sources */,

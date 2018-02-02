@@ -322,7 +322,7 @@ extension SearchViewController: BarcodeScannerDelegate {
     }
 
     func barcodeScanner(_ controller: BarcodeScannerViewController, didReceiveError error: Error) {
-        print(error)
+        print("Error scanning barcode: \(error)")
     }
 
     func barcodeScannerDidDismiss(_ controller: BarcodeScannerViewController) {

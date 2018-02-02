@@ -29,9 +29,12 @@ class SetDetailViewController: UIViewController {
 
     var currentSet: Set?
     var setDetail: SetDetail?
+    var setImages: [SetImage]?
     var currentSetImage: UIImage?
+    var hasLargeImage: Bool = false
     
     var setDetailRequest: DataRequest? = nil
+    var setImagesRequest: DataRequest? = nil
 
     //--------------------------------------------------------------------------
     // MARK: - View Lifecycle
@@ -76,8 +79,12 @@ class SetDetailViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        checkForLargeImage()
         if setDetail == nil {
             fetchSetDetail()
+        }
+        if setImages == nil {
+            fetchSetImages()
         }
     }
 
@@ -116,6 +123,42 @@ class SetDetailViewController: UIViewController {
         }
     }
     
+    private func fetchSetImages() {
+        if let set = currentSet, let setID = set.setID {
+            setImagesRequest = BricksetServices.shared.getAdditionalImages(setID: setID, completion: { [weak self] result in
+                self?.setImagesRequest = nil
+                if result.isSuccess, let images = result.value {
+                    self?.setImages = images
+                }
+            })
+        }
+    }
+    
+    private func checkForLargeImage() {
+        if let set = currentSet, let imageURL = set.imageURL {
+            let largeImageURL = imageURL.replacingOccurrences(of: "/images/", with: "/large/")
+            Alamofire.request(largeImageURL, method: .head).response { response in
+                if let httpResponse = response.response, httpResponse.statusCode == 200 {
+                    self.hasLargeImage = true
+                    self.enableImageZoom()
+                }
+            }
+        }
+    }
+    
+    private func enableImageZoom() {
+        if let imageSection = self.sections.index(of: .image), let cell = self.tableView.cellForRow(at: IndexPath(row: 0, section: imageSection)) as? SetImageTableViewCell {
+            cell.showZoomButton(animated: true)
+        }
+    }
+    private func showLargeImage() {
+        performSegue(withIdentifier: "showImageDetailView", sender: self)
+    }
+    
+    //--------------------------------------------------------------------------
+    // MARK: - Keyboard Notifications
+    //--------------------------------------------------------------------------
+    
     @objc private func keyboardWillShow(with notification: Notification) {
         guard let userInfo = notification.userInfo as? [String: AnyObject],
             let keyboardFrame = (userInfo[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue
@@ -139,6 +182,15 @@ class SetDetailViewController: UIViewController {
         
         self.tableView.contentInset = contentInset
         self.tableView.scrollIndicatorInsets = contentInset
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let imageVC = segue.destination as? ImageDetailViewController {
+            if let set = currentSet, let imageURL = set.imageURL {
+                let largeImageURL = imageURL.replacingOccurrences(of: "/images/", with: "/large/")
+                imageVC.imageURL = largeImageURL
+            }
+        }
     }
 }
 
@@ -174,14 +226,20 @@ extension SetDetailViewController: UITableViewDataSource {
                         cell.setImageView.image = image
                     }
                     else if let urlString = set.imageURL, let url = URL(string: urlString) {
-                        cell.setImageView?.af_setImage(withURL: url) { response in
+                        cell.setImageView?.af_setImage(withURL: url, imageTransition: .crossDissolve(0.3) ) { response in
                             if let image = response.result.value {
+                                // Cache the image so we don't load it again
                                 self.currentSetImage = image
-                                DispatchQueue.main.async(execute: {
-                                    tableView.reloadRows(at: [indexPath], with: .fade)
-                                })
                             }
+                            DispatchQueue.main.async(execute: {
+                                tableView.reloadRows(at: [indexPath], with: .fade)
+                            })
                         }
+                    }
+
+                    cell.zoomButton.isHidden = !hasLargeImage
+                    cell.zoomButtonTapped = {
+                        self.showLargeImage()
                     }
 
                     return cell
@@ -295,16 +353,15 @@ extension SetDetailViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         let section = sections[indexPath.section]
+        var estimatedHeight: CGFloat = 44.0
         switch section {
-            case .image         : return 240.0
-            case .detail        : return 180.0
-            case .collection    : return 280.0
-            case .parts         : return 44.0
-            case .reviews       : return 44.0
-            case .instructions  : return 44.0
-            case .description   : return 140.0
-            default             : return 30.0
+            case .image         : estimatedHeight = 242.0
+            case .detail        : estimatedHeight = 180.0
+            case .collection    : estimatedHeight = 280.0
+            case .description   : estimatedHeight = 140.0
+            default             : estimatedHeight = 44.0
         }
+        return estimatedHeight
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

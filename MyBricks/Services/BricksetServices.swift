@@ -308,7 +308,7 @@ class BricksetServices {
         return request
     }
 
-    func getSet(setID: String, completion: @escaping (Result<SetDetail>) -> Void) -> DataRequest {
+    @discardableResult func getSet(setID: String, completion: @escaping (Result<SetDetail>) -> Void) -> DataRequest {
         let url = baseURL + "getSet"
 
         var parameters = userParameters()
@@ -396,6 +396,35 @@ class BricksetServices {
             }
         }
         request.responseXMLDocument(completionHandler: requestCompletion)
+    }
+    
+    @discardableResult func getAdditionalImages(setID: String, completion: @escaping (Result<[SetImage]>) -> Void) -> DataRequest {
+        let url = baseURL + "getAdditionalImages"
+        
+        var parameters = defaultParameters()
+        parameters["setID"] = setID
+        
+        let request = Alamofire.request( url, parameters: parameters)
+        let requestCompletion: (DataResponse<XMLDocument>) -> Void = { response in
+            if let error = response.result.error {
+                completion(Result.failure(error))
+            }
+            else if let document = response.result.value {
+                if let root = document.root {
+                    var images: [SetImage] = []
+                    
+                    for element in root.children {
+                        if let image = SetImage(element: element) {
+                            images.append(image)
+                        }
+                    }
+                    
+                    completion(Result.success(images))
+                }
+            }
+        }
+        request.responseXMLDocument(completionHandler: requestCompletion)
+        return request
     }
     
     //--------------------------------------------------------------------------

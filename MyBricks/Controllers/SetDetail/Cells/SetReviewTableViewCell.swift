@@ -115,7 +115,6 @@ class SetReviewTableViewCell: UITableViewCell {
             
             let maxSize = CGSize(width: reviewTextView.frame.size.width, height: CGFloat.greatestFiniteMagnitude)
             let textSize = reviewTextView.sizeThatFits(maxSize)
-            //print("text height = \(textSize.height)")
             let showMore = (textSize.height > maxTextHeight)
             moreContainer.isHidden = !showMore
             moreSpacingConstraint.isActive = showMore
