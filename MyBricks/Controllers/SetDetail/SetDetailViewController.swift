@@ -15,6 +15,7 @@ class SetDetailViewController: UIViewController {
         case image
         case additionalImages
         case detail
+        case price
         case reviews
         case instructions
         case parts
@@ -26,7 +27,7 @@ class SetDetailViewController: UIViewController {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
 
-    var sections: [TableSection] = [ .image, .detail, .parts ]
+    var sections: [TableSection] = []
 
     var currentSet: Set?
     var setDetail: SetDetail?
@@ -58,9 +59,7 @@ class SetDetailViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        title = currentSet?.fullSetNumber
-
-        sections = [ .image, .detail, .parts ]
+        sections = [ .image, .detail, .price, .parts ] // Default sections
         if let reviewCount = currentSet?.reviewCount, reviewCount > 0 {
             sections.append(.reviews)
         }
@@ -154,8 +153,11 @@ class SetDetailViewController: UIViewController {
     }
     
     private func enableImageZoom() {
-        if let imageSection = self.sections.index(of: .image), let cell = self.tableView.cellForRow(at: IndexPath(row: 0, section: imageSection)) as? SetImageTableViewCell {
+        if let imageSection = self.sections.index(of: .image), let cell = self.tableView.cellForRow(at: IndexPath(row: 0, section: imageSection)) as? SetHeroImageTableViewCell {
             cell.showZoomButton(animated: true)
+            cell.zoomButtonTapped = {
+                self.showLargeImage()
+            }
         }
     }
     private func showLargeImage() {
@@ -223,136 +225,140 @@ extension SetDetailViewController: UITableViewDataSource {
 
         let section = sections[indexPath.section]
         switch section {
-
-            case .image :
-                if let cell = tableView.dequeueReusableCell(withIdentifier: "SetImageTableViewCell", for: indexPath) as? SetImageTableViewCell {
-                    cell.populateWithSet(set)
-
-                    // Populate the image ourselves, so we can reload the cell when the image finishes loading
-                    if let image = currentSetImage {
-                        cell.setImageView.image = image
-                    }
-                    else if let urlString = set.imageURL, let url = URL(string: urlString) {
-                        cell.setImageView?.af_setImage(withURL: url, imageTransition: .crossDissolve(0.3) ) { response in
-                            if let image = response.result.value {
-                                // Cache the image so we don't load it again
-                                self.currentSetImage = image
-                            }
-                            DispatchQueue.main.async(execute: {
-                                tableView.reloadRows(at: [indexPath], with: .fade)
-                            })
+            
+        case .image :
+            if let cell = tableView.dequeueReusableCell(withIdentifier: "SetHeroImageTableViewCell", for: indexPath) as? SetHeroImageTableViewCell {
+                cell.populateWithSet(set)
+                
+                // Populate the image ourselves, so we can reload the cell when the image finishes loading
+                if let image = currentSetImage {
+                    cell.setImageView.image = image
+                }
+                else if let urlString = set.imageURL, let url = URL(string: urlString) {
+                    cell.setImageView?.af_setImage(withURL: url, imageTransition: .crossDissolve(0.3) ) { response in
+                        if let image = response.result.value {
+                            print("image size = \(image.size)")
+                            // Cache the image so we don't load it again
+                            self.currentSetImage = image
                         }
+                        DispatchQueue.main.async(execute: {
+                            tableView.reloadRows(at: [indexPath], with: .fade)
+                        })
                     }
-
-                    cell.zoomButton.isHidden = !hasLargeImage
+                }
+                
+                if hasLargeImage {
+                    cell.showZoomButton(animated: false)
                     cell.zoomButtonTapped = {
                         self.showLargeImage()
                     }
-
-                    return cell
                 }
-
-
-            case .additionalImages :
-                if let cell = tableView.dequeueReusableCell(withIdentifier: "AdditionalImagesTableViewCell", for: indexPath) as? AdditionalImagesTableViewCell {
-                    if let images = setImages {
-                        cell.populateWithSetImages(images)
-                    }
-                    return cell
-                }
-            
-            case .detail :
-                if let cell = tableView.dequeueReusableCell(withIdentifier: "SetDetailTableViewCell", for: indexPath) as? SetDetailTableViewCell {
-                    cell.populateWithSet(set)
-                    return cell
-                }
-
-            case .parts :
-                if let cell = tableView.dequeueReusableCell(withIdentifier: "SetPartsTableViewCell", for: indexPath) as? SetPartsTableViewCell {
-                    cell.populateWithSet(set)
-                    return cell
-                }
-
-            case .reviews :
-                if let cell = tableView.dequeueReusableCell(withIdentifier: "SetReviewsTableViewCell", for: indexPath) as? SetReviewsTableViewCell {
-                    cell.populateWithSet(set)
-                    return cell
-                }
-            
-            case .instructions :
-                let cell = tableView.dequeueReusableCell(withIdentifier: "SetInstructionsTableViewCell", for: indexPath)
-                cell.textLabel?.text = "Instructions (\(set.instructionsCount ?? 0))"
+                
                 return cell
+            }
             
-            case .collection :
-                if let cell = tableView.dequeueReusableCell(withIdentifier: "SetCollectionTableViewCell", for: indexPath) as? SetCollectionTableViewCell {
-                    cell.ownedCheckboxButton.isSelected = set.owned ?? false
-                    cell.wantedCheckboxButton.isSelected = set.wanted ?? false
-                    cell.ownedCountField.text = "\(set.quantityOwned ?? 0)"
-                    //cell.yourRatingView.rating = set.youRating
-                    cell.notesTextView.text = set.userNotes
-                    
-                    cell.yourRatingView.didFinishTouchingCosmos = { rating in
-                        print("rating = \(rating)")
-                    }
-                    cell.toggleSetOwned = {
-                        if let setID = set.setID, let owned = set.owned {
-                            BricksetServices.shared.setCollectionOwns(setID: setID, owned: !owned, completion: { result in
-                                if result.isSuccess {
-                                    set.owned = !owned
-                                    set.quantityOwned = !owned ? 1 : nil
-                                    cell.populateWithSet(set)
-                                }
-                            })
-                        }
-                    }
-                    cell.toggleSetWanted = {
-                        if let setID = set.setID, let wanted = set.wanted {
-                            BricksetServices.shared.setCollectionWants(setID: setID, wanted: !wanted, completion: { result in
-                                if result.isSuccess {
-                                    set.wanted = !wanted
-                                    cell.populateWithSet(set)
-                                }
-                            })
-                        }
-                    }
-                    cell.updateQuantityOwned = { newQuantity in
-                        if let setID = set.setID {
-                            BricksetServices.shared.setCollectionQuantityOwned(setID: setID, quantityOwned: newQuantity, completion: { result in
-                                if result.isSuccess {
-                                    set.owned = (newQuantity > 0) ? true : false
-                                    set.quantityOwned = newQuantity
-                                    cell.populateWithSet(set)
-                                }
-                            })
-                        }
-                    }
-                    cell.updateUserNotes = { newNotes in
-                        if let setID = set.setID {
-                            BricksetServices.shared.setCollectionUserNotes(setID: setID, notes: newNotes, completion: { result in
-                                if result.isSuccess {
-                                    set.userNotes = newNotes
-                                    cell.populateWithSet(set)
-                                }
-                            })
-                        }
-
-                    }
-
-                    return cell
+            
+        case .additionalImages :
+            if let cell = tableView.dequeueReusableCell(withIdentifier: "SetImagesTableViewCell", for: indexPath) as? SetImagesTableViewCell {
+                if let images = setImages {
+                    cell.populateWithSetImages(images)
                 }
+                return cell
+            }
             
-            case .description :
-                if let cell = tableView.dequeueReusableCell(withIdentifier: "SetDescriptionTableViewCell", for: indexPath) as? SetDescriptionTableViewCell {
-                    if let detail = setDetail {
-                        cell.populate(with: detail)
-                    }
-                    return cell
+        case .detail :
+            if let cell = tableView.dequeueReusableCell(withIdentifier: "SetDetailTableViewCell", for: indexPath) as? SetDetailTableViewCell {
+                cell.populateWithSet(set)
+                return cell
+            }
+            
+        case .price :
+            if let cell = tableView.dequeueReusableCell(withIdentifier: "SetPriceTableViewCell", for: indexPath) as? SetPriceTableViewCell {
+                cell.populateWithSet(set)
+                return cell
+            }
+            
+        case .parts :
+            if let cell = tableView.dequeueReusableCell(withIdentifier: "SetPartsTableViewCell", for: indexPath) as? SetPartsTableViewCell {
+                cell.populateWithSet(set)
+                return cell
+            }
+            
+        case .reviews :
+            if let cell = tableView.dequeueReusableCell(withIdentifier: "SetReviewsTableViewCell", for: indexPath) as? SetReviewsTableViewCell {
+                cell.populateWithSet(set)
+                return cell
+            }
+            
+        case .instructions :
+            let cell = tableView.dequeueReusableCell(withIdentifier: "SetInstructionsTableViewCell", for: indexPath)
+            cell.textLabel?.text = "Instructions (\(set.instructionsCount ?? 0))"
+            return cell
+            
+        case .collection :
+            if let cell = tableView.dequeueReusableCell(withIdentifier: "SetCollectionTableViewCell", for: indexPath) as? SetCollectionTableViewCell {
+                cell.populateWithSet(set)
+                
+                cell.ratingView.didFinishTouchingCosmos = { rating in
+                    print("rating = \(rating)")
                 }
+                cell.toggleSetOwned = {
+                    if let setID = set.setID, let owned = set.owned {
+                        BricksetServices.shared.setCollectionOwns(setID: setID, owned: !owned, completion: { result in
+                            if result.isSuccess {
+                                set.owned = !owned
+                                set.quantityOwned = !owned ? 1 : nil
+                                cell.populateWithSet(set)
+                            }
+                        })
+                    }
+                }
+                cell.toggleSetWanted = {
+                    if let setID = set.setID, let wanted = set.wanted {
+                        BricksetServices.shared.setCollectionWants(setID: setID, wanted: !wanted, completion: { result in
+                            if result.isSuccess {
+                                set.wanted = !wanted
+                                cell.populateWithSet(set)
+                            }
+                        })
+                    }
+                }
+                cell.updateQuantityOwned = { newQuantity in
+                    if let setID = set.setID {
+                        BricksetServices.shared.setCollectionQuantityOwned(setID: setID, quantityOwned: newQuantity, completion: { result in
+                            if result.isSuccess {
+                                set.owned = (newQuantity > 0) ? true : false
+                                set.quantityOwned = newQuantity
+                                cell.populateWithSet(set)
+                            }
+                        })
+                    }
+                }
+                cell.updateUserNotes = { newNotes in
+                    if let setID = set.setID {
+                        BricksetServices.shared.setCollectionUserNotes(setID: setID, notes: newNotes, completion: { result in
+                            if result.isSuccess {
+                                set.userNotes = newNotes
+                                cell.populateWithSet(set)
+                            }
+                        })
+                    }
+                }
+                
+                return cell
+            }
             
-            default :
-                return UITableViewCell()
-
+        case .description :
+            if let cell = tableView.dequeueReusableCell(withIdentifier: "SetDescriptionTableViewCell", for: indexPath) as? SetDescriptionTableViewCell {
+                if let detail = setDetail {
+                    cell.populate(with: detail)
+                }
+                return cell
+            }
+            
+        default :
+            return UITableViewCell()
+            
         }
 
         return UITableViewCell()
@@ -372,7 +378,7 @@ extension SetDetailViewController: UITableViewDelegate {
         switch section {
             case .image         : estimatedHeight = 242.0
             case .additionalImages : estimatedHeight = 100.0
-            case .detail        : estimatedHeight = 180.0
+            case .detail        : estimatedHeight = 130.0
             case .collection    : estimatedHeight = 280.0
             case .description   : estimatedHeight = 140.0
             default             : estimatedHeight = 44.0
@@ -383,6 +389,18 @@ extension SetDetailViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let section = sections[indexPath.section]
 
+        if section == .price {
+            if let vc = storyboard?.instantiateViewController(withIdentifier: "PartsListViewController") as? PartsListViewController {
+                vc.currentSet = currentSet
+                show(vc, sender: self)
+            }
+        }
+        if section == .parts {
+            if let vc = storyboard?.instantiateViewController(withIdentifier: "PartsListViewController") as? PartsListViewController {
+                vc.currentSet = currentSet
+                show(vc, sender: self)
+            }
+        }
         if section == .reviews {
             if let vc = storyboard?.instantiateViewController(withIdentifier: "ReviewsViewController") as? ReviewsViewController {
                 vc.currentSet = currentSet
@@ -391,12 +409,6 @@ extension SetDetailViewController: UITableViewDelegate {
         }
         if section == .instructions {
             if let vc = storyboard?.instantiateViewController(withIdentifier: "InstructionsViewController") as? InstructionsViewController {
-                vc.currentSet = currentSet
-                show(vc, sender: self)
-            }
-        }
-        if section == .parts {
-            if let vc = storyboard?.instantiateViewController(withIdentifier: "PartsListViewController") as? PartsListViewController {
                 vc.currentSet = currentSet
                 show(vc, sender: self)
             }

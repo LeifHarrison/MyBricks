@@ -1,54 +1,43 @@
 //
-//  SetDetailTableViewCell.swift
+//  SetPriceTableViewCell.swift
 //  MyBricks
 //
-//  Created by Leif Harrison on 10/24/17.
-//  Copyright © 2017 Leif Harrison. All rights reserved.
+//  Created by Harrison, Leif (US - Seattle) on 2/5/18.
+//  Copyright © 2018 Leif Harrison. All rights reserved.
 //
 
 import UIKit
 
-class SetDetailTableViewCell: UITableViewCell {
+class SetPriceTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var setNameField: UILabel!
-    @IBOutlet weak var themeGroupField: UILabel!
-    @IBOutlet weak var themeField: UILabel!
-    @IBOutlet weak var availabilityField: UILabel!
-
+    //@IBOutlet weak var priceTitleLabel: UILabel!
+    //@IBOutlet weak var priceLabel: UILabel!
+    
     //--------------------------------------------------------------------------
     // MARK: - Nib Loading
     //--------------------------------------------------------------------------
-
+    
     override func awakeFromNib() {
         super.awakeFromNib()
+        textLabel?.text = NSLocalizedString("Retail Price", comment: "")
         prepareForReuse()
     }
-
+    
     //--------------------------------------------------------------------------
     // MARK: - Reuse
     //--------------------------------------------------------------------------
-
+    
     override func prepareForReuse() {
         super.prepareForReuse()
-        setNameField.text = ""
-        themeGroupField.text = "0"
-        themeField.text = "0"
-        availabilityField.text = "0"
+        detailTextLabel?.text = nil
     }
-
+    
     //--------------------------------------------------------------------------
     // MARK: - Public
     //--------------------------------------------------------------------------
     
     func populateWithSet(_ set : Set) -> Void {
-        setNameField.text = set.name
-        themeField.text = set.themeDetail()
-        themeGroupField.text = set.themeGroup?.capitalized
-        availabilityField.text = set.availabilityDetail()
-
-        // Future additions, hopefully...
-        //setTypeField.text = "-"
-        //tagsField.text = "-"
+        detailTextLabel?.text = set.preferredPriceString
     }
-
+    
 }

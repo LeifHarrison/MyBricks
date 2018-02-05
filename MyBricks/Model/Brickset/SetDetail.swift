@@ -13,6 +13,8 @@ public struct SetDetail {
 
     var setID: String?
     var setDescription: String?
+    var notes: String?
+    var tags: [String]?
     var lastUpdated: Date?
 
     init?(element: XMLElement) {
@@ -20,6 +22,13 @@ public struct SetDetail {
         // interested in the description
         setID = element.firstChild(tag: "setID")?.stringValue
         setDescription = element.firstChild(tag: "description")?.stringValue
+        notes = element.firstChild(tag: "notes")?.stringValue
+        if let tagsString = element.firstChild(tag: "tags")?.stringValue {
+            tags = tagsString.components(separatedBy: ",")
+        }
+        if let lastUpdatedString = element.firstChild(tag: "lastUpdated")?.stringValue {
+            lastUpdated = BricksetServices.longDateFormatter.date(from: lastUpdatedString)
+        }
     }
 
 }

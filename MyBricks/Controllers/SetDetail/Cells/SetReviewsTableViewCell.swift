@@ -21,7 +21,7 @@ class SetReviewsTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
 
-        ratingView.settings.starSize = 20.0
+        ratingView.settings.starSize = 22.0
         ratingView.settings.fillMode = .precise
         ratingView.settings.starMargin = 2.0
         ratingView.settings.updateOnTouch = false
@@ -52,7 +52,9 @@ class SetReviewsTableViewCell: UITableViewCell {
 
     func populateWithSet(_ set : Set) -> Void {
         titleLabel.text = "Reviews (\(set.reviewCount ?? 0))"
-        ratingView.rating = set.rating ?? 0
+        if let rating = set.rating {
+            ratingView.rating = NSDecimalNumber(decimal:rating).doubleValue
+        }
     }
 
 }

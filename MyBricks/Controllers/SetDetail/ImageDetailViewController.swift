@@ -43,7 +43,7 @@ class ImageDetailViewController: UIViewController {
                     let horizontalZoom = (image.size.width + self.defaultInsets * 4) / self.scrollView.frame.size.width
                     let verticalZoom = (image.size.height + self.defaultInsets * 4) / self.scrollView.frame.size.height
                     self.scrollView.minimumZoomScale = 1 / max(horizontalZoom, verticalZoom)
-                    self.scrollView.setZoomScale(self.scrollView.minimumZoomScale, animated: true)
+                    self.scrollView.setZoomScale(self.scrollView.minimumZoomScale, animated: false)
                 }
             }
         }

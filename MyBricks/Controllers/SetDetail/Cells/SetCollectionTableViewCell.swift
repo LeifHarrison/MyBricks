@@ -13,7 +13,7 @@ class SetCollectionTableViewCell: UITableViewCell {
 
     @IBOutlet weak var ownedContainer: UIView!
     @IBOutlet weak var wantedContainer: UIView!
-    @IBOutlet weak var yourRatingView: CosmosView!
+    @IBOutlet weak var ratingView: CosmosView!
     @IBOutlet weak var notesTextView: UITextView!
 
     @IBOutlet weak var ownedCheckboxButton: UIButton!
@@ -39,7 +39,7 @@ class SetCollectionTableViewCell: UITableViewCell {
         
         selectionStyle = .none
                 
-        yourRatingView.settings.starSize = 25.0
+        ratingView.settings.starSize = 25.0
         
         notesTextView.layer.borderColor = UIColor.darkGray.cgColor
         notesTextView.layer.borderWidth = 1.0
@@ -61,7 +61,7 @@ class SetCollectionTableViewCell: UITableViewCell {
         ownedCheckboxButton.isSelected = false
         wantedCheckboxButton.isSelected = false
         ownedCountField.text = ""
-        yourRatingView.rating = 0.0
+        ratingView.rating = 0.0
         notesTextView.text = ""
     }
     
@@ -87,8 +87,7 @@ class SetCollectionTableViewCell: UITableViewCell {
         
         ownedCountField.isEnabled = set.owned ?? false
         ownedCountField.text = "\(set.quantityOwned ?? 0)"
-        //yourRatingView.rating = set.userRating
-        //yourRatingView.text = ""
+        ratingView.rating = Double(set.userRating ?? 0)
         notesTextView.text = set.userNotes
 
     }
