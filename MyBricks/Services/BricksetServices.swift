@@ -521,6 +521,30 @@ class BricksetServices {
         request.responseXMLDocument(completionHandler: requestCompletion)
     }
     
+    func setUserRating(setID: String, rating: Int, completion: @escaping (Result<Bool>) -> Void) {
+        let url = baseURL + "setUserRating"
+        
+        var parameters = userParameters()
+        parameters["setID"] = setID
+        parameters["rating"] = rating
+        
+        let request = Alamofire.request( url, method: .post, parameters: parameters)
+        let requestCompletion: (DataResponse<XMLDocument>) -> Void = { response in
+            if let error = response.result.error {
+                completion(Result.failure(error))
+            }
+            else if let document = response.result.value, let result = document.root?.stringValue {
+                if result.contains("OK") {
+                    completion(Result.success(true))
+                }
+                else {
+                    completion(Result.failure(ServiceError.unknownError))
+                }
+            }
+        }
+        request.responseXMLDocument(completionHandler: requestCompletion)
+    }
+    
     func setCollectionUserNotes(setID: String, notes: String, completion: @escaping (Result<Bool>) -> Void) {
         let url = baseURL + "setCollection_userNotes"
         

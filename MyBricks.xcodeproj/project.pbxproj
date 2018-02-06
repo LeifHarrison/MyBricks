@@ -80,6 +80,7 @@
 		9B5450372024E2DD0021074D /* ImageDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5450362024E2DD0021074D /* ImageDetailViewController.swift */; };
 		9B5450392025206D0021074D /* SetImagesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5450382025206D0021074D /* SetImagesTableViewCell.swift */; };
 		9B5CA746201946CE00B09BCB /* FilterSelectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5CA745201946CE00B09BCB /* FilterSelectionTableViewCell.swift */; };
+		9B83E436202A21BC004433F0 /* SetImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B83E435202A21BC004433F0 /* SetImageCollectionViewCell.swift */; };
 		9B92EFA4201FC062007610BD /* FilterOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B92EFA3201FC062007610BD /* FilterOptions.swift */; };
 		9B92EFA9201FCC66007610BD /* SetSubtheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B92EFA7201FCC65007610BD /* SetSubtheme.swift */; };
 		9B92EFAA201FCC66007610BD /* SetYear.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B92EFA8201FCC66007610BD /* SetYear.swift */; };
@@ -204,6 +205,7 @@
 		9B5450362024E2DD0021074D /* ImageDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDetailViewController.swift; sourceTree = "<group>"; };
 		9B5450382025206D0021074D /* SetImagesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetImagesTableViewCell.swift; sourceTree = "<group>"; };
 		9B5CA745201946CE00B09BCB /* FilterSelectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterSelectionTableViewCell.swift; sourceTree = "<group>"; };
+		9B83E435202A21BC004433F0 /* SetImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		9B92EFA3201FC062007610BD /* FilterOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterOptions.swift; sourceTree = "<group>"; };
 		9B92EFA7201FCC65007610BD /* SetSubtheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetSubtheme.swift; sourceTree = "<group>"; };
 		9B92EFA8201FCC66007610BD /* SetYear.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetYear.swift; sourceTree = "<group>"; };
@@ -538,6 +540,7 @@
 				29AE22CE1FCB9A6500744045 /* SetDescriptionTableViewCell.swift */,
 				2945A1FB1F9FDB5300827BA7 /* SetDetailTableViewCell.swift */,
 				296EB6DD1FBF5E3600D4D3C6 /* SetHeroImageTableViewCell.swift */,
+				9B83E435202A21BC004433F0 /* SetImageCollectionViewCell.swift */,
 				9B5450382025206D0021074D /* SetImagesTableViewCell.swift */,
 				296EB6E11FBF5E5700D4D3C6 /* SetPartsTableViewCell.swift */,
 				9BCA7E2F2028DA6E00FA7BDC /* SetPriceTableViewCell.swift */,
@@ -832,6 +835,7 @@
 				2973B5781F96834D002CD0DA /* UserPofile.swift in Sources */,
 				2964609E1FA907FC004850F8 /* NewsItemTableViewCell.swift in Sources */,
 				9B92EFA4201FC062007610BD /* FilterOptions.swift in Sources */,
+				9B83E436202A21BC004433F0 /* SetImageCollectionViewCell.swift in Sources */,
 				29AE22CF1FCB9A6500744045 /* SetDescriptionTableViewCell.swift in Sources */,
 				29D30CA31FDDD8F60076DB85 /* GetPartsResponse.swift in Sources */,
 				9B2804CF2023CE970026FC73 /* SetImage.swift in Sources */,

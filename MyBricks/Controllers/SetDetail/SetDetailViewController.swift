@@ -58,20 +58,7 @@ class SetDetailViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
-        sections = [ .image, .detail, .price, .parts ] // Default sections
-        if let reviewCount = currentSet?.reviewCount, reviewCount > 0 {
-            sections.append(.reviews)
-        }
-        if let instructionsCount = currentSet?.instructionsCount, instructionsCount > 0 {
-            sections.append(.instructions)
-        }
-        if BricksetServices.isLoggedIn() {
-            sections.append(.collection)
-        }
-        if setDetail != nil {
-            sections.append(.description)
-        }
+        updateSections()
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(with:)), name: .UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(with:)), name: .UIKeyboardWillHide, object: nil)
@@ -106,6 +93,30 @@ class SetDetailViewController: UIViewController {
     // MARK: - Private
     //--------------------------------------------------------------------------
 
+    private func updateSections() {
+        sections.removeAll()
+        
+        sections.append(.image)
+        if let imageCount = setImages?.count, imageCount > 0 {
+            sections.append(.additionalImages)
+        }
+        sections.append(.detail)
+        sections.append(.price)
+        sections.append(.parts)
+        if let reviewCount = currentSet?.reviewCount, reviewCount > 0 {
+            sections.append(.reviews)
+        }
+        if let instructionsCount = currentSet?.instructionsCount, instructionsCount > 0 {
+            sections.append(.instructions)
+        }
+        if BricksetServices.isLoggedIn() {
+            sections.append(.collection)
+        }
+        if setDetail != nil {
+            sections.append(.description)
+        }
+    }
+    
     private func fetchSetDetail() {
         if let set = currentSet, let setID = set.setID {
             setDetailRequest = BricksetServices.shared.getSet(setID: setID, completion: { [weak self] result in
@@ -219,7 +230,7 @@ extension SetDetailViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        guard var set = currentSet else {
+        guard let set = currentSet else {
             return UITableViewCell()
         }
 
@@ -237,7 +248,6 @@ extension SetDetailViewController: UITableViewDataSource {
                 else if let urlString = set.imageURL, let url = URL(string: urlString) {
                     cell.setImageView?.af_setImage(withURL: url, imageTransition: .crossDissolve(0.3) ) { response in
                         if let image = response.result.value {
-                            print("image size = \(image.size)")
                             // Cache the image so we don't load it again
                             self.currentSetImage = image
                         }
@@ -262,6 +272,12 @@ extension SetDetailViewController: UITableViewDataSource {
             if let cell = tableView.dequeueReusableCell(withIdentifier: "SetImagesTableViewCell", for: indexPath) as? SetImagesTableViewCell {
                 if let images = setImages {
                     cell.populateWithSetImages(images)
+                    cell.imageTapped = { image in
+                        if let vc = self.storyboard?.instantiateViewController(withIdentifier: "ImageDetailViewController") as? ImageDetailViewController {
+                            vc.imageURL = image.imageURL
+                            self.present(vc, animated: true, completion: nil)
+                        }
+                    }
                 }
                 return cell
             }
@@ -298,51 +314,9 @@ extension SetDetailViewController: UITableViewDataSource {
         case .collection :
             if let cell = tableView.dequeueReusableCell(withIdentifier: "SetCollectionTableViewCell", for: indexPath) as? SetCollectionTableViewCell {
                 cell.populateWithSet(set)
-                
-                cell.ratingView.didFinishTouchingCosmos = { rating in
-                    print("rating = \(rating)")
-                }
-                cell.toggleSetOwned = {
-                    if let setID = set.setID, let owned = set.owned {
-                        BricksetServices.shared.setCollectionOwns(setID: setID, owned: !owned, completion: { result in
-                            if result.isSuccess {
-                                set.owned = !owned
-                                set.quantityOwned = !owned ? 1 : nil
-                                cell.populateWithSet(set)
-                            }
-                        })
-                    }
-                }
-                cell.toggleSetWanted = {
-                    if let setID = set.setID, let wanted = set.wanted {
-                        BricksetServices.shared.setCollectionWants(setID: setID, wanted: !wanted, completion: { result in
-                            if result.isSuccess {
-                                set.wanted = !wanted
-                                cell.populateWithSet(set)
-                            }
-                        })
-                    }
-                }
-                cell.updateQuantityOwned = { newQuantity in
-                    if let setID = set.setID {
-                        BricksetServices.shared.setCollectionQuantityOwned(setID: setID, quantityOwned: newQuantity, completion: { result in
-                            if result.isSuccess {
-                                set.owned = (newQuantity > 0) ? true : false
-                                set.quantityOwned = newQuantity
-                                cell.populateWithSet(set)
-                            }
-                        })
-                    }
-                }
-                cell.updateUserNotes = { newNotes in
-                    if let setID = set.setID {
-                        BricksetServices.shared.setCollectionUserNotes(setID: setID, notes: newNotes, completion: { result in
-                            if result.isSuccess {
-                                set.userNotes = newNotes
-                                cell.populateWithSet(set)
-                            }
-                        })
-                    }
+
+                cell.setUpdated = { set in
+                    self.currentSet = set
                 }
                 
                 return cell

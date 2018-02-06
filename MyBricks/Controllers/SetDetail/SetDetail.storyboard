@@ -135,22 +135,57 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="100.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZhM-1D-eie">
+                                                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="adC-xn-RoH">
                                                     <rect key="frame" x="20" y="0.0" width="335" height="100.5"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" priority="750" constant="100" id="S4D-If-4Pj"/>
+                                                        <constraint firstAttribute="height" priority="750" constant="100" id="kZt-1j-Cg9"/>
                                                     </constraints>
-                                                </scrollView>
+                                                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="iDJ-fp-6zy">
+                                                        <size key="itemSize" width="90" height="90"/>
+                                                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                                        <inset key="sectionInset" minX="0.0" minY="5" maxX="0.0" maxY="5"/>
+                                                    </collectionViewFlowLayout>
+                                                    <cells>
+                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SetImageCollectionViewCell" id="Cab-Yz-lJr" customClass="SetImageCollectionViewCell" customModule="MyBricks" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="5.5" width="90" height="90"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                                                <rect key="frame" x="0.0" y="0.0" width="90" height="90"/>
+                                                                <autoresizingMask key="autoresizingMask"/>
+                                                                <subviews>
+                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Kwc-f8-2hZ">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="90" height="91"/>
+                                                                    </imageView>
+                                                                </subviews>
+                                                            </view>
+                                                            <constraints>
+                                                                <constraint firstItem="Kwc-f8-2hZ" firstAttribute="leading" secondItem="Cab-Yz-lJr" secondAttribute="leading" id="HSG-3H-lcY"/>
+                                                                <constraint firstAttribute="trailing" secondItem="Kwc-f8-2hZ" secondAttribute="trailing" id="Mg6-st-08r"/>
+                                                                <constraint firstItem="Kwc-f8-2hZ" firstAttribute="top" secondItem="Cab-Yz-lJr" secondAttribute="top" id="cEe-YU-mgc"/>
+                                                                <constraint firstAttribute="bottom" secondItem="Kwc-f8-2hZ" secondAttribute="bottom" id="gQE-Pl-ZaU"/>
+                                                            </constraints>
+                                                            <connections>
+                                                                <outlet property="imageView" destination="Kwc-f8-2hZ" id="E5c-Qe-2RT"/>
+                                                            </connections>
+                                                        </collectionViewCell>
+                                                    </cells>
+                                                    <connections>
+                                                        <outlet property="dataSource" destination="c1D-aV-dRm" id="RQ5-qI-c7s"/>
+                                                        <outlet property="delegate" destination="c1D-aV-dRm" id="uYX-aL-b1u"/>
+                                                    </connections>
+                                                </collectionView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="ZhM-1D-eie" firstAttribute="leading" secondItem="60B-RX-f1j" secondAttribute="leading" constant="20" id="8Cj-af-LjX"/>
-                                                <constraint firstAttribute="trailing" secondItem="ZhM-1D-eie" secondAttribute="trailing" constant="20" id="Kga-SD-YOR"/>
-                                                <constraint firstItem="ZhM-1D-eie" firstAttribute="top" secondItem="60B-RX-f1j" secondAttribute="top" id="heF-Hj-rhw"/>
-                                                <constraint firstAttribute="bottom" secondItem="ZhM-1D-eie" secondAttribute="bottom" id="pP6-ld-LYc"/>
+                                                <constraint firstAttribute="bottom" secondItem="adC-xn-RoH" secondAttribute="bottom" id="HPQ-pi-eSc"/>
+                                                <constraint firstAttribute="trailing" secondItem="adC-xn-RoH" secondAttribute="trailing" constant="20" id="d9I-tY-YyI"/>
+                                                <constraint firstItem="adC-xn-RoH" firstAttribute="top" secondItem="60B-RX-f1j" secondAttribute="top" id="t7p-oS-dIY"/>
+                                                <constraint firstItem="adC-xn-RoH" firstAttribute="leading" secondItem="60B-RX-f1j" secondAttribute="leading" constant="20" id="yYD-6w-WM0"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="scrollView" destination="ZhM-1D-eie" id="wsy-8W-a8x"/>
+                                            <outlet property="collectionView" destination="adC-xn-RoH" id="dUw-GF-VgU"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SetDetailTableViewCell" rowHeight="127" id="a5E-Ob-arQ" customClass="SetDetailTableViewCell" customModule="MyBricks" customModuleProvider="target">
@@ -573,7 +608,7 @@
         <!--Image Detail View Controller-->
         <scene sceneID="pNn-24-W0B">
             <objects>
-                <viewController id="YhP-0y-ZgU" customClass="ImageDetailViewController" customModule="MyBricks" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ImageDetailViewController" id="YhP-0y-ZgU" customClass="ImageDetailViewController" customModule="MyBricks" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="NSX-T3-xbL">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

@@ -22,11 +22,9 @@ class SetCollectionTableViewCell: UITableViewCell {
 
     let maxQuantityLength = 3
     
-    var toggleSetOwned : (() -> Void)? = nil
-    var toggleSetWanted : (() -> Void)? = nil
-    var updateQuantityOwned : ((Int) -> Void)? = nil
-    var updateUserNotes : ((String) -> Void)? = nil
-
+    var setUpdated: ((Set?) -> Void)? = nil
+    
+    var currentSet: Set? = nil
     var previousQuantityOwned: Int = 0
     var previousNotesText: String = ""
 
@@ -47,6 +45,18 @@ class SetCollectionTableViewCell: UITableViewCell {
 
         addOwnedCountInputAccessoryView()
         addUserNotesInputAccessoryView()
+
+        ratingView.didFinishTouchingCosmos = { rating in
+            if var set = self.currentSet, let setID = set.setID {
+                BricksetServices.shared.setUserRating(setID: setID, rating: Int(rating), completion: { result in
+                    if result.isSuccess {
+                        set.userRating = Int(rating)
+                        self.setUpdated?(set)
+                        self.currentSet = set
+                    }
+                })
+            }
+        }
 
         prepareForReuse()
     }
@@ -70,11 +80,35 @@ class SetCollectionTableViewCell: UITableViewCell {
     //--------------------------------------------------------------------------
     
     @IBAction func toggleSetOwned(_ sender: UIButton) {
-        toggleSetOwned?()
+        if var set = currentSet, let setID = set.setID, let owned = set.owned {
+            BricksetServices.shared.setCollectionOwns(setID: setID, owned: !owned, completion: { result in
+                if result.isSuccess {
+                    set.owned = !owned
+                    set.quantityOwned = !owned ? 1 : nil
+                    
+                    self.ownedCheckboxButton.isSelected = set.owned ?? false
+                    self.ownedCountField.isEnabled = set.owned ?? false
+                    self.ownedCountField.text = "\(set.quantityOwned ?? 0)"
+
+                    self.setUpdated?(set)
+                    self.currentSet = set
+                }
+            })
+        }
+
     }
     
     @IBAction func toggleSetWanted(_ sender: UIButton) {
-        toggleSetWanted?()
+        if var set = currentSet, let setID = set.setID, let wanted = set.wanted {
+            BricksetServices.shared.setCollectionWants(setID: setID, wanted: !wanted, completion: { result in
+                if result.isSuccess {
+                    set.wanted = !wanted
+                    self.wantedCheckboxButton.isSelected = set.wanted ?? false
+                    self.setUpdated?(set)
+                    self.currentSet = set
+                }
+            })
+        }
     }
     
     //--------------------------------------------------------------------------
@@ -82,6 +116,8 @@ class SetCollectionTableViewCell: UITableViewCell {
     //--------------------------------------------------------------------------
     
     func populateWithSet(_ set : Set) -> Void {
+        currentSet = set
+        
         ownedCheckboxButton.isSelected = set.owned ?? false
         wantedCheckboxButton.isSelected = set.wanted ?? false
         
@@ -89,7 +125,6 @@ class SetCollectionTableViewCell: UITableViewCell {
         ownedCountField.text = "\(set.quantityOwned ?? 0)"
         ratingView.rating = Double(set.userRating ?? 0)
         notesTextView.text = set.userNotes
-
     }
 
     //--------------------------------------------------------------------------
@@ -156,6 +191,30 @@ class SetCollectionTableViewCell: UITableViewCell {
         notesTextView.inputAccessoryView = doneToolbar
     }
     
+    private func updateQuantityOwned(newQuantity: Int) {
+        if var set = currentSet, let setID = set.setID {
+            BricksetServices.shared.setCollectionQuantityOwned(setID: setID, quantityOwned: newQuantity, completion: { result in
+                if result.isSuccess {
+                    set.owned = (newQuantity > 0) ? true : false
+                    set.quantityOwned = newQuantity
+                    self.setUpdated?(set)
+                    self.currentSet = set
+                }
+            })
+        }
+    }
+    
+    private func updateUserNotes(newNotes: String) {
+        if var set = currentSet, let setID = set.setID {
+            BricksetServices.shared.setCollectionUserNotes(setID: setID, notes: newNotes, completion: { result in
+                if result.isSuccess {
+                    set.userNotes = newNotes
+                    self.setUpdated?(set)
+                    self.currentSet = set
+                }
+            })
+        }
+    }
 }
 
 //==============================================================================
@@ -178,7 +237,7 @@ extension SetCollectionTableViewCell: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         let newQuantity = Int(ownedCountField.text ?? "0") ?? 0
         if newQuantity != previousQuantityOwned {
-            updateQuantityOwned?(newQuantity)
+            updateQuantityOwned(newQuantity: newQuantity)
         }
     }
     
@@ -197,7 +256,7 @@ extension SetCollectionTableViewCell: UITextViewDelegate {
     func textViewDidEndEditing(_ textView: UITextView) {
         let newNotes = notesTextView.text ?? ""
         if newNotes != previousNotesText {
-            updateUserNotes?(newNotes)
+            updateUserNotes(newNotes: newNotes)
         }
     }
     

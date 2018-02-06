@@ -10,8 +10,11 @@ import UIKit
 
 class SetImagesTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var collectionView: UICollectionView!
     
+    var images: [SetImage] = []
+    var imageTapped : ((SetImage) -> Void)? = nil
+
     //--------------------------------------------------------------------------
     // MARK: - Nib Loading
     //--------------------------------------------------------------------------
@@ -27,47 +30,56 @@ class SetImagesTableViewCell: UITableViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
+        self.images.removeAll()
+        self.imageTapped = nil
     }
-    
-    //--------------------------------------------------------------------------
-    // MARK: - Actions
-    //--------------------------------------------------------------------------
     
     //--------------------------------------------------------------------------
     // MARK: - Public
     //--------------------------------------------------------------------------
     
     func populateWithSetImages(_ images : [SetImage]) -> Void {
-        var previousImageView: UIImageView? = nil
-        for image in images {
-            let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 90, height: 90))
-            imageView.translatesAutoresizingMaskIntoConstraints = false
-            imageView.contentMode = .scaleAspectFit
-            scrollView.addSubview(imageView)
-            
-            imageView.heightAnchor.constraint(equalToConstant: 90).isActive = true
-            imageView.centerYAnchor.constraint(equalTo: scrollView.centerYAnchor).isActive = true
-            if let previousImageView = previousImageView {
-                imageView.leadingAnchor.constraint(equalTo: previousImageView.trailingAnchor, constant: 10).isActive = true
-            }
-            else {
-                imageView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor).isActive = true
-            }
-            previousImageView = imageView
-            
-            if let thumbnailURLString = image.thumbnailURL, let thumbnailURL = URL(string: thumbnailURLString) {
-                imageView.af_setImage(withURL: thumbnailURL, imageTransition: .crossDissolve(0.3)) { response in
-                    //if let image = response.result.value {
-                    //    print("thumbnail size = \(image.size)")
-                    //}
-                }
-            }
-        }
-        
-        if let lastImageView = previousImageView {
-            scrollView.trailingAnchor.constraint(equalTo: lastImageView.trailingAnchor).isActive = true
-        }
+        self.images = images
+        collectionView.reloadData()
+    }
+    
+}
 
+//==============================================================================
+// MARK: - UICollectionViewDataSource
+//==============================================================================
+
+extension SetImagesTableViewCell : UICollectionViewDataSource {
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return self.images.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SetImageCollectionViewCell", for: indexPath) as? SetImageCollectionViewCell {
+            let image = self.images[indexPath.item]
+            if let thumbnailURLString = image.thumbnailURL, let thumbnailURL = URL(string: thumbnailURLString) {
+                cell.imageView.af_setImage(withURL: thumbnailURL, imageTransition: .crossDissolve(0.3))
+            }
+            return cell
+        }
+        return UICollectionViewCell()
+    }
+}
+
+//==============================================================================
+// MARK: - UICollectionViewDelegate
+//==============================================================================
+
+extension SetImagesTableViewCell: UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let image = self.images[indexPath.item]
+        imageTapped?(image)
     }
     
 }
