@@ -50,7 +50,7 @@ class SetDetailViewController: UIViewController {
         hideKeyboardWhenViewTapped()
         
         // Add 'Share' button to navigation bar
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Share", style: .plain, target: self, action: #selector(shareButtonClicked(sender:)))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Share", style: .plain, target: self, action: #selector(share(sender:)))
 
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.sectionIndexBackgroundColor = UIColor.clear
@@ -105,10 +105,11 @@ class SetDetailViewController: UIViewController {
     // MARK: - Actions
     //--------------------------------------------------------------------------
 
-    @IBAction func shareButtonClicked(sender: UIButton) {
+    @IBAction func share(sender: UIButton) {
         if let urlString = currentSet?.bricksetURL, let url = NSURL(string: urlString) {
             let objectsToShare = [url] as [Any]
-            let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
+            let safariActivity = SafariActivity()
+            let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: [safariActivity])
             
             activityVC.popoverPresentationController?.sourceView = sender
             self.present(activityVC, animated: true, completion: nil)
