@@ -22,6 +22,81 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="32" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="jFW-oa-sVJ">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <view key="tableFooterView" contentMode="scaleToFill" id="sfS-D8-TsJ" customClass="SetDetailFooterView" customModule="MyBricks" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="1097" width="375" height="66"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="e1n-Dm-ZVq">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="66"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G5f-vl-L7M">
+                                                    <rect key="frame" x="10" y="0.0" width="355" height="1"/>
+                                                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="1" id="rm3-JH-PdZ"/>
+                                                    </constraints>
+                                                </view>
+                                                <view contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="5TH-Be-3wX">
+                                                    <rect key="frame" x="114" y="10" width="147" height="30"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="252" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="Open on" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q4P-B2-ZbH">
+                                                            <rect key="frame" x="0.0" y="6" width="55" height="17"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d7B-QQ-bLC">
+                                                            <rect key="frame" x="58" y="0.0" width="89" height="30"/>
+                                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
+                                                            <state key="normal" title="Brickset.com"/>
+                                                            <connections>
+                                                                <action selector="openOnBricksetButtonTapped:" destination="sfS-D8-TsJ" eventType="touchUpInside" id="M91-9Y-tko"/>
+                                                            </connections>
+                                                        </button>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstItem="d7B-QQ-bLC" firstAttribute="top" secondItem="5TH-Be-3wX" secondAttribute="top" id="0v5-nx-4yz"/>
+                                                        <constraint firstAttribute="trailing" secondItem="d7B-QQ-bLC" secondAttribute="trailing" id="9de-9m-gsf"/>
+                                                        <constraint firstItem="Q4P-B2-ZbH" firstAttribute="firstBaseline" secondItem="d7B-QQ-bLC" secondAttribute="firstBaseline" id="DE1-ki-yoi"/>
+                                                        <constraint firstAttribute="bottom" secondItem="d7B-QQ-bLC" secondAttribute="bottom" id="K2a-u1-FTB"/>
+                                                        <constraint firstItem="d7B-QQ-bLC" firstAttribute="leading" secondItem="Q4P-B2-ZbH" secondAttribute="trailing" constant="3" id="mfB-ee-xtS"/>
+                                                        <constraint firstItem="Q4P-B2-ZbH" firstAttribute="leading" secondItem="5TH-Be-3wX" secondAttribute="leading" id="x7v-1e-6Xi"/>
+                                                    </constraints>
+                                                </view>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="252" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="Last Updated 2016-01-14 @ 10:11:20 PM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pit-rp-pzd">
+                                                    <rect key="frame" x="64.5" y="40" width="247.5" height="16"/>
+                                                    <fontDescription key="fontDescription" type="italicSystem" pointSize="13"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstItem="5TH-Be-3wX" firstAttribute="centerX" secondItem="e1n-Dm-ZVq" secondAttribute="centerX" id="RqX-Oa-oqp"/>
+                                                <constraint firstItem="G5f-vl-L7M" firstAttribute="leading" secondItem="e1n-Dm-ZVq" secondAttribute="leading" constant="10" id="SkJ-EO-9eV"/>
+                                                <constraint firstItem="pit-rp-pzd" firstAttribute="top" secondItem="5TH-Be-3wX" secondAttribute="bottom" id="Tf7-bz-ar7"/>
+                                                <constraint firstAttribute="bottom" secondItem="pit-rp-pzd" secondAttribute="bottom" constant="10" id="UPx-GO-JIv"/>
+                                                <constraint firstItem="5TH-Be-3wX" firstAttribute="top" secondItem="e1n-Dm-ZVq" secondAttribute="top" constant="10" id="VuN-zg-CqL"/>
+                                                <constraint firstAttribute="trailing" secondItem="G5f-vl-L7M" secondAttribute="trailing" constant="10" id="Xhs-5G-0bR"/>
+                                                <constraint firstItem="G5f-vl-L7M" firstAttribute="top" secondItem="e1n-Dm-ZVq" secondAttribute="top" id="kE5-Sf-oue"/>
+                                                <constraint firstItem="pit-rp-pzd" firstAttribute="centerX" secondItem="e1n-Dm-ZVq" secondAttribute="centerX" id="zYx-yH-MFm"/>
+                                            </constraints>
+                                        </view>
+                                    </subviews>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="e1n-Dm-ZVq" secondAttribute="bottom" id="MWB-To-5r3"/>
+                                        <constraint firstAttribute="trailing" secondItem="e1n-Dm-ZVq" secondAttribute="trailing" id="Y6P-TH-tfa"/>
+                                        <constraint firstItem="e1n-Dm-ZVq" firstAttribute="top" secondItem="sfS-D8-TsJ" secondAttribute="top" id="efL-Ub-ENX"/>
+                                        <constraint firstItem="e1n-Dm-ZVq" firstAttribute="leading" secondItem="sfS-D8-TsJ" secondAttribute="leading" id="qDE-he-8va"/>
+                                    </constraints>
+                                    <connections>
+                                        <outlet property="dateLastUpdatedLabel" destination="pit-rp-pzd" id="cxj-ji-wA3"/>
+                                        <outlet property="dividerView" destination="G5f-vl-L7M" id="9D8-XD-G78"/>
+                                        <outlet property="openOnBricksetButton" destination="d7B-QQ-bLC" id="2dl-UN-vtK"/>
+                                    </connections>
+                                </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleAspectFit" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SetHeroImageTableViewCell" rowHeight="241" id="jKm-8g-xw3" customClass="SetHeroImageTableViewCell" customModule="MyBricks" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="32" width="375" height="241"/>
@@ -156,7 +231,7 @@
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <subviews>
                                                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Kwc-f8-2hZ">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="90" height="91"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="90" height="90"/>
                                                                     </imageView>
                                                                 </subviews>
                                                             </view>

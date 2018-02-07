@@ -4,7 +4,7 @@ Mobile (iOS) application for interacting with the BrickSet LEGO database.
 
 * Browse the catalog of current and retired LEGO sets.
 * Search for a specific set by number, name, or theme, or scan the barcode to look up the set details.
-* Track the sets/minifigures you own or want using your Brickset.com web account
+* Track the sets/minifigures you own or want using your Brickset.com account
 * Read the latest news from Brickset.com
 
 # Screenshots
@@ -27,8 +27,8 @@ Mobile (iOS) application for interacting with the BrickSet LEGO database.
 
 ### Requirements
 
-* Xcode 9.1 or greater (https://developer.apple.com/xcode/)
-* CocoaPods 5.0 or greater (https://cocoapods.org)
+* Xcode 9.2 or greater (https://developer.apple.com/xcode/)
+* CocoaPods 1.4.0 or greater (https://cocoapods.org)
 
 ### Building
 
@@ -53,10 +53,11 @@ Mobile (iOS) application for interacting with the BrickSet LEGO database.
 - [ ] Implement filtering on Parts List view
 - [ ] Add part detail view
 - [ ] Add more detail to price information (new view with prices in all available currencies + current prices from Bricklink)
-- [ ] Implement support for additional images in Set Detail view
+- [x] Implement support for additional images in Set Detail view
 - [ ] Implement TouchID support for login
 - [ ] Implement About/Credits views
 - [ ] Refactor Profile view to use table view cells
+- [ ] Improved transition animation (zoom?) for displaying large set images
 - [ ] Implement force touch actions on Set List view
 
 # Future Enhancements
@@ -67,6 +68,7 @@ Mobile (iOS) application for interacting with the BrickSet LEGO database.
 # Credits
 
 Application data graciously provided by **[Brickset](http://www.brickset.com)** using it's web services API.
+Parts data provided by **[Rebrickable](http://rebrickable.com)** using it's web services API.
 
 # Third Party Libraries/Frameworks
 

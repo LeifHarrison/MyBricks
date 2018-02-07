@@ -77,6 +77,7 @@
 		29FCC3461FBA14F500079032 /* SetDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FCC3451FBA14F500079032 /* SetDetail.swift */; };
 		71EA93350D446E8447D819DE /* Pods_MyBricks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C7DD5EA6F08ABC5549DF63C /* Pods_MyBricks.framework */; };
 		9B2804CF2023CE970026FC73 /* SetImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2804CE2023CE970026FC73 /* SetImage.swift */; };
+		9B3E1EEC202A690D0094DD3E /* SetDetailFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3E1EEB202A690D0094DD3E /* SetDetailFooterView.swift */; };
 		9B5450372024E2DD0021074D /* ImageDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5450362024E2DD0021074D /* ImageDetailViewController.swift */; };
 		9B5450392025206D0021074D /* SetImagesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5450382025206D0021074D /* SetImagesTableViewCell.swift */; };
 		9B5CA746201946CE00B09BCB /* FilterSelectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5CA745201946CE00B09BCB /* FilterSelectionTableViewCell.swift */; };
@@ -202,6 +203,7 @@
 		593F839198E1796EC36B980B /* Pods-MyBricks.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyBricks.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MyBricks/Pods-MyBricks.debug.xcconfig"; sourceTree = "<group>"; };
 		8C7DD5EA6F08ABC5549DF63C /* Pods_MyBricks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyBricks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B2804CE2023CE970026FC73 /* SetImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetImage.swift; sourceTree = "<group>"; };
+		9B3E1EEB202A690D0094DD3E /* SetDetailFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetDetailFooterView.swift; sourceTree = "<group>"; };
 		9B5450362024E2DD0021074D /* ImageDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDetailViewController.swift; sourceTree = "<group>"; };
 		9B5450382025206D0021074D /* SetImagesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetImagesTableViewCell.swift; sourceTree = "<group>"; };
 		9B5CA745201946CE00B09BCB /* FilterSelectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterSelectionTableViewCell.swift; sourceTree = "<group>"; };
@@ -515,10 +517,19 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		9B3E1EEA202A68E40094DD3E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				9B3E1EEB202A690D0094DD3E /* SetDetailFooterView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		9B85355B202389BA00D77DF9 /* SetDetail */ = {
 			isa = PBXGroup;
 			children = (
 				9B85355C202389D200D77DF9 /* Cells */,
+				9B3E1EEA202A68E40094DD3E /* Views */,
 				9B5450362024E2DD0021074D /* ImageDetailViewController.swift */,
 				2949A94E1FBFBEC800676D59 /* InstructionsViewController.swift */,
 				2949A9501FBFBEE000676D59 /* PartsListViewController.swift */,
@@ -856,6 +867,7 @@
 				29A523421F310261005F2145 /* UIViewController+Extensions.swift in Sources */,
 				29B9514F1FDBCC950049147E /* Part.swift in Sources */,
 				2949A9551FBFE05E00676D59 /* SetReviewTableViewCell.swift in Sources */,
+				9B3E1EEC202A690D0094DD3E /* SetDetailFooterView.swift in Sources */,
 				29365B791F8EBF3B00F6730C /* ProfileViewController.swift in Sources */,
 				295ADFBF1F16AFFD002E6802 /* BrowseThemesViewController.swift in Sources */,
 				296EB6E41FBFA71A00D4D3C6 /* SetRetailPrice.swift in Sources */,

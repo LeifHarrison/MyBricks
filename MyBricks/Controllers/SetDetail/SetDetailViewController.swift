@@ -49,19 +49,31 @@ class SetDetailViewController: UIViewController {
 
         hideKeyboardWhenViewTapped()
         
+        // Add 'Share' button to navigation bar
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Share", style: .plain, target: self, action: #selector(shareButtonClicked(sender:)))
+
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.sectionIndexBackgroundColor = UIColor.clear
         tableView.separatorColor = UIColor(white: 0.3, alpha: 0.8)
         tableView.separatorInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
-        tableView.tableFooterView = UIView()
+        if tableView.tableFooterView == nil {
+            tableView.tableFooterView = UIView()
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        updateSections()
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(with:)), name: .UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(with:)), name: .UIKeyboardWillHide, object: nil)
+        
+        updateSections()
+        if let footerView = tableView.tableFooterView as? SetDetailFooterView, let set = self.currentSet {
+            footerView.populateWithSet(set)
+        }
+        else {
+            tableView.tableFooterView = UIView()
+        }
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -89,6 +101,20 @@ class SetDetailViewController: UIViewController {
         super.viewDidDisappear(animated)
     }
 
+    //--------------------------------------------------------------------------
+    // MARK: - Actions
+    //--------------------------------------------------------------------------
+
+    @IBAction func shareButtonClicked(sender: UIButton) {
+        if let urlString = currentSet?.bricksetURL, let url = NSURL(string: urlString) {
+            let objectsToShare = [url] as [Any]
+            let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
+            
+            activityVC.popoverPresentationController?.sourceView = sender
+            self.present(activityVC, animated: true, completion: nil)
+        }
+    }
+    
     //--------------------------------------------------------------------------
     // MARK: - Private
     //--------------------------------------------------------------------------
