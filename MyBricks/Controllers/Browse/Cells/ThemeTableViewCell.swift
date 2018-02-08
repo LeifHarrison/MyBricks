@@ -46,8 +46,8 @@ class ThemeTableViewCell: UITableViewCell {
 extension SetTheme {
 
     static let textColor = UIColor(white:0.1, alpha:1.0)
-    static let regularAttributes = [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14), NSAttributedStringKey.foregroundColor: textColor]
-    static let boldAttributes = [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14, weight: .bold), NSAttributedStringKey.foregroundColor: textColor]
+    static let regularAttributes = [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 16), NSAttributedStringKey.foregroundColor: textColor]
+    static let boldAttributes = [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 16, weight: .bold), NSAttributedStringKey.foregroundColor: textColor]
 
     func setsAttributedDescription() -> NSAttributedString {
         let attributedDescription = NSMutableAttributedString(string:"\( setCount ?? 0)", attributes:SetTheme.boldAttributes)

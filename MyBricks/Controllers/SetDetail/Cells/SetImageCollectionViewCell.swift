@@ -22,6 +22,16 @@ class SetImageCollectionViewCell: UICollectionViewCell {
     }
     
     //--------------------------------------------------------------------------
+    // MARK: - Reuse
+    //--------------------------------------------------------------------------
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        self.transform = CGAffineTransform.identity
+        imageView.image = nil
+    }
+    
+    //--------------------------------------------------------------------------
     // MARK: - Properties
     //--------------------------------------------------------------------------
     

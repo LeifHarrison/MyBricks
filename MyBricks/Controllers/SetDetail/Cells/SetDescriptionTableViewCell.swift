@@ -46,10 +46,6 @@ class SetDescriptionTableViewCell: UITableViewCell {
 
 extension SetDetail {
     
-    static let textColor = UIColor(white:0.1, alpha:1.0)
-    static let templateAttributes = [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 16), NSAttributedStringKey.foregroundColor: textColor]
-    static let authorAttributes = [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 16, weight: .bold), NSAttributedStringKey.foregroundColor: UIColor.blue]
-    
     func formattedDescription() -> NSAttributedString? {
         if let string = self.setDescription {
             if let data = string.data(using: String.Encoding.utf8, allowLossyConversion: true) {
@@ -75,7 +71,7 @@ extension SetDetail {
                         let isBold = font.fontDescriptor.symbolicTraits.contains(.traitBold)
                         let isItalic = font.fontDescriptor.symbolicTraits.contains(.traitItalic)
                         
-                        let size: CGFloat = 14
+                        let size: CGFloat = 16
                         
                         var font = UIFont.systemFont(ofSize: size)
                         if isBold {
