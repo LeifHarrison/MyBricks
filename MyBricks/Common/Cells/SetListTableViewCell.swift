@@ -17,11 +17,14 @@ class SetListTableViewCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var setNumberLabel: UILabel!
     @IBOutlet weak var subthemeLabel: UILabel!
+    @IBOutlet weak var partsContainerView: UIView!
     @IBOutlet weak var piecesLabel: UILabel!
     @IBOutlet weak var minifigsLabel: UILabel!
 
     @IBOutlet weak var ownedView: UIView!
     @IBOutlet weak var wantedView: UIView!
+
+    @IBOutlet var wantedViewSpacingConstraint: NSLayoutConstraint!
 
     //--------------------------------------------------------------------------
     // MARK: - Nib Loading
@@ -49,7 +52,8 @@ class SetListTableViewCell: UITableViewCell {
 
         ownedView.isHidden = true
         wantedView.isHidden = true
-        
+        wantedViewSpacingConstraint.isActive = true
+
         setImageView.af_cancelImageRequest()
         setImageView.layer.removeAllAnimations()
         setImageView.image = nil
@@ -67,9 +71,11 @@ class SetListTableViewCell: UITableViewCell {
         piecesLabel.text = "\(set.pieces ?? 0)"
         minifigsLabel.text = "\(set.minifigs ?? 0)"
 
-        ownedView.isHidden = !(set.owned ?? true)
-        wantedView.isHidden = !ownedView.isHidden || !(set.wanted ?? true)
+        ownedView.isHidden = !(set.owned ?? false)
+        wantedView.isHidden = !(set.wanted ?? false)
         
+        wantedViewSpacingConstraint.isActive = (set.wanted ?? false) && (set.owned ?? false)
+
         let urlString = (UIScreen.main.scale > 1.5) ? set.largeThumbnailURL : set.thumbnailURL
         if let urlString = urlString, let url = URL(string: urlString) {
             setImageView.af_setImage(withURL: url, imageTransition: .crossDissolve(0.3))
