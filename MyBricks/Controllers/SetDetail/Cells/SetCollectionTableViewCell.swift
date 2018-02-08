@@ -11,6 +11,9 @@ import Cosmos
 
 class SetCollectionTableViewCell: UITableViewCell {
 
+    static let nibName = "SetCollectionTableViewCell"
+    static let reuseIdentifier = "SetCollectionTableViewCell"
+
     @IBOutlet weak var ownedContainer: UIView!
     @IBOutlet weak var wantedContainer: UIView!
     @IBOutlet weak var ratingView: CosmosView!

@@ -10,6 +10,9 @@ import UIKit
 
 class SetHeroImageTableViewCell: UITableViewCell {
 
+    static let nibName = "SetHeroImageTableViewCell"
+    static let reuseIdentifier = "SetHeroImageTableViewCell"
+    
     @IBOutlet weak var numberBackgroundView: UIView!
     @IBOutlet weak var numberLabel: UILabel!
     @IBOutlet weak var yearBackgroundView: UIView!

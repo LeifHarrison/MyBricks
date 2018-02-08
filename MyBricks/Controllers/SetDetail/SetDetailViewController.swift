@@ -56,6 +56,13 @@ class SetDetailViewController: UIViewController {
         tableView.sectionIndexBackgroundColor = UIColor.clear
         tableView.separatorColor = UIColor(white: 0.3, alpha: 0.8)
         tableView.separatorInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+        
+        tableView.register(UINib(nibName:SetHeroImageTableViewCell.nibName, bundle:nil), forCellReuseIdentifier: SetHeroImageTableViewCell.reuseIdentifier)
+        tableView.register(UINib(nibName:SetImagesTableViewCell.nibName, bundle:nil), forCellReuseIdentifier: SetImagesTableViewCell.reuseIdentifier)
+        tableView.register(UINib(nibName:SetDetailTableViewCell.nibName, bundle:nil), forCellReuseIdentifier: SetDetailTableViewCell.reuseIdentifier)
+        tableView.register(UINib(nibName:SetPartsTableViewCell.nibName, bundle:nil), forCellReuseIdentifier: SetPartsTableViewCell.reuseIdentifier)
+        tableView.register(UINib(nibName:SetCollectionTableViewCell.nibName, bundle:nil), forCellReuseIdentifier: SetCollectionTableViewCell.reuseIdentifier)
+
         if tableView.tableFooterView == nil {
             tableView.tableFooterView = UIView()
         }
@@ -265,7 +272,7 @@ extension SetDetailViewController: UITableViewDataSource {
         switch section {
             
         case .image :
-            if let cell = tableView.dequeueReusableCell(withIdentifier: "SetHeroImageTableViewCell", for: indexPath) as? SetHeroImageTableViewCell {
+            if let cell = tableView.dequeueReusableCell(withIdentifier: SetHeroImageTableViewCell.reuseIdentifier, for: indexPath) as? SetHeroImageTableViewCell {
                 cell.populateWithSet(set)
                 
                 // Populate the image ourselves, so we can reload the cell when the image finishes loading
@@ -296,7 +303,7 @@ extension SetDetailViewController: UITableViewDataSource {
             
             
         case .additionalImages :
-            if let cell = tableView.dequeueReusableCell(withIdentifier: "SetImagesTableViewCell", for: indexPath) as? SetImagesTableViewCell {
+            if let cell = tableView.dequeueReusableCell(withIdentifier: SetImagesTableViewCell.reuseIdentifier, for: indexPath) as? SetImagesTableViewCell {
                 if let images = setImages {
                     cell.populateWithSetImages(images)
                     cell.imageTapped = { image in
@@ -310,7 +317,7 @@ extension SetDetailViewController: UITableViewDataSource {
             }
             
         case .detail :
-            if let cell = tableView.dequeueReusableCell(withIdentifier: "SetDetailTableViewCell", for: indexPath) as? SetDetailTableViewCell {
+            if let cell = tableView.dequeueReusableCell(withIdentifier: SetDetailTableViewCell.reuseIdentifier, for: indexPath) as? SetDetailTableViewCell {
                 cell.populateWithSet(set)
                 return cell
             }
@@ -339,7 +346,7 @@ extension SetDetailViewController: UITableViewDataSource {
             return cell
             
         case .collection :
-            if let cell = tableView.dequeueReusableCell(withIdentifier: "SetCollectionTableViewCell", for: indexPath) as? SetCollectionTableViewCell {
+            if let cell = tableView.dequeueReusableCell(withIdentifier: SetCollectionTableViewCell.reuseIdentifier, for: indexPath) as? SetCollectionTableViewCell {
                 cell.populateWithSet(set)
 
                 cell.setUpdated = { set in

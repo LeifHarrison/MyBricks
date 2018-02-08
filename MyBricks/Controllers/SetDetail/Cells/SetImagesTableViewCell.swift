@@ -10,6 +10,9 @@ import UIKit
 
 class SetImagesTableViewCell: UITableViewCell {
 
+    static let nibName = "SetImagesTableViewCell"
+    static let reuseIdentifier = "SetImagesTableViewCell"
+
     @IBOutlet weak var collectionView: UICollectionView!
     
     var images: [SetImage] = []
@@ -21,6 +24,9 @@ class SetImagesTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        collectionView.register(UINib(nibName:SetImageCollectionViewCell.nibName, bundle:nil), forCellWithReuseIdentifier: SetImageCollectionViewCell.reuseIdentifier)
+
         prepareForReuse()
     }
     

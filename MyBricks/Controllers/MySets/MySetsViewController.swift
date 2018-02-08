@@ -45,6 +45,8 @@ class MySetsViewController: UIViewController {
         addGradientBackground()
 
         loginButton.layer.cornerRadius = 5.0
+        
+        tableView.register(UINib(nibName:SetListTableViewCell.nibName, bundle:nil), forCellReuseIdentifier: SetListTableViewCell.reuseIdentifier)
         tableView.tableFooterView = UIView()
     }
 
@@ -231,28 +233,8 @@ extension MySetsViewController: UITableViewDataSource {
         let sectionTitle = sectionTitles[indexPath.section]
         if let sets = setsBySection[sectionTitle] {
             let set = sets[indexPath.row]
-            if let cell = tableView.dequeueReusableCell(withIdentifier: "SetTableViewCell", for: indexPath) as? SetTableViewCell
-            {
-                if UIScreen.main.scale > 1.5 {
-                    if let urlString = set.largeThumbnailURL, let url = URL(string: urlString) {
-                        cell.setImageView.af_setImage(withURL: url, imageTransition: .crossDissolve(0.3))
-                    }
-                }
-                else {
-                    if let urlString = set.thumbnailURL, let url = URL(string: urlString) {
-                        cell.setImageView.af_setImage(withURL: url, imageTransition: .crossDissolve(0.3))
-                    }
-                }
-
-                cell.nameLabel.text = set.name
-                cell.setNumberLabel.text = set.number
-                cell.subthemeLabel.text = set.subtheme
-                cell.piecesLabel.text = "\(set.pieces ?? 0)"
-                cell.minifigsLabel.text = "\(set.minifigs ?? 0)"
-
-                cell.ownedView.isHidden = !(set.owned ?? true)
-                cell.wantedView.isHidden = !cell.ownedView.isHidden || !(set.wanted ?? true)
-
+            if let cell = tableView.dequeueReusableCell(withIdentifier: SetListTableViewCell.reuseIdentifier, for: indexPath) as? SetListTableViewCell {
+                cell.populateWithSet(set)
                 return cell
             }
         }

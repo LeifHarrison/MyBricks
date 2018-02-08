@@ -9,7 +9,10 @@
 import UIKit
 
 class SetImageCollectionViewCell: UICollectionViewCell {
-    
+
+    static let nibName = "SetImageCollectionViewCell"
+    static let reuseIdentifier = "SetImageCollectionViewCell"
+
     @IBOutlet weak var imageView: UIImageView!
 
     //--------------------------------------------------------------------------

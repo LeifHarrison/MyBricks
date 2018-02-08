@@ -41,6 +41,8 @@ class BrowseSetsViewController: UIViewController {
         tableView.estimatedRowHeight = UITableViewAutomaticDimension
         tableView.sectionIndexBackgroundColor = UIColor.clear
         tableView.tableFooterView = UIView()
+        
+        tableView.register(UINib(nibName:SetListTableViewCell.nibName, bundle:nil), forCellReuseIdentifier: SetListTableViewCell.reuseIdentifier)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -150,19 +152,8 @@ extension BrowseSetsViewController: UITableViewDataSource {
         let sectionTitle = sectionTitles[indexPath.section]
         if let sets = setsBySection[sectionTitle] {
             let set = sets[indexPath.row]
-            if let cell = tableView.dequeueReusableCell(withIdentifier: "SetTableViewCell", for: indexPath) as? SetTableViewCell {
+            if let cell = tableView.dequeueReusableCell(withIdentifier: SetListTableViewCell.reuseIdentifier, for: indexPath) as? SetListTableViewCell {
                 cell.populateWithSet(set)
-                if UIScreen.main.scale > 1.5 {
-                    if let urlString = set.largeThumbnailURL, let url = URL(string: urlString) {
-                        cell.setImageView.af_setImage(withURL: url, imageTransition: .crossDissolve(0.3))
-                    }
-                }
-                else {
-                    if let urlString = set.thumbnailURL, let url = URL(string: urlString) {
-                        cell.setImageView.af_setImage(withURL: url, imageTransition: .crossDissolve(0.3))
-                    }
-                }
-
                 return cell
             }
         }

@@ -1,5 +1,5 @@
 //
-//  SetTableViewCell.swift
+//  SetListTableViewCell.swift
 //  MyBricks
 //
 //  Created by Leif Harrison on 10/10/17.
@@ -8,7 +8,10 @@
 
 import UIKit
 
-class SetTableViewCell: UITableViewCell {
+class SetListTableViewCell: UITableViewCell {
+
+    static let nibName = "SetListTableViewCell"
+    static let reuseIdentifier = "SetListTableViewCell"
 
     @IBOutlet weak var setImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
@@ -37,7 +40,7 @@ class SetTableViewCell: UITableViewCell {
 
     override func prepareForReuse() {
         super.prepareForReuse()
-        setImageView.image = nil
+
         nameLabel.text = ""
         setNumberLabel.text = ""
         subthemeLabel.text = ""
@@ -46,6 +49,10 @@ class SetTableViewCell: UITableViewCell {
 
         ownedView.isHidden = true
         wantedView.isHidden = true
+        
+        setImageView.af_cancelImageRequest()
+        setImageView.layer.removeAllAnimations()
+        setImageView.image = nil
     }
 
     //--------------------------------------------------------------------------
@@ -53,6 +60,7 @@ class SetTableViewCell: UITableViewCell {
     //--------------------------------------------------------------------------
 
     func populateWithSet(_ set : Set) -> Void {
+        
         nameLabel.text = set.name
         setNumberLabel.text = set.number
         subthemeLabel.text = set.subtheme
@@ -61,6 +69,12 @@ class SetTableViewCell: UITableViewCell {
 
         ownedView.isHidden = !(set.owned ?? true)
         wantedView.isHidden = !ownedView.isHidden || !(set.wanted ?? true)
+        
+        let urlString = (UIScreen.main.scale > 1.5) ? set.largeThumbnailURL : set.thumbnailURL
+        if let urlString = urlString, let url = URL(string: urlString) {
+            setImageView.af_setImage(withURL: url, imageTransition: .crossDissolve(0.3))
+        }
+
     }
 
 }
