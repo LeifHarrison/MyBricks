@@ -7,41 +7,32 @@
 //
 
 import UIKit
+
+import KeychainAccess
 import LocalAuthentication
 
 class ProfileViewController: UIViewController {
 
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var loginView: UIView!
     @IBOutlet weak var instructionLabel: UILabel!
     @IBOutlet weak var loginButton: UIButton!
 
-    @IBOutlet weak var profileView: UIView!
 
-    @IBOutlet weak var profileDetailView: UIView!
-    @IBOutlet weak var profileActivityIndicator: UIActivityIndicatorView!
-    @IBOutlet weak var nameField: UILabel!
-    @IBOutlet weak var memberSinceField: UILabel!
-    @IBOutlet weak var lastOnlineField: UILabel!
-    @IBOutlet weak var countryField: UILabel!
-    @IBOutlet weak var locationField: UILabel!
-    @IBOutlet weak var interestsField: UILabel!
+    enum TableSection: Int {
+        case brickset
+    }
+    
+    enum TableRow: Int {
+        case profile
+        case collection
+    }
+    
+    var sections: [TableSection] = []
+    var bricksetRows: [TableRow] = []
 
-    @IBOutlet weak var collectionDivider: UIView!
-    @IBOutlet weak var collectionDetailView: UIView!
-    @IBOutlet weak var collectionActivityIndicator: UIActivityIndicatorView!
-    @IBOutlet weak var ownedSetsField: UILabel!
-    @IBOutlet weak var wantedSetsField: UILabel!
-    @IBOutlet weak var ownedMinifigsField: UILabel!
-    @IBOutlet weak var wantedMinifigsField: UILabel!
-
-    var userProfile: UserProfile? = nil
     var collectionTotals: UserCollectionTotals? = nil
-
-    let profileDateFormatter : DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "dd MMM yyyy"
-        return formatter
-    }()
 
     //--------------------------------------------------------------------------
     // MARK: - View Lifecycle
@@ -51,7 +42,18 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
         addGradientBackground()
         
-        collectionDivider.backgroundColor = UIColor(white: 0.6, alpha: 0.7)
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.sectionIndexBackgroundColor = UIColor.clear
+        tableView.separatorColor = UIColor(white: 0.3, alpha: 0.8)
+        tableView.separatorInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+        
+        tableView.register(UINib(nibName:BricksetCollectionTableViewCell.nibName, bundle:nil), forCellReuseIdentifier: BricksetCollectionTableViewCell.reuseIdentifier)
+        tableView.register(UINib(nibName:BricksetProfileTableViewCell.nibName, bundle:nil), forCellReuseIdentifier: BricksetProfileTableViewCell.reuseIdentifier)
+        
+        if tableView.tableFooterView == nil {
+            tableView.tableFooterView = UIView()
+        }
+
         loginButton.layer.cornerRadius = 5.0
     }
 
@@ -63,7 +65,6 @@ class ProfileViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if BricksetServices.isLoggedIn() {
-            updateProfileInformation()
             updateCollectionInformation()
         }
     }
@@ -93,17 +94,20 @@ class ProfileViewController: UIViewController {
 
     fileprivate func updateDisplay(animated: Bool) {
 
-        let loggedIn = BricksetServices.isLoggedIn()
-        let buttonItem = loggedIn ? UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logout)) : nil
-        navigationItem.setRightBarButton(buttonItem, animated: animated)
+        sections.removeAll()
+        bricksetRows.removeAll()
+        
+        //let buttonItem = loggedIn ? UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logout)) : nil
+        //navigationItem.setRightBarButton(buttonItem, animated: animated)
 
-        if loggedIn {
-            transitionViews(fromView: loginView, toView: profileView, animated: animated)
-            updateProfileFields()
-            updateCollectionFields()
+        if BricksetServices.isLoggedIn() {
+            transitionViews(fromView: loginView, toView: tableView, animated: animated)
+            sections.append(.brickset)
+            bricksetRows.append(.profile)
+            tableView.reloadData()
         }
         else {
-            transitionViews(fromView: profileView, toView: loginView, animated: animated)
+            transitionViews(fromView: tableView, toView: loginView, animated: animated)
         }
     }
 
@@ -120,131 +124,35 @@ class ProfileViewController: UIViewController {
             }
             let completionBlock : (Bool) -> () = { _ in
             }
-            UIView.animate(withDuration: animated ? 0.5 : 0, animations: fadeInBlock, completion:completionBlock)
+            UIView.animate(withDuration: animated ? 0.7 : 0, animations: fadeInBlock, completion:completionBlock)
         }
-        UIView.animate(withDuration: animated ? 0.25 : 0, animations: fadeOutBlock, completion:transitionBlock)
+        UIView.animate(withDuration: animated ? 0.3 : 0, animations: fadeOutBlock, completion:transitionBlock)
     }
 
     // MARK: - Updating Profile Information
 
     fileprivate func updateProfileInformation() {
-
         // TODO: Implement fetching Profile information once profile
         // service is available
-
-        fadeOutProfileFields()
-        profileActivityIndicator.startAnimating()
-
-        // Temporary hack to pretend we're fetching profile information
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
-            self.profileActivityIndicator.stopAnimating()
-            self.userProfile = UserProfile()
-            self.updateProfileFields()
-            self.fadeInProfileFields()
-        }
-
-//        BricksetServices.sharedInstance.getUserProfile(completion: { result in
-//            self.profileActivityIndicator.stopAnimating()
-//            if result.isSuccess {
-//                self.userProfile = result.value
-//                self.updateProfileFields()()
-//            }
-//        })
     }
 
-    fileprivate func updateProfileFields() -> Void {
-        if let profile = self.userProfile {
-            self.nameField.text = profile.name
-            self.memberSinceField.text = self.profileDateFormatter.string(from: (profile.memberSince ?? Date.init(timeIntervalSinceNow: 0)))
-            self.lastOnlineField.text = self.profileDateFormatter.string(from: (profile.lastOnline ?? Date.init(timeIntervalSinceNow: 0)))
-            self.countryField.text = profile.country
-            self.locationField.text = profile.location
-            self.interestsField.text = profile.interests
-        }
-        else {
-            self.nameField.text = nil
-            self.memberSinceField.text = nil
-            self.lastOnlineField.text = nil
-            self.countryField.text = nil
-            self.locationField.text = nil
-            self.interestsField.text = nil
-        }
-    }
-
-    fileprivate func fadeOutProfileFields() -> Void {
-        let animations = { () -> Void in
-            self.nameField.alpha = 0.0
-            self.memberSinceField.alpha = 0.0
-            self.lastOnlineField.alpha = 0.0
-            self.countryField.alpha = 0.0
-            self.locationField.alpha = 0.0
-            self.interestsField.alpha = 0.0
-        }
-        UIView.animate(withDuration: 0.25, animations:animations)
-    }
-
-    fileprivate func fadeInProfileFields() -> Void {
-        let animations = { () -> Void in
-            self.nameField.alpha = 1.0
-            self.memberSinceField.alpha = 1.0
-            self.lastOnlineField.alpha = 1.0
-            self.countryField.alpha = 1.0
-            self.locationField.alpha = 1.0
-            self.interestsField.alpha = 1.0
-        }
-        UIView.animate(withDuration: 0.25, animations:animations)
-    }
 
     // MARK: - Updating Collection Information
 
     fileprivate func updateCollectionInformation() {
-        fadeOutCollectionFields()
-        collectionActivityIndicator.startAnimating()
+        activityIndicator.startAnimating()
         BricksetServices.shared.getCollectionTotals(completion: { result in
-            self.collectionActivityIndicator.stopAnimating()
+            self.activityIndicator.stopAnimating()
             if result.isSuccess {
                 self.collectionTotals = result.value
-                self.updateCollectionFields()
-                self.fadeInCollectionFields()
+                self.bricksetRows.append(.collection)
+                if let section = self.sections.index(of: .brickset), let row = self.bricksetRows.index(of: .collection) {
+                    self.tableView.insertRows(at: [IndexPath(row: row, section: section)], with: .fade)
+                }
             }
         })
     }
-
-    fileprivate func updateCollectionFields() -> Void {
-        if let totals = self.collectionTotals {
-            ownedSetsField.attributedText = totals.setsOwnedAttributedDescription()
-            wantedSetsField.attributedText = totals.setsWantedAttributedDescription()
-            ownedMinifigsField.attributedText = totals.minifigsOwnedAttributedDescription()
-            wantedMinifigsField.attributedText = totals.minifigsWantedAttributedDescription()
-        }
-        else {
-            ownedSetsField.text = nil
-            wantedSetsField.text = nil
-            ownedMinifigsField.text = nil
-            wantedMinifigsField.text = nil
-        }
-    }
     
-    fileprivate func fadeOutCollectionFields() -> Void {
-        let animations = { () -> Void in
-            self.ownedSetsField.alpha = 0.0
-            self.wantedSetsField.alpha = 0.0
-            self.ownedMinifigsField.alpha = 0.0
-            self.wantedMinifigsField.alpha = 0.0
-        }
-        UIView.animate(withDuration: 0.25, animations:animations)
-    }
-
-    fileprivate func fadeInCollectionFields() -> Void {
-        let animations = { () -> Void in
-            self.ownedSetsField.alpha = 1.0
-            self.wantedSetsField.alpha = 1.0
-            self.ownedMinifigsField.alpha = 1.0
-            self.wantedMinifigsField.alpha = 1.0
-        }
-        UIView.animate(withDuration: 0.25, animations:animations)
-    }
-
     fileprivate func evaluateBiometricAuthentication(credential: URLCredential) {
         let myContext = LAContext()
         let myLocalizedReasonString = "Login to your Brickset account"
@@ -303,49 +211,70 @@ class ProfileViewController: UIViewController {
                 }
             })
         }
-
     }
+    
 }
 
 //==============================================================================
-// MARK: - UserCollectionTotals extensions
+// MARK: - UITableViewDataSource
 //==============================================================================
 
-extension UserCollectionTotals {
-
-    static let regularAttributes = [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 15), NSAttributedStringKey.foregroundColor: UIColor.black]
-    static let boldAttributes = [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 15, weight: .bold), NSAttributedStringKey.foregroundColor: UIColor.black]
-
-    func setsOwnedAttributedDescription() -> NSAttributedString {
-        let attributedDescription = NSMutableAttributedString(string: "You own ", attributes: UserCollectionTotals.regularAttributes)
-        attributedDescription.append(NSAttributedString(string:"\(totalSetsOwned ?? 0)", attributes:UserCollectionTotals.boldAttributes))
-        attributedDescription.append(NSAttributedString(string:" sets, ", attributes:UserCollectionTotals.regularAttributes))
-        attributedDescription.append(NSAttributedString(string:"\(totalDistinctSetsOwned ?? 0)", attributes:UserCollectionTotals.boldAttributes))
-        attributedDescription.append(NSAttributedString(string:" different", attributes:UserCollectionTotals.regularAttributes))
-        return attributedDescription
+extension ProfileViewController: UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return sections.count
     }
-
-    func setsWantedAttributedDescription() -> NSAttributedString {
-        let attributedDescription = NSMutableAttributedString(string: "You want ", attributes: UserCollectionTotals.regularAttributes)
-        attributedDescription.append(NSAttributedString(string:"\(totalSetsWanted ?? 0)", attributes:UserCollectionTotals.boldAttributes))
-        attributedDescription.append(NSAttributedString(string:" sets", attributes:UserCollectionTotals.regularAttributes))
-        return attributedDescription
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        let section = sections[section]
+        if section == .brickset {
+            return bricksetRows.count
+        }
+        else {
+            return 0
+        }
     }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let section = sections[indexPath.section]
 
-    func minifigsOwnedAttributedDescription() -> NSAttributedString {
-        let attributedDescription = NSMutableAttributedString(string: "You own ", attributes: UserCollectionTotals.regularAttributes)
-        attributedDescription.append(NSAttributedString(string:"\(totalMinifigsOwned ?? 0)", attributes:UserCollectionTotals.boldAttributes))
-        attributedDescription.append(NSAttributedString(string:" minifigs, ", attributes:UserCollectionTotals.regularAttributes))
-        attributedDescription.append(NSAttributedString(string:"\(totalDistinctMinifigsOwned ?? 0)", attributes:UserCollectionTotals.boldAttributes))
-        attributedDescription.append(NSAttributedString(string:" different", attributes:UserCollectionTotals.regularAttributes))
-        return attributedDescription
+        if section == .brickset {
+            let row = bricksetRows[indexPath.row]
+            if row == .profile {
+                if let cell = tableView.dequeueReusableCell(withIdentifier: BricksetProfileTableViewCell.reuseIdentifier, for: indexPath) as? BricksetProfileTableViewCell {
+                    let keychain = Keychain(service: BricksetServices.serviceName)
+                    if let username = UserDefaults.standard.value(forKey: "username") as? String, let _ = keychain[username] {
+                        cell.populateWith(username: username)
+                    }
+                    cell.logoutButtonTapped = {
+                        BricksetServices.logout()
+                        self.updateDisplay(animated: true)
+                    }
+                    return cell
+                }
+            }
+            else if row == .collection {
+                if let cell = tableView.dequeueReusableCell(withIdentifier: BricksetCollectionTableViewCell.reuseIdentifier, for: indexPath) as? BricksetCollectionTableViewCell {
+                    cell.populateWithCollectionTotals(collectionTotals!)
+                    return cell
+                }
+            }
+        }
+        
+        return UITableViewCell()
     }
+    
+}
 
-    func minifigsWantedAttributedDescription() -> NSAttributedString {
-        let attributedDescription = NSMutableAttributedString(string: "You want ", attributes: UserCollectionTotals.regularAttributes)
-        attributedDescription.append(NSAttributedString(string:"\(totalMinifigsWanted ?? 0)", attributes:UserCollectionTotals.boldAttributes))
-        attributedDescription.append(NSAttributedString(string:" minifigs", attributes:UserCollectionTotals.regularAttributes))
-        return attributedDescription
+//==============================================================================
+// MARK: - UITableViewDelegate
+//==============================================================================
+
+extension ProfileViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
-
+    
 }

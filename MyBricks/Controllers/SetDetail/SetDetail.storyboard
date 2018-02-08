@@ -36,17 +36,17 @@
                                                         <constraint firstAttribute="height" constant="1" id="rm3-JH-PdZ"/>
                                                     </constraints>
                                                 </view>
-                                                <view contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5TH-Be-3wX">
-                                                    <rect key="frame" x="114" y="10" width="147" height="29"/>
+                                                <view contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="5TH-Be-3wX">
+                                                    <rect key="frame" x="114" y="10" width="147" height="27"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="252" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" ambiguous="YES" text="Open on" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q4P-B2-ZbH">
-                                                            <rect key="frame" x="0.0" y="5.5" width="55" height="17"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="252" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="Open on" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q4P-B2-ZbH">
+                                                            <rect key="frame" x="0.0" y="4.5" width="55" height="17"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d7B-QQ-bLC">
-                                                            <rect key="frame" x="58" y="0.0" width="89" height="29"/>
+                                                        <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d7B-QQ-bLC">
+                                                            <rect key="frame" x="58" y="0.0" width="89" height="27"/>
                                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
                                                             <state key="normal" title="Brickset.com"/>
                                                             <connections>
@@ -64,8 +64,8 @@
                                                         <constraint firstItem="Q4P-B2-ZbH" firstAttribute="leading" secondItem="5TH-Be-3wX" secondAttribute="leading" id="x7v-1e-6Xi"/>
                                                     </constraints>
                                                 </view>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="252" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" ambiguous="YES" text="Last Updated 2016-01-14 @ 10:11:20 PM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pit-rp-pzd">
-                                                    <rect key="frame" x="64.5" y="42" width="247.5" height="16"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="252" horizontalCompressionResistancePriority="752" verticalCompressionResistancePriority="752" text="Last Updated 2016-01-14 @ 10:11:20 PM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pit-rp-pzd">
+                                                    <rect key="frame" x="64.5" y="40" width="247.5" height="16"/>
                                                     <fontDescription key="fontDescription" type="italicSystem" pointSize="13"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -76,7 +76,7 @@
                                                 <constraint firstItem="5TH-Be-3wX" firstAttribute="centerX" secondItem="e1n-Dm-ZVq" secondAttribute="centerX" id="RqX-Oa-oqp"/>
                                                 <constraint firstItem="G5f-vl-L7M" firstAttribute="leading" secondItem="e1n-Dm-ZVq" secondAttribute="leading" constant="10" id="SkJ-EO-9eV"/>
                                                 <constraint firstItem="pit-rp-pzd" firstAttribute="top" secondItem="5TH-Be-3wX" secondAttribute="bottom" constant="3" id="Tf7-bz-ar7"/>
-                                                <constraint firstAttribute="bottom" secondItem="pit-rp-pzd" secondAttribute="bottom" constant="10" id="UPx-GO-JIv"/>
+                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="pit-rp-pzd" secondAttribute="bottom" constant="10" id="UPx-GO-JIv"/>
                                                 <constraint firstItem="5TH-Be-3wX" firstAttribute="top" secondItem="e1n-Dm-ZVq" secondAttribute="top" constant="10" id="VuN-zg-CqL"/>
                                                 <constraint firstAttribute="trailing" secondItem="G5f-vl-L7M" secondAttribute="trailing" constant="10" id="Xhs-5G-0bR"/>
                                                 <constraint firstItem="G5f-vl-L7M" firstAttribute="top" secondItem="e1n-Dm-ZVq" secondAttribute="top" id="kE5-Sf-oue"/>

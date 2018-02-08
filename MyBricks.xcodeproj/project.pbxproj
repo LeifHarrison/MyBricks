@@ -89,6 +89,10 @@
 		9B63D280202CDD7900E1C3B0 /* SetPartsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B63D27F202CDD7900E1C3B0 /* SetPartsTableViewCell.xib */; };
 		9B63D283202CE08700E1C3B0 /* SetListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B63D282202CE08700E1C3B0 /* SetListTableViewCell.xib */; };
 		9B63D285202CEDFB00E1C3B0 /* SetCollectionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B63D284202CEDFB00E1C3B0 /* SetCollectionTableViewCell.xib */; };
+		9B63D289202CFCB900E1C3B0 /* BricksetProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B63D287202CFCB900E1C3B0 /* BricksetProfileTableViewCell.swift */; };
+		9B63D28A202CFCB900E1C3B0 /* BricksetProfileTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B63D288202CFCB900E1C3B0 /* BricksetProfileTableViewCell.xib */; };
+		9B63D28D202CFCE400E1C3B0 /* BricksetCollectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B63D28B202CFCE400E1C3B0 /* BricksetCollectionTableViewCell.swift */; };
+		9B63D28E202CFCE400E1C3B0 /* BricksetCollectionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B63D28C202CFCE400E1C3B0 /* BricksetCollectionTableViewCell.xib */; };
 		9B83E436202A21BC004433F0 /* SetImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B83E435202A21BC004433F0 /* SetImageCollectionViewCell.swift */; };
 		9B92EFA4201FC062007610BD /* FilterOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B92EFA3201FC062007610BD /* FilterOptions.swift */; };
 		9B92EFA9201FCC66007610BD /* SetSubtheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B92EFA7201FCC65007610BD /* SetSubtheme.swift */; };
@@ -223,6 +227,10 @@
 		9B63D27F202CDD7900E1C3B0 /* SetPartsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SetPartsTableViewCell.xib; sourceTree = "<group>"; };
 		9B63D282202CE08700E1C3B0 /* SetListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SetListTableViewCell.xib; sourceTree = "<group>"; };
 		9B63D284202CEDFB00E1C3B0 /* SetCollectionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SetCollectionTableViewCell.xib; sourceTree = "<group>"; };
+		9B63D287202CFCB900E1C3B0 /* BricksetProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BricksetProfileTableViewCell.swift; sourceTree = "<group>"; };
+		9B63D288202CFCB900E1C3B0 /* BricksetProfileTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BricksetProfileTableViewCell.xib; sourceTree = "<group>"; };
+		9B63D28B202CFCE400E1C3B0 /* BricksetCollectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BricksetCollectionTableViewCell.swift; sourceTree = "<group>"; };
+		9B63D28C202CFCE400E1C3B0 /* BricksetCollectionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BricksetCollectionTableViewCell.xib; sourceTree = "<group>"; };
 		9B83E435202A21BC004433F0 /* SetImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		9B92EFA3201FC062007610BD /* FilterOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterOptions.swift; sourceTree = "<group>"; };
 		9B92EFA7201FCC65007610BD /* SetSubtheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetSubtheme.swift; sourceTree = "<group>"; };
@@ -324,6 +332,7 @@
 		29365B721F8EBEA600F6730C /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				9B63D286202CFC8600E1C3B0 /* Cells */,
 				29365B7B1F8EDAA500F6730C /* LoginViewController.swift */,
 				2921AD8D1FAF6EF200180268 /* Profile.storyboard */,
 				29365B781F8EBF3B00F6730C /* ProfileViewController.swift */,
@@ -551,6 +560,17 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		9B63D286202CFC8600E1C3B0 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				9B63D28B202CFCE400E1C3B0 /* BricksetCollectionTableViewCell.swift */,
+				9B63D28C202CFCE400E1C3B0 /* BricksetCollectionTableViewCell.xib */,
+				9B63D287202CFCB900E1C3B0 /* BricksetProfileTableViewCell.swift */,
+				9B63D288202CFCB900E1C3B0 /* BricksetProfileTableViewCell.xib */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		9B85355B202389BA00D77DF9 /* SetDetail */ = {
 			isa = PBXGroup;
 			children = (
@@ -753,6 +773,8 @@
 				2964609F1FA907FC004850F8 /* NewsItemTableViewCell.xib in Resources */,
 				2921AD891FAF6C4000180268 /* News.storyboard in Resources */,
 				291AC5EF1FAF6FB0000DC9DD /* Search.storyboard in Resources */,
+				9B63D28E202CFCE400E1C3B0 /* BricksetCollectionTableViewCell.xib in Resources */,
+				9B63D28A202CFCB900E1C3B0 /* BricksetProfileTableViewCell.xib in Resources */,
 				9B63D278202CD6EF00E1C3B0 /* SetHeroImageTableViewCell.xib in Resources */,
 				9B63D27C202CD9CA00E1C3B0 /* SetImageCollectionViewCell.xib in Resources */,
 				294F187F1FB519ED0026342F /* MySets.storyboard in Resources */,
@@ -853,6 +875,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9B63D289202CFCB900E1C3B0 /* BricksetProfileTableViewCell.swift in Sources */,
 				29365B7C1F8EDAA500F6730C /* LoginViewController.swift in Sources */,
 				292F4F571F193092006D5F5B /* BricksetServices.swift in Sources */,
 				29CA94A11F8D508A000F1DE3 /* BrowseSetsViewController.swift in Sources */,
@@ -899,6 +922,7 @@
 				291AC5F41FB103E4000DC9DD /* MySetsHeaderView.swift in Sources */,
 				295ADFBD1F16AFFC002E6802 /* AppDelegate.swift in Sources */,
 				29CCD8EE1F993E12009A39CF /* SetDetailViewController.swift in Sources */,
+				9B63D28D202CFCE400E1C3B0 /* BricksetCollectionTableViewCell.swift in Sources */,
 				29C111A71FCA2E94007CBDB4 /* SetInstructions.swift in Sources */,
 				29B9514B1FDBA73E0049147E /* RebrickableServices.swift in Sources */,
 				9B92EFA9201FCC66007610BD /* SetSubtheme.swift in Sources */,
