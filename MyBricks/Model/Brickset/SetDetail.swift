@@ -24,7 +24,8 @@ public struct SetDetail {
         setDescription = element.firstChild(tag: "description")?.stringValue
         notes = element.firstChild(tag: "notes")?.stringValue
         if let tagsString = element.firstChild(tag: "tags")?.stringValue {
-            tags = tagsString.components(separatedBy: ",")
+            tags = tagsString.components(separatedBy: ", ")
+            tags = tags?.filter { $0.count > 0 }
         }
         if let lastUpdatedString = element.firstChild(tag: "lastUpdated")?.stringValue {
             lastUpdated = BricksetServices.longDateFormatter.date(from: lastUpdatedString)

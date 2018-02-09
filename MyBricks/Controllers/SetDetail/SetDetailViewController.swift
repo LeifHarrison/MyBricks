@@ -19,6 +19,7 @@ class SetDetailViewController: UIViewController {
         case reviews
         case instructions
         case parts
+        case tags
         case collection
         case description
         case barcodes
@@ -62,6 +63,7 @@ class SetDetailViewController: UIViewController {
         tableView.register(UINib(nibName:SetDetailTableViewCell.nibName, bundle:nil), forCellReuseIdentifier: SetDetailTableViewCell.reuseIdentifier)
         tableView.register(UINib(nibName:SetPartsTableViewCell.nibName, bundle:nil), forCellReuseIdentifier: SetPartsTableViewCell.reuseIdentifier)
         tableView.register(UINib(nibName:SetCollectionTableViewCell.nibName, bundle:nil), forCellReuseIdentifier: SetCollectionTableViewCell.reuseIdentifier)
+        tableView.register(UINib(nibName:SetTagsTableViewCell.nibName, bundle:nil), forCellReuseIdentifier: SetTagsTableViewCell.reuseIdentifier)
 
         if tableView.tableFooterView == nil {
             tableView.tableFooterView = UIView()
@@ -143,6 +145,9 @@ class SetDetailViewController: UIViewController {
         if let instructionsCount = currentSet?.instructionsCount, instructionsCount > 0 {
             sections.append(.instructions)
         }
+        if let tags = setDetail?.tags, tags.count > 0 {
+            sections.append(.tags)
+        }
         if BricksetServices.isLoggedIn() {
             sections.append(.collection)
         }
@@ -157,6 +162,13 @@ class SetDetailViewController: UIViewController {
                 self?.setDetailRequest = nil
                 if result.isSuccess, let detail = result.value {
                     self?.setDetail = detail
+                    if let tags = detail.tags, tags.count > 0 {
+                        self?.sections.append(.tags)
+                        if let index = self?.sections.index(of: .tags) {
+                            self?.tableView.insertSections([index], with: .fade)
+                        }
+
+                    }
                     if let setDescription = detail.setDescription, setDescription.count > 0 {
                         self?.sections.append(.description)
                         if let index = self?.sections.index(of: .description) {
@@ -344,6 +356,14 @@ extension SetDetailViewController: UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: "SetInstructionsTableViewCell", for: indexPath)
             cell.textLabel?.text = "Instructions (\(set.instructionsCount ?? 0))"
             return cell
+            
+        case .tags :
+            if let cell = tableView.dequeueReusableCell(withIdentifier: SetTagsTableViewCell.reuseIdentifier, for: indexPath) as? SetTagsTableViewCell {
+                if let detail = setDetail {
+                    cell.populate(with: detail)
+                }
+                return cell
+            }
             
         case .collection :
             if let cell = tableView.dequeueReusableCell(withIdentifier: SetCollectionTableViewCell.reuseIdentifier, for: indexPath) as? SetCollectionTableViewCell {
