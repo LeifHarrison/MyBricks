@@ -45,9 +45,9 @@ class SetDetailTableViewCell: UITableViewCell {
     
     func populateWithSet(_ set : Set) -> Void {
         setNameField.text = set.name
-        themeField.text = set.themeDetail()
+        themeField.text = set.themeDescription()
         themeGroupField.text = set.themeGroup?.capitalized
-        availabilityField.text = set.availabilityDetail()
+        availabilityField.text = set.availabilityDescription()
 
         // Future additions, hopefully...
         //setTypeField.text = "-"

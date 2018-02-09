@@ -195,14 +195,14 @@ struct Set {
     }
 
     //--------------------------------------------------------------------------
-    // MARK: - View Lifecycle
+    // MARK: - Public
     //--------------------------------------------------------------------------
 
     func isRetired() -> Bool {
         return (dateAddedToSAH == nil) || (dateRemovedFromSAH != nil)
     }
 
-    func themeDetail() -> String? {
+    func themeDescription() -> String? {
         if let theme = theme, let subtheme = subtheme {
             return "\(theme) / \(subtheme)"
         }
@@ -214,17 +214,63 @@ struct Set {
         }
     }
     
-    func availabilityDetail() -> String? {
-        if let availability = availability, let packagingType = packagingType {
-            return "\(availability.capitalized) / \(packagingType.capitalized)"
+    func availabilityDescription() -> String? {
+        var result = ""
+        if let availability = availability {
+            result.append(availability.capitalized)
         }
-        else if let availability = availability {
-            return availability.capitalized
+        if let packagingType = packagingType {
+            if result.count > 0 {
+                result.append(" / ")
+            }
+            result.append(packagingType.capitalized)
         }
-        else {
-            return packagingType?.capitalized ?? ""
+        if let dimensions = dimensionsDescription() {
+            result.append(" (\(dimensions)")
+            if let weightDescription = weightDescription() {
+                result.append(" / \(weightDescription))")
+            }
+            else {
+                result.append(")")
+            }
+
         }
+        else if let weightDescription = weightDescription() {
+            result.append(" (\(weightDescription))")
+        }
+        return result
     }
 
+    func dimensionsDescription() -> String? {
+        if let height = self.height, let width = self.width, let depth = self.depth {
+            let widthMeasurement = Measurement(value: (width as NSDecimalNumber).doubleValue, unit: UnitLength.centimeters)
+            let heightMeasurement = Measurement(value: (height as NSDecimalNumber).doubleValue, unit: UnitLength.centimeters)
+            let depthMeasurement = Measurement(value: (depth as NSDecimalNumber).doubleValue, unit: UnitLength.centimeters)
+            let formatter = MeasurementFormatter()
+            formatter.unitStyle = .short
+            formatter.unitOptions = .naturalScale
+            let numberFormatter = NumberFormatter()
+            numberFormatter.maximumFractionDigits = 1
+            formatter.numberFormatter = numberFormatter
+            return "\(formatter.string(from: widthMeasurement)) x \(formatter.string(from: heightMeasurement)) x \(formatter.string(from: depthMeasurement))"
+        }
+        return nil
+    }
+    
+    func weightDescription() -> String? {
+        if let weight = self.weight {
+            let weightMeasurement = Measurement(value: (weight as NSDecimalNumber).doubleValue, unit: UnitMass.kilograms)
+
+            let formatter = MeasurementFormatter()
+            //formatter.unitStyle = .short
+            formatter.unitOptions = .naturalScale
+            let numberFormatter = NumberFormatter()
+            numberFormatter.maximumFractionDigits = 1
+            formatter.numberFormatter = numberFormatter
+            
+            return "\(formatter.string(from: weightMeasurement))"
+        }
+        return nil
+    }
 }
 
