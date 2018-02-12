@@ -59,22 +59,22 @@ open class TagView: UIView {
     open var titleLineBreakMode: NSLineBreakMode = .byTruncatingMiddle {
         didSet {
             titleLabel.lineBreakMode = titleLineBreakMode
+            invalidateIntrinsicContentSize()
+            setNeedsLayout()
         }
     }
     
     open var paddingY: CGFloat = 2 {
         didSet {
-            //titleEdgeInsets.top = paddingY
-            //titleEdgeInsets.bottom = paddingY
             invalidateIntrinsicContentSize()
+            setNeedsLayout()
         }
     }
     
     open var paddingX: CGFloat = 5 {
         didSet {
-            //titleEdgeInsets.left = paddingX
-            //updateRightInsets()
             invalidateIntrinsicContentSize()
+            setNeedsLayout()
         }
     }
 
@@ -87,6 +87,18 @@ open class TagView: UIView {
     var textFont: UIFont = UIFont.systemFont(ofSize: 12) {
         didSet {
             titleLabel.font = textFont
+            invalidateIntrinsicContentSize()
+            setNeedsLayout()
+        }
+    }
+    
+    //--------------------------------------------------------------------------
+    // MARK: - Overrides
+    //--------------------------------------------------------------------------
+    
+    override open var bounds: CGRect {
+        didSet {
+            self.layer.shadowPath = UIBezierPath(roundedRect: self.bounds, cornerRadius: cornerRadius).cgPath
         }
     }
     
@@ -95,7 +107,7 @@ open class TagView: UIView {
     //--------------------------------------------------------------------------
     
     override open var intrinsicContentSize: CGSize {
-        var size = titleLabel.text?.size(withAttributes: [NSAttributedStringKey.font: textFont]) ?? CGSize.zero
+        var size = titleLabel.intrinsicContentSize
         size.height += paddingY * 2
         size.width += paddingX * 2
         if size.width < size.height {

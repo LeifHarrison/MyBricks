@@ -275,7 +275,6 @@ extension SetDetailViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         guard let set = currentSet else {
             return UITableViewCell()
         }
@@ -362,6 +361,11 @@ extension SetDetailViewController: UITableViewDataSource {
                 if let detail = setDetail {
                     cell.populate(with: detail)
                 }
+                
+                // Update cell width early to make sure the TagListView content size updates correctly
+                cell.frame = CGRect(x: 0, y: 0, width: tableView.frame.width, height: cell.frame.height)
+                cell.layoutIfNeeded()
+                
                 return cell
             }
             
@@ -400,20 +404,6 @@ extension SetDetailViewController: UITableViewDataSource {
 
 extension SetDetailViewController: UITableViewDelegate {
 
-    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        let section = sections[indexPath.section]
-        var estimatedHeight: CGFloat = 44.0
-        switch section {
-            case .image         : estimatedHeight = 242.0
-            case .additionalImages : estimatedHeight = 100.0
-            case .detail        : estimatedHeight = 130.0
-            case .collection    : estimatedHeight = 280.0
-            case .description   : estimatedHeight = 140.0
-            default             : estimatedHeight = 44.0
-        }
-        return estimatedHeight
-    }
-
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let section = sections[indexPath.section]
 
@@ -443,13 +433,6 @@ extension SetDetailViewController: UITableViewDelegate {
         }
 
         tableView.deselectRow(at: indexPath, animated: true)
-    }
-
-    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int){
-        view.tintColor = UIColor(red: ( 6 / 255 ), green: ( 144 / 255 ), blue: ( 214 / 255 ), alpha: 1.0)
-        if let header = view as? UITableViewHeaderFooterView {
-            header.textLabel?.textColor = UIColor.white
-        }
     }
 
 }

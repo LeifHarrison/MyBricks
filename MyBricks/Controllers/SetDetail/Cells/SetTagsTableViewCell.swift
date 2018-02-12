@@ -21,7 +21,13 @@ class SetTagsTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        tagListView.textFont = UIFont.systemFont(ofSize: 16)
+        
+        let font = UIFont.systemFont(ofSize: 16)
+        tagListView.textFont = font
+        tagListView.marginY = 3
+        tagListView.paddingX = (font.lineHeight / 2) + tagListView.paddingY
+        tagListView.paddingY = 3
+        tagListView.cornerRadius = tagListView.paddingX
     }
 
     //--------------------------------------------------------------------------
