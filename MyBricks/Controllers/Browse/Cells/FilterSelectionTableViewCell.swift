@@ -2,7 +2,7 @@
 //  FilterSelectionTableViewCell.swift
 //  MyBricks
 //
-//  Created by Harrison, Leif (US - Seattle) on 1/24/18.
+//  Created by Leif Harrison on 1/24/18.
 //  Copyright © 2018 Leif Harrison. All rights reserved.
 //
 

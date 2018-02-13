@@ -2,7 +2,7 @@
 //  SetDetailFooterView.swift
 //  MyBricks
 //
-//  Created by Harrison, Leif (US - Seattle) on 2/6/18.
+//  Created by Leif Harrison on 2/6/18.
 //  Copyright © 2018 Leif Harrison. All rights reserved.
 //
 

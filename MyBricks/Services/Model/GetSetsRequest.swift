@@ -2,7 +2,7 @@
 //  GetSetsRequest.swift
 //  MyBricks
 //
-//  Created by Leif on 1/4/18.
+//  Created by Leif Harrison on 1/4/18.
 //  Copyright © 2018 Leif Harrison. All rights reserved.
 //
 

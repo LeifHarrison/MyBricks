@@ -2,7 +2,7 @@
 //  Part.swift
 //  MyBricks
 //
-//  Created by Leif on 12/8/17.
+//  Created by Leif Harrison on 12/8/17.
 //  Copyright © 2017 Leif Harrison. All rights reserved.
 //
 

@@ -2,7 +2,7 @@
 //  SafariActivity.swift
 //  MyBricks
 //
-//  Created by Leif on 2/7/18.
+//  Created by Leif Harrison on 2/7/18.
 //  Copyright © 2018 Leif Harrison. All rights reserved.
 //
 

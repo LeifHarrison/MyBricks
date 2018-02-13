@@ -2,7 +2,7 @@
 //  FilterSelectSubthemeViewController.swift
 //  MyBricks
 //
-//  Created by Harrison, Leif (US - Seattle) on 1/29/18.
+//  Created by Leif Harrison on 1/29/18.
 //  Copyright © 2018 Leif Harrison. All rights reserved.
 //
 

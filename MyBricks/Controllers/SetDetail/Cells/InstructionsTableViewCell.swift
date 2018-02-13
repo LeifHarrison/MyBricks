@@ -2,7 +2,7 @@
 //  InstructionsTableViewCell.swift
 //  MyBricks
 //
-//  Created by Leif on 11/25/17.
+//  Created by Leif Harrison on 11/25/17.
 //  Copyright © 2017 Leif Harrison. All rights reserved.
 //
 
