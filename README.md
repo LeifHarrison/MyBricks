@@ -56,7 +56,7 @@ Mobile (iOS) application for interacting with the BrickSet LEGO database.
 - [x] Implement support for additional images in Set Detail view
 - [ ] Implement TouchID support for login
 - [ ] Implement About/Credits views
-- [ ] Refactor Profile view to use table view cells
+- [x] Refactor Profile view to use table view cells
 - [ ] Improved transition animation (zoom?) for displaying large set images
 - [ ] Implement force touch actions on Set List view
 

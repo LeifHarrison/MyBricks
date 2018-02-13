@@ -132,9 +132,11 @@ class SetReviewTableViewCell: UITableViewCell {
 
 extension SetReview {
 
-    static let textColor = UIColor(white:0.1, alpha:1.0)
-    static let templateAttributes = [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 16), NSAttributedStringKey.foregroundColor: textColor]
-    static let authorAttributes = [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 16, weight: .bold), NSAttributedStringKey.foregroundColor: UIColor.blue]
+    static let reviewFontSize: CGFloat = 16
+    static let defaultTextColor = UIColor(white:0.1, alpha:1.0)
+    static let authorTextColor = UIColor.blue
+    static let templateAttributes = [NSAttributedStringKey.font: UIFont.systemFont(ofSize: reviewFontSize), NSAttributedStringKey.foregroundColor: defaultTextColor]
+    static let authorAttributes = [NSAttributedStringKey.font: UIFont.systemFont(ofSize: reviewFontSize, weight: .bold), NSAttributedStringKey.foregroundColor: authorTextColor]
 
     static let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -157,8 +159,8 @@ extension SetReview {
         if let string = self.review {
             if let data = string.data(using: String.Encoding.utf8, allowLossyConversion: true) {
                 let options: [NSAttributedString.DocumentReadingOptionKey:Any] = [
-                    .documentType:NSAttributedString.DocumentType.html,
-                    .characterEncoding:String.Encoding.utf8.rawValue
+                    .documentType : NSAttributedString.DocumentType.html,
+                    .characterEncoding : String.Encoding.utf8.rawValue
                 ]
 
                 var formattedReview = NSMutableAttributedString()
@@ -177,15 +179,14 @@ extension SetReview {
                     if let font = value as? UIFont {
                         let isBold = font.fontDescriptor.symbolicTraits.contains(.traitBold)
                         let isItalic = font.fontDescriptor.symbolicTraits.contains(.traitItalic)
+                        let fontSize: CGFloat = SetReview.reviewFontSize
 
-                        let size: CGFloat = 14
-
-                        var font = UIFont.systemFont(ofSize: size)
+                        var font = UIFont.systemFont(ofSize: fontSize)
                         if isBold {
-                            font = UIFont.boldSystemFont(ofSize: size)
+                            font = UIFont.boldSystemFont(ofSize: fontSize)
                         }
                         else if isItalic {
-                            font = UIFont.italicSystemFont(ofSize: size)
+                            font = UIFont.italicSystemFont(ofSize: fontSize)
                         }
                         formattedReview.addAttribute(.font, value: font, range: range)
                     }

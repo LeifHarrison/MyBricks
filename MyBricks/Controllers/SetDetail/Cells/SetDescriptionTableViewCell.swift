@@ -46,12 +46,14 @@ class SetDescriptionTableViewCell: UITableViewCell {
 
 extension SetDetail {
     
+    static let descriptionFontSize: CGFloat = 16
+
     func formattedDescription() -> NSAttributedString? {
         if let string = self.setDescription {
             if let data = string.data(using: String.Encoding.utf8, allowLossyConversion: true) {
                 let options: [NSAttributedString.DocumentReadingOptionKey:Any] = [
-                    .documentType:NSAttributedString.DocumentType.html,
-                    .characterEncoding:String.Encoding.utf8.rawValue
+                    .documentType : NSAttributedString.DocumentType.html,
+                    .characterEncoding : String.Encoding.utf8.rawValue
                 ]
                 
                 var formattedReview = NSMutableAttributedString()
@@ -71,7 +73,7 @@ extension SetDetail {
                         let isBold = font.fontDescriptor.symbolicTraits.contains(.traitBold)
                         let isItalic = font.fontDescriptor.symbolicTraits.contains(.traitItalic)
                         
-                        let size: CGFloat = 16
+                        let size: CGFloat = SetDetail.descriptionFontSize
                         
                         var font = UIFont.systemFont(ofSize: size)
                         if isBold {
