@@ -2,16 +2,13 @@
 //  SetImageCollectionViewCell.swift
 //  MyBricks
 //
-//  Created by Harrison, Leif (US - Seattle) on 2/6/18.
+//  Created by Leif Harrison on 2/6/18.
 //  Copyright © 2018 Leif Harrison. All rights reserved.
 //
 
 import UIKit
 
-class SetImageCollectionViewCell: UICollectionViewCell {
-
-    static let nibName = "SetImageCollectionViewCell"
-    static let reuseIdentifier = "SetImageCollectionViewCell"
+class SetImageCollectionViewCell: UICollectionViewCell, ReusableView, NibLoadableView {
 
     @IBOutlet weak var imageView: UIImageView!
 

@@ -8,10 +8,7 @@
 
 import UIKit
 
-class SetPartsTableViewCell: UITableViewCell {
-
-    static let nibName = "SetPartsTableViewCell"
-    static let reuseIdentifier = "SetPartsTableViewCell"
+class SetPartsTableViewCell: UITableViewCell, ReusableView, NibLoadableView {
 
     @IBOutlet weak var partsLabel: UILabel!
     @IBOutlet weak var setContentsView: UIView!

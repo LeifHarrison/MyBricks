@@ -8,10 +8,7 @@
 
 import UIKit
 
-class SetDetailTableViewCell: UITableViewCell {
-
-    static let nibName = "SetDetailTableViewCell"
-    static let reuseIdentifier = "SetDetailTableViewCell"
+class SetDetailTableViewCell: UITableViewCell, ReusableView, NibLoadableView {
 
     @IBOutlet weak var setNameField: UILabel!
     @IBOutlet weak var themeGroupField: UILabel!

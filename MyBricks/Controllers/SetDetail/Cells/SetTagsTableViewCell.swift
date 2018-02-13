@@ -2,13 +2,13 @@
 //  SetTagsTableViewCell.swift
 //  MyBricks
 //
-//  Created by Harrison, Leif (US - Seattle) on 2/9/18.
+//  Created by Leif Harrison on 2/9/18.
 //  Copyright © 2018 Leif Harrison. All rights reserved.
 //
 
 import UIKit
 
-class SetTagsTableViewCell: UITableViewCell {
+class SetTagsTableViewCell: UITableViewCell, ReusableView, NibLoadableView {
 
     static let nibName = "SetTagsTableViewCell"
     static let reuseIdentifier = "SetTagsTableViewCell"

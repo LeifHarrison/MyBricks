@@ -2,13 +2,37 @@
 //  UIView+Extensions.swift
 //  MyBricks
 //
-//  Created by Leif on 11/20/17.
+//  Created by Leif Harrison on 11/20/17.
 //  Copyright © 2017 Leif Harrison. All rights reserved.
 //
 
 import UIKit
 
+protocol NibLoadableView: class { }
+
+extension NibLoadableView where Self: UIView {
+    
+    static var nibName: String {
+        // notice the new describing here
+        // now only one place to refactor if describing is removed in the future
+        return String(describing: self)
+    }
+    
+}
+
+protocol ReusableView: class {}
+
+extension ReusableView where Self: UIView {
+    
+    static var reuseIdentifier: String {
+        return String(describing: self)
+    }
+    
+}
+
+
 extension UIView {
+    
     
     func constrainToView(view: UIView) {
         let top = self.topAnchor.constraint(equalTo: view.topAnchor)
@@ -41,4 +65,5 @@ extension UIView {
         }
         UIView.animate(withDuration: duration, animations: animations, completion: completion)
     }
+    
 }

@@ -58,12 +58,13 @@ class SetDetailViewController: UIViewController {
         tableView.separatorColor = UIColor(white: 0.3, alpha: 0.8)
         tableView.separatorInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
         
-        tableView.register(UINib(nibName:SetHeroImageTableViewCell.nibName, bundle:nil), forCellReuseIdentifier: SetHeroImageTableViewCell.reuseIdentifier)
-        tableView.register(UINib(nibName:SetImagesTableViewCell.nibName, bundle:nil), forCellReuseIdentifier: SetImagesTableViewCell.reuseIdentifier)
-        tableView.register(UINib(nibName:SetDetailTableViewCell.nibName, bundle:nil), forCellReuseIdentifier: SetDetailTableViewCell.reuseIdentifier)
-        tableView.register(UINib(nibName:SetPartsTableViewCell.nibName, bundle:nil), forCellReuseIdentifier: SetPartsTableViewCell.reuseIdentifier)
-        tableView.register(UINib(nibName:SetCollectionTableViewCell.nibName, bundle:nil), forCellReuseIdentifier: SetCollectionTableViewCell.reuseIdentifier)
-        tableView.register(UINib(nibName:SetTagsTableViewCell.nibName, bundle:nil), forCellReuseIdentifier: SetTagsTableViewCell.reuseIdentifier)
+        tableView.register(SetCollectionTableViewCell.self)
+        tableView.register(SetDetailTableViewCell.self)
+        tableView.register(SetHeroImageTableViewCell.self)
+        tableView.register(SetImagesTableViewCell.self)
+        tableView.register(SetPartsTableViewCell.self)
+        tableView.register(SetReviewsTableViewCell.self)
+        tableView.register(SetTagsTableViewCell.self)
 
         if tableView.tableFooterView == nil {
             tableView.tableFooterView = UIView()
@@ -283,56 +284,52 @@ extension SetDetailViewController: UITableViewDataSource {
         switch section {
             
         case .image :
-            if let cell = tableView.dequeueReusableCell(withIdentifier: SetHeroImageTableViewCell.reuseIdentifier, for: indexPath) as? SetHeroImageTableViewCell {
-                cell.populateWithSet(set)
-                
-                // Populate the image ourselves, so we can reload the cell when the image finishes loading
-                if let image = currentSetImage {
-                    cell.setImageView.image = image
-                }
-                else if let urlString = set.imageURL, let url = URL(string: urlString) {
-                    cell.setImageView?.af_setImage(withURL: url, imageTransition: .crossDissolve(0.3) ) { response in
-                        if let image = response.result.value {
-                            // Cache the image so we don't load it again
-                            self.currentSetImage = image
-                        }
-                        DispatchQueue.main.async(execute: {
-                            tableView.reloadRows(at: [indexPath], with: .fade)
-                        })
+            let cell: SetHeroImageTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+            cell.populateWithSet(set)
+            
+            // Populate the image ourselves, so we can reload the cell when the image finishes loading
+            if let image = currentSetImage {
+                cell.setImageView.image = image
+            }
+            else if let urlString = set.imageURL, let url = URL(string: urlString) {
+                cell.setImageView?.af_setImage(withURL: url, imageTransition: .crossDissolve(0.3) ) { response in
+                    if let image = response.result.value {
+                        // Cache the image so we don't load it again
+                        self.currentSetImage = image
                     }
+                    DispatchQueue.main.async(execute: {
+                        tableView.reloadRows(at: [indexPath], with: .fade)
+                    })
                 }
-                
-                if hasLargeImage {
-                    cell.showZoomButton(animated: false)
-                    cell.zoomButtonTapped = {
-                        self.showLargeImage()
-                    }
-                }
-                
-                return cell
             }
             
+            if hasLargeImage {
+                cell.showZoomButton(animated: false)
+                cell.zoomButtonTapped = {
+                    self.showLargeImage()
+                }
+            }
+            
+            return cell
             
         case .additionalImages :
-            if let cell = tableView.dequeueReusableCell(withIdentifier: SetImagesTableViewCell.reuseIdentifier, for: indexPath) as? SetImagesTableViewCell {
-                if let images = setImages {
-                    cell.populateWithSetImages(images)
-                    cell.imageTapped = { image in
-                        if let vc = self.storyboard?.instantiateViewController(withIdentifier: "ImageDetailViewController") as? ImageDetailViewController {
-                            vc.imageURL = image.imageURL
-                            self.present(vc, animated: true, completion: nil)
-                        }
+            let cell: SetImagesTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+            if let images = setImages {
+                cell.populateWithSetImages(images)
+                cell.imageTapped = { image in
+                    if let vc = self.storyboard?.instantiateViewController(withIdentifier: "ImageDetailViewController") as? ImageDetailViewController {
+                        vc.imageURL = image.imageURL
+                        self.present(vc, animated: true, completion: nil)
                     }
                 }
-                return cell
             }
+            return cell
             
         case .detail :
-            if let cell = tableView.dequeueReusableCell(withIdentifier: SetDetailTableViewCell.reuseIdentifier, for: indexPath) as? SetDetailTableViewCell {
-                cell.populateWithSet(set)
-                return cell
-            }
-            
+            let cell: SetDetailTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+            cell.populateWithSet(set)
+            return cell
+
         case .price :
             if let cell = tableView.dequeueReusableCell(withIdentifier: "SetPriceTableViewCell", for: indexPath) as? SetPriceTableViewCell {
                 cell.populateWithSet(set)
@@ -347,7 +344,7 @@ extension SetDetailViewController: UITableViewDataSource {
             
         case .reviews :
             if let cell = tableView.dequeueReusableCell(withIdentifier: "SetReviewsTableViewCell", for: indexPath) as? SetReviewsTableViewCell {
-                cell.populateWithSet(set)
+                cell.populate(with: set)
                 return cell
             }
             
@@ -357,10 +354,9 @@ extension SetDetailViewController: UITableViewDataSource {
             return cell
             
         case .tags :
-            if let cell = tableView.dequeueReusableCell(withIdentifier: SetTagsTableViewCell.reuseIdentifier, for: indexPath) as? SetTagsTableViewCell {
-                if let detail = setDetail {
-                    cell.populate(with: detail)
-                }
+            if let detail = setDetail {
+                let cell: SetTagsTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+                cell.populate(with: detail)
                 
                 // Update cell width early to make sure the TagListView content size updates correctly
                 cell.frame = CGRect(x: 0, y: 0, width: tableView.frame.width, height: cell.frame.height)
@@ -368,18 +364,17 @@ extension SetDetailViewController: UITableViewDataSource {
                 
                 return cell
             }
-            
-        case .collection :
-            if let cell = tableView.dequeueReusableCell(withIdentifier: SetCollectionTableViewCell.reuseIdentifier, for: indexPath) as? SetCollectionTableViewCell {
-                cell.populateWithSet(set)
 
-                cell.setUpdated = { set in
-                    self.currentSet = set
-                }
-                
-                return cell
+        case .collection :
+            let cell: SetCollectionTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+            cell.populateWithSet(set)
+            
+            cell.setUpdated = { set in
+                self.currentSet = set
             }
             
+            return cell
+
         case .description :
             if let cell = tableView.dequeueReusableCell(withIdentifier: "SetDescriptionTableViewCell", for: indexPath) as? SetDescriptionTableViewCell {
                 if let detail = setDetail {

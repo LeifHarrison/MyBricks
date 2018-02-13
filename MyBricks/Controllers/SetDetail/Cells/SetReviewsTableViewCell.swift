@@ -9,11 +9,12 @@
 import UIKit
 import Cosmos
 
-class SetReviewsTableViewCell: UITableViewCell {
+class SetReviewsTableViewCell: UITableViewCell, ReusableView, NibLoadableView {
 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var ratingView: CosmosView!
-
+    @IBOutlet weak var reviewCountLabel: UILabel!
+    
     //--------------------------------------------------------------------------
     // MARK: - Nib Loading
     //--------------------------------------------------------------------------
@@ -29,9 +30,11 @@ class SetReviewsTableViewCell: UITableViewCell {
         ratingView.settings.emptyColor = UIColor.white
         ratingView.settings.emptyBorderColor = UIColor(red: ( 6 / 255 ), green: ( 144 / 255 ), blue: ( 214 / 255 ), alpha: 1.0)
         ratingView.settings.filledBorderColor = UIColor(red: ( 6 / 255 ), green: ( 144 / 255 ), blue: ( 214 / 255 ), alpha: 1.0)
-        ratingView.settings.textColor = UIColor(white: 0.2, alpha: 1.0)
-        ratingView.settings.textFont = UIFont.systemFont(ofSize: 14)
+        ratingView.settings.textColor = UIColor.black
+        ratingView.settings.textFont = UIFont.systemFont(ofSize: 16, weight: .semibold)
 
+        titleLabel.text = "Rating"
+        
         prepareForReuse()
     }
 
@@ -41,20 +44,41 @@ class SetReviewsTableViewCell: UITableViewCell {
 
     override func prepareForReuse() {
         super.prepareForReuse()
-        titleLabel.text = nil
         ratingView.rating = 0
-        ratingView.text = nil
+        ratingView.text = "N/A"
+        reviewCountLabel.text = nil
     }
 
     //--------------------------------------------------------------------------
     // MARK: - Public
     //--------------------------------------------------------------------------
 
-    func populateWithSet(_ set : Set) -> Void {
-        titleLabel.text = "Reviews (\(set.reviewCount ?? 0))"
+    func populate(with set: Set) -> Void {
         if let rating = set.rating {
-            ratingView.rating = NSDecimalNumber(decimal:rating).doubleValue
+            let ratingDouble = NSDecimalNumber(decimal:rating).doubleValue
+            ratingView.rating = ratingDouble
+            ratingView.text = String(format:"%0.2g", ratingDouble)
         }
+        if let reviewCount = set.reviewCount, reviewCount > 0 {
+            reviewCountLabel.attributedText = attributedReviewCountDescription(for: set)
+        }
+        else {
+            reviewCountLabel.text = "No Reviews Yet"
+        }
+    }
+    
+    func attributedReviewCountDescription(for set: Set) -> NSAttributedString {
+        let textColor = reviewCountLabel.textColor ?? UIColor.black
+        let regularAttributes: [NSAttributedStringKey : Any] = [.font: reviewCountLabel.font, .foregroundColor: textColor]
+        let boldAttributes: [NSAttributedStringKey : Any] = [.font: reviewCountLabel.font.bold(), .foregroundColor: textColor]
+
+        let attributedDescription = NSMutableAttributedString(string:"(from ", attributes:regularAttributes)
+        if let reviewCount = set.reviewCount, reviewCount > 0 {
+            attributedDescription.append(NSAttributedString(string:"\(reviewCount)", attributes:boldAttributes))
+        }
+        attributedDescription.append(NSAttributedString(string:" reviews)", attributes:regularAttributes))
+        return attributedDescription
     }
 
 }
+

@@ -2,16 +2,13 @@
 //  SetImagesTableViewCell.swift
 //  MyBricks
 //
-//  Created by Harrison, Leif (US - Seattle) on 2/2/18.
+//  Created by Leif Harrison on 2/2/18.
 //  Copyright © 2018 Leif Harrison. All rights reserved.
 //
 
 import UIKit
 
-class SetImagesTableViewCell: UITableViewCell {
-
-    static let nibName = "SetImagesTableViewCell"
-    static let reuseIdentifier = "SetImagesTableViewCell"
+class SetImagesTableViewCell: UITableViewCell, ReusableView, NibLoadableView {
 
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -24,9 +21,7 @@ class SetImagesTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
-        collectionView.register(UINib(nibName:SetImageCollectionViewCell.nibName, bundle:nil), forCellWithReuseIdentifier: SetImageCollectionViewCell.reuseIdentifier)
-
+        collectionView.register(SetImageCollectionViewCell.self)
         prepareForReuse()
     }
     
@@ -66,14 +61,12 @@ extension SetImagesTableViewCell : UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SetImageCollectionViewCell", for: indexPath) as? SetImageCollectionViewCell {
-            let image = self.images[indexPath.item]
-            if let thumbnailURLString = image.thumbnailURL, let thumbnailURL = URL(string: thumbnailURLString) {
-                cell.imageView.af_setImage(withURL: thumbnailURL, imageTransition: .crossDissolve(0.3))
-            }
-            return cell
+        let cell: SetImageCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
+        let image = self.images[indexPath.item]
+        if let thumbnailURLString = image.thumbnailURL, let thumbnailURL = URL(string: thumbnailURLString) {
+            cell.imageView.af_setImage(withURL: thumbnailURL, imageTransition: .crossDissolve(0.3))
         }
-        return UICollectionViewCell()
+        return cell
     }
 }
 

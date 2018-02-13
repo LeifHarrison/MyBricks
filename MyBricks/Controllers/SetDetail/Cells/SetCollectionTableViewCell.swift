@@ -9,10 +9,7 @@
 import UIKit
 import Cosmos
 
-class SetCollectionTableViewCell: UITableViewCell {
-
-    static let nibName = "SetCollectionTableViewCell"
-    static let reuseIdentifier = "SetCollectionTableViewCell"
+class SetCollectionTableViewCell: UITableViewCell, ReusableView, NibLoadableView {
 
     @IBOutlet weak var ownedContainer: UIView!
     @IBOutlet weak var wantedContainer: UIView!

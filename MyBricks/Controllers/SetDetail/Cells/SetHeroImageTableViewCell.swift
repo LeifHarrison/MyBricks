@@ -8,10 +8,7 @@
 
 import UIKit
 
-class SetHeroImageTableViewCell: UITableViewCell {
-
-    static let nibName = "SetHeroImageTableViewCell"
-    static let reuseIdentifier = "SetHeroImageTableViewCell"
+class SetHeroImageTableViewCell: UITableViewCell, ReusableView, NibLoadableView {
     
     @IBOutlet weak var numberBackgroundView: UIView!
     @IBOutlet weak var numberLabel: UILabel!
@@ -23,7 +20,7 @@ class SetHeroImageTableViewCell: UITableViewCell {
     @IBOutlet weak var zoomButton: UIButton!
 
     let cornerLabelBackgroundColor = UIColor(white: 0.97, alpha: 1.0)
-    let cornerLabelBorderColor = UIColor(white: 0.7, alpha: 1.0)
+    let cornerLabelBorderColor = UIColor(white: 0.8, alpha: 1.0)
     let cornerLabelBorderWidth: CGFloat = 1.0
     
     var zoomButtonTapped : (() -> Void)? = nil
