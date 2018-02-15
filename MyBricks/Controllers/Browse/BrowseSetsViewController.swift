@@ -14,20 +14,16 @@ import AlamofireImage
 class BrowseSetsViewController: UIViewController {
 
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var headerView: BrowseHeaderView!
     @IBOutlet weak var tableView: UITableView!
 
     var filterOptions: FilterOptions? = nil
     var showUnreleased: Bool = false
     var browseRequest: Request? = nil
     
+    var allSets: [Set] = []
     var sectionTitles: [String] = []
     var setsBySection: [String : [Set]] = [:]
-
-    var allSets: [Set] = [] {
-        didSet {
-            self.processSets()
-        }
-    }
     
     //--------------------------------------------------------------------------
     // MARK: - View Lifecycle
@@ -41,7 +37,6 @@ class BrowseSetsViewController: UIViewController {
         tableView.estimatedRowHeight = UITableViewAutomaticDimension
         tableView.sectionIndexBackgroundColor = UIColor.clear
         tableView.tableFooterView = UIView()
-        
         tableView.register(UINib(nibName:SetListTableViewCell.nibName, bundle:nil), forCellReuseIdentifier: SetListTableViewCell.reuseIdentifier)
     }
 
@@ -53,6 +48,8 @@ class BrowseSetsViewController: UIViewController {
         else {
             self.title = "Sets"
         }
+        
+        updateHeaderText(false)
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -77,7 +74,7 @@ class BrowseSetsViewController: UIViewController {
         let filterStoryboard = UIStoryboard(name: "Filter", bundle: nil)
         if let filterVC = filterStoryboard.instantiateInitialViewController() as? FilterViewController {
             filterVC.delegate = self
-            filterVC.filterOptions = self.filterOptions
+            filterVC.filterOptions = self.filterOptions ?? FilterOptions()
             
             let navController = UINavigationController(rootViewController: filterVC)
             show(navController, sender: self)
@@ -89,14 +86,22 @@ class BrowseSetsViewController: UIViewController {
     //--------------------------------------------------------------------------
 
     private func fetchSets() {
+        
+        showTableView(faded: true)
         activityIndicator?.startAnimating()
+        
         if let options = filterOptions {
-            let request = GetSetsRequest(theme: options.selectedTheme?.name, subtheme: options.selectedSubtheme?.subtheme, year: options.selectedYear?.year)
+            let request = GetSetsRequest(theme: options.selectedTheme?.name, subtheme: options.selectedSubtheme?.subtheme, year: options.selectedYear?.year, owned: options.filterOwned, wanted: options.filterWanted)
             self.browseRequest = BricksetServices.shared.getSets(request, completion: { [weak self] result in
                 guard let strongSelf = self else { return }
+                
                 strongSelf.activityIndicator?.stopAnimating()
+                strongSelf.showTableView(faded: false)
+
                 if result.isSuccess {
                     strongSelf.allSets = result.value ?? []
+                    strongSelf.processSets()
+                    strongSelf.updateHeaderText(true)
                     strongSelf.tableView.reloadData()
                 }
                 else {
@@ -113,6 +118,16 @@ class BrowseSetsViewController: UIViewController {
         sectionTitles.removeAll()
         setsBySection.removeAll()
 
+        // Have to filter for "Not Owned" ourselves
+        if let options = filterOptions, options.filterNotOwned {
+            allSets = allSets.filter {
+                if let owned = $0.owned {
+                    return !owned
+                }
+                return true
+            }
+        }
+
         for set in allSets {
             // By default, don't show unreleased sets
             if let released = set.released, released != true && !showUnreleased {
@@ -128,6 +143,35 @@ class BrowseSetsViewController: UIViewController {
         sectionTitles = setsBySection.keys.sorted(by: >)
     }
 
+    private func showTableView(faded: Bool) {
+        let animations = { () -> Void in
+            self.tableView.alpha = faded ? 0.3 : 1.0
+        }
+        UIView.animate(withDuration: 0.2, animations:animations)
+    }
+
+    private func updateHeaderText(_ animated: Bool = false) {
+        
+        let animations = { () -> Void in
+            self.headerView.alpha = 0.0
+        }
+        let completion = { (finished: Bool) -> Void in
+            
+            if self.allSets.count > 0 {
+                self.headerView.populate(with: self.allSets.count, filterOptions: self.filterOptions)
+                self.tableView.contentInset = UIEdgeInsets(top: self.headerView.frame.height, left: 0, bottom: 0, right: 0)
+                let innerAnimations = { () -> Void in
+                    self.headerView.alpha = 1.0
+                }
+                UIView.animate(withDuration: animated ? 0.2 : 0.0, animations:innerAnimations)
+            }
+            else {
+                self.tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+            }
+        }
+        UIView.animate(withDuration: animated ? 0.2 : 0.0, animations:animations, completion: completion)
+
+    }
 }
 
 //==============================================================================

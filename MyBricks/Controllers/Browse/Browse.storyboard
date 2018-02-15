@@ -133,6 +133,51 @@
                                     <outlet property="delegate" destination="MRb-SQ-ur7" id="FdO-15-lQO"/>
                                 </connections>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8bo-vn-yNh" customClass="BrowseHeaderView" customModule="MyBricks" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="64" width="375" height="53"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0qL-Kt-wfK">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="53"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Showing 45 sets matching Advanced Models : Fairground : 2017 : Owned" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ckS-Hy-f16">
+                                                <rect key="frame" x="15" y="9.5" width="345" height="33.5"/>
+                                                <fontDescription key="fontDescription" type="italicSystem" pointSize="14"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ioJ-TS-mKy">
+                                                <rect key="frame" x="0.0" y="52" width="375" height="1"/>
+                                                <color key="backgroundColor" white="0.75" alpha="1" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="1" id="KZo-Uv-J90"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.90000000000000002" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstItem="ckS-Hy-f16" firstAttribute="leading" secondItem="0qL-Kt-wfK" secondAttribute="leading" constant="15" id="BvR-LG-KKb"/>
+                                            <constraint firstItem="ioJ-TS-mKy" firstAttribute="leading" secondItem="0qL-Kt-wfK" secondAttribute="leading" id="Kfq-PQ-KjG"/>
+                                            <constraint firstAttribute="bottom" secondItem="ioJ-TS-mKy" secondAttribute="bottom" id="OXc-XV-9ut"/>
+                                            <constraint firstItem="ckS-Hy-f16" firstAttribute="top" secondItem="0qL-Kt-wfK" secondAttribute="top" constant="9" id="RkG-kY-IFi"/>
+                                            <constraint firstAttribute="trailing" secondItem="ckS-Hy-f16" secondAttribute="trailing" constant="15" id="Xfh-BT-pCG"/>
+                                            <constraint firstAttribute="trailing" secondItem="ioJ-TS-mKy" secondAttribute="trailing" id="hzf-Uo-woB"/>
+                                            <constraint firstAttribute="bottom" secondItem="ckS-Hy-f16" secondAttribute="bottom" constant="10" id="wh7-jn-gL9"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="0qL-Kt-wfK" firstAttribute="leading" secondItem="bgg-ug-PKR" secondAttribute="leading" id="LWo-uv-B7f"/>
+                                    <constraint firstItem="bgg-ug-PKR" firstAttribute="trailing" secondItem="0qL-Kt-wfK" secondAttribute="trailing" id="qvv-fd-6vG"/>
+                                    <constraint firstAttribute="bottom" secondItem="0qL-Kt-wfK" secondAttribute="bottom" id="r1I-xv-9Uc"/>
+                                    <constraint firstItem="0qL-Kt-wfK" firstAttribute="top" secondItem="8bo-vn-yNh" secondAttribute="top" id="sln-II-g3r"/>
+                                </constraints>
+                                <viewLayoutGuide key="safeArea" id="bgg-ug-PKR"/>
+                                <connections>
+                                    <outlet property="divider" destination="ioJ-TS-mKy" id="cli-lr-4p7"/>
+                                    <outlet property="resultsLabel" destination="ckS-Hy-f16" id="d8W-jL-jzU"/>
+                                </connections>
+                            </view>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Nlz-OW-ZkI">
                                 <rect key="frame" x="169" y="347" width="37" height="37"/>
                                 <color key="color" red="0.47058823529999999" green="0.47058823529999999" blue="0.47058823529999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -141,7 +186,10 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="qdN-fG-EvY" firstAttribute="bottom" secondItem="Yef-yh-eIU" secondAttribute="bottom" id="0eI-l4-ZAo"/>
+                            <constraint firstItem="8bo-vn-yNh" firstAttribute="trailing" secondItem="qdN-fG-EvY" secondAttribute="trailing" id="2Hp-JY-uKe"/>
                             <constraint firstItem="qdN-fG-EvY" firstAttribute="trailing" secondItem="Yef-yh-eIU" secondAttribute="trailing" id="DWa-4G-H9H"/>
+                            <constraint firstItem="8bo-vn-yNh" firstAttribute="top" secondItem="qdN-fG-EvY" secondAttribute="top" id="Lvz-9r-7Tr"/>
+                            <constraint firstItem="8bo-vn-yNh" firstAttribute="leading" secondItem="qdN-fG-EvY" secondAttribute="leading" id="Qbh-Rj-Ju1"/>
                             <constraint firstItem="Nlz-OW-ZkI" firstAttribute="centerY" secondItem="qdN-fG-EvY" secondAttribute="centerY" id="Z8F-YC-v38"/>
                             <constraint firstItem="Yef-yh-eIU" firstAttribute="leading" secondItem="qdN-fG-EvY" secondAttribute="leading" id="cKC-Cz-813"/>
                             <constraint firstItem="Nlz-OW-ZkI" firstAttribute="centerX" secondItem="qdN-fG-EvY" secondAttribute="centerX" id="dtp-X2-EkC"/>
@@ -158,6 +206,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="activityIndicator" destination="Nlz-OW-ZkI" id="fJz-A7-Qzj"/>
+                        <outlet property="headerView" destination="8bo-vn-yNh" id="CTq-dg-PP5"/>
                         <outlet property="tableView" destination="Yef-yh-eIU" id="X7u-OF-Qga"/>
                         <segue destination="29I-Eu-R4G" kind="show" identifier="showSetDetailView" id="VAE-1U-2rE"/>
                     </connections>

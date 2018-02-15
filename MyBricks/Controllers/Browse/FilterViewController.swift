@@ -40,18 +40,17 @@ class FilterViewController: UIViewController {
     }
 
     enum TableRowUser: Int {
-        case owned
-        case wanted
+        case collection
         
         init?(indexPath: IndexPath) { self.init(rawValue: indexPath.row) }
 
-        static var numberOfRows: Int { return 2 }
+        static var numberOfRows: Int { return 1 }
     }
 
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
 
-    var filterOptions: FilterOptions? = nil
+    var filterOptions: FilterOptions = FilterOptions()
 
     weak var delegate: FilterViewControllerDelegate?
 
@@ -67,6 +66,8 @@ class FilterViewController: UIViewController {
 
         self.title = "Filter"
 
+        tableView.alwaysBounceVertical = false
+        tableView.backgroundColor = UIColor.clear
         tableView.tableFooterView = UIView()
     }
 
@@ -89,9 +90,7 @@ class FilterViewController: UIViewController {
     }
     
     @IBAction func applyFilters(_ sender: AnyObject?) {
-        if let options = self.filterOptions {
-            delegate?.filterViewController(self, didUpdateFilterOptions: options)
-        }
+        delegate?.filterViewController(self, didUpdateFilterOptions: filterOptions)
         dismiss(animated: true, completion: nil)
     }
     
@@ -101,21 +100,19 @@ class FilterViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let viewController = segue.destination as? FilterSelectThemeViewController {
-            if let themes = filterOptions?.availableThemes {
-                viewController.availableThemes = themes
-            }
-            viewController.currentTheme = filterOptions?.selectedTheme
+            viewController.availableThemes = filterOptions.availableThemes
+            viewController.currentTheme = filterOptions.selectedTheme
             viewController.delegate = self
         }
         else if let viewController = segue.destination as? FilterSelectSubthemeViewController {
-            viewController.currentTheme = filterOptions?.selectedTheme
+            viewController.currentTheme = filterOptions.selectedTheme
             viewController.delegate = self
-            viewController.selectedSubtheme = filterOptions?.selectedSubtheme
+            viewController.selectedSubtheme = filterOptions.selectedSubtheme
         }
         else if let viewController = segue.destination as? FilterSelectYearViewController {
-            viewController.currentTheme = filterOptions?.selectedTheme
+            viewController.currentTheme = filterOptions.selectedTheme
             viewController.delegate = self
-            viewController.selectedYear = filterOptions?.selectedYear
+            viewController.selectedYear = filterOptions.selectedYear
         }
     }
 }
@@ -131,13 +128,12 @@ extension FilterViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let section = TableSection(rawValue:section)
+        let section = sections[section]
         if section == .general {
             return TableRowGeneral.numberOfRows
         }
         else if section == .user {
-            //return TableRowUser.numberOfRows
-            return 0
+            return TableRowUser.numberOfRows
         }
         return 0
     }
@@ -145,19 +141,33 @@ extension FilterViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let section = sections[indexPath.section]
         if section == .general, let row = TableRowGeneral(indexPath: indexPath) {
-            let cell = UITableViewCell(style: .value1, reuseIdentifier: "GeneralFilterCell")
+            let cell = tableView.dequeueReusableCell(withIdentifier: "GeneralFilterCell", for: indexPath)
+            //let cell = UITableViewCell(style: .value1, reuseIdentifier: "GeneralFilterCell")
             cell.accessoryType = .disclosureIndicator
             cell.textLabel?.text = row.title()
             
             switch row {
-            case .theme: cell.detailTextLabel?.text = filterOptions?.selectedTheme?.name ?? "All"
-            case .subtheme: cell.detailTextLabel?.text = filterOptions?.selectedSubtheme?.subtheme ?? "All"
-            case .year: cell.detailTextLabel?.text = filterOptions?.selectedYear?.year ?? "All"
+            case .theme: cell.detailTextLabel?.text = filterOptions.selectedTheme?.name ?? "All"
+            case .subtheme: cell.detailTextLabel?.text = filterOptions.selectedSubtheme?.subtheme ?? "All"
+            case .year: cell.detailTextLabel?.text = filterOptions.selectedYear?.year ?? "All"
             }
             
             return cell
         }
         else if section == .user {
+            if let cell = tableView.dequeueReusableCell(withIdentifier: FilterCollectionTableViewCell.reuseIdentifier, for: indexPath) as? FilterCollectionTableViewCell {
+                cell.populate(with: filterOptions)
+                cell.toggleFilterOwned = { value in
+                    self.filterOptions.filterOwned = value
+                }
+                cell.toggleFilterNotOwned = { value in
+                    self.filterOptions.filterNotOwned = value
+                }
+                cell.toggleFilterWanted = { value in
+                    self.filterOptions.filterWanted = value
+                }
+                return cell
+            }
         }
         return UITableViewCell()
     }
@@ -169,6 +179,17 @@ extension FilterViewController: UITableViewDataSource {
 //==============================================================================
 
 extension FilterViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        let section = sections[section]
+        if section == .general {
+            return "General"
+        }
+        else if section == .user {
+            return "Collection"
+        }
+        return nil
+    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let section = sections[indexPath.section]
@@ -190,13 +211,10 @@ extension FilterViewController: UITableViewDelegate {
 extension FilterViewController: FilterSelectThemeViewControllerDelegate {
     
     func selectThemeController(_ controller: FilterSelectThemeViewController, didSelectTheme theme: SetTheme?) {
-        if var options = self.filterOptions {
-            options.selectedTheme = theme
-            options.selectedSubtheme = nil
-            options.selectedYear = nil
-            self.filterOptions = options
-            tableView.reloadData()
-        }
+        filterOptions.selectedTheme = theme
+        filterOptions.selectedSubtheme = nil
+        filterOptions.selectedYear = nil
+        tableView.reloadData()
     }
     
 }
@@ -208,11 +226,8 @@ extension FilterViewController: FilterSelectThemeViewControllerDelegate {
 extension FilterViewController: FilterSelectSubthemeViewControllerDelegate {
     
     func selectSubthemeController(_ controller: FilterSelectSubthemeViewController, didSelectSubtheme subtheme: SetSubtheme?) {
-        if var options = self.filterOptions {
-            options.selectedSubtheme = subtheme
-            self.filterOptions = options
-            tableView.reloadData()
-        }
+        filterOptions.selectedSubtheme = subtheme
+        tableView.reloadData()
     }
     
 }
@@ -224,11 +239,8 @@ extension FilterViewController: FilterSelectSubthemeViewControllerDelegate {
 extension FilterViewController: FilterSelectYearViewControllerDelegate {
     
     func selectYearController(_ controller: FilterSelectYearViewController, didSelectYear year: SetYear?) {
-        if var options = self.filterOptions {
-            options.selectedYear = year
-            self.filterOptions = options
-            tableView.reloadData()
-        }
+        filterOptions.selectedYear = year
+        tableView.reloadData()
     }
     
 }

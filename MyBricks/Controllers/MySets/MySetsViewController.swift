@@ -154,12 +154,9 @@ class MySetsViewController: UIViewController {
             request.cancel()
         }
         
-        let fadeOut = { () -> Void in
-            self.tableView.alpha = 0.4
-        }
-        UIView.animate(withDuration: 0.1, animations:fadeOut)
-
+        showTableView(faded: true)
         activityIndicator?.startAnimating()
+        
         let request = GetSetsRequest(owned: (displayMode == .owned), wanted: (displayMode == .wanted))
         self.mySetsRequest = BricksetServices.shared.getSets(request, completion: { result in
             self.activityIndicator?.stopAnimating()
@@ -169,10 +166,7 @@ class MySetsViewController: UIViewController {
                 self.processSets()
                 
                 self.tableView.reloadData()
-                let fadeIn = { () -> Void in
-                    self.tableView.alpha = 1.0
-                }
-                UIView.animate(withDuration: 0.2, animations:fadeIn)
+                self.showTableView(faded: false)
             }
             else {
                 if let error = result.error as? URLError, error.code == .cancelled { return }
@@ -209,6 +203,13 @@ class MySetsViewController: UIViewController {
         }
     }
 
+    private func showTableView(faded: Bool) {
+        let animations = { () -> Void in
+            self.tableView.alpha = faded ? 0.3 : 1.0
+        }
+        UIView.animate(withDuration: 0.2, animations:animations)
+    }
+    
 }
 
 //==============================================================================

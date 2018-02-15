@@ -18,8 +18,12 @@ public struct FilterOptions {
     var selectedSubtheme: SetSubtheme? = nil
     var selectedYear: SetYear? = nil
     
-    var showOwned: Bool = false
-    var showWanted: Bool = false
+    var filterOwned: Bool = false
+    var filterNotOwned: Bool = false
+    var filterWanted: Bool = false
     
+    public func hasSelectedFilters() -> Bool {
+        return selectedSubtheme != nil || selectedYear != nil || filterOwned || filterNotOwned || filterWanted
+    }
 }
 
