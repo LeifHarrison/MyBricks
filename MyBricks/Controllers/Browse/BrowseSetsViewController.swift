@@ -49,7 +49,7 @@ class BrowseSetsViewController: UIViewController {
             self.title = "Sets"
         }
         
-        updateHeaderText(false)
+        updateDisplay(animated: false)
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -101,8 +101,7 @@ class BrowseSetsViewController: UIViewController {
                 if result.isSuccess {
                     strongSelf.allSets = result.value ?? []
                     strongSelf.processSets()
-                    strongSelf.updateHeaderText(true)
-                    strongSelf.tableView.reloadData()
+                    strongSelf.updateDisplay(animated: true)
                 }
                 else {
                     if let error = result.error as? URLError, error.code == .cancelled { return }
@@ -150,20 +149,23 @@ class BrowseSetsViewController: UIViewController {
         UIView.animate(withDuration: 0.2, animations:animations)
     }
 
-    private func updateHeaderText(_ animated: Bool = false) {
+    private func updateDisplay(animated: Bool = false) {
         
         let animations = { () -> Void in
             self.headerView.alpha = 0.0
+            self.tableView.alpha = 0.0
         }
         let completion = { (finished: Bool) -> Void in
             
             if self.allSets.count > 0 {
                 self.headerView.populate(with: self.allSets.count, filterOptions: self.filterOptions)
                 self.tableView.contentInset = UIEdgeInsets(top: self.headerView.frame.height, left: 0, bottom: 0, right: 0)
+                self.tableView.reloadData()
                 let innerAnimations = { () -> Void in
                     self.headerView.alpha = 1.0
+                    self.tableView.alpha = 1.0
                 }
-                UIView.animate(withDuration: animated ? 0.2 : 0.0, animations:innerAnimations)
+                UIView.animate(withDuration: animated ? 0.3 : 0.0, animations:innerAnimations)
             }
             else {
                 self.tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)

@@ -54,89 +54,68 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="COb-J1-W1x">
-                                                    <rect key="frame" x="49.666666666666657" y="6.6666666666666679" width="316" height="29.000000000000004"/>
+                                                    <rect key="frame" x="51.333333333333343" y="8.0000000000000018" width="313" height="27.666666666666671"/>
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gfo-X1-ESg">
-                                                            <rect key="frame" x="0.0" y="2" width="25" height="25"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="25" id="0fy-fs-gWe"/>
-                                                                <constraint firstAttribute="width" constant="25" id="9U0-xx-1F9"/>
-                                                            </constraints>
+                                                            <rect key="frame" x="0.0" y="2" width="82" height="23.666666666666668"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                             <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            <state key="normal" image="checkbox"/>
+                                                            <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="5" maxY="0.0"/>
+                                                            <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="-5" maxY="0.0"/>
+                                                            <state key="normal" title="Owned" image="checkbox">
+                                                                <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                            </state>
                                                             <state key="selected" image="checkbox_checked"/>
                                                             <connections>
                                                                 <action selector="toggleFilterOwned:" destination="q63-o3-4Kr" eventType="touchUpInside" id="oMo-qV-w6c"/>
                                                             </connections>
                                                         </button>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Owned" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GhH-jh-p4v">
-                                                            <rect key="frame" x="30.000000000000007" y="5" width="48.999999999999993" height="18"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                            <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
                                                         <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5eg-xI-Xgm">
-                                                            <rect key="frame" x="99" y="1" width="25" height="25"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="25" id="kOB-5E-QaC"/>
-                                                                <constraint firstAttribute="width" constant="25" id="vI6-P6-JEV"/>
-                                                            </constraints>
+                                                            <rect key="frame" x="102" y="1.3333333333333339" width="108" height="25"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                             <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            <state key="normal" image="checkbox"/>
+                                                            <inset key="contentEdgeInsets" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                            <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="-5" maxY="0.0"/>
+                                                            <state key="normal" title="Not Owned" image="checkbox">
+                                                                <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                            </state>
                                                             <state key="selected" image="checkbox_checked"/>
                                                             <connections>
                                                                 <action selector="toggleFilterNotOwned:" destination="q63-o3-4Kr" eventType="touchUpInside" id="3eX-b9-KKG"/>
                                                             </connections>
                                                         </button>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="NOT Owned" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HHH-bR-3b5">
-                                                            <rect key="frame" x="129" y="5" width="84" height="18"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                            <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
                                                         <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="243-KL-xXd">
-                                                            <rect key="frame" x="233.00000000000003" y="1" width="24.999999999999972" height="25"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" constant="25" id="Hb8-NF-Qt8"/>
-                                                                <constraint firstAttribute="height" constant="25" id="d4m-vW-YNc"/>
-                                                            </constraints>
+                                                            <rect key="frame" x="230" y="1.3333333333333339" width="83" height="25"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                             <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            <state key="normal" image="checkbox"/>
+                                                            <inset key="contentEdgeInsets" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                            <inset key="titleEdgeInsets" minX="4" minY="0.0" maxX="-4" maxY="0.0"/>
+                                                            <state key="normal" title="Wanted" image="checkbox">
+                                                                <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                            </state>
                                                             <state key="selected" image="checkbox_checked"/>
                                                             <connections>
                                                                 <action selector="toggleFilterWanted:" destination="q63-o3-4Kr" eventType="touchUpInside" id="2Ht-PN-ZGP"/>
                                                             </connections>
                                                         </button>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Wanted" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RLJ-V6-zJM">
-                                                            <rect key="frame" x="263" y="4" width="53" height="18"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                            <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
-                                                        <constraint firstItem="243-KL-xXd" firstAttribute="leading" secondItem="HHH-bR-3b5" secondAttribute="trailing" constant="20" id="3a1-KB-dFq"/>
-                                                        <constraint firstAttribute="trailing" secondItem="RLJ-V6-zJM" secondAttribute="trailing" id="Gqt-Kt-wAr"/>
-                                                        <constraint firstItem="5eg-xI-Xgm" firstAttribute="centerY" secondItem="GhH-jh-p4v" secondAttribute="centerY" id="HGE-0v-sVP"/>
-                                                        <constraint firstItem="gfo-X1-ESg" firstAttribute="centerY" secondItem="COb-J1-W1x" secondAttribute="centerY" id="JVM-Ju-140"/>
-                                                        <constraint firstItem="HHH-bR-3b5" firstAttribute="centerY" secondItem="5eg-xI-Xgm" secondAttribute="centerY" id="NlW-ij-RVs"/>
-                                                        <constraint firstItem="GhH-jh-p4v" firstAttribute="centerY" secondItem="gfo-X1-ESg" secondAttribute="centerY" id="a0R-Xv-YD1"/>
-                                                        <constraint firstItem="RLJ-V6-zJM" firstAttribute="leading" secondItem="243-KL-xXd" secondAttribute="trailing" constant="5" id="bv7-vf-g4u"/>
-                                                        <constraint firstItem="HHH-bR-3b5" firstAttribute="leading" secondItem="5eg-xI-Xgm" secondAttribute="trailing" constant="5" id="czx-LH-bXY"/>
-                                                        <constraint firstItem="RLJ-V6-zJM" firstAttribute="centerY" secondItem="243-KL-xXd" secondAttribute="centerY" id="fdl-Ux-BDC"/>
-                                                        <constraint firstItem="243-KL-xXd" firstAttribute="centerY" secondItem="HHH-bR-3b5" secondAttribute="centerY" id="gRc-jY-AWo"/>
-                                                        <constraint firstItem="GhH-jh-p4v" firstAttribute="leading" secondItem="gfo-X1-ESg" secondAttribute="trailing" constant="5" id="h9O-Vs-ulk"/>
+                                                        <constraint firstItem="5eg-xI-Xgm" firstAttribute="centerY" secondItem="gfo-X1-ESg" secondAttribute="centerY" id="6No-iH-vuA"/>
+                                                        <constraint firstItem="5eg-xI-Xgm" firstAttribute="leading" secondItem="gfo-X1-ESg" secondAttribute="trailing" constant="20" id="Kcd-Pg-kzG"/>
+                                                        <constraint firstItem="243-KL-xXd" firstAttribute="centerY" secondItem="gfo-X1-ESg" secondAttribute="centerY" id="jLs-gd-Trg"/>
+                                                        <constraint firstItem="243-KL-xXd" firstAttribute="leading" secondItem="5eg-xI-Xgm" secondAttribute="trailing" constant="20" id="lHp-FU-abE"/>
                                                         <constraint firstItem="gfo-X1-ESg" firstAttribute="top" secondItem="COb-J1-W1x" secondAttribute="top" constant="2" id="lxl-Z2-AlG"/>
+                                                        <constraint firstAttribute="trailing" secondItem="243-KL-xXd" secondAttribute="trailing" id="qRq-N9-d8e"/>
                                                         <constraint firstItem="gfo-X1-ESg" firstAttribute="leading" secondItem="COb-J1-W1x" secondAttribute="leading" id="ufR-3m-hkl"/>
-                                                        <constraint firstItem="5eg-xI-Xgm" firstAttribute="leading" secondItem="GhH-jh-p4v" secondAttribute="trailing" constant="20" id="xy9-9R-HIp"/>
                                                         <constraint firstAttribute="bottom" secondItem="gfo-X1-ESg" secondAttribute="bottom" constant="2" id="yIC-nS-Nhr"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="COb-J1-W1x" secondAttribute="bottom" constant="8" id="4a2-fr-2mB"/>
+                                                <constraint firstItem="COb-J1-W1x" firstAttribute="top" secondItem="fxI-7r-O8z" secondAttribute="top" constant="8" id="ADK-dT-M7B"/>
                                                 <constraint firstItem="COb-J1-W1x" firstAttribute="centerX" secondItem="fxI-7r-O8z" secondAttribute="centerX" id="PQt-b8-Be9"/>
-                                                <constraint firstItem="COb-J1-W1x" firstAttribute="centerY" secondItem="fxI-7r-O8z" secondAttribute="centerY" id="ydz-zX-XqQ"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
