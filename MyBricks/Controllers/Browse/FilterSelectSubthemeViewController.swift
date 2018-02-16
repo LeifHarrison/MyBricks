@@ -33,7 +33,6 @@ class FilterSelectSubthemeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         addGradientBackground()
-
         self.title = "Select Subtheme"
         
         let item = UIBarButtonItem(title: "Clear", style: .plain, target: self, action: #selector(clearFilter(_:)))

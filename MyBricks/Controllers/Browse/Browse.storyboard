@@ -117,10 +117,10 @@
             </objects>
             <point key="canvasLocation" x="780" y="-344"/>
         </scene>
-        <!--Sets-->
+        <!--Browse Sets-->
         <scene sceneID="cbA-Md-Gkv">
             <objects>
-                <viewController storyboardIdentifier="BrowseSetsViewController" title="Sets" id="MRb-SQ-ur7" customClass="BrowseSetsViewController" customModule="MyBricks" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="BrowseSetsViewController" title="Browse Sets" id="MRb-SQ-ur7" customClass="BrowseSetsViewController" customModule="MyBricks" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="JuW-JX-ycF">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -197,13 +197,6 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="qdN-fG-EvY"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Browse" id="8Rd-VA-m7j">
-                        <barButtonItem key="rightBarButtonItem" title="Filter" id="SV2-Rb-SQT">
-                            <connections>
-                                <action selector="showFilters:" destination="MRb-SQ-ur7" id="p45-xr-L8x"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
                     <connections>
                         <outlet property="activityIndicator" destination="Nlz-OW-ZkI" id="fJz-A7-Qzj"/>
                         <outlet property="headerView" destination="8bo-vn-yNh" id="CTq-dg-PP5"/>

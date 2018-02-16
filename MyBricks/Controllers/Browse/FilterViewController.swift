@@ -217,6 +217,10 @@ extension FilterViewController: FilterSelectThemeViewControllerDelegate {
         tableView.reloadData()
     }
     
+    func selectThemeController(_ controller: FilterSelectThemeViewController, didUpdateAvailableThemes themes: [SetTheme]) {
+        filterOptions.availableThemes = themes
+    }
+
 }
 
 //==============================================================================

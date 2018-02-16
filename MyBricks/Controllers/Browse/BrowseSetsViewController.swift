@@ -33,6 +33,9 @@ class BrowseSetsViewController: UIViewController {
         super.viewDidLoad()
         addGradientBackground()
 
+        let item = UIBarButtonItem(title: "Filter", style: .plain, target: self, action: #selector(showFilters(_:)))
+        navigationItem.setRightBarButton(item, animated: false)
+
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = UITableViewAutomaticDimension
         tableView.sectionIndexBackgroundColor = UIColor.clear
@@ -46,7 +49,7 @@ class BrowseSetsViewController: UIViewController {
             self.title = theme.name
         }
         else {
-            self.title = "Sets"
+            self.title = "Browse Sets"
         }
         
         updateDisplay(animated: false)

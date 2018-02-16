@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		291AC5EE1FAF6FAC000DC9DD /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2921AD8D1FAF6EF200180268 /* Profile.storyboard */; };
 		291AC5EF1FAF6FB0000DC9DD /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2921AD8B1FAF6EE000180268 /* Search.storyboard */; };
-		291AC5F41FB103E4000DC9DD /* MySetsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 291AC5F31FB103E4000DC9DD /* MySetsHeaderView.swift */; };
 		291DEE9D1FE27604004906E4 /* UIResponder+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 291DEE9C1FE27604004906E4 /* UIResponder+Extensions.swift */; };
 		2921AD891FAF6C4000180268 /* News.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2921AD881FAF6C3800180268 /* News.storyboard */; };
 		2928611D1FD50D24005F15D8 /* SearchHistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2928611C1FD50D24005F15D8 /* SearchHistoryTableViewCell.swift */; };
@@ -146,7 +145,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		291AC5F31FB103E4000DC9DD /* MySetsHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySetsHeaderView.swift; sourceTree = "<group>"; };
 		291DEE9C1FE27604004906E4 /* UIResponder+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIResponder+Extensions.swift"; sourceTree = "<group>"; };
 		2921AD881FAF6C3800180268 /* News.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = News.storyboard; sourceTree = "<group>"; };
 		2921AD8B1FAF6EE000180268 /* Search.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Search.storyboard; sourceTree = "<group>"; };
@@ -334,7 +332,6 @@
 			isa = PBXGroup;
 			children = (
 				294F187E1FB519ED0026342F /* MySets.storyboard */,
-				291AC5F31FB103E4000DC9DD /* MySetsHeaderView.swift */,
 				29365B741F8EBF1C00F6730C /* MySetsViewController.swift */,
 			);
 			path = MySets;
@@ -964,7 +961,6 @@
 				293C9A6E1FD495C70058DA59 /* MyBricks.xcdatamodeld in Sources */,
 				9B92EFB0201FE09D007610BD /* FilterSelectYearViewController.swift in Sources */,
 				2928611D1FD50D24005F15D8 /* SearchHistoryTableViewCell.swift in Sources */,
-				291AC5F41FB103E4000DC9DD /* MySetsHeaderView.swift in Sources */,
 				295ADFBD1F16AFFC002E6802 /* AppDelegate.swift in Sources */,
 				29CCD8EE1F993E12009A39CF /* SetDetailViewController.swift in Sources */,
 				9B63D28D202CFCE400E1C3B0 /* BricksetCollectionTableViewCell.swift in Sources */,

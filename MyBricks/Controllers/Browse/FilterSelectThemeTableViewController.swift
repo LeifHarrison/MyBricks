@@ -10,6 +10,7 @@ import UIKit
 
 protocol FilterSelectThemeViewControllerDelegate: class {
     func selectThemeController(_ controller: FilterSelectThemeViewController, didSelectTheme theme: SetTheme?)
+    func selectThemeController(_ controller: FilterSelectThemeViewController, didUpdateAvailableThemes themes: [SetTheme])
 }
 
 class FilterSelectThemeViewController: UIViewController {
@@ -30,17 +31,34 @@ class FilterSelectThemeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        addGradientBackground()
         self.title = "Select Theme"
         tableView.tableFooterView = UIView()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        if availableThemes.count == 0 {
+            fetchThemes()
+        }
         if let selectedTheme = currentTheme, let selectedIndex = availableThemes.index(of: selectedTheme) {
             tableView.selectRow(at: IndexPath(row: selectedIndex, section: 0), animated: false, scrollPosition: .middle)
         }
     }
     
+    fileprivate func fetchThemes() {
+        activityIndicator?.startAnimating()
+        BricksetServices.shared.getThemes(completion: { result in
+            self.activityIndicator?.stopAnimating()
+            if result.isSuccess {
+                self.availableThemes = result.value ?? []
+                self.delegate?.selectThemeController(self, didUpdateAvailableThemes: self.availableThemes)
+                self.tableView.reloadData()
+            }
+        })
+    }
+    
+
 }
 
 //==============================================================================
