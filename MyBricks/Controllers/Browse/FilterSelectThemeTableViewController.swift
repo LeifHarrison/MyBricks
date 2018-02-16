@@ -20,10 +20,8 @@ class FilterSelectThemeViewController: UIViewController {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
 
-    var currentTheme: SetTheme? = nil
-    var availableThemes: [SetTheme] = []
-    
     weak var delegate: FilterSelectThemeViewControllerDelegate?
+    var filterOptions: FilterOptions = FilterOptions()    
 
     //--------------------------------------------------------------------------
     // MARK: - View Lifecycle
@@ -38,24 +36,32 @@ class FilterSelectThemeViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        if availableThemes.count == 0 {
+        if filterOptions.availableThemes.count == 0 {
             fetchThemes()
         }
-        if let selectedTheme = currentTheme, let selectedIndex = availableThemes.index(of: selectedTheme) {
+        if let selectedTheme = filterOptions.selectedTheme, let selectedIndex = filterOptions.availableThemes.index(of: selectedTheme) {
             tableView.selectRow(at: IndexPath(row: selectedIndex, section: 0), animated: false, scrollPosition: .middle)
         }
     }
     
     fileprivate func fetchThemes() {
         activityIndicator?.startAnimating()
-        BricksetServices.shared.getThemes(completion: { result in
+        
+        let completion: GetThemesCompletion = { result in
             self.activityIndicator?.stopAnimating()
             if result.isSuccess {
-                self.availableThemes = result.value ?? []
-                self.delegate?.selectThemeController(self, didUpdateAvailableThemes: self.availableThemes)
+                self.filterOptions.availableThemes = result.value ?? []
+                self.delegate?.selectThemeController(self, didUpdateAvailableThemes: self.filterOptions.availableThemes)
                 self.tableView.reloadData()
             }
-        })
+        }
+        
+        if filterOptions.showingUserSets {
+            BricksetServices.shared.getThemesForUser(owned: filterOptions.filterOwned, wanted: filterOptions.filterWanted, completion: completion)
+        }
+        else {
+            BricksetServices.shared.getThemes(completion: completion)
+        }
     }
     
 
@@ -72,11 +78,11 @@ extension FilterSelectThemeViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return availableThemes.count
+        return filterOptions.availableThemes.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let theme = availableThemes[indexPath.row]
+        let theme = filterOptions.availableThemes[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
         cell.textLabel?.text = theme.name
         return cell
@@ -91,7 +97,7 @@ extension FilterSelectThemeViewController: UITableViewDataSource {
 extension FilterSelectThemeViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let theme = availableThemes[indexPath.row]
+        let theme = filterOptions.availableThemes[indexPath.row]
         delegate?.selectThemeController(self, didSelectTheme: theme)
         navigationController?.popViewController(animated: true)
     }

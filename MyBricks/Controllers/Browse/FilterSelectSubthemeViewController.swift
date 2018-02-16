@@ -20,11 +20,8 @@ class FilterSelectSubthemeViewController: UIViewController {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
     
-    var currentTheme: SetTheme? = nil
-    var availableSubthemes: [SetSubtheme] = []
-    var selectedSubtheme: SetSubtheme? = nil
-    
     weak var delegate: FilterSelectSubthemeViewControllerDelegate?
+    var filterOptions: FilterOptions = FilterOptions()
     
     //--------------------------------------------------------------------------
     // MARK: - View Lifecycle
@@ -60,18 +57,26 @@ class FilterSelectSubthemeViewController: UIViewController {
     //--------------------------------------------------------------------------
     
     fileprivate func fetchSubthemes() {
-        if let theme = currentTheme {
+        if let theme = filterOptions.selectedTheme {
             activityIndicator?.startAnimating()
-            BricksetServices.shared.getSubthemes(theme: theme.name, completion: { result in
+            
+            let completion: GetSubthemesCompletion = { result in
                 self.activityIndicator?.stopAnimating()
                 if result.isSuccess {
-                    self.availableSubthemes = result.value ?? []
+                    self.filterOptions.availableSubthemes = result.value ?? []
                     self.tableView.reloadData()
-                    if let subtheme = self.selectedSubtheme, let selectedIndex = self.availableSubthemes.index(of: subtheme) {
+                    if let subtheme = self.filterOptions.selectedSubtheme, let selectedIndex = self.filterOptions.availableSubthemes.index(of: subtheme) {
                         self.tableView.selectRow(at: IndexPath(row: selectedIndex, section: 0), animated: false, scrollPosition: .middle)
                     }
                 }
-            })
+            }
+            if filterOptions.showingUserSets {
+                BricksetServices.shared.getSubthemesForUser(theme: theme.name, owned: filterOptions.filterOwned, wanted: filterOptions.filterWanted, completion: completion)
+            }
+            else {
+                BricksetServices.shared.getSubthemes(theme: theme.name, completion: completion)
+            }
+
         }
     }
     
@@ -88,11 +93,11 @@ extension FilterSelectSubthemeViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return availableSubthemes.count
+        return filterOptions.availableSubthemes.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let subtheme = availableSubthemes[indexPath.row]
+        let subtheme = filterOptions.availableSubthemes[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
         if let setCount = subtheme.setCount {
             cell.textLabel?.text = subtheme.subtheme + " (\(setCount))"
@@ -112,8 +117,8 @@ extension FilterSelectSubthemeViewController: UITableViewDataSource {
 extension FilterSelectSubthemeViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedSubtheme = availableSubthemes[indexPath.row]
-        delegate?.selectSubthemeController(self, didSelectSubtheme: selectedSubtheme)
+        let subtheme = filterOptions.availableSubthemes[indexPath.row]
+        delegate?.selectSubthemeController(self, didSelectSubtheme: subtheme)
         navigationController?.popViewController(animated: true)
     }
     

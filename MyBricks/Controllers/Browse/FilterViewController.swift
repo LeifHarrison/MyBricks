@@ -100,19 +100,16 @@ class FilterViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let viewController = segue.destination as? FilterSelectThemeViewController {
-            viewController.availableThemes = filterOptions.availableThemes
-            viewController.currentTheme = filterOptions.selectedTheme
             viewController.delegate = self
+            viewController.filterOptions = filterOptions
         }
         else if let viewController = segue.destination as? FilterSelectSubthemeViewController {
-            viewController.currentTheme = filterOptions.selectedTheme
             viewController.delegate = self
-            viewController.selectedSubtheme = filterOptions.selectedSubtheme
+            viewController.filterOptions = filterOptions
         }
         else if let viewController = segue.destination as? FilterSelectYearViewController {
-            viewController.currentTheme = filterOptions.selectedTheme
             viewController.delegate = self
-            viewController.selectedYear = filterOptions.selectedYear
+            viewController.filterOptions = filterOptions
         }
     }
 }

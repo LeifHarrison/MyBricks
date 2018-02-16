@@ -44,7 +44,13 @@ class BrowseHeaderView: UIView {
         if let options = filterOptions, options.hasSelectedFilters() {
             attributedDescription.append(NSAttributedString(string:" matching ", attributes:regularAttributes))
             let filterString = NSMutableAttributedString()
+            if options.showingUserSets, let theme = options.selectedTheme {
+                filterString.append(NSAttributedString(string:"\(theme.name)", attributes:boldAttributes))
+            }
             if let subtheme = options.selectedSubtheme {
+                if filterString.length > 0 {
+                    filterString.append(NSAttributedString(string:" : ", attributes:regularAttributes))
+                }
                 filterString.append(NSAttributedString(string:"\(subtheme.subtheme)", attributes:boldAttributes))
             }
             if let year = options.selectedYear {

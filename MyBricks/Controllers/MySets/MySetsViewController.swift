@@ -28,7 +28,9 @@ class MySetsViewController: BrowseSetsViewController {
         loginButton.layer.cornerRadius = 5.0
         
         filterOptions = FilterOptions()
+        filterOptions?.showingUserSets = true
         filterOptions?.filterOwned = true
+        
     }
 
     override func viewWillAppear(_ animated: Bool) {

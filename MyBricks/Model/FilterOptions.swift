@@ -10,6 +10,8 @@ import Foundation
 
 public struct FilterOptions {
     
+    var showingUserSets: Bool = false
+    
     var availableThemes: [SetTheme] = []
     var availableSubthemes: [SetSubtheme] = []
     var availableYears: [SetYear] = []

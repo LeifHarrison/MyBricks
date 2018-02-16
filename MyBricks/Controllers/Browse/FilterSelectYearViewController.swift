@@ -19,11 +19,8 @@ class FilterSelectYearViewController: UIViewController {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
     
-    var currentTheme: SetTheme? = nil
-    var availableYears: [SetYear] = []
-    var selectedYear: SetYear? = nil
-
     weak var delegate: FilterSelectYearViewControllerDelegate?
+    var filterOptions: FilterOptions = FilterOptions()
     
     //--------------------------------------------------------------------------
     // MARK: - View Lifecycle
@@ -59,18 +56,24 @@ class FilterSelectYearViewController: UIViewController {
     //--------------------------------------------------------------------------
     
     fileprivate func fetchYears() {
-        if let theme = currentTheme {
+        if let theme = filterOptions.selectedTheme {
             activityIndicator?.startAnimating()
-            BricksetServices.shared.getYears(theme: theme.name, completion: { result in
+            let completion: GetYearsCompletion = { result in
                 self.activityIndicator?.stopAnimating()
                 if result.isSuccess {
-                    self.availableYears = result.value ?? []
+                    self.filterOptions.availableYears = result.value ?? []
                     self.tableView.reloadData()
-                    if let year = self.selectedYear, let selectedIndex = self.availableYears.index(of: year) {
+                    if let year = self.filterOptions.selectedYear, let selectedIndex = self.filterOptions.availableYears.index(of: year) {
                         self.tableView.selectRow(at: IndexPath(row: selectedIndex, section: 0), animated: false, scrollPosition: .middle)
                     }
                 }
-            })
+            }
+            if filterOptions.showingUserSets {
+                BricksetServices.shared.getYearsForUser(theme: theme.name, owned: filterOptions.filterOwned, wanted: filterOptions.filterWanted, completion: completion)
+            }
+            else {
+                BricksetServices.shared.getYears(theme: theme.name, completion: completion)
+            }
         }
     }
     
@@ -87,11 +90,11 @@ extension FilterSelectYearViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return availableYears.count
+        return filterOptions.availableYears.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let year = availableYears[indexPath.row]
+        let year = filterOptions.availableYears[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
         cell.textLabel?.text = year.year
         return cell
@@ -106,7 +109,7 @@ extension FilterSelectYearViewController: UITableViewDataSource {
 extension FilterSelectYearViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let year = availableYears[indexPath.row]
+        let year = filterOptions.availableYears[indexPath.row]
         delegate?.selectYearController(self, didSelectYear: year)
         navigationController?.popViewController(animated: true)
     }

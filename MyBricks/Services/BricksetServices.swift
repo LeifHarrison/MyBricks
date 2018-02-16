@@ -19,6 +19,10 @@ enum ServiceError : Error {
     case unknownError
 }
 
+typealias GetThemesCompletion = (Result<[SetTheme]>) -> Void
+typealias GetSubthemesCompletion = (Result<[SetSubtheme]>) -> Void
+typealias GetYearsCompletion = (Result<[SetYear]>) -> Void
+
 class BricksetServices {
 
     static let shared = BricksetServices()
@@ -182,7 +186,7 @@ class BricksetServices {
     // MARK: - Themes/Subthemes/Years
     //--------------------------------------------------------------------------
     
-    func getThemes(completion: @escaping (Result<[SetTheme]>) -> Void) {
+    func getThemes(completion: @escaping GetThemesCompletion) {
         let url = baseURL + "getThemes"
         
         let parameters = defaultParameters()
@@ -208,7 +212,36 @@ class BricksetServices {
         request.responseXMLDocument(completionHandler: requestCompletion)
     }
     
-    func getSubthemes(theme: String, completion: @escaping (Result<[SetSubtheme]>) -> Void) {
+    func getThemesForUser(owned: Bool, wanted: Bool, completion: @escaping GetThemesCompletion) {
+        let url = baseURL + "getThemesForUser"
+        
+        var parameters = userParameters()
+        parameters["owned"] = owned ? "1" : ""
+        parameters["wanted"] = wanted ? "1" : ""
+
+        let request = Alamofire.request( url, parameters: parameters)
+        let requestCompletion: (DataResponse<XMLDocument>) -> Void = { response in
+            if let error = response.result.error {
+                completion(Result.failure(error))
+            }
+            else if let document = response.result.value {
+                if let root = document.root {
+                    var themes: [SetTheme] = []
+                    
+                    for element in root.children {
+                        if let theme = SetTheme(element: element) {
+                            themes.append(theme)
+                        }
+                    }
+                    
+                    completion(Result.success(themes))
+                }
+            }
+        }
+        request.responseXMLDocument(completionHandler: requestCompletion)
+    }
+    
+    func getSubthemes(theme: String, completion: @escaping GetSubthemesCompletion) {
         let url = baseURL + "getSubthemes"
         
         var parameters = defaultParameters()
@@ -236,12 +269,72 @@ class BricksetServices {
         request.responseXMLDocument(completionHandler: requestCompletion)
     }
     
-    func getYears(theme: String, completion: @escaping (Result<[SetYear]>) -> Void) {
+    func getSubthemesForUser(theme: String, owned: Bool, wanted: Bool, completion: @escaping GetSubthemesCompletion) {
+        let url = baseURL + "getSubthemes"
+        
+        var parameters = userParameters()
+        parameters["theme"] = theme
+        parameters["owned"] = owned ? "1" : ""
+        parameters["wanted"] = wanted ? "1" : ""
+
+        let request = Alamofire.request( url, parameters: parameters)
+        let requestCompletion: (DataResponse<XMLDocument>) -> Void = { response in
+            if let error = response.result.error {
+                completion(Result.failure(error))
+            }
+            else if let document = response.result.value {
+                if let root = document.root {
+                    var subthemes: [SetSubtheme] = []
+                    
+                    for element in root.children {
+                        if let theme = SetSubtheme(element: element) {
+                            subthemes.append(theme)
+                        }
+                    }
+                    
+                    completion(Result.success(subthemes))
+                }
+            }
+        }
+        request.responseXMLDocument(completionHandler: requestCompletion)
+    }
+    
+    func getYears(theme: String, completion: @escaping GetYearsCompletion) {
         let url = baseURL + "getYears"
         
         var parameters = defaultParameters()
         parameters["theme"] = theme
         
+        let request = Alamofire.request( url, parameters: parameters)
+        let requestCompletion: (DataResponse<XMLDocument>) -> Void = { response in
+            if let error = response.result.error {
+                completion(Result.failure(error))
+            }
+            else if let document = response.result.value {
+                if let root = document.root {
+                    var years: [SetYear] = []
+                    
+                    for element in root.children {
+                        if let theme = SetYear(element: element) {
+                            years.append(theme)
+                        }
+                    }
+                    
+                    completion(Result.success(years))
+                }
+            }
+        }
+        request.responseXMLDocument(completionHandler: requestCompletion)
+    }
+    
+    func getYearsForUser(theme: String, owned: Bool, wanted: Bool, completion: @escaping GetYearsCompletion) {
+        let url = baseURL + "getYears"
+        
+        var parameters = userParameters()
+        parameters["theme"] = theme
+        parameters["owned"] = owned ? "1" : ""
+        parameters["wanted"] = wanted ? "1" : ""
+
         let request = Alamofire.request( url, parameters: parameters)
         let requestCompletion: (DataResponse<XMLDocument>) -> Void = { response in
             if let error = response.result.error {
