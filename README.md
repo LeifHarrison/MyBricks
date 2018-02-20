@@ -13,11 +13,11 @@ Mobile (iOS) application for interacting with the BrickSet LEGO database.
 <img src="Screenshots/Browse2.png" width="23%"></img>
 <img src="Screenshots/Filter.png" width="23%"></img>
 <img src="Screenshots/Detail.png" width="23%"></img>
-<img src="Screenshots/Detai2.png" width="23%"></img>
-<img src="Screenshots/ImageDetai.png" width="23%"></img>
+<img src="Screenshots/Detail2.png" width="23%"></img>
+<img src="Screenshots/ImageDetail.png" width="23%"></img>
 <img src="Screenshots/PartsList.png" width="23%"></img>
 <img src="Screenshots/Reviews.png" width="23%"></img>
-<img src="Screenshots/Review2.png" width="23%"></img>
+<img src="Screenshots/Reviews2.png" width="23%"></img>
 <img src="Screenshots/Instructions1.png" width="23%"></img>
 <img src="Screenshots/Instructions2.png" width="23%"></img>
 <img src="Screenshots/Search.png" width="23%"></img>
