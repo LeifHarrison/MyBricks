@@ -201,20 +201,11 @@
                         <outlet property="activityIndicator" destination="Nlz-OW-ZkI" id="fJz-A7-Qzj"/>
                         <outlet property="headerView" destination="8bo-vn-yNh" id="CTq-dg-PP5"/>
                         <outlet property="tableView" destination="Yef-yh-eIU" id="X7u-OF-Qga"/>
-                        <segue destination="29I-Eu-R4G" kind="show" identifier="showSetDetailView" id="VAE-1U-2rE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KMv-Wx-yoN" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2326" y="-344"/>
-        </scene>
-        <!--SetDetailViewController-->
-        <scene sceneID="0eM-Lc-Pny">
-            <objects>
-                <viewControllerPlaceholder storyboardIdentifier="SetDetailViewController" storyboardName="SetDetail" referencedIdentifier="SetDetailViewController" id="29I-Eu-R4G" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="JaB-Cj-ga4" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2986" y="-345"/>
         </scene>
     </scenes>
     <resources>

@@ -191,10 +191,10 @@ class SearchViewController: UIViewController {
     }
     
     fileprivate func showDetail(forSet set: Set) {
-        let browseStoryboard = UIStoryboard(name: "Browse", bundle: nil)
-        if let setDetailVC = browseStoryboard.instantiateViewController(withIdentifier: "SetDetailViewController") as? SetDetailViewController {
-            setDetailVC.currentSet = set
-            show(setDetailVC, sender: self)
+        let detailStoryboard = UIStoryboard(name: "SetDetail", bundle: nil)
+        if let detailVC = detailStoryboard.instantiateInitialViewController() as? SetDetailViewController {
+            detailVC.currentSet = set
+            show(detailVC, sender: self)
         }
     }
     

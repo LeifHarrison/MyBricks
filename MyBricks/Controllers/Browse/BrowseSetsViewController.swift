@@ -153,7 +153,6 @@ class BrowseSetsViewController: UIViewController {
     }
 
     private func updateDisplay(animated: Bool = false) {
-        
         let animations = { () -> Void in
             self.headerView.alpha = 0.0
             self.tableView.alpha = 0.0
@@ -175,7 +174,6 @@ class BrowseSetsViewController: UIViewController {
             }
         }
         UIView.animate(withDuration: animated ? 0.2 : 0.0, animations:animations, completion: completion)
-
     }
 }
 
@@ -225,9 +223,10 @@ extension BrowseSetsViewController: UITableViewDelegate {
         let sectionTitle = sectionTitles[indexPath.section]
         if let sets = setsBySection[sectionTitle] {
             let set = sets[indexPath.row]
-            if let setDetailVC = storyboard?.instantiateViewController(withIdentifier: "SetDetailViewController") as? SetDetailViewController {
-                setDetailVC.currentSet = set
-                show(setDetailVC, sender: self)
+            let detailStoryboard = UIStoryboard(name: "SetDetail", bundle: nil)
+            if let detailVC = detailStoryboard.instantiateInitialViewController() as? SetDetailViewController {
+                detailVC.currentSet = set
+                show(detailVC, sender: self)
                 tableView.deselectRow(at: indexPath, animated: true)
             }
         }
