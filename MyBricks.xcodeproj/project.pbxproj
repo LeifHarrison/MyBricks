@@ -110,6 +110,8 @@
 		9BCA7E302028DA6E00FA7BDC /* SetPriceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BCA7E2F2028DA6E00FA7BDC /* SetPriceTableViewCell.swift */; };
 		9BD4D5C0202E27000019A057 /* SetTagsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD4D5BE202E27000019A057 /* SetTagsTableViewCell.swift */; };
 		9BD4D5C1202E27000019A057 /* SetTagsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9BD4D5BF202E27000019A057 /* SetTagsTableViewCell.xib */; };
+		9BE2F618203E298B0035C172 /* UIButton+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE2F617203E298B0035C172 /* UIButton+Extensions.swift */; };
+		9BE2F61A203E2A0C0035C172 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE2F619203E2A0C0035C172 /* UIColor+Extensions.swift */; };
 		9BF4EEDA20362DE6006F3180 /* BrowseHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF4EED920362DE6006F3180 /* BrowseHeaderView.swift */; };
 		9BFFDEA92020E3C90070C812 /* Filter.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BFFDEA82020E3C90070C812 /* Filter.storyboard */; };
 		9BFFDEAB20212E5F0070C812 /* SetDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BFFDEAA20212E5F0070C812 /* SetDetail.storyboard */; };
@@ -258,6 +260,8 @@
 		9BCA7E2F2028DA6E00FA7BDC /* SetPriceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetPriceTableViewCell.swift; sourceTree = "<group>"; };
 		9BD4D5BE202E27000019A057 /* SetTagsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetTagsTableViewCell.swift; sourceTree = "<group>"; };
 		9BD4D5BF202E27000019A057 /* SetTagsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SetTagsTableViewCell.xib; sourceTree = "<group>"; };
+		9BE2F617203E298B0035C172 /* UIButton+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extensions.swift"; sourceTree = "<group>"; };
+		9BE2F619203E2A0C0035C172 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
 		9BF4EED920362DE6006F3180 /* BrowseHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseHeaderView.swift; sourceTree = "<group>"; };
 		9BFFDEA82020E3C90070C812 /* Filter.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Filter.storyboard; sourceTree = "<group>"; };
 		9BFFDEAA20212E5F0070C812 /* SetDetail.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SetDetail.storyboard; sourceTree = "<group>"; };
@@ -483,7 +487,9 @@
 			isa = PBXGroup;
 			children = (
 				296EB6E51FBFAA6000D4D3C6 /* Locale+Extensions.swift */,
+				9BE2F617203E298B0035C172 /* UIButton+Extensions.swift */,
 				9B5E4D38203354FA0057610E /* UICollectionView+Extensions.swift */,
+				9BE2F619203E2A0C0035C172 /* UIColor+Extensions.swift */,
 				2973F3431FBE173800861125 /* UIDevice+Extensions.swift */,
 				9B6D8E9A20325D900037ADFD /* UIFont+Extensions.swift */,
 				291DEE9C1FE27604004906E4 /* UIResponder+Extensions.swift */,
@@ -927,6 +933,7 @@
 				291DEE9D1FE27604004906E4 /* UIResponder+Extensions.swift in Sources */,
 				29365B771F8EBF2A00F6730C /* NewsViewController.swift in Sources */,
 				29F60F5B1FD3769E00DF2E48 /* PreviewView.swift in Sources */,
+				9BE2F618203E298B0035C172 /* UIButton+Extensions.swift in Sources */,
 				9B92A917202E4BE8001E7AC9 /* TagListView.swift in Sources */,
 				9B92EFAE201FE084007610BD /* FilterSelectSubthemeViewController.swift in Sources */,
 				9B92EFAC201FE06D007610BD /* FilterSelectThemeTableViewController.swift in Sources */,
@@ -958,6 +965,7 @@
 				29AE22CF1FCB9A6500744045 /* SetDescriptionTableViewCell.swift in Sources */,
 				29D30CA31FDDD8F60076DB85 /* GetPartsResponse.swift in Sources */,
 				9B2804CF2023CE970026FC73 /* SetImage.swift in Sources */,
+				9BE2F61A203E2A0C0035C172 /* UIColor+Extensions.swift in Sources */,
 				29DFEA141FA29BF500AB0AE8 /* SetCollectionTableViewCell.swift in Sources */,
 				297E119F1F9563F500AAE8CB /* UserCollectionTotals.swift in Sources */,
 				296EB6E21FBF5E5700D4D3C6 /* SetPartsTableViewCell.swift in Sources */,

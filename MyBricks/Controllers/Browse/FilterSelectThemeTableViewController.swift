@@ -31,28 +31,56 @@ class FilterSelectThemeViewController: UIViewController {
         super.viewDidLoad()
         addGradientBackground()
         self.title = "Select Theme"
+        
         tableView.tableFooterView = UIView()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if filterOptions.showingUserSets && filterOptions.selectedTheme != nil {
+            let item = UIBarButtonItem(title: "Clear", style: .plain, target: self, action: #selector(clearFilter(_:)))
+            navigationItem.setRightBarButton(item, animated: false)
+        }
+        else {
+            navigationItem.setRightBarButton(nil, animated: false)
+        }
+    }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
         if filterOptions.availableThemes.count == 0 {
             fetchThemes()
         }
-        if let selectedTheme = filterOptions.selectedTheme, let selectedIndex = filterOptions.availableThemes.index(of: selectedTheme) {
+        else if let selectedTheme = filterOptions.selectedTheme, let selectedIndex = filterOptions.availableThemes.index(of: selectedTheme) {
             tableView.selectRow(at: IndexPath(row: selectedIndex, section: 0), animated: false, scrollPosition: .middle)
         }
     }
     
+    //--------------------------------------------------------------------------
+    // MARK: - Actions
+    //--------------------------------------------------------------------------
+    
+    @IBAction func clearFilter(_ sender: AnyObject?) {
+        delegate?.selectThemeController(self, didSelectTheme: nil)
+        navigationController?.popViewController(animated: true)
+    }
+    
+    //--------------------------------------------------------------------------
+    // MARK: - Private
+    //--------------------------------------------------------------------------
+    
     fileprivate func fetchThemes() {
-        activityIndicator?.startAnimating()
-        
+        SimpleActivityHUD.show(overView: view)
         let completion: GetThemesCompletion = { result in
-            self.activityIndicator?.stopAnimating()
+            SimpleActivityHUD.hide()
             if result.isSuccess {
                 self.filterOptions.availableThemes = result.value ?? []
                 self.delegate?.selectThemeController(self, didUpdateAvailableThemes: self.filterOptions.availableThemes)
                 self.tableView.reloadData()
+                if let selectedTheme = self.filterOptions.selectedTheme, let selectedIndex = self.filterOptions.availableThemes.index(of: selectedTheme) {
+                    self.tableView.selectRow(at: IndexPath(row: selectedIndex, section: 0), animated: false, scrollPosition: .middle)
+                }
             }
         }
         

@@ -52,8 +52,8 @@ Mobile (iOS) application for interacting with the BrickSet LEGO database.
 - [x] Implement support for parts list in Set Detail view
 - [x] Implement owned/wanted updates on Set Detail view
 - [x] View parts list for sets (using Rebrickable API)
-- [ ] Implement filtering on Sets List view
-- [ ] Implement filtering on My Sets view
+- [x] Implement filtering on Sets List view
+- [x] Implement filtering on My Sets view
 - [ ] Implement filtering on Parts List view
 - [ ] Add part detail view
 - [ ] Add more detail to price information (new view with prices in all available currencies + current prices from Bricklink)
@@ -63,9 +63,11 @@ Mobile (iOS) application for interacting with the BrickSet LEGO database.
 - [x] Refactor Profile view to use table view cells
 - [ ] Improved transition animation (zoom?) for displaying large set images
 - [ ] Implement force touch actions on Set List view
+- [ ] Implement force touch actions on Set Detail view
 
 # Future Enhancements
 
+* More Profile Information / Editing Profile (requires Brickset API changes)
 * Local/offline storage of set data (using Core Data)
 * iPad support, iPad specific layouts
 

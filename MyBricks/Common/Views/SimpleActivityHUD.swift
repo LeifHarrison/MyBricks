@@ -16,6 +16,10 @@ public class SimpleActivityHUD: UIView {
 
     static private let shared = SimpleActivityHUD()
 
+    //--------------------------------------------------------------------------
+    // MARK: - Type Methods
+    //--------------------------------------------------------------------------
+    
     static func show(overView view: UIView, text: String? = nil, animated: Bool = true) {
         shared.show(overView: view, text: text, animated: animated)
     }
@@ -24,8 +28,10 @@ public class SimpleActivityHUD: UIView {
         shared.hide(animated: animated)
     }
     
-    //MARK: - Initialization
-    
+    //--------------------------------------------------------------------------
+    // MARK: - Initialization
+    //--------------------------------------------------------------------------
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
@@ -36,50 +42,18 @@ public class SimpleActivityHUD: UIView {
         setup()
     }
     
+    //--------------------------------------------------------------------------
+    // MARK: - Nib Loading
+    //--------------------------------------------------------------------------
+
     override public func awakeFromNib() {
         super.awakeFromNib()
         setup()
     }
 
-    private func setup() {
-        print("setup")
-        
-        backgroundColor =  UIColor.black.withAlphaComponent(0.4)
-        tintColor = UIColor.darkGray
-        
-        activityIndicator.activityIndicatorViewStyle = .whiteLarge
-        activityIndicator.color = tintColor
-        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
-
-        textLabel.text = "Loading..."
-        textLabel.textColor = tintColor
-        textLabel.font = .systemFont(ofSize: UIFont.labelFontSize)
-        textLabel.translatesAutoresizingMaskIntoConstraints = false
-
-        hudView.backgroundColor = UIColor(white: 0.95, alpha: 0.8)
-        hudView.layer.cornerRadius = 5
-        hudView.layer.shadowColor = UIColor.black.cgColor
-        hudView.layer.shadowRadius = 5
-        hudView.layer.shadowOpacity = 0.7
-        hudView.layer.shadowOffset =  CGSize(width: 1, height: 1)
-        hudView.translatesAutoresizingMaskIntoConstraints = false
-
-        hudView.addSubview(activityIndicator)
-        hudView.addSubview(textLabel)
-        
-        activityIndicator.topAnchor.constraint(equalTo: hudView.topAnchor, constant: 20).isActive = true
-        activityIndicator.centerXAnchor.constraint(equalTo: hudView.centerXAnchor).isActive = true
-        
-        textLabel.leadingAnchor.constraint(equalTo: hudView.leadingAnchor, constant: 25).isActive = true
-        hudView.trailingAnchor.constraint(equalTo: textLabel.trailingAnchor, constant: 25).isActive = true
-        textLabel.topAnchor.constraint(equalTo: activityIndicator.bottomAnchor, constant: 15).isActive = true
-        hudView.bottomAnchor.constraint(equalTo: textLabel.bottomAnchor, constant: 20).isActive = true
-
-        addSubview(hudView)
-        hudView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        hudView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-
-    }
+    //--------------------------------------------------------------------------
+    // MARK: - Public
+    //--------------------------------------------------------------------------
     
     public func show(overView view: UIView, text: String? = nil, animated: Bool = true) {
         self.frame = view.bounds
@@ -112,6 +86,48 @@ public class SimpleActivityHUD: UIView {
         }
         let options: UIViewAnimationOptions = [ .beginFromCurrentState, .curveEaseOut ]
         UIView.animate(withDuration: animated ? 0.3 : 0, delay: 0, options: options, animations: animations, completion: completion)
+    }
+    
+    //--------------------------------------------------------------------------
+    // MARK: - Private
+    //--------------------------------------------------------------------------
+    
+    private func setup() {
+        backgroundColor =  UIColor.black.withAlphaComponent(0.4)
+        tintColor = UIColor.darkGray
+        
+        activityIndicator.activityIndicatorViewStyle = .whiteLarge
+        activityIndicator.color = tintColor
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        
+        textLabel.text = "Loading..."
+        textLabel.textColor = tintColor
+        textLabel.font = .systemFont(ofSize: UIFont.labelFontSize)
+        textLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        hudView.backgroundColor = UIColor(white: 0.95, alpha: 0.8)
+        hudView.layer.cornerRadius = 5
+        hudView.layer.shadowColor = UIColor.black.cgColor
+        hudView.layer.shadowRadius = 5
+        hudView.layer.shadowOpacity = 0.7
+        hudView.layer.shadowOffset =  CGSize(width: 1, height: 1)
+        hudView.translatesAutoresizingMaskIntoConstraints = false
+        
+        hudView.addSubview(activityIndicator)
+        hudView.addSubview(textLabel)
+        
+        activityIndicator.topAnchor.constraint(equalTo: hudView.topAnchor, constant: 20).isActive = true
+        activityIndicator.centerXAnchor.constraint(equalTo: hudView.centerXAnchor).isActive = true
+        
+        textLabel.leadingAnchor.constraint(equalTo: hudView.leadingAnchor, constant: 25).isActive = true
+        hudView.trailingAnchor.constraint(equalTo: textLabel.trailingAnchor, constant: 25).isActive = true
+        textLabel.topAnchor.constraint(equalTo: activityIndicator.bottomAnchor, constant: 15).isActive = true
+        hudView.bottomAnchor.constraint(equalTo: textLabel.bottomAnchor, constant: 20).isActive = true
+        
+        addSubview(hudView)
+        hudView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        hudView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+        
     }
     
 }

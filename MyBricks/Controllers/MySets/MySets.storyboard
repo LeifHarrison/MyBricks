@@ -51,12 +51,13 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Qu-Lf-PVl">
-                                        <rect key="frame" x="97.5" y="245" width="180" height="29"/>
+                                        <rect key="frame" x="97.5" y="245" width="180" height="35"/>
                                         <color key="backgroundColor" red="0.0" green="0.43240571022033691" blue="0.60304111242294312" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
+                                            <constraint firstAttribute="height" constant="35" id="FiH-HS-bjE"/>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="180" id="qsa-AZ-W39"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <state key="normal" title="LOGIN"/>
                                         <connections>

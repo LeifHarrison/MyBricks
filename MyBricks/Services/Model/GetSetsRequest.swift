@@ -27,4 +27,13 @@ public struct GetSetsRequest {
         self.owned = owned
         self.wanted = wanted
     }
+    
+    init(filterOptions: FilterOptions) {
+        self.query = filterOptions.searchTerm
+        self.theme = filterOptions.selectedTheme?.name
+        self.subtheme = filterOptions.selectedSubtheme?.name
+        self.year = filterOptions.selectedYear?.name
+        self.owned = filterOptions.filterOwned
+        self.wanted = filterOptions.filterWanted
+    }
 }

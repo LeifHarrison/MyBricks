@@ -32,10 +32,19 @@ class FilterSelectSubthemeViewController: UIViewController {
         addGradientBackground()
         self.title = "Select Subtheme"
         
-        let item = UIBarButtonItem(title: "Clear", style: .plain, target: self, action: #selector(clearFilter(_:)))
-        navigationItem.setRightBarButton(item, animated: false)
-
         tableView.tableFooterView = UIView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if self.filterOptions.selectedSubtheme != nil {
+            let item = UIBarButtonItem(title: "Clear", style: .plain, target: self, action: #selector(clearFilter(_:)))
+            navigationItem.setRightBarButton(item, animated: false)
+        }
+        else {
+            navigationItem.setRightBarButton(nil, animated: false)
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -58,10 +67,9 @@ class FilterSelectSubthemeViewController: UIViewController {
     
     fileprivate func fetchSubthemes() {
         if let theme = filterOptions.selectedTheme {
-            activityIndicator?.startAnimating()
-            
+            SimpleActivityHUD.show(overView: view)
             let completion: GetSubthemesCompletion = { result in
-                self.activityIndicator?.stopAnimating()
+                SimpleActivityHUD.hide()
                 if result.isSuccess {
                     self.filterOptions.availableSubthemes = result.value ?? []
                     self.tableView.reloadData()
@@ -100,10 +108,10 @@ extension FilterSelectSubthemeViewController: UITableViewDataSource {
         let subtheme = filterOptions.availableSubthemes[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
         if let setCount = subtheme.setCount {
-            cell.textLabel?.text = subtheme.subtheme + " (\(setCount))"
+            cell.textLabel?.text = subtheme.name + " (\(setCount))"
         }
         else {
-            cell.textLabel?.text = subtheme.subtheme
+            cell.textLabel?.text = subtheme.name
         }
         return cell
     }

@@ -2,7 +2,7 @@
 //  FilterCollectionTableViewCell.swift
 //  MyBricks
 //
-//  Created by Harrison, Leif (US - Seattle) on 2/13/18.
+//  Created by Leif Harrison on 2/13/18.
 //  Copyright © 2018 Leif Harrison. All rights reserved.
 //
 
@@ -18,6 +18,8 @@ class FilterCollectionTableViewCell: UITableViewCell, ReusableView {
     var toggleFilterNotOwned: ((Bool) -> Void)? = nil
     var toggleFilterWanted: ((Bool) -> Void)? = nil
 
+    private var exclusiveSelection = false
+    
     //--------------------------------------------------------------------------
     // MARK: - Actions
     //--------------------------------------------------------------------------
@@ -25,6 +27,10 @@ class FilterCollectionTableViewCell: UITableViewCell, ReusableView {
     @IBAction func toggleFilterOwned(_ sender: UIButton) {
         sender.isSelected = !sender.isSelected
         toggleFilterOwned?(sender.isSelected)
+        if exclusiveSelection && sender.isSelected {
+            wantedCheckboxButton.isSelected = false
+            toggleFilterWanted?(false)
+        }
     }
     
     @IBAction func toggleFilterNotOwned(_ sender: UIButton) {
@@ -35,6 +41,10 @@ class FilterCollectionTableViewCell: UITableViewCell, ReusableView {
     @IBAction func toggleFilterWanted(_ sender: UIButton) {
         sender.isSelected = !sender.isSelected
         toggleFilterWanted?(sender.isSelected)
+        if exclusiveSelection && sender.isSelected {
+            ownedCheckboxButton.isSelected = false
+            toggleFilterOwned?(false)
+        }
     }
     
     //--------------------------------------------------------------------------
@@ -43,8 +53,16 @@ class FilterCollectionTableViewCell: UITableViewCell, ReusableView {
     
     func populate(with filterOptions: FilterOptions) -> Void {
         ownedCheckboxButton.isSelected = filterOptions.filterOwned
-        notOwnedCheckboxButton.isSelected = filterOptions.filterNotOwned
         wantedCheckboxButton.isSelected = filterOptions.filterWanted
+        
+        exclusiveSelection = filterOptions.showingUserSets
+        if filterOptions.showingUserSets {
+            notOwnedCheckboxButton.isEnabled = false
+            notOwnedCheckboxButton.isSelected = false
+        }
+        else {
+            notOwnedCheckboxButton.isSelected = filterOptions.filterNotOwned
+        }
     }
     
 }

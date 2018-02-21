@@ -252,10 +252,12 @@ extension SearchViewController: UISearchBarDelegate {
         hideInstructions(animated: true)
         hideNoResultsView(animated: true)
         showSearchHistory(animated: true)
+        searchBar.setShowsCancelButton(true, animated: true)
     }
     
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         hideSearchHistory(animated: true)
+        searchBar.setShowsCancelButton(false, animated: true)
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {

@@ -59,13 +59,13 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yzk-sT-wH9">
-                                        <rect key="frame" x="97.5" y="274" width="180" height="30"/>
+                                        <rect key="frame" x="97.5" y="274" width="180" height="35"/>
                                         <color key="backgroundColor" red="0.0" green="0.35294117650000001" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="180" id="5oh-mS-Dv4"/>
-                                            <constraint firstAttribute="height" constant="30" id="RRW-qW-QYJ"/>
+                                            <constraint firstAttribute="height" constant="35" id="RRW-qW-QYJ"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <state key="normal" title="LOGIN"/>
                                         <connections>
@@ -187,6 +187,7 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Login" id="0ZS-nD-rKr"/>
                     <connections>
+                        <outlet property="loginButton" destination="9R3-NO-sYB" id="GLx-IY-Cpj"/>
                         <outlet property="passwordField" destination="JlT-vq-xet" id="t9V-jq-X53"/>
                         <outlet property="usernameField" destination="cGw-kb-o5Y" id="RGs-5N-qDu"/>
                     </connections>

@@ -11,7 +11,8 @@ import Foundation
 public struct FilterOptions {
     
     var showingUserSets: Bool = false
-    
+    var initialTheme: SetTheme? = nil
+
     var searchType: SearchType? = nil
     var searchTerm: String? = nil
     
@@ -29,7 +30,7 @@ public struct FilterOptions {
     var filterWanted: Bool = false
     
     public func hasSelectedFilters() -> Bool {
-        return searchTerm != nil || selectedSubtheme != nil || selectedYear != nil || filterOwned || filterNotOwned || filterWanted
+        return searchTerm != nil || (showingUserSets && selectedTheme != nil ) || selectedSubtheme != nil || selectedYear != nil || filterOwned || filterNotOwned || filterWanted
     }
 }
 

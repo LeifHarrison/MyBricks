@@ -16,7 +16,7 @@ class BrowseSetsViewController: UIViewController {
     @IBOutlet weak var headerView: BrowseHeaderView!
     @IBOutlet weak var tableView: UITableView!
 
-    var filterOptions: FilterOptions? = nil
+    var filterOptions: FilterOptions = FilterOptions()
     var showUnreleased: Bool = false
     var browseRequest: Request? = nil
     
@@ -32,9 +32,6 @@ class BrowseSetsViewController: UIViewController {
         super.viewDidLoad()
         addGradientBackground()
 
-        let item = UIBarButtonItem(title: "Filter", style: .plain, target: self, action: #selector(showFilters(_:)))
-        navigationItem.setRightBarButton(item, animated: false)
-
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = UITableViewAutomaticDimension
         tableView.sectionIndexBackgroundColor = UIColor.clear
@@ -44,16 +41,14 @@ class BrowseSetsViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if let options = self.filterOptions, let theme = options.selectedTheme {
+        if filterOptions.searchTerm != nil {
+            self.title = "Search Results"
+        }
+        else if let theme = filterOptions.selectedTheme {
             self.title = theme.name
         }
         else {
-            if let options = filterOptions, options.searchTerm != nil {
-                self.title = "Search Results"
-            }
-            else {
-                self.title = "Browse Sets"
-            }
+            self.title = "Browse Sets"
         }
         
         updateDisplay(animated: false)
@@ -62,10 +57,10 @@ class BrowseSetsViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        if allSets.count == 0 {
+        if allSets.count == 0 && (!filterOptions.showingUserSets || BricksetServices.isLoggedIn()) {
             fetchSets()
         }
-        else {
+        else if browseRequest == nil {
             processSets()
             updateDisplay(animated: true)
         }
@@ -86,7 +81,7 @@ class BrowseSetsViewController: UIViewController {
         let filterStoryboard = UIStoryboard(name: "Filter", bundle: nil)
         if let filterVC = filterStoryboard.instantiateInitialViewController() as? FilterViewController {
             filterVC.delegate = self
-            filterVC.filterOptions = self.filterOptions ?? FilterOptions()
+            filterVC.filterOptions = self.filterOptions
             
             let navController = UINavigationController(rootViewController: filterVC)
             show(navController, sender: self)
@@ -97,26 +92,25 @@ class BrowseSetsViewController: UIViewController {
     // MARK: - Private
     //--------------------------------------------------------------------------
 
-    private func fetchSets() {
+    fileprivate func fetchSets() {
         SimpleActivityHUD.show(overView: view)
-        if let options = filterOptions {
-            let request = GetSetsRequest(theme: options.selectedTheme?.name, subtheme: options.selectedSubtheme?.subtheme, year: options.selectedYear?.year, owned: options.filterOwned, wanted: options.filterWanted)
-            self.browseRequest = BricksetServices.shared.getSets(request, completion: { [weak self] result in
-                guard let strongSelf = self else { return }
-                SimpleActivityHUD.hide()
-                if result.isSuccess {
-                    strongSelf.allSets = result.value ?? []
-                    strongSelf.processSets()
-                    strongSelf.updateDisplay(animated: true)
+        //let request = GetSetsRequest(theme: options.selectedTheme?.name, subtheme: options.selectedSubtheme?.name, year: options.selectedYear?.name, owned: options.filterOwned, wanted: options.filterWanted)
+        let request = GetSetsRequest(filterOptions: self.filterOptions)
+        self.browseRequest = BricksetServices.shared.getSets(request, completion: { [weak self] result in
+            guard let strongSelf = self else { return }
+            SimpleActivityHUD.hide()
+            if result.isSuccess {
+                strongSelf.allSets = result.value ?? []
+                strongSelf.processSets()
+                strongSelf.updateDisplay(animated: true)
+            }
+            else {
+                if let error = result.error as? URLError, error.code == .cancelled { return }
+                else if let error = result.error {
+                    print("Error loading sets: \(error)")
                 }
-                else {
-                    if let error = result.error as? URLError, error.code == .cancelled { return }
-                    else if let error = result.error {
-                        print("Error loading sets: \(error)")
-                    }
-                }
-            })
-        }
+            }
+        })
     }
     
     fileprivate func processSets() {
@@ -124,7 +118,7 @@ class BrowseSetsViewController: UIViewController {
         setsBySection.removeAll()
 
         // Have to filter for "Not Owned" ourselves
-        if let options = filterOptions, options.filterNotOwned {
+        if filterOptions.filterNotOwned {
             allSets = allSets.filter {
                 if let owned = $0.owned {
                     return !owned
@@ -148,14 +142,23 @@ class BrowseSetsViewController: UIViewController {
         sectionTitles = setsBySection.keys.sorted(by: >)
     }
 
-    private func showTableView(faded: Bool) {
+    fileprivate func showTableView(faded: Bool) {
         let animations = { () -> Void in
             self.tableView.alpha = faded ? 0.3 : 1.0
         }
         UIView.animate(withDuration: 0.2, animations:animations)
     }
 
-    private func updateDisplay(animated: Bool = false) {
+    internal func updateDisplay(animated: Bool = false) {
+        
+        if self.allSets.count > 0 {
+            let item = UIBarButtonItem(title: "Filter", style: .plain, target: self, action: #selector(showFilters(_:)))
+            navigationItem.setRightBarButton(item, animated: animated)
+        }
+        else {
+            navigationItem.setRightBarButton(nil, animated: animated)
+        }
+
         let animations = { () -> Void in
             self.headerView.alpha = 0.0
             self.tableView.alpha = 0.0

@@ -2,7 +2,7 @@
 //  BrowseHeaderView.swift
 //  MyBricks
 //
-//  Created by Harrison, Leif (US - Seattle) on 2/15/18.
+//  Created by Leif Harrison on 2/15/18.
 //  Copyright © 2018 Leif Harrison. All rights reserved.
 //
 
@@ -54,11 +54,11 @@ class BrowseHeaderView: UIView {
             }
             if let subtheme = options.selectedSubtheme {
                 if filterString.length > 0 { filterString.append(separator) }
-                filterString.append(NSAttributedString(string:"\(subtheme.subtheme)", attributes:boldAttributes))
+                filterString.append(NSAttributedString(string:"\(subtheme.name)", attributes:boldAttributes))
             }
             if let year = options.selectedYear {
                 if filterString.length > 0 { filterString.append(separator) }
-                filterString.append(NSAttributedString(string:"\(year.year)", attributes:boldAttributes))
+                filterString.append(NSAttributedString(string:"\(year.name)", attributes:boldAttributes))
             }
             if options.filterOwned {
                 if filterString.length > 0 { filterString.append(separator) }

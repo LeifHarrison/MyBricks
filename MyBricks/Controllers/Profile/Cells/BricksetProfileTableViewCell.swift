@@ -24,9 +24,7 @@ class BricksetProfileTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
-        logoutButton.layer.cornerRadius = 5.0
-
+        logoutButton.applyDefaultStyle()
         prepareForReuse()
     }
     

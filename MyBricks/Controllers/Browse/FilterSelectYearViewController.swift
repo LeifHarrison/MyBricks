@@ -31,10 +31,19 @@ class FilterSelectYearViewController: UIViewController {
         addGradientBackground()
         self.title = "Select Year"
         
-        let item = UIBarButtonItem(title: "Clear", style: .plain, target: self, action: #selector(clearFilter(_:)))
-        navigationItem.setRightBarButton(item, animated: false)
-        
         tableView.tableFooterView = UIView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if self.filterOptions.selectedYear != nil {
+            let item = UIBarButtonItem(title: "Clear", style: .plain, target: self, action: #selector(clearFilter(_:)))
+            navigationItem.setRightBarButton(item, animated: false)
+        }
+        else {
+            navigationItem.setRightBarButton(nil, animated: false)
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -57,9 +66,9 @@ class FilterSelectYearViewController: UIViewController {
     
     fileprivate func fetchYears() {
         if let theme = filterOptions.selectedTheme {
-            activityIndicator?.startAnimating()
+            SimpleActivityHUD.show(overView: view)
             let completion: GetYearsCompletion = { result in
-                self.activityIndicator?.stopAnimating()
+                SimpleActivityHUD.hide()
                 if result.isSuccess {
                     self.filterOptions.availableYears = result.value ?? []
                     self.tableView.reloadData()
@@ -96,7 +105,7 @@ extension FilterSelectYearViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let year = filterOptions.availableYears[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
-        cell.textLabel?.text = year.year
+        cell.textLabel?.text = year.name
         return cell
     }
     

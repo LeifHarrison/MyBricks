@@ -35,7 +35,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" placeholder="Search for Lego sets" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8Mc-QV-cXp">
+                            <searchBar contentMode="redraw" placeholder="Search for Lego sets" translatesAutoresizingMaskIntoConstraints="NO" id="8Mc-QV-cXp">
                                 <rect key="frame" x="1" y="64" width="375" height="56"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" enablesReturnKeyAutomatically="YES"/>
                                 <connections>
@@ -213,7 +213,7 @@ Cg
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YHa-GE-lsD" customClass="PreviewView" customModule="MyBricks" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <color key="backgroundColor" white="1" alpha="0.5" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BvF-3P-eNg">
                                 <rect key="frame" x="15" y="35.5" width="41" height="41"/>
@@ -233,27 +233,27 @@ Cg
                                 </connections>
                             </button>
                             <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kzq-L9-L4k">
-                                <rect key="frame" x="0.0" y="600" width="375" height="67"/>
+                                <rect key="frame" x="0.0" y="600.5" width="375" height="66.5"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="c9n-Qh-KtX">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="67"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="66.5"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" verticalHuggingPriority="252" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" image="info" translatesAutoresizingMaskIntoConstraints="NO" id="NdL-Ok-V2p">
-                                            <rect key="frame" x="15" y="20" width="30" height="27"/>
+                                            <rect key="frame" x="20" y="20" width="30" height="27"/>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Place the barcode within the window to scan. The search will start automatically." textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="usu-w1-yGh">
-                                            <rect key="frame" x="60" y="17.5" width="300" height="33.5"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Place the barcode within the window to scan. The search will start automatically." textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="usu-w1-yGh">
+                                            <rect key="frame" x="70" y="15.5" width="290" height="36"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="NdL-Ok-V2p" firstAttribute="leading" secondItem="c9n-Qh-KtX" secondAttribute="leading" constant="15" id="54N-fO-YFf"/>
-                                        <constraint firstItem="NdL-Ok-V2p" firstAttribute="top" secondItem="c9n-Qh-KtX" secondAttribute="top" constant="20" id="XoJ-IQ-Au6"/>
-                                        <constraint firstItem="usu-w1-yGh" firstAttribute="centerY" secondItem="NdL-Ok-V2p" secondAttribute="centerY" id="Y37-aE-7QI"/>
+                                        <constraint firstItem="usu-w1-yGh" firstAttribute="top" secondItem="c9n-Qh-KtX" secondAttribute="top" constant="15" id="0Sa-2y-QiT"/>
+                                        <constraint firstItem="NdL-Ok-V2p" firstAttribute="leading" secondItem="c9n-Qh-KtX" secondAttribute="leading" constant="20" id="54N-fO-YFf"/>
                                         <constraint firstAttribute="trailing" secondItem="usu-w1-yGh" secondAttribute="trailing" constant="15" id="mib-GN-aJw"/>
-                                        <constraint firstItem="usu-w1-yGh" firstAttribute="leading" secondItem="NdL-Ok-V2p" secondAttribute="trailing" constant="15" id="vg7-2g-2w0"/>
+                                        <constraint firstItem="NdL-Ok-V2p" firstAttribute="centerY" secondItem="usu-w1-yGh" secondAttribute="centerY" id="ta6-1N-AQw"/>
+                                        <constraint firstItem="usu-w1-yGh" firstAttribute="leading" secondItem="NdL-Ok-V2p" secondAttribute="trailing" constant="20" id="vg7-2g-2w0"/>
                                     </constraints>
                                 </view>
                                 <blurEffect style="light"/>
@@ -309,6 +309,7 @@ Cg
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="O2L-QK-unw" firstAttribute="bottom" secondItem="usu-w1-yGh" secondAttribute="bottom" constant="15" id="07U-c0-bJp"/>
                             <constraint firstItem="Kzq-L9-L4k" firstAttribute="bottom" secondItem="X4K-59-Knt" secondAttribute="bottom" id="2fQ-Ez-koq"/>
                             <constraint firstAttribute="top" secondItem="YHa-GE-lsD" secondAttribute="top" id="3vY-W7-bqe"/>
                             <constraint firstItem="gnH-2v-Jh2" firstAttribute="centerX" secondItem="O2L-QK-unw" secondAttribute="centerX" id="44u-lc-Zoe"/>
@@ -325,7 +326,6 @@ Cg
                             <constraint firstAttribute="trailing" secondItem="YHa-GE-lsD" secondAttribute="trailing" id="uZb-8w-Ted"/>
                             <constraint firstItem="ZO5-qJ-Pwa" firstAttribute="top" secondItem="O2L-QK-unw" secondAttribute="top" constant="210" id="uq0-fc-81N"/>
                             <constraint firstItem="YHa-GE-lsD" firstAttribute="leading" secondItem="X4K-59-Knt" secondAttribute="leading" id="wzn-RS-xzR"/>
-                            <constraint firstItem="O2L-QK-unw" firstAttribute="bottom" secondItem="NdL-Ok-V2p" secondAttribute="bottom" constant="20" id="zBj-Ym-UqD"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="O2L-QK-unw"/>
                     </view>

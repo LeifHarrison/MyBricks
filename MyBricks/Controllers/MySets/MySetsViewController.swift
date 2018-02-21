@@ -25,11 +25,10 @@ class MySetsViewController: BrowseSetsViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        loginButton.layer.cornerRadius = 5.0
+        loginButton.applyDefaultStyle()
         
-        filterOptions = FilterOptions()
-        filterOptions?.showingUserSets = true
-        filterOptions?.filterOwned = true
+        filterOptions.showingUserSets = true
+        filterOptions.filterOwned = true
         
     }
 
@@ -38,14 +37,6 @@ class MySetsViewController: BrowseSetsViewController {
         self.title = "My Sets"
     }
 
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-    }
-
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-    }
-    
     //--------------------------------------------------------------------------
     // MARK: - Actions
     //--------------------------------------------------------------------------
@@ -73,7 +64,8 @@ class MySetsViewController: BrowseSetsViewController {
     // MARK: - Private
     //--------------------------------------------------------------------------
 
-    private func updateDisplay() {
+    override func updateDisplay(animated: Bool = false) {
+        super.updateDisplay(animated: animated)
         if BricksetServices.isLoggedIn() {
             headerView.isHidden = false
             tableView.isHidden = false

@@ -12,7 +12,7 @@ import Fuzi
 struct SetYear {
 
     var theme: String
-    var year: String
+    var name: String
     var setCount: Int?
 
     init?(element: XMLElement) {
@@ -21,7 +21,7 @@ struct SetYear {
         }
         
         theme = xmlTheme
-        year = xmlYear
+        name = xmlYear
 
         setCount = Int(element.firstChild(tag: "setCount")?.stringValue ?? "0")
     }
@@ -31,7 +31,7 @@ struct SetYear {
 extension SetYear: Equatable {
     
     static func == (lhs: SetYear, rhs: SetYear) -> Bool {
-        return lhs.theme == rhs.theme && lhs.year == rhs.year
+        return lhs.theme == rhs.theme && lhs.name == rhs.name
     }
     
 }

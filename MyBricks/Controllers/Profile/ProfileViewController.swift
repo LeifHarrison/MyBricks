@@ -54,7 +54,7 @@ class ProfileViewController: UIViewController {
             tableView.tableFooterView = UIView()
         }
 
-        loginButton.layer.cornerRadius = 5.0
+        loginButton.applyDefaultStyle()
     }
 
     override func viewWillAppear(_ animated: Bool) {

@@ -17,7 +17,15 @@ class FilterViewController: UIViewController {
 
     enum TableSection: Int {
         case general
-        case user
+        case collection
+        
+        func title() -> String? {
+            switch self {
+                case .general: return NSLocalizedString("General", comment: "")
+                case .collection: return NSLocalizedString("Collection", comment: "")
+            }
+        }
+
     }
     
     enum TableRowGeneral: Int {
@@ -31,15 +39,15 @@ class FilterViewController: UIViewController {
         
         func title() -> String? {
             switch self {
-            case .theme: return NSLocalizedString("Theme", comment: "")
-            case .subtheme: return NSLocalizedString("Subtheme", comment: "")
-            case .year: return NSLocalizedString("Year", comment: "")
+                case .theme: return NSLocalizedString("Theme", comment: "")
+                case .subtheme: return NSLocalizedString("Subtheme", comment: "")
+                case .year: return NSLocalizedString("Year", comment: "")
             }
         }
 
     }
 
-    enum TableRowUser: Int {
+    enum TableRowCollection: Int {
         case collection
         
         init?(indexPath: IndexPath) { self.init(rawValue: indexPath.row) }
@@ -47,8 +55,9 @@ class FilterViewController: UIViewController {
         static var numberOfRows: Int { return 1 }
     }
 
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var bottomContainerView: UIView!
+    @IBOutlet weak var resetButton: UIButton!
 
     var filterOptions: FilterOptions = FilterOptions()
 
@@ -66,6 +75,8 @@ class FilterViewController: UIViewController {
 
         self.title = "Filter"
 
+        resetButton.applyDefaultStyle()
+        
         tableView.alwaysBounceVertical = false
         tableView.backgroundColor = UIColor.clear
         tableView.tableFooterView = UIView()
@@ -77,7 +88,7 @@ class FilterViewController: UIViewController {
         sections.removeAll()
         sections.append(.general)
         if BricksetServices.isLoggedIn() {
-            sections.append(.user)
+            sections.append(.collection)
         }
     }
     
@@ -90,8 +101,36 @@ class FilterViewController: UIViewController {
     }
     
     @IBAction func applyFilters(_ sender: AnyObject?) {
+        if filterOptions.showingUserSets && !filterOptions.filterOwned && !filterOptions.filterWanted {
+            let title = NSLocalizedString("Invalid Filters", comment: "")
+            let message = NSLocalizedString("You must select 'Owned' or 'Wanted' when viewing your collection.\n\nFor browsing sets you do not own or want, use the 'Browse' tab.", comment: "")
+            let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+            let actionButton = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alertController.addAction(actionButton)
+            self.present(alertController, animated: true, completion: nil)
+            return
+        }
         delegate?.filterViewController(self, didUpdateFilterOptions: filterOptions)
         dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func resetFilters(_ sender: AnyObject?) {
+        if filterOptions.showingUserSets {
+            filterOptions.selectedTheme = nil
+            filterOptions.selectedSubtheme = nil
+            filterOptions.selectedYear = nil
+            filterOptions.filterOwned = true
+            filterOptions.filterWanted = false
+        }
+        else {
+            filterOptions.selectedTheme = filterOptions.initialTheme
+            filterOptions.selectedSubtheme = nil
+            filterOptions.selectedYear = nil
+            filterOptions.filterOwned = false
+            filterOptions.filterNotOwned = false
+            filterOptions.filterWanted = false
+        }
+        tableView.reloadData()
     }
     
     //--------------------------------------------------------------------------
@@ -129,8 +168,8 @@ extension FilterViewController: UITableViewDataSource {
         if section == .general {
             return TableRowGeneral.numberOfRows
         }
-        else if section == .user {
-            return TableRowUser.numberOfRows
+        else if section == .collection {
+            return TableRowCollection.numberOfRows
         }
         return 0
     }
@@ -144,14 +183,17 @@ extension FilterViewController: UITableViewDataSource {
             cell.textLabel?.text = row.title()
             
             switch row {
-            case .theme: cell.detailTextLabel?.text = filterOptions.selectedTheme?.name ?? "All"
-            case .subtheme: cell.detailTextLabel?.text = filterOptions.selectedSubtheme?.subtheme ?? "All"
-            case .year: cell.detailTextLabel?.text = filterOptions.selectedYear?.year ?? "All"
+                case .theme:
+                    cell.detailTextLabel?.text = filterOptions.selectedTheme?.name ?? "All"
+                case .subtheme:
+                    cell.detailTextLabel?.text = filterOptions.selectedSubtheme?.name ?? "All"
+                case .year:
+                    cell.detailTextLabel?.text = filterOptions.selectedYear?.name ?? "All"
             }
             
             return cell
         }
-        else if section == .user {
+        else if section == .collection {
             if let cell = tableView.dequeueReusableCell(withIdentifier: FilterCollectionTableViewCell.reuseIdentifier, for: indexPath) as? FilterCollectionTableViewCell {
                 cell.populate(with: filterOptions)
                 cell.toggleFilterOwned = { value in
@@ -177,13 +219,18 @@ extension FilterViewController: UITableViewDataSource {
 
 extension FilterViewController: UITableViewDelegate {
     
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 40.0
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        guard let header = view as? UITableViewHeaderFooterView else { return }
+        header.textLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+    }
+    
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        let section = sections[section]
-        if section == .general {
-            return "General"
-        }
-        else if section == .user {
-            return "Collection"
+        if let title = sections[section].title() {
+            return title.uppercased()
         }
         return nil
     }
