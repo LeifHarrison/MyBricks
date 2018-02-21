@@ -557,6 +557,8 @@
 			children = (
 				9B5E4D3C2033A5E50057610E /* FilterCollectionTableViewCell.swift */,
 				9B5CA745201946CE00B09BCB /* FilterSelectionTableViewCell.swift */,
+				29CA94A41F8D72DC000F1DE3 /* SetListTableViewCell.swift */,
+				9B63D282202CE08700E1C3B0 /* SetListTableViewCell.xib */,
 				29E86FD91F31293900A67179 /* ThemeTableViewCell.swift */,
 			);
 			path = Cells;
@@ -581,8 +583,6 @@
 		9B63D281202CE07800E1C3B0 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				29CA94A41F8D72DC000F1DE3 /* SetListTableViewCell.swift */,
-				9B63D282202CE08700E1C3B0 /* SetListTableViewCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";

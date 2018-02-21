@@ -133,7 +133,7 @@ class SearchViewController: UIViewController {
                 }
                 else {
                     // If we found more than one, go to Browse Sets
-                    self.showResults(sets)
+                    self.showResults(searchType: searchType, searchTerm: searchTerm, results: sets)
                 }
             }
             else {
@@ -197,10 +197,17 @@ class SearchViewController: UIViewController {
         }
     }
     
-    fileprivate func showResults(_ results: [Set]) {
+    fileprivate func showResults(searchType: SearchType, searchTerm: String, results: [Set]) {
         let browseStoryboard = UIStoryboard(name: "Browse", bundle: nil)
         if let browseVC = browseStoryboard.instantiateViewController(withIdentifier: "BrowseSetsViewController") as? BrowseSetsViewController {
+
+            var filterOptions = FilterOptions()
+            filterOptions.searchType = searchType
+            filterOptions.searchTerm = searchTerm
+            
+            browseVC.filterOptions = filterOptions
             browseVC.allSets = results
+
             show(browseVC, sender: self)
         }
     }

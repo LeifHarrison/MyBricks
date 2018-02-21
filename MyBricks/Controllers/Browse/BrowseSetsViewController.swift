@@ -48,16 +48,26 @@ class BrowseSetsViewController: UIViewController {
             self.title = theme.name
         }
         else {
-            self.title = "Browse Sets"
+            if let options = filterOptions, options.searchTerm != nil {
+                self.title = "Search Results"
+            }
+            else {
+                self.title = "Browse Sets"
+            }
         }
         
         updateDisplay(animated: false)
     }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
         if allSets.count == 0 {
             fetchSets()
+        }
+        else {
+            processSets()
+            updateDisplay(animated: true)
         }
     }
 

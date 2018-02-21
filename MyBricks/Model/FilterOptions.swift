@@ -12,12 +12,16 @@ public struct FilterOptions {
     
     var showingUserSets: Bool = false
     
-    var availableThemes: [SetTheme] = []
-    var availableSubthemes: [SetSubtheme] = []
-    var availableYears: [SetYear] = []
+    var searchType: SearchType? = nil
+    var searchTerm: String? = nil
     
+    var availableThemes: [SetTheme] = []
     var selectedTheme: SetTheme? = nil
+
+    var availableSubthemes: [SetSubtheme] = []
     var selectedSubtheme: SetSubtheme? = nil
+    
+    var availableYears: [SetYear] = []
     var selectedYear: SetYear? = nil
     
     var filterOwned: Bool = false
@@ -25,7 +29,7 @@ public struct FilterOptions {
     var filterWanted: Bool = false
     
     public func hasSelectedFilters() -> Bool {
-        return selectedSubtheme != nil || selectedYear != nil || filterOwned || filterNotOwned || filterWanted
+        return searchTerm != nil || selectedSubtheme != nil || selectedYear != nil || filterOwned || filterNotOwned || filterWanted
     }
 }
 
