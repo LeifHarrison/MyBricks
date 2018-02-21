@@ -8,7 +8,7 @@ PODS:
     - Alamofire (~> 4.0)
   - AlamofireRSSParser (2.1.0):
     - Alamofire
-  - Cosmos (14.0.0)
+  - Cosmos (15.0.0)
   - Fuzi (2.0.1)
   - KeychainAccess (3.1.0)
 
@@ -28,7 +28,7 @@ SPEC CHECKSUMS:
   AlamofireNetworkActivityIndicator: 81e1630e7cfed22a4e4e82a174c59e651dc4f8ca
   AlamofireNetworkActivityLogger: a7ae1842988b3f6248a49213268375bd27b515f0
   AlamofireRSSParser: 5fed94de51ff88ea48496d7dfa6e3274100d90d6
-  Cosmos: 6dd44b65d587033e690ae1c350c875d262a23fda
+  Cosmos: a6dbd3d0baa0cc8f51f8598f7508d5a09d0a9ade
   Fuzi: f64983dea705491d3aedd32351247a09523e7efd
   KeychainAccess: 94c5540b32eabf7bc32bfb976a268e8ea05fd6da
 

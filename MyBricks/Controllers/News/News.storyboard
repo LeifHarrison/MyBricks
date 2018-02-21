@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -43,10 +42,6 @@
                                     <outlet property="delegate" destination="bup-dh-WII" id="XLm-8M-qO2"/>
                                 </connections>
                             </tableView>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Jjf-YT-Jtj">
-                                <rect key="frame" x="169" y="347" width="37" height="37"/>
-                                <color key="color" red="0.47058823529999999" green="0.47058823529999999" blue="0.47058823529999999" alpha="1" colorSpace="calibratedRGB"/>
-                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -54,14 +49,11 @@
                             <constraint firstItem="XYF-Lf-04g" firstAttribute="leading" secondItem="mRR-DB-zdH" secondAttribute="leading" id="8zN-xc-Op3"/>
                             <constraint firstItem="mRR-DB-zdH" firstAttribute="trailing" secondItem="XYF-Lf-04g" secondAttribute="trailing" id="GQ1-ku-xte"/>
                             <constraint firstItem="mRR-DB-zdH" firstAttribute="bottom" secondItem="XYF-Lf-04g" secondAttribute="bottom" id="TMg-RG-Drj"/>
-                            <constraint firstItem="Jjf-YT-Jtj" firstAttribute="centerX" secondItem="mRR-DB-zdH" secondAttribute="centerX" id="paJ-GB-HF5"/>
-                            <constraint firstItem="Jjf-YT-Jtj" firstAttribute="centerY" secondItem="mRR-DB-zdH" secondAttribute="centerY" id="pj8-bM-DHx"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="mRR-DB-zdH"/>
                     </view>
                     <navigationItem key="navigationItem" title="News" id="Rsf-cc-Xok"/>
                     <connections>
-                        <outlet property="activityIndicator" destination="Jjf-YT-Jtj" id="lWl-4v-qEv"/>
                         <outlet property="tableView" destination="XYF-Lf-04g" id="xjr-c7-hX5"/>
                         <segue destination="VGY-KF-PsA" kind="show" identifier="showNewsItem" id="glY-pu-L5J"/>
                     </connections>

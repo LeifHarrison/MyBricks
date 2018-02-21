@@ -13,7 +13,6 @@ import AlamofireImage
 
 class BrowseSetsViewController: UIViewController {
 
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var headerView: BrowseHeaderView!
     @IBOutlet weak var tableView: UITableView!
 
@@ -89,18 +88,12 @@ class BrowseSetsViewController: UIViewController {
     //--------------------------------------------------------------------------
 
     private func fetchSets() {
-        
-        showTableView(faded: true)
-        activityIndicator?.startAnimating()
-        
+        SimpleActivityHUD.show(overView: view)
         if let options = filterOptions {
             let request = GetSetsRequest(theme: options.selectedTheme?.name, subtheme: options.selectedSubtheme?.subtheme, year: options.selectedYear?.year, owned: options.filterOwned, wanted: options.filterWanted)
             self.browseRequest = BricksetServices.shared.getSets(request, completion: { [weak self] result in
                 guard let strongSelf = self else { return }
-                
-                strongSelf.activityIndicator?.stopAnimating()
-                strongSelf.showTableView(faded: false)
-
+                SimpleActivityHUD.hide()
                 if result.isSuccess {
                     strongSelf.allSets = result.value ?? []
                     strongSelf.processSets()

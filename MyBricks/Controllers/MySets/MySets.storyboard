@@ -126,18 +126,12 @@
                                     <outlet property="resultsLabel" destination="GiB-pd-aeX" id="4fX-y4-mxE"/>
                                 </connections>
                             </view>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="D9J-ja-2iD">
-                                <rect key="frame" x="169" y="347" width="37" height="37"/>
-                                <color key="color" red="0.47058823529999999" green="0.47058823529999999" blue="0.47058823529999999" alpha="1" colorSpace="calibratedRGB"/>
-                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="QOa-yd-L6d" firstAttribute="leading" secondItem="XV8-WS-GS1" secondAttribute="leading" id="42k-m2-mxE"/>
                             <constraint firstItem="QOa-yd-L6d" firstAttribute="bottom" secondItem="XV8-WS-GS1" secondAttribute="bottom" id="5Mf-JD-BSs"/>
-                            <constraint firstItem="D9J-ja-2iD" firstAttribute="centerX" secondItem="XV8-WS-GS1" secondAttribute="centerX" id="9Jn-oE-dID"/>
                             <constraint firstItem="QOa-yd-L6d" firstAttribute="top" secondItem="XV8-WS-GS1" secondAttribute="top" id="Mer-XU-UMt"/>
-                            <constraint firstItem="D9J-ja-2iD" firstAttribute="centerY" secondItem="XV8-WS-GS1" secondAttribute="centerY" id="Ojy-Qr-HaG"/>
                             <constraint firstItem="W5R-GN-wxk" firstAttribute="leading" secondItem="XV8-WS-GS1" secondAttribute="leading" id="QUU-hV-3ae"/>
                             <constraint firstItem="XV8-WS-GS1" firstAttribute="top" secondItem="W5R-GN-wxk" secondAttribute="top" id="SIe-gh-SdX"/>
                             <constraint firstItem="W5R-GN-wxk" firstAttribute="trailing" secondItem="XV8-WS-GS1" secondAttribute="trailing" id="ViW-49-I8s"/>
@@ -151,7 +145,6 @@
                     </view>
                     <navigationItem key="navigationItem" title="My Sets" id="7I0-qL-ctP"/>
                     <connections>
-                        <outlet property="activityIndicator" destination="D9J-ja-2iD" id="T6A-1i-OwQ"/>
                         <outlet property="headerView" destination="kIA-w2-FyF" id="Usa-qc-cMf"/>
                         <outlet property="instructionLabel" destination="6iu-ZR-0I0" id="IEA-IW-2pM"/>
                         <outlet property="loginButton" destination="9Qu-Lf-PVl" id="gtd-ZW-LB9"/>

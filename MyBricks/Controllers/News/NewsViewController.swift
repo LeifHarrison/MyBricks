@@ -12,7 +12,6 @@ import AlamofireRSSParser
 
 class NewsViewController: UIViewController {
 
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
 
     var feed: RSSFeed? = nil
@@ -34,9 +33,9 @@ class NewsViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        activityIndicator?.startAnimating()
+        SimpleActivityHUD.show(overView: view)
         BricksetServices.shared.getNews(completion: { result in
-            self.activityIndicator?.stopAnimating()
+            SimpleActivityHUD.hide()
             if let value = result.value {
                 self.feed = value
                 self.feedItems = value.items

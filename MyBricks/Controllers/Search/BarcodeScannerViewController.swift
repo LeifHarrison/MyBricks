@@ -26,7 +26,6 @@ class BarcodeScannerViewController: UIViewController {
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var flashButton: UIButton!
     @IBOutlet weak var previewView: PreviewView!
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var instructionView: UIView!
     @IBOutlet weak var noCameraView: UIView!
     @IBOutlet weak var testBarcodesButton: UIView!
@@ -55,21 +54,25 @@ class BarcodeScannerViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        testBarcodesButton.layer.cornerRadius = 5.0
-
+        
         if let _ = self.captureDevice {
             setupCamera()
         }
         else {
+            addGradientBackground()
+            
             // Device doesn't support video capture. Display informational
             // overlay and, on the simulator, a "Test Barcodes" button
+            noCameraView.isHidden = false
+            
             if UIDevice.isSimulator {
+                testBarcodesButton.layer.cornerRadius = 5.0
                 testBarcodesButton.isHidden = false
             }
 
             // Hide everything else
             instructionView.isHidden = true
+            previewView.isHidden = true
         }
     }
 
@@ -85,7 +88,7 @@ class BarcodeScannerViewController: UIViewController {
     }
 
     override func viewWillDisappear(_ animated: Bool) {
-        activityIndicator?.stopAnimating()
+        SimpleActivityHUD.hide()
         captureSession.stopRunning()
         super.viewWillDisappear(animated)
     }
@@ -241,7 +244,7 @@ extension BarcodeScannerViewController: AVCaptureMetadataOutputObjectsDelegate {
         }
 
         DispatchQueue.main.async {
-            self.activityIndicator?.startAnimating()
+            SimpleActivityHUD.show(overView: self.view)
         }
 
         delegate?.barcodeScanner(self, didCaptureCode: code, type: rawType)

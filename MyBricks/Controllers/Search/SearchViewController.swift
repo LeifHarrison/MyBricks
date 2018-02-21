@@ -17,7 +17,6 @@ class SearchViewController: UIViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var instructionsLabel: UILabel!
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var noResultsView: UIView!
     @IBOutlet weak var tryAgainButton: UIButton!
 
@@ -118,10 +117,10 @@ class SearchViewController: UIViewController {
         }
 
         hideInstructions(animated: true)
-        activityIndicator?.startAnimating()
+        SimpleActivityHUD.show(overView: view)
         let request = GetSetsRequest(query: searchTerm)
         self.searchRequest = BricksetServices.shared.getSets(request, completion: { result in
-            self.activityIndicator?.stopAnimating()
+            SimpleActivityHUD.hide()
             self.saveSearch(withType: searchType, searchTerm: searchTerm)
             
             if result.isSuccess, let sets = result.value {
