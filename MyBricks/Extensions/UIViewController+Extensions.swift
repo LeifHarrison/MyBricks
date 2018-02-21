@@ -75,7 +75,7 @@ extension UIViewController {
                     }
                     else {
                         DispatchQueue.main.async {
-                            self.showAlertWith(title: "Authentication Failed", message: self.evaluateAuthenticationPolicyMessage(forErrorCode: error.errorCode))
+                            self.showAlertWith(title: "Authentication Failed", message: self.evaluateAuthenticationPolicyMessage(forError: error))
                             self.displayLocalAuthenticationError(error: error)
                         }
                     }
@@ -116,52 +116,52 @@ extension UIViewController {
 
     }
 
-    func evaluatePolicyFailErrorMessage(forErrorCode errorCode: Int) -> String {
+    func evaluatePolicyFailErrorMessage(forError error: LAError) -> String {
         var message = ""
         
-        switch errorCode {
-            case LAError.biometryNotAvailable.rawValue:
+        switch error {
+            case LAError.biometryNotAvailable:
                 message = "Authentication could not start because the device does not support biometric authentication."
-            case LAError.biometryLockout.rawValue:
+            case LAError.biometryLockout:
                 message = "Authentication could not continue because the user has been locked out of biometric authentication, due to failing authentication too many times."
-            case LAError.biometryNotEnrolled.rawValue:
+            case LAError.biometryNotEnrolled:
                 message = "Authentication could not start because the user has not enrolled in biometric authentication."
             default:
-                message = "Did not find error code on LAError object"
+                message = "Unknown Authentication Error"
         }
 
         return message;
     }
     
-    func evaluateAuthenticationPolicyMessage(forErrorCode errorCode: Int) -> String {
+    func evaluateAuthenticationPolicyMessage(forError error: LAError) -> String {
         var message = ""
         
-        switch errorCode {
-            case LAError.authenticationFailed.rawValue:
+        switch error {
+            case LAError.authenticationFailed:
                 message = "The user failed to provide valid credentials"
-            case LAError.appCancel.rawValue:
+            case LAError.appCancel:
                 message = "Authentication was cancelled by application"
-            case LAError.invalidContext.rawValue:
+            case LAError.invalidContext:
                 message = "The context is invalid"
-            case LAError.notInteractive.rawValue:
+            case LAError.notInteractive:
                 message = "Not interactive"
-            case LAError.passcodeNotSet.rawValue:
+            case LAError.passcodeNotSet:
                 message = "Passcode is not set on the device"
-            case LAError.systemCancel.rawValue:
+            case LAError.systemCancel:
                 message = "Authentication was cancelled by the system"
-            case LAError.userCancel.rawValue:
-                message = "The user did cancel"
-            case LAError.userFallback.rawValue:
-                message = "The user chose to use the fallback"
+            case LAError.userCancel:
+                message = "Authentication was cancelled by the user"
+            case LAError.userFallback:
+                message = "The user chose to use the fallback authentication method"
             default:
-                message = evaluatePolicyFailErrorMessage(forErrorCode: errorCode)
+                message = evaluatePolicyFailErrorMessage(forError: error)
         }
         
         return message
     }
 
     func displayLocalAuthenticationError(error:LAError) {
-        let message = evaluateAuthenticationPolicyMessage(forErrorCode: error.errorCode)
+        let message = evaluateAuthenticationPolicyMessage(forError: error)
         self.showAlertWith(title: "Authentication Failed", message: message)
     }
 
