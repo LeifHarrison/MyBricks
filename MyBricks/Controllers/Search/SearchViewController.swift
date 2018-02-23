@@ -56,12 +56,20 @@ class SearchViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(with:)), name: .UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(with:)), name: .UIKeyboardWillHide, object: nil)
+
         updateSearchHistory()
         showInstructions(animated: true)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(true)
+        
+        NotificationCenter.default.removeObserver(self, name: .UIKeyboardDidShow, object: nil)
+        NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillHide, object: nil)
+
         hideNoResultsView(animated: false)
         if let request = self.searchRequest {
             request.cancel()
@@ -96,6 +104,30 @@ class SearchViewController: UIViewController {
             searchBar.becomeFirstResponder()
         }
 
+    }
+    
+    //--------------------------------------------------------------------------
+    // MARK: - Keyboard Notifications
+    //--------------------------------------------------------------------------
+    
+    @objc private func keyboardWillShow(with notification: Notification) {
+        guard let userInfo = notification.userInfo as? [String: AnyObject],
+            let keyboardFrame = (userInfo[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue
+            else { return }
+        
+        var contentInset = self.tableView.contentInset
+        contentInset.bottom += keyboardFrame.height
+        
+        self.tableView.contentInset = contentInset
+        self.tableView.scrollIndicatorInsets = contentInset
+    }
+    
+    @objc private func keyboardWillHide(with notification: Notification) {
+        var contentInset = self.tableView.contentInset
+        contentInset.bottom = 0
+        
+        self.tableView.contentInset = contentInset
+        self.tableView.scrollIndicatorInsets = contentInset
     }
     
     //--------------------------------------------------------------------------

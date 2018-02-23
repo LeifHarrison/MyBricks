@@ -251,6 +251,10 @@ class SetDetailViewController: UIViewController {
         self.tableView.scrollIndicatorInsets = contentInset
     }
     
+    //--------------------------------------------------------------------------
+    // MARK: - Storyboards and Segues
+    //--------------------------------------------------------------------------
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let imageVC = segue.destination as? ImageDetailViewController {
             if let set = currentSet, let imageURL = set.imageURL {

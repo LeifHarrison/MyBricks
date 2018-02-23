@@ -134,7 +134,7 @@ class FilterViewController: UIViewController {
     }
     
     //--------------------------------------------------------------------------
-    // MARK: - Private
+    // MARK: - Storyboards and Segues
     //--------------------------------------------------------------------------
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

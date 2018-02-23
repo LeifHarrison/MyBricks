@@ -299,7 +299,6 @@
 		290F179D1FD8D37E0002C70B /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				9B63D281202CE07800E1C3B0 /* Cells */,
 				290F179E1FD8D3880002C70B /* Views */,
 				29EE120D202B698A00C05C55 /* SafariActivity.swift */,
 			);
@@ -584,13 +583,6 @@
 				9B3E1EEB202A690D0094DD3E /* SetDetailFooterView.swift */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		9B63D281202CE07800E1C3B0 /* Cells */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Cells;
 			sourceTree = "<group>";
 		};
 		9B63D286202CFC8600E1C3B0 /* Cells */ = {

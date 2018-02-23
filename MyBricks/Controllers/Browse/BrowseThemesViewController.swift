@@ -10,7 +10,6 @@ import UIKit
 
 class BrowseThemesViewController: UIViewController {
 
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
 
     var allThemes: [SetTheme] = []
@@ -43,12 +42,23 @@ class BrowseThemesViewController: UIViewController {
     //--------------------------------------------------------------------------
 
     fileprivate func fetchThemes() {
-        activityIndicator?.startAnimating()
+        SimpleActivityHUD.show(overView: view)
         BricksetServices.shared.getThemes(completion: { result in
-            self.allThemes = result.value ?? []
-            self.processThemes()
-            self.activityIndicator?.stopAnimating()
-            self.tableView.reloadData()
+            SimpleActivityHUD.hide()
+            if result.isSuccess {
+                self.allThemes = result.value ?? []
+                self.processThemes()
+                self.tableView.reloadData()
+            }
+            else {
+                if let error = result.error as? URLError, error.code == .cancelled { return }
+                else if let error = result.error as? URLError {
+                    //print("Error loading themes: \(error)")
+                    print("Code: \(error.errorCode), Description: \(error.localizedDescription)")
+                }
+
+                // TODO: Display error view
+            }
         })
     }
     

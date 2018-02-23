@@ -30,6 +30,7 @@ class SearchHistoryTableViewCell: UITableViewCell {
         super.prepareForReuse()
         searchTermLabel.text = nil
         searchTypeImageView.image = nil
+        searchTermLabel.font = UIFont.systemFont(ofSize: searchTermLabel.font.pointSize, weight: .regular)
     }
     
     //--------------------------------------------------------------------------
@@ -39,6 +40,9 @@ class SearchHistoryTableViewCell: UITableViewCell {
     func populateWithSearchHistoryItem(_ item : SearchHistoryItem) -> Void {
         searchTypeImageView.image = UIImage(named: item.iconName)
         searchTermLabel.text = item.searchTerm
+        if item.searchType == .scan {
+            searchTermLabel.font = UIFont.systemFont(ofSize: searchTermLabel.font.pointSize, weight: .medium)
+        }
     }
     
 }

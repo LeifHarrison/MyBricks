@@ -36,7 +36,7 @@ extension SearchHistoryItem {
     var iconName: String {
         switch searchType {
             case .search : return "search"
-            case .scan : return "info"
+            case .scan : return "scan"
         }
     }
     

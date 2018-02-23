@@ -94,7 +94,6 @@ class BrowseSetsViewController: UIViewController {
 
     fileprivate func fetchSets() {
         SimpleActivityHUD.show(overView: view)
-        //let request = GetSetsRequest(theme: options.selectedTheme?.name, subtheme: options.selectedSubtheme?.name, year: options.selectedYear?.name, owned: options.filterOwned, wanted: options.filterWanted)
         let request = GetSetsRequest(filterOptions: self.filterOptions)
         self.browseRequest = BricksetServices.shared.getSets(request, completion: { [weak self] result in
             guard let strongSelf = self else { return }
