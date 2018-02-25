@@ -126,8 +126,11 @@ class BarcodeScannerViewController: UIViewController {
         let testItems = [
             [ "name" : "Invalid Code",      "code" : "3732300201",    "type" : "UPCA" ],
             [ "name" : "Not Found",         "code" : "010101010105",  "type" : "UPCA" ],
-            [ "name" : "Mia's Tree House",  "code" : "673419280044",  "type" : "org.gs1.UPC-A" ],
-            [ "name" : "Stephanie's House", "code" : "673419265102",  "type" : "org.gs1.UPC-A" ]
+            [ "name" : "Adventure Camp Tree House",  "code" : "673419248259",  "type" : "org.gs1.UPC-A" ],
+            [ "name" : "Stephanie's House", "code" : "673419265102",  "type" : "org.gs1.UPC-A" ],
+            [ "name" : "Dragon Sanctuary",  "code" : "673419249393",  "type" : "org.gs1.UPC-A" ],
+            [ "name" : "Battle on Scarif",  "code" : "673419265836",  "type" : "org.gs1.UPC-A" ]
+
         ]
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
 
