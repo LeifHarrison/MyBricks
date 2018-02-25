@@ -50,7 +50,7 @@ class PartsListTableViewCell: UITableViewCell {
         colorLabel.text = element.color?.name
         partNumberLabel.text = element.part?.partNumber?.capitalized
         if let quantity = element.quantity {
-            quantityLabel.text = "\(quantity)"
+            quantityLabel.text = "×\(quantity)"
         }
         else {
             quantityLabel.isHidden = true

@@ -31,18 +31,22 @@ class PartsListViewController: UIViewController {
         tableView.tableFooterView = UIView()
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        fetchPartsList()
+    }
 
+    //--------------------------------------------------------------------------
+    // MARK: - Private
+    //--------------------------------------------------------------------------
+
+    private func fetchPartsList() {
         if let set = currentSet {
+            SimpleActivityHUD.show(overView: view)
+
             let setNumber = set.fullSetNumber
-            self.activityIndicator?.startAnimating()
             let completion: (Result<GetPartsResponse>) -> Void = { result in
-                self.activityIndicator?.stopAnimating()
+                SimpleActivityHUD.hide()
                 if result.isSuccess {
                     if let results = result.value?.results {
                         self.elements = results
@@ -56,11 +60,7 @@ class PartsListViewController: UIViewController {
             RebrickableServices.shared.getParts(setNumber: setNumber, completion: completion)
         }
     }
-
-    //--------------------------------------------------------------------------
-    // MARK: - Private
-    //--------------------------------------------------------------------------
-
+    
 }
 
 //==============================================================================

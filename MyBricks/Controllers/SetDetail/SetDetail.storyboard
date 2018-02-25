@@ -417,7 +417,7 @@
                                                         <constraint firstItem="LSM-x8-PVB" firstAttribute="top" secondItem="0bo-b5-j7J" secondAttribute="top" constant="4" id="1JP-JM-Bi7"/>
                                                         <constraint firstAttribute="trailing" secondItem="LSM-x8-PVB" secondAttribute="trailing" constant="10" id="596-kV-8u3"/>
                                                         <constraint firstItem="LSM-x8-PVB" firstAttribute="leading" secondItem="0bo-b5-j7J" secondAttribute="leading" constant="10" id="jqC-nt-eTF"/>
-                                                        <constraint firstAttribute="width" constant="40" id="obL-sj-KmM"/>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="40" id="obL-sj-KmM"/>
                                                         <constraint firstAttribute="bottom" secondItem="LSM-x8-PVB" secondAttribute="baseline" constant="8" id="phl-2f-raH"/>
                                                     </constraints>
                                                 </view>
