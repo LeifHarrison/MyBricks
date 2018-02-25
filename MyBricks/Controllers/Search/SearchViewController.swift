@@ -67,7 +67,7 @@ class SearchViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(true)
         
-        NotificationCenter.default.removeObserver(self, name: .UIKeyboardDidShow, object: nil)
+        NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillShow, object: nil)
         NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillHide, object: nil)
 
         hideNoResultsView(animated: false)
@@ -112,12 +112,15 @@ class SearchViewController: UIViewController {
     
     @objc private func keyboardWillShow(with notification: Notification) {
         guard let userInfo = notification.userInfo as? [String: AnyObject],
-            let keyboardFrame = (userInfo[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue
+            let keyboardFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
             else { return }
         
         var contentInset = self.tableView.contentInset
         contentInset.bottom += keyboardFrame.height
-        
+        if let tabController = self.tabBarController {
+            contentInset.bottom -= tabController.tabBar.frame.height
+        }
+
         self.tableView.contentInset = contentInset
         self.tableView.scrollIndicatorInsets = contentInset
     }
@@ -125,7 +128,7 @@ class SearchViewController: UIViewController {
     @objc private func keyboardWillHide(with notification: Notification) {
         var contentInset = self.tableView.contentInset
         contentInset.bottom = 0
-        
+
         self.tableView.contentInset = contentInset
         self.tableView.scrollIndicatorInsets = contentInset
     }

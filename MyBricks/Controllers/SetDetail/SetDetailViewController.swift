@@ -100,17 +100,15 @@ class SetDetailViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         view.endEditing(true)
+        
+        NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillHide, object: nil)
+
         if let request = self.setDetailRequest {
             request.cancel()
         }
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
-        NotificationCenter.default.removeObserver(self, name: .UIKeyboardDidShow, object: nil)
-        NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillHide, object: nil)
-        super.viewDidDisappear(animated)
-    }
-
     //--------------------------------------------------------------------------
     // MARK: - Actions
     //--------------------------------------------------------------------------
@@ -228,12 +226,15 @@ class SetDetailViewController: UIViewController {
     
     @objc private func keyboardWillShow(with notification: Notification) {
         guard let userInfo = notification.userInfo as? [String: AnyObject],
-            let keyboardFrame = (userInfo[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue
+            let keyboardFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
             else { return }
         
         var contentInset = self.tableView.contentInset
         contentInset.bottom += keyboardFrame.height
-        
+        if let tabController = self.tabBarController {
+            contentInset.bottom -= tabController.tabBar.frame.height
+        }
+
         self.tableView.contentInset = contentInset
         self.tableView.scrollIndicatorInsets = contentInset
 
