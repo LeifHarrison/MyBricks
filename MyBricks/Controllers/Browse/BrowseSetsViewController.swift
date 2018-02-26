@@ -131,12 +131,24 @@ class BrowseSetsViewController: UIViewController {
             if let released = set.released, released != true && !showUnreleased {
                 continue
             }
-            if let year = set.year {
-                let indexName = String(year)
-                var sets: [Set] = setsBySection[indexName] ?? []
-                sets.append(set)
-                setsBySection[indexName] = sets
+            
+            var indexName = ""
+            if let grouping = filterOptions.grouping {
+                if grouping == .theme, let theme = set.theme {
+                    indexName = String(theme)
+                }
+                if grouping == .subtheme, let subtheme = set.subtheme {
+                    indexName = String(subtheme)
+                }
+                if grouping == .year, let year = set.year {
+                    indexName = String(year)
+                }
+
             }
+            
+            var sets: [Set] = setsBySection[indexName] ?? []
+            sets.append(set)
+            setsBySection[indexName] = sets
         }
         sectionTitles = setsBySection.keys.sorted(by: >)
     }
@@ -246,6 +258,7 @@ extension BrowseSetsViewController: UITableViewDelegate {
 extension BrowseSetsViewController: FilterViewControllerDelegate {
     
     func filterViewController(_ controller: FilterViewController, didUpdateFilterOptions filterOptions: FilterOptions) {
+        //print("Filter Options = \(filterOptions)")
         self.filterOptions = filterOptions
         fetchSets()
     }

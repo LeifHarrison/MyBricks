@@ -17,7 +17,6 @@ class FilterSelectThemeViewController: UIViewController {
 
     let cellIdentifier = "SelectThemeCell"
     
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
 
     weak var delegate: FilterSelectThemeViewControllerDelegate?

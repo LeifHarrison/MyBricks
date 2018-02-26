@@ -373,7 +373,7 @@ class BricksetServices {
         parameters["year"] = request.year ?? ""
         parameters["owned"] = request.owned ? "1" : ""
         parameters["wanted"] = request.wanted ? "1" : ""
-        parameters["orderBy"] = "Number"
+        parameters["orderBy"] = request.sortingSelection.parameterValue
         parameters["pageSize"] = "1000"
         parameters["pageNumber"] = ""
         parameters["userName"] = ""

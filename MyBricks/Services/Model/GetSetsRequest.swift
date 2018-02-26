@@ -14,49 +14,66 @@ enum SortingType : String {
     case pieces = "Pieces"
     case minifigs = "Minifigs"
     case rating = "Rating"
-    case retailPriceUK = "UKRetailPrice"
-    case retailPriceUS = "USRetailPrice"
-    case retailPriceCA = "CARetailPrice"
-    case retailPriceEU = "EURetailPrice"
+    case retailPrice = "RetailPrice"
     case theme = "Theme"
     case subtheme = "Subtheme"
     case name = "Name"
     case random = "Random"
     
+    static let allValues: [SortingType] = [ .number, .yearFrom, .pieces, .minifigs, .rating, .retailPrice, .theme, .subtheme, .name, .random ]
+    
     var description: String {
         switch self {
-        case .number: return "Number"
-        case .yearFrom: return "Year From"
-        case .pieces: return "Pieces"
-        case .minifigs: return "Minifigures"
-        case .rating: return "Rating"
-        case .retailPriceUK: return "Retail Price (UK)"
-        case .retailPriceUS: return "Retail Price (US)"
-        case .retailPriceCA: return "Retail Price (CA)"
-        case .retailPriceEU: return "Retail Price (EU)"
-        case .theme: return "Theme"
-        case .subtheme: return "Subtheme"
-        case .name: return "Name"
-        case .random: return "Random"
+            case .number: return "Number"
+            case .yearFrom: return "Year"
+            case .pieces: return "Pieces"
+            case .minifigs: return "Minifigures"
+            case .rating: return "Rating"
+            case .retailPrice: return "Retail Price"
+            case .theme: return "Theme"
+            case .subtheme: return "Subtheme"
+            case .name: return "Name"
+            case .random: return "Random"
         }
     }
 }
 
-enum SortingDirection : String {
+enum SortingDirection {
     case ascending
     case descending
     
     var description: String {
         switch self {
-        case .ascending: return "Ascending"
-        case .descending: return "Descending"
+            case .ascending: return "Ascending"
+            case .descending: return "Descending"
+        }
+    }
+
+    var parameterValue: String {
+        switch self {
+            case .ascending: return ""
+            case .descending: return "DESC"
         }
     }
 }
 
 struct SortingSelection {
-    var sortingType: SortingType = .number
-    var direction: SortingDirection = .ascending
+    var sortingType: SortingType
+    var direction: SortingDirection
+    
+    init(sortingType: SortingType = .yearFrom, direction: SortingDirection = .descending) {
+        self.sortingType = sortingType
+        self.direction = direction
+    }
+
+    var parameterValue: String {
+        if sortingType == .retailPrice {
+            return (Locale.current.regionCode ?? "US") + sortingType.rawValue + direction.parameterValue
+        }
+        else {
+            return sortingType.rawValue + direction.parameterValue
+        }
+    }
 }
 
 public struct GetSetsRequest {
@@ -68,7 +85,9 @@ public struct GetSetsRequest {
     var setNumber: String?
     var owned: Bool
     var wanted: Bool
-    
+    var sortingSelection: SortingSelection = SortingSelection()
+    var grouping: GroupingType? = nil
+
     init(query: String? = "", theme: String? = "", subtheme: String? = "", year: String? = "", setNumber: String? = "", owned: Bool = false, wanted: Bool = false) {
         self.query = query
         self.theme = theme
@@ -86,5 +105,8 @@ public struct GetSetsRequest {
         self.year = filterOptions.selectedYear?.name
         self.owned = filterOptions.filterOwned
         self.wanted = filterOptions.filterWanted
+        self.sortingSelection = filterOptions.sortingSelection
+        self.grouping = filterOptions.grouping
     }
+    
 }

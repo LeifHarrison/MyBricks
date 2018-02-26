@@ -18,24 +18,37 @@ class FilterViewController: UIViewController {
     enum TableSection: Int {
         case general
         case collection
-        
+        case sorting
+        case grouping
+
         func title() -> String? {
             switch self {
                 case .general: return NSLocalizedString("General", comment: "")
                 case .collection: return NSLocalizedString("Collection", comment: "")
+                case .sorting: return NSLocalizedString("Sorting", comment: "")
+                case .grouping: return NSLocalizedString("Grouping", comment: "")
             }
         }
 
+        func numberOfRows() -> Int {
+            switch self {
+                case .general: return TableRowsGeneral.count
+                case .collection: return TableRowsCollection.count
+                case .sorting: return TableRowsSorting.count
+                case .grouping: return TableRowsGrouping.count
+            }
+        }
+        
     }
     
-    enum TableRowGeneral: Int {
+    enum TableRowsGeneral: Int {
         case theme
         case subtheme
         case year
         
         init?(indexPath: IndexPath) { self.init(rawValue: indexPath.row) }
         
-        static var numberOfRows: Int { return 3 }
+        static var count: Int { return 3 }
         
         func title() -> String? {
             switch self {
@@ -47,14 +60,39 @@ class FilterViewController: UIViewController {
 
     }
 
-    enum TableRowCollection: Int {
+    enum TableRowsCollection: Int {
         case collection
         
         init?(indexPath: IndexPath) { self.init(rawValue: indexPath.row) }
 
-        static var numberOfRows: Int { return 1 }
+        static var count: Int { return 1 }
     }
 
+    enum TableRowsSorting: Int {
+        case sortingType
+        case sortingDirection
+
+        init?(indexPath: IndexPath) { self.init(rawValue: indexPath.row) }
+        
+        static var count: Int { return 2 }
+        
+        func title() -> String? {
+            switch self {
+            case .sortingType: return NSLocalizedString("Sort By", comment: "")
+            case .sortingDirection: return nil
+            }
+        }
+        
+    }
+    
+    enum TableRowsGrouping: Int {
+        case collection
+        
+        init?(indexPath: IndexPath) { self.init(rawValue: indexPath.row) }
+        
+        static var count: Int { return 1 }
+    }
+    
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var bottomContainerView: UIView!
     @IBOutlet weak var resetButton: UIButton!
@@ -90,6 +128,9 @@ class FilterViewController: UIViewController {
         if BricksetServices.isLoggedIn() {
             sections.append(.collection)
         }
+        sections.append(.sorting)
+        sections.append(.grouping)
+
     }
     
     //--------------------------------------------------------------------------
@@ -150,6 +191,10 @@ class FilterViewController: UIViewController {
             viewController.delegate = self
             viewController.filterOptions = filterOptions
         }
+        else if let viewController = segue.destination as? FilterSelectSortingViewController {
+            viewController.delegate = self
+            viewController.filterOptions = filterOptions
+        }
     }
 }
 
@@ -165,20 +210,13 @@ extension FilterViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let section = sections[section]
-        if section == .general {
-            return TableRowGeneral.numberOfRows
-        }
-        else if section == .collection {
-            return TableRowCollection.numberOfRows
-        }
-        return 0
+        return section.numberOfRows()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let section = sections[indexPath.section]
-        if section == .general, let row = TableRowGeneral(indexPath: indexPath) {
+        if section == .general, let row = TableRowsGeneral(indexPath: indexPath) {
             let cell = tableView.dequeueReusableCell(withIdentifier: "GeneralFilterCell", for: indexPath)
-            //let cell = UITableViewCell(style: .value1, reuseIdentifier: "GeneralFilterCell")
             cell.accessoryType = .disclosureIndicator
             cell.textLabel?.text = row.title()
             
@@ -208,6 +246,34 @@ extension FilterViewController: UITableViewDataSource {
                 return cell
             }
         }
+        else if section == .sorting, let row = TableRowsSorting(indexPath: indexPath) {
+            if row == .sortingType {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "GeneralFilterCell", for: indexPath)
+                cell.accessoryType = .disclosureIndicator
+                cell.textLabel?.text = row.title()
+                cell.detailTextLabel?.text = filterOptions.sortingSelection.sortingType.description
+                return cell
+            }
+            else if row == .sortingDirection {
+                if let cell = tableView.dequeueReusableCell(withIdentifier: FilterSortingDirectionTableViewCell.reuseIdentifier, for: indexPath) as? FilterSortingDirectionTableViewCell {
+                    cell.populate(with: filterOptions)
+                    cell.sortingDirectionSelected = { value in
+                        self.filterOptions.sortingSelection.direction = value
+                    }
+                    return cell
+                }
+            }
+        }
+        else if section == .grouping {
+            if let cell = tableView.dequeueReusableCell(withIdentifier: FilterGroupingTableViewCell.reuseIdentifier, for: indexPath) as? FilterGroupingTableViewCell {
+                cell.populate(with: filterOptions)
+                cell.groupingTypeSelected = { value in
+                    self.filterOptions.grouping = value
+                }
+                return cell
+            }
+        }
+                
         return UITableViewCell()
     }
     
@@ -237,11 +303,16 @@ extension FilterViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let section = sections[indexPath.section]
-        if section == .general, let row = TableRowGeneral(indexPath: indexPath) {
+        if section == .general, let row = TableRowsGeneral(indexPath: indexPath) {
             switch row {
-            case .theme: performSegue(withIdentifier: "showSelectThemeView", sender: self)
-            case .subtheme: performSegue(withIdentifier: "showSelectSubthemeView", sender: self)
-            case .year: performSegue(withIdentifier: "showSelectYearView", sender: self)
+                case .theme: performSegue(withIdentifier: "showSelectThemeView", sender: self)
+                case .subtheme: performSegue(withIdentifier: "showSelectSubthemeView", sender: self)
+                case .year: performSegue(withIdentifier: "showSelectYearView", sender: self)
+            }
+        }
+        if section == .sorting, let row = TableRowsSorting(indexPath: indexPath) {
+            if row == .sortingType {
+                performSegue(withIdentifier: "showSelectSortingView", sender: self)
             }
         }
         tableView.deselectRow(at: indexPath, animated: true)
@@ -281,7 +352,7 @@ extension FilterViewController: FilterSelectSubthemeViewControllerDelegate {
 }
 
 //==============================================================================
-// MARK: - FilterSelectSubthemeViewControllerDelegate
+// MARK: - FilterSelectYearViewControllerDelegate
 //==============================================================================
 
 extension FilterViewController: FilterSelectYearViewControllerDelegate {
@@ -289,6 +360,21 @@ extension FilterViewController: FilterSelectYearViewControllerDelegate {
     func selectYearController(_ controller: FilterSelectYearViewController, didSelectYear year: SetYear?) {
         filterOptions.selectedYear = year
         tableView.reloadData()
+    }
+    
+}
+
+//==============================================================================
+// MARK: - FilterSelectSortingViewControllerDelegate
+//==============================================================================
+
+extension FilterViewController: FilterSelectSortingViewControllerDelegate {
+    
+    func selectSortingController(_ controller: FilterSelectSortingViewController, didSelectSortingType sortingType: SortingType) {
+        print("sortingType = \(sortingType)")
+        filterOptions.sortingSelection.sortingType = sortingType
+        let indexPath = IndexPath(row: TableRowsSorting.sortingType.rawValue, section: TableSection.sorting.rawValue)
+        tableView.reloadRows(at: [indexPath], with: .fade)
     }
     
 }

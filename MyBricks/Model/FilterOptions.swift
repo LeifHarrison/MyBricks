@@ -8,6 +8,21 @@
 
 import Foundation
 
+enum GroupingType {
+    case theme
+    case subtheme
+    case year
+
+    var description: String {
+        switch self {
+            case .theme: return "Theme"
+            case .subtheme: return "Subtheme"
+            case .year: return "Year"
+        }
+    }
+}
+
+
 struct FilterOptions {
     
     var showingUserSets: Bool = false
@@ -28,6 +43,9 @@ struct FilterOptions {
     var filterOwned: Bool = false
     var filterNotOwned: Bool = false
     var filterWanted: Bool = false
+    
+    var sortingSelection: SortingSelection = SortingSelection()
+    var grouping: GroupingType? = nil
     
     public func hasSelectedFilters() -> Bool {
         return searchTerm != nil || (showingUserSets && selectedTheme != nil ) || selectedSubtheme != nil || selectedYear != nil || filterOwned || filterNotOwned || filterWanted

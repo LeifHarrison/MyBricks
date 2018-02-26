@@ -16,7 +16,6 @@ class FilterSelectYearViewController: UIViewController {
 
     let cellIdentifier = "SelectYearCell"
     
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
     
     weak var delegate: FilterSelectYearViewControllerDelegate?
@@ -69,8 +68,10 @@ class FilterSelectYearViewController: UIViewController {
             SimpleActivityHUD.show(overView: view)
             let completion: GetYearsCompletion = { result in
                 SimpleActivityHUD.hide()
-                if result.isSuccess {
-                    self.filterOptions.availableYears = result.value ?? []
+                if result.isSuccess, let availableYears = result.value {
+                    self.filterOptions.availableYears = availableYears.sorted {
+                        return $0.name > $1.name
+                    }
                     self.tableView.reloadData()
                     if let year = self.filterOptions.selectedYear, let selectedIndex = self.filterOptions.availableYears.index(of: year) {
                         self.tableView.selectRow(at: IndexPath(row: selectedIndex, section: 0), animated: false, scrollPosition: .middle)
