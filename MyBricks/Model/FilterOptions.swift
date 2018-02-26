@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct FilterOptions {
+struct FilterOptions {
     
     var showingUserSets: Bool = false
     var initialTheme: SetTheme? = nil
