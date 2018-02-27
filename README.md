@@ -9,23 +9,21 @@ Mobile (iOS) application for interacting with the BrickSet LEGO database.
 
 # Screenshots
 
-<img src="Screenshots/Browse.png" width="23%"></img>
-<img src="Screenshots/Browse2.png" width="23%"></img>
-<img src="Screenshots/Filter.png" width="23%"></img>
-<img src="Screenshots/Detail.png" width="23%"></img>
-<img src="Screenshots/Detail2.png" width="23%"></img>
-<img src="Screenshots/ImageDetail.png" width="23%"></img>
-<img src="Screenshots/PartsList.png" width="23%"></img>
-<img src="Screenshots/Reviews.png" width="23%"></img>
-<img src="Screenshots/Reviews2.png" width="23%"></img>
-<img src="Screenshots/Instructions1.png" width="23%"></img>
-<img src="Screenshots/Instructions2.png" width="23%"></img>
-<img src="Screenshots/Search.png" width="23%"></img>
-<img src="Screenshots/Scan.png" width="23%"></img>
-<img src="Screenshots/MySets.png" width="23%"></img>
-<img src="Screenshots/News.png" width="23%"></img>
-<img src="Screenshots/News2.png" width="23%"></img>
-<img src="Screenshots/Profile.png" width="23%"></img>
+<img src="Screenshots/Browse.png" width="25%"></img>  <img src="Screenshots/Browse2.png" width="25%"></img>  <img src="Screenshots/Filter.png" width="25%"></img>  <img src="Screenshots/Detail.png" width="25%"></img>
+<img src="Screenshots/Detail2.png" width="25%"></img>
+<img src="Screenshots/Detail3.png" width="25%"></img>
+<img src="Screenshots/ImageDetail.png" width="25%"></img>
+<img src="Screenshots/PartsList.png" width="25%"></img>
+<img src="Screenshots/Reviews.png" width="25%"></img>
+<img src="Screenshots/Reviews2.png" width="25%"></img>
+<img src="Screenshots/Instructions1.png" width="25%"></img>
+<img src="Screenshots/Instructions2.png" width="25%"></img>
+<img src="Screenshots/Search.png" width="25%"></img>
+<img src="Screenshots/Scan.png" width="25%"></img>
+<img src="Screenshots/MySets.png" width="25%"></img>
+<img src="Screenshots/News.png" width="25%"></img>
+<img src="Screenshots/News2.png" width="25%"></img>
+<img src="Screenshots/Profile.png" width="25%"></img>
 
 # Getting Started
 
