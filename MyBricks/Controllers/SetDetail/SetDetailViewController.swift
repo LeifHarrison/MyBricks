@@ -64,6 +64,7 @@ class SetDetailViewController: UIViewController {
         tableView.register(SetImagesTableViewCell.self)
         tableView.register(SetPartsTableViewCell.self)
         tableView.register(SetReviewsTableViewCell.self)
+        tableView.register(SetInstructionsTableViewCell.self)
         tableView.register(SetTagsTableViewCell.self)
 
         if tableView.tableFooterView == nil {
@@ -354,8 +355,8 @@ extension SetDetailViewController: UITableViewDataSource {
             }
             
         case .instructions :
-            let cell = tableView.dequeueReusableCell(withIdentifier: "SetInstructionsTableViewCell", for: indexPath)
-            cell.textLabel?.text = "Instructions (\(set.instructionsCount ?? 0))"
+            let cell: SetInstructionsTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+            cell.populateWithSet(set)
             return cell
             
         case .tags :

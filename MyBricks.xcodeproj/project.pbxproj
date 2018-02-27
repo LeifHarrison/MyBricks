@@ -77,6 +77,8 @@
 		71EA93350D446E8447D819DE /* Pods_MyBricks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C7DD5EA6F08ABC5549DF63C /* Pods_MyBricks.framework */; };
 		9B2804CF2023CE970026FC73 /* SetImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2804CE2023CE970026FC73 /* SetImage.swift */; };
 		9B3E1EEC202A690D0094DD3E /* SetDetailFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3E1EEB202A690D0094DD3E /* SetDetailFooterView.swift */; };
+		9B48CBF22045E3270074908B /* SetInstructionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B48CBF02045E3270074908B /* SetInstructionsTableViewCell.swift */; };
+		9B48CBF32045E3270074908B /* SetInstructionsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B48CBF12045E3270074908B /* SetInstructionsTableViewCell.xib */; };
 		9B4B4C4E203CD2630026B3AC /* SimpleActivityHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4B4C4D203CD2630026B3AC /* SimpleActivityHUD.swift */; };
 		9B5450372024E2DD0021074D /* ImageDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5450362024E2DD0021074D /* ImageDetailViewController.swift */; };
 		9B5450392025206D0021074D /* SetImagesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5450382025206D0021074D /* SetImagesTableViewCell.swift */; };
@@ -229,6 +231,8 @@
 		8C7DD5EA6F08ABC5549DF63C /* Pods_MyBricks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyBricks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B2804CE2023CE970026FC73 /* SetImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetImage.swift; sourceTree = "<group>"; };
 		9B3E1EEB202A690D0094DD3E /* SetDetailFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetDetailFooterView.swift; sourceTree = "<group>"; };
+		9B48CBF02045E3270074908B /* SetInstructionsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetInstructionsTableViewCell.swift; sourceTree = "<group>"; };
+		9B48CBF12045E3270074908B /* SetInstructionsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SetInstructionsTableViewCell.xib; sourceTree = "<group>"; };
 		9B4B4C4D203CD2630026B3AC /* SimpleActivityHUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleActivityHUD.swift; sourceTree = "<group>"; };
 		9B5450362024E2DD0021074D /* ImageDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDetailViewController.swift; sourceTree = "<group>"; };
 		9B5450382025206D0021074D /* SetImagesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetImagesTableViewCell.swift; sourceTree = "<group>"; };
@@ -635,6 +639,8 @@
 				9B63D27B202CD9CA00E1C3B0 /* SetImageCollectionViewCell.xib */,
 				9B5450382025206D0021074D /* SetImagesTableViewCell.swift */,
 				9B63D279202CD73600E1C3B0 /* SetImagesTableViewCell.xib */,
+				9B48CBF02045E3270074908B /* SetInstructionsTableViewCell.swift */,
+				9B48CBF12045E3270074908B /* SetInstructionsTableViewCell.xib */,
 				296EB6E11FBF5E5700D4D3C6 /* SetPartsTableViewCell.swift */,
 				9B63D27F202CDD7900E1C3B0 /* SetPartsTableViewCell.xib */,
 				9BCA7E2F2028DA6E00FA7BDC /* SetPriceTableViewCell.swift */,
@@ -824,6 +830,7 @@
 				294F187F1FB519ED0026342F /* MySets.storyboard in Resources */,
 				9BFFDEAB20212E5F0070C812 /* SetDetail.storyboard in Resources */,
 				295ADFC61F16AFFD002E6802 /* Assets.xcassets in Resources */,
+				9B48CBF32045E3270074908B /* SetInstructionsTableViewCell.xib in Resources */,
 				9B63D27A202CD73600E1C3B0 /* SetImagesTableViewCell.xib in Resources */,
 				295ADFC41F16AFFD002E6802 /* Main.storyboard in Resources */,
 				291AC5EE1FAF6FAC000DC9DD /* Profile.storyboard in Resources */,
@@ -984,6 +991,7 @@
 				29A523421F310261005F2145 /* UIViewController+Extensions.swift in Sources */,
 				9BF4EEDA20362DE6006F3180 /* BrowseHeaderView.swift in Sources */,
 				9B5E4D39203354FA0057610E /* UICollectionView+Extensions.swift in Sources */,
+				9B48CBF22045E3270074908B /* SetInstructionsTableViewCell.swift in Sources */,
 				29B9514F1FDBCC950049147E /* Part.swift in Sources */,
 				2949A9551FBFE05E00676D59 /* SetReviewTableViewCell.swift in Sources */,
 				9B92A916202E4BE8001E7AC9 /* TagView.swift in Sources */,

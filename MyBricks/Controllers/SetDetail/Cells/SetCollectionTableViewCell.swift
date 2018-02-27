@@ -36,7 +36,14 @@ class SetCollectionTableViewCell: UITableViewCell, ReusableView, NibLoadableView
         super.awakeFromNib()
         
         selectionStyle = .none
-                
+        
+        ownedContainer.layer.cornerRadius = ownedContainer.bounds.height / 2
+        wantedContainer.layer.cornerRadius = wantedContainer.bounds.height / 2
+
+        ownedCountField.layer.borderColor = UIColor.darkGray.cgColor
+        ownedCountField.layer.borderWidth = 1.0
+        ownedCountField.layer.cornerRadius = 8.0
+
         ratingView.settings.starSize = 25.0
         
         notesTextView.layer.borderColor = UIColor.darkGray.cgColor
@@ -80,14 +87,16 @@ class SetCollectionTableViewCell: UITableViewCell, ReusableView, NibLoadableView
     //--------------------------------------------------------------------------
     
     @IBAction func toggleSetOwned(_ sender: UIButton) {
-        if var set = currentSet, let setID = set.setID, let owned = set.owned {
-            BricksetServices.shared.setCollectionOwns(setID: setID, owned: !owned, completion: { result in
+        if var set = currentSet, let setID = set.setID, var owned = set.owned {
+            owned = !owned
+            BricksetServices.shared.setCollectionOwns(setID: setID, owned: owned, completion: { result in
                 if result.isSuccess {
-                    set.owned = !owned
-                    set.quantityOwned = !owned ? 1 : nil
+                    set.owned = owned
+                    set.quantityOwned = owned ? 1 : nil
                     
-                    self.ownedCheckboxButton.isSelected = set.owned ?? false
-                    self.ownedCountField.isEnabled = set.owned ?? false
+                    self.ownedCheckboxButton.isSelected = owned
+                    self.ownedContainer.backgroundColor = owned ? UIColor(named: "bricksetOwned") : UIColor.clear
+                    self.ownedCountField.isEnabled = owned
                     self.ownedCountField.text = "\(set.quantityOwned ?? 0)"
 
                     self.setUpdated?(set)
@@ -99,11 +108,14 @@ class SetCollectionTableViewCell: UITableViewCell, ReusableView, NibLoadableView
     }
     
     @IBAction func toggleSetWanted(_ sender: UIButton) {
-        if var set = currentSet, let setID = set.setID, let wanted = set.wanted {
-            BricksetServices.shared.setCollectionWants(setID: setID, wanted: !wanted, completion: { result in
+        if var set = currentSet, let setID = set.setID, var wanted = set.wanted {
+            wanted = !wanted
+            BricksetServices.shared.setCollectionWants(setID: setID, wanted: wanted, completion: { result in
                 if result.isSuccess {
-                    set.wanted = !wanted
-                    self.wantedCheckboxButton.isSelected = set.wanted ?? false
+                    set.wanted = wanted
+                    
+                    self.wantedCheckboxButton.isSelected = wanted
+                    self.wantedContainer.backgroundColor = wanted ? UIColor(named: "bricksetWanted") : UIColor.clear
                     self.setUpdated?(set)
                     self.currentSet = set
                 }
@@ -119,8 +131,10 @@ class SetCollectionTableViewCell: UITableViewCell, ReusableView, NibLoadableView
         currentSet = set
         
         ownedCheckboxButton.isSelected = set.owned ?? false
+        self.ownedContainer.backgroundColor = ownedCheckboxButton.isSelected ? UIColor(named: "bricksetOwned") : UIColor.clear
         wantedCheckboxButton.isSelected = set.wanted ?? false
-        
+        self.wantedContainer.backgroundColor = wantedCheckboxButton.isSelected ? UIColor(named: "bricksetWanted") : UIColor.clear
+
         ownedCountField.isEnabled = set.owned ?? false
         ownedCountField.text = "\(set.quantityOwned ?? 0)"
         ratingView.rating = Double(set.userRating ?? 0)

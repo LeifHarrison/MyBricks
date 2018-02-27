@@ -24,7 +24,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="yq5-91-LqY">
-                        <rect key="frame" x="221" y="8" width="120" height="38"/>
+                        <rect key="frame" x="191.5" y="8" width="120" height="38"/>
                         <subviews>
                             <view contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="lfg-t1-suB" customClass="CosmosView" customModule="Cosmos">
                                 <rect key="frame" x="0.0" y="0.0" width="120" height="20"/>
@@ -47,17 +47,26 @@
                             <constraint firstItem="Tnw-25-pHE" firstAttribute="centerX" secondItem="lfg-t1-suB" secondAttribute="centerX" id="tDD-yD-keX"/>
                         </constraints>
                     </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="4.7" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QHB-84-WcH">
+                        <rect key="frame" x="316.5" y="18" width="24.5" height="19.5"/>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="QHB-84-WcH" firstAttribute="leading" secondItem="yq5-91-LqY" secondAttribute="trailing" constant="5" id="F6c-Ui-6zP"/>
                     <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="yq5-91-LqY" secondAttribute="bottom" constant="8" id="H3d-sz-8QM"/>
+                    <constraint firstAttribute="trailing" secondItem="QHB-84-WcH" secondAttribute="trailing" id="YVK-BM-m9O"/>
                     <constraint firstAttribute="bottom" secondItem="9N4-Ih-Azg" secondAttribute="bottom" constant="11" id="aL7-5y-7Mh"/>
-                    <constraint firstAttribute="trailing" secondItem="yq5-91-LqY" secondAttribute="trailing" id="dxx-jQ-6At"/>
                     <constraint firstItem="9N4-Ih-Azg" firstAttribute="top" secondItem="usd-tO-mrT" secondAttribute="top" constant="11" id="jlK-fH-yXJ"/>
                     <constraint firstItem="yq5-91-LqY" firstAttribute="top" secondItem="usd-tO-mrT" secondAttribute="top" constant="8" id="lck-IJ-ARd"/>
                     <constraint firstItem="9N4-Ih-Azg" firstAttribute="leading" secondItem="usd-tO-mrT" secondAttribute="leading" constant="15" id="lh7-Oh-pyL"/>
+                    <constraint firstItem="QHB-84-WcH" firstAttribute="centerY" secondItem="yq5-91-LqY" secondAttribute="centerY" id="nSe-Ww-iEl"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="ratingLabel" destination="QHB-84-WcH" id="B49-OA-zVZ"/>
                 <outlet property="ratingView" destination="lfg-t1-suB" id="Stg-ZY-IYf"/>
                 <outlet property="reviewCountLabel" destination="Tnw-25-pHE" id="TcC-EI-Lxe"/>
                 <outlet property="titleLabel" destination="9N4-Ih-Azg" id="WKg-RO-E9h"/>

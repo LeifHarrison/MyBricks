@@ -5,6 +5,7 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -99,7 +100,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.9989394546" green="0.70197862389999999" blue="0.080911271270000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" name="bricksetWanted"/>
                         <constraints>
                             <constraint firstItem="0ny-r6-W9Z" firstAttribute="top" secondItem="H20-3N-dN9" secondAttribute="top" constant="2" id="4IY-dE-lmk"/>
                             <constraint firstAttribute="bottom" secondItem="0ny-r6-W9Z" secondAttribute="bottom" constant="2" id="EeT-16-MxH"/>
@@ -119,7 +120,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.6304385066" green="0.83857494590000003" blue="0.1052274629" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" name="bricksetOwned"/>
                         <constraints>
                             <constraint firstItem="0ab-tY-Bxr" firstAttribute="leading" secondItem="oTU-oP-lSi" secondAttribute="leading" constant="7" id="0dv-kS-ecM"/>
                             <constraint firstItem="0ab-tY-Bxr" firstAttribute="top" secondItem="oTU-oP-lSi" secondAttribute="top" constant="2" id="H8u-qt-30n"/>
@@ -172,5 +173,11 @@
         <image name="brick" width="25" height="25"/>
         <image name="image_placeholder" width="50" height="50"/>
         <image name="lego_head" width="25" height="25"/>
+        <namedColor name="bricksetOwned">
+            <color red="0.6705882352941176" green="0.83137254901960789" blue="0.27843137254901962" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="bricksetWanted">
+            <color red="0.95294117647058818" green="0.71372549019607845" blue="0.25882352941176473" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
     </resources>
 </document>

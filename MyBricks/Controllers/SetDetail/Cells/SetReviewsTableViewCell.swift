@@ -13,6 +13,7 @@ class SetReviewsTableViewCell: UITableViewCell, ReusableView, NibLoadableView {
 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var ratingView: CosmosView!
+    @IBOutlet weak var ratingLabel: UILabel!
     @IBOutlet weak var reviewCountLabel: UILabel!
     
     //--------------------------------------------------------------------------
@@ -45,7 +46,6 @@ class SetReviewsTableViewCell: UITableViewCell, ReusableView, NibLoadableView {
     override func prepareForReuse() {
         super.prepareForReuse()
         ratingView.rating = 0
-        ratingView.text = "N/A"
         reviewCountLabel.text = nil
     }
 
@@ -57,7 +57,7 @@ class SetReviewsTableViewCell: UITableViewCell, ReusableView, NibLoadableView {
         if let rating = set.rating {
             let ratingDouble = NSDecimalNumber(decimal:rating).doubleValue
             ratingView.rating = ratingDouble
-            ratingView.text = String(format:"%0.2g", ratingDouble)
+            ratingLabel.text = String(format:"%0.1f", ratingDouble)
         }
         if let reviewCount = set.reviewCount, reviewCount > 0 {
             reviewCountLabel.attributedText = attributedReviewCountDescription(for: set)
