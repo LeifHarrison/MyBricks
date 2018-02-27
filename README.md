@@ -9,9 +9,32 @@ Mobile (iOS) application for interacting with the BrickSet LEGO database.
 
 # Screenshots
 
+## Browse
+
 <img src="Screenshots/Browse.png" width="25%"></img>
 <img src="Screenshots/Browse2.png" width="25%"></img>
 <img src="Screenshots/Filter.png" width="25%"></img>
+
+## Search
+
+<img src="Screenshots/Search.png" width="25%"></img>
+<img src="Screenshots/Scan.png" width="25%"></img>
+
+## My Sets
+
+<img src="Screenshots/MySets.png" width="25%"></img>
+
+## News
+
+<img src="Screenshots/News.png" width="25%"></img>
+<img src="Screenshots/News2.png" width="25%"></img>
+
+## Profile
+
+<img src="Screenshots/Profile.png" width="25%"></img>
+
+## Set Detail
+
 <img src="Screenshots/Detail.png" width="25%"></img>
 <img src="Screenshots/Detail2.png" width="25%"></img>
 <img src="Screenshots/Detail3.png" width="25%"></img>
@@ -21,12 +44,6 @@ Mobile (iOS) application for interacting with the BrickSet LEGO database.
 <img src="Screenshots/Reviews2.png" width="25%"></img>
 <img src="Screenshots/Instructions1.png" width="25%"></img>
 <img src="Screenshots/Instructions2.png" width="25%"></img>
-<img src="Screenshots/Search.png" width="25%"></img>
-<img src="Screenshots/Scan.png" width="25%"></img>
-<img src="Screenshots/MySets.png" width="25%"></img>
-<img src="Screenshots/News.png" width="25%"></img>
-<img src="Screenshots/News2.png" width="25%"></img>
-<img src="Screenshots/Profile.png" width="25%"></img>
 
 # Getting Started
 
