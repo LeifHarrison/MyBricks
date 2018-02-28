@@ -15,16 +15,16 @@ class SetListTableViewCell: UITableViewCell {
 
     @IBOutlet weak var setImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var yearLabel: UILabel!
     @IBOutlet weak var setNumberLabel: UILabel!
     @IBOutlet weak var subthemeLabel: UILabel!
     @IBOutlet weak var partsContainerView: UIView!
     @IBOutlet weak var piecesLabel: UILabel!
     @IBOutlet weak var minifigsLabel: UILabel!
+    @IBOutlet weak var priceLabel: UILabel!
 
     @IBOutlet weak var ownedView: UIView!
     @IBOutlet weak var wantedView: UIView!
-
-    @IBOutlet var wantedViewSpacingConstraint: NSLayoutConstraint!
 
     //--------------------------------------------------------------------------
     // MARK: - Nib Loading
@@ -45,14 +45,15 @@ class SetListTableViewCell: UITableViewCell {
         super.prepareForReuse()
 
         nameLabel.text = ""
+        yearLabel.text = ""
         setNumberLabel.text = ""
         subthemeLabel.text = ""
-        piecesLabel.text = "0"
-        minifigsLabel.text = "0"
+        piecesLabel.text = ""
+        minifigsLabel.text = ""
+        priceLabel.text = ""
 
         ownedView.isHidden = true
         wantedView.isHidden = true
-        wantedViewSpacingConstraint.isActive = true
 
         setImageView.af_cancelImageRequest()
         setImageView.layer.removeAllAnimations()
@@ -66,15 +67,15 @@ class SetListTableViewCell: UITableViewCell {
     func populateWithSet(_ set : Set) -> Void {
         
         nameLabel.text = set.name
+        yearLabel.text = set.year
         setNumberLabel.text = set.number
         subthemeLabel.text = set.subtheme
         piecesLabel.text = "\(set.pieces ?? 0)"
         minifigsLabel.text = "\(set.minifigs ?? 0)"
+        priceLabel.text = set.preferredPriceString
 
         ownedView.isHidden = !(set.owned ?? false)
         wantedView.isHidden = !(set.wanted ?? false)
-        
-        wantedViewSpacingConstraint.isActive = (set.wanted ?? false) && (set.owned ?? false)
 
         let urlString = (UIScreen.main.scale > 1.5) ? set.largeThumbnailURL : set.thumbnailURL
         if let urlString = urlString, let url = URL(string: urlString) {
