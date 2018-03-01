@@ -34,11 +34,24 @@ class ReviewsViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        fetchReviews()
+    }
 
+    //--------------------------------------------------------------------------
+    // MARK: - Private
+    //--------------------------------------------------------------------------
+
+    lazy var animatedTextView: UITextView = {
+        let textView = UITextView()
+        textView.backgroundColor = UIColor.clear
+        return textView
+    }()
+
+    private func fetchReviews() {
         if let set = currentSet, let setID = set.setID {
-            self.activityIndicator?.startAnimating()
+            SimpleActivityHUD.show(overView: view)
             BricksetServices.shared.getReviews(setID: setID, completion: { result in
-                self.activityIndicator?.stopAnimating()
+                SimpleActivityHUD.hide()
                 self.reviews = result.value ?? []
                 if let value = result.value {
                     self.reviews = value.sorted {
@@ -57,19 +70,8 @@ class ReviewsViewController: UIViewController {
                 self.tableView.reloadData()
             })
         }
-
     }
-
-    //--------------------------------------------------------------------------
-    // MARK: - Private
-    //--------------------------------------------------------------------------
-
-    lazy var animatedTextView: UITextView = {
-        let textView = UITextView()
-        textView.backgroundColor = UIColor.clear
-        return textView
-    }()
-
+    
     private func showFullReview(_ review: SetReview, fromCell cell: SetReviewTableViewCell) {
         expandedCell = cell
         

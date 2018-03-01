@@ -11,7 +11,6 @@ import Alamofire
 
 class InstructionsViewController: UIViewController {
 
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
 
     var currentSet : Set?
@@ -31,27 +30,26 @@ class InstructionsViewController: UIViewController {
         tableView.tableFooterView = UIView()
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-        if let set = currentSet, let setID = set.setID {
-            self.activityIndicator?.startAnimating()
-            BricksetServices.shared.getInstructions(setID: setID, completion: { result in
-                self.activityIndicator?.stopAnimating()
-                self.instructions = result.value ?? []
-                self.tableView.reloadData()
-            })
-        }
+        fetchInstructions()
     }
     
     //--------------------------------------------------------------------------
     // MARK: - Private
     //--------------------------------------------------------------------------
 
+    private func fetchInstructions() {
+        if let set = currentSet, let setID = set.setID {
+            SimpleActivityHUD.show(overView: view)
+            BricksetServices.shared.getInstructions(setID: setID, completion: { result in
+                SimpleActivityHUD.hide()
+                self.instructions = result.value ?? []
+                self.tableView.reloadData()
+            })
+        }
+    }
+    
     private func showProgressView(forCell cell: InstructionsTableViewCell) {
         cell.progressView.alpha = 0.0
         cell.progressView.isHidden = false

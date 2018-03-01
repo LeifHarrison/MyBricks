@@ -332,15 +332,9 @@
                                     <outlet property="delegate" destination="r15-l5-xF4" id="eid-PV-TZS"/>
                                 </connections>
                             </tableView>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="XWp-gx-gNh">
-                                <rect key="frame" x="169" y="325" width="37" height="37"/>
-                                <color key="color" red="0.47058823529999999" green="0.47058823529999999" blue="0.47058823529999999" alpha="1" colorSpace="calibratedRGB"/>
-                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="XWp-gx-gNh" firstAttribute="centerX" secondItem="8q8-Ao-q2x" secondAttribute="centerX" id="CfO-oV-4TW"/>
-                            <constraint firstItem="XWp-gx-gNh" firstAttribute="centerY" secondItem="8q8-Ao-q2x" secondAttribute="centerY" id="EA6-U3-Bbq"/>
                             <constraint firstItem="8q8-Ao-q2x" firstAttribute="bottom" secondItem="7fW-9a-h1w" secondAttribute="bottom" id="J4i-5u-rUQ"/>
                             <constraint firstItem="8q8-Ao-q2x" firstAttribute="leading" secondItem="7fW-9a-h1w" secondAttribute="leading" id="Riy-Fn-36p"/>
                             <constraint firstItem="8q8-Ao-q2x" firstAttribute="top" secondItem="7fW-9a-h1w" secondAttribute="top" id="Scw-Sw-t9T"/>
@@ -349,7 +343,6 @@
                         <viewLayoutGuide key="safeArea" id="7fW-9a-h1w"/>
                     </view>
                     <connections>
-                        <outlet property="activityIndicator" destination="XWp-gx-gNh" id="JRZ-Hg-wHR"/>
                         <outlet property="tableView" destination="8q8-Ao-q2x" id="siJ-CZ-dY2"/>
                     </connections>
                 </viewController>
@@ -455,24 +448,17 @@
                                     <outlet property="delegate" destination="2gf-gh-Zwe" id="G3Q-en-c6K"/>
                                 </connections>
                             </tableView>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="dil-ug-wB6">
-                                <rect key="frame" x="169" y="325" width="37" height="37"/>
-                                <color key="color" red="0.47058823529999999" green="0.47058823529999999" blue="0.47058823529999999" alpha="1" colorSpace="calibratedRGB"/>
-                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="dil-ug-wB6" firstAttribute="centerX" secondItem="nBp-Z4-uHv" secondAttribute="centerX" id="0da-0H-ds1"/>
                             <constraint firstItem="nBp-Z4-uHv" firstAttribute="bottom" secondItem="yTJ-Z6-h5b" secondAttribute="bottom" id="EbC-SI-aQG"/>
                             <constraint firstItem="nBp-Z4-uHv" firstAttribute="top" secondItem="yTJ-Z6-h5b" secondAttribute="top" id="JrR-Hd-kEa"/>
-                            <constraint firstItem="dil-ug-wB6" firstAttribute="centerY" secondItem="nBp-Z4-uHv" secondAttribute="centerY" id="nEj-xb-7eQ"/>
                             <constraint firstItem="nBp-Z4-uHv" firstAttribute="leading" secondItem="yTJ-Z6-h5b" secondAttribute="leading" id="t1W-t6-uqs"/>
                             <constraint firstItem="nBp-Z4-uHv" firstAttribute="trailing" secondItem="yTJ-Z6-h5b" secondAttribute="trailing" id="wVC-Vo-NUS"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="yTJ-Z6-h5b"/>
                     </view>
                     <connections>
-                        <outlet property="activityIndicator" destination="dil-ug-wB6" id="5WW-fD-ADj"/>
                         <outlet property="tableView" destination="nBp-Z4-uHv" id="kHz-4c-xs5"/>
                     </connections>
                 </viewController>
@@ -768,24 +754,17 @@
                                     <outlet property="delegate" destination="wfp-nZ-QTb" id="owl-Pl-Zmv"/>
                                 </connections>
                             </tableView>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="rQr-3i-2KT">
-                                <rect key="frame" x="169" y="325" width="37" height="37"/>
-                                <color key="color" red="0.47058823529999999" green="0.47058823529999999" blue="0.47058823529999999" alpha="1" colorSpace="calibratedRGB"/>
-                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="463-Ig-qww" firstAttribute="leading" secondItem="dKw-BG-INC" secondAttribute="leading" id="O5J-nj-54h"/>
                             <constraint firstItem="463-Ig-qww" firstAttribute="top" secondItem="dKw-BG-INC" secondAttribute="top" id="Ohf-EW-mOK"/>
                             <constraint firstItem="463-Ig-qww" firstAttribute="trailing" secondItem="dKw-BG-INC" secondAttribute="trailing" id="bYC-rk-Iaa"/>
-                            <constraint firstItem="rQr-3i-2KT" firstAttribute="centerX" secondItem="463-Ig-qww" secondAttribute="centerX" id="kUI-le-C5V"/>
-                            <constraint firstItem="rQr-3i-2KT" firstAttribute="centerY" secondItem="463-Ig-qww" secondAttribute="centerY" id="lQ8-DH-a3S"/>
                             <constraint firstItem="463-Ig-qww" firstAttribute="bottom" secondItem="dKw-BG-INC" secondAttribute="bottom" id="s0H-5b-oUX"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="dKw-BG-INC"/>
                     </view>
                     <connections>
-                        <outlet property="activityIndicator" destination="rQr-3i-2KT" id="yhX-aB-IaK"/>
                         <outlet property="tableView" destination="463-Ig-qww" id="2bS-2s-wTt"/>
                         <segue destination="0gr-R4-65q" kind="show" identifier="showReviewDetail" id="2In-5V-ZIy"/>
                     </connections>

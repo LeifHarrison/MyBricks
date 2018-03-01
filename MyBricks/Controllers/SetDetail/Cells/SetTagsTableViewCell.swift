@@ -22,6 +22,8 @@ class SetTagsTableViewCell: UITableViewCell, ReusableView, NibLoadableView {
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        selectionStyle = .none
+
         let font = UIFont.systemFont(ofSize: 16)
         tagListView.textFont = font
         tagListView.marginY = 3
