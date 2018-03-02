@@ -10,12 +10,36 @@ import Foundation
 
 public struct SetRetailPrice {
 
+    static var PricePerPieceFormatter = NumberFormatter()
+    
     var locale: Locale
     var price: String
+    var pricePerPiece: String
 
-    init(locale: Locale, price: String) {
+    init(locale: Locale, price: String, pricePerPiece: String) {
         self.locale = locale
         self.price = price
+        self.pricePerPiece = pricePerPiece
+    }
+
+    func priceDescription() -> String {
+        let flag = locale.emojiFlag ?? "🇺🇸"
+        let currencySymbol = locale.currencySymbol ?? "$"
+        if price.count > 0 {
+            return (flag + " " + currencySymbol + price)
+        }
+        else {
+            return (flag + " " + currencySymbol + " N/A")
+        }
+    }
+
+    func pricePerPieceDescription() -> String {
+        if price.count > 0 {
+            return pricePerPiece + " / piece"
+        }
+        else {
+            return ""
+        }
     }
 
 }

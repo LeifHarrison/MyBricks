@@ -116,6 +116,9 @@
 		9BD4D5C1202E27000019A057 /* SetTagsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9BD4D5BF202E27000019A057 /* SetTagsTableViewCell.xib */; };
 		9BE2F618203E298B0035C172 /* UIButton+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE2F617203E298B0035C172 /* UIButton+Extensions.swift */; };
 		9BE2F61A203E2A0C0035C172 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE2F619203E2A0C0035C172 /* UIColor+Extensions.swift */; };
+		9BE7838E20486EED00FD078E /* PriceDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE7838D20486EED00FD078E /* PriceDetailViewController.swift */; };
+		9BE783902048744500FD078E /* PriceDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE7838F2048744500FD078E /* PriceDetailTableViewCell.swift */; };
+		9BE783922048745500FD078E /* PriceGuideTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE783912048745500FD078E /* PriceGuideTableViewCell.swift */; };
 		9BF4EEDA20362DE6006F3180 /* BrowseHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF4EED920362DE6006F3180 /* BrowseHeaderView.swift */; };
 		9BFFDEA92020E3C90070C812 /* Filter.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BFFDEA82020E3C90070C812 /* Filter.storyboard */; };
 		9BFFDEAB20212E5F0070C812 /* SetDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BFFDEAA20212E5F0070C812 /* SetDetail.storyboard */; };
@@ -270,6 +273,9 @@
 		9BD4D5BF202E27000019A057 /* SetTagsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SetTagsTableViewCell.xib; sourceTree = "<group>"; };
 		9BE2F617203E298B0035C172 /* UIButton+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extensions.swift"; sourceTree = "<group>"; };
 		9BE2F619203E2A0C0035C172 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
+		9BE7838D20486EED00FD078E /* PriceDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceDetailViewController.swift; sourceTree = "<group>"; };
+		9BE7838F2048744500FD078E /* PriceDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceDetailTableViewCell.swift; sourceTree = "<group>"; };
+		9BE783912048745500FD078E /* PriceGuideTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceGuideTableViewCell.swift; sourceTree = "<group>"; };
 		9BF4EED920362DE6006F3180 /* BrowseHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseHeaderView.swift; sourceTree = "<group>"; };
 		9BFFDEA82020E3C90070C812 /* Filter.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Filter.storyboard; sourceTree = "<group>"; };
 		9BFFDEAA20212E5F0070C812 /* SetDetail.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SetDetail.storyboard; sourceTree = "<group>"; };
@@ -614,6 +620,7 @@
 				9B5450362024E2DD0021074D /* ImageDetailViewController.swift */,
 				2949A94E1FBFBEC800676D59 /* InstructionsViewController.swift */,
 				2949A9501FBFBEE000676D59 /* PartsListViewController.swift */,
+				9BE7838D20486EED00FD078E /* PriceDetailViewController.swift */,
 				29C111A41FC48988007CBDB4 /* ReviewDetailAnimator.swift */,
 				29C111A21FC4893E007CBDB4 /* ReviewDetailViewController.swift */,
 				2949A94C1FBFBEB500676D59 /* ReviewsViewController.swift */,
@@ -628,6 +635,8 @@
 			children = (
 				29C111A81FCA411B007CBDB4 /* InstructionsTableViewCell.swift */,
 				29D30CA41FDE1A690076DB85 /* PartsListTableViewCell.swift */,
+				9BE7838F2048744500FD078E /* PriceDetailTableViewCell.swift */,
+				9BE783912048745500FD078E /* PriceGuideTableViewCell.swift */,
 				29DFEA121FA29BF500AB0AE8 /* SetCollectionTableViewCell.swift */,
 				9B63D284202CEDFB00E1C3B0 /* SetCollectionTableViewCell.xib */,
 				29AE22CE1FCB9A6500744045 /* SetDescriptionTableViewCell.swift */,
@@ -949,6 +958,7 @@
 				298FC8311FBA45940094D6DF /* BarcodeScannerViewController.swift in Sources */,
 				295ADFC11F16AFFD002E6802 /* SearchViewController.swift in Sources */,
 				2940FD821FD4EAF400F860F3 /* SearchHistoryItem+CoreDataProperties.swift in Sources */,
+				9BE7838E20486EED00FD078E /* PriceDetailViewController.swift in Sources */,
 				9B5E4D37203352250057610E /* UITableView+Extensions.swift in Sources */,
 				298F10901FFF3BC800CC14E9 /* GetSetsRequest.swift in Sources */,
 				29B9514D1FDBCC8B0049147E /* Element.swift in Sources */,
@@ -961,7 +971,9 @@
 				2945A1FD1F9FDB5300827BA7 /* SetDetailTableViewCell.swift in Sources */,
 				293C9A701FD496BB0058DA59 /* DataManager.swift in Sources */,
 				29365B751F8EBF1C00F6730C /* MySetsViewController.swift in Sources */,
+				9BE783922048745500FD078E /* PriceGuideTableViewCell.swift in Sources */,
 				297476EE1F1D3DC600FC354B /* SetTheme.swift in Sources */,
+				9BE783902048744500FD078E /* PriceDetailTableViewCell.swift in Sources */,
 				2973B5781F96834D002CD0DA /* UserPofile.swift in Sources */,
 				2964609E1FA907FC004850F8 /* NewsItemTableViewCell.swift in Sources */,
 				9B6D8E9B20325D900037ADFD /* UIFont+Extensions.swift in Sources */,

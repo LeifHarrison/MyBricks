@@ -115,16 +115,24 @@ struct Set {
         EAN = element.firstChild(tag: "EAN")?.stringValue
         UPC = element.firstChild(tag: "UPC")?.stringValue
         if let retailPriceUS = element.firstChild(tag: "USRetailPrice")?.stringValue {
-            retailPrices.append(SetRetailPrice(locale: Locale(identifier: "en_US"), price: retailPriceUS))
+            let pricePerPiece = (Double(retailPriceUS) ?? 0) / Double(pieces ?? 1) * 100
+            let pricePerPieceString = String(format:"%0.1f", pricePerPiece) + "¢"
+            retailPrices.append(SetRetailPrice(locale: Locale(identifier: "en_US"), price: retailPriceUS, pricePerPiece: pricePerPieceString))
         }
         if let retailPriceCA = element.firstChild(tag: "CARetailPrice")?.stringValue {
-            retailPrices.append(SetRetailPrice(locale: Locale(identifier: "en_CA"), price: retailPriceCA))
+            let pricePerPiece = (Double(retailPriceCA) ?? 0) / Double(pieces ?? 1) * 100
+            let pricePerPieceString = String(format:"%0.1f", pricePerPiece) + "¢"
+            retailPrices.append(SetRetailPrice(locale: Locale(identifier: "en_CA"), price: retailPriceCA, pricePerPiece: pricePerPieceString))
         }
         if let retailPriceUK = element.firstChild(tag: "UKRetailPrice")?.stringValue {
-            retailPrices.append(SetRetailPrice(locale: Locale(identifier: "en_GB"), price: retailPriceUK))
+            let pricePerPiece = (Double(retailPriceUK) ?? 0) / Double(pieces ?? 1) * 100
+            let pricePerPieceString = String(format:"%0.1f", pricePerPiece) + "p"
+            retailPrices.append(SetRetailPrice(locale: Locale(identifier: "en_GB"), price: retailPriceUK, pricePerPiece: pricePerPieceString))
         }
         if let retailPriceEU = element.firstChild(tag: "EURetailPrice")?.stringValue {
-            retailPrices.append(SetRetailPrice(locale: Locale(identifier: "en_EU"), price: retailPriceEU))
+            let pricePerPiece = (Double(retailPriceEU) ?? 0) / Double(pieces ?? 1) * 100
+            let pricePerPieceString = String(format:"%0.1f", pricePerPiece) + "¢"
+            retailPrices.append(SetRetailPrice(locale: Locale(identifier: "en_EU"), price: retailPriceEU, pricePerPiece: pricePerPieceString))
         }
         if let dateString = element.firstChild(tag: "lastUpdated")?.stringValue {
             lastUpdated = BricksetServices.longDateFormatter.date(from: dateString)
@@ -186,12 +194,7 @@ struct Set {
             }
         }
 
-        if let price = preferredPrice {
-            let flag = price.locale.emojiFlag ?? "🇺🇸"
-            let currencySymbol = price.locale.currencySymbol ?? "$"
-            return (flag + " " + currencySymbol + price.price)
-        }
-        return nil
+        return preferredPrice?.priceDescription()
     }
 
     //--------------------------------------------------------------------------

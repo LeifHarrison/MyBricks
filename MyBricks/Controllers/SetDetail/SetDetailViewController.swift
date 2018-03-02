@@ -45,9 +45,9 @@ class SetDetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         addGradientBackground()
-
+        title = NSLocalizedString("Set Detail", comment: "")
+        
         hideKeyboardWhenViewTapped()
         
         // Add 'Share' button to navigation bar
@@ -409,7 +409,7 @@ extension SetDetailViewController: UITableViewDelegate {
         let section = sections[indexPath.section]
 
         if section == .price {
-            if let vc = storyboard?.instantiateViewController(withIdentifier: "PartsListViewController") as? PartsListViewController {
+            if let vc = storyboard?.instantiateViewController(withIdentifier: "PriceDetailViewController") as? PriceDetailViewController {
                 vc.currentSet = currentSet
                 show(vc, sender: self)
             }
