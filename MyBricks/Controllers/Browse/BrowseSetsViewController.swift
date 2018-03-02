@@ -17,7 +17,7 @@ class BrowseSetsViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
 
     var filterOptions: FilterOptions = FilterOptions()
-    var showUnreleased: Bool = false
+    var showUnreleased: Bool = true
     var browseRequest: Request? = nil
     
     var allSets: [Set] = []

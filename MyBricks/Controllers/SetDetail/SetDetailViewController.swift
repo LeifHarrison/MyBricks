@@ -184,7 +184,7 @@ class SetDetailViewController: UIViewController {
         if let set = currentSet, let setID = set.setID {
             setImagesRequest = BricksetServices.shared.getAdditionalImages(setID: setID, completion: { [weak self] result in
                 self?.setImagesRequest = nil
-                if result.isSuccess, let images = result.value {
+                if result.isSuccess, let images = result.value, images.count > 0 {
                     self?.setImages = images
                     if let imageSectionIndex = self?.sections.index(of: .image) {
                         self?.sections.insert(.additionalImages, at: imageSectionIndex+1)
@@ -212,7 +212,7 @@ class SetDetailViewController: UIViewController {
     private func enableImageZoom() {
         if let imageSection = self.sections.index(of: .image), let cell = self.tableView.cellForRow(at: IndexPath(row: 0, section: imageSection)) as? SetHeroImageTableViewCell {
             cell.showZoomButton(animated: true)
-            cell.zoomButtonTapped = {
+            cell.heroImageTapped = {
                 self.showLargeImage()
             }
         }
@@ -295,10 +295,10 @@ extension SetDetailViewController: UITableViewDataSource {
             
             // Populate the image ourselves, so we can reload the cell when the image finishes loading
             if let image = currentSetImage {
-                cell.setImageView.image = image
+                cell.heroImageView.image = image
             }
             else if let urlString = set.imageURL, let url = URL(string: urlString) {
-                cell.setImageView?.af_setImage(withURL: url, imageTransition: .crossDissolve(0.3) ) { response in
+                cell.heroImageView?.af_setImage(withURL: url, imageTransition: .crossDissolve(0.3) ) { response in
                     if let image = response.result.value {
                         // Cache the image so we don't load it again
                         self.currentSetImage = image
@@ -311,7 +311,7 @@ extension SetDetailViewController: UITableViewDataSource {
             
             if hasLargeImage {
                 cell.showZoomButton(animated: false)
-                cell.zoomButtonTapped = {
+                cell.heroImageTapped = {
                     self.showLargeImage()
                 }
             }

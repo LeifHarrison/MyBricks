@@ -10,20 +10,22 @@ import UIKit
 
 class SetHeroImageTableViewCell: UITableViewCell, ReusableView, NibLoadableView {
     
-    @IBOutlet weak var numberBackgroundView: UIView!
+    @IBOutlet weak var heroImageView: UIImageView!
+    @IBOutlet weak var numberView: UIView!
     @IBOutlet weak var numberLabel: UILabel!
-    @IBOutlet weak var yearBackgroundView: UIView!
+    @IBOutlet weak var yearView: UIView!
     @IBOutlet weak var yearLabel: UILabel!
-    @IBOutlet weak var setImageView: UIImageView!
-    @IBOutlet weak var ageBackgroundView: UIView!
+    @IBOutlet weak var ageView: UIView!
     @IBOutlet weak var ageLabel: UILabel!
-    @IBOutlet weak var zoomButton: UIButton!
+    @IBOutlet weak var themeView: UIView!
+    @IBOutlet weak var themeLabel: UILabel!
+    @IBOutlet weak var zoomView: UIView!
 
     let cornerLabelBackgroundColor = UIColor(white: 0.97, alpha: 1.0)
     let cornerLabelBorderColor = UIColor(white: 0.8, alpha: 1.0)
     let cornerLabelBorderWidth: CGFloat = 1.0
     
-    var zoomButtonTapped : (() -> Void)? = nil
+    var heroImageTapped : (() -> Void)? = nil
     var tapGesture: UIGestureRecognizer? = nil
     
     //--------------------------------------------------------------------------
@@ -33,23 +35,12 @@ class SetHeroImageTableViewCell: UITableViewCell, ReusableView, NibLoadableView 
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        numberBackgroundView.backgroundColor = cornerLabelBackgroundColor
-        numberBackgroundView.layer.borderColor = cornerLabelBorderColor.cgColor
-        numberBackgroundView.layer.borderWidth = cornerLabelBorderWidth
-        numberBackgroundView.layer.cornerRadius = yearBackgroundView.bounds.height / 2
-        
-        yearBackgroundView.backgroundColor = cornerLabelBackgroundColor
-        yearBackgroundView.layer.borderColor = cornerLabelBorderColor.cgColor
-        yearBackgroundView.layer.borderWidth = cornerLabelBorderWidth
-        yearBackgroundView.layer.cornerRadius = yearBackgroundView.bounds.height / 2
+        applyOutlineStyle(to: numberView)
+        applyOutlineStyle(to: yearView)
+        applyOutlineStyle(to: ageView)
+        applyOutlineStyle(to: themeView)
+        applyOutlineStyle(to: zoomView)
 
-        ageBackgroundView.backgroundColor = cornerLabelBackgroundColor
-        ageBackgroundView.layer.borderColor = cornerLabelBorderColor.cgColor
-        ageBackgroundView.layer.borderWidth = cornerLabelBorderWidth
-        ageBackgroundView.layer.cornerRadius = ageBackgroundView.bounds.height / 2
-        
-        setImageView.contentMode = .scaleAspectFit
-        
         prepareForReuse()
     }
 
@@ -64,23 +55,21 @@ class SetHeroImageTableViewCell: UITableViewCell, ReusableView, NibLoadableView 
         yearLabel.text = ""
         ageLabel.text = ""
         
-        setImageView.image = nil
+        heroImageView.image = nil
         if let gesture = tapGesture {
-            setImageView.removeGestureRecognizer(gesture)
-            self.setImageView.isUserInteractionEnabled = false
+            heroImageView.removeGestureRecognizer(gesture)
+            self.heroImageView.isUserInteractionEnabled = false
             tapGesture = nil
         }
         
-        zoomButton.isHidden = true
-        zoomButtonTapped = nil
     }
 
     //--------------------------------------------------------------------------
     // MARK: - Actions
     //--------------------------------------------------------------------------
     
-    @IBAction func zoomButtonTapped(_ sender: UIButton) {
-        zoomButtonTapped?()
+    @IBAction func heroImageTapped(_ sender: UIButton) {
+        heroImageTapped?()
     }
     
     //--------------------------------------------------------------------------
@@ -88,32 +77,39 @@ class SetHeroImageTableViewCell: UITableViewCell, ReusableView, NibLoadableView 
     //--------------------------------------------------------------------------
 
     func populateWithSet(_ set : Set) -> Void {
-        numberLabel.text = set.fullSetNumber
+        numberLabel.text = set.number
         yearLabel.text = set.year
-        
-        if set.ageMin != nil {
-            ageBackgroundView.isHidden = false
-            ageLabel.text = set.ageRangeString
-        }
-        else {
-            ageBackgroundView.isHidden = true
-        }
+        ageLabel.text = set.ageRangeString
+        themeLabel.text = set.theme
+
+        ageView.isHidden = (set.ageMin == nil)
     }
 
     func showZoomButton(animated: Bool) {
-        zoomButton.alpha = 0.0
-        zoomButton.isHidden = false
+        zoomView.alpha = 0.0
+        zoomView.isHidden = false
         let animations = { () -> Void in
-            self.zoomButton.alpha = 1.0
+            self.zoomView.alpha = 1.0
         }
         let completion: ((Bool) -> Void) = { finished in
-            let gesture = UITapGestureRecognizer(target: self, action: #selector(self.zoomButtonTapped(_:)))
+            let gesture = UITapGestureRecognizer(target: self, action: #selector(self.heroImageTapped(_:)))
             gesture.cancelsTouchesInView = false
-            self.setImageView.addGestureRecognizer(gesture)
-            self.setImageView.isUserInteractionEnabled = true
+            self.heroImageView.addGestureRecognizer(gesture)
+            self.heroImageView.isUserInteractionEnabled = true
             self.tapGesture = gesture
         }
         UIView.animate(withDuration: animated ? 0.25 : 0.0, animations:animations, completion: completion)
     }
 
+    //--------------------------------------------------------------------------
+    // MARK: - Public
+    //--------------------------------------------------------------------------
+    
+    func applyOutlineStyle(to view: UIView) {
+        view.backgroundColor = cornerLabelBackgroundColor
+        view.layer.borderColor = cornerLabelBorderColor.cgColor
+        view.layer.borderWidth = cornerLabelBorderWidth
+        view.layer.cornerRadius = view.bounds.height / 2
+    }
+    
 }
