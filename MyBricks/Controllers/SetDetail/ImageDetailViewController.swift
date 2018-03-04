@@ -17,6 +17,11 @@ class ImageDetailViewController: UIViewController {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var closeButton: UIButton!
 
+    @IBOutlet weak var imageViewBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var imageViewLeadingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var imageViewTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var imageViewTrailingConstraint: NSLayoutConstraint!
+    
     public var imageURL: String? = nil
     
     //--------------------------------------------------------------------------
@@ -25,30 +30,28 @@ class ImageDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        scrollView.contentInset = UIEdgeInsets(top: defaultInsets, left: defaultInsets, bottom: defaultInsets, right: defaultInsets)
-        scrollView.minimumZoomScale = 1.0
-        scrollView.maximumZoomScale = 5.0
-        
         imageView.image = nil
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+
         if let urlString = imageURL, let url = URL(string: urlString) {
             activityIndicator.startAnimating()
             imageView.af_setImage(withURL: url, imageTransition: .crossDissolve(0.3)) { response in
                 self.activityIndicator.stopAnimating()
-                if let image = response.result.value {
-                    let horizontalZoom = (image.size.width + self.defaultInsets * 4) / self.scrollView.frame.size.width
-                    let verticalZoom = (image.size.height + self.defaultInsets * 4) / self.scrollView.frame.size.height
-                    self.scrollView.minimumZoomScale = 1 / max(horizontalZoom, verticalZoom)
-                    self.scrollView.setZoomScale(self.scrollView.minimumZoomScale, animated: false)
-                }
+                self.imageView.sizeToFit()
             }
         }
+
     }
     
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        updateMinZoomScaleForSize(scrollView.frame.size)
+        updateConstraintsForSize(self.scrollView.frame.size)
+    }
+
     //--------------------------------------------------------------------------
     // MARK: - Actions
     //--------------------------------------------------------------------------
@@ -57,6 +60,28 @@ class ImageDetailViewController: UIViewController {
         presentingViewController?.dismiss(animated: true, completion: nil)
     }
     
+    fileprivate func updateMinZoomScaleForSize(_ size: CGSize) {
+        let widthScale = size.width / imageView.bounds.width
+        let heightScale = size.height / imageView.bounds.height
+        let minScale = min(widthScale, heightScale)
+        
+        scrollView.minimumZoomScale = minScale
+        scrollView.zoomScale = minScale
+    }
+    
+    fileprivate func updateConstraintsForSize(_ size: CGSize) {
+
+        let yOffset = max(0, (size.height - imageView.frame.height) / 2)
+        imageViewTopConstraint.constant = yOffset
+        imageViewBottomConstraint.constant = yOffset
+        
+        let xOffset = max(0, (size.width - imageView.frame.width) / 2)
+        imageViewLeadingConstraint.constant = xOffset
+        imageViewTrailingConstraint.constant = xOffset
+        
+        view.layoutIfNeeded()
+    }
+
 }
 
 //==============================================================================
@@ -69,5 +94,8 @@ extension ImageDetailViewController: UIScrollViewDelegate {
         return imageView
     }
     
-}
+    func scrollViewDidZoom(_ scrollView: UIScrollView) {
+        updateConstraintsForSize(scrollView.frame.size)
+    }
 
+}

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ReviewDetailAnimator: NSObject, UIViewControllerAnimatedTransitioning {
+class ReviewDetailAnimator: NSObject {
 
     let duration = 0.5
     var presenting = true
@@ -46,7 +46,10 @@ class ReviewDetailAnimator: NSObject, UIViewControllerAnimatedTransitioning {
         textView.backgroundColor = UIColor.clear
         return textView
     }()
+}
 
+extension ReviewDetailAnimator: UIViewControllerAnimatedTransitioning {
+    
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         return duration
     }

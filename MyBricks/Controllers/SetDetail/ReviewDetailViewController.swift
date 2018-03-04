@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ReviewDetailViewController: UIViewController, UIViewControllerTransitioningDelegate {
+class ReviewDetailViewController: UIViewController {
 
     @IBOutlet weak var blurView: UIVisualEffectView!
     @IBOutlet weak var overlayView: UIView!
