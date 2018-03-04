@@ -235,6 +235,10 @@
                         <outlet property="activityIndicator" destination="Wkd-wi-AYp" id="XxH-BV-PkN"/>
                         <outlet property="closeButton" destination="Qe6-1U-o9j" id="2S3-Pa-Q0B"/>
                         <outlet property="imageView" destination="XqH-Gv-A08" id="HIZ-eK-JxQ"/>
+                        <outlet property="imageViewBottomConstraint" destination="FK8-64-PLU" id="G2M-sd-vdM"/>
+                        <outlet property="imageViewLeadingConstraint" destination="oVc-kd-0p5" id="Vwm-EA-bDr"/>
+                        <outlet property="imageViewTopConstraint" destination="OLl-ql-PtK" id="jcU-nC-Unx"/>
+                        <outlet property="imageViewTrailingConstraint" destination="6ax-96-rCg" id="jfx-OH-kJU"/>
                         <outlet property="scrollView" destination="sEI-9Q-GI5" id="5QU-dE-g4X"/>
                     </connections>
                 </viewController>
