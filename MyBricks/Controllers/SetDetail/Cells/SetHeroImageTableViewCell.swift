@@ -35,6 +35,9 @@ class SetHeroImageTableViewCell: UITableViewCell, ReusableView, NibLoadableView 
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        //heroImageView.layer.borderColor = cornerLabelBorderColor.cgColor
+        //heroImageView.layer.borderWidth = cornerLabelBorderWidth
+
         applyOutlineStyle(to: numberView)
         applyOutlineStyle(to: yearView)
         applyOutlineStyle(to: ageView)
@@ -102,10 +105,10 @@ class SetHeroImageTableViewCell: UITableViewCell, ReusableView, NibLoadableView 
     }
 
     //--------------------------------------------------------------------------
-    // MARK: - Public
+    // MARK: - Private
     //--------------------------------------------------------------------------
     
-    func applyOutlineStyle(to view: UIView) {
+    private func applyOutlineStyle(to view: UIView) {
         view.backgroundColor = cornerLabelBackgroundColor
         view.layer.borderColor = cornerLabelBorderColor.cgColor
         view.layer.borderWidth = cornerLabelBorderWidth

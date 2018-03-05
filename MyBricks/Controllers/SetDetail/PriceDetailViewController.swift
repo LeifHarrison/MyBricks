@@ -41,6 +41,8 @@ class PriceDetailViewController: UIViewController {
         tableView.separatorColor = UIColor(white: 0.3, alpha: 0.8)
         tableView.separatorInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
         tableView.tableFooterView = UIView()
+        
+        tableView.register(PriceGuideTableViewCell.self)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -95,17 +97,14 @@ extension PriceDetailViewController: UITableViewDataSource {
         if section == .retailPrice {
             if let retailPrice = currentSet?.retailPrices[indexPath.row] {
                 if let cell = tableView.dequeueReusableCell(withIdentifier: "PriceDetailTableViewCell", for: indexPath) as? PriceDetailTableViewCell {
-                    cell.selectionStyle = .none
                     cell.populate(with: retailPrice)
                     return cell
                 }
             }
         }
         else if section == .priceGuide {
-            if let cell = tableView.dequeueReusableCell(withIdentifier: "PriceGuideTableViewCell", for: indexPath) as? PriceGuideTableViewCell {
-                cell.selectionStyle = .none
-                return cell
-            }
+            let cell: PriceGuideTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+            return cell
         }
         
         return UITableViewCell()
@@ -135,7 +134,4 @@ extension PriceDetailViewController: UITableViewDelegate {
         return nil
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // TODO: Display more part detail?
-    }
 }

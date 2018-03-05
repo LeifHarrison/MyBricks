@@ -10,23 +10,17 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleAspectFit" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SetHeroImageTableViewCell" rowHeight="241" id="UEw-YJ-jk3" customClass="SetHeroImageTableViewCell" customModule="MyBricks" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="241"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleAspectFit" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SetHeroImageTableViewCell" rowHeight="339" id="UEw-YJ-jk3" customClass="SetHeroImageTableViewCell" customModule="MyBricks" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="292"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="UEw-YJ-jk3" id="cJb-ba-5aV">
-                <rect key="frame" x="0.0" y="0.0" width="375" height="240.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="375" height="291.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="252" verticalHuggingPriority="252" horizontalCompressionResistancePriority="752" verticalCompressionResistancePriority="751" image="image_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="fvw-D5-rRg">
-                        <rect key="frame" x="20" y="20" width="335" height="200"/>
-                        <constraints>
-                            <constraint firstAttribute="height" relation="greaterThanOrEqual" priority="750" constant="200" id="nag-0d-U54"/>
-                        </constraints>
-                    </imageView>
                     <view contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="O4f-cE-kvX">
                         <rect key="frame" x="15" y="15" width="84.5" height="26.5"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="Number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZiM-Gn-2M2">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="Number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZiM-Gn-2M2">
                                 <rect key="frame" x="10" y="3" width="64.5" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -59,10 +53,16 @@
                             <constraint firstAttribute="bottom" secondItem="WRj-ju-UIf" secondAttribute="bottom" constant="3" id="mgB-6z-fWn"/>
                         </constraints>
                     </view>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="252" verticalHuggingPriority="252" horizontalCompressionResistancePriority="752" verticalCompressionResistancePriority="751" image="image_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="fvw-D5-rRg">
+                        <rect key="frame" x="20" y="46.5" width="335" height="199.5"/>
+                        <constraints>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" priority="750" constant="200" id="nag-0d-U54"/>
+                        </constraints>
+                    </imageView>
                     <view contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="Em4-87-0ok">
-                        <rect key="frame" x="15" y="200" width="50" height="25.5"/>
+                        <rect key="frame" x="15" y="251" width="50" height="25.5"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="Age" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dCv-Gf-fsd">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="Age" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dCv-Gf-fsd">
                                 <rect key="frame" x="10" y="3" width="30" height="19.5"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                 <nil key="textColor"/>
@@ -78,9 +78,9 @@
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="xQF-6U-oj6">
-                        <rect key="frame" x="284.5" y="199" width="75.5" height="26.5"/>
+                        <rect key="frame" x="284.5" y="250" width="75.5" height="26.5"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="Theme" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zVb-pI-vK9">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="Theme" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zVb-pI-vK9">
                                 <rect key="frame" x="10" y="3" width="55.5" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -118,16 +118,16 @@
                     <constraint firstItem="O4f-cE-kvX" firstAttribute="top" secondItem="cJb-ba-5aV" secondAttribute="top" constant="15" id="0sN-2b-79h"/>
                     <constraint firstItem="Em4-87-0ok" firstAttribute="leading" secondItem="cJb-ba-5aV" secondAttribute="leading" constant="15" id="1jQ-Ct-cpp"/>
                     <constraint firstItem="O4f-cE-kvX" firstAttribute="leading" secondItem="cJb-ba-5aV" secondAttribute="leading" constant="15" id="3Y6-Lh-fEP"/>
+                    <constraint firstItem="Em4-87-0ok" firstAttribute="top" secondItem="fvw-D5-rRg" secondAttribute="bottom" constant="5" id="8JA-hi-8gW"/>
+                    <constraint firstItem="fvw-D5-rRg" firstAttribute="top" secondItem="O4f-cE-kvX" secondAttribute="bottom" constant="5" id="9JA-SL-TQ5"/>
                     <constraint firstAttribute="trailing" secondItem="fvw-D5-rRg" secondAttribute="trailing" constant="20" id="EBL-Tv-e5O"/>
                     <constraint firstItem="Ptd-QQ-RCJ" firstAttribute="top" secondItem="cJb-ba-5aV" secondAttribute="top" constant="15" id="GqT-A0-iA3"/>
                     <constraint firstAttribute="bottom" secondItem="xQF-6U-oj6" secondAttribute="bottom" constant="15" id="JjL-mO-Veh"/>
                     <constraint firstItem="1cW-qi-eKi" firstAttribute="centerX" secondItem="cJb-ba-5aV" secondAttribute="centerX" id="NGu-fz-dnt"/>
                     <constraint firstItem="fvw-D5-rRg" firstAttribute="leading" secondItem="cJb-ba-5aV" secondAttribute="leading" constant="20" id="QgV-CD-frZ"/>
-                    <constraint firstAttribute="bottom" secondItem="fvw-D5-rRg" secondAttribute="bottom" constant="20" id="RLh-Dm-RYW"/>
                     <constraint firstAttribute="bottom" secondItem="Em4-87-0ok" secondAttribute="bottom" constant="15" id="ZI0-2O-cW0"/>
                     <constraint firstAttribute="trailing" secondItem="Ptd-QQ-RCJ" secondAttribute="trailing" constant="20" id="dT2-n1-nRb"/>
                     <constraint firstItem="1cW-qi-eKi" firstAttribute="centerY" secondItem="O4f-cE-kvX" secondAttribute="centerY" id="l4y-er-FA0"/>
-                    <constraint firstItem="fvw-D5-rRg" firstAttribute="top" secondItem="cJb-ba-5aV" secondAttribute="top" constant="20" id="nU8-yc-Hha"/>
                     <constraint firstAttribute="trailing" secondItem="xQF-6U-oj6" secondAttribute="trailing" constant="15" id="ucL-34-NKR"/>
                 </constraints>
             </tableViewCellContentView>
@@ -143,7 +143,7 @@
                 <outlet property="yearView" destination="Ptd-QQ-RCJ" id="ibC-lq-suY"/>
                 <outlet property="zoomView" destination="1cW-qi-eKi" id="6xG-Ri-Khy"/>
             </connections>
-            <point key="canvasLocation" x="-396" y="-117"/>
+            <point key="canvasLocation" x="-397.5" y="-56.5"/>
         </tableViewCell>
     </objects>
     <resources>

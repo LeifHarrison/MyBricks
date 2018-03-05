@@ -11,8 +11,8 @@ import Alamofire
 
 class SetDetailViewController: UIViewController {
 
-    enum TableSection: Int {
-        case image
+    enum TableSectionType: Int {
+        case heroImage
         case additionalImages
         case detail
         case price
@@ -28,7 +28,7 @@ class SetDetailViewController: UIViewController {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
 
-    var sections: [TableSection] = []
+    var sections: [TableSectionType] = []
 
     var currentSet: Set?
     var setDetail: SetDetail?
@@ -132,7 +132,7 @@ class SetDetailViewController: UIViewController {
     private func updateSections() {
         sections.removeAll()
         
-        sections.append(.image)
+        sections.append(.heroImage)
         if let imageCount = setImages?.count, imageCount > 0 {
             sections.append(.additionalImages)
         }
@@ -159,22 +159,22 @@ class SetDetailViewController: UIViewController {
     private func fetchSetDetail() {
         if let set = currentSet, let setID = set.setID {
             setDetailRequest = BricksetServices.shared.getSet(setID: setID, completion: { [weak self] result in
-                self?.setDetailRequest = nil
+                guard let strongSelf = self else { return }
+                
+                strongSelf.setDetailRequest = nil
+                
                 if result.isSuccess, let detail = result.value {
-                    self?.setDetail = detail
-                    if let tags = detail.tags, tags.count > 0 {
-                        self?.sections.append(.tags)
-                        if let index = self?.sections.index(of: .tags) {
-                            self?.tableView.insertSections([index], with: .fade)
-                        }
-
+                    strongSelf.setDetail = detail
+                    
+                    strongSelf.tableView.beginUpdates()
+                    strongSelf.updateSections()
+                    if let index = strongSelf.sections.index(of: .tags) {
+                        strongSelf.tableView.insertSections([index], with: .fade)
                     }
-                    if let setDescription = detail.setDescription, setDescription.count > 0 {
-                        self?.sections.append(.description)
-                        if let index = self?.sections.index(of: .description) {
-                            self?.tableView.insertSections([index], with: .fade)
-                        }
+                    if let index = strongSelf.sections.index(of: .description) {
+                        strongSelf.tableView.insertSections([index], with: .fade)
                     }
+                    strongSelf.tableView.endUpdates()
                 }
             })
         }
@@ -183,13 +183,15 @@ class SetDetailViewController: UIViewController {
     private func fetchSetImages() {
         if let set = currentSet, let setID = set.setID {
             setImagesRequest = BricksetServices.shared.getAdditionalImages(setID: setID, completion: { [weak self] result in
-                self?.setImagesRequest = nil
+                guard let strongSelf = self else { return }
+
+                strongSelf.setImagesRequest = nil
                 if result.isSuccess, let images = result.value, images.count > 0 {
-                    self?.setImages = images
-                    if let imageSectionIndex = self?.sections.index(of: .image) {
-                        self?.sections.insert(.additionalImages, at: imageSectionIndex+1)
-                        if let index = self?.sections.index(of: .additionalImages) {
-                            self?.tableView.insertSections([index], with: .fade)
+                    strongSelf.setImages = images
+                    if let imageSectionIndex = strongSelf.sections.index(of: .heroImage) {
+                        strongSelf.sections.insert(.additionalImages, at: imageSectionIndex+1)
+                        if let index = strongSelf.sections.index(of: .additionalImages) {
+                            strongSelf.tableView.insertSections([index], with: .fade)
                         }
                     }
                 }
@@ -210,7 +212,7 @@ class SetDetailViewController: UIViewController {
     }
     
     private func enableImageZoom() {
-        if let imageSection = self.sections.index(of: .image), let cell = self.tableView.cellForRow(at: IndexPath(row: 0, section: imageSection)) as? SetHeroImageTableViewCell {
+        if let imageSection = self.sections.index(of: .heroImage), let cell = self.tableView.cellForRow(at: IndexPath(row: 0, section: imageSection)) as? SetHeroImageTableViewCell {
             cell.showZoomButton(animated: true)
             cell.heroImageTapped = {
                 self.showLargeImage()
@@ -289,7 +291,7 @@ extension SetDetailViewController: UITableViewDataSource {
         let section = sections[indexPath.section]
         switch section {
             
-        case .image :
+        case .heroImage :
             let cell: SetHeroImageTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
             cell.populateWithSet(set)
             

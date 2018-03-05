@@ -21,6 +21,7 @@ class SetImagesTableViewCell: UITableViewCell, ReusableView, NibLoadableView {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        selectionStyle = .none
         collectionView.register(SetImageCollectionViewCell.self)
         prepareForReuse()
     }

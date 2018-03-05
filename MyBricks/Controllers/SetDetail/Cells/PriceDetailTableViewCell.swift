@@ -20,6 +20,7 @@ class PriceDetailTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        selectionStyle = .none
         prepareForReuse()
     }
     

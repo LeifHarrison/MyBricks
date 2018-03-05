@@ -26,10 +26,10 @@ public struct SetRetailPrice {
         let flag = locale.emojiFlag ?? "🇺🇸"
         let currencySymbol = locale.currencySymbol ?? "$"
         if price.count > 0 {
-            return (flag + " " + currencySymbol + price)
+            return (currencySymbol + price + " " + flag)
         }
         else {
-            return (flag + " " + currencySymbol + " N/A")
+            return (currencySymbol + " N/A" + " " + flag)
         }
     }
 
