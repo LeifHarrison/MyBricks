@@ -5,6 +5,7 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -21,48 +22,64 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ThemeTableViewCell" rowHeight="82" id="1WY-1l-9Kb" customClass="ThemeTableViewCell" customModule="MyBricks" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="35" width="375" height="82"/>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ThemeTableViewCell" rowHeight="66" id="1WY-1l-9Kb" customClass="ThemeTableViewCell" customModule="MyBricks" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="35" width="375" height="66"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1WY-1l-9Kb" id="lkB-wl-8qf">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="81.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="65.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="Theme Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8YR-ik-8IT">
-                                                    <rect key="frame" x="15" y="10" width="345" height="21.5"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
-                                                    <nil key="textColor"/>
+                                                    <rect key="frame" x="15" y="10" width="345" height="29"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="24"/>
+                                                    <color key="textColor" name="lightNavy"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="Theme Years" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NXM-KS-Ozo">
-                                                    <rect key="frame" x="15" y="32" width="345" height="19.5"/>
-                                                    <fontDescription key="fontDescription" type="italicSystem" pointSize="16"/>
-                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <rect key="frame" x="15" y="38" width="345" height="14.5"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="12"/>
+                                                    <color key="textColor" name="slateBlue"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="425 sets" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vhP-cG-YkU">
-                                                    <rect key="frame" x="15" y="52" width="345" height="19.5"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oBp-B3-5m4">
+                                                    <rect key="frame" x="327" y="22.5" width="38" height="20.5"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="425" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vhP-cG-YkU">
+                                                            <rect key="frame" x="7" y="3" width="24" height="14.5"/>
+                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="15" id="BXE-Wk-UGD"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                                            <color key="textColor" name="white"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" name="cloudyBlue"/>
+                                                    <constraints>
+                                                        <constraint firstItem="vhP-cG-YkU" firstAttribute="top" secondItem="oBp-B3-5m4" secondAttribute="top" constant="3" id="2I1-TA-TdA"/>
+                                                        <constraint firstAttribute="trailing" secondItem="vhP-cG-YkU" secondAttribute="trailing" constant="7" id="90m-ax-5qB"/>
+                                                        <constraint firstItem="vhP-cG-YkU" firstAttribute="leading" secondItem="oBp-B3-5m4" secondAttribute="leading" constant="7" id="bSf-G2-1dc"/>
+                                                        <constraint firstAttribute="bottom" secondItem="vhP-cG-YkU" secondAttribute="bottom" constant="3" id="ncX-FK-5yV"/>
+                                                    </constraints>
+                                                </view>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="vhP-cG-YkU" firstAttribute="top" secondItem="NXM-KS-Ozo" secondAttribute="baseline" constant="5" id="1ck-cE-4jM"/>
-                                                <constraint firstItem="vhP-cG-YkU" firstAttribute="leading" secondItem="lkB-wl-8qf" secondAttribute="leading" constant="15" id="447-nm-OZy"/>
                                                 <constraint firstAttribute="trailing" secondItem="8YR-ik-8IT" secondAttribute="trailing" constant="15" id="MT9-Of-Ina"/>
                                                 <constraint firstItem="8YR-ik-8IT" firstAttribute="top" secondItem="lkB-wl-8qf" secondAttribute="top" constant="10" id="PUC-Ed-JJ3"/>
                                                 <constraint firstItem="8YR-ik-8IT" firstAttribute="leading" secondItem="lkB-wl-8qf" secondAttribute="leading" constant="15" id="Pen-kZ-Yh0"/>
                                                 <constraint firstItem="NXM-KS-Ozo" firstAttribute="leading" secondItem="lkB-wl-8qf" secondAttribute="leading" constant="15" id="SVO-ln-F7M"/>
+                                                <constraint firstAttribute="bottom" secondItem="NXM-KS-Ozo" secondAttribute="bottom" constant="13" id="WtI-qf-G6e"/>
                                                 <constraint firstItem="NXM-KS-Ozo" firstAttribute="top" secondItem="8YR-ik-8IT" secondAttribute="baseline" constant="5" id="Xhq-nX-wVy"/>
-                                                <constraint firstAttribute="bottom" secondItem="vhP-cG-YkU" secondAttribute="bottom" constant="10" id="hNy-A0-NXe"/>
                                                 <constraint firstAttribute="trailing" secondItem="NXM-KS-Ozo" secondAttribute="trailing" constant="15" id="lW0-Db-8ZV"/>
-                                                <constraint firstAttribute="trailing" secondItem="vhP-cG-YkU" secondAttribute="trailing" constant="15" id="n3o-2o-TPV"/>
+                                                <constraint firstAttribute="trailing" secondItem="oBp-B3-5m4" secondAttribute="trailing" constant="10" id="pfG-di-czK"/>
+                                                <constraint firstItem="oBp-B3-5m4" firstAttribute="centerY" secondItem="lkB-wl-8qf" secondAttribute="centerY" id="xvx-Mv-1yg"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <viewLayoutGuide key="safeArea" id="qWr-Gf-Vf6"/>
                                         <connections>
                                             <outlet property="nameLabel" destination="8YR-ik-8IT" id="Ty4-FE-dgI"/>
+                                            <outlet property="setCountContainer" destination="oBp-B3-5m4" id="G1D-GD-XIR"/>
                                             <outlet property="setCountLabel" destination="vhP-cG-YkU" id="KhH-Tv-naB"/>
                                             <outlet property="yearsLabel" destination="NXM-KS-Ozo" id="GOn-Xh-vHn"/>
                                         </connections>
@@ -196,5 +213,17 @@
     </scenes>
     <resources>
         <image name="shop" width="30" height="30"/>
+        <namedColor name="cloudyBlue">
+            <color red="0.6940000057220459" green="0.76499998569488525" blue="0.83099997043609619" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="lightNavy">
+            <color red="0.086000002920627594" green="0.25099998712539673" blue="0.44299998879432678" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="slateBlue">
+            <color red="0.3449999988079071" green="0.45500001311302185" blue="0.58799999952316284" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="white">
+            <color red="0.99599999189376831" green="0.99599999189376831" blue="0.99599999189376831" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

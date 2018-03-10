@@ -33,7 +33,6 @@ extension ReusableView where Self: UIView {
 
 extension UIView {
     
-    
     func constrainToView(view: UIView) {
         let top = self.topAnchor.constraint(equalTo: view.topAnchor)
         let bottom = view.bottomAnchor.constraint(equalTo: self.bottomAnchor)
@@ -66,4 +65,18 @@ extension UIView {
         UIView.animate(withDuration: duration, animations: animations, completion: completion)
     }
     
+    func addGradientBackground() {
+        let gradientView = GradientView(frame: self.bounds)
+        gradientView.translatesAutoresizingMaskIntoConstraints = false
+        gradientView.startColor = UIColor.almostWhite
+        gradientView.endColor = UIColor.whiteTwo
+        insertSubview(gradientView, at: 0)
+        
+        let top = gradientView.topAnchor.constraint(equalTo: self.topAnchor)
+        let bottom = self.bottomAnchor.constraint(equalTo: gradientView.bottomAnchor)
+        let leading = gradientView.leadingAnchor.constraint(equalTo: self.leadingAnchor)
+        let trailing = self.trailingAnchor.constraint(equalTo: gradientView.trailingAnchor)
+        NSLayoutConstraint.activate([top, bottom, leading, trailing])
+    }
+
 }

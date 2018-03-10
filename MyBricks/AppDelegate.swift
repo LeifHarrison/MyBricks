@@ -28,6 +28,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         configureLogging()
         validateAPIKey() // Validate that our BrickSet API Key is still valid
 
+        styleNavigationBar()
+        styleTabBar()
+
         return true
     }
 
@@ -86,5 +89,44 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             })
         }
     }
+    
+    private func styleNavigationBar() {
+        // Generate gradient image
+        let screenHeight = UIScreen.main.bounds.size.height
+        let image = gradientImage(withSize: CGSize(width:screenHeight, height: 64))
+
+        UINavigationBar.appearance().setBackgroundImage(image, for: .default)
+        UINavigationBar.appearance().tintColor = UIColor.lightNavy
+        
+        let attributes: [NSAttributedStringKey: AnyObject] = [ .font : UIFont.boldSystemFont(ofSize: 18), .foregroundColor : UIColor.lightNavy ]
+        UINavigationBar.appearance().titleTextAttributes = attributes
+    }
+    
+    private func styleTabBar() {
+        let screenHeight = UIScreen.main.bounds.size.height
+        let image = gradientImage(withSize: CGSize(width:screenHeight, height: 49))
+        
+        UITabBar.appearance().backgroundImage = image
+        UITabBar.appearance().tintColor = UIColor.lightNavy
+        UITabBar.appearance().unselectedItemTintColor = UIColor.cloudyBlue
+    }
+    
+    private func gradientImage(withSize size: CGSize) -> UIImage {
+        let gradient = CAGradientLayer()
+        gradient.frame = CGRect(x: 0, y: 0, width: size.width, height: size.height)
+        gradient.colors = [UIColor.almostWhite.cgColor, UIColor.paleGrey.cgColor]
+        let image = self.image(fromLayer: gradient)
+        print("image size: \(image.size), scale: \(image.scale)")
+        return image
+    }
+    
+    private func image(fromLayer layer: CALayer) -> UIImage {
+        UIGraphicsBeginImageContextWithOptions(layer.frame.size, false, UIScreen.main.scale)
+        layer.render(in: UIGraphicsGetCurrentContext()!)
+        let outputImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return outputImage!
+    }
+
 }
 

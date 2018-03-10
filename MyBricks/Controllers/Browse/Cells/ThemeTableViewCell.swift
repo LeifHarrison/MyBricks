@@ -13,6 +13,41 @@ class ThemeTableViewCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var yearsLabel: UILabel!
     @IBOutlet weak var setCountLabel: UILabel!
+    @IBOutlet weak var setCountContainer: UIView!
+
+    //--------------------------------------------------------------------------
+    // MARK: - Nib Loading
+    //--------------------------------------------------------------------------
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        self.layer.borderColor = UIColor.whiteThree.cgColor
+        self.layer.borderWidth = 1.0
+        self.layer.cornerRadius = 2
+
+        setCountContainer.layer.borderColor = UIColor.whiteThree.cgColor
+        setCountContainer.layer.borderWidth = 1.0
+        setCountContainer.layer.cornerRadius = setCountContainer.frame.height / 2
+        setCountContainer.layer.shadowColor = UIColor.blueGrey.cgColor
+        setCountContainer.layer.shadowRadius = 1
+        setCountContainer.layer.shadowOpacity = 0.7
+        setCountContainer.layer.shadowOffset =  CGSize(width: 0, height: 0)
+
+        addGradientBackground()
+    }
+    
+    //--------------------------------------------------------------------------
+    // MARK: - Reuse
+    //--------------------------------------------------------------------------
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        nameLabel.text = nil
+        yearsLabel.text = nil
+        setCountLabel.text = nil
+    }
 
     //--------------------------------------------------------------------------
     // MARK: - Public
@@ -23,7 +58,8 @@ class ThemeTableViewCell: UITableViewCell {
         yearsLabel.text = theme.yearsDecription()
 
         if let setCount = theme.setCount, setCount > 0 {
-            setCountLabel.attributedText = theme.setsAttributedDescription()
+            //setCountLabel.attributedText = theme.setsAttributedDescription()
+            setCountLabel.text = "\(setCount)"
             if setCount > 0 {
                 selectionStyle = .default
                 accessoryType = .disclosureIndicator

@@ -27,6 +27,8 @@ class BrowseThemesViewController: UIViewController {
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = UITableViewAutomaticDimension
         tableView.tableFooterView = UIView()
+        
+        tableView.sectionIndexColor = UIColor.lightNavy
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -123,6 +125,14 @@ extension BrowseThemesViewController: UITableViewDataSource {
 //==============================================================================
 
 extension BrowseThemesViewController: UITableViewDelegate {
+
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        guard let header = view as? UITableViewHeaderFooterView else { return }
+        header.textLabel?.font = UIFont.boldSystemFont(ofSize: 24)
+        header.textLabel?.textColor = UIColor.white
+        header.contentView.backgroundColor = UIColor.cloudyBlue
+    }
+    
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let sectionTitle = sectionTitles[indexPath.section]
