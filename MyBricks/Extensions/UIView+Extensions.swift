@@ -65,11 +65,11 @@ extension UIView {
         UIView.animate(withDuration: duration, animations: animations, completion: completion)
     }
     
-    func addGradientBackground() {
+    func addGradientBackground(withColors colors: [UIColor]? = [UIColor.almostWhite, UIColor.whiteTwo]) {
         let gradientView = GradientView(frame: self.bounds)
         gradientView.translatesAutoresizingMaskIntoConstraints = false
-        gradientView.startColor = UIColor.almostWhite
-        gradientView.endColor = UIColor.whiteTwo
+        gradientView.startColor = colors?[0] ?? UIColor.almostWhite
+        gradientView.endColor = colors?[1] ?? UIColor.whiteTwo
         insertSubview(gradientView, at: 0)
         
         let top = gradientView.topAnchor.constraint(equalTo: self.topAnchor)
@@ -79,4 +79,10 @@ extension UIView {
         NSLayoutConstraint.activate([top, bottom, leading, trailing])
     }
 
+    func addBorder(withColor color: UIColor = UIColor.whiteThree) {
+        self.layer.borderColor = color.cgColor
+        self.layer.borderWidth = 1.0
+        self.layer.cornerRadius = 2
+    }
+    
 }

@@ -29,8 +29,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="65.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="Theme Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8YR-ik-8IT">
-                                                    <rect key="frame" x="15" y="10" width="345" height="29"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Theme Name" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8YR-ik-8IT">
+                                                    <rect key="frame" x="15" y="10" width="295" height="29"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="24"/>
                                                     <color key="textColor" name="lightNavy"/>
                                                     <nil key="highlightedColor"/>
@@ -41,11 +41,11 @@
                                                     <color key="textColor" name="slateBlue"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oBp-B3-5m4">
-                                                    <rect key="frame" x="327" y="22.5" width="38" height="20.5"/>
+                                                <view contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="752" verticalCompressionResistancePriority="752" translatesAutoresizingMaskIntoConstraints="NO" id="oBp-B3-5m4">
+                                                    <rect key="frame" x="325" y="21.5" width="40" height="22.5"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="425" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vhP-cG-YkU">
-                                                            <rect key="frame" x="7" y="3" width="24" height="14.5"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="752" verticalCompressionResistancePriority="752" text="425" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vhP-cG-YkU">
+                                                            <rect key="frame" x="8" y="4" width="24" height="14.5"/>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="15" id="BXE-Wk-UGD"/>
@@ -57,15 +57,15 @@
                                                     </subviews>
                                                     <color key="backgroundColor" name="cloudyBlue"/>
                                                     <constraints>
-                                                        <constraint firstItem="vhP-cG-YkU" firstAttribute="top" secondItem="oBp-B3-5m4" secondAttribute="top" constant="3" id="2I1-TA-TdA"/>
-                                                        <constraint firstAttribute="trailing" secondItem="vhP-cG-YkU" secondAttribute="trailing" constant="7" id="90m-ax-5qB"/>
-                                                        <constraint firstItem="vhP-cG-YkU" firstAttribute="leading" secondItem="oBp-B3-5m4" secondAttribute="leading" constant="7" id="bSf-G2-1dc"/>
-                                                        <constraint firstAttribute="bottom" secondItem="vhP-cG-YkU" secondAttribute="bottom" constant="3" id="ncX-FK-5yV"/>
+                                                        <constraint firstItem="vhP-cG-YkU" firstAttribute="top" secondItem="oBp-B3-5m4" secondAttribute="top" constant="4" id="2I1-TA-TdA"/>
+                                                        <constraint firstAttribute="trailing" secondItem="vhP-cG-YkU" secondAttribute="trailing" constant="8" id="90m-ax-5qB"/>
+                                                        <constraint firstItem="vhP-cG-YkU" firstAttribute="leading" secondItem="oBp-B3-5m4" secondAttribute="leading" constant="8" id="bSf-G2-1dc"/>
+                                                        <constraint firstAttribute="bottom" secondItem="vhP-cG-YkU" secondAttribute="bottom" constant="4" id="ncX-FK-5yV"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="8YR-ik-8IT" secondAttribute="trailing" constant="15" id="MT9-Of-Ina"/>
+                                                <constraint firstItem="oBp-B3-5m4" firstAttribute="leading" secondItem="8YR-ik-8IT" secondAttribute="trailing" constant="15" id="48s-cY-YoD"/>
                                                 <constraint firstItem="8YR-ik-8IT" firstAttribute="top" secondItem="lkB-wl-8qf" secondAttribute="top" constant="10" id="PUC-Ed-JJ3"/>
                                                 <constraint firstItem="8YR-ik-8IT" firstAttribute="leading" secondItem="lkB-wl-8qf" secondAttribute="leading" constant="15" id="Pen-kZ-Yh0"/>
                                                 <constraint firstItem="NXM-KS-Ozo" firstAttribute="leading" secondItem="lkB-wl-8qf" secondAttribute="leading" constant="15" id="SVO-ln-F7M"/>
@@ -151,8 +151,8 @@
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Showing 45 sets matching Advanced Models : Fairground : 2017 : Owned" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ckS-Hy-f16">
                                                 <rect key="frame" x="15" y="9.5" width="345" height="33.5"/>
-                                                <fontDescription key="fontDescription" type="italicSystem" pointSize="14"/>
-                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <color key="textColor" name="white"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ioJ-TS-mKy">
@@ -163,7 +163,7 @@
                                                 </constraints>
                                             </view>
                                         </subviews>
-                                        <color key="backgroundColor" white="0.90000000000000002" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" name="lightNavy"/>
                                         <constraints>
                                             <constraint firstItem="ckS-Hy-f16" firstAttribute="leading" secondItem="0qL-Kt-wfK" secondAttribute="leading" constant="15" id="BvR-LG-KKb"/>
                                             <constraint firstItem="ioJ-TS-mKy" firstAttribute="leading" secondItem="0qL-Kt-wfK" secondAttribute="leading" id="Kfq-PQ-KjG"/>
@@ -219,8 +219,14 @@
         <namedColor name="lightNavy">
             <color red="0.086000002920627594" green="0.25099998712539673" blue="0.44299998879432678" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <namedColor name="lightNavy">
+            <color red="0.086000002920627594" green="0.25099998712539673" blue="0.44299998879432678" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="slateBlue">
             <color red="0.3449999988079071" green="0.45500001311302185" blue="0.58799999952316284" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="white">
+            <color red="0.99599999189376831" green="0.99599999189376831" blue="0.99599999189376831" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="white">
             <color red="0.99599999189376831" green="0.99599999189376831" blue="0.99599999189376831" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

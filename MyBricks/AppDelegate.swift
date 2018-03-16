@@ -90,10 +90,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
+    private let navigationBarHeight: CGFloat = 44.0
+    private let statusBarHeight: CGFloat = 44.0
+
     private func styleNavigationBar() {
+        
+        // Figure out navigation bar size
+        let screenHeight = UIScreen.main.bounds.size.height // Use the height rather than width to support landscape rotation
+        var barHeight = navigationBarHeight
+        if let window = window {
+            barHeight += window.safeAreaInsets.top
+            if window.safeAreaInsets.top == 0 {
+                barHeight += statusBarHeight
+            }
+        }
+        
         // Generate gradient image
-        let screenHeight = UIScreen.main.bounds.size.height
-        let image = gradientImage(withSize: CGSize(width:screenHeight, height: 64))
+        let image = gradientImage(withSize: CGSize(width:screenHeight, height: barHeight)) // 88 on iPhone X
 
         UINavigationBar.appearance().setBackgroundImage(image, for: .default)
         UINavigationBar.appearance().tintColor = UIColor.lightNavy
@@ -102,10 +115,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().titleTextAttributes = attributes
     }
     
+    private let tabBarHeight: CGFloat = 49.0
+
     private func styleTabBar() {
-        let screenHeight = UIScreen.main.bounds.size.height
-        let image = gradientImage(withSize: CGSize(width:screenHeight, height: 49))
         
+        // Figure out tab bar size
+        let screenHeight = UIScreen.main.bounds.size.height  // Use the height rather than width to support landscape rotation
+        var barHeight = tabBarHeight
+        if let window = window {
+            barHeight += window.safeAreaInsets.bottom
+        }
+        
+        // Generate gradient image
+        let image = gradientImage(withSize: CGSize(width:screenHeight, height: barHeight))
+
         UITabBar.appearance().backgroundImage = image
         UITabBar.appearance().tintColor = UIColor.lightNavy
         UITabBar.appearance().unselectedItemTintColor = UIColor.cloudyBlue
@@ -116,7 +139,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         gradient.frame = CGRect(x: 0, y: 0, width: size.width, height: size.height)
         gradient.colors = [UIColor.almostWhite.cgColor, UIColor.paleGrey.cgColor]
         let image = self.image(fromLayer: gradient)
-        print("image size: \(image.size), scale: \(image.scale)")
         return image
     }
     

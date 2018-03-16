@@ -13,6 +13,7 @@ class SetListTableViewCell: UITableViewCell {
     static let nibName = "SetListTableViewCell"
     static let reuseIdentifier = "SetListTableViewCell"
 
+    @IBOutlet weak var imageBorderView: UIView!
     @IBOutlet weak var setImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var yearLabel: UILabel!
@@ -23,8 +24,8 @@ class SetListTableViewCell: UITableViewCell {
     @IBOutlet weak var minifigsLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
 
-    @IBOutlet weak var ownedView: UIView!
-    @IBOutlet weak var wantedView: UIView!
+    @IBOutlet weak var collectionStatusView: UIView!
+    @IBOutlet weak var collectionStatusLabel: UILabel!
 
     //--------------------------------------------------------------------------
     // MARK: - Nib Loading
@@ -33,8 +34,20 @@ class SetListTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
 
-        ownedView.layer.cornerRadius = ownedView.bounds.height / 2
-        wantedView.layer.cornerRadius = ownedView.bounds.height / 2
+        collectionStatusView.layer.cornerRadius = collectionStatusView.bounds.height / 2
+        
+        tintColor = UIColor.lightNavy
+
+        addBorder()
+        addGradientBackground()
+
+        imageBorderView.layer.borderColor = UIColor.whiteThree.cgColor
+        imageBorderView.layer.borderWidth = 1.0 / UIScreen.main.scale
+        imageBorderView.layer.cornerRadius = 3
+        imageBorderView.layer.shadowColor = UIColor.blueGrey.cgColor
+        imageBorderView.layer.shadowRadius = 2
+        imageBorderView.layer.shadowOpacity = 0.4
+        imageBorderView.layer.shadowOffset =  CGSize(width: 1, height: 1)
     }
 
     //--------------------------------------------------------------------------
@@ -52,8 +65,7 @@ class SetListTableViewCell: UITableViewCell {
         minifigsLabel.text = ""
         priceLabel.text = ""
 
-        ownedView.isHidden = true
-        wantedView.isHidden = true
+        collectionStatusView.isHidden = true
 
         setImageView.af_cancelImageRequest()
         setImageView.layer.removeAllAnimations()
@@ -74,8 +86,10 @@ class SetListTableViewCell: UITableViewCell {
         minifigsLabel.text = "\(set.minifigs ?? 0)"
         priceLabel.text = set.preferredPriceString
 
-        ownedView.isHidden = !(set.owned ?? false)
-        wantedView.isHidden = !(set.wanted ?? false)
+        collectionStatusView.isHidden = !set.owned && !set.wanted
+        if set.owned { collectionStatusLabel.text = "OWNED" }
+        else if set.wanted { collectionStatusLabel.text = "WANTED" }
+        else { collectionStatusLabel.text = "" }
 
         let urlString = (UIScreen.main.scale > 1.5) ? set.largeThumbnailURL : set.thumbnailURL
         if let urlString = urlString, let url = URL(string: urlString) {

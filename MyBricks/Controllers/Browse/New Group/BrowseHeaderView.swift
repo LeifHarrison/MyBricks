@@ -21,6 +21,7 @@ class BrowseHeaderView: UIView {
         super.awakeFromNib()
         
         clipsToBounds = false
+        
         layer.shadowColor = UIColor(white: 0.8, alpha: 1).cgColor
         layer.shadowOffset = CGSize(width: 0, height: 2)
         layer.shadowRadius = 3.0
@@ -34,8 +35,8 @@ class BrowseHeaderView: UIView {
     //--------------------------------------------------------------------------
     
     func populate(with setCount: Int, filterOptions: FilterOptions?) -> Void {
-        let regularTextColor = UIColor.darkGray
-        let boldTextColor = UIColor.black
+        let regularTextColor = UIColor.white
+        let boldTextColor = UIColor.white
         let regularAttributes: [NSAttributedStringKey : Any] = [.font: resultsLabel.font, .foregroundColor: regularTextColor]
         let boldAttributes: [NSAttributedStringKey : Any] = [.font: resultsLabel.font.bold(), .foregroundColor: boldTextColor]
         let separator = NSAttributedString(string:" : ", attributes:regularAttributes)

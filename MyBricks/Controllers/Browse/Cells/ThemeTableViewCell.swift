@@ -22,9 +22,10 @@ class ThemeTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        self.layer.borderColor = UIColor.whiteThree.cgColor
-        self.layer.borderWidth = 1.0
-        self.layer.cornerRadius = 2
+        tintColor = UIColor.lightNavy
+        
+        addBorder()
+        addGradientBackground()
 
         setCountContainer.layer.borderColor = UIColor.whiteThree.cgColor
         setCountContainer.layer.borderWidth = 1.0
@@ -33,8 +34,6 @@ class ThemeTableViewCell: UITableViewCell {
         setCountContainer.layer.shadowRadius = 1
         setCountContainer.layer.shadowOpacity = 0.7
         setCountContainer.layer.shadowOffset =  CGSize(width: 0, height: 0)
-
-        addGradientBackground()
     }
     
     //--------------------------------------------------------------------------
@@ -43,6 +42,9 @@ class ThemeTableViewCell: UITableViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
+        
+        accessoryType = .none
+        selectionStyle = .none
         
         nameLabel.text = nil
         yearsLabel.text = nil
@@ -58,18 +60,9 @@ class ThemeTableViewCell: UITableViewCell {
         yearsLabel.text = theme.yearsDecription()
 
         if let setCount = theme.setCount, setCount > 0 {
-            //setCountLabel.attributedText = theme.setsAttributedDescription()
             setCountLabel.text = "\(setCount)"
-            if setCount > 0 {
-                selectionStyle = .default
-                accessoryType = .disclosureIndicator
-            }
-        }
-        else if let subthemeCount = theme.subThemeCount, subthemeCount > 0 {
-            setCountLabel.attributedText = theme.subthemesAttributedDescription()
-        }
-        else {
-            setCountLabel.text = ""
+            selectionStyle = .default
+            accessoryType = .disclosureIndicator
         }
     }
 

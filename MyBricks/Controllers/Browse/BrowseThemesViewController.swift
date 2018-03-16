@@ -141,9 +141,10 @@ extension BrowseThemesViewController: UITableViewDelegate {
             if let browseVC = storyboard?.instantiateViewController(withIdentifier: "BrowseSetsViewController") as? BrowseSetsViewController {
                 
                 var filterOptions = FilterOptions()
+                filterOptions.availableThemes = allThemes
                 filterOptions.initialTheme = theme
                 filterOptions.selectedTheme = theme
-                filterOptions.availableThemes = allThemes
+                filterOptions.grouping = .year
                 
                 browseVC.filterOptions = filterOptions
                 show(browseVC, sender: self)

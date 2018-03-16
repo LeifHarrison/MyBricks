@@ -25,9 +25,9 @@ struct Set {
     var largeThumbnailURL: String? // Max dimensions 240x180
     var imageURL: String? // Max dimensions 690x690
     var bricksetURL: String?
-    var released: Bool?
-    var owned: Bool?
-    var wanted: Bool?
+    var released: Bool = true
+    var owned: Bool = false
+    var wanted: Bool = false
     var quantityOwned: Int?
     var userNotes: String?
     var ownedByTotal: Int?
@@ -73,14 +73,14 @@ struct Set {
         largeThumbnailURL = element.firstChild(tag: "largeThumbnailURL")?.stringValue
         imageURL = element.firstChild(tag: "imageURL")?.stringValue
         bricksetURL = element.firstChild(tag: "bricksetURL")?.stringValue
-        if let boolString = element.firstChild(tag: "released")?.stringValue {
-            released = Bool(boolString)
+        if let boolString = element.firstChild(tag: "released")?.stringValue, let boolValue = Bool(boolString) {
+            released = boolValue
         }
-        if let boolString = element.firstChild(tag: "owned")?.stringValue {
-            owned = Bool(boolString)
+        if let boolString = element.firstChild(tag: "owned")?.stringValue, let boolValue = Bool(boolString) {
+            owned = boolValue
         }
-        if let boolString = element.firstChild(tag: "wanted")?.stringValue {
-            wanted = Bool(boolString)
+        if let boolString = element.firstChild(tag: "wanted")?.stringValue, let boolValue = Bool(boolString) {
+            wanted = boolValue
         }
         if let intString = element.firstChild(tag: "qtyOwned")?.stringValue {
             quantityOwned = Int(intString)

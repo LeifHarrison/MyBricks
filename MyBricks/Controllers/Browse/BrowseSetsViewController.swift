@@ -17,7 +17,6 @@ class BrowseSetsViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
 
     var filterOptions: FilterOptions = FilterOptions()
-    var showUnreleased: Bool = true
     var browseRequest: Request? = nil
     
     var allSets: [Set] = []
@@ -118,17 +117,11 @@ class BrowseSetsViewController: UIViewController {
 
         // Have to filter for "Not Owned" ourselves
         if filterOptions.filterNotOwned {
-            allSets = allSets.filter {
-                if let owned = $0.owned {
-                    return !owned
-                }
-                return true
-            }
+            allSets = allSets.filter { return !$0.owned }
         }
 
         for set in allSets {
-            // By default, don't show unreleased sets
-            if let released = set.released, released != true && !showUnreleased {
+            if !set.released && !filterOptions.showUnreleased {
                 continue
             }
             

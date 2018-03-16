@@ -44,6 +44,8 @@ struct FilterOptions {
     var filterNotOwned: Bool = false
     var filterWanted: Bool = false
     
+    var showUnreleased: Bool = false
+
     var sortingSelection: SortingSelection = SortingSelection()
     var grouping: GroupingType? = nil
     
