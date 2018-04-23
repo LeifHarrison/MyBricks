@@ -130,7 +130,6 @@ extension BrowseThemesViewController: UITableViewDelegate {
         header.textLabel?.textColor = UIColor.white
         header.contentView.backgroundColor = UIColor.cloudyBlue
     }
-    
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let sectionTitle = sectionTitles[indexPath.section]

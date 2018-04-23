@@ -35,7 +35,7 @@ class BrowseSetsViewController: UIViewController {
         tableView.estimatedRowHeight = UITableViewAutomaticDimension
         tableView.sectionIndexBackgroundColor = UIColor.clear
         tableView.tableFooterView = UIView()
-        tableView.register(UINib(nibName:SetListTableViewCell.nibName, bundle:nil), forCellReuseIdentifier: SetListTableViewCell.reuseIdentifier)
+        tableView.register(SetListTableViewCell.self)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -208,11 +208,10 @@ extension BrowseSetsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let sectionTitle = sectionTitles[indexPath.section]
         if let sets = setsBySection[sectionTitle] {
+            let cell: SetListTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
             let set = sets[indexPath.row]
-            if let cell = tableView.dequeueReusableCell(withIdentifier: SetListTableViewCell.reuseIdentifier, for: indexPath) as? SetListTableViewCell {
-                cell.populateWithSet(set)
-                return cell
-            }
+            cell.populate(with: set)
+            return cell
         }
         return UITableViewCell()
     }
@@ -229,6 +228,32 @@ extension BrowseSetsViewController: UITableViewDataSource {
 
 extension BrowseSetsViewController: UITableViewDelegate {
 
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let sectionTitle = sectionTitles[indexPath.section]
+        if let setListCell = cell as? SetListTableViewCell, let sets = setsBySection[sectionTitle] {
+            let set = sets[indexPath.row]
+            if set.owned {
+                setListCell.collectionStatusView.backgroundColor = UIColor.bricksetOwned
+            }
+            else if set.wanted {
+                setListCell.collectionStatusView.backgroundColor = UIColor.bricksetWanted
+            }
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        guard let header = view as? UITableViewHeaderFooterView else { return }
+        header.textLabel?.font = UIFont.boldSystemFont(ofSize: 24)
+        header.textLabel?.textColor = UIColor.white
+        header.contentView.backgroundColor = UIColor.cloudyBlue
+        
+        header.clipsToBounds = false
+        header.layer.shadowColor = UIColor.black.cgColor
+        header.layer.shadowOffset = CGSize(width: 0, height: 1)
+        header.layer.shadowRadius = 2.0
+        header.layer.shadowOpacity = 0.1
+    }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let sectionTitle = sectionTitles[indexPath.section]
         if let sets = setsBySection[sectionTitle] {

@@ -8,10 +8,7 @@
 
 import UIKit
 
-class SetListTableViewCell: UITableViewCell {
-
-    static let nibName = "SetListTableViewCell"
-    static let reuseIdentifier = "SetListTableViewCell"
+class SetListTableViewCell: UITableViewCell, NibLoadableView, ReusableView {
 
     @IBOutlet weak var imageBorderView: UIView!
     @IBOutlet weak var setImageView: UIImageView!
@@ -33,8 +30,6 @@ class SetListTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-
-        collectionStatusView.layer.cornerRadius = collectionStatusView.bounds.height / 2
         
         tintColor = UIColor.lightNavy
 
@@ -45,9 +40,16 @@ class SetListTableViewCell: UITableViewCell {
         imageBorderView.layer.borderWidth = 1.0 / UIScreen.main.scale
         imageBorderView.layer.cornerRadius = 3
         imageBorderView.layer.shadowColor = UIColor.blueGrey.cgColor
-        imageBorderView.layer.shadowRadius = 2
-        imageBorderView.layer.shadowOpacity = 0.4
         imageBorderView.layer.shadowOffset =  CGSize(width: 1, height: 1)
+        imageBorderView.layer.shadowOpacity = 0.4
+        imageBorderView.layer.shadowRadius = 2
+
+        collectionStatusView.layer.shadowColor = UIColor.black.cgColor
+        collectionStatusView.layer.shadowOffset =  CGSize(width: 1, height: 1)
+        collectionStatusView.layer.shadowOpacity = 0.4
+        collectionStatusView.layer.shadowRadius = 2
+
+        prepareForReuse()
     }
 
     //--------------------------------------------------------------------------
@@ -72,11 +74,16 @@ class SetListTableViewCell: UITableViewCell {
         setImageView.image = nil
     }
 
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        collectionStatusView.layer.cornerRadius = collectionStatusView.frame.height / 2
+    }
+    
     //--------------------------------------------------------------------------
     // MARK: - Public
     //--------------------------------------------------------------------------
 
-    func populateWithSet(_ set : Set) -> Void {
+    func populate(with set : Set) -> Void {
         
         nameLabel.text = set.name
         yearLabel.text = set.year
@@ -87,10 +94,15 @@ class SetListTableViewCell: UITableViewCell {
         priceLabel.text = set.preferredPriceString
 
         collectionStatusView.isHidden = !set.owned && !set.wanted
-        if set.owned { collectionStatusLabel.text = "OWNED" }
-        else if set.wanted { collectionStatusLabel.text = "WANTED" }
-        else { collectionStatusLabel.text = "" }
-
+        if set.owned {
+            collectionStatusLabel.text = "\(set.quantityOwned ?? 0)"
+            collectionStatusView.backgroundColor = UIColor.bricksetOwned
+        }
+        else if set.wanted {
+            collectionStatusLabel.text = "W"
+            collectionStatusView.backgroundColor = UIColor.bricksetWanted
+        }
+        
         let urlString = (UIScreen.main.scale > 1.5) ? set.largeThumbnailURL : set.thumbnailURL
         if let urlString = urlString, let url = URL(string: urlString) {
             setImageView.af_setImage(withURL: url, imageTransition: .crossDissolve(0.3))

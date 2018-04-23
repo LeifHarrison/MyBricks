@@ -10,6 +10,14 @@ import UIKit
 
 extension UIColor {
     
+    @nonobjc class var bricksetOwned: UIColor {
+        return UIColor(red: 171.0 / 255.0, green: 212.0 / 255.0, blue: 71.0 / 255.0, alpha: 1.0)
+    }
+    
+    @nonobjc class var bricksetWanted: UIColor {
+        return UIColor(red: 243.0 / 255.0, green: 182.0 / 255.0, blue: 66.0 / 255.0, alpha: 1.0)
+    }
+    
     @nonobjc class var cloudyBlue: UIColor {
         return UIColor(red: 177.0 / 255.0, green: 195.0 / 255.0, blue: 212.0 / 255.0, alpha: 1.0)
     }
