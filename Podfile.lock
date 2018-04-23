@@ -1,9 +1,9 @@
 PODS:
-  - Alamofire (4.7.1)
+  - Alamofire (4.7.2)
   - AlamofireImage (3.3.1):
     - Alamofire (~> 4.5)
-  - AlamofireNetworkActivityIndicator (2.2.0):
-    - Alamofire (~> 4.5)
+  - AlamofireNetworkActivityIndicator (2.2.1):
+    - Alamofire (~> 4.7)
   - AlamofireNetworkActivityLogger (2.3.0):
     - Alamofire (~> 4.6)
   - AlamofireRSSParser (2.1.0):
@@ -22,10 +22,21 @@ DEPENDENCIES:
   - Fuzi
   - KeychainAccess
 
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - Alamofire
+    - AlamofireImage
+    - AlamofireNetworkActivityIndicator
+    - AlamofireNetworkActivityLogger
+    - AlamofireRSSParser
+    - Cosmos
+    - Fuzi
+    - KeychainAccess
+
 SPEC CHECKSUMS:
-  Alamofire: 68d7d521118d49c615a8d2214d87cdf525599d30
+  Alamofire: e4fa87002c137ba2d8d634d2c51fabcda0d5c223
   AlamofireImage: 3b35b586853abaf94ca1250f4e94cff3c21a4c0d
-  AlamofireNetworkActivityIndicator: 81e1630e7cfed22a4e4e82a174c59e651dc4f8ca
+  AlamofireNetworkActivityIndicator: aeac50e6ecb78ec71a5f1f29098bcf4ec2962910
   AlamofireNetworkActivityLogger: 6f3076652ab7fa6c819b59be08ea038d339e36d8
   AlamofireRSSParser: 5fed94de51ff88ea48496d7dfa6e3274100d90d6
   Cosmos: a6dbd3d0baa0cc8f51f8598f7508d5a09d0a9ade
@@ -34,4 +45,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 8b58ab1fad3d0bc5e946dd8e6d92a6faea5b0813
 
-COCOAPODS: 1.4.0
+COCOAPODS: 1.5.0
