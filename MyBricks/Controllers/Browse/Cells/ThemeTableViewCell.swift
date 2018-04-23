@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ThemeTableViewCell: UITableViewCell {
+class ThemeTableViewCell: UITableViewCell, NibLoadableView, ReusableView {
 
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var yearsLabel: UILabel!
@@ -62,7 +62,6 @@ class ThemeTableViewCell: UITableViewCell {
         if let setCount = theme.setCount, setCount > 0 {
             setCountLabel.text = "\(setCount)"
             selectionStyle = .default
-            accessoryType = .disclosureIndicator
         }
     }
 

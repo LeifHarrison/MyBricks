@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="TdO-jc-W4l">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="TdO-jc-W4l">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -26,18 +26,18 @@
                                         <rect key="frame" x="0.0" y="28" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="r2h-Zb-E7O" id="HmQ-nE-Wcw">
-                                            <rect key="frame" x="0.0" y="0.0" width="381" height="43.666666666666664"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="376" height="43.666666666666664"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="nA8-um-Con">
-                                                    <rect key="frame" x="15" y="11.999999999999998" width="33.333333333333336" height="20.333333333333332"/>
+                                                    <rect key="frame" x="20.000000000000004" y="11.999999999999998" width="33.333333333333336" height="20.333333333333332"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="AsG-yY-QBI">
-                                                    <rect key="frame" x="337.33333333333331" y="12.999999999999998" width="41.666666666666664" height="19.333333333333332"/>
+                                                    <rect key="frame" x="334.33333333333331" y="12.999999999999998" width="41.666666666666664" height="19.333333333333332"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -359,7 +359,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="etW-CK-wMm">
-                                                    <rect key="frame" x="15" y="0.0" width="384" height="43.666666666666664"/>
+                                                    <rect key="frame" x="20" y="0.0" width="374" height="43.666666666666664"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -390,7 +390,6 @@
                         <viewLayoutGuide key="safeArea" id="CNT-i5-fTp"/>
                     </view>
                     <connections>
-                        <outlet property="activityIndicator" destination="6Iz-bN-6mo" id="h54-Qk-d60"/>
                         <outlet property="tableView" destination="73f-og-MrY" id="eF0-Jc-kYl"/>
                     </connections>
                 </viewController>
@@ -418,7 +417,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gsF-e1-CYY">
-                                                    <rect key="frame" x="15" y="0.0" width="384" height="43.666666666666664"/>
+                                                    <rect key="frame" x="20" y="0.0" width="374" height="43.666666666666664"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -449,7 +448,6 @@
                         <viewLayoutGuide key="safeArea" id="KiK-eG-XnT"/>
                     </view>
                     <connections>
-                        <outlet property="activityIndicator" destination="oX9-X2-5jP" id="iQV-5H-eSf"/>
                         <outlet property="tableView" destination="DhU-Zp-v9x" id="irB-dj-3yG"/>
                     </connections>
                 </viewController>
@@ -477,7 +475,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="t6U-3b-OQk">
-                                                    <rect key="frame" x="15" y="0.0" width="384" height="43.666666666666664"/>
+                                                    <rect key="frame" x="20" y="0.0" width="374" height="43.666666666666664"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -508,7 +506,6 @@
                         <viewLayoutGuide key="safeArea" id="zPj-z7-Rb7"/>
                     </view>
                     <connections>
-                        <outlet property="activityIndicator" destination="AX3-Ai-739" id="I9l-xJ-De6"/>
                         <outlet property="tableView" destination="p6B-Gb-wNO" id="cbY-AB-QdJ"/>
                     </connections>
                 </viewController>
@@ -536,7 +533,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="h6K-iH-xlR">
-                                                    <rect key="frame" x="15" y="0.0" width="384" height="43.666666666666664"/>
+                                                    <rect key="frame" x="20" y="0.0" width="374" height="43.666666666666664"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>

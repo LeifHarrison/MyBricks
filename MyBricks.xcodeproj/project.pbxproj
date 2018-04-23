@@ -103,6 +103,7 @@
 		9B67EC2D2044BDEC001FAF77 /* FilterSelectSortingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B67EC2C2044BDEC001FAF77 /* FilterSelectSortingViewController.swift */; };
 		9B6D8E99203250380037ADFD /* SetReviewsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B6D8E98203250380037ADFD /* SetReviewsTableViewCell.xib */; };
 		9B6D8E9B20325D900037ADFD /* UIFont+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6D8E9A20325D900037ADFD /* UIFont+Extensions.swift */; };
+		9B722FC2208E5F5400F322E4 /* ThemeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B722FC1208E5F5400F322E4 /* ThemeTableViewCell.xib */; };
 		9B83E436202A21BC004433F0 /* SetImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B83E435202A21BC004433F0 /* SetImageCollectionViewCell.swift */; };
 		9B92A916202E4BE8001E7AC9 /* TagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B92A914202E4BE8001E7AC9 /* TagView.swift */; };
 		9B92A917202E4BE8001E7AC9 /* TagListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B92A915202E4BE8001E7AC9 /* TagListView.swift */; };
@@ -261,6 +262,7 @@
 		9B67EC2C2044BDEC001FAF77 /* FilterSelectSortingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterSelectSortingViewController.swift; sourceTree = "<group>"; };
 		9B6D8E98203250380037ADFD /* SetReviewsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SetReviewsTableViewCell.xib; sourceTree = "<group>"; };
 		9B6D8E9A20325D900037ADFD /* UIFont+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extensions.swift"; sourceTree = "<group>"; };
+		9B722FC1208E5F5400F322E4 /* ThemeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ThemeTableViewCell.xib; sourceTree = "<group>"; };
 		9B83E435202A21BC004433F0 /* SetImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		9B92A914202E4BE8001E7AC9 /* TagView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagView.swift; sourceTree = "<group>"; };
 		9B92A915202E4BE8001E7AC9 /* TagListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagListView.swift; sourceTree = "<group>"; };
@@ -316,6 +318,7 @@
 			isa = PBXGroup;
 			children = (
 				290F179E1FD8D3880002C70B /* Views */,
+				295ADFBC1F16AFFC002E6802 /* AppDelegate.swift */,
 				29EE120D202B698A00C05C55 /* SafariActivity.swift */,
 			);
 			path = Common;
@@ -447,7 +450,6 @@
 		295ADFBB1F16AFFC002E6802 /* MyBricks */ = {
 			isa = PBXGroup;
 			children = (
-				295ADFBC1F16AFFC002E6802 /* AppDelegate.swift */,
 				290F179D1FD8D37E0002C70B /* Common */,
 				293C9A6B1FD495A00058DA59 /* CoreData */,
 				294F187B1FB5185A0026342F /* Controllers */,
@@ -583,6 +585,7 @@
 				29CA94A41F8D72DC000F1DE3 /* SetListTableViewCell.swift */,
 				9B63D282202CE08700E1C3B0 /* SetListTableViewCell.xib */,
 				29E86FD91F31293900A67179 /* ThemeTableViewCell.swift */,
+				9B722FC1208E5F5400F322E4 /* ThemeTableViewCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -836,6 +839,7 @@
 				291AC5EF1FAF6FB0000DC9DD /* Search.storyboard in Resources */,
 				9B63D28E202CFCE400E1C3B0 /* BricksetCollectionTableViewCell.xib in Resources */,
 				9BD4D5C1202E27000019A057 /* SetTagsTableViewCell.xib in Resources */,
+				9B722FC2208E5F5400F322E4 /* ThemeTableViewCell.xib in Resources */,
 				9B63D28A202CFCB900E1C3B0 /* BricksetProfileTableViewCell.xib in Resources */,
 				9B63D278202CD6EF00E1C3B0 /* SetHeroImageTableViewCell.xib in Resources */,
 				9B63D27C202CD9CA00E1C3B0 /* SetImageCollectionViewCell.xib in Resources */,

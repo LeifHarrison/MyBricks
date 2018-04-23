@@ -26,9 +26,9 @@ class BrowseThemesViewController: UIViewController {
 
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = UITableViewAutomaticDimension
+        tableView.sectionIndexColor = UIColor.slateBlue
         tableView.tableFooterView = UIView()
-        
-        tableView.sectionIndexColor = UIColor.lightNavy
+        tableView.register(ThemeTableViewCell.self)
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -97,11 +97,9 @@ extension BrowseThemesViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let sectionTitle = sectionTitles[indexPath.section]
         if let themes = themesBySection[sectionTitle] {
-            let theme = themes[indexPath.row]
-            if let cell = tableView.dequeueReusableCell(withIdentifier: "ThemeTableViewCell", for: indexPath) as? ThemeTableViewCell {
-                cell.populateWithTheme(theme)
-                return cell
-            }
+            let cell: ThemeTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+            cell.populateWithTheme(themes[indexPath.row])
+            return cell
         }
         return UITableViewCell()
     }
