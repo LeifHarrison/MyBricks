@@ -21,6 +21,22 @@ class FilterCollectionTableViewCell: UITableViewCell, ReusableView {
     private var exclusiveSelection = false
     
     //--------------------------------------------------------------------------
+    // MARK: - Nib Loading
+    //--------------------------------------------------------------------------
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        tintColor = UIColor.lightNavy
+        ownedCheckboxButton.applyCheckboxStyle()
+        notOwnedCheckboxButton.applyCheckboxStyle()
+        wantedCheckboxButton.applyCheckboxStyle()
+
+        addBorder()
+        addGradientBackground()
+    }
+    
+    //--------------------------------------------------------------------------
     // MARK: - Actions
     //--------------------------------------------------------------------------
     

@@ -30,6 +30,7 @@ class FilterSelectYearViewController: UIViewController {
         addGradientBackground()
         self.title = "Select Year"
         
+        tableView.alwaysBounceVertical = false
         tableView.tableFooterView = UIView()
     }
     

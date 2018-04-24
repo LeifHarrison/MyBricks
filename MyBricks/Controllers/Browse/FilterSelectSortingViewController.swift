@@ -30,6 +30,7 @@ class FilterSelectSortingViewController: UIViewController {
         addGradientBackground()
         self.title = "Select Sorting"
         
+        tableView.alwaysBounceVertical = false
         tableView.tableFooterView = UIView()
     }
     

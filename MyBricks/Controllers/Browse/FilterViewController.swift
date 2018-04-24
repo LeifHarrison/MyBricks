@@ -109,14 +109,15 @@ class FilterViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        addGradientBackground()
 
+        self.view.backgroundColor = UIColor.cloudyBlue
         self.title = "Filter"
 
         resetButton.applyDefaultStyle()
         
         tableView.alwaysBounceVertical = false
         tableView.backgroundColor = UIColor.clear
+        tableView.separatorStyle = .none
         tableView.tableFooterView = UIView()
     }
 
@@ -291,7 +292,9 @@ extension FilterViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         guard let header = view as? UITableViewHeaderFooterView else { return }
-        header.textLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+        header.textLabel?.font = UIFont.boldSystemFont(ofSize: 18)
+        header.textLabel?.textColor = UIColor.white
+        header.contentView.backgroundColor = UIColor.cloudyBlue
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {

@@ -27,6 +27,7 @@ class BrowseThemesViewController: UIViewController {
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = UITableViewAutomaticDimension
         tableView.sectionIndexColor = UIColor.slateBlue
+        tableView.separatorStyle = .none
         tableView.tableFooterView = UIView()
         tableView.register(ThemeTableViewCell.self)
     }

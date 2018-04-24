@@ -16,6 +16,21 @@ class FilterSortingDirectionTableViewCell: UITableViewCell, ReusableView {
     var sortingDirectionSelected: ((SortingDirection) -> Void)? = nil
     
     //--------------------------------------------------------------------------
+    // MARK: - Nib Loading
+    //--------------------------------------------------------------------------
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        tintColor = UIColor.lightNavy
+        ascendingRadioButton.applyCheckboxStyle()
+        descendingRadioButton.applyCheckboxStyle()
+
+        addBorder()
+        addGradientBackground()
+    }
+    
+    //--------------------------------------------------------------------------
     // MARK: - Actions
     //--------------------------------------------------------------------------
     

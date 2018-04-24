@@ -17,4 +17,8 @@ extension UIButton {
         self.layer.cornerRadius = 5.0
     }
     
+    func applyCheckboxStyle() {
+        self.setTitleColor(.slateBlue, for: .normal)
+        self.setTitleColor(.lightNavy, for: .selected)
+    }
 }

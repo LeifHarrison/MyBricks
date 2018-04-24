@@ -31,6 +31,7 @@ class FilterSelectThemeViewController: UIViewController {
         addGradientBackground()
         self.title = "Select Theme"
         
+        tableView.alwaysBounceVertical = false
         tableView.tableFooterView = UIView()
     }
     

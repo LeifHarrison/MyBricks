@@ -17,6 +17,22 @@ class FilterGroupingTableViewCell: UITableViewCell, ReusableView {
     var groupingTypeSelected: ((GroupingType) -> Void)? = nil
     
     //--------------------------------------------------------------------------
+    // MARK: - Nib Loading
+    //--------------------------------------------------------------------------
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        tintColor = UIColor.lightNavy
+        groupThemeRadioButton.applyCheckboxStyle()
+        groupSubthemeRadioButton.applyCheckboxStyle()
+        groupYearRadioButton.applyCheckboxStyle()
+
+        addBorder()
+        addGradientBackground()
+    }
+    
+    //--------------------------------------------------------------------------
     // MARK: - Actions
     //--------------------------------------------------------------------------
     
