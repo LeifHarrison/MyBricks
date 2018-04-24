@@ -24,7 +24,7 @@ class NewsItemViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        addGradientBackground()
+        //addGradientBackground()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -84,9 +84,9 @@ extension RSSItem {
                         let isBold = font.fontDescriptor.symbolicTraits.contains(.traitBold)
                         let isItalic = font.fontDescriptor.symbolicTraits.contains(.traitItalic)
 
-                        var size: CGFloat = 14
+                        var size: CGFloat = 15
                         if substring.contains("©") || substring.contains("Republication prohibited") {
-                            size = 12
+                            size = 13
                         }
 
                         var font = UIFont.systemFont(ofSize: size)

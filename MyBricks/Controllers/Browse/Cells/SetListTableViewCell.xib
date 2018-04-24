@@ -68,6 +68,7 @@
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" image="legoBrickIcon" translatesAutoresizingMaskIntoConstraints="NO" id="YEO-x9-Zb9">
                                 <rect key="frame" x="0.0" y="0.0" width="19" height="18"/>
+                                <color key="tintColor" name="lightNavy"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="225" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="13d-KZ-bwo">
                                 <rect key="frame" x="25" y="2" width="23.5" height="14.5"/>
@@ -77,6 +78,7 @@
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="legoHeadIcon" translatesAutoresizingMaskIntoConstraints="NO" id="7ZX-r3-mcI">
                                 <rect key="frame" x="58.5" y="1.5" width="13" height="15"/>
+                                <color key="tintColor" name="lightNavy"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="3" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lv6-St-HRb">
                                 <rect key="frame" x="75.5" y="2.5" width="9" height="14.5"/>
@@ -127,6 +129,7 @@
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="forward" translatesAutoresizingMaskIntoConstraints="NO" id="5w7-kW-1h0">
                         <rect key="frame" x="356" y="48.5" width="9" height="14"/>
+                        <color key="tintColor" name="lightNavy"/>
                     </imageView>
                 </subviews>
                 <constraints>
@@ -178,6 +181,9 @@
         <image name="image_placeholder" width="50" height="50"/>
         <image name="legoBrickIcon" width="19" height="18"/>
         <image name="legoHeadIcon" width="13" height="15"/>
+        <namedColor name="lightNavy">
+            <color red="0.086274509803921567" green="0.25098039215686274" blue="0.44313725490196076" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="lightNavy">
             <color red="0.086274509803921567" green="0.25098039215686274" blue="0.44313725490196076" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

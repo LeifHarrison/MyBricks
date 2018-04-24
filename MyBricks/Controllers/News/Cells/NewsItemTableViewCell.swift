@@ -13,4 +13,17 @@ class NewsItemTableViewCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var autherAndDateLabel: UILabel!
 
+    //--------------------------------------------------------------------------
+    // MARK: - Nib Loading
+    //--------------------------------------------------------------------------
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        tintColor = UIColor.lightNavy
+        
+        addBorder()
+        addGradientBackground()
+    }
+    
 }

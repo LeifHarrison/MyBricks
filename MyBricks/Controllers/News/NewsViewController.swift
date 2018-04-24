@@ -97,9 +97,8 @@ extension NewsViewController: UITableViewDelegate {
 
 extension RSSItem {
 
-    static let textColor = UIColor(white:0.1, alpha:1.0)
-    static let templateAttributes = [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14), NSAttributedStringKey.foregroundColor: textColor]
-    static let authorAttributes = [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14, weight: .bold), NSAttributedStringKey.foregroundColor: UIColor.blue]
+    static let templateAttributes = [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14), NSAttributedStringKey.foregroundColor: UIColor.slateBlue]
+    static let authorAttributes = [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14, weight: .bold), NSAttributedStringKey.foregroundColor: UIColor.lightNavy]
     static let dateFormatter = DateFormatter()
 
     func authorAndDateAttributedDecription() -> NSAttributedString {
