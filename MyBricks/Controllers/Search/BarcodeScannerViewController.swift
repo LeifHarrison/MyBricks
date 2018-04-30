@@ -206,10 +206,10 @@ class BarcodeScannerViewController: UIViewController {
                 device.unlockForConfiguration()
             }
             catch {
-                print("Torch could not be used")
+                NSLog("Torch could not be used")
             }
         } else {
-            print("Torch is not available")
+            NSLog("Torch is not available")
         }
     }
     

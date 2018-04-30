@@ -50,24 +50,24 @@ class LoginViewController: UIViewController {
                                     if let protectionSpace = BricksetServices.shared.loginProtectionSpace {
                                         URLCredentialStorage.shared.setDefaultCredential(credential, for: protectionSpace)
                                     }
-                                    print("Biometric authentication success!")
+                                    NSLog("Biometric authentication success!")
                                     self.dismiss(animated: true, completion: nil)
                                 }
                                 else {
                                     // User did not authenticate successfully, look at error and take appropriate action
-                                    print("Biometric authentication error: \(String(describing: evaluateError))")
+                                    NSLog("Biometric authentication error: \(String(describing: evaluateError))")
                                 }
                             }
                         }
                         else {
                             // Could not evaluate policy; look at authError and present an appropriate message to user
-                            print("Biometric authentication error: \(String(describing: authError))")
+                            NSLog("Biometric authentication error: \(String(describing: authError))")
                             self.dismiss(animated: true, completion: nil)
                         }
                     }
                     else {
                         // Fallback on earlier versions
-                        print("Biometric authentication not supported.")
+                        NSLog("Biometric authentication not supported.")
                         self.dismiss(animated: true, completion: nil)
                     }
 

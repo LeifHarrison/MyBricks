@@ -10,40 +10,39 @@ import UIKit
 
 class SetHeroImageTableViewCell: UITableViewCell, ReusableView, NibLoadableView {
     
-    @IBOutlet weak var heroImageView: UIImageView!
-    @IBOutlet weak var numberView: UIView!
-    @IBOutlet weak var numberLabel: UILabel!
-    @IBOutlet weak var yearView: UIView!
-    @IBOutlet weak var yearLabel: UILabel!
-    @IBOutlet weak var ageView: UIView!
-    @IBOutlet weak var ageLabel: UILabel!
-    @IBOutlet weak var themeView: UIView!
-    @IBOutlet weak var themeLabel: UILabel!
-    @IBOutlet weak var zoomView: UIView!
+    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var nextButton: UIButton!
+    @IBOutlet weak var previousButton: UIButton!
+    @IBOutlet weak var pageControl: UIPageControl!
+    @IBOutlet weak var pageLabel: UILabel!
+    @IBOutlet weak var zoomButton: UIButton!
+    
+    var mainImageURL : String?
+    var imageTapped : ((SetImage?) -> Void)? = nil
+    
+    var currentPage : Int = 0 {
+        didSet {
+            //NSLog("current page = \(currentPage)")
+            updatePageIndicater()
+        }
+    }
+    
+    var additionalImages : [SetImage] = [] {
+        didSet {
+            if additionalImages.count > 0 {
+                showPageControls(animated: true)
+                updatePageIndicater()
+            }
+        }
+    }
 
-    let cornerLabelBackgroundColor = UIColor(white: 0.97, alpha: 1.0)
-    let cornerLabelBorderColor = UIColor(white: 0.8, alpha: 1.0)
-    let cornerLabelBorderWidth: CGFloat = 1.0
-    
-    var heroImageTapped : (() -> Void)? = nil
-    var tapGesture: UIGestureRecognizer? = nil
-    
     //--------------------------------------------------------------------------
     // MARK: - Nib Loading
     //--------------------------------------------------------------------------
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        
-        //heroImageView.layer.borderColor = cornerLabelBorderColor.cgColor
-        //heroImageView.layer.borderWidth = cornerLabelBorderWidth
-
-        applyOutlineStyle(to: numberView)
-        applyOutlineStyle(to: yearView)
-        applyOutlineStyle(to: ageView)
-        applyOutlineStyle(to: themeView)
-        applyOutlineStyle(to: zoomView)
-
+        collectionView.register(SetImageCollectionViewCell.self)
         prepareForReuse()
     }
 
@@ -53,53 +52,56 @@ class SetHeroImageTableViewCell: UITableViewCell, ReusableView, NibLoadableView 
 
     override func prepareForReuse() {
         super.prepareForReuse()
+        pageLabel.text = nil
         
-        numberLabel.text = ""
-        yearLabel.text = ""
-        ageLabel.text = ""
-        
-        heroImageView.image = nil
-        if let gesture = tapGesture {
-            heroImageView.removeGestureRecognizer(gesture)
-            self.heroImageView.isUserInteractionEnabled = false
-            tapGesture = nil
-        }
-        
+        nextButton.isHidden = true
+        previousButton.isHidden = true
+        pageControl.isHidden = true
+        pageLabel.isHidden = true
     }
 
+    //--------------------------------------------------------------------------
+    // MARK: - Layout
+    //--------------------------------------------------------------------------
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+            layout.itemSize = collectionView.frame.size
+        }
+    }
+    
     //--------------------------------------------------------------------------
     // MARK: - Actions
     //--------------------------------------------------------------------------
     
-    @IBAction func heroImageTapped(_ sender: UIButton) {
-        heroImageTapped?()
+    @IBAction func next(_ sender: UIButton) {
+        setCurrentPage(page: currentPage+1)
+    }
+    
+    @IBAction func previous(_ sender: UIButton) {
+        setCurrentPage(page: currentPage-1)
     }
     
     //--------------------------------------------------------------------------
     // MARK: - Public
     //--------------------------------------------------------------------------
 
-    func populateWithSet(_ set : Set) -> Void {
-        numberLabel.text = set.number
-        yearLabel.text = set.year
-        ageLabel.text = set.ageRangeString
-        themeLabel.text = set.theme
-
-        ageView.isHidden = (set.ageMin == nil)
+    func populate(with set : Set, additionalImages: [SetImage]?) -> Void {
+        mainImageURL = set.largeThumbnailURL
+        if let images = additionalImages {
+            self.additionalImages = images
+            collectionView.reloadData()
+        }
     }
 
     func showZoomButton(animated: Bool) {
-        zoomView.alpha = 0.0
-        zoomView.isHidden = false
+        zoomButton.alpha = 0.0
+        zoomButton.isHidden = false
         let animations = { () -> Void in
-            self.zoomView.alpha = 1.0
+            self.zoomButton.alpha = 1.0
         }
         let completion: ((Bool) -> Void) = { finished in
-            let gesture = UITapGestureRecognizer(target: self, action: #selector(self.heroImageTapped(_:)))
-            gesture.cancelsTouchesInView = false
-            self.heroImageView.addGestureRecognizer(gesture)
-            self.heroImageView.isUserInteractionEnabled = true
-            self.tapGesture = gesture
         }
         UIView.animate(withDuration: animated ? 0.25 : 0.0, animations:animations, completion: completion)
     }
@@ -108,11 +110,109 @@ class SetHeroImageTableViewCell: UITableViewCell, ReusableView, NibLoadableView 
     // MARK: - Private
     //--------------------------------------------------------------------------
     
-    private func applyOutlineStyle(to view: UIView) {
-        view.backgroundColor = cornerLabelBackgroundColor
-        view.layer.borderColor = cornerLabelBorderColor.cgColor
-        view.layer.borderWidth = cornerLabelBorderWidth
-        view.layer.cornerRadius = view.bounds.height / 2
+    private func showPageControls(animated: Bool) {
+        let pageIndicator: UIView = (self.additionalImages.count + 1) > 15 ? pageLabel : pageControl
+        
+        nextButton.alpha = 0.0
+        previousButton.alpha = 0.0
+        pageIndicator.alpha = 0.0
+
+        nextButton.isHidden = false
+        previousButton.isHidden = false
+        pageIndicator.isHidden = false
+
+        let animations = { () -> Void in
+            self.nextButton.alpha = 1.0
+            self.previousButton.alpha = 1.0
+            pageIndicator.alpha = 1.0
+        }
+        let completion: ((Bool) -> Void) = { finished in
+        }
+        UIView.animate(withDuration: animated ? 0.5 : 0.0, animations:animations, completion: completion)
+    }
+    
+    private func updatePageIndicater() {
+        let numberOfPages = additionalImages.count + 1
+        if !pageControl.isHidden {
+            pageControl.currentPage = currentPage
+            pageControl.numberOfPages = numberOfPages
+        }
+        if !pageLabel.isHidden {
+            pageLabel.text = String(format: "%d of %d", currentPage+1, numberOfPages)
+        }
+        
+        nextButton.isEnabled = (numberOfPages > 1) && (currentPage < numberOfPages - 1)
+        previousButton.isEnabled = (numberOfPages > 1) && (currentPage > 0)
+    }
+    
+    private func setCurrentPage(page: Int) {
+        self.currentPage = page
+        let indexPath = IndexPath(item: currentPage, section: 0)
+        collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+    }
+}
+
+//==============================================================================
+// MARK: - UICollectionViewDataSource
+//==============================================================================
+
+extension SetHeroImageTableViewCell : UICollectionViewDataSource {
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return self.additionalImages.count + 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell: SetImageCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
+        if indexPath.item == 0 {
+            if let urlString = mainImageURL, let thumbnailURL = URL(string: urlString) {
+                cell.imageView.af_setImage(withURL: thumbnailURL, imageTransition: .crossDissolve(0.3)) 
+            }
+        }
+        else {
+            let image = self.additionalImages[indexPath.item-1]
+            if let thumbnailURLString = image.thumbnailURL, let thumbnailURL = URL(string: thumbnailURLString) {
+                cell.imageView.af_setImage(withURL: thumbnailURL, imageTransition: .crossDissolve(0.3))
+            }
+        }
+        return cell
+    }
+}
+
+//==============================================================================
+// MARK: - UICollectionViewDelegate
+//==============================================================================
+
+extension SetHeroImageTableViewCell: UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if indexPath.item == 0 {
+            imageTapped?(nil)
+        }
+        else {
+            let image = self.additionalImages[indexPath.item-1]
+            imageTapped?(image)
+        }
     }
     
 }
+
+//==============================================================================
+// MARK: - UICollectionViewDelegate
+//==============================================================================
+
+extension SetHeroImageTableViewCell: UIScrollViewDelegate {
+
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        if let itemIndex = collectionView.indexPathForItem(at: targetContentOffset.pointee)?.item {
+            self.currentPage = itemIndex
+            updatePageIndicater()
+        }
+    }
+
+}
+

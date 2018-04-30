@@ -54,14 +54,14 @@ extension UIViewController {
             myContext.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: myLocalizedReasonString) { success, evaluateError in
                 if success {
                     // User authenticated successfully, take appropriate action
-                    print("Biometric authentication success!")
+                    NSLog("Biometric authentication success!")
                     DispatchQueue.main.async {
                         self.performLogin(credential: credential, completion: completion)
                     }
                 }
                 else if let error = evaluateError as? LAError {
                     // User did not authenticate successfully, look at error and take appropriate action
-                    print("Biometric authentication error: \(String(describing: evaluateError))")
+                    NSLog("Biometric authentication error: \(String(describing: evaluateError))")
                     if error.code == LAError.userFallback {
                         DispatchQueue.main.async {
                             self.showLoginView()
@@ -84,7 +84,7 @@ extension UIViewController {
         }
         else if let error = authError as? LAError {
             // Could not evaluate policy; look at authError and present an appropriate message to user
-            print("Biometric authentication error: \(String(describing: error))")
+            NSLog("Biometric authentication error: \(String(describing: error))")
             showLoginView()
         }
     }
@@ -99,7 +99,7 @@ extension UIViewController {
     func performLogin(credential: URLCredential, completion: @escaping ((Bool)->Void)) {
         if let username = credential.user, let password = credential.password {
             BricksetServices.shared.login(username: username, password: password, completion: { result in
-                print("Result: \(result)")
+                NSLog("Result: \(result)")
                 if result.isSuccess {
                     completion(true)
                 }

@@ -106,7 +106,7 @@ class BrowseSetsViewController: UIViewController {
             else {
                 if let error = result.error as? URLError, error.code == .cancelled { return }
                 else if let error = result.error {
-                    print("Error loading sets: \(error)")
+                    NSLog("Error loading sets: \(error)")
                 }
             }
         })
@@ -277,7 +277,7 @@ extension BrowseSetsViewController: UITableViewDelegate {
 extension BrowseSetsViewController: FilterViewControllerDelegate {
     
     func filterViewController(_ controller: FilterViewController, didUpdateFilterOptions filterOptions: FilterOptions) {
-        //print("Filter Options = \(filterOptions)")
+        //NSLog("Filter Options = \(filterOptions)")
         self.filterOptions = filterOptions
         fetchSets()
     }

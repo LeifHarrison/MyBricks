@@ -20,6 +20,13 @@ class SetInstructionsTableViewCell: UITableViewCell, ReusableView, NibLoadableVi
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        addBorder()
+        addGradientBackground()
+
+        accessoryView = UIImageView(image: UIImage(named:"forward"))
+        accessoryView?.tintColor = UIColor.lightNavy
+        
         instructionsTitleLabel.text = NSLocalizedString("Instructions", comment: "")
         prepareForReuse()
     }

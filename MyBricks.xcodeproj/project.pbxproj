@@ -77,6 +77,7 @@
 		71EA93350D446E8447D819DE /* Pods_MyBricks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C7DD5EA6F08ABC5549DF63C /* Pods_MyBricks.framework */; };
 		9B2804CF2023CE970026FC73 /* SetImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2804CE2023CE970026FC73 /* SetImage.swift */; };
 		9B3E1EEC202A690D0094DD3E /* SetDetailFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3E1EEB202A690D0094DD3E /* SetDetailFooterView.swift */; };
+		9B42C15E208FE7AA00260B0F /* SetPriceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B42C15D208FE7AA00260B0F /* SetPriceTableViewCell.xib */; };
 		9B48CBF22045E3270074908B /* SetInstructionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B48CBF02045E3270074908B /* SetInstructionsTableViewCell.swift */; };
 		9B48CBF32045E3270074908B /* SetInstructionsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B48CBF12045E3270074908B /* SetInstructionsTableViewCell.xib */; };
 		9B4B4C4E203CD2630026B3AC /* SimpleActivityHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4B4C4D203CD2630026B3AC /* SimpleActivityHUD.swift */; };
@@ -113,6 +114,7 @@
 		9B92EFAC201FE06D007610BD /* FilterSelectThemeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B92EFAB201FE06D007610BD /* FilterSelectThemeTableViewController.swift */; };
 		9B92EFAE201FE084007610BD /* FilterSelectSubthemeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B92EFAD201FE084007610BD /* FilterSelectSubthemeViewController.swift */; };
 		9B92EFB0201FE09D007610BD /* FilterSelectYearViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B92EFAF201FE09D007610BD /* FilterSelectYearViewController.swift */; };
+		9BB4710F20910523006DBB06 /* SetDescriptionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9BB4710E20910523006DBB06 /* SetDescriptionTableViewCell.xib */; };
 		9BCA7E302028DA6E00FA7BDC /* SetPriceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BCA7E2F2028DA6E00FA7BDC /* SetPriceTableViewCell.swift */; };
 		9BD4D5C0202E27000019A057 /* SetTagsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD4D5BE202E27000019A057 /* SetTagsTableViewCell.swift */; };
 		9BD4D5C1202E27000019A057 /* SetTagsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9BD4D5BF202E27000019A057 /* SetTagsTableViewCell.xib */; };
@@ -236,6 +238,7 @@
 		8C7DD5EA6F08ABC5549DF63C /* Pods_MyBricks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyBricks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B2804CE2023CE970026FC73 /* SetImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetImage.swift; sourceTree = "<group>"; };
 		9B3E1EEB202A690D0094DD3E /* SetDetailFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetDetailFooterView.swift; sourceTree = "<group>"; };
+		9B42C15D208FE7AA00260B0F /* SetPriceTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SetPriceTableViewCell.xib; sourceTree = "<group>"; };
 		9B48CBF02045E3270074908B /* SetInstructionsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetInstructionsTableViewCell.swift; sourceTree = "<group>"; };
 		9B48CBF12045E3270074908B /* SetInstructionsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SetInstructionsTableViewCell.xib; sourceTree = "<group>"; };
 		9B4B4C4D203CD2630026B3AC /* SimpleActivityHUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleActivityHUD.swift; sourceTree = "<group>"; };
@@ -272,6 +275,7 @@
 		9B92EFAB201FE06D007610BD /* FilterSelectThemeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterSelectThemeTableViewController.swift; sourceTree = "<group>"; };
 		9B92EFAD201FE084007610BD /* FilterSelectSubthemeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterSelectSubthemeViewController.swift; sourceTree = "<group>"; };
 		9B92EFAF201FE09D007610BD /* FilterSelectYearViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterSelectYearViewController.swift; sourceTree = "<group>"; };
+		9BB4710E20910523006DBB06 /* SetDescriptionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SetDescriptionTableViewCell.xib; sourceTree = "<group>"; };
 		9BCA7E2F2028DA6E00FA7BDC /* SetPriceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetPriceTableViewCell.swift; sourceTree = "<group>"; };
 		9BD4D5BE202E27000019A057 /* SetTagsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetTagsTableViewCell.swift; sourceTree = "<group>"; };
 		9BD4D5BF202E27000019A057 /* SetTagsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SetTagsTableViewCell.xib; sourceTree = "<group>"; };
@@ -646,6 +650,7 @@
 				29DFEA121FA29BF500AB0AE8 /* SetCollectionTableViewCell.swift */,
 				9B63D284202CEDFB00E1C3B0 /* SetCollectionTableViewCell.xib */,
 				29AE22CE1FCB9A6500744045 /* SetDescriptionTableViewCell.swift */,
+				9BB4710E20910523006DBB06 /* SetDescriptionTableViewCell.xib */,
 				2945A1FB1F9FDB5300827BA7 /* SetDetailTableViewCell.swift */,
 				9B63D27D202CDCD800E1C3B0 /* SetDetailTableViewCell.xib */,
 				296EB6DD1FBF5E3600D4D3C6 /* SetHeroImageTableViewCell.swift */,
@@ -659,6 +664,7 @@
 				296EB6E11FBF5E5700D4D3C6 /* SetPartsTableViewCell.swift */,
 				9B63D27F202CDD7900E1C3B0 /* SetPartsTableViewCell.xib */,
 				9BCA7E2F2028DA6E00FA7BDC /* SetPriceTableViewCell.swift */,
+				9B42C15D208FE7AA00260B0F /* SetPriceTableViewCell.xib */,
 				296EB6DF1FBF5E4500D4D3C6 /* SetReviewsTableViewCell.swift */,
 				9B6D8E98203250380037ADFD /* SetReviewsTableViewCell.xib */,
 				2949A9541FBFE05E00676D59 /* SetReviewTableViewCell.swift */,
@@ -836,12 +842,14 @@
 				9BFFDEA92020E3C90070C812 /* Filter.storyboard in Resources */,
 				2964609F1FA907FC004850F8 /* NewsItemTableViewCell.xib in Resources */,
 				2921AD891FAF6C4000180268 /* News.storyboard in Resources */,
+				9B42C15E208FE7AA00260B0F /* SetPriceTableViewCell.xib in Resources */,
 				291AC5EF1FAF6FB0000DC9DD /* Search.storyboard in Resources */,
 				9B63D28E202CFCE400E1C3B0 /* BricksetCollectionTableViewCell.xib in Resources */,
 				9BD4D5C1202E27000019A057 /* SetTagsTableViewCell.xib in Resources */,
 				9B722FC2208E5F5400F322E4 /* ThemeTableViewCell.xib in Resources */,
 				9B63D28A202CFCB900E1C3B0 /* BricksetProfileTableViewCell.xib in Resources */,
 				9B63D278202CD6EF00E1C3B0 /* SetHeroImageTableViewCell.xib in Resources */,
+				9BB4710F20910523006DBB06 /* SetDescriptionTableViewCell.xib in Resources */,
 				9B63D27C202CD9CA00E1C3B0 /* SetImageCollectionViewCell.xib in Resources */,
 				294F187F1FB519ED0026342F /* MySets.storyboard in Resources */,
 				9BFFDEAB20212E5F0070C812 /* SetDetail.storyboard in Resources */,

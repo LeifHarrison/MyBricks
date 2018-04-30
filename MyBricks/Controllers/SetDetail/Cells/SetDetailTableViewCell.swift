@@ -10,6 +10,8 @@ import UIKit
 
 class SetDetailTableViewCell: UITableViewCell, ReusableView, NibLoadableView {
 
+    @IBOutlet weak var setNumberField: UILabel!
+    @IBOutlet weak var setYearField: UILabel!
     @IBOutlet weak var setNameField: UILabel!
     @IBOutlet weak var themeGroupField: UILabel!
     @IBOutlet weak var themeField: UILabel!
@@ -21,6 +23,8 @@ class SetDetailTableViewCell: UITableViewCell, ReusableView, NibLoadableView {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        addBorder()
+        addGradientBackground()
         prepareForReuse()
     }
 
@@ -30,6 +34,8 @@ class SetDetailTableViewCell: UITableViewCell, ReusableView, NibLoadableView {
 
     override func prepareForReuse() {
         super.prepareForReuse()
+        setNumberField.text = ""
+        setYearField.text = ""
         setNameField.text = ""
         themeGroupField.text = "0"
         themeField.text = "0"
@@ -41,14 +47,12 @@ class SetDetailTableViewCell: UITableViewCell, ReusableView, NibLoadableView {
     //--------------------------------------------------------------------------
     
     func populateWithSet(_ set : Set) -> Void {
+        setNumberField.text = set.fullSetNumber
+        setYearField.text = set.year
         setNameField.text = set.name
         themeField.text = set.themeDescription()
         themeGroupField.text = set.themeGroup?.capitalized
         availabilityField.text = set.availabilityDescription()
-
-        // Future additions, hopefully...
-        //setTypeField.text = "-"
-        //tagsField.text = "-"
     }
 
 }

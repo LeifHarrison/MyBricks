@@ -56,8 +56,8 @@ class BrowseThemesViewController: UIViewController {
             else {
                 if let error = result.error as? URLError, error.code == .cancelled { return }
                 else if let error = result.error as? URLError {
-                    //print("Error loading themes: \(error)")
-                    print("Code: \(error.errorCode), Description: \(error.localizedDescription)")
+                    //NSLog("Error loading themes: \(error)")
+                    NSLog("Code: \(error.errorCode), Description: \(error.localizedDescription)")
                 }
 
                 // TODO: Display error view

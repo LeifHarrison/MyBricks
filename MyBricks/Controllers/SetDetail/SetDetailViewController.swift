@@ -13,7 +13,6 @@ class SetDetailViewController: UIViewController {
 
     enum TableSectionType: Int {
         case heroImage
-        case additionalImages
         case detail
         case price
         case reviews
@@ -32,12 +31,12 @@ class SetDetailViewController: UIViewController {
 
     var currentSet: Set?
     var setDetail: SetDetail?
-    var setImages: [SetImage]?
+    var additionalImages: [SetImage]?
     var currentSetImage: UIImage?
     var hasLargeImage: Bool = false
     
     var setDetailRequest: DataRequest? = nil
-    var setImagesRequest: DataRequest? = nil
+    var additionalImagesRequest: DataRequest? = nil
 
     //--------------------------------------------------------------------------
     // MARK: - View Lifecycle
@@ -45,6 +44,7 @@ class SetDetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         addGradientBackground()
         title = NSLocalizedString("Set Detail", comment: "")
         
@@ -53,23 +53,7 @@ class SetDetailViewController: UIViewController {
         // Add 'Share' button to navigation bar
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Share", style: .plain, target: self, action: #selector(share(sender:)))
 
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.sectionIndexBackgroundColor = UIColor.clear
-        tableView.separatorColor = UIColor(white: 0.3, alpha: 0.8)
-        tableView.separatorInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
-        
-        tableView.register(SetCollectionTableViewCell.self)
-        tableView.register(SetDetailTableViewCell.self)
-        tableView.register(SetHeroImageTableViewCell.self)
-        tableView.register(SetImagesTableViewCell.self)
-        tableView.register(SetPartsTableViewCell.self)
-        tableView.register(SetReviewsTableViewCell.self)
-        tableView.register(SetInstructionsTableViewCell.self)
-        tableView.register(SetTagsTableViewCell.self)
-
-        if tableView.tableFooterView == nil {
-            tableView.tableFooterView = UIView()
-        }
+        setupTableView()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -93,8 +77,8 @@ class SetDetailViewController: UIViewController {
         if setDetail == nil {
             fetchSetDetail()
         }
-        if setImages == nil {
-            fetchSetImages()
+        if additionalImages == nil {
+            fetchAdditionalImages()
         }
     }
 
@@ -129,13 +113,29 @@ class SetDetailViewController: UIViewController {
     // MARK: - Private
     //--------------------------------------------------------------------------
 
+    private func setupTableView() {
+        tableView.rowHeight = UITableViewAutomaticDimension
+        
+        tableView.register(SetCollectionTableViewCell.self)
+        tableView.register(SetDetailTableViewCell.self)
+        tableView.register(SetHeroImageTableViewCell.self)
+        tableView.register(SetImagesTableViewCell.self)
+        tableView.register(SetPartsTableViewCell.self)
+        tableView.register(SetPriceTableViewCell.self)
+        tableView.register(SetReviewsTableViewCell.self)
+        tableView.register(SetInstructionsTableViewCell.self)
+        tableView.register(SetTagsTableViewCell.self)
+        tableView.register(SetDescriptionTableViewCell.self)
+        
+        if tableView.tableFooterView == nil {
+            tableView.tableFooterView = UIView()
+        }
+    }
+    
     private func updateSections() {
         sections.removeAll()
         
         sections.append(.heroImage)
-        if let imageCount = setImages?.count, imageCount > 0 {
-            sections.append(.additionalImages)
-        }
         sections.append(.detail)
         sections.append(.price)
         sections.append(.parts)
@@ -180,19 +180,16 @@ class SetDetailViewController: UIViewController {
         }
     }
     
-    private func fetchSetImages() {
+    private func fetchAdditionalImages() {
         if let set = currentSet, let setID = set.setID {
-            setImagesRequest = BricksetServices.shared.getAdditionalImages(setID: setID, completion: { [weak self] result in
+            additionalImagesRequest = BricksetServices.shared.getAdditionalImages(setID: setID, completion: { [weak self] result in
                 guard let strongSelf = self else { return }
 
-                strongSelf.setImagesRequest = nil
+                strongSelf.additionalImagesRequest = nil
                 if result.isSuccess, let images = result.value, images.count > 0 {
-                    strongSelf.setImages = images
+                    strongSelf.additionalImages = images
                     if let imageSectionIndex = strongSelf.sections.index(of: .heroImage) {
-                        strongSelf.sections.insert(.additionalImages, at: imageSectionIndex+1)
-                        if let index = strongSelf.sections.index(of: .additionalImages) {
-                            strongSelf.tableView.insertSections([index], with: .fade)
-                        }
+                        strongSelf.tableView.reloadSections([imageSectionIndex], with: .fade)
                     }
                 }
             })
@@ -214,9 +211,6 @@ class SetDetailViewController: UIViewController {
     private func enableImageZoom() {
         if let imageSection = self.sections.index(of: .heroImage), let cell = self.tableView.cellForRow(at: IndexPath(row: 0, section: imageSection)) as? SetHeroImageTableViewCell {
             cell.showZoomButton(animated: true)
-            cell.heroImageTapped = {
-                self.showLargeImage()
-            }
         }
     }
     private func showLargeImage() {
@@ -293,44 +287,26 @@ extension SetDetailViewController: UITableViewDataSource {
             
         case .heroImage :
             let cell: SetHeroImageTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
-            cell.populateWithSet(set)
-            
-            // Populate the image ourselves, so we can reload the cell when the image finishes loading
-            if let image = currentSetImage {
-                cell.heroImageView.image = image
-            }
-            else if let urlString = set.imageURL, let url = URL(string: urlString) {
-                cell.heroImageView?.af_setImage(withURL: url, imageTransition: .crossDissolve(0.3) ) { response in
-                    if let image = response.result.value {
-                        // Cache the image so we don't load it again
-                        self.currentSetImage = image
+            cell.populate(with: set, additionalImages: additionalImages)
+
+            cell.imageTapped = { image in
+                if let vc = self.storyboard?.instantiateViewController(withIdentifier: "ImageDetailViewController") as? ImageDetailViewController {
+                    if let selectedImage = image {
+                        vc.imageURL = selectedImage.imageURL
                     }
-                    DispatchQueue.main.async(execute: {
-                        tableView.reloadRows(at: [indexPath], with: .fade)
-                    })
-                }
-            }
-            
-            if hasLargeImage {
-                cell.showZoomButton(animated: false)
-                cell.heroImageTapped = {
-                    self.showLargeImage()
-                }
-            }
-            
-            return cell
-            
-        case .additionalImages :
-            let cell: SetImagesTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
-            if let images = setImages {
-                cell.populateWithSetImages(images)
-                cell.imageTapped = { image in
-                    if let vc = self.storyboard?.instantiateViewController(withIdentifier: "ImageDetailViewController") as? ImageDetailViewController {
-                        vc.imageURL = image.imageURL
-                        self.present(vc, animated: true, completion: nil)
+                    else if let set = self.currentSet, let imageURL = set.imageURL {
+                        if self.hasLargeImage {
+                            let largeImageURL = imageURL.replacingOccurrences(of: "/images/", with: "/large/")
+                            vc.imageURL = largeImageURL
+                        }
+                        else {
+                            vc.imageURL = imageURL
+                        }
                     }
+                    self.present(vc, animated: true, completion: nil)
                 }
             }
+
             return cell
             
         case .detail :
@@ -339,22 +315,19 @@ extension SetDetailViewController: UITableViewDataSource {
             return cell
 
         case .price :
-            if let cell = tableView.dequeueReusableCell(withIdentifier: "SetPriceTableViewCell", for: indexPath) as? SetPriceTableViewCell {
-                cell.populateWithSet(set)
-                return cell
-            }
-            
+            let cell: SetPriceTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+            cell.populateWithSet(set)
+            return cell
+
         case .parts :
-            if let cell = tableView.dequeueReusableCell(withIdentifier: "SetPartsTableViewCell", for: indexPath) as? SetPartsTableViewCell {
-                cell.populateWithSet(set)
-                return cell
-            }
-            
+            let cell: SetPartsTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+            cell.populateWithSet(set)
+            return cell
+
         case .reviews :
-            if let cell = tableView.dequeueReusableCell(withIdentifier: "SetReviewsTableViewCell", for: indexPath) as? SetReviewsTableViewCell {
-                cell.populate(with: set)
-                return cell
-            }
+            let cell: SetReviewsTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+            cell.populate(with: set)
+            return cell
             
         case .instructions :
             let cell: SetInstructionsTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
@@ -384,13 +357,12 @@ extension SetDetailViewController: UITableViewDataSource {
             return cell
 
         case .description :
-            if let cell = tableView.dequeueReusableCell(withIdentifier: "SetDescriptionTableViewCell", for: indexPath) as? SetDescriptionTableViewCell {
-                if let detail = setDetail {
-                    cell.populate(with: detail)
-                }
-                return cell
+            let cell: SetDescriptionTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+            if let detail = setDetail {
+                cell.populate(with: detail)
             }
-            
+            return cell
+
         default :
             return UITableViewCell()
             

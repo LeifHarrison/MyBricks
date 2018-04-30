@@ -65,6 +65,9 @@ class SetCollectionTableViewCell: UITableViewCell, ReusableView, NibLoadableView
             }
         }
 
+        addBorder()
+        addGradientBackground()
+
         prepareForReuse()
     }
     

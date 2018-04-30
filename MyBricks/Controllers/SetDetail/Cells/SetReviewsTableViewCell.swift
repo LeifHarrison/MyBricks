@@ -27,15 +27,21 @@ class SetReviewsTableViewCell: UITableViewCell, ReusableView, NibLoadableView {
         ratingView.settings.fillMode = .precise
         ratingView.settings.starMargin = 2.0
         ratingView.settings.updateOnTouch = false
-        ratingView.settings.filledColor = UIColor(red: ( 6 / 255 ), green: ( 144 / 255 ), blue: ( 214 / 255 ), alpha: 1.0)
+        ratingView.settings.filledColor = UIColor.lightNavy
         ratingView.settings.emptyColor = UIColor.white
-        ratingView.settings.emptyBorderColor = UIColor(red: ( 6 / 255 ), green: ( 144 / 255 ), blue: ( 214 / 255 ), alpha: 1.0)
-        ratingView.settings.filledBorderColor = UIColor(red: ( 6 / 255 ), green: ( 144 / 255 ), blue: ( 214 / 255 ), alpha: 1.0)
-        ratingView.settings.textColor = UIColor.black
+        ratingView.settings.emptyBorderColor = UIColor.slateBlue
+        ratingView.settings.filledBorderColor = UIColor.slateBlue
+        ratingView.settings.textColor = UIColor.lightNavy
         ratingView.settings.textFont = UIFont.systemFont(ofSize: 16, weight: .semibold)
 
         titleLabel.text = "Rating"
         
+        addBorder()
+        addGradientBackground()
+
+        accessoryView = UIImageView(image: UIImage(named:"forward"))
+        accessoryView?.tintColor = UIColor.lightNavy
+
         prepareForReuse()
     }
 

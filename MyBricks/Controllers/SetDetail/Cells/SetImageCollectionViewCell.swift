@@ -19,6 +19,9 @@ class SetImageCollectionViewCell: UICollectionViewCell, ReusableView, NibLoadabl
     override func awakeFromNib() {
         super.awakeFromNib()
         contentView.backgroundColor = UIColor.clear
+        //imageView.layer.borderColor = UIColor.whiteThree.cgColor
+        //imageView.layer.borderWidth = 1.0 / UIScreen.main.scale
+
     }
     
     //--------------------------------------------------------------------------
@@ -27,23 +30,7 @@ class SetImageCollectionViewCell: UICollectionViewCell, ReusableView, NibLoadabl
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        self.transform = CGAffineTransform.identity
         imageView.image = nil
-    }
-    
-    //--------------------------------------------------------------------------
-    // MARK: - Properties
-    //--------------------------------------------------------------------------
-    
-    override var isHighlighted: Bool{
-        didSet {
-            if self.isHighlighted {
-                self.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
-            }
-            else {
-                self.transform = CGAffineTransform.identity
-            }
-        }
     }
     
 }

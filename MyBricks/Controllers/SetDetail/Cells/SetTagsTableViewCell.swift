@@ -24,12 +24,15 @@ class SetTagsTableViewCell: UITableViewCell, ReusableView, NibLoadableView {
         
         selectionStyle = .none
 
-        let font = UIFont.systemFont(ofSize: 16)
-        tagListView.textFont = font
+        addBorder()
+        addGradientBackground()
+
+        tagListView.cornerRadius = 4
         tagListView.marginY = 3
-        tagListView.paddingX = (font.lineHeight / 2) + tagListView.paddingY
+        tagListView.paddingX = 8
         tagListView.paddingY = 3
-        tagListView.cornerRadius = tagListView.paddingX
+        tagListView.tagBackgroundColor = UIColor.lightNavy
+        tagListView.textFont = UIFont.systemFont(ofSize: 14)
     }
 
     //--------------------------------------------------------------------------

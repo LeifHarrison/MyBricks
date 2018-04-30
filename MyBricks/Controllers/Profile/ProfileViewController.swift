@@ -75,7 +75,7 @@ class ProfileViewController: UIViewController {
 
     @IBAction func login(_ sender: AnyObject?) {
         if let protectionSpace = BricksetServices.shared.loginProtectionSpace, let credential = URLCredentialStorage.shared.defaultCredential(for: protectionSpace) {
-            print("Credential: \(credential), password: \(String(describing: credential.password))")
+            NSLog("Credential: \(credential), password: \(String(describing: credential.password))")
             evaluateBiometricAuthentication(credential: credential)
         }
         else {
@@ -162,14 +162,14 @@ class ProfileViewController: UIViewController {
             myContext.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: myLocalizedReasonString) { success, evaluateError in
                 if success {
                     // User authenticated successfully, take appropriate action
-                    print("Biometric authentication success!")
+                    NSLog("Biometric authentication success!")
                     DispatchQueue.main.async {
                         self.performLogin(credential: credential)
                     }
                 }
                 else if let error = evaluateError as? LAError {
                     // User did not authenticate successfully, look at error and take appropriate action
-                    print("Biometric authentication error: \(String(describing: evaluateError))")
+                    NSLog("Biometric authentication error: \(String(describing: evaluateError))")
                     if error.code.rawValue == kLAErrorUserFallback {
                         DispatchQueue.main.async {
                             self.performSegue(withIdentifier: "showLoginView", sender: self)
@@ -188,7 +188,7 @@ class ProfileViewController: UIViewController {
         }
         else {
             // Could not evaluate policy; look at authError and present an appropriate message to user
-            print("Biometric authentication error: \(String(describing: authError))")
+            NSLog("Biometric authentication error: \(String(describing: authError))")
             DispatchQueue.main.async {
                 self.performSegue(withIdentifier: "showLoginView", sender: self)
             }

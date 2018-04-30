@@ -21,6 +21,13 @@ class SetPartsTableViewCell: UITableViewCell, ReusableView, NibLoadableView {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        addBorder()
+        addGradientBackground()
+
+        accessoryView = UIImageView(image: UIImage(named:"forward"))
+        accessoryView?.tintColor = UIColor.lightNavy
+
         prepareForReuse()
     }
 

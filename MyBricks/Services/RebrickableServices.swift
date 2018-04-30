@@ -53,7 +53,7 @@ class RebrickableServices {
                         completion(.failure(error))
                     }
                 case .failure(let error):
-                    print("Error: \(error)")
+                    NSLog("Error: \(error)")
                     completion(.failure(error))
             }
         }

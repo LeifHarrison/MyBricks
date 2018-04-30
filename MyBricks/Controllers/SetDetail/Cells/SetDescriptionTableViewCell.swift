@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SetDescriptionTableViewCell: UITableViewCell {
+class SetDescriptionTableViewCell: UITableViewCell, ReusableView, NibLoadableView {
 
     @IBOutlet weak var descriptionTextView: UITextView!
 
@@ -18,7 +18,9 @@ class SetDescriptionTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
+        addBorder()
+        addGradientBackground()
+        prepareForReuse()
     }
     
     //--------------------------------------------------------------------------
@@ -83,6 +85,12 @@ extension SetDetail {
                             font = UIFont.italicSystemFont(ofSize: size)
                         }
                         formattedReview.addAttribute(.font, value: font, range: range)
+                    }
+                }
+                formattedReview.enumerateAttribute(.foregroundColor, in: fullRange, options: []) { (value, range, stop) in
+                    if let color = value as? UIColor {
+                        //NSLog("range: \(range), color: \(color)")
+                        formattedReview.addAttribute(.foregroundColor, value: UIColor.lightNavy, range: range)
                     }
                 }
                 
