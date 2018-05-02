@@ -22,7 +22,6 @@ class SetHeroImageTableViewCell: UITableViewCell, ReusableView, NibLoadableView 
     
     var currentPage : Int = 0 {
         didSet {
-            //NSLog("current page = \(currentPage)")
             updatePageIndicater()
         }
     }

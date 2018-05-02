@@ -21,18 +21,10 @@ class SetTagsTableViewCell: UITableViewCell, ReusableView, NibLoadableView {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        
         selectionStyle = .none
-
         addBorder()
         addGradientBackground()
-
-        tagListView.cornerRadius = 4
-        tagListView.marginY = 3
-        tagListView.paddingX = 8
-        tagListView.paddingY = 3
-        tagListView.tagBackgroundColor = UIColor.lightNavy
-        tagListView.textFont = UIFont.systemFont(ofSize: 14)
+        setupTagListView()
     }
 
     //--------------------------------------------------------------------------
@@ -54,4 +46,16 @@ class SetTagsTableViewCell: UITableViewCell, ReusableView, NibLoadableView {
         }
     }
     
+    //--------------------------------------------------------------------------
+    // MARK: - Public
+    //--------------------------------------------------------------------------
+    
+    private func setupTagListView() {
+        tagListView.cornerRadius = 11
+        tagListView.marginY = 4
+        tagListView.paddingX = 8
+        tagListView.paddingY = 4
+        tagListView.tagBackgroundColor = UIColor.lightNavy
+        tagListView.textFont = UIFont.systemFont(ofSize: 14)
+    }
 }

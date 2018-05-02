@@ -45,7 +45,6 @@ class SetDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        addGradientBackground()
         title = NSLocalizedString("Set Detail", comment: "")
         
         hideKeyboardWhenViewTapped()
@@ -145,11 +144,11 @@ class SetDetailViewController: UIViewController {
         if let instructionsCount = currentSet?.instructionsCount, instructionsCount > 0 {
             sections.append(.instructions)
         }
-        if let tags = setDetail?.tags, tags.count > 0 {
-            sections.append(.tags)
-        }
         if BricksetServices.isLoggedIn() {
             sections.append(.collection)
+        }
+        if let tags = setDetail?.tags, tags.count > 0 {
+            sections.append(.tags)
         }
         if setDetail != nil {
             sections.append(.description)
