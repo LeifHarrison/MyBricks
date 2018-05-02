@@ -29,19 +29,21 @@ class BrowseSetsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        addGradientBackground()
 
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = UITableViewAutomaticDimension
-        tableView.sectionIndexBackgroundColor = UIColor.clear
-        tableView.separatorStyle = .none
-        tableView.tableFooterView = UIView()
-        tableView.register(SetListTableViewCell.self)
+        let backItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        navigationItem.backBarButtonItem = backItem
+
+        addGradientBackground()
+        setupTableView()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if filterOptions.searchTerm != nil {
+        
+        if filterOptions.showingUserSets {
+            self.title = "My Sets"
+        }
+        else if filterOptions.searchTerm != nil {
             self.title = "Search Results"
         }
         else if let theme = filterOptions.selectedTheme {
@@ -92,6 +94,15 @@ class BrowseSetsViewController: UIViewController {
     // MARK: - Private
     //--------------------------------------------------------------------------
 
+    fileprivate func setupTableView() {
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = UITableViewAutomaticDimension
+        tableView.sectionIndexBackgroundColor = UIColor.clear
+        tableView.separatorStyle = .none
+        tableView.tableFooterView = UIView()
+        tableView.register(SetListTableViewCell.self)
+    }
+    
     fileprivate func fetchSets() {
         SimpleActivityHUD.show(overView: view)
         let request = GetSetsRequest(filterOptions: self.filterOptions)

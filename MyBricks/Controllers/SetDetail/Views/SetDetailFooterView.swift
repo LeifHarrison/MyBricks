@@ -10,7 +10,6 @@ import UIKit
 
 class SetDetailFooterView: UIView {
 
-    @IBOutlet weak var dividerView: UIView!
     @IBOutlet weak var openOnBricksetButton: UIButton!
     @IBOutlet weak var dateLastUpdatedLabel: UILabel!
 
@@ -24,6 +23,8 @@ class SetDetailFooterView: UIView {
         SetDetailFooterView.dateFormatter.dateStyle = .long
         SetDetailFooterView.dateFormatter.timeStyle = .medium
 
+        addBorder()
+        addGradientBackground()
     }
     
     //--------------------------------------------------------------------------

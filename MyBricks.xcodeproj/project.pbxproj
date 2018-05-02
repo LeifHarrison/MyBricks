@@ -75,6 +75,7 @@
 		29F60F5B1FD3769E00DF2E48 /* PreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F60F5A1FD3769E00DF2E48 /* PreviewView.swift */; };
 		29FCC3461FBA14F500079032 /* SetDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FCC3451FBA14F500079032 /* SetDetail.swift */; };
 		71EA93350D446E8447D819DE /* Pods_MyBricks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C7DD5EA6F08ABC5549DF63C /* Pods_MyBricks.framework */; };
+		9B1F51F5209A252E000197CD /* UILabel+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1F51F4209A252E000197CD /* UILabel+Extensions.swift */; };
 		9B2804CF2023CE970026FC73 /* SetImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2804CE2023CE970026FC73 /* SetImage.swift */; };
 		9B3E1EEC202A690D0094DD3E /* SetDetailFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3E1EEB202A690D0094DD3E /* SetDetailFooterView.swift */; };
 		9B42C15E208FE7AA00260B0F /* SetPriceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B42C15D208FE7AA00260B0F /* SetPriceTableViewCell.xib */; };
@@ -236,6 +237,7 @@
 		29FCC3451FBA14F500079032 /* SetDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetDetail.swift; sourceTree = "<group>"; };
 		593F839198E1796EC36B980B /* Pods-MyBricks.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyBricks.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MyBricks/Pods-MyBricks.debug.xcconfig"; sourceTree = "<group>"; };
 		8C7DD5EA6F08ABC5549DF63C /* Pods_MyBricks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyBricks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9B1F51F4209A252E000197CD /* UILabel+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extensions.swift"; sourceTree = "<group>"; };
 		9B2804CE2023CE970026FC73 /* SetImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetImage.swift; sourceTree = "<group>"; };
 		9B3E1EEB202A690D0094DD3E /* SetDetailFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetDetailFooterView.swift; sourceTree = "<group>"; };
 		9B42C15D208FE7AA00260B0F /* SetPriceTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SetPriceTableViewCell.xib; sourceTree = "<group>"; };
@@ -512,6 +514,7 @@
 				9BE2F619203E2A0C0035C172 /* UIColor+Extensions.swift */,
 				2973F3431FBE173800861125 /* UIDevice+Extensions.swift */,
 				9B6D8E9A20325D900037ADFD /* UIFont+Extensions.swift */,
+				9B1F51F4209A252E000197CD /* UILabel+Extensions.swift */,
 				291DEE9C1FE27604004906E4 /* UIResponder+Extensions.swift */,
 				9B5E4D36203352250057610E /* UITableView+Extensions.swift */,
 				29C111A01FC3F0F6007CBDB4 /* UIView+Extensions.swift */,
@@ -990,6 +993,7 @@
 				9B67EC2D2044BDEC001FAF77 /* FilterSelectSortingViewController.swift in Sources */,
 				296EB6E01FBF5E4500D4D3C6 /* SetReviewsTableViewCell.swift in Sources */,
 				293C9A6E1FD495C70058DA59 /* MyBricks.xcdatamodeld in Sources */,
+				9B1F51F5209A252E000197CD /* UILabel+Extensions.swift in Sources */,
 				9B92EFB0201FE09D007610BD /* FilterSelectYearViewController.swift in Sources */,
 				2928611D1FD50D24005F15D8 /* SearchHistoryTableViewCell.swift in Sources */,
 				295ADFBD1F16AFFC002E6802 /* AppDelegate.swift in Sources */,

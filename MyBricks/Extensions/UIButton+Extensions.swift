@@ -11,9 +11,9 @@ import UIKit
 extension UIButton {
     
     func applyDefaultStyle() {
-        self.backgroundColor = UIColor(named: "bricksetBlue")
+        self.backgroundColor = UIColor(named: "lightNavy")
         self.setTitleColor(.white, for: .normal)
-        self.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+        self.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
         self.layer.cornerRadius = 5.0
     }
     
@@ -21,4 +21,5 @@ extension UIButton {
         self.setTitleColor(.slateBlue, for: .normal)
         self.setTitleColor(.lightNavy, for: .selected)
     }
+    
 }

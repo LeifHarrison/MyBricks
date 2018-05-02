@@ -40,20 +40,11 @@ class ProfileViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         addGradientBackground()
-        
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.sectionIndexBackgroundColor = UIColor.clear
-        tableView.separatorColor = UIColor(white: 0.3, alpha: 0.8)
-        tableView.separatorInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
-        
-        tableView.register(UINib(nibName:BricksetCollectionTableViewCell.nibName, bundle:nil), forCellReuseIdentifier: BricksetCollectionTableViewCell.reuseIdentifier)
-        tableView.register(UINib(nibName:BricksetProfileTableViewCell.nibName, bundle:nil), forCellReuseIdentifier: BricksetProfileTableViewCell.reuseIdentifier)
-        
-        if tableView.tableFooterView == nil {
-            tableView.tableFooterView = UIView()
-        }
+        setupTableView()
 
+        instructionLabel.applyInstructionsStyle()
         loginButton.applyDefaultStyle()
     }
 
@@ -92,6 +83,17 @@ class ProfileViewController: UIViewController {
     // MARK: - Private
     //--------------------------------------------------------------------------
 
+    fileprivate func setupTableView() {
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.sectionIndexBackgroundColor = UIColor.clear
+        tableView.separatorColor = UIColor(white: 0.3, alpha: 0.8)
+        tableView.separatorInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+        tableView.tableFooterView = UIView()
+
+        tableView.register(UINib(nibName:BricksetCollectionTableViewCell.nibName, bundle:nil), forCellReuseIdentifier: BricksetCollectionTableViewCell.reuseIdentifier)
+        tableView.register(UINib(nibName:BricksetProfileTableViewCell.nibName, bundle:nil), forCellReuseIdentifier: BricksetProfileTableViewCell.reuseIdentifier)
+    }
+    
     fileprivate func updateDisplay(animated: Bool) {
 
         sections.removeAll()

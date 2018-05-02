@@ -25,16 +25,11 @@ class MySetsViewController: BrowseSetsViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        instructionLabel.applyInstructionsStyle()
         loginButton.applyDefaultStyle()
-        
+
         filterOptions.showingUserSets = true
         filterOptions.filterOwned = true
-        
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.title = "My Sets"
     }
 
     //--------------------------------------------------------------------------

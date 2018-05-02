@@ -30,27 +30,24 @@ class SearchViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        addGradientBackground()
         
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = UITableViewAutomaticDimension
-        tableView.sectionIndexBackgroundColor = UIColor.clear
-        tableView.tableFooterView = UIView()
-
-        tryAgainButton.layer.cornerRadius = tryAgainButton.bounds.height / 2
+        addGradientBackground()
+        setupTableView()
+        
+        tryAgainButton.applyDefaultStyle()
 
         if AVCaptureDevice.default(for: AVMediaType.video) == nil && !UIDevice.isSimulator {
             navigationItem.setRightBarButtonItems([], animated: false)
-
-            let instructionsText = NSLocalizedString("Search for Lego sets by title, set number, theme or subtheme", comment: "")
-            let attributedInstructions = NSMutableAttributedString(string: instructionsText)
-
-            let paragraphStyle = NSMutableParagraphStyle()
-            paragraphStyle.lineSpacing = 10
-            paragraphStyle.alignment = .center
-            attributedInstructions.addAttribute(NSAttributedStringKey.paragraphStyle, value:paragraphStyle, range:NSMakeRange(0, attributedInstructions.length))
-
-            instructionsLabel.attributedText = attributedInstructions
+            instructionsLabel.text = NSLocalizedString("Search for Lego sets by title, set number, theme or subtheme", comment: "")
+        }
+        
+        instructionsLabel.applyInstructionsStyle()
+        // Make the middle 'OR' bold
+        if let text = instructionsLabel.attributedText, let range = text.string.range(of: "OR") {
+            let substringRange = NSRange(range, in:text.string)
+            let mutableText = NSMutableAttributedString(attributedString: text)
+            mutableText.addAttribute(.font, value: instructionsLabel.font.bold(), range: substringRange)
+            instructionsLabel.attributedText = mutableText
         }
     }
 
@@ -136,6 +133,13 @@ class SearchViewController: UIViewController {
     //--------------------------------------------------------------------------
     // MARK: - Private
     //--------------------------------------------------------------------------
+    
+    fileprivate func setupTableView() {
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = UITableViewAutomaticDimension
+        tableView.sectionIndexBackgroundColor = UIColor.clear
+        tableView.tableFooterView = UIView()
+    }
     
     fileprivate func performSearch(forBarcode code: String) {
         performSearch(searchType: .scan, searchTerm: code)

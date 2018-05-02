@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -45,21 +46,14 @@
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SN8-WA-Ueu">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <subviews>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Ak-jr-FD6">
-                                        <rect key="frame" x="60" y="180" width="255" height="48.5"/>
-                                        <attributedString key="attributedText">
-                                            <fragment content="Log in to view and update your set collection and wanted list">
-                                                <attributes>
-                                                    <color key="NSColor" white="0.20000000000000001" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <font key="NSFont" metaFont="system" size="16"/>
-                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="10" tighteningFactorForTruncation="0.0"/>
-                                                </attributes>
-                                            </fragment>
-                                        </attributedString>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Log in to view and update your set collection and wanted list" textAlignment="right" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Ak-jr-FD6">
+                                        <rect key="frame" x="60" y="180" width="255" height="43"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <color key="textColor" name="lightNavy"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yzk-sT-wH9">
-                                        <rect key="frame" x="97.5" y="274" width="180" height="35"/>
+                                        <rect key="frame" x="97.5" y="268.5" width="180" height="35"/>
                                         <color key="backgroundColor" red="0.0" green="0.35294117650000001" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="180" id="5oh-mS-Dv4"/>
@@ -136,7 +130,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="4jn-eq-IFm"/>
                                 </constraints>
-                                <nil key="textColor"/>
+                                <color key="textColor" name="lightNavy"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" enablesReturnKeyAutomatically="YES" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="username"/>
                                 <connections>
@@ -148,7 +142,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="5C1-gQ-uik"/>
                                 </constraints>
-                                <nil key="textColor"/>
+                                <color key="textColor" name="lightNavy"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES" secureTextEntry="YES" textContentType="password"/>
                                 <connections>
@@ -156,8 +150,16 @@
                                 </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9R3-NO-sYB">
-                                <rect key="frame" x="30" y="307" width="315" height="30"/>
-                                <state key="normal" title="Login"/>
+                                <rect key="frame" x="97.5" y="307" width="180" height="35"/>
+                                <color key="backgroundColor" name="lightNavy"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="180" id="XZa-aT-y46"/>
+                                    <constraint firstAttribute="height" constant="35" id="sy0-Hd-yJ1"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <state key="normal" title="LOGIN">
+                                    <color key="titleColor" name="white"/>
+                                </state>
                                 <connections>
                                     <action selector="login:" destination="CRl-O7-t69" eventType="touchUpInside" id="RMw-K2-VkE"/>
                                 </connections>
@@ -172,11 +174,10 @@
                             <constraint firstItem="cGw-kb-o5Y" firstAttribute="leading" secondItem="jgg-Xd-3OH" secondAttribute="leading" constant="20" id="52s-Sk-yY3"/>
                             <constraint firstItem="JlT-vq-xet" firstAttribute="top" secondItem="cGw-kb-o5Y" secondAttribute="bottom" constant="10" id="53n-Wg-Ht5"/>
                             <constraint firstItem="cGw-kb-o5Y" firstAttribute="top" secondItem="lzW-U6-xEL" secondAttribute="bottom" constant="20" id="6WG-HR-Paj"/>
-                            <constraint firstItem="9R3-NO-sYB" firstAttribute="leading" secondItem="jgg-Xd-3OH" secondAttribute="leading" constant="30" id="8AG-DL-oqy"/>
                             <constraint firstItem="jgg-Xd-3OH" firstAttribute="trailing" secondItem="cGw-kb-o5Y" secondAttribute="trailing" constant="20" id="AqJ-zI-nn4"/>
                             <constraint firstItem="jgg-Xd-3OH" firstAttribute="trailing" secondItem="JlT-vq-xet" secondAttribute="trailing" constant="20" id="L0E-Cg-upm"/>
                             <constraint firstItem="JlT-vq-xet" firstAttribute="leading" secondItem="jgg-Xd-3OH" secondAttribute="leading" constant="20" id="SdT-VG-Z95"/>
-                            <constraint firstItem="jgg-Xd-3OH" firstAttribute="trailing" secondItem="9R3-NO-sYB" secondAttribute="trailing" constant="30" id="TwC-SN-lfe"/>
+                            <constraint firstItem="9R3-NO-sYB" firstAttribute="centerX" secondItem="jgg-Xd-3OH" secondAttribute="centerX" id="eO1-Vu-roD"/>
                             <constraint firstItem="lzW-U6-xEL" firstAttribute="centerX" secondItem="jgg-Xd-3OH" secondAttribute="centerX" id="gQ1-zu-myg"/>
                             <constraint firstItem="jgg-Xd-3OH" firstAttribute="trailing" secondItem="PFm-s2-aEo" secondAttribute="trailing" constant="15" id="l1Z-F8-1dv"/>
                             <constraint firstItem="9R3-NO-sYB" firstAttribute="top" secondItem="JlT-vq-xet" secondAttribute="bottom" constant="20" id="y1O-66-UEg"/>
@@ -200,5 +201,11 @@
     <resources>
         <image name="brickset_logo" width="274" height="97"/>
         <image name="contact_card" width="30" height="30"/>
+        <namedColor name="lightNavy">
+            <color red="0.086274509803921567" green="0.25098039215686274" blue="0.44313725490196076" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="white">
+            <color red="0.99599999189376831" green="0.99599999189376831" blue="0.99599999189376831" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

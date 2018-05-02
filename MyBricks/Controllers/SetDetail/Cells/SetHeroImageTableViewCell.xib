@@ -74,6 +74,9 @@
                         <rect key="frame" x="169" y="230.5" width="39" height="37"/>
                         <color key="pageIndicatorTintColor" name="cloudyBlue"/>
                         <color key="currentPageIndicatorTintColor" name="lightNavy"/>
+                        <connections>
+                            <action selector="pageControlValueChanged:" destination="UEw-YJ-jk3" eventType="valueChanged" id="MZe-xa-KXu"/>
+                        </connections>
                     </pageControl>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Image 1 of 25" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vfg-um-2Ic">
                         <rect key="frame" x="145" y="240.5" width="87.5" height="17"/>

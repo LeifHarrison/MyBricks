@@ -82,6 +82,10 @@ class SetHeroImageTableViewCell: UITableViewCell, ReusableView, NibLoadableView 
     @IBAction func previous(_ sender: UIButton) {
         setCurrentPage(page: currentPage-1)
     }
+
+    @IBAction func pageControlValueChanged(_ sender: UIPageControl) {
+        setCurrentPage(page: pageControl.currentPage)
+    }
     
     //--------------------------------------------------------------------------
     // MARK: - Public
