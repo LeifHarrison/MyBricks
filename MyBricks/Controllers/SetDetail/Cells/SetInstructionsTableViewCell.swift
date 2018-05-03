@@ -11,7 +11,6 @@ import UIKit
 class SetInstructionsTableViewCell: UITableViewCell, ReusableView, NibLoadableView  {
 
     @IBOutlet weak var instructionsTitleLabel: UILabel!
-    @IBOutlet weak var instructionsImageView: UIImageView!
     @IBOutlet weak var instructionsCountLabel: UILabel!
 
     //--------------------------------------------------------------------------

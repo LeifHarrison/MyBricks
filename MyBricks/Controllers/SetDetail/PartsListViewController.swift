@@ -26,9 +26,8 @@ class PartsListViewController: UIViewController {
         addGradientBackground()
 
         tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.separatorColor = UIColor(white: 0.3, alpha: 0.8)
-        tableView.separatorInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
         tableView.tableFooterView = UIView()
+        tableView.register(PartsListTableViewCell.self)
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -79,15 +78,13 @@ extension PartsListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let element = elements[indexPath.row]
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "PartsListTableViewCell", for: indexPath) as? PartsListTableViewCell {
-            cell.populateWithElement(element)
-            cell.selectionStyle = .none
-            if let urlString = element.part?.imageURL, let url = URL(string: urlString) {
-                cell.partImageView.af_setImage(withURL: url, imageTransition: .crossDissolve(0.3))
-            }
-            return cell
+        let cell: PartsListTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+        cell.populateWithElement(element)
+        cell.selectionStyle = .none
+        if let urlString = element.part?.imageURL, let url = URL(string: urlString) {
+            cell.partImageView.af_setImage(withURL: url, imageTransition: .crossDissolve(0.3))
         }
-        return UITableViewCell()
+        return cell
     }
     
 }

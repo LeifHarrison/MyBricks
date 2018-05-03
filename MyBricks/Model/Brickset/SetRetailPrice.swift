@@ -23,13 +23,12 @@ public struct SetRetailPrice {
     }
 
     func priceDescription() -> String {
-        let flag = locale.emojiFlag ?? "🇺🇸"
         let currencySymbol = locale.currencySymbol ?? "$"
         if price.count > 0 {
-            return (currencySymbol + price + " " + flag)
+            return (currencySymbol + price)
         }
         else {
-            return (currencySymbol + " N/A" + " " + flag)
+            return (currencySymbol + "N/A")
         }
     }
 

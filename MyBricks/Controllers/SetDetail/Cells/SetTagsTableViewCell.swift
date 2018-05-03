@@ -52,9 +52,9 @@ class SetTagsTableViewCell: UITableViewCell, ReusableView, NibLoadableView {
     
     private func setupTagListView() {
         tagListView.cornerRadius = 11
-        tagListView.marginY = 4
-        tagListView.paddingX = 8
-        tagListView.paddingY = 4
+        tagListView.marginY = 5
+        tagListView.paddingX = 10
+        tagListView.paddingY = 5
         tagListView.tagBackgroundColor = UIColor.lightNavy
         tagListView.textFont = UIFont.systemFont(ofSize: 14)
     }

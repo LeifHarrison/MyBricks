@@ -75,6 +75,7 @@
 		29F60F5B1FD3769E00DF2E48 /* PreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F60F5A1FD3769E00DF2E48 /* PreviewView.swift */; };
 		29FCC3461FBA14F500079032 /* SetDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FCC3451FBA14F500079032 /* SetDetail.swift */; };
 		71EA93350D446E8447D819DE /* Pods_MyBricks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C7DD5EA6F08ABC5549DF63C /* Pods_MyBricks.framework */; };
+		9B0041CB209B6F9D00569FD1 /* PartsListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B0041CA209B6F9D00569FD1 /* PartsListTableViewCell.xib */; };
 		9B1F51F5209A252E000197CD /* UILabel+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1F51F4209A252E000197CD /* UILabel+Extensions.swift */; };
 		9B2804CF2023CE970026FC73 /* SetImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2804CE2023CE970026FC73 /* SetImage.swift */; };
 		9B3E1EEC202A690D0094DD3E /* SetDetailFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3E1EEB202A690D0094DD3E /* SetDetailFooterView.swift */; };
@@ -237,6 +238,7 @@
 		29FCC3451FBA14F500079032 /* SetDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetDetail.swift; sourceTree = "<group>"; };
 		593F839198E1796EC36B980B /* Pods-MyBricks.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyBricks.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MyBricks/Pods-MyBricks.debug.xcconfig"; sourceTree = "<group>"; };
 		8C7DD5EA6F08ABC5549DF63C /* Pods_MyBricks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyBricks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9B0041CA209B6F9D00569FD1 /* PartsListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PartsListTableViewCell.xib; sourceTree = "<group>"; };
 		9B1F51F4209A252E000197CD /* UILabel+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extensions.swift"; sourceTree = "<group>"; };
 		9B2804CE2023CE970026FC73 /* SetImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetImage.swift; sourceTree = "<group>"; };
 		9B3E1EEB202A690D0094DD3E /* SetDetailFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetDetailFooterView.swift; sourceTree = "<group>"; };
@@ -647,6 +649,7 @@
 			children = (
 				29C111A81FCA411B007CBDB4 /* InstructionsTableViewCell.swift */,
 				29D30CA41FDE1A690076DB85 /* PartsListTableViewCell.swift */,
+				9B0041CA209B6F9D00569FD1 /* PartsListTableViewCell.xib */,
 				9BE7838F2048744500FD078E /* PriceDetailTableViewCell.swift */,
 				9BE783912048745500FD078E /* PriceGuideTableViewCell.swift */,
 				9B5B4A52204DDBEA00F2324C /* PriceGuideTableViewCell.xib */,
@@ -854,6 +857,7 @@
 				9B63D278202CD6EF00E1C3B0 /* SetHeroImageTableViewCell.xib in Resources */,
 				9BB4710F20910523006DBB06 /* SetDescriptionTableViewCell.xib in Resources */,
 				9B63D27C202CD9CA00E1C3B0 /* SetImageCollectionViewCell.xib in Resources */,
+				9B0041CB209B6F9D00569FD1 /* PartsListTableViewCell.xib in Resources */,
 				294F187F1FB519ED0026342F /* MySets.storyboard in Resources */,
 				9BFFDEAB20212E5F0070C812 /* SetDetail.storyboard in Resources */,
 				295ADFC61F16AFFD002E6802 /* Assets.xcassets in Resources */,

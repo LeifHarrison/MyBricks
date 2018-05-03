@@ -14,7 +14,6 @@ class SetReviewsTableViewCell: UITableViewCell, ReusableView, NibLoadableView {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var ratingView: CosmosView!
     @IBOutlet weak var ratingLabel: UILabel!
-    @IBOutlet weak var reviewCountLabel: UILabel!
     
     //--------------------------------------------------------------------------
     // MARK: - Nib Loading
@@ -25,12 +24,12 @@ class SetReviewsTableViewCell: UITableViewCell, ReusableView, NibLoadableView {
 
         ratingView.settings.starSize = 22.0
         ratingView.settings.fillMode = .precise
-        ratingView.settings.starMargin = 2.0
+        ratingView.settings.starMargin = 0.0
         ratingView.settings.updateOnTouch = false
-        ratingView.settings.filledColor = UIColor.lightNavy
+        ratingView.settings.filledColor = UIColor.orangeyYellow
         ratingView.settings.emptyColor = UIColor.white
         ratingView.settings.emptyBorderColor = UIColor.slateBlue
-        ratingView.settings.filledBorderColor = UIColor.slateBlue
+        //ratingView.settings.filledBorderColor = UIColor.slateBlue
         ratingView.settings.textColor = UIColor.lightNavy
         ratingView.settings.textFont = UIFont.systemFont(ofSize: 16, weight: .semibold)
 
@@ -52,7 +51,6 @@ class SetReviewsTableViewCell: UITableViewCell, ReusableView, NibLoadableView {
     override func prepareForReuse() {
         super.prepareForReuse()
         ratingView.rating = 0
-        reviewCountLabel.text = nil
     }
 
     //--------------------------------------------------------------------------
@@ -65,26 +63,7 @@ class SetReviewsTableViewCell: UITableViewCell, ReusableView, NibLoadableView {
             ratingView.rating = ratingDouble
             ratingLabel.text = String(format:"%0.1f", ratingDouble)
         }
-        if let reviewCount = set.reviewCount, reviewCount > 0 {
-            reviewCountLabel.attributedText = attributedReviewCountDescription(for: set)
-        }
-        else {
-            reviewCountLabel.text = "No Reviews Yet"
-        }
     }
     
-    func attributedReviewCountDescription(for set: Set) -> NSAttributedString {
-        let textColor = reviewCountLabel.textColor ?? UIColor.black
-        let regularAttributes: [NSAttributedStringKey : Any] = [.font: reviewCountLabel.font, .foregroundColor: textColor]
-        let boldAttributes: [NSAttributedStringKey : Any] = [.font: reviewCountLabel.font.bold(), .foregroundColor: textColor]
-
-        let attributedDescription = NSMutableAttributedString(string:"(from ", attributes:regularAttributes)
-        if let reviewCount = set.reviewCount, reviewCount > 0 {
-            attributedDescription.append(NSAttributedString(string:"\(reviewCount)", attributes:boldAttributes))
-        }
-        attributedDescription.append(NSAttributedString(string:" reviews)", attributes:regularAttributes))
-        return attributedDescription
-    }
-
 }
 

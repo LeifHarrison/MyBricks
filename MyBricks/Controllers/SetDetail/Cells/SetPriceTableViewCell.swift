@@ -10,8 +10,8 @@ import UIKit
 
 class SetPriceTableViewCell: UITableViewCell, ReusableView, NibLoadableView {
 
-    //@IBOutlet weak var priceTitleLabel: UILabel!
-    //@IBOutlet weak var priceLabel: UILabel!
+    @IBOutlet weak var priceTitleLabel: UILabel!
+    @IBOutlet weak var priceLabel: UILabel!
     
     //--------------------------------------------------------------------------
     // MARK: - Nib Loading
@@ -26,7 +26,7 @@ class SetPriceTableViewCell: UITableViewCell, ReusableView, NibLoadableView {
         accessoryView = UIImageView(image: UIImage(named:"forward"))
         accessoryView?.tintColor = UIColor.lightNavy
         
-        textLabel?.text = NSLocalizedString("Retail Price", comment: "")
+        priceTitleLabel.text = NSLocalizedString("Retail Price", comment: "")
         prepareForReuse()
     }
     
@@ -36,7 +36,7 @@ class SetPriceTableViewCell: UITableViewCell, ReusableView, NibLoadableView {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        detailTextLabel?.text = nil
+        priceLabel.text = nil
     }
     
     //--------------------------------------------------------------------------
@@ -44,7 +44,7 @@ class SetPriceTableViewCell: UITableViewCell, ReusableView, NibLoadableView {
     //--------------------------------------------------------------------------
     
     func populateWithSet(_ set : Set) -> Void {
-        detailTextLabel?.text = set.preferredPriceString
+        priceLabel.text = set.preferredPriceString
     }
     
 }

@@ -8,8 +8,9 @@
 
 import UIKit
 
-class PartsListTableViewCell: UITableViewCell {
+class PartsListTableViewCell: UITableViewCell, NibLoadableView, ReusableView {
 
+    @IBOutlet weak var imageBorderView: UIView!
     @IBOutlet weak var partImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var colorLabel: UILabel!
@@ -23,7 +24,20 @@ class PartsListTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        addBorder()
+        addGradientBackground()
+
+        imageBorderView.layer.borderColor = UIColor.whiteThree.cgColor
+        imageBorderView.layer.borderWidth = 1.0 / UIScreen.main.scale
+        imageBorderView.layer.cornerRadius = 3
+        imageBorderView.layer.shadowColor = UIColor.blueGrey.cgColor
+        imageBorderView.layer.shadowOffset =  CGSize(width: 1, height: 1)
+        imageBorderView.layer.shadowOpacity = 0.4
+        imageBorderView.layer.shadowRadius = 2
+
         quantityView.layer.cornerRadius = quantityView.bounds.height / 2
+
         prepareForReuse()
     }
     

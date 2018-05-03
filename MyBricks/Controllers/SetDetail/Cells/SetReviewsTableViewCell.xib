@@ -11,66 +11,44 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="default" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SetReviewsTableViewCell" rowHeight="57" id="S8X-vM-yZt" customClass="SetReviewsTableViewCell" customModule="MyBricks" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="57"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="default" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SetReviewsTableViewCell" id="S8X-vM-yZt" customClass="SetReviewsTableViewCell" customModule="MyBricks" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="46"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="S8X-vM-yZt" id="usd-tO-mrT">
-                <rect key="frame" x="0.0" y="0.0" width="375" height="56.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="375" height="45.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Rating" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9N4-Ih-Azg">
-                        <rect key="frame" x="15" y="11" width="49" height="34.5"/>
+                        <rect key="frame" x="15" y="12" width="175.5" height="21.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" name="lightNavy"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <view contentMode="scaleToFill" horizontalHuggingPriority="252" verticalHuggingPriority="252" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="yq5-91-LqY">
-                        <rect key="frame" x="210.5" y="8" width="120" height="38"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="lfg-t1-suB" customClass="CosmosView" customModule="Cosmos">
-                                <rect key="frame" x="0.0" y="0.0" width="120" height="20"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="from 5 reviews" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tnw-25-pHE">
-                                <rect key="frame" x="15.5" y="22" width="89.5" height="16"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                <color key="textColor" name="lightNavy"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="lfg-t1-suB" firstAttribute="leading" secondItem="yq5-91-LqY" secondAttribute="leading" id="2gJ-Tr-gto"/>
-                            <constraint firstAttribute="bottom" secondItem="Tnw-25-pHE" secondAttribute="bottom" id="6tp-eA-ATo"/>
-                            <constraint firstItem="lfg-t1-suB" firstAttribute="top" secondItem="yq5-91-LqY" secondAttribute="top" id="jCO-Lq-toO"/>
-                            <constraint firstItem="Tnw-25-pHE" firstAttribute="top" secondItem="lfg-t1-suB" secondAttribute="bottom" constant="2" id="jRc-8C-IzR"/>
-                            <constraint firstAttribute="trailing" secondItem="lfg-t1-suB" secondAttribute="trailing" id="nW1-Cc-vUI"/>
-                            <constraint firstItem="Tnw-25-pHE" firstAttribute="centerX" secondItem="lfg-t1-suB" secondAttribute="centerX" id="tDD-yD-keX"/>
-                        </constraints>
+                    <view contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="lfg-t1-suB" customClass="CosmosView" customModule="Cosmos">
+                        <rect key="frame" x="205.5" y="13" width="120" height="20"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </view>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="4.7" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QHB-84-WcH">
-                        <rect key="frame" x="340.5" y="18" width="24.5" height="19.5"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="252" text="4.7" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QHB-84-WcH">
+                        <rect key="frame" x="335.5" y="13" width="24.5" height="19.5"/>
                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                         <color key="textColor" name="lightNavy"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="QHB-84-WcH" firstAttribute="leading" secondItem="yq5-91-LqY" secondAttribute="trailing" constant="10" id="F6c-Ui-6zP"/>
-                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="yq5-91-LqY" secondAttribute="bottom" constant="8" id="H3d-sz-8QM"/>
-                    <constraint firstAttribute="trailing" secondItem="QHB-84-WcH" secondAttribute="trailing" constant="10" id="YVK-BM-m9O"/>
-                    <constraint firstAttribute="bottom" secondItem="9N4-Ih-Azg" secondAttribute="bottom" constant="11" id="aL7-5y-7Mh"/>
-                    <constraint firstItem="yq5-91-LqY" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="9N4-Ih-Azg" secondAttribute="trailing" constant="10" id="hRG-2a-nVY"/>
-                    <constraint firstItem="9N4-Ih-Azg" firstAttribute="top" secondItem="usd-tO-mrT" secondAttribute="top" constant="11" id="jlK-fH-yXJ"/>
-                    <constraint firstItem="yq5-91-LqY" firstAttribute="top" secondItem="usd-tO-mrT" secondAttribute="top" constant="8" id="lck-IJ-ARd"/>
+                    <constraint firstItem="lfg-t1-suB" firstAttribute="leading" secondItem="9N4-Ih-Azg" secondAttribute="trailing" constant="15" id="3NO-fZ-qRq"/>
+                    <constraint firstItem="lfg-t1-suB" firstAttribute="centerY" secondItem="usd-tO-mrT" secondAttribute="centerY" id="AAO-yk-CUc"/>
+                    <constraint firstItem="QHB-84-WcH" firstAttribute="centerY" secondItem="lfg-t1-suB" secondAttribute="centerY" id="WsG-wY-Sig"/>
+                    <constraint firstAttribute="trailing" secondItem="QHB-84-WcH" secondAttribute="trailing" constant="15" id="YVK-BM-m9O"/>
+                    <constraint firstAttribute="bottom" secondItem="9N4-Ih-Azg" secondAttribute="bottom" constant="12" id="aL7-5y-7Mh"/>
+                    <constraint firstItem="9N4-Ih-Azg" firstAttribute="top" secondItem="usd-tO-mrT" secondAttribute="top" constant="12" id="jlK-fH-yXJ"/>
                     <constraint firstItem="9N4-Ih-Azg" firstAttribute="leading" secondItem="usd-tO-mrT" secondAttribute="leading" constant="15" id="lh7-Oh-pyL"/>
-                    <constraint firstItem="QHB-84-WcH" firstAttribute="centerY" secondItem="yq5-91-LqY" secondAttribute="centerY" id="nSe-Ww-iEl"/>
+                    <constraint firstItem="QHB-84-WcH" firstAttribute="leading" secondItem="lfg-t1-suB" secondAttribute="trailing" constant="10" id="zEo-Wg-Irg"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="ratingLabel" destination="QHB-84-WcH" id="B49-OA-zVZ"/>
                 <outlet property="ratingView" destination="lfg-t1-suB" id="Stg-ZY-IYf"/>
-                <outlet property="reviewCountLabel" destination="Tnw-25-pHE" id="TcC-EI-Lxe"/>
                 <outlet property="titleLabel" destination="9N4-Ih-Azg" id="WKg-RO-E9h"/>
             </connections>
             <point key="canvasLocation" x="-269.5" y="-134.5"/>

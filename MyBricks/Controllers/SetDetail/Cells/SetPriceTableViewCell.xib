@@ -11,35 +11,46 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SetPriceTableViewCell" textLabel="XWm-3v-85R" detailTextLabel="7HR-Nx-kec" style="IBUITableViewCellStyleValue1" id="Vbn-hb-Bnq" customClass="SetPriceTableViewCell" customModule="MyBricks" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="0.0" reuseIdentifier="SetPriceTableViewCell" id="Vbn-hb-Bnq" customClass="SetPriceTableViewCell" customModule="MyBricks" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="46"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Vbn-hb-Bnq" id="Eu8-VN-wAJ">
-                <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="375" height="45.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Retail Price" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="XWm-3v-85R">
-                        <rect key="frame" x="16" y="12" width="85.5" height="20.5"/>
-                        <autoresizingMask key="autoresizingMask"/>
+                    <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" insetsLayoutMarginsFromSafeArea="NO" text="Retail Price" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1eL-ZX-X2B">
+                        <rect key="frame" x="15" y="12" width="277.5" height="21.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" name="lightNavy"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="$49.99" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7HR-Nx-kec">
-                        <rect key="frame" x="303" y="12" width="56" height="20.5"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="$19.99" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dSy-HK-wZ2">
+                        <rect key="frame" x="307" y="14" width="53" height="19.5"/>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                         <color key="textColor" name="lightNavy"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
+                <constraints>
+                    <constraint firstItem="1eL-ZX-X2B" firstAttribute="top" secondItem="Eu8-VN-wAJ" secondAttribute="top" constant="12" id="0QR-an-e6A"/>
+                    <constraint firstAttribute="trailing" secondItem="dSy-HK-wZ2" secondAttribute="trailing" constant="15" id="9v4-JA-kYK"/>
+                    <constraint firstAttribute="bottom" secondItem="1eL-ZX-X2B" secondAttribute="bottom" constant="12" id="HFj-8i-3SY"/>
+                    <constraint firstItem="dSy-HK-wZ2" firstAttribute="leading" secondItem="1eL-ZX-X2B" secondAttribute="trailing" constant="15" id="jvg-y4-DpX"/>
+                    <constraint firstItem="dSy-HK-wZ2" firstAttribute="leading" secondItem="1eL-ZX-X2B" secondAttribute="trailing" constant="15" id="lBw-Xw-PAZ"/>
+                    <constraint firstItem="1eL-ZX-X2B" firstAttribute="leading" secondItem="Eu8-VN-wAJ" secondAttribute="leading" constant="15" id="lE0-PY-hKK"/>
+                    <constraint firstItem="dSy-HK-wZ2" firstAttribute="baseline" secondItem="1eL-ZX-X2B" secondAttribute="baseline" id="wPI-af-1cZ"/>
+                </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="priceLabel" destination="dSy-HK-wZ2" id="woj-Cq-vWQ"/>
+                <outlet property="priceTitleLabel" destination="1eL-ZX-X2B" id="FpG-mR-fKS"/>
+            </connections>
             <point key="canvasLocation" x="-326" y="-123"/>
         </tableViewCell>
     </objects>
     <resources>
         <namedColor name="lightNavy">
-            <color red="0.086274509803921567" green="0.25098039215686274" blue="0.44313725490196076" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.086274509799999996" green="0.25098039220000001" blue="0.4431372549" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>
