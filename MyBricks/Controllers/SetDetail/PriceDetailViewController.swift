@@ -125,6 +125,14 @@ extension PriceDetailViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         guard let header = view as? UITableViewHeaderFooterView else { return }
         header.textLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+        header.textLabel?.textColor = UIColor.white
+        header.contentView.backgroundColor = UIColor.cloudyBlue
+        
+        header.clipsToBounds = false
+        header.layer.shadowColor = UIColor.black.cgColor
+        header.layer.shadowOffset = CGSize(width: 0, height: 1)
+        header.layer.shadowRadius = 2.0
+        header.layer.shadowOpacity = 0.1
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {

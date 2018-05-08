@@ -5,6 +5,7 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -39,28 +40,28 @@
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="Name" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KNg-Nu-rV3">
-                        <rect key="frame" x="110" y="15" width="250" height="19.5"/>
+                        <rect key="frame" x="110" y="15" width="211" height="19.5"/>
                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                         <color key="textColor" name="lightNavy"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="Color" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V8c-mO-eIh">
-                        <rect key="frame" x="110" y="35" width="250" height="17"/>
+                        <rect key="frame" x="110" y="35" width="211" height="17"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" name="lightNavy"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Part Number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LEi-py-v8m">
-                        <rect key="frame" x="110" y="53.5" width="250" height="18"/>
+                        <rect key="frame" x="110" y="53.5" width="211" height="18"/>
                         <fontDescription key="fontDescription" type="italicSystem" pointSize="15"/>
                         <color key="textColor" name="lightNavy"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vyy-5g-0ql">
-                        <rect key="frame" x="320" y="69" width="40" height="25.5"/>
+                        <rect key="frame" x="331" y="42" width="29" height="25.5"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="252" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ijx-iN-vyr">
-                                <rect key="frame" x="10" y="4" width="20" height="17"/>
+                                <rect key="frame" x="10" y="4" width="9" height="17"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
                                 <color key="textColor" name="white"/>
                                 <nil key="highlightedColor"/>
@@ -70,7 +71,7 @@
                         <constraints>
                             <constraint firstItem="ijx-iN-vyr" firstAttribute="top" secondItem="Vyy-5g-0ql" secondAttribute="top" constant="4" id="0uv-rF-4bw"/>
                             <constraint firstAttribute="trailing" secondItem="ijx-iN-vyr" secondAttribute="trailing" constant="10" id="4EA-ye-ub4"/>
-                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="40" id="KcB-9j-Go9"/>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" secondItem="Vyy-5g-0ql" secondAttribute="height" multiplier="1:1" id="CpQ-Au-h5p"/>
                             <constraint firstAttribute="bottom" secondItem="ijx-iN-vyr" secondAttribute="baseline" constant="8" id="b7o-jY-ud8"/>
                             <constraint firstItem="ijx-iN-vyr" firstAttribute="leading" secondItem="Vyy-5g-0ql" secondAttribute="leading" constant="10" id="cpD-XF-uKK"/>
                         </constraints>
@@ -79,19 +80,19 @@
                 <constraints>
                     <constraint firstItem="LEi-py-v8m" firstAttribute="top" secondItem="V8c-mO-eIh" secondAttribute="baseline" constant="5" id="1oL-oc-P3B"/>
                     <constraint firstItem="9NR-Ia-mii" firstAttribute="top" secondItem="60e-wV-PO3" secondAttribute="top" constant="10" id="724-yX-g4j"/>
-                    <constraint firstAttribute="bottom" secondItem="Vyy-5g-0ql" secondAttribute="bottom" constant="15" id="Dqp-Jr-QhY"/>
-                    <constraint firstAttribute="trailing" secondItem="KNg-Nu-rV3" secondAttribute="trailing" constant="15" id="EiU-OI-s3y"/>
                     <constraint firstItem="9NR-Ia-mii" firstAttribute="leading" secondItem="60e-wV-PO3" secondAttribute="leading" constant="10" id="FiC-Rh-9bU"/>
                     <constraint firstAttribute="bottom" secondItem="9NR-Ia-mii" secondAttribute="bottom" constant="10" id="Hsq-Zj-Apz"/>
-                    <constraint firstAttribute="trailing" secondItem="LEi-py-v8m" secondAttribute="trailing" constant="15" id="XYg-gt-2hT"/>
+                    <constraint firstItem="Vyy-5g-0ql" firstAttribute="leading" secondItem="V8c-mO-eIh" secondAttribute="trailing" constant="10" id="UFb-mb-Urw"/>
                     <constraint firstItem="V8c-mO-eIh" firstAttribute="top" secondItem="KNg-Nu-rV3" secondAttribute="baseline" constant="5" id="dVU-6a-bsz"/>
+                    <constraint firstItem="Vyy-5g-0ql" firstAttribute="leading" secondItem="LEi-py-v8m" secondAttribute="trailing" constant="10" id="eJy-46-TkL"/>
                     <constraint firstAttribute="trailing" secondItem="Vyy-5g-0ql" secondAttribute="trailing" constant="15" id="hMy-eJ-s6p"/>
-                    <constraint firstAttribute="trailing" secondItem="V8c-mO-eIh" secondAttribute="trailing" constant="15" id="iiQ-V0-0Ce"/>
                     <constraint firstItem="KNg-Nu-rV3" firstAttribute="top" secondItem="60e-wV-PO3" secondAttribute="top" constant="15" id="l2j-Da-ylO"/>
                     <constraint firstItem="V8c-mO-eIh" firstAttribute="leading" secondItem="KNg-Nu-rV3" secondAttribute="leading" id="lCF-Ii-4GF"/>
                     <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="LEi-py-v8m" secondAttribute="bottom" constant="15" id="ljL-kZ-NhO"/>
                     <constraint firstItem="KNg-Nu-rV3" firstAttribute="leading" secondItem="9NR-Ia-mii" secondAttribute="trailing" constant="10" id="nM7-Uj-mRz"/>
                     <constraint firstItem="LEi-py-v8m" firstAttribute="leading" secondItem="V8c-mO-eIh" secondAttribute="leading" id="svp-9i-quX"/>
+                    <constraint firstItem="Vyy-5g-0ql" firstAttribute="leading" secondItem="KNg-Nu-rV3" secondAttribute="trailing" constant="10" id="tZA-bC-39C"/>
+                    <constraint firstItem="Vyy-5g-0ql" firstAttribute="centerY" secondItem="60e-wV-PO3" secondAttribute="centerY" id="wOf-Xd-StZ"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

@@ -23,6 +23,8 @@ class InstructionsTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        addBorder()
+        addGradientBackground()
         prepareForReuse()
     }
 

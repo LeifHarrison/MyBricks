@@ -21,6 +21,7 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xt9-CO-chH">
                                 <rect key="frame" x="0.0" y="20" width="414" height="654"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
                                 <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="GeneralFilterCell" textLabel="nA8-um-Con" detailTextLabel="AsG-yY-QBI" style="IBUITableViewCellStyleValue1" id="r2h-Zb-E7O" customClass="FilterSelectionTableViewCell" customModule="MyBricks" customModuleProvider="target">
@@ -31,7 +32,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="nA8-um-Con">
-                                                    <rect key="frame" x="20.000000000000004" y="11.999999999999998" width="33.333333333333336" height="20.333333333333332"/>
+                                                    <rect key="frame" x="15" y="11.999999999999998" width="33.333333333333336" height="20.333333333333332"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -268,6 +269,50 @@
                                             <outlet property="groupSubthemeRadioButton" destination="DhZ-uc-bV1" id="L1v-UW-Bj1"/>
                                             <outlet property="groupThemeRadioButton" destination="wb0-Dz-ZKo" id="iF8-jS-HRu"/>
                                             <outlet property="groupYearRadioButton" destination="Cm6-D8-NLL" id="g81-Mo-0rL"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="FilterUnreleasedTableViewCell" id="LAu-my-tA9" customClass="FilterUnreleasedTableViewCell" customModule="MyBricks" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="204" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="LAu-my-tA9" id="tLc-bM-6W5">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.666666666666664"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iaG-ZT-6zi">
+                                                    <rect key="frame" x="111.33333333333331" y="8.0000000000000018" width="193" height="27.666666666666671"/>
+                                                    <subviews>
+                                                        <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CLH-af-ADZ">
+                                                            <rect key="frame" x="0.0" y="2" width="193" height="23.666666666666668"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                            <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="5" maxY="0.0"/>
+                                                            <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="-5" maxY="0.0"/>
+                                                            <state key="normal" title="Show Unreleased Sets" image="checkbox">
+                                                                <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                            </state>
+                                                            <state key="selected" image="checkbox_checked"/>
+                                                            <connections>
+                                                                <action selector="toggleShowUnreleased:" destination="LAu-my-tA9" eventType="touchUpInside" id="Vx8-Xs-5vW"/>
+                                                            </connections>
+                                                        </button>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="bottom" secondItem="CLH-af-ADZ" secondAttribute="bottom" constant="2" id="07u-N3-rkB"/>
+                                                        <constraint firstItem="CLH-af-ADZ" firstAttribute="top" secondItem="iaG-ZT-6zi" secondAttribute="top" constant="2" id="B2d-kw-Gz7"/>
+                                                        <constraint firstAttribute="trailing" secondItem="CLH-af-ADZ" secondAttribute="trailing" id="TkL-7r-TAd"/>
+                                                        <constraint firstItem="CLH-af-ADZ" firstAttribute="leading" secondItem="iaG-ZT-6zi" secondAttribute="leading" id="oOg-WB-dNI"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="iaG-ZT-6zi" firstAttribute="top" secondItem="tLc-bM-6W5" secondAttribute="top" constant="8" id="F1Y-3c-OOG"/>
+                                                <constraint firstAttribute="bottom" secondItem="iaG-ZT-6zi" secondAttribute="bottom" constant="8" id="WkK-pd-tJl"/>
+                                                <constraint firstItem="iaG-ZT-6zi" firstAttribute="centerX" secondItem="tLc-bM-6W5" secondAttribute="centerX" id="nPB-Wb-oxv"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="showUnreleasedButton" destination="CLH-af-ADZ" id="Udm-mx-Lty"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

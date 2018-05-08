@@ -80,9 +80,18 @@ extension UIView {
     }
 
     func addBorder(withColor color: UIColor = UIColor.whiteThree) {
-        self.layer.borderColor = color.cgColor
-        self.layer.borderWidth = 1.0
-        self.layer.cornerRadius = 2
+        layer.borderColor = color.cgColor
+        layer.borderWidth = 1.0
+        layer.cornerRadius = 2
     }
     
+    func applyBorderShadowStyle() {
+        layer.borderColor = UIColor.whiteThree.cgColor
+        layer.borderWidth = 1.0 / UIScreen.main.scale
+        layer.cornerRadius = 3
+        layer.shadowColor = UIColor.blueGrey.cgColor
+        layer.shadowOffset =  CGSize(width: 1, height: 1)
+        layer.shadowOpacity = 0.4
+        layer.shadowRadius = 2
+    }
 }

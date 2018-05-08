@@ -22,7 +22,9 @@ class FilterSortingDirectionTableViewCell: UITableViewCell, ReusableView {
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        selectionStyle = .none
         tintColor = UIColor.lightNavy
+
         ascendingRadioButton.applyCheckboxStyle()
         descendingRadioButton.applyCheckboxStyle()
 

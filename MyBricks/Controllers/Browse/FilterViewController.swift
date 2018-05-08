@@ -45,16 +45,18 @@ class FilterViewController: UIViewController {
         case theme
         case subtheme
         case year
-        
+        case unreleased
+
         init?(indexPath: IndexPath) { self.init(rawValue: indexPath.row) }
         
-        static var count: Int { return 3 }
+        static var count: Int { return 4 }
         
         func title() -> String? {
             switch self {
                 case .theme: return NSLocalizedString("Theme", comment: "")
                 case .subtheme: return NSLocalizedString("Subtheme", comment: "")
                 case .year: return NSLocalizedString("Year", comment: "")
+                case .unreleased: return nil
             }
         }
 
@@ -217,20 +219,33 @@ extension FilterViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let section = sections[indexPath.section]
         if section == .general, let row = TableRowsGeneral(indexPath: indexPath) {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "GeneralFilterCell", for: indexPath)
-            cell.accessoryType = .disclosureIndicator
-            cell.textLabel?.text = row.title()
-            
-            switch row {
-                case .theme:
-                    cell.detailTextLabel?.text = filterOptions.selectedTheme?.name ?? "All"
-                case .subtheme:
-                    cell.detailTextLabel?.text = filterOptions.selectedSubtheme?.name ?? "All"
-                case .year:
-                    cell.detailTextLabel?.text = filterOptions.selectedYear?.name ?? "All"
+            if row == .unreleased {
+                if let cell = tableView.dequeueReusableCell(withIdentifier: FilterUnreleasedTableViewCell.reuseIdentifier, for: indexPath) as? FilterUnreleasedTableViewCell {
+                    cell.populate(with: filterOptions)
+                    cell.toggleFilterShowUnreleased = { value in
+                        self.filterOptions.showUnreleased = value
+                    }
+                    return cell
+                }
             }
-            
-            return cell
+            else {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "GeneralFilterCell", for: indexPath)
+                cell.accessoryType = .disclosureIndicator
+                cell.textLabel?.text = row.title()
+                
+                switch row {
+                    case .theme:
+                        cell.detailTextLabel?.text = filterOptions.selectedTheme?.name ?? "All"
+                    case .subtheme:
+                        cell.detailTextLabel?.text = filterOptions.selectedSubtheme?.name ?? "All"
+                    case .year:
+                        cell.detailTextLabel?.text = filterOptions.selectedYear?.name ?? "All"
+                    case .unreleased:
+                        break // Do Nothing - handled above, hopefully
+                }
+                
+                return cell
+            }
         }
         else if section == .collection {
             if let cell = tableView.dequeueReusableCell(withIdentifier: FilterCollectionTableViewCell.reuseIdentifier, for: indexPath) as? FilterCollectionTableViewCell {
@@ -311,6 +326,7 @@ extension FilterViewController: UITableViewDelegate {
                 case .theme: performSegue(withIdentifier: "showSelectThemeView", sender: self)
                 case .subtheme: performSegue(withIdentifier: "showSelectSubthemeView", sender: self)
                 case .year: performSegue(withIdentifier: "showSelectYearView", sender: self)
+                case .unreleased:  break // Do Nothing
             }
         }
         if section == .sorting, let row = TableRowsSorting(indexPath: indexPath) {

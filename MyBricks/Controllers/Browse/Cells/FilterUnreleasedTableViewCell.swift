@@ -1,51 +1,50 @@
 //
-//  PriceDetailTableViewCell.swift
+//  FilterUnreleasedTableViewCell.swift
 //  MyBricks
 //
-//  Created by Harrison, Leif (US - Seattle) on 3/1/18.
+//  Created by Harrison, Leif (US - Seattle) on 5/7/18.
 //  Copyright © 2018 Leif Harrison. All rights reserved.
 //
 
 import UIKit
 
-class PriceDetailTableViewCell: UITableViewCell {
+class FilterUnreleasedTableViewCell: UITableViewCell, ReusableView {
 
-    @IBOutlet weak var regionLabel: UILabel!
-    @IBOutlet weak var priceLabel: UILabel!
-    @IBOutlet weak var pricePerPieceLabel: UILabel!
+    @IBOutlet weak var showUnreleasedButton: UIButton!
 
+    var toggleFilterShowUnreleased: ((Bool) -> Void)? = nil
+    
     //--------------------------------------------------------------------------
     // MARK: - Nib Loading
     //--------------------------------------------------------------------------
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
         selectionStyle = .none
+        tintColor = UIColor.lightNavy
+        
+        showUnreleasedButton.applyCheckboxStyle()
         
         addBorder()
         addGradientBackground()
-
-        prepareForReuse()
     }
     
     //--------------------------------------------------------------------------
-    // MARK: - Reuse
+    // MARK: - Actions
     //--------------------------------------------------------------------------
     
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        regionLabel.text = ""
-        priceLabel.text = ""
+    @IBAction func toggleShowUnreleased(_ sender: UIButton) {
+        showUnreleasedButton.isSelected = !showUnreleasedButton.isSelected
+        toggleFilterShowUnreleased?(showUnreleasedButton.isSelected)
     }
     
     //--------------------------------------------------------------------------
     // MARK: - Public
     //--------------------------------------------------------------------------
     
-    func populate(with retailPrice : SetRetailPrice) -> Void {
-        regionLabel.text = retailPrice.locale.localizedString(forRegionCode: retailPrice.locale.regionCode!)
-        priceLabel.text = retailPrice.priceDescription()
-        pricePerPieceLabel.text = retailPrice.pricePerPieceDescription()
+    func populate(with filterOptions: FilterOptions) -> Void {
+        showUnreleasedButton.isSelected = filterOptions.showUnreleased
     }
     
 }

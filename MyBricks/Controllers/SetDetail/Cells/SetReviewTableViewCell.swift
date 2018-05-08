@@ -9,7 +9,7 @@
 import UIKit
 import Cosmos
 
-class SetReviewTableViewCell: UITableViewCell {
+class SetReviewTableViewCell: UITableViewCell, ReusableView, NibLoadableView {
 
     let maxTextHeight: CGFloat = 150
     
@@ -18,6 +18,7 @@ class SetReviewTableViewCell: UITableViewCell {
     let defaultStarMargin: CGFloat = 2
     let smallStarMargin: CGFloat = 1
 
+    @IBOutlet weak var summaryContainerView: UIView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var authorLabel: UILabel!
     @IBOutlet weak var overallRatingView: CosmosView!
@@ -42,7 +43,18 @@ class SetReviewTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        summaryContainerView.addBorder()
+        summaryContainerView.addGradientBackground()
+        reviewContainerView.addBorder()
+        reviewContainerView.addGradientBackground()
+
         moreButton.layer.cornerRadius = moreButton.bounds.height / 2
+        moreButton.layer.shadowColor = UIColor.blueGrey.cgColor
+        moreButton.layer.shadowRadius = 2
+        moreButton.layer.shadowOpacity = 0.7
+        moreButton.layer.shadowOffset =  CGSize(width: 1, height: 1)
+
         prepareForReuse()
     }
 

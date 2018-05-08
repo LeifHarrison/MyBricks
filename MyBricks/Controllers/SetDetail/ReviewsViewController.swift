@@ -26,10 +26,7 @@ class ReviewsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         addGradientBackground()
-
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.sectionIndexBackgroundColor = UIColor.clear
-        tableView.tableFooterView = UIView()
+        setupTableView()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -47,6 +44,13 @@ class ReviewsViewController: UIViewController {
         return textView
     }()
 
+    private func setupTableView() {
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.sectionIndexBackgroundColor = UIColor.clear
+        tableView.tableFooterView = UIView()
+        tableView.register(SetReviewTableViewCell.self)
+    }
+    
     private func fetchReviews() {
         if let set = currentSet, let setID = set.setID {
             SimpleActivityHUD.show(overView: view)
@@ -100,18 +104,16 @@ extension ReviewsViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell: SetReviewTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
         let review = reviews[indexPath.row]
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "SetReviewTableViewCell", for: indexPath) as? SetReviewTableViewCell {
-            cell.populateWithSetReview(review)
-            cell.useSmallLayout = (tableView.frame.size.width < 375)
-
-            cell.moreButtonTapped = {
-                self.showFullReview(review, fromCell: cell)
-            }
-            
-            return cell
+        cell.populateWithSetReview(review)
+        cell.useSmallLayout = (tableView.frame.size.width < 375)
+        
+        cell.moreButtonTapped = {
+            self.showFullReview(review, fromCell: cell)
         }
-        return UITableViewCell()
+        
+        return cell
     }
 
 }

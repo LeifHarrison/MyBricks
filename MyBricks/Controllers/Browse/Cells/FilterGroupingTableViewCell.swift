@@ -23,7 +23,9 @@ class FilterGroupingTableViewCell: UITableViewCell, ReusableView {
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        selectionStyle = .none
         tintColor = UIColor.lightNavy
+
         groupThemeRadioButton.applyCheckboxStyle()
         groupSubthemeRadioButton.applyCheckboxStyle()
         groupYearRadioButton.applyCheckboxStyle()

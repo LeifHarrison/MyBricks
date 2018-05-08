@@ -24,20 +24,10 @@ class PartsListTableViewCell: UITableViewCell, NibLoadableView, ReusableView {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
         addBorder()
         addGradientBackground()
-
-        imageBorderView.layer.borderColor = UIColor.whiteThree.cgColor
-        imageBorderView.layer.borderWidth = 1.0 / UIScreen.main.scale
-        imageBorderView.layer.cornerRadius = 3
-        imageBorderView.layer.shadowColor = UIColor.blueGrey.cgColor
-        imageBorderView.layer.shadowOffset =  CGSize(width: 1, height: 1)
-        imageBorderView.layer.shadowOpacity = 0.4
-        imageBorderView.layer.shadowRadius = 2
-
+        imageBorderView.applyBorderShadowStyle()
         quantityView.layer.cornerRadius = quantityView.bounds.height / 2
-
         prepareForReuse()
     }
     
@@ -64,7 +54,7 @@ class PartsListTableViewCell: UITableViewCell, NibLoadableView, ReusableView {
         colorLabel.text = element.color?.name
         partNumberLabel.text = element.part?.partNumber?.capitalized
         if let quantity = element.quantity {
-            quantityLabel.text = "×\(quantity)"
+            quantityLabel.text = "\(quantity)"
         }
         else {
             quantityLabel.isHidden = true

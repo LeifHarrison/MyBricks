@@ -25,7 +25,15 @@ class ReviewDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         closeButton.layer.cornerRadius = closeButton.bounds.height / 2
+        closeButton.layer.shadowColor = UIColor.blueGrey.cgColor
+        closeButton.layer.shadowRadius = 2
+        closeButton.layer.shadowOpacity = 0.7
+        closeButton.layer.shadowOffset =  CGSize(width: 1, height: 1)
+
+        view.addBorder()
+        view.addGradientBackground()
     }
     
     override func viewWillAppear(_ animated: Bool) {

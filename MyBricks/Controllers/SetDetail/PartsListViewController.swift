@@ -23,11 +23,8 @@ class PartsListViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupTableView()
         addGradientBackground()
-
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.tableFooterView = UIView()
-        tableView.register(PartsListTableViewCell.self)
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -39,6 +36,12 @@ class PartsListViewController: UIViewController {
     // MARK: - Private
     //--------------------------------------------------------------------------
 
+    private func setupTableView() {
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.tableFooterView = UIView()
+        tableView.register(PartsListTableViewCell.self)
+    }
+    
     private func fetchPartsList() {
         if let set = currentSet {
             SimpleActivityHUD.show(overView: view)
