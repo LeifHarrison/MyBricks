@@ -28,7 +28,7 @@ public struct SetRetailPrice {
             return (currencySymbol + price)
         }
         else {
-            return (currencySymbol + "N/A")
+            return "Unknown"
         }
     }
 

@@ -14,7 +14,7 @@ class FilterGroupingTableViewCell: UITableViewCell, ReusableView {
     @IBOutlet weak var groupSubthemeRadioButton: UIButton!
     @IBOutlet weak var groupYearRadioButton: UIButton!
 
-    var groupingTypeSelected: ((GroupingType) -> Void)? = nil
+    var groupingTypeSelected: ((GroupingType?) -> Void)? = nil
     
     //--------------------------------------------------------------------------
     // MARK: - Nib Loading
@@ -39,24 +39,24 @@ class FilterGroupingTableViewCell: UITableViewCell, ReusableView {
     //--------------------------------------------------------------------------
     
     @IBAction func selectGroupByTheme(_ sender: UIButton) {
-        groupThemeRadioButton.isSelected = true
+        groupThemeRadioButton.isSelected = !groupThemeRadioButton.isSelected
         groupSubthemeRadioButton.isSelected = false
         groupYearRadioButton.isSelected = false
-        groupingTypeSelected?(.theme)
+        groupingTypeSelected?(groupThemeRadioButton.isSelected ? .theme : nil)
     }
     
     @IBAction func selectGroupBySubtheme(_ sender: UIButton) {
         groupThemeRadioButton.isSelected = false
-        groupSubthemeRadioButton.isSelected = true
+        groupSubthemeRadioButton.isSelected = !groupSubthemeRadioButton.isSelected
         groupYearRadioButton.isSelected = false
-        groupingTypeSelected?(.subtheme)
+        groupingTypeSelected?(groupSubthemeRadioButton.isSelected ? .subtheme : nil)
     }
     
     @IBAction func selectGroupByYear(_ sender: UIButton) {
         groupThemeRadioButton.isSelected = false
         groupSubthemeRadioButton.isSelected = false
-        groupYearRadioButton.isSelected = true
-        groupingTypeSelected?(.year)
+        groupYearRadioButton.isSelected = !groupYearRadioButton.isSelected
+        groupingTypeSelected?(groupYearRadioButton.isSelected ? .year : nil)
     }
     
     //--------------------------------------------------------------------------
@@ -64,7 +64,13 @@ class FilterGroupingTableViewCell: UITableViewCell, ReusableView {
     //--------------------------------------------------------------------------
     
     func populate(with filterOptions: FilterOptions) -> Void {
-        groupThemeRadioButton.isSelected = (filterOptions.grouping == .theme)
+        if filterOptions.selectedTheme != nil {
+            groupThemeRadioButton.isEnabled = false
+        }
+        else {
+            groupThemeRadioButton.isEnabled = true
+            groupThemeRadioButton.isSelected = (filterOptions.grouping == .theme)
+        }
         groupSubthemeRadioButton.isSelected = (filterOptions.grouping == .subtheme)
         groupYearRadioButton.isSelected = (filterOptions.grouping == .year)
     }

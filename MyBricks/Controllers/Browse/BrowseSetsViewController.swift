@@ -139,23 +139,25 @@ class BrowseSetsViewController: UIViewController {
             
             var indexName = ""
             if let grouping = filterOptions.grouping {
-                if grouping == .theme, let theme = set.theme {
-                    indexName = String(theme)
+                switch grouping {
+                    case .theme    : indexName = set.theme ?? ""
+                    case .subtheme : indexName = set.subtheme ?? ""
+                    case .year     : indexName = set.year ?? ""
                 }
-                if grouping == .subtheme, let subtheme = set.subtheme {
-                    indexName = String(subtheme)
-                }
-                if grouping == .year, let year = set.year {
-                    indexName = String(year)
-                }
-
             }
             
             var sets: [Set] = setsBySection[indexName] ?? []
             sets.append(set)
             setsBySection[indexName] = sets
         }
-        sectionTitles = setsBySection.keys.sorted(by: >)
+        
+        if let grouping = filterOptions.grouping, grouping == .year {
+            sectionTitles = setsBySection.keys.sorted(by: >)
+        }
+        else {
+            sectionTitles = setsBySection.keys.sorted(by: <)
+        }
+
     }
 
     fileprivate func showTableView(faded: Bool) {
@@ -222,7 +224,7 @@ extension BrowseSetsViewController: UITableViewDataSource {
         if let sets = setsBySection[sectionTitle] {
             let cell: SetListTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
             let set = sets[indexPath.row]
-            cell.populate(with: set)
+            cell.populate(with: set, options: filterOptions)
             return cell
         }
         return UITableViewCell()

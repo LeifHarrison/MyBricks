@@ -333,9 +333,9 @@
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <state key="normal" title="RESET FILTERS"/>
+                                        <state key="normal" title="DONE"/>
                                         <connections>
-                                            <action selector="resetFilters:" destination="TdO-jc-W4l" eventType="touchUpInside" id="fO3-ez-s2i"/>
+                                            <action selector="applyFilters:" destination="TdO-jc-W4l" eventType="touchUpInside" id="X33-1A-eNl"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -365,15 +365,15 @@
                                 <action selector="cancel:" destination="TdO-jc-W4l" id="ypH-pC-yu6"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Apply" id="gQF-pO-Vfp">
+                        <barButtonItem key="rightBarButtonItem" title="Reset" id="gQF-pO-Vfp">
                             <connections>
-                                <action selector="applyFilters:" destination="TdO-jc-W4l" id="Arj-uR-dYu"/>
+                                <action selector="resetFilters:" destination="TdO-jc-W4l" id="fdw-ZZ-cTd"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="bottomContainerView" destination="s6S-RC-7Dn" id="T35-OD-Oji"/>
-                        <outlet property="resetButton" destination="yaO-gM-4gW" id="1YW-Qq-EEd"/>
+                        <outlet property="doneButton" destination="yaO-gM-4gW" id="s5b-Dl-u1d"/>
                         <outlet property="tableView" destination="xt9-CO-chH" id="grP-Nq-27Q"/>
                         <segue destination="YpM-Yt-Got" kind="show" identifier="showSelectThemeView" id="sEB-eb-cTY"/>
                         <segue destination="0jN-wR-zdR" kind="show" identifier="showSelectSubthemeView" id="zBs-Jf-FPz"/>

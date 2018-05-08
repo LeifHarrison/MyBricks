@@ -97,7 +97,7 @@ class FilterViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var bottomContainerView: UIView!
-    @IBOutlet weak var resetButton: UIButton!
+    @IBOutlet weak var doneButton: UIButton!
 
     var filterOptions: FilterOptions = FilterOptions()
 
@@ -115,12 +115,8 @@ class FilterViewController: UIViewController {
         self.view.backgroundColor = UIColor.cloudyBlue
         self.title = "Filter"
 
-        resetButton.applyDefaultStyle()
-        
-        tableView.alwaysBounceVertical = false
-        tableView.backgroundColor = UIColor.clear
-        tableView.separatorStyle = .none
-        tableView.tableFooterView = UIView()
+        setupTableView()
+        doneButton.applyDefaultStyle()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -159,21 +155,22 @@ class FilterViewController: UIViewController {
     }
     
     @IBAction func resetFilters(_ sender: AnyObject?) {
+        
         if filterOptions.showingUserSets {
             filterOptions.selectedTheme = nil
-            filterOptions.selectedSubtheme = nil
-            filterOptions.selectedYear = nil
             filterOptions.filterOwned = true
-            filterOptions.filterWanted = false
         }
         else {
             filterOptions.selectedTheme = filterOptions.initialTheme
-            filterOptions.selectedSubtheme = nil
-            filterOptions.selectedYear = nil
             filterOptions.filterOwned = false
-            filterOptions.filterNotOwned = false
-            filterOptions.filterWanted = false
         }
+        
+        filterOptions.selectedSubtheme = nil
+        filterOptions.selectedYear = nil
+        filterOptions.filterNotOwned = false
+        filterOptions.filterWanted = false
+        filterOptions.showUnreleased = false
+
         tableView.reloadData()
     }
     
@@ -198,6 +195,17 @@ class FilterViewController: UIViewController {
             viewController.delegate = self
             viewController.filterOptions = filterOptions
         }
+    }
+
+    //--------------------------------------------------------------------------
+    // MARK: - Private
+    //--------------------------------------------------------------------------
+    
+    private func setupTableView() {
+        tableView.alwaysBounceVertical = false
+        tableView.backgroundColor = UIColor.clear
+        tableView.separatorStyle = .none
+        tableView.tableFooterView = UIView()
     }
 }
 

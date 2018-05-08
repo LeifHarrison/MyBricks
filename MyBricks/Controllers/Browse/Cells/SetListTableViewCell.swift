@@ -13,7 +13,6 @@ class SetListTableViewCell: UITableViewCell, NibLoadableView, ReusableView {
     @IBOutlet weak var imageBorderView: UIView!
     @IBOutlet weak var setImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var yearLabel: UILabel!
     @IBOutlet weak var setNumberLabel: UILabel!
     @IBOutlet weak var subthemeLabel: UILabel!
     @IBOutlet weak var partsContainerView: UIView!
@@ -54,7 +53,6 @@ class SetListTableViewCell: UITableViewCell, NibLoadableView, ReusableView {
         super.prepareForReuse()
 
         nameLabel.text = ""
-        yearLabel.text = ""
         setNumberLabel.text = ""
         subthemeLabel.text = ""
         piecesLabel.text = ""
@@ -77,12 +75,18 @@ class SetListTableViewCell: UITableViewCell, NibLoadableView, ReusableView {
     // MARK: - Public
     //--------------------------------------------------------------------------
 
-    func populate(with set : Set) -> Void {
+    func populate(with set : Set, options: FilterOptions) -> Void {
         
         nameLabel.text = set.name
-        yearLabel.text = set.year
-        setNumberLabel.text = set.number
-        subthemeLabel.text = set.subtheme
+        setNumberLabel.text = set.fullSetNumber
+        
+        if let grouping = options.grouping, grouping == .subtheme {
+            subthemeLabel.text = set.year
+        }
+        else {
+            subthemeLabel.text = set.subtheme
+        }
+        
         piecesLabel.text = "\(set.pieces ?? 0)"
         minifigsLabel.text = "\(set.minifigs ?? 0)"
         priceLabel.text = set.preferredPriceString

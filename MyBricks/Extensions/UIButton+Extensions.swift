@@ -20,6 +20,7 @@ extension UIButton {
     func applyCheckboxStyle() {
         self.setTitleColor(.slateBlue, for: .normal)
         self.setTitleColor(.lightNavy, for: .selected)
+        self.setTitleColor(.lightGray, for: .disabled)
     }
     
 }

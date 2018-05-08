@@ -166,7 +166,7 @@ struct Set {
     //--------------------------------------------------------------------------
 
     var fullSetNumber: String {
-        if let variant = numberVariant {
+        if let variant = numberVariant, let variantNumber = Int(variant), variantNumber > 1  {
             return (number ?? "") + "-" + variant
         }
         else {
@@ -206,11 +206,26 @@ struct Set {
     }
 
     func themeDescription() -> String? {
-        if let theme = theme, let subtheme = subtheme {
+        if let theme = theme, let subtheme = subtheme, theme.count > 0 && subtheme.count > 0 {
             return "\(theme) / \(subtheme)"
         }
         else if let theme = theme {
             return theme
+        }
+        else {
+            return ""
+        }
+    }
+    
+    func categoryAndGroupDescription() -> String? {
+        if let category = category, let themeGroup = themeGroup {
+            return "\(category) / \(themeGroup.capitalized)"
+        }
+        else if let category = category {
+            return category
+        }
+        else if let themeGroup = themeGroup {
+            return themeGroup.capitalized
         }
         else {
             return ""
@@ -263,15 +278,12 @@ struct Set {
     func weightDescription() -> String? {
         if let weight = self.weight {
             let weightMeasurement = Measurement(value: (weight as NSDecimalNumber).doubleValue, unit: UnitMass.kilograms)
-
             let formatter = MeasurementFormatter()
-            //formatter.unitStyle = .short
             formatter.unitOptions = .naturalScale
             let numberFormatter = NumberFormatter()
             numberFormatter.maximumFractionDigits = 1
             formatter.numberFormatter = numberFormatter
-            
-            return "\(formatter.string(from: weightMeasurement))"
+            return formatter.string(from: weightMeasurement)
         }
         return nil
     }
