@@ -12,15 +12,15 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PartsListTableViewCell" rowHeight="110" id="gp7-Ki-0KR" customClass="PartsListTableViewCell" customModule="MyBricks" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="110"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PartsListTableViewCell" id="gp7-Ki-0KR" customClass="PartsListTableViewCell" customModule="MyBricks" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="121"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="gp7-Ki-0KR" id="60e-wV-PO3">
-                <rect key="frame" x="0.0" y="0.0" width="375" height="109.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="375" height="120.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="9NR-Ia-mii">
-                        <rect key="frame" x="10" y="10" width="90" height="90"/>
+                    <view contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="752" verticalCompressionResistancePriority="752" translatesAutoresizingMaskIntoConstraints="NO" id="9NR-Ia-mii">
+                        <rect key="frame" x="15" y="15" width="90" height="90"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" verticalHuggingPriority="252" horizontalCompressionResistancePriority="752" verticalCompressionResistancePriority="752" translatesAutoresizingMaskIntoConstraints="NO" id="0gd-pR-WhC">
                                 <rect key="frame" x="5" y="5" width="80" height="80"/>
@@ -40,25 +40,25 @@
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="Name" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KNg-Nu-rV3">
-                        <rect key="frame" x="110" y="15" width="211" height="19.5"/>
+                        <rect key="frame" x="120" y="15" width="201" height="19.5"/>
                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                         <color key="textColor" name="lightNavy"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="Color" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V8c-mO-eIh">
-                        <rect key="frame" x="110" y="35" width="211" height="17"/>
+                        <rect key="frame" x="120" y="35" width="201" height="17"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" name="lightNavy"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Part Number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LEi-py-v8m">
-                        <rect key="frame" x="110" y="53.5" width="211" height="18"/>
+                        <rect key="frame" x="120" y="53.5" width="201" height="18"/>
                         <fontDescription key="fontDescription" type="italicSystem" pointSize="15"/>
                         <color key="textColor" name="lightNavy"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vyy-5g-0ql">
-                        <rect key="frame" x="331" y="42" width="29" height="25.5"/>
+                        <rect key="frame" x="331" y="47.5" width="29" height="25.5"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="252" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ijx-iN-vyr">
                                 <rect key="frame" x="10" y="4" width="9" height="17"/>
@@ -79,9 +79,9 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="LEi-py-v8m" firstAttribute="top" secondItem="V8c-mO-eIh" secondAttribute="baseline" constant="5" id="1oL-oc-P3B"/>
-                    <constraint firstItem="9NR-Ia-mii" firstAttribute="top" secondItem="60e-wV-PO3" secondAttribute="top" constant="10" id="724-yX-g4j"/>
-                    <constraint firstItem="9NR-Ia-mii" firstAttribute="leading" secondItem="60e-wV-PO3" secondAttribute="leading" constant="10" id="FiC-Rh-9bU"/>
-                    <constraint firstAttribute="bottom" secondItem="9NR-Ia-mii" secondAttribute="bottom" constant="10" id="Hsq-Zj-Apz"/>
+                    <constraint firstItem="9NR-Ia-mii" firstAttribute="top" secondItem="60e-wV-PO3" secondAttribute="top" constant="15" id="724-yX-g4j"/>
+                    <constraint firstItem="9NR-Ia-mii" firstAttribute="leading" secondItem="60e-wV-PO3" secondAttribute="leading" constant="15" id="FiC-Rh-9bU"/>
+                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="9NR-Ia-mii" secondAttribute="bottom" constant="15" id="Hsq-Zj-Apz"/>
                     <constraint firstItem="Vyy-5g-0ql" firstAttribute="leading" secondItem="V8c-mO-eIh" secondAttribute="trailing" constant="10" id="UFb-mb-Urw"/>
                     <constraint firstItem="V8c-mO-eIh" firstAttribute="top" secondItem="KNg-Nu-rV3" secondAttribute="baseline" constant="5" id="dVU-6a-bsz"/>
                     <constraint firstItem="Vyy-5g-0ql" firstAttribute="leading" secondItem="LEi-py-v8m" secondAttribute="trailing" constant="10" id="eJy-46-TkL"/>
@@ -89,7 +89,7 @@
                     <constraint firstItem="KNg-Nu-rV3" firstAttribute="top" secondItem="60e-wV-PO3" secondAttribute="top" constant="15" id="l2j-Da-ylO"/>
                     <constraint firstItem="V8c-mO-eIh" firstAttribute="leading" secondItem="KNg-Nu-rV3" secondAttribute="leading" id="lCF-Ii-4GF"/>
                     <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="LEi-py-v8m" secondAttribute="bottom" constant="15" id="ljL-kZ-NhO"/>
-                    <constraint firstItem="KNg-Nu-rV3" firstAttribute="leading" secondItem="9NR-Ia-mii" secondAttribute="trailing" constant="10" id="nM7-Uj-mRz"/>
+                    <constraint firstItem="KNg-Nu-rV3" firstAttribute="leading" secondItem="9NR-Ia-mii" secondAttribute="trailing" constant="15" id="nM7-Uj-mRz"/>
                     <constraint firstItem="LEi-py-v8m" firstAttribute="leading" secondItem="V8c-mO-eIh" secondAttribute="leading" id="svp-9i-quX"/>
                     <constraint firstItem="Vyy-5g-0ql" firstAttribute="leading" secondItem="KNg-Nu-rV3" secondAttribute="trailing" constant="10" id="tZA-bC-39C"/>
                     <constraint firstItem="Vyy-5g-0ql" firstAttribute="centerY" secondItem="60e-wV-PO3" secondAttribute="centerY" id="wOf-Xd-StZ"/>

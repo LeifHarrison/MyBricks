@@ -50,7 +50,7 @@ class SetDetailTableViewCell: UITableViewCell, ReusableView, NibLoadableView {
     
     func populateWithSet(_ set : Set) -> Void {
         setNameField.text = set.name
-        setNumberField.text = set.fullSetNumber
+        setNumberField.text = set.displayableSetNumber
         ageRangeField.text = set.ageRangeString
         setYearField.text = set.year
         themeField.text = set.themeDescription()

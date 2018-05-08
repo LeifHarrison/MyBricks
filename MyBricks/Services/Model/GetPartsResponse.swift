@@ -11,10 +11,14 @@ import Foundation
 public struct GetPartsResponse: Decodable {
     
     var count: Int?
+    var nextPage: String?
+    var previousPage: String?
     var results: [Element]?
     
     enum CodingKeys : String, CodingKey {
         case count
+        case nextPage = "next"
+        case previousPage = "previous"
         case results
     }
     

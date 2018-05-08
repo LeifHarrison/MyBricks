@@ -27,13 +27,7 @@ class ThemeTableViewCell: UITableViewCell, NibLoadableView, ReusableView {
         addBorder()
         addGradientBackground()
 
-        //setCountContainer.layer.borderColor = UIColor.whiteThree.cgColor
-        //setCountContainer.layer.borderWidth = 1.0
-        setCountContainer.layer.cornerRadius = setCountContainer.frame.height / 2
-        setCountContainer.layer.shadowColor = UIColor.blueGrey.cgColor
-        setCountContainer.layer.shadowRadius = 2
-        setCountContainer.layer.shadowOpacity = 0.7
-        setCountContainer.layer.shadowOffset =  CGSize(width: 1, height: 1)
+        setCountContainer.applyRoundedShadowStyle()
     }
     
     //--------------------------------------------------------------------------

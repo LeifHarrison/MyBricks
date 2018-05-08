@@ -94,4 +94,13 @@ extension UIView {
         layer.shadowOpacity = 0.4
         layer.shadowRadius = 2
     }
+    
+    func applyRoundedShadowStyle() {
+        layer.cornerRadius = self.frame.height / 2
+        layer.shadowColor = UIColor.blueGrey.cgColor
+        layer.shadowOffset =  CGSize(width: 1, height: 1)
+        layer.shadowOpacity = 0.7
+        layer.shadowRadius = 2
+    }
+    
 }

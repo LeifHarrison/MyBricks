@@ -32,8 +32,8 @@ class RebrickableServices {
     // Get Parts
     // URL: https://rebrickable.com/api/v3/lego/sets/<set number>/parts/
     @discardableResult
-    func getParts(setNumber: String, completion: @escaping (Result<GetPartsResponse>) -> Void) -> DataRequest {
-        let url = baseURL + "lego/sets/" + setNumber + "/parts/"
+    func getParts(setNumber: String, pageURL: String? = nil, completion: @escaping (Result<GetPartsResponse>) -> Void) -> DataRequest {
+        let url = pageURL ?? baseURL + "lego/sets/" + setNumber + "/parts/"
         
         let headers: HTTPHeaders = [
             "Authorization": "key \(apiKey)",

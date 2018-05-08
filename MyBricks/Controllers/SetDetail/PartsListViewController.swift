@@ -15,8 +15,10 @@ class PartsListViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
 
     var currentSet : Set?
-    var elements : [Element] = []
-
+    var lastResponse : GetPartsResponse?
+    var elements : [Element]? = []
+    var isLoading : Bool = false
+    
     //--------------------------------------------------------------------------
     // MARK: - View Lifecycle
     //--------------------------------------------------------------------------
@@ -44,22 +46,27 @@ class PartsListViewController: UIViewController {
     
     private func fetchPartsList() {
         if let set = currentSet {
-            SimpleActivityHUD.show(overView: view)
+            if lastResponse == nil { SimpleActivityHUD.show(overView: view) }
+            isLoading = true
 
             let setNumber = set.fullSetNumber
             let completion: (Result<GetPartsResponse>) -> Void = { result in
-                SimpleActivityHUD.hide()
+                if self.lastResponse == nil { SimpleActivityHUD.hide() }
+                self.isLoading = false
                 if result.isSuccess {
-                    if let results = result.value?.results {
-                        self.elements = results
-                        self.tableView.reloadData()
+                    if let response = result.value {
+                        self.lastResponse = response
+                        if let newElements = response.results {
+                            self.elements?.append(contentsOf: newElements)
+                            self.tableView.reloadData()
+                        }
                     }
                 }
                 else {
                     // Display alert
                 }
             }
-            RebrickableServices.shared.getParts(setNumber: setNumber, completion: completion)
+            RebrickableServices.shared.getParts(setNumber: setNumber, pageURL: lastResponse?.nextPage, completion: completion)
         }
     }
     
@@ -76,18 +83,32 @@ extension PartsListViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return elements.count
+        return elements?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let element = elements[indexPath.row]
-        let cell: PartsListTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
-        cell.populateWithElement(element)
-        cell.selectionStyle = .none
-        if let urlString = element.part?.imageURL, let url = URL(string: urlString) {
-            cell.partImageView.af_setImage(withURL: url, imageTransition: .crossDissolve(0.3))
+        if let element = elements?[indexPath.row] {
+            let cell: PartsListTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+            cell.populateWithElement(element)
+            cell.selectionStyle = .none
+            if let urlString = element.part?.imageURL, let url = URL(string: urlString) {
+                cell.partImageView.af_setImage(withURL: url, imageTransition: .crossDissolve(0.3))
+            }
+            
+            // See if we need to load more species
+            let rowsToLoadFromBottom = 5;
+            let rowsLoaded = elements?.count ?? 0
+            if (!self.isLoading && (indexPath.row >= (rowsLoaded - rowsToLoadFromBottom))) {
+                let totalRows = self.lastResponse?.count ?? 0
+                let remainingPartsToLoad = totalRows - rowsLoaded;
+                if (remainingPartsToLoad > 0) {
+                    self.fetchPartsList()
+                }
+            }
+
+            return cell
         }
-        return cell
+        return UITableViewCell()
     }
     
 }

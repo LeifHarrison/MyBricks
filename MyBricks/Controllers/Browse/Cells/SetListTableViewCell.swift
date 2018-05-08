@@ -78,7 +78,7 @@ class SetListTableViewCell: UITableViewCell, NibLoadableView, ReusableView {
     func populate(with set : Set, options: FilterOptions) -> Void {
         
         nameLabel.text = set.name
-        setNumberLabel.text = set.fullSetNumber
+        setNumberLabel.text = set.displayableSetNumber
         
         if let grouping = options.grouping, grouping == .subtheme {
             subthemeLabel.text = set.year

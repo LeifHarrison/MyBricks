@@ -27,7 +27,7 @@ class PartsListTableViewCell: UITableViewCell, NibLoadableView, ReusableView {
         addBorder()
         addGradientBackground()
         imageBorderView.applyBorderShadowStyle()
-        quantityView.layer.cornerRadius = quantityView.bounds.height / 2
+        quantityView.applyRoundedShadowStyle()
         prepareForReuse()
     }
     

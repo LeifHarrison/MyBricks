@@ -166,7 +166,7 @@ struct Set {
     //--------------------------------------------------------------------------
 
     var fullSetNumber: String {
-        if let variant = numberVariant, let variantNumber = Int(variant), variantNumber > 1  {
+        if let variant = numberVariant  {
             return (number ?? "") + "-" + variant
         }
         else {
@@ -174,6 +174,15 @@ struct Set {
         }
     }
 
+    var displayableSetNumber: String {
+        if let variant = numberVariant, let variantNumber = Int(variant), variantNumber > 1    {
+            return (number ?? "") + "-" + variant
+        }
+        else {
+            return number ?? ""
+        }
+    }
+    
     var ageRangeString: String? {
         if let ageMin = ageMin, let ageMax = ageMax {
             return "\(ageMin)-\(ageMax)"
