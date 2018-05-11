@@ -13,9 +13,8 @@ class InstructionsViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
 
-    var currentSet : Set?
-    var instructions : [SetInstructions] = []
-
+    var currentSet: Set?
+    var instructions: [SetInstructions] = []
 
     //--------------------------------------------------------------------------
     // MARK: - View Lifecycle
@@ -66,7 +65,7 @@ class InstructionsViewController: UIViewController {
         UIView.animate(withDuration: 0.2, animations: animations)
     }
 
-    private func previewInstructions(_ instructions: SetInstructions, fromCell cell: InstructionsTableViewCell) -> Void {
+    private func previewInstructions(_ instructions: SetInstructions, fromCell cell: InstructionsTableViewCell) {
         let destination = DownloadRequest.suggestedDownloadDestination()
         
         if let urlString = instructions.url {
@@ -85,7 +84,7 @@ class InstructionsViewController: UIViewController {
         
     }
 
-    private func shareInstructions(_ instructions: SetInstructions) -> Void {
+    private func shareInstructions(_ instructions: SetInstructions) {
         
     }
 

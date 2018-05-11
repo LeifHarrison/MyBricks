@@ -20,7 +20,7 @@ class SearchViewController: UIViewController {
     @IBOutlet weak var noResultsView: UIView!
     @IBOutlet weak var tryAgainButton: UIButton!
 
-    var searchRequest: Request? = nil
+    var searchRequest: Request?
 
     var searchHistoryItems: [SearchHistoryItem] = []
     
@@ -184,12 +184,11 @@ class SearchViewController: UIViewController {
     fileprivate func saveSearch(withType searchType: SearchType, searchTerm: String) {
         let container = DataManager.shared.persistentContainer
         
-        container.performBackgroundTask( { (context) in
+        let saveBlock = { (context: NSManagedObjectContext) in
             let request: NSFetchRequest<NSFetchRequestResult> = SearchHistoryItem.fetchRequest()
             request.predicate = NSPredicate(format: "searchTerm == %@", searchTerm)
             do {
-                let fetchedItems = try context.fetch(request) as! [SearchHistoryItem]
-                if fetchedItems.count >= 1 {
+                if let fetchedItems = try context.fetch(request) as? [SearchHistoryItem], fetchedItems.count >= 1 {
                     if let firstItem = fetchedItems.first {
                         firstItem.searchDate = Date() as NSDate
                         try context.save()
@@ -209,9 +208,9 @@ class SearchViewController: UIViewController {
             DispatchQueue.main.async {
                 self.updateSearchHistory()
             }
-        })
+        }
+        container.performBackgroundTask(saveBlock)
     
-
     }
     
     private func updateSearchHistory() {
@@ -220,8 +219,10 @@ class SearchViewController: UIViewController {
         historyFetch.sortDescriptors = [NSSortDescriptor(key: #keyPath(SearchHistoryItem.searchDate), ascending: false)]
         
         do {
-            searchHistoryItems = try context.fetch(historyFetch) as! [SearchHistoryItem]
-            tableView.reloadData()
+            if let fetchedItems = try context.fetch(historyFetch) as? [SearchHistoryItem] {
+                searchHistoryItems = fetchedItems
+                tableView.reloadData()
+            }
         }
         catch {
             fatalError("Failed to fetch search history: \(error)")

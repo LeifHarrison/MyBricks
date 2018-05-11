@@ -63,6 +63,7 @@
 		29C111A51FC48988007CBDB4 /* ReviewDetailAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C111A41FC48988007CBDB4 /* ReviewDetailAnimator.swift */; };
 		29C111A71FCA2E94007CBDB4 /* SetInstructions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C111A61FCA2E94007CBDB4 /* SetInstructions.swift */; };
 		29C111A91FCA411B007CBDB4 /* InstructionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C111A81FCA411B007CBDB4 /* InstructionsTableViewCell.swift */; };
+		29C3309320A4FFC400D59093 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 29C3309220A4FFC400D59093 /* Localizable.strings */; };
 		29CA94A11F8D508A000F1DE3 /* BrowseSetsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29CA94A01F8D508A000F1DE3 /* BrowseSetsViewController.swift */; };
 		29CA94A31F8D5132000F1DE3 /* Set.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29CA94A21F8D5132000F1DE3 /* Set.swift */; };
 		29CA94A61F8D72DC000F1DE3 /* SetListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29CA94A41F8D72DC000F1DE3 /* SetListTableViewCell.swift */; };
@@ -227,6 +228,7 @@
 		29C111A41FC48988007CBDB4 /* ReviewDetailAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewDetailAnimator.swift; sourceTree = "<group>"; };
 		29C111A61FCA2E94007CBDB4 /* SetInstructions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetInstructions.swift; sourceTree = "<group>"; };
 		29C111A81FCA411B007CBDB4 /* InstructionsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionsTableViewCell.swift; sourceTree = "<group>"; };
+		29C3309220A4FFC400D59093 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		29CA94A01F8D508A000F1DE3 /* BrowseSetsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseSetsViewController.swift; sourceTree = "<group>"; };
 		29CA94A21F8D5132000F1DE3 /* Set.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Set.swift; sourceTree = "<group>"; };
 		29CA94A41F8D72DC000F1DE3 /* SetListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetListTableViewCell.swift; sourceTree = "<group>"; };
@@ -401,6 +403,7 @@
 			children = (
 				295ADFC51F16AFFD002E6802 /* Assets.xcassets */,
 				295ADFC21F16AFFD002E6802 /* Main.storyboard */,
+				29C3309220A4FFC400D59093 /* Localizable.strings */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -739,6 +742,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 295ADFE31F16AFFD002E6802 /* Build configuration list for PBXNativeTarget "MyBricks" */;
 			buildPhases = (
+				29C3309120A4C2FF00D59093 /* Run SwiftLint */,
 				0667D550158D584828E9CF9D /* [CP] Check Pods Manifest.lock */,
 				295ADFB51F16AFFC002E6802 /* Sources */,
 				295ADFB61F16AFFC002E6802 /* Frameworks */,
@@ -866,6 +870,7 @@
 				9B63D27C202CD9CA00E1C3B0 /* SetImageCollectionViewCell.xib in Resources */,
 				9B0041CB209B6F9D00569FD1 /* PartsListTableViewCell.xib in Resources */,
 				294F187F1FB519ED0026342F /* MySets.storyboard in Resources */,
+				29C3309320A4FFC400D59093 /* Localizable.strings in Resources */,
 				9BFFDEAB20212E5F0070C812 /* SetDetail.storyboard in Resources */,
 				295ADFC61F16AFFD002E6802 /* Assets.xcassets in Resources */,
 				9B48CBF32045E3270074908B /* SetInstructionsTableViewCell.xib in Resources */,
@@ -909,6 +914,20 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
+		};
+		29C3309120A4C2FF00D59093 /* Run SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Run SwiftLint";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"";
 		};
 		AE91F3939A2E845F1D4B3DCA /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;

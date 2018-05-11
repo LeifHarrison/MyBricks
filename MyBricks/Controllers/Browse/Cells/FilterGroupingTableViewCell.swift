@@ -14,7 +14,7 @@ class FilterGroupingTableViewCell: UITableViewCell, ReusableView {
     @IBOutlet weak var groupSubthemeRadioButton: UIButton!
     @IBOutlet weak var groupYearRadioButton: UIButton!
 
-    var groupingTypeSelected: ((GroupingType?) -> Void)? = nil
+    var groupingTypeSelected: ((GroupingType?) -> Void)?
     
     //--------------------------------------------------------------------------
     // MARK: - Nib Loading
@@ -63,7 +63,7 @@ class FilterGroupingTableViewCell: UITableViewCell, ReusableView {
     // MARK: - Public
     //--------------------------------------------------------------------------
     
-    func populate(with filterOptions: FilterOptions) -> Void {
+    func populate(with filterOptions: FilterOptions) {
         if filterOptions.selectedTheme != nil {
             groupThemeRadioButton.isEnabled = false
         }

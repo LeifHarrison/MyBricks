@@ -42,7 +42,7 @@ class PriceDetailTableViewCell: UITableViewCell {
     // MARK: - Public
     //--------------------------------------------------------------------------
     
-    func populate(with retailPrice : SetRetailPrice) -> Void {
+    func populate(with retailPrice: SetRetailPrice) {
         regionLabel.text = retailPrice.locale.localizedString(forRegionCode: retailPrice.locale.regionCode!)
         priceLabel.text = retailPrice.priceDescription()
         pricePerPieceLabel.text = retailPrice.pricePerPieceDescription()

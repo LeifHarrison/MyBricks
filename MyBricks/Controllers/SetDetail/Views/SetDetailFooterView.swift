@@ -15,7 +15,7 @@ class SetDetailFooterView: UIView {
 
     static let dateFormatter = DateFormatter()
 
-    var bricksetURL: URL? = nil
+    var bricksetURL: URL?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -41,7 +41,7 @@ class SetDetailFooterView: UIView {
     // MARK: - Public
     //--------------------------------------------------------------------------
     
-    func populateWithSet(_ set : Set) -> Void {
+    func populateWithSet(_ set: Set) {
         if let dateLastUpdated = set.lastUpdated {
             dateLastUpdatedLabel.text = "Last Updated " + SetDetailFooterView.dateFormatter.string(from: dateLastUpdated)
         }

@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum SortingType : String {
+enum SortingType: String {
     case number = "Number"
     case yearFrom = "YearFrom"
     case pieces = "Pieces"
@@ -86,7 +86,7 @@ public struct GetSetsRequest {
     var owned: Bool
     var wanted: Bool
     var sortingSelection: SortingSelection = SortingSelection()
-    var grouping: GroupingType? = nil
+    var grouping: GroupingType?
 
     init(query: String? = "", theme: String? = "", subtheme: String? = "", year: String? = "", setNumber: String? = "", owned: Bool = false, wanted: Bool = false) {
         self.query = query

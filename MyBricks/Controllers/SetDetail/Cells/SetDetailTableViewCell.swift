@@ -48,7 +48,7 @@ class SetDetailTableViewCell: UITableViewCell, ReusableView, NibLoadableView {
     // MARK: - Public
     //--------------------------------------------------------------------------
     
-    func populateWithSet(_ set : Set) -> Void {
+    func populate(with set: Set) {
         setNameField.text = set.name
         setNumberField.text = set.displayableSetNumber
         ageRangeField.text = set.ageRangeString

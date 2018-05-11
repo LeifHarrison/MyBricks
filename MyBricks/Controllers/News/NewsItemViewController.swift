@@ -7,7 +7,6 @@
 //
 
 import UIKit
-
 import AlamofireRSSParser
 
 class NewsItemViewController: UIViewController {
@@ -16,7 +15,7 @@ class NewsItemViewController: UIViewController {
     @IBOutlet weak var autherAndDateLabel: UILabel!
     @IBOutlet weak var contentTextView: UITextView!
 
-    var newsItem : RSSItem?
+    var newsItem: RSSItem?
 
     //--------------------------------------------------------------------------
     // MARK: - View Lifecycle
@@ -43,14 +42,16 @@ class NewsItemViewController: UIViewController {
 // MARK: - RSSItem extension
 //==============================================================================
 
+// swiftlint:disable unused_closure_parameter
+
 extension RSSItem {
 
     func formattedDescription() -> NSAttributedString? {
         if let string = self.itemDescription {
             if let data = string.data(using: String.Encoding.utf8, allowLossyConversion: true) {
-                let options: [NSAttributedString.DocumentReadingOptionKey:Any] = [
-                    .documentType:NSAttributedString.DocumentType.html,
-                    .characterEncoding:String.Encoding.utf8.rawValue
+                let options: [NSAttributedString.DocumentReadingOptionKey: Any] = [
+                    .documentType: NSAttributedString.DocumentType.html,
+                    .characterEncoding: String.Encoding.utf8.rawValue
                 ]
 
                 var formattedDescription = NSMutableAttributedString()
@@ -64,12 +65,12 @@ extension RSSItem {
                 formattedDescription.beginEditing()
 
                 // Center and add some spacing to any attached images
-                let fullRange = NSMakeRange(0, formattedDescription.length)
+                let fullRange = NSRange(location: 0, length: formattedDescription.length)
+                //let fullRange = NSRange(location: 0, length: formattedDescription.length)
                 formattedDescription.enumerateAttribute(NSAttributedStringKey.attachment, in:fullRange, options: []) { (value, range, stop) in
-                    if (value != nil) {
+                    if value != nil {
                         let paragraphStyle = formattedDescription.attribute(.paragraphStyle, at: range.location, longestEffectiveRange: nil, in: range)
-                        if let style = paragraphStyle as? NSParagraphStyle {
-                            let newStyle = style.mutableCopy() as! NSMutableParagraphStyle
+                        if let style = paragraphStyle as? NSParagraphStyle, let newStyle = style.mutableCopy() as? NSMutableParagraphStyle {
                             newStyle.alignment = .center
                             newStyle.paragraphSpacing = 15
                             formattedDescription.addAttribute(.paragraphStyle, value: newStyle, range: range)
@@ -109,3 +110,4 @@ extension RSSItem {
     }
 }
 
+// swiftlint:enable unused_closure_parameter

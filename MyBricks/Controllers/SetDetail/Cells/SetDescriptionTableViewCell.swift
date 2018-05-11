@@ -36,7 +36,7 @@ class SetDescriptionTableViewCell: UITableViewCell, ReusableView, NibLoadableVie
     // MARK: - Public
     //--------------------------------------------------------------------------
     
-    func populate(with setDetail : SetDetail) -> Void {
+    func populate(with setDetail: SetDetail) {
         descriptionTextView.attributedText = setDetail.formattedDescription()
     }
 
@@ -46,6 +46,8 @@ class SetDescriptionTableViewCell: UITableViewCell, ReusableView, NibLoadableVie
 // MARK: - SetDetail extension
 //==============================================================================
 
+// swiftlint:disable unused_closure_parameter
+
 extension SetDetail {
     
     static let descriptionFontSize: CGFloat = 16
@@ -53,7 +55,7 @@ extension SetDetail {
     func formattedDescription() -> NSAttributedString? {
         if let string = self.setDescription {
             if let data = string.data(using: String.Encoding.utf8, allowLossyConversion: true) {
-                let options: [NSAttributedString.DocumentReadingOptionKey:Any] = [
+                let options: [NSAttributedString.DocumentReadingOptionKey: Any] = [
                     .documentType : NSAttributedString.DocumentType.html,
                     .characterEncoding : String.Encoding.utf8.rawValue
                 ]
@@ -69,7 +71,7 @@ extension SetDetail {
                 formattedReview.beginEditing()
                 
                 // Change fonts to something a bit more readable
-                let fullRange = NSMakeRange(0, formattedReview.length)
+                let fullRange = NSRange(location: 0, length:formattedReview.length)
                 formattedReview.enumerateAttribute(.font, in: fullRange, options: []) { (value, range, stop) in
                     if let font = value as? UIFont {
                         let isBold = font.fontDescriptor.symbolicTraits.contains(.traitBold)
@@ -88,9 +90,7 @@ extension SetDetail {
                     }
                 }
                 formattedReview.enumerateAttribute(.foregroundColor, in: fullRange, options: []) { (value, range, stop) in
-                    if let color = value as? UIColor {
-                        formattedReview.addAttribute(.foregroundColor, value: UIColor.lightNavy, range: range)
-                    }
+                    formattedReview.addAttribute(.foregroundColor, value: UIColor.lightNavy, range: range)
                 }
                 
                 formattedReview.endEditing()
@@ -101,3 +101,5 @@ extension SetDetail {
         return nil
     }
 }
+
+// swiftlint:enable unused_closure_parameter

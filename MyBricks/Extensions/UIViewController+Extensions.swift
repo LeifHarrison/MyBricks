@@ -45,7 +45,7 @@ extension UIViewController {
         view.endEditing(true)
     }
     
-    func evaluateBiometricAuthentication(credential: URLCredential, completion: @escaping ((Bool)->Void)) {
+    func evaluateBiometricAuthentication(credential: URLCredential, completion: @escaping ((Bool) -> Void)) {
         let myContext = LAContext()
 
         var authError: NSError?
@@ -96,7 +96,7 @@ extension UIViewController {
         }
     }
 
-    func performLogin(credential: URLCredential, completion: @escaping ((Bool)->Void)) {
+    func performLogin(credential: URLCredential, completion: @escaping ((Bool) -> Void)) {
         if let username = credential.user, let password = credential.password {
             BricksetServices.shared.login(username: username, password: password, completion: { result in
                 NSLog("Result: \(result)")
@@ -105,7 +105,7 @@ extension UIViewController {
                 }
                 else {
                     let alert = UIAlertController(title: "Error", message: result.error?.localizedDescription, preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
+                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (_) in
                         completion(true)
                     }))
                     self.present(alert, animated: true, completion: nil)
@@ -130,7 +130,7 @@ extension UIViewController {
                 message = "Unknown Authentication Error"
         }
 
-        return message;
+        return message
     }
     
     func evaluateAuthenticationPolicyMessage(forError error: LAError) -> String {
@@ -160,12 +160,12 @@ extension UIViewController {
         return message
     }
 
-    func displayLocalAuthenticationError(error:LAError) {
+    func displayLocalAuthenticationError(error: LAError) {
         let message = evaluateAuthenticationPolicyMessage(forError: error)
         self.showAlertWith(title: "Authentication Failed", message: message)
     }
 
-    func showAlertWith(title:String, message:String) {
+    func showAlertWith(title: String, message: String) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let actionButton = UIAlertAction(title: "OK", style: .default, handler: nil)
         alertController.addAction(actionButton)

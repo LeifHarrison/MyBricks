@@ -16,7 +16,7 @@ class BricksetProfileTableViewCell: UITableViewCell {
     @IBOutlet weak var loggedInAsLabel: UILabel!
     @IBOutlet weak var logoutButton: UIButton!
 
-    var logoutButtonTapped : (() -> Void)? = nil
+    var logoutButtonTapped : (() -> Void)?
 
     //--------------------------------------------------------------------------
     // MARK: - Nib Loading

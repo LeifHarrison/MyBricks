@@ -43,7 +43,7 @@ class SetPriceTableViewCell: UITableViewCell, ReusableView, NibLoadableView {
     // MARK: - Public
     //--------------------------------------------------------------------------
     
-    func populateWithSet(_ set : Set) -> Void {
+    func populate(with set: Set) {
         priceLabel.text = set.preferredPriceString
     }
     

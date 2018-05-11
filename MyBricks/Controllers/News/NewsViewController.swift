@@ -14,7 +14,7 @@ class NewsViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
 
-    var feed: RSSFeed? = nil
+    var feed: RSSFeed?
     var feedItems: [RSSItem] = []
 
     //--------------------------------------------------------------------------
@@ -63,14 +63,10 @@ extension NewsViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let feedItem = feedItems[indexPath.row]
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "NewsItemTableViewCell", for: indexPath) as? NewsItemTableViewCell
-        {
-            cell.titleLabel.text = feedItem.title
-            cell.autherAndDateLabel.attributedText = feedItem.authorAndDateAttributedDecription()
-
-            return cell
-        }
-        return UITableViewCell()
+        let cell: NewsItemTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+        cell.titleLabel.text = feedItem.title
+        cell.autherAndDateLabel.attributedText = feedItem.authorAndDateAttributedDecription()
+        return cell
     }
 
 }

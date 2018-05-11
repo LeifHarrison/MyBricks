@@ -17,16 +17,16 @@ class SetHeroImageTableViewCell: UITableViewCell, ReusableView, NibLoadableView 
     @IBOutlet weak var pageLabel: UILabel!
     @IBOutlet weak var zoomButton: UIButton!
     
-    var mainImageURL : String?
-    var imageTapped : ((SetImage?) -> Void)? = nil
+    var mainImageURL: String?
+    var imageTapped: ((SetImage?) -> Void)?
     
-    var currentPage : Int = 0 {
+    var currentPage: Int = 0 {
         didSet {
             updatePageIndicater()
         }
     }
     
-    var additionalImages : [SetImage] = [] {
+    var additionalImages: [SetImage] = [] {
         didSet {
             if additionalImages.count > 0 {
                 showPageControls(animated: true)
@@ -90,7 +90,7 @@ class SetHeroImageTableViewCell: UITableViewCell, ReusableView, NibLoadableView 
     // MARK: - Public
     //--------------------------------------------------------------------------
 
-    func populate(with set : Set, additionalImages: [SetImage]?) -> Void {
+    func populate(with set: Set, additionalImages: [SetImage]?) {
         mainImageURL = set.largeThumbnailURL
         if let images = additionalImages {
             self.additionalImages = images
@@ -104,7 +104,7 @@ class SetHeroImageTableViewCell: UITableViewCell, ReusableView, NibLoadableView 
         let animations = { () -> Void in
             self.zoomButton.alpha = 1.0
         }
-        let completion: ((Bool) -> Void) = { finished in
+        let completion = { (finished: Bool) -> Void in
         }
         UIView.animate(withDuration: animated ? 0.25 : 0.0, animations:animations, completion: completion)
     }
@@ -159,7 +159,7 @@ class SetHeroImageTableViewCell: UITableViewCell, ReusableView, NibLoadableView 
 // MARK: - UICollectionViewDataSource
 //==============================================================================
 
-extension SetHeroImageTableViewCell : UICollectionViewDataSource {
+extension SetHeroImageTableViewCell: UICollectionViewDataSource {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
@@ -173,7 +173,7 @@ extension SetHeroImageTableViewCell : UICollectionViewDataSource {
         let cell: SetImageCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
         if indexPath.item == 0 {
             if let urlString = mainImageURL, let thumbnailURL = URL(string: urlString) {
-                cell.imageView.af_setImage(withURL: thumbnailURL, imageTransition: .crossDissolve(0.3)) 
+                cell.imageView.af_setImage(withURL: thumbnailURL, imageTransition: .crossDissolve(0.3))
             }
         }
         else {
@@ -218,4 +218,3 @@ extension SetHeroImageTableViewCell: UIScrollViewDelegate {
     }
 
 }
-

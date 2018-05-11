@@ -13,7 +13,7 @@ class SetImagesTableViewCell: UITableViewCell, ReusableView, NibLoadableView {
     @IBOutlet weak var collectionView: UICollectionView!
     
     var images: [SetImage] = []
-    var imageTapped : ((SetImage) -> Void)? = nil
+    var imageTapped: ((SetImage) -> Void)?
 
     //--------------------------------------------------------------------------
     // MARK: - Nib Loading
@@ -40,8 +40,8 @@ class SetImagesTableViewCell: UITableViewCell, ReusableView, NibLoadableView {
     // MARK: - Public
     //--------------------------------------------------------------------------
     
-    func populateWithSetImages(_ images : [SetImage]) -> Void {
-        self.images = images
+    func populate(with setImages: [SetImage]) {
+        self.images = setImages
         collectionView.reloadData()
     }
     
@@ -51,7 +51,7 @@ class SetImagesTableViewCell: UITableViewCell, ReusableView, NibLoadableView {
 // MARK: - UICollectionViewDataSource
 //==============================================================================
 
-extension SetImagesTableViewCell : UICollectionViewDataSource {
+extension SetImagesTableViewCell: UICollectionViewDataSource {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1

@@ -42,9 +42,9 @@ class PreviewView: UIView {
 		
         let width = 0.8 * bounds.width
         let height = 0.25 * bounds.height
-        let x = (bounds.width - width) / 2.0
-        let y = (bounds.height - height) / 2.0
-        regionOfInterest = CGRect(x: x, y: y, width: width, height: height)
+        let regionX = (bounds.width - width) / 2.0
+        let regionY = (bounds.height - height) / 2.0
+        regionOfInterest = CGRect(x: regionX, y: regionY, width: width, height: height)
 
         regionOfInterestOutline.path = UIBezierPath(roundedRect: regionOfInterest, cornerRadius: regionOfInterestCornerRadius).cgPath
         regionOfInterestOutline.fillColor = UIColor.clear.cgColor

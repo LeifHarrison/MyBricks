@@ -17,11 +17,11 @@ class BrowseSetsViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
 
     var filterOptions: FilterOptions = FilterOptions()
-    var browseRequest: Request? = nil
+    var browseRequest: Request?
     
     var allSets: [Set] = []
     var sectionTitles: [String] = []
-    var setsBySection: [String : [Set]] = [:]
+    var setsBySection: [String: [Set]] = [:]
     
     //--------------------------------------------------------------------------
     // MARK: - View Lifecycle
@@ -115,7 +115,9 @@ class BrowseSetsViewController: UIViewController {
                 strongSelf.updateDisplay(animated: true)
             }
             else {
-                if let error = result.error as? URLError, error.code == .cancelled { return }
+                if let error = result.error as? URLError, error.code == .cancelled {
+                    return
+                }
                 else if let error = result.error {
                     NSLog("Error loading sets: \(error)")
                 }
@@ -296,4 +298,3 @@ extension BrowseSetsViewController: FilterViewControllerDelegate {
     }
     
 }
-

@@ -63,10 +63,11 @@ import UIKit
     }
 
     override func layoutSubviews() {
-        let gradientLayer = layer as! CAGradientLayer
-        gradientLayer.colors = [startColor.cgColor, endColor.cgColor]
-        gradientLayer.startPoint = startPoint
-        gradientLayer.endPoint = endPoint
+        if let gradientLayer = layer as? CAGradientLayer {
+            gradientLayer.colors = [startColor.cgColor, endColor.cgColor]
+            gradientLayer.startPoint = startPoint
+            gradientLayer.endPoint = endPoint
+        }
         layer.cornerRadius = cornerRadius
         layer.shadowColor = shadowColor.cgColor
         layer.shadowOffset = shadowOffset
@@ -74,4 +75,3 @@ import UIKit
         layer.shadowOpacity = 1
     }
 }
-

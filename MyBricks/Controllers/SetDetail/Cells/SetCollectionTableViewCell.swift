@@ -22,9 +22,9 @@ class SetCollectionTableViewCell: UITableViewCell, ReusableView, NibLoadableView
 
     let maxQuantityLength = 3
     
-    var setUpdated: ((Set?) -> Void)? = nil
+    var setUpdated: ((Set?) -> Void)?
     
-    var currentSet: Set? = nil
+    var currentSet: Set?
     var previousQuantityOwned: Int = 0
     var previousNotesText: String = ""
 
@@ -127,7 +127,7 @@ class SetCollectionTableViewCell: UITableViewCell, ReusableView, NibLoadableView
     // MARK: - Public
     //--------------------------------------------------------------------------
     
-    func populateWithSet(_ set : Set) -> Void {
+    func populate(with set: Set) {
         currentSet = set
         
         ownedCheckboxButton.isSelected = set.owned

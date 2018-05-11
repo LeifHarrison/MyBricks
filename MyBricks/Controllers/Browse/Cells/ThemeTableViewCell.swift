@@ -49,7 +49,7 @@ class ThemeTableViewCell: UITableViewCell, NibLoadableView, ReusableView {
     // MARK: - Public
     //--------------------------------------------------------------------------
 
-    func populateWithTheme(_ theme: SetTheme) -> Void {
+    func populateWithTheme(_ theme: SetTheme) {
         nameLabel.text = theme.name
         yearsLabel.text = theme.yearsDecription()
 

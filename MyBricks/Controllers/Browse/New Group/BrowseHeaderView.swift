@@ -34,11 +34,13 @@ class BrowseHeaderView: UIView {
     // MARK: - Public
     //--------------------------------------------------------------------------
     
-    func populate(with setCount: Int, filterOptions: FilterOptions?) -> Void {
+    // swiftlint:disable cyclomatic_complexity
+
+    func populate(with setCount: Int, filterOptions: FilterOptions?) {
         let regularTextColor = UIColor.white
         let boldTextColor = UIColor.white
-        let regularAttributes: [NSAttributedStringKey : Any] = [.font: resultsLabel.font, .foregroundColor: regularTextColor]
-        let boldAttributes: [NSAttributedStringKey : Any] = [.font: resultsLabel.font.bold(), .foregroundColor: boldTextColor]
+        let regularAttributes: [NSAttributedStringKey: Any] = [ .font : resultsLabel.font, .foregroundColor : regularTextColor]
+        let boldAttributes: [NSAttributedStringKey: Any] = [ .font : resultsLabel.font.bold(), .foregroundColor : boldTextColor]
         let separator = NSAttributedString(string:" : ", attributes:regularAttributes)
         
         let attributedDescription = NSMutableAttributedString(string:"Showing ", attributes:regularAttributes)
@@ -81,4 +83,6 @@ class BrowseHeaderView: UIView {
         layoutIfNeeded()
     }
     
+    // swiftlint:enable cyclomatic_complexity
+
 }

@@ -75,7 +75,7 @@ class SetListTableViewCell: UITableViewCell, NibLoadableView, ReusableView {
     // MARK: - Public
     //--------------------------------------------------------------------------
 
-    func populate(with set : Set, options: FilterOptions) -> Void {
+    func populate(with set: Set, options: FilterOptions) {
         
         nameLabel.text = set.name
         setNumberLabel.text = set.displayableSetNumber

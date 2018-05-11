@@ -57,7 +57,7 @@ class SetReviewsTableViewCell: UITableViewCell, ReusableView, NibLoadableView {
     // MARK: - Public
     //--------------------------------------------------------------------------
 
-    func populate(with set: Set) -> Void {
+    func populate(with set: Set) {
         if let rating = set.rating {
             let ratingDouble = NSDecimalNumber(decimal:rating).doubleValue
             ratingView.rating = ratingDouble
@@ -66,4 +66,3 @@ class SetReviewsTableViewCell: UITableViewCell, ReusableView, NibLoadableView {
     }
     
 }
-

@@ -40,7 +40,7 @@ class SetTagsTableViewCell: UITableViewCell, ReusableView, NibLoadableView {
     // MARK: - Public
     //--------------------------------------------------------------------------
     
-    func populate(with setDetail : SetDetail) -> Void {
+    func populate(with setDetail: SetDetail) {
         if let tags = setDetail.tags {
             tagListView.addTags(tags)
         }
@@ -58,4 +58,5 @@ class SetTagsTableViewCell: UITableViewCell, ReusableView, NibLoadableView {
         tagListView.tagBackgroundColor = UIColor.lightNavy
         tagListView.textFont = UIFont.systemFont(ofSize: 14)
     }
+    
 }

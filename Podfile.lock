@@ -11,6 +11,7 @@ PODS:
   - Cosmos (15.0.0)
   - Fuzi (2.1.0)
   - KeychainAccess (3.1.1)
+  - SwiftLint (0.25.1)
 
 DEPENDENCIES:
   - Alamofire
@@ -21,9 +22,10 @@ DEPENDENCIES:
   - Cosmos
   - Fuzi
   - KeychainAccess
+  - SwiftLint
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  https://github.com/cocoapods/specs.git:
     - Alamofire
     - AlamofireImage
     - AlamofireNetworkActivityIndicator
@@ -32,6 +34,7 @@ SPEC REPOS:
     - Cosmos
     - Fuzi
     - KeychainAccess
+    - SwiftLint
 
 SPEC CHECKSUMS:
   Alamofire: e4fa87002c137ba2d8d634d2c51fabcda0d5c223
@@ -42,7 +45,8 @@ SPEC CHECKSUMS:
   Cosmos: a6dbd3d0baa0cc8f51f8598f7508d5a09d0a9ade
   Fuzi: 8c57344debff6d3a0c76a9e0f549152defdaaa48
   KeychainAccess: 7bd430028059754a3debab3cfc0bd1fc7fb85df3
+  SwiftLint: ce933681be10c3266e82576dad676fa815a602e9
 
-PODFILE CHECKSUM: 2eb9176cf5cbf499367601a54987b2fe0e882218
+PODFILE CHECKSUM: 5de80dde4d074a464431be4057670b9637ae62d4
 
-COCOAPODS: 1.5.0
+COCOAPODS: 1.5.2

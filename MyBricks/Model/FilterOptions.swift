@@ -22,23 +22,22 @@ enum GroupingType {
     }
 }
 
-
 struct FilterOptions {
     
     var showingUserSets: Bool = false
-    var initialTheme: SetTheme? = nil
+    var initialTheme: SetTheme?
 
-    var searchType: SearchType? = nil
-    var searchTerm: String? = nil
+    var searchType: SearchType?
+    var searchTerm: String?
     
     var availableThemes: [SetTheme] = []
-    var selectedTheme: SetTheme? = nil
+    var selectedTheme: SetTheme?
 
     var availableSubthemes: [SetSubtheme] = []
-    var selectedSubtheme: SetSubtheme? = nil
+    var selectedSubtheme: SetSubtheme?
     
     var availableYears: [SetYear] = []
-    var selectedYear: SetYear? = nil
+    var selectedYear: SetYear?
     
     var filterOwned: Bool = false
     var filterNotOwned: Bool = false
@@ -47,10 +46,9 @@ struct FilterOptions {
     var showUnreleased: Bool = false
 
     var sortingSelection: SortingSelection = SortingSelection()
-    var grouping: GroupingType? = nil
+    var grouping: GroupingType?
     
     public func hasSelectedFilters() -> Bool {
         return searchTerm != nil || (showingUserSets && selectedTheme != nil ) || selectedSubtheme != nil || selectedYear != nil || filterOwned || filterNotOwned || filterWanted
     }
 }
-

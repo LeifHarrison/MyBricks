@@ -16,7 +16,7 @@ public struct Part: Decodable {
     var partURL: String?
     var imageURL: String?
     
-    enum CodingKeys : String, CodingKey {
+    enum CodingKeys: String, CodingKey {
         case partNumber = "part_num"
         case name
         case categoryId = "part_cat_id"

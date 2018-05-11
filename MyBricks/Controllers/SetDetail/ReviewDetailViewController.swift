@@ -17,7 +17,7 @@ class ReviewDetailViewController: UIViewController {
     @IBOutlet weak var closeButtonContainer: UIView!
     @IBOutlet weak var closeButton: UIButton!
 
-    var review : SetReview? = nil
+    var review: SetReview?
     
     //--------------------------------------------------------------------------
     // MARK: - View Lifecycle

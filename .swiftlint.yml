@@ -1,0 +1,29 @@
+disabled_rules: # rule identifiers to exclude from running
+  - switch_case_alignment
+  - todo
+
+excluded: # paths to ignore during linting. Takes precedence over `included`.
+  - Pods
+
+# parameterized rules can be customized from this configuration file
+# parameterized rules are first parameterized as a warning level, then error level.
+
+colon:
+  apply_to_dictionaries: false
+
+line_length: 180
+file_length: 600
+
+trailing_whitespace:
+  ignores_empty_lines: true
+
+statement_position:
+  statement_mode: uncuddled_else
+
+type_body_length:
+  - 300 # warning
+  - 400 # error
+
+function_body_length:
+ - 200 # warning
+ - 300 # error

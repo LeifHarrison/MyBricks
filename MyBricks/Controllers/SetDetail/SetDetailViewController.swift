@@ -35,8 +35,8 @@ class SetDetailViewController: UIViewController {
     var currentSetImage: UIImage?
     var hasLargeImage: Bool = false
     
-    var setDetailRequest: DataRequest? = nil
-    var additionalImagesRequest: DataRequest? = nil
+    var setDetailRequest: DataRequest?
+    var additionalImagesRequest: DataRequest?
 
     //--------------------------------------------------------------------------
     // MARK: - View Lifecycle
@@ -212,8 +212,27 @@ class SetDetailViewController: UIViewController {
             cell.showZoomButton(animated: true)
         }
     }
+    
     private func showLargeImage() {
         performSegue(withIdentifier: "showImageDetailView", sender: self)
+    }
+    
+    private func showImageDetail(for setImage: SetImage?) {
+        if let vc = self.storyboard?.instantiateViewController(withIdentifier: "ImageDetailViewController") as? ImageDetailViewController {
+            if let selectedImage = setImage {
+                vc.imageURL = selectedImage.imageURL
+            }
+            else if let set = self.currentSet, let imageURL = set.imageURL {
+                if self.hasLargeImage {
+                    let largeImageURL = imageURL.replacingOccurrences(of: "/images/", with: "/large/")
+                    vc.imageURL = largeImageURL
+                }
+                else {
+                    vc.imageURL = imageURL
+                }
+            }
+            self.present(vc, animated: true, completion: nil)
+        }
     }
     
     //--------------------------------------------------------------------------
@@ -289,38 +308,24 @@ extension SetDetailViewController: UITableViewDataSource {
             cell.populate(with: set, additionalImages: additionalImages)
 
             cell.imageTapped = { image in
-                if let vc = self.storyboard?.instantiateViewController(withIdentifier: "ImageDetailViewController") as? ImageDetailViewController {
-                    if let selectedImage = image {
-                        vc.imageURL = selectedImage.imageURL
-                    }
-                    else if let set = self.currentSet, let imageURL = set.imageURL {
-                        if self.hasLargeImage {
-                            let largeImageURL = imageURL.replacingOccurrences(of: "/images/", with: "/large/")
-                            vc.imageURL = largeImageURL
-                        }
-                        else {
-                            vc.imageURL = imageURL
-                        }
-                    }
-                    self.present(vc, animated: true, completion: nil)
-                }
+                self.showImageDetail(for: image)
             }
 
             return cell
             
         case .detail :
             let cell: SetDetailTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
-            cell.populateWithSet(set)
+            cell.populate(with: set)
             return cell
 
         case .price :
             let cell: SetPriceTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
-            cell.populateWithSet(set)
+            cell.populate(with: set)
             return cell
 
         case .parts :
             let cell: SetPartsTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
-            cell.populateWithSet(set)
+            cell.populate(with: set)
             return cell
 
         case .reviews :
@@ -330,7 +335,7 @@ extension SetDetailViewController: UITableViewDataSource {
             
         case .instructions :
             let cell: SetInstructionsTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
-            cell.populateWithSet(set)
+            cell.populate(with: set)
             return cell
             
         case .tags :
@@ -347,7 +352,7 @@ extension SetDetailViewController: UITableViewDataSource {
 
         case .collection :
             let cell: SetCollectionTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
-            cell.populateWithSet(set)
+            cell.populate(with: set)
             
             cell.setUpdated = { set in
                 self.currentSet = set
@@ -382,27 +387,27 @@ extension SetDetailViewController: UITableViewDelegate {
         let section = sections[indexPath.section]
 
         if section == .price {
-            if let vc = storyboard?.instantiateViewController(withIdentifier: "PriceDetailViewController") as? PriceDetailViewController {
-                vc.currentSet = currentSet
-                show(vc, sender: self)
+            if let viewController = storyboard?.instantiateViewController(withIdentifier: "PriceDetailViewController") as? PriceDetailViewController {
+                viewController.currentSet = currentSet
+                show(viewController, sender: self)
             }
         }
         if section == .parts {
-            if let vc = storyboard?.instantiateViewController(withIdentifier: "PartsListViewController") as? PartsListViewController {
-                vc.currentSet = currentSet
-                show(vc, sender: self)
+            if let viewController = storyboard?.instantiateViewController(withIdentifier: "PartsListViewController") as? PartsListViewController {
+                viewController.currentSet = currentSet
+                show(viewController, sender: self)
             }
         }
         if section == .reviews {
-            if let vc = storyboard?.instantiateViewController(withIdentifier: "ReviewsViewController") as? ReviewsViewController {
-                vc.currentSet = currentSet
-                show(vc, sender: self)
+            if let viewController = storyboard?.instantiateViewController(withIdentifier: "ReviewsViewController") as? ReviewsViewController {
+                viewController.currentSet = currentSet
+                show(viewController, sender: self)
             }
         }
         if section == .instructions {
-            if let vc = storyboard?.instantiateViewController(withIdentifier: "InstructionsViewController") as? InstructionsViewController {
-                vc.currentSet = currentSet
-                show(vc, sender: self)
+            if let viewController = storyboard?.instantiateViewController(withIdentifier: "InstructionsViewController") as? InstructionsViewController {
+                viewController.currentSet = currentSet
+                show(viewController, sender: self)
             }
         }
 

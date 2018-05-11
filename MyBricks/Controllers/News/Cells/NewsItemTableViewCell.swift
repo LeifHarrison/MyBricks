@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NewsItemTableViewCell: UITableViewCell {
+class NewsItemTableViewCell: UITableViewCell, NibLoadableView, ReusableView {
 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var autherAndDateLabel: UILabel!

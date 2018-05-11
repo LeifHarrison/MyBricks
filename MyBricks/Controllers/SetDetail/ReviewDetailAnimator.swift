@@ -15,7 +15,7 @@ class ReviewDetailAnimator: NSObject {
     var originFrame = CGRect.zero
     var finalFrame = CGRect.zero
 
-    var dismissCompletion: (()->Void)?
+    var dismissCompletion: (() -> Void)?
     
     lazy var animatedTextContainer: UIView = {
         let containerView = UIView(frame: originFrame)
@@ -88,7 +88,7 @@ extension ReviewDetailAnimator: UIViewControllerAnimatedTransitioning {
             detailView?.alpha = self.presenting ? 1.0 : 0.0
             self.animatedTextContainer.frame = self.presenting ? self.finalFrame : self.originFrame
         }
-        let completion: ((Bool) -> Void) = { (Bool) -> Void in
+        let completion = { (finished: Bool) -> Void in
             detailController?.textView.isHidden = false
             detailController?.closeButton.isHidden = false
 

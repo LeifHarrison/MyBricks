@@ -14,5 +14,6 @@ target 'MyBricks' do
   pod 'Fuzi'
   pod 'KeychainAccess'
   pod 'Cosmos'
+  pod 'SwiftLint'
 
 end

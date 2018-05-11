@@ -30,7 +30,6 @@ extension ReusableView where Self: UIView {
     
 }
 
-
 extension UIView {
     
     func constrainToView(view: UIView) {
@@ -59,7 +58,7 @@ extension UIView {
         let animations: (() -> Void) = {
             self.alpha = 0.0
         }
-        let completion: ((Bool) -> Void) = { (Bool) -> Void in
+        let completion = { (finished: Bool) -> Void in
             self.isHidden = true
         }
         UIView.animate(withDuration: duration, animations: animations, completion: completion)

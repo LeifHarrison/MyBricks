@@ -15,7 +15,7 @@ extension UILabel {
         font = UIFont.systemFont(ofSize: 18)
         
         let instructionsText = NSMutableAttributedString(string:self.text ?? "")
-        let range = NSMakeRange(0, instructionsText.length)
+        let range = NSRange(location: 0, length: instructionsText.length)
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.alignment = .center
         paragraphStyle.lineBreakMode = .byWordWrapping
@@ -28,4 +28,3 @@ extension UILabel {
     }
     
 }
-

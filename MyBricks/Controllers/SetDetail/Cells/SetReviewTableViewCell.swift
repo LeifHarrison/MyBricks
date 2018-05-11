@@ -35,7 +35,7 @@ class SetReviewTableViewCell: UITableViewCell, ReusableView, NibLoadableView {
     @IBOutlet var textHeightConstraint: NSLayoutConstraint!
     @IBOutlet var moreSpacingConstraint: NSLayoutConstraint!
 
-    var moreButtonTapped : (() -> Void)? = nil
+    var moreButtonTapped : (() -> Void)?
     
     //--------------------------------------------------------------------------
     // MARK: - Nib Loading
@@ -113,16 +113,16 @@ class SetReviewTableViewCell: UITableViewCell, ReusableView, NibLoadableView {
     // MARK: - Public
     //--------------------------------------------------------------------------
 
-    func populateWithSetReview(_ review: SetReview) -> Void {
-        titleLabel.text = review.title
-        authorLabel.attributedText = review.authorAndDateAttributedDecription()
-        overallRatingView.rating = Double(review.overallRating ?? 0)
-        buildingRatingView.rating = Double(review.buildingExperience ?? 0)
-        partsRatingView.rating = Double(review.parts ?? 0)
-        playabilityRatingView.rating = Double(review.playability ?? 0)
-        valueRatingView.rating = Double(review.valueForMoney ?? 0)
+    func populate(with setReview: SetReview) {
+        titleLabel.text = setReview.title
+        authorLabel.attributedText = setReview.authorAndDateAttributedDecription()
+        overallRatingView.rating = Double(setReview.overallRating ?? 0)
+        buildingRatingView.rating = Double(setReview.buildingExperience ?? 0)
+        partsRatingView.rating = Double(setReview.parts ?? 0)
+        playabilityRatingView.rating = Double(setReview.playability ?? 0)
+        valueRatingView.rating = Double(setReview.valueForMoney ?? 0)
 
-        if let reviewText = review.formattedReview() {
+        if let reviewText = setReview.formattedReview() {
             reviewTextView.attributedText = reviewText
             
             let maxSize = CGSize(width: reviewTextView.frame.size.width, height: CGFloat.greatestFiniteMagnitude)
@@ -167,10 +167,12 @@ extension SetReview {
         return attributedDescription
     }
 
+    // swiftlint:disable unused_closure_parameter
+
     func formattedReview() -> NSAttributedString? {
         if let string = self.review {
             if let data = string.data(using: String.Encoding.utf8, allowLossyConversion: true) {
-                let options: [NSAttributedString.DocumentReadingOptionKey:Any] = [
+                let options: [NSAttributedString.DocumentReadingOptionKey: Any] = [
                     .documentType : NSAttributedString.DocumentType.html,
                     .characterEncoding : String.Encoding.utf8.rawValue
                 ]
@@ -186,7 +188,7 @@ extension SetReview {
                 formattedReview.beginEditing()
 
                 // Change fonts to something a bit more readable
-                let fullRange = NSMakeRange(0, formattedReview.length)
+                let fullRange = NSRange(location: 0, length: formattedReview.length)
                 formattedReview.enumerateAttribute(.font, in: fullRange, options: []) { (value, range, stop) in
                     if let font = value as? UIFont {
                         let isBold = font.fontDescriptor.symbolicTraits.contains(.traitBold)
@@ -211,5 +213,7 @@ extension SetReview {
         }
         return nil
     }
-}
+    
+    // swiftlint:enable unused_closure_parameter
 
+}

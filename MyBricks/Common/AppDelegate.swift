@@ -53,7 +53,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: - Private
     //--------------------------------------------------------------------------
     
-    private func configureLogging() -> Void {
+    private func configureLogging() {
         // Don't log image URL requests
         let imagePredicate = NSPredicate { (object, _) in
             if let request = object as? NSURLRequest, let url = request.url {
@@ -65,7 +65,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         NetworkActivityLogger.shared.startLogging()
     }
     
-    private func validateAPIKey() -> Void {
+    private func validateAPIKey() {
         BricksetServices.shared.checkKey(completion: { result in
             if let valid = result.value, valid != true {
                 let message = NSLocalizedString("It looks like the BrickSet API key is no longer valid. Please update the application or notify the developer.", comment: "")
@@ -77,7 +77,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         })
     }
 
-    private func validateUserHash() -> Void {
+    private func validateUserHash() {
         if BricksetServices.isLoggedIn() {
             BricksetServices.shared.checkUserHash(completion: { result in
                 if let valid = result.value, valid != true {
@@ -106,7 +106,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         // Generate gradient image
-        let image = gradientImage(withSize: CGSize(width:screenHeight, height: barHeight)) // 88 on iPhone X
+        let image = gradientImage(withSize: CGSize(width: screenHeight, height: barHeight)) // 88 on iPhone X
 
         UINavigationBar.appearance().setBackgroundImage(image, for: .default)
         UINavigationBar.appearance().tintColor = UIColor.lightNavy
@@ -127,7 +127,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         // Generate gradient image
-        let image = gradientImage(withSize: CGSize(width:screenHeight, height: barHeight))
+        let image = gradientImage(withSize: CGSize(width: screenHeight, height: barHeight))
 
         UITabBar.appearance().backgroundImage = image
         UITabBar.appearance().tintColor = UIColor.lightNavy
@@ -151,4 +151,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
 }
-

@@ -13,7 +13,7 @@ class FilterSortingDirectionTableViewCell: UITableViewCell, ReusableView {
     @IBOutlet weak var ascendingRadioButton: UIButton!
     @IBOutlet weak var descendingRadioButton: UIButton!
 
-    var sortingDirectionSelected: ((SortingDirection) -> Void)? = nil
+    var sortingDirectionSelected: ((SortingDirection) -> Void)?
     
     //--------------------------------------------------------------------------
     // MARK: - Nib Loading
@@ -52,7 +52,7 @@ class FilterSortingDirectionTableViewCell: UITableViewCell, ReusableView {
     // MARK: - Public
     //--------------------------------------------------------------------------
     
-    func populate(with filterOptions: FilterOptions) -> Void {
+    func populate(with filterOptions: FilterOptions) {
         ascendingRadioButton.isSelected = (filterOptions.sortingSelection.direction == .ascending)
         descendingRadioButton.isSelected = (filterOptions.sortingSelection.direction == .descending)
     }

@@ -1,0 +1,9 @@
+/* 
+  Localizable.strings
+  MyBricks
+
+  Created by Leif on 5/10/18.
+  Copyright © 2018 Leif Harrison. All rights reserved.
+*/
+
+"filter.error.notowned" = "You must select 'Owned' or 'Wanted' when viewing your collection.\n\nFor browsing sets you do not own or want, use the 'Browse' tab.";

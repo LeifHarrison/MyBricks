@@ -8,6 +8,8 @@
 
 import UIKit
 
+// swiftlint:disable opening_brace closing_brace valid_ibinspectable
+
 @IBDesignable
 open class TagListView: UIView {
     

@@ -10,7 +10,7 @@ import Foundation
 
 public struct Element: Decodable {
 
-    var id: Int?
+    var partId: Int?
     var inventoryPartId: Int?
     var part: Part?
     var color: Color?
@@ -19,8 +19,8 @@ public struct Element: Decodable {
     var elementId: String?
     var numberOfSets: Int?
 
-    enum CodingKeys : String, CodingKey {
-        case id
+    enum CodingKeys: String, CodingKey {
+        case partId = "id"
         case inventoryPartId = "inv_part_id"
         case part
         case color

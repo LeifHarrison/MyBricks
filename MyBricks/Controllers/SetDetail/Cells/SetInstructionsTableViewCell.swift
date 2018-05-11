@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SetInstructionsTableViewCell: UITableViewCell, ReusableView, NibLoadableView  {
+class SetInstructionsTableViewCell: UITableViewCell, ReusableView, NibLoadableView {
 
     @IBOutlet weak var instructionsTitleLabel: UILabel!
     @IBOutlet weak var instructionsCountLabel: UILabel!
@@ -43,7 +43,7 @@ class SetInstructionsTableViewCell: UITableViewCell, ReusableView, NibLoadableVi
     // MARK: - Public
     //--------------------------------------------------------------------------
     
-    func populateWithSet(_ set : Set) -> Void {
+    func populate(with set: Set) {
         instructionsCountLabel.text = "\(set.instructionsCount ?? 0)"
     }
     

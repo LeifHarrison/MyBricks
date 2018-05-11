@@ -9,6 +9,8 @@
 import Foundation
 import Fuzi
 
+// swiftlint:disable cyclomatic_complexity
+
 struct Set {
 
     var setID: String? // Unique Brickset database primary key
@@ -116,22 +118,22 @@ struct Set {
         UPC = element.firstChild(tag: "UPC")?.stringValue
         if let retailPriceUS = element.firstChild(tag: "USRetailPrice")?.stringValue {
             let pricePerPiece = (Double(retailPriceUS) ?? 0) / Double(pieces ?? 1) * 100
-            let pricePerPieceString = String(format:"%0.1f", pricePerPiece) + "¢"
+            let pricePerPieceString = String(format: "%0.1f", pricePerPiece) + "¢"
             retailPrices.append(SetRetailPrice(locale: Locale(identifier: "en_US"), price: retailPriceUS, pricePerPiece: pricePerPieceString))
         }
         if let retailPriceCA = element.firstChild(tag: "CARetailPrice")?.stringValue {
             let pricePerPiece = (Double(retailPriceCA) ?? 0) / Double(pieces ?? 1) * 100
-            let pricePerPieceString = String(format:"%0.1f", pricePerPiece) + "¢"
+            let pricePerPieceString = String(format: "%0.1f", pricePerPiece) + "¢"
             retailPrices.append(SetRetailPrice(locale: Locale(identifier: "en_CA"), price: retailPriceCA, pricePerPiece: pricePerPieceString))
         }
         if let retailPriceUK = element.firstChild(tag: "UKRetailPrice")?.stringValue {
             let pricePerPiece = (Double(retailPriceUK) ?? 0) / Double(pieces ?? 1) * 100
-            let pricePerPieceString = String(format:"%0.1f", pricePerPiece) + "p"
+            let pricePerPieceString = String(format: "%0.1f", pricePerPiece) + "p"
             retailPrices.append(SetRetailPrice(locale: Locale(identifier: "en_GB"), price: retailPriceUK, pricePerPiece: pricePerPieceString))
         }
         if let retailPriceEU = element.firstChild(tag: "EURetailPrice")?.stringValue {
             let pricePerPiece = (Double(retailPriceEU) ?? 0) / Double(pieces ?? 1) * 100
-            let pricePerPieceString = String(format:"%0.1f", pricePerPiece) + "¢"
+            let pricePerPieceString = String(format: "%0.1f", pricePerPiece) + "¢"
             retailPrices.append(SetRetailPrice(locale: Locale(identifier: "en_EU"), price: retailPriceEU, pricePerPiece: pricePerPieceString))
         }
         if let dateString = element.firstChild(tag: "lastUpdated")?.stringValue {
@@ -166,7 +168,7 @@ struct Set {
     //--------------------------------------------------------------------------
 
     var fullSetNumber: String {
-        if let variant = numberVariant  {
+        if let variant = numberVariant {
             return (number ?? "") + "-" + variant
         }
         else {
@@ -175,7 +177,7 @@ struct Set {
     }
 
     var displayableSetNumber: String {
-        if let variant = numberVariant, let variantNumber = Int(variant), variantNumber > 1    {
+        if let variant = numberVariant, let variantNumber = Int(variant), variantNumber > 1 {
             return (number ?? "") + "-" + variant
         }
         else {
@@ -197,10 +199,8 @@ struct Set {
     
     var preferredPriceString: String? {
         var preferredPrice = retailPrices.first
-        for price in retailPrices {
-            if Locale.current.currencyCode == price.locale.currencyCode {
-                preferredPrice = price
-            }
+        for price in retailPrices where Locale.current.currencyCode == price.locale.currencyCode {
+            preferredPrice = price
         }
 
         return preferredPrice?.priceDescription()
@@ -297,4 +297,3 @@ struct Set {
         return nil
     }
 }
-

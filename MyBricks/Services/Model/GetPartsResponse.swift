@@ -15,7 +15,7 @@ public struct GetPartsResponse: Decodable {
     var previousPage: String?
     var results: [Element]?
     
-    enum CodingKeys : String, CodingKey {
+    enum CodingKeys: String, CodingKey {
         case count
         case nextPage = "next"
         case previousPage = "previous"

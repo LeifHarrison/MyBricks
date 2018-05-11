@@ -25,7 +25,7 @@ class PriceDetailViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
-    var currentSet : Set?
+    var currentSet: Set?
     var sections: [TableSection] = []
 
     //--------------------------------------------------------------------------
@@ -50,7 +50,6 @@ class PriceDetailViewController: UIViewController {
         updateSections()
     }
     
-
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         // Fetch price guide

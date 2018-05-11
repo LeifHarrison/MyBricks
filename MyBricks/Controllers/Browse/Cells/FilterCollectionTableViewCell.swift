@@ -14,9 +14,9 @@ class FilterCollectionTableViewCell: UITableViewCell, ReusableView {
     @IBOutlet weak var notOwnedCheckboxButton: UIButton!
     @IBOutlet weak var wantedCheckboxButton: UIButton!
 
-    var toggleFilterOwned: ((Bool) -> Void)? = nil
-    var toggleFilterNotOwned: ((Bool) -> Void)? = nil
-    var toggleFilterWanted: ((Bool) -> Void)? = nil
+    var toggleFilterOwned: ((Bool) -> Void)?
+    var toggleFilterNotOwned: ((Bool) -> Void)?
+    var toggleFilterWanted: ((Bool) -> Void)?
 
     private var exclusiveSelection = false
     
@@ -67,7 +67,7 @@ class FilterCollectionTableViewCell: UITableViewCell, ReusableView {
     // MARK: - Public
     //--------------------------------------------------------------------------
     
-    func populate(with filterOptions: FilterOptions) -> Void {
+    func populate(with filterOptions: FilterOptions) {
         ownedCheckboxButton.isSelected = filterOptions.filterOwned
         wantedCheckboxButton.isSelected = filterOptions.filterWanted
         

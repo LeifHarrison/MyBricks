@@ -22,7 +22,7 @@ class ImageDetailViewController: UIViewController {
     @IBOutlet weak var imageViewTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var imageViewTrailingConstraint: NSLayoutConstraint!
     
-    public var imageURL: String? = nil
+    public var imageURL: String?
     
     //--------------------------------------------------------------------------
     // MARK: - View Lifecycle
@@ -40,7 +40,9 @@ class ImageDetailViewController: UIViewController {
             activityIndicator.startAnimating()
             imageView.af_setImage(withURL: url, imageTransition: .crossDissolve(0.3)) { response in
                 self.activityIndicator.stopAnimating()
-                self.imageView.sizeToFit()
+                if response.value != nil {
+                    self.imageView.sizeToFit()
+                }
             }
         }
 

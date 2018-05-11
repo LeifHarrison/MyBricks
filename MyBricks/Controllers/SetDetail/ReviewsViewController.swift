@@ -13,11 +13,11 @@ class ReviewsViewController: UIViewController {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
 
-    var currentSet : Set?
-    var reviews : [SetReview] = []
+    var currentSet: Set?
+    var reviews: [SetReview] = []
 
     let transition = ReviewDetailAnimator()
-    var expandedCell: SetReviewTableViewCell? = nil
+    var expandedCell: SetReviewTableViewCell?
 
     //--------------------------------------------------------------------------
     // MARK: - View Lifecycle
@@ -62,10 +62,10 @@ class ReviewsViewController: UIViewController {
                         if let date1 = $0.datePosted, let date2 = $1.datePosted {
                             return date1 > date2
                         }
-                        else if let _ = $0.datePosted {
+                        else if $0.datePosted != nil {
                             return false
                         }
-                        else if let _ = $0.datePosted {
+                        else if $1.datePosted != nil {
                             return true
                         }
                         return true
@@ -79,12 +79,12 @@ class ReviewsViewController: UIViewController {
     private func showFullReview(_ review: SetReview, fromCell cell: SetReviewTableViewCell) {
         expandedCell = cell
         
-        let reviewDetailVC = storyboard!.instantiateViewController(withIdentifier: "ReviewDetailViewController") as! ReviewDetailViewController
-        reviewDetailVC.modalPresentationStyle = .overFullScreen
-        reviewDetailVC.review =  review
-        reviewDetailVC.transitioningDelegate = self
-        present(reviewDetailVC, animated: true, completion: nil)
-
+        if let reviewDetailVC = storyboard!.instantiateViewController(withIdentifier: "ReviewDetailViewController") as? ReviewDetailViewController {
+            reviewDetailVC.modalPresentationStyle = .overFullScreen
+            reviewDetailVC.review =  review
+            reviewDetailVC.transitioningDelegate = self
+            present(reviewDetailVC, animated: true, completion: nil)
+        }
     }
     
 }
@@ -106,7 +106,7 @@ extension ReviewsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: SetReviewTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
         let review = reviews[indexPath.row]
-        cell.populateWithSetReview(review)
+        cell.populate(with: review)
         cell.useSmallLayout = (tableView.frame.size.width < 375)
         
         cell.moreButtonTapped = {

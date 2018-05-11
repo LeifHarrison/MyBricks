@@ -12,7 +12,6 @@ protocol FilterViewControllerDelegate: class {
     func filterViewController(_ controller: FilterViewController, didUpdateFilterOptions filterOptions: FilterOptions)
 }
 
-
 class FilterViewController: UIViewController {
 
     enum TableSection: Int {
@@ -143,7 +142,7 @@ class FilterViewController: UIViewController {
     @IBAction func applyFilters(_ sender: AnyObject?) {
         if filterOptions.showingUserSets && !filterOptions.filterOwned && !filterOptions.filterWanted {
             let title = NSLocalizedString("Invalid Filters", comment: "")
-            let message = NSLocalizedString("You must select 'Owned' or 'Wanted' when viewing your collection.\n\nFor browsing sets you do not own or want, use the 'Browse' tab.", comment: "")
+            let message = NSLocalizedString("filter.error.notowned", comment: "")
             let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
             let actionButton = UIAlertAction(title: "OK", style: .default, handler: nil)
             alertController.addAction(actionButton)
@@ -228,13 +227,12 @@ extension FilterViewController: UITableViewDataSource {
         let section = sections[indexPath.section]
         if section == .general, let row = TableRowsGeneral(indexPath: indexPath) {
             if row == .unreleased {
-                if let cell = tableView.dequeueReusableCell(withIdentifier: FilterUnreleasedTableViewCell.reuseIdentifier, for: indexPath) as? FilterUnreleasedTableViewCell {
-                    cell.populate(with: filterOptions)
-                    cell.toggleFilterShowUnreleased = { value in
-                        self.filterOptions.showUnreleased = value
-                    }
-                    return cell
+                let cell: FilterUnreleasedTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+                cell.populate(with: filterOptions)
+                cell.toggleFilterShowUnreleased = { value in
+                    self.filterOptions.showUnreleased = value
                 }
+                return cell
             }
             else {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "GeneralFilterCell", for: indexPath)
@@ -256,19 +254,18 @@ extension FilterViewController: UITableViewDataSource {
             }
         }
         else if section == .collection {
-            if let cell = tableView.dequeueReusableCell(withIdentifier: FilterCollectionTableViewCell.reuseIdentifier, for: indexPath) as? FilterCollectionTableViewCell {
-                cell.populate(with: filterOptions)
-                cell.toggleFilterOwned = { value in
-                    self.filterOptions.filterOwned = value
-                }
-                cell.toggleFilterNotOwned = { value in
-                    self.filterOptions.filterNotOwned = value
-                }
-                cell.toggleFilterWanted = { value in
-                    self.filterOptions.filterWanted = value
-                }
-                return cell
+            let cell: FilterCollectionTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+            cell.populate(with: filterOptions)
+            cell.toggleFilterOwned = { value in
+                self.filterOptions.filterOwned = value
             }
+            cell.toggleFilterNotOwned = { value in
+                self.filterOptions.filterNotOwned = value
+            }
+            cell.toggleFilterWanted = { value in
+                self.filterOptions.filterWanted = value
+            }
+            return cell
         }
         else if section == .sorting, let row = TableRowsSorting(indexPath: indexPath) {
             if row == .sortingType {
@@ -279,23 +276,21 @@ extension FilterViewController: UITableViewDataSource {
                 return cell
             }
             else if row == .sortingDirection {
-                if let cell = tableView.dequeueReusableCell(withIdentifier: FilterSortingDirectionTableViewCell.reuseIdentifier, for: indexPath) as? FilterSortingDirectionTableViewCell {
-                    cell.populate(with: filterOptions)
-                    cell.sortingDirectionSelected = { value in
-                        self.filterOptions.sortingSelection.direction = value
-                    }
-                    return cell
-                }
-            }
-        }
-        else if section == .grouping {
-            if let cell = tableView.dequeueReusableCell(withIdentifier: FilterGroupingTableViewCell.reuseIdentifier, for: indexPath) as? FilterGroupingTableViewCell {
+                let cell: FilterSortingDirectionTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
                 cell.populate(with: filterOptions)
-                cell.groupingTypeSelected = { value in
-                    self.filterOptions.grouping = value
+                cell.sortingDirectionSelected = { value in
+                    self.filterOptions.sortingSelection.direction = value
                 }
                 return cell
             }
+        }
+        else if section == .grouping {
+            let cell: FilterGroupingTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+            cell.populate(with: filterOptions)
+            cell.groupingTypeSelected = { value in
+                self.filterOptions.grouping = value
+            }
+            return cell
         }
                 
         return UITableViewCell()

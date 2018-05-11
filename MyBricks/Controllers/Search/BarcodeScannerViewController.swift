@@ -55,7 +55,7 @@ class BarcodeScannerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let _ = self.captureDevice {
+        if self.captureDevice != nil {
             setupCamera()
         }
         else {
@@ -82,7 +82,7 @@ class BarcodeScannerViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        if let _ = self.captureDevice {
+        if self.captureDevice != nil {
             captureSession.startRunning()
         }
     }
@@ -113,7 +113,7 @@ class BarcodeScannerViewController: UIViewController {
 
     @IBAction func toggleTorch(_ sender: UIButton?) {
         if let selected = sender?.isSelected {
-            toggleTorch(on: !selected)
+            toggleTorch(!selected)
             sender?.isSelected = !selected
         }
     }
@@ -123,6 +123,7 @@ class BarcodeScannerViewController: UIViewController {
     }
 
     @IBAction func showBarcodeTestMenu(_ sender: UIButton) {
+        // swiftlint:disable comma
         let testItems = [
             [ "name" : "Invalid Code",      "code" : "3732300201",    "type" : "UPCA" ],
             [ "name" : "Not Found",         "code" : "010101010105",  "type" : "UPCA" ],
@@ -132,15 +133,17 @@ class BarcodeScannerViewController: UIViewController {
             [ "name" : "Battle on Scarif",  "code" : "673419265836",  "type" : "org.gs1.UPC-A" ]
 
         ]
+        // swiftlint:enable comma
+
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
 
         for item in testItems {
-            let action = UIAlertAction(title: item["name"], style: .default) { (action) in
+            let action = UIAlertAction(title: item["name"], style: .default) { _ in
                 self.delegate?.barcodeScanner(self, didCaptureCode: item["code"]!, type: item["type"]!)
             }
             alertController.addAction(action)
         }
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
             // Do nothing - alert will automatically dismiss
         }
         alertController.addAction(cancelAction)
@@ -153,7 +156,7 @@ class BarcodeScannerViewController: UIViewController {
     //--------------------------------------------------------------------------
 
     private func setupCamera() {
-        guard let _ = self.captureDevice else {
+        guard self.captureDevice != nil else {
             return
         }
 
@@ -194,7 +197,7 @@ class BarcodeScannerViewController: UIViewController {
         previewView.videoPreviewLayer.session = captureSession
     }
 
-    func toggleTorch(on: Bool) {
+    func toggleTorch(_ value: Bool) {
         guard let device = AVCaptureDevice.default(for: AVMediaType.video) else {
             return
         }
@@ -202,18 +205,18 @@ class BarcodeScannerViewController: UIViewController {
         if device.hasTorch {
             do {
                 try device.lockForConfiguration()
-                device.torchMode = on ? .on : .off
+                device.torchMode = value ? .on : .off
                 device.unlockForConfiguration()
             }
             catch {
                 NSLog("Torch could not be used")
             }
-        } else {
+        }
+        else {
             NSLog("Torch is not available")
         }
     }
     
-
 }
 
 //==============================================================================

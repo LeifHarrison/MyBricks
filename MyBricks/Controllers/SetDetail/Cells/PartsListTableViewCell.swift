@@ -49,7 +49,7 @@ class PartsListTableViewCell: UITableViewCell, NibLoadableView, ReusableView {
     // MARK: - Public
     //--------------------------------------------------------------------------
     
-    func populateWithElement(_ element : Element) -> Void {
+    func populate(with element: Element) {
         nameLabel.text = element.part?.name
         colorLabel.text = element.color?.name
         partNumberLabel.text = element.part?.partNumber?.capitalized

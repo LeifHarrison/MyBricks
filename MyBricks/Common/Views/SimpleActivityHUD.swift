@@ -71,7 +71,7 @@ public class SimpleActivityHUD: UIView {
             self.hudView.transform = CGAffineTransform.identity
         }
         let options: UIViewAnimationOptions = [ .beginFromCurrentState, .curveEaseIn ]
-        UIView.animate(withDuration: animated ? 0.2 : 0, delay: 0, options:  options, animations: animations, completion: nil)
+        UIView.animate(withDuration: animated ? 0.2 : 0, delay: 0, options: options, animations: animations, completion: nil)
 
     }
     

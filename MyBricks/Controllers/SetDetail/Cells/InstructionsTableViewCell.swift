@@ -15,7 +15,7 @@ class InstructionsTableViewCell: UITableViewCell {
     @IBOutlet weak var previewButton: UIButton!
     @IBOutlet weak var progressView: UIProgressView!
 
-    var previewButtonTapped : (() -> Void)? = nil
+    var previewButtonTapped : (() -> Void)?
 
     //--------------------------------------------------------------------------
     // MARK: - Nib Loading

@@ -43,7 +43,7 @@ class BricksetCollectionTableViewCell: UITableViewCell {
     // MARK: - Public
     //--------------------------------------------------------------------------
     
-    func populateWithCollectionTotals(_ collectionTotals : UserCollectionTotals) -> Void {
+    func populateWithCollectionTotals(_ collectionTotals: UserCollectionTotals) {
         ownedSetsLabel.attributedText = collectionTotals.setsOwnedAttributedDescription()
         wantedSetsLabel.attributedText = collectionTotals.setsWantedAttributedDescription()
         ownedMinifigsLabel.attributedText = collectionTotals.minifigsOwnedAttributedDescription()

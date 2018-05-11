@@ -14,10 +14,10 @@ class PartsListViewController: UIViewController {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
 
-    var currentSet : Set?
-    var lastResponse : GetPartsResponse?
-    var elements : [Element]? = []
-    var isLoading : Bool = false
+    var currentSet: Set?
+    var lastResponse: GetPartsResponse?
+    var elements: [Element]? = []
+    var isLoading: Bool = false
     
     //--------------------------------------------------------------------------
     // MARK: - View Lifecycle
@@ -89,19 +89,19 @@ extension PartsListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let element = elements?[indexPath.row] {
             let cell: PartsListTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
-            cell.populateWithElement(element)
+            cell.populate(with: element)
             cell.selectionStyle = .none
             if let urlString = element.part?.imageURL, let url = URL(string: urlString) {
                 cell.partImageView.af_setImage(withURL: url, imageTransition: .crossDissolve(0.3))
             }
             
             // See if we need to load more species
-            let rowsToLoadFromBottom = 5;
+            let rowsToLoadFromBottom = 5
             let rowsLoaded = elements?.count ?? 0
-            if (!self.isLoading && (indexPath.row >= (rowsLoaded - rowsToLoadFromBottom))) {
+            if !self.isLoading && (indexPath.row >= (rowsLoaded - rowsToLoadFromBottom)) {
                 let totalRows = self.lastResponse?.count ?? 0
-                let remainingPartsToLoad = totalRows - rowsLoaded;
-                if (remainingPartsToLoad > 0) {
+                let remainingPartsToLoad = totalRows - rowsLoaded
+                if remainingPartsToLoad > 0 {
                     self.fetchPartsList()
                 }
             }

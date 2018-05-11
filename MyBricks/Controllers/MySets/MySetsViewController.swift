@@ -16,7 +16,7 @@ class MySetsViewController: BrowseSetsViewController {
     @IBOutlet weak var instructionLabel: UILabel!
     @IBOutlet weak var loginButton: UIButton!
 
-    var mySetsRequest: Request? = nil
+    var mySetsRequest: Request?
 
     //--------------------------------------------------------------------------
     // MARK: - View Lifecycle
@@ -40,9 +40,8 @@ class MySetsViewController: BrowseSetsViewController {
         if let protectionSpace = BricksetServices.shared.loginProtectionSpace, let credential = URLCredentialStorage.shared.defaultCredential(for: protectionSpace) {
             NSLog("Credential: \(credential), password: \(String(describing: credential.password))")
             evaluateBiometricAuthentication(credential: credential, completion: { (result) in
-                self.updateDisplay()
-                if BricksetServices.isLoggedIn() {
-                    //self.updateSets()
+                if result {
+                    self.updateDisplay()
                 }
             })
         }
@@ -74,4 +73,3 @@ class MySetsViewController: BrowseSetsViewController {
     }
     
 }
-

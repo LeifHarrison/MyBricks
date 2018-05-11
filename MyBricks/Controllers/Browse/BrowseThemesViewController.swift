@@ -14,7 +14,7 @@ class BrowseThemesViewController: UIViewController {
 
     var allThemes: [SetTheme] = []
     var sectionTitles: [String] = []
-    var themesBySection: [String : [SetTheme]] = [:]
+    var themesBySection: [String: [SetTheme]] = [:]
 
     //--------------------------------------------------------------------------
     // MARK: - View Lifecycle
@@ -54,7 +54,9 @@ class BrowseThemesViewController: UIViewController {
                 self.tableView.reloadData()
             }
             else {
-                if let error = result.error as? URLError, error.code == .cancelled { return }
+                if let error = result.error as? URLError, error.code == .cancelled {
+                    return
+                }
                 else if let error = result.error as? URLError {
                     //NSLog("Error loading themes: \(error)")
                     NSLog("Code: \(error.errorCode), Description: \(error.localizedDescription)")
@@ -152,4 +154,3 @@ extension BrowseThemesViewController: UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }
-

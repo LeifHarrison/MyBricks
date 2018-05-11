@@ -10,13 +10,13 @@ import Foundation
 
 public struct Color: Decodable {
     
-    var id: Int?
+    var colorId: Int?
     var isTransparent: Bool?
     var name: String?
     var hexColor: String?
     
-    enum CodingKeys : String, CodingKey {
-        case id
+    enum CodingKeys: String, CodingKey {
+        case colorId = "id"
         case isTransparent = "is_trans"
         case name
         case hexColor = "rgb"

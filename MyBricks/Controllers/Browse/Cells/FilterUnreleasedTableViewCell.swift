@@ -12,7 +12,7 @@ class FilterUnreleasedTableViewCell: UITableViewCell, ReusableView {
 
     @IBOutlet weak var showUnreleasedButton: UIButton!
 
-    var toggleFilterShowUnreleased: ((Bool) -> Void)? = nil
+    var toggleFilterShowUnreleased: ((Bool) -> Void)?
     
     //--------------------------------------------------------------------------
     // MARK: - Nib Loading
@@ -43,7 +43,7 @@ class FilterUnreleasedTableViewCell: UITableViewCell, ReusableView {
     // MARK: - Public
     //--------------------------------------------------------------------------
     
-    func populate(with filterOptions: FilterOptions) -> Void {
+    func populate(with filterOptions: FilterOptions) {
         showUnreleasedButton.isSelected = filterOptions.showUnreleased
     }
     

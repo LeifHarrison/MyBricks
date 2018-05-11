@@ -20,7 +20,7 @@ class FilterSelectThemeViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
 
     weak var delegate: FilterSelectThemeViewControllerDelegate?
-    var filterOptions: FilterOptions = FilterOptions()    
+    var filterOptions: FilterOptions = FilterOptions()
 
     //--------------------------------------------------------------------------
     // MARK: - View Lifecycle
@@ -92,7 +92,6 @@ class FilterSelectThemeViewController: UIViewController {
         }
     }
     
-
 }
 
 //==============================================================================

@@ -19,7 +19,6 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var instructionLabel: UILabel!
     @IBOutlet weak var loginButton: UIButton!
 
-
     enum TableSection: Int {
         case brickset
     }
@@ -32,7 +31,7 @@ class ProfileViewController: UIViewController {
     var sections: [TableSection] = []
     var bricksetRows: [TableRow] = []
 
-    var collectionTotals: UserCollectionTotals? = nil
+    var collectionTotals: UserCollectionTotals?
 
     //--------------------------------------------------------------------------
     // MARK: - View Lifecycle
@@ -115,20 +114,20 @@ class ProfileViewController: UIViewController {
 
     fileprivate func transitionViews(fromView: UIView, toView: UIView, animated: Bool = true) {
         toView.alpha = 0.0
-        let fadeOutBlock = { () -> Void in
+        let fadeOutAnimations = { () -> Void in
             fromView.alpha = 0.0
         }
-        let transitionBlock : (Bool) -> () = { _ in
+        let fadeOutCompletion = { (finished: Bool) -> Void in
             fromView.isHidden = true
             toView.isHidden = false
-            let fadeInBlock = { () -> Void in
+            let fadeInAnimations = { () -> Void in
                 toView.alpha = 1.0
             }
-            let completionBlock : (Bool) -> () = { _ in
+            let fadeInCompletion = { (finished: Bool) -> Void in
             }
-            UIView.animate(withDuration: animated ? 0.7 : 0, animations: fadeInBlock, completion:completionBlock)
+            UIView.animate(withDuration: animated ? 0.7 : 0, animations: fadeInAnimations, completion:fadeInCompletion)
         }
-        UIView.animate(withDuration: animated ? 0.3 : 0, animations: fadeOutBlock, completion:transitionBlock)
+        UIView.animate(withDuration: animated ? 0.3 : 0, animations: fadeOutAnimations, completion:fadeOutCompletion)
     }
 
     // MARK: - Updating Profile Information
@@ -137,7 +136,6 @@ class ProfileViewController: UIViewController {
         // TODO: Implement fetching Profile information once profile
         // service is available
     }
-
 
     // MARK: - Updating Collection Information
 
@@ -246,7 +244,7 @@ extension ProfileViewController: UITableViewDataSource {
             if row == .profile {
                 if let cell = tableView.dequeueReusableCell(withIdentifier: BricksetProfileTableViewCell.reuseIdentifier, for: indexPath) as? BricksetProfileTableViewCell {
                     let keychain = Keychain(service: BricksetServices.serviceName)
-                    if let username = UserDefaults.standard.value(forKey: "username") as? String, let _ = keychain[username] {
+                    if let username = UserDefaults.standard.value(forKey: "username") as? String, keychain[username] != nil {
                         cell.populateWith(username: username)
                     }
                     cell.logoutButtonTapped = {

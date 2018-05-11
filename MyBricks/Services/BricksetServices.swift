@@ -13,7 +13,9 @@ import AlamofireRSSParser
 import Fuzi
 import KeychainAccess
 
-enum ServiceError : Error {
+// swiftlint:disable file_length, type_body_length
+
+enum ServiceError: Error {
     case serviceFailure(reason: String)
     case loginFailed(reason: String)
     case unknownError
@@ -45,7 +47,7 @@ class BricksetServices {
 
     class func isLoggedIn() -> Bool {
         let keychain = Keychain(service: BricksetServices.serviceName)
-        if let username = UserDefaults.standard.value(forKey: "username") as? String, let _ = keychain[username] {
+        if let username = UserDefaults.standard.value(forKey: "username") as? String, keychain[username] != nil {
             return true
         }
         else {
@@ -53,16 +55,16 @@ class BricksetServices {
         }
     }
 
-    class func logout() -> Void {
+    class func logout() {
         let keychain = Keychain(service: BricksetServices.serviceName)
-        if let username = UserDefaults.standard.value(forKey: "username") as? String, let _ = keychain[username] {
+        if let username = UserDefaults.standard.value(forKey: "username") as? String, keychain[username] != nil {
             keychain[username] = nil
             UserDefaults.standard.removeObject(forKey: "username")
         }
 
     }
 
-    var loginProtectionSpace : URLProtectionSpace? {
+    var loginProtectionSpace: URLProtectionSpace? {
         if let url = URL(string: baseURL) {
             return URLProtectionSpace(host: url.host!, port: 0, protocol: NSURLProtectionSpaceHTTPS, realm: nil, authenticationMethod: NSURLAuthenticationMethodDefault)
         }
@@ -645,7 +647,7 @@ class BricksetServices {
         parameters["setID"] = setID
         parameters["notes"] = notes
         
-        let request = Alamofire.request( url, method: .post, parameters: parameters)        
+        let request = Alamofire.request( url, method: .post, parameters: parameters)
         let requestCompletion: (DataResponse<XMLDocument>) -> Void = { response in
             if let error = response.result.error {
                 completion(Result.failure(error))
@@ -668,14 +670,14 @@ class BricksetServices {
 
     func getNews(completion: @escaping (Result<RSSFeed>) -> Void) {
         let url = "https://brickset.com/feed"
-        Alamofire.request(url).responseRSS() { (response) -> Void in
+        Alamofire.request(url).responseRSS({ (response) -> Void in
             if let feed: RSSFeed = response.result.value {
                 completion(Result.success(feed))
             }
             else {
                 completion(Result.failure(ServiceError.unknownError))
             }
-        }
+        })
     }
 
     fileprivate func defaultParameters() -> Parameters {
@@ -708,6 +710,8 @@ class BricksetServices {
 
 extension DataRequest {
 
+    // swiftlint:disable unused_closure_parameter
+
     public static func XMLResponseSerializer() -> DataResponseSerializer<XMLDocument> {
         return DataResponseSerializer { request, response, data, error in
             // Pass through any underlying URLSession error to the .network case.
@@ -724,11 +728,14 @@ extension DataRequest {
             do {
                 let xml = try XMLDocument(data: validData)
                 return .success(xml)
-            } catch {
+            }
+            catch {
                 return .failure(error)
             }
         }
     }
+
+    // swiftlint:enable unused_closure_parameter
 
     @discardableResult func responseXMLDocument( queue: DispatchQueue? = nil, completionHandler: @escaping (DataResponse<XMLDocument>) -> Void) -> Self {
         return response(queue: queue, responseSerializer: DataRequest.XMLResponseSerializer(), completionHandler: completionHandler)

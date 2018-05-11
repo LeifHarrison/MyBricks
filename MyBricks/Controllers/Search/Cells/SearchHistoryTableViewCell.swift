@@ -41,7 +41,7 @@ class SearchHistoryTableViewCell: UITableViewCell {
     // MARK: - Public
     //--------------------------------------------------------------------------
     
-    func populateWithSearchHistoryItem(_ item : SearchHistoryItem) -> Void {
+    func populateWithSearchHistoryItem(_ item: SearchHistoryItem) {
         searchTypeImageView.image = UIImage(named: item.iconName)
         searchTermLabel.text = item.searchTerm
         if item.searchType == .scan {
