@@ -56,11 +56,11 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" verticalHuggingPriority="252" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" image="search" translatesAutoresizingMaskIntoConstraints="NO" id="c5Z-GZ-4Gq">
-                                                    <rect key="frame" x="15" y="10" width="30" height="30.5"/>
+                                                    <rect key="frame" x="15" y="10" width="24" height="30.5"/>
                                                     <color key="tintColor" name="lightNavy"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DIt-mh-cg5">
-                                                    <rect key="frame" x="60" y="14.5" width="300" height="21.5"/>
+                                                    <rect key="frame" x="54" y="14.5" width="306" height="21.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                     <color key="textColor" name="lightNavy"/>
                                                     <nil key="highlightedColor"/>
@@ -158,7 +158,7 @@ Search by scanning a barcode</string>
                         <viewLayoutGuide key="safeArea" id="O1u-W8-tvY"/>
                     </view>
                     <navigationItem key="navigationItem" title="Search" id="196-3i-fAu">
-                        <barButtonItem key="rightBarButtonItem" image="barcode_scan" id="Vgl-Zb-BUx">
+                        <barButtonItem key="rightBarButtonItem" image="scanBarcode" id="Vgl-Zb-BUx">
                             <color key="tintColor" name="lightNavy"/>
                             <connections>
                                 <action selector="showBarcodeScanner:" destination="8rJ-Kc-sve" id="afw-Yi-zQv"/>
@@ -319,12 +319,12 @@ Search by scanning a barcode</string>
         </scene>
     </scenes>
     <resources>
-        <image name="barcode_scan" width="30" height="30"/>
         <image name="cancel" width="41" height="41"/>
         <image name="flashOff" width="41" height="41"/>
         <image name="flashOn" width="41" height="41"/>
         <image name="info" width="30" height="27"/>
-        <image name="search" width="30" height="30"/>
+        <image name="scanBarcode" width="25" height="26"/>
+        <image name="search" width="24" height="24"/>
         <namedColor name="cloudyBlue">
             <color red="0.6940000057220459" green="0.76499998569488525" blue="0.83099997043609619" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

@@ -19,30 +19,30 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Parts List" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aEf-4Y-WI5">
-                        <rect key="frame" x="15" y="12" width="239" height="20"/>
+                        <rect key="frame" x="15" y="12" width="227" height="20"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" name="lightNavy"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1aM-AT-Tzd">
-                        <rect key="frame" x="269" y="12" width="91" height="18"/>
+                        <rect key="frame" x="257" y="10.5" width="103" height="21"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" image="legoBrickIcon" translatesAutoresizingMaskIntoConstraints="NO" id="1UT-5X-nZD">
-                                <rect key="frame" x="0.0" y="0.0" width="19" height="18"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" image="legoBrick" translatesAutoresizingMaskIntoConstraints="NO" id="1UT-5X-nZD">
+                                <rect key="frame" x="0.0" y="0.0" width="23" height="21"/>
                                 <color key="tintColor" name="lightNavy"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="225" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6N9-Pj-AtN">
-                                <rect key="frame" x="25" y="0.5" width="28" height="18"/>
+                                <rect key="frame" x="28" y="2" width="28" height="18"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                 <color key="textColor" name="lightNavy"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="legoHeadIcon" translatesAutoresizingMaskIntoConstraints="NO" id="WDb-UX-vko">
-                                <rect key="frame" x="63" y="1.5" width="13" height="15"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="legoHead" translatesAutoresizingMaskIntoConstraints="NO" id="WDb-UX-vko">
+                                <rect key="frame" x="71" y="0.5" width="17" height="20"/>
                                 <color key="tintColor" name="lightNavy"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="3" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p8q-dR-0YE">
-                                <rect key="frame" x="81" y="0.5" width="10" height="18"/>
+                                <rect key="frame" x="93" y="2" width="10" height="18"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                 <color key="textColor" name="lightNavy"/>
                                 <nil key="highlightedColor"/>
@@ -53,12 +53,12 @@
                             <constraint firstAttribute="trailing" secondItem="p8q-dR-0YE" secondAttribute="trailing" id="0ne-71-5W8"/>
                             <constraint firstAttribute="bottom" secondItem="1UT-5X-nZD" secondAttribute="bottom" id="2s0-Sr-Zsp"/>
                             <constraint firstItem="p8q-dR-0YE" firstAttribute="centerY" secondItem="WDb-UX-vko" secondAttribute="centerY" id="5ee-LV-N7b"/>
-                            <constraint firstItem="6N9-Pj-AtN" firstAttribute="leading" secondItem="1UT-5X-nZD" secondAttribute="trailing" constant="6" id="62G-LR-5IR"/>
+                            <constraint firstItem="6N9-Pj-AtN" firstAttribute="leading" secondItem="1UT-5X-nZD" secondAttribute="trailing" constant="5" id="62G-LR-5IR"/>
                             <constraint firstItem="WDb-UX-vko" firstAttribute="centerY" secondItem="1UT-5X-nZD" secondAttribute="centerY" id="L0W-aw-0M7"/>
                             <constraint firstItem="1UT-5X-nZD" firstAttribute="top" secondItem="1aM-AT-Tzd" secondAttribute="top" id="PrW-tF-7K8"/>
                             <constraint firstItem="p8q-dR-0YE" firstAttribute="leading" secondItem="WDb-UX-vko" secondAttribute="trailing" constant="5" id="Xbh-5w-UeD"/>
                             <constraint firstItem="6N9-Pj-AtN" firstAttribute="centerY" secondItem="1UT-5X-nZD" secondAttribute="centerY" id="aFX-7K-U9k"/>
-                            <constraint firstItem="WDb-UX-vko" firstAttribute="leading" secondItem="6N9-Pj-AtN" secondAttribute="trailing" constant="10" id="kBS-JH-KaX"/>
+                            <constraint firstItem="WDb-UX-vko" firstAttribute="leading" secondItem="6N9-Pj-AtN" secondAttribute="trailing" constant="15" id="kBS-JH-KaX"/>
                             <constraint firstItem="1UT-5X-nZD" firstAttribute="leading" secondItem="1aM-AT-Tzd" secondAttribute="leading" id="xHv-4k-CSO"/>
                         </constraints>
                     </view>
@@ -82,8 +82,8 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="legoBrickIcon" width="19" height="18"/>
-        <image name="legoHeadIcon" width="13" height="15"/>
+        <image name="legoBrick" width="23" height="21"/>
+        <image name="legoHead" width="17" height="20"/>
         <namedColor name="lightNavy">
             <color red="0.086274509803921567" green="0.25098039215686274" blue="0.44313725490196076" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
