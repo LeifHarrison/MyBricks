@@ -9,7 +9,7 @@
 import UIKit
 import Cosmos
 
-class SetCollectionTableViewCell: UITableViewCell, ReusableView, NibLoadableView {
+class SetCollectionTableViewCell: BorderedGradientTableViewCell, ReusableView, NibLoadableView {
 
     @IBOutlet weak var ownedContainer: UIView!
     @IBOutlet weak var wantedContainer: UIView!
@@ -64,9 +64,6 @@ class SetCollectionTableViewCell: UITableViewCell, ReusableView, NibLoadableView
                 })
             }
         }
-
-        addBorder()
-        addGradientBackground()
 
         prepareForReuse()
     }

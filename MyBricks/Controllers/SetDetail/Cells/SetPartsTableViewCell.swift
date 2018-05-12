@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SetPartsTableViewCell: UITableViewCell, ReusableView, NibLoadableView {
+class SetPartsTableViewCell: BorderedGradientTableViewCell, ReusableView, NibLoadableView {
 
     @IBOutlet weak var partsLabel: UILabel!
     @IBOutlet weak var setContentsView: UIView!
@@ -22,9 +22,6 @@ class SetPartsTableViewCell: UITableViewCell, ReusableView, NibLoadableView {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        addBorder()
-        addGradientBackground()
-
         accessoryView = UIImageView(image: UIImage(named:"forward"))
         accessoryView?.tintColor = UIColor.lightNavy
 

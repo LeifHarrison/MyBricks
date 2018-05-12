@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ThemeTableViewCell: UITableViewCell, NibLoadableView, ReusableView {
+class ThemeTableViewCell: BorderedGradientTableViewCell, NibLoadableView, ReusableView {
 
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var yearsLabel: UILabel!
@@ -21,12 +21,6 @@ class ThemeTableViewCell: UITableViewCell, NibLoadableView, ReusableView {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
-        tintColor = UIColor.lightNavy
-        
-        addBorder()
-        addGradientBackground()
-
         setCountContainer.applyRoundedShadowStyle()
     }
     

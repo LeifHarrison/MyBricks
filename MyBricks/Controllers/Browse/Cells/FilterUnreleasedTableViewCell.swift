@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FilterUnreleasedTableViewCell: UITableViewCell, ReusableView {
+class FilterUnreleasedTableViewCell: BorderedGradientTableViewCell, ReusableView {
 
     @IBOutlet weak var showUnreleasedButton: UIButton!
 
@@ -22,12 +22,8 @@ class FilterUnreleasedTableViewCell: UITableViewCell, ReusableView {
         super.awakeFromNib()
         
         selectionStyle = .none
-        tintColor = UIColor.lightNavy
         
         showUnreleasedButton.applyCheckboxStyle()
-        
-        addBorder()
-        addGradientBackground()
     }
     
     //--------------------------------------------------------------------------

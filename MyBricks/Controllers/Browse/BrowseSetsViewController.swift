@@ -98,7 +98,6 @@ class BrowseSetsViewController: UIViewController {
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = UITableViewAutomaticDimension
         tableView.sectionIndexBackgroundColor = UIColor.clear
-        tableView.separatorStyle = .none
         tableView.tableFooterView = UIView()
         tableView.register(SetListTableViewCell.self)
     }

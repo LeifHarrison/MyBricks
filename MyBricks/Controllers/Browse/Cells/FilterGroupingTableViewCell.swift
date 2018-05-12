@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FilterGroupingTableViewCell: UITableViewCell, ReusableView {
+class FilterGroupingTableViewCell: BorderedGradientTableViewCell, ReusableView {
 
     @IBOutlet weak var groupThemeRadioButton: UIButton!
     @IBOutlet weak var groupSubthemeRadioButton: UIButton!
@@ -24,14 +24,10 @@ class FilterGroupingTableViewCell: UITableViewCell, ReusableView {
         super.awakeFromNib()
         
         selectionStyle = .none
-        tintColor = UIColor.lightNavy
-
+        
         groupThemeRadioButton.applyCheckboxStyle()
         groupSubthemeRadioButton.applyCheckboxStyle()
         groupYearRadioButton.applyCheckboxStyle()
-
-        addBorder()
-        addGradientBackground()
     }
     
     //--------------------------------------------------------------------------

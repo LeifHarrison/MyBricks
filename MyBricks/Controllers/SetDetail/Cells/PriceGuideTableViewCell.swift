@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PriceGuideTableViewCell: UITableViewCell, ReusableView, NibLoadableView {
+class PriceGuideTableViewCell: BorderedGradientTableViewCell, ReusableView, NibLoadableView {
 
     @IBOutlet weak var currentNewContainer: UIView!
     @IBOutlet weak var currentUsedContainer: UIView!

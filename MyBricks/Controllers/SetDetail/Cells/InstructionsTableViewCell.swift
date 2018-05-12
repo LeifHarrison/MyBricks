@@ -8,7 +8,7 @@
 
 import UIKit
 
-class InstructionsTableViewCell: UITableViewCell {
+class InstructionsTableViewCell: BorderedGradientTableViewCell {
 
     @IBOutlet weak var filenameLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
@@ -23,8 +23,6 @@ class InstructionsTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        addBorder()
-        addGradientBackground()
         prepareForReuse()
     }
 

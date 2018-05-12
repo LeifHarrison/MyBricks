@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		290B677320A731430089C6FC /* BorderedGradientTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290B677220A731430089C6FC /* BorderedGradientTableViewCell.swift */; };
 		291AC5EE1FAF6FAC000DC9DD /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2921AD8D1FAF6EF200180268 /* Profile.storyboard */; };
 		291AC5EF1FAF6FB0000DC9DD /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2921AD8B1FAF6EE000180268 /* Search.storyboard */; };
 		291DEE9D1FE27604004906E4 /* UIResponder+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 291DEE9C1FE27604004906E4 /* UIResponder+Extensions.swift */; };
@@ -164,6 +165,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		290B677220A731430089C6FC /* BorderedGradientTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderedGradientTableViewCell.swift; sourceTree = "<group>"; };
 		291DEE9C1FE27604004906E4 /* UIResponder+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIResponder+Extensions.swift"; sourceTree = "<group>"; };
 		2921AD881FAF6C3800180268 /* News.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = News.storyboard; sourceTree = "<group>"; };
 		2921AD8B1FAF6EE000180268 /* Search.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Search.storyboard; sourceTree = "<group>"; };
@@ -328,9 +330,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		290B677120A7311E0089C6FC /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				290B677220A731430089C6FC /* BorderedGradientTableViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		290F179D1FD8D37E0002C70B /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				290B677120A7311E0089C6FC /* Cells */,
 				290F179E1FD8D3880002C70B /* Views */,
 				295ADFBC1F16AFFC002E6802 /* AppDelegate.swift */,
 				29EE120D202B698A00C05C55 /* SafariActivity.swift */,
@@ -1026,6 +1037,7 @@
 				9B8803DE20A10035006CB444 /* FilterUnreleasedTableViewCell.swift in Sources */,
 				9B1F51F5209A252E000197CD /* UILabel+Extensions.swift in Sources */,
 				9B92EFB0201FE09D007610BD /* FilterSelectYearViewController.swift in Sources */,
+				290B677320A731430089C6FC /* BorderedGradientTableViewCell.swift in Sources */,
 				2928611D1FD50D24005F15D8 /* SearchHistoryTableViewCell.swift in Sources */,
 				295ADFBD1F16AFFC002E6802 /* AppDelegate.swift in Sources */,
 				29CCD8EE1F993E12009A39CF /* SetDetailViewController.swift in Sources */,

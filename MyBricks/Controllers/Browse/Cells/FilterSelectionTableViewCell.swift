@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FilterSelectionTableViewCell: UITableViewCell {
+class FilterSelectionTableViewCell: BorderedGradientTableViewCell {
 
     //--------------------------------------------------------------------------
     // MARK: - Nib Loading
@@ -22,9 +22,6 @@ class FilterSelectionTableViewCell: UITableViewCell {
         textLabel?.textColor = UIColor.lightNavy
         detailTextLabel?.backgroundColor = UIColor.white
         detailTextLabel?.textColor = UIColor.slateBlue
-        
-        addBorder()
-        addGradientBackground()
     }
     
 }

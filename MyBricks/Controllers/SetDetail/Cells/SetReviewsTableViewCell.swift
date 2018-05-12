@@ -9,7 +9,7 @@
 import UIKit
 import Cosmos
 
-class SetReviewsTableViewCell: UITableViewCell, ReusableView, NibLoadableView {
+class SetReviewsTableViewCell: BorderedGradientTableViewCell, ReusableView, NibLoadableView {
 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var ratingView: CosmosView!
@@ -34,9 +34,6 @@ class SetReviewsTableViewCell: UITableViewCell, ReusableView, NibLoadableView {
         ratingView.settings.textFont = UIFont.systemFont(ofSize: 16, weight: .semibold)
 
         titleLabel.text = "Rating"
-        
-        addBorder()
-        addGradientBackground()
 
         accessoryView = UIImageView(image: UIImage(named:"forward"))
         accessoryView?.tintColor = UIColor.lightNavy

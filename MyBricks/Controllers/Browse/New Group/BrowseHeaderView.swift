@@ -34,8 +34,6 @@ class BrowseHeaderView: UIView {
     // MARK: - Public
     //--------------------------------------------------------------------------
     
-    // swiftlint:disable cyclomatic_complexity
-
     func populate(with setCount: Int, filterOptions: FilterOptions?) {
         let regularTextColor = UIColor.white
         let boldTextColor = UIColor.white
@@ -83,6 +81,4 @@ class BrowseHeaderView: UIView {
         layoutIfNeeded()
     }
     
-    // swiftlint:enable cyclomatic_complexity
-
 }

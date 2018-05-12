@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FilterCollectionTableViewCell: UITableViewCell, ReusableView {
+class FilterCollectionTableViewCell: BorderedGradientTableViewCell, ReusableView {
 
     @IBOutlet weak var ownedCheckboxButton: UIButton!
     @IBOutlet weak var notOwnedCheckboxButton: UIButton!
@@ -27,14 +27,10 @@ class FilterCollectionTableViewCell: UITableViewCell, ReusableView {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        tintColor = UIColor.lightNavy
         ownedCheckboxButton.applyCheckboxStyle()
         notOwnedCheckboxButton.applyCheckboxStyle()
         wantedCheckboxButton.applyCheckboxStyle()
-
-        addBorder()
-        addGradientBackground()
-    }
+   }
     
     //--------------------------------------------------------------------------
     // MARK: - Actions

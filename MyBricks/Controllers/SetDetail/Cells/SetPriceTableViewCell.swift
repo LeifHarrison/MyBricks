@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SetPriceTableViewCell: UITableViewCell, ReusableView, NibLoadableView {
+class SetPriceTableViewCell: BorderedGradientTableViewCell, ReusableView, NibLoadableView {
 
     @IBOutlet weak var priceTitleLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
@@ -20,13 +20,11 @@ class SetPriceTableViewCell: UITableViewCell, ReusableView, NibLoadableView {
     override func awakeFromNib() {
         super.awakeFromNib()
 
-        addBorder()
-        addGradientBackground()
-
         accessoryView = UIImageView(image: UIImage(named:"forward"))
         accessoryView?.tintColor = UIColor.lightNavy
         
         priceTitleLabel.text = NSLocalizedString("Retail Price", comment: "")
+        
         prepareForReuse()
     }
     

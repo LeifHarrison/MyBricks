@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FilterSortingDirectionTableViewCell: UITableViewCell, ReusableView {
+class FilterSortingDirectionTableViewCell: BorderedGradientTableViewCell, ReusableView {
 
     @IBOutlet weak var ascendingRadioButton: UIButton!
     @IBOutlet weak var descendingRadioButton: UIButton!
@@ -23,13 +23,9 @@ class FilterSortingDirectionTableViewCell: UITableViewCell, ReusableView {
         super.awakeFromNib()
         
         selectionStyle = .none
-        tintColor = UIColor.lightNavy
 
         ascendingRadioButton.applyCheckboxStyle()
         descendingRadioButton.applyCheckboxStyle()
-
-        addBorder()
-        addGradientBackground()
     }
     
     //--------------------------------------------------------------------------

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PartsListTableViewCell: UITableViewCell, NibLoadableView, ReusableView {
+class PartsListTableViewCell: BorderedGradientTableViewCell, NibLoadableView, ReusableView {
 
     @IBOutlet weak var imageBorderView: UIView!
     @IBOutlet weak var partImageView: UIImageView!
@@ -24,8 +24,6 @@ class PartsListTableViewCell: UITableViewCell, NibLoadableView, ReusableView {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        addBorder()
-        addGradientBackground()
         imageBorderView.applyBorderShadowStyle()
         quantityView.applyRoundedShadowStyle()
         prepareForReuse()

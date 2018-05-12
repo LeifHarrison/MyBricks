@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SetInstructionsTableViewCell: UITableViewCell, ReusableView, NibLoadableView {
+class SetInstructionsTableViewCell: BorderedGradientTableViewCell, ReusableView, NibLoadableView {
 
     @IBOutlet weak var instructionsTitleLabel: UILabel!
     @IBOutlet weak var instructionsCountLabel: UILabel!
@@ -19,14 +19,12 @@ class SetInstructionsTableViewCell: UITableViewCell, ReusableView, NibLoadableVi
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
-        addBorder()
-        addGradientBackground()
 
         accessoryView = UIImageView(image: UIImage(named:"forward"))
         accessoryView?.tintColor = UIColor.lightNavy
         
         instructionsTitleLabel.text = NSLocalizedString("Instructions", comment: "")
+        
         prepareForReuse()
     }
     

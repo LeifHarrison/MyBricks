@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SetDescriptionTableViewCell: UITableViewCell, ReusableView, NibLoadableView {
+class SetDescriptionTableViewCell: BorderedGradientTableViewCell, ReusableView, NibLoadableView {
 
     @IBOutlet weak var descriptionTextView: UITextView!
 
@@ -18,8 +18,7 @@ class SetDescriptionTableViewCell: UITableViewCell, ReusableView, NibLoadableVie
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        addBorder()
-        addGradientBackground()
+        selectionStyle = .none
         prepareForReuse()
     }
     

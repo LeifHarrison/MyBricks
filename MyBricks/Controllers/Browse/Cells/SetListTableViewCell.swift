@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SetListTableViewCell: UITableViewCell, NibLoadableView, ReusableView {
+class SetListTableViewCell: BorderedGradientTableViewCell, NibLoadableView, ReusableView {
 
     @IBOutlet weak var imageBorderView: UIView!
     @IBOutlet weak var setImageView: UIImageView!
@@ -29,11 +29,6 @@ class SetListTableViewCell: UITableViewCell, NibLoadableView, ReusableView {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        
-        tintColor = UIColor.lightNavy
-
-        addBorder()
-        addGradientBackground()
 
         imageBorderView.applyBorderShadowStyle()
 

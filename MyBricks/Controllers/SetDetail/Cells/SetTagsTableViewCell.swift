@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SetTagsTableViewCell: UITableViewCell, ReusableView, NibLoadableView {
+class SetTagsTableViewCell: BorderedGradientTableViewCell, ReusableView, NibLoadableView {
 
     static let nibName = "SetTagsTableViewCell"
     static let reuseIdentifier = "SetTagsTableViewCell"
@@ -22,8 +22,6 @@ class SetTagsTableViewCell: UITableViewCell, ReusableView, NibLoadableView {
     override func awakeFromNib() {
         super.awakeFromNib()
         selectionStyle = .none
-        addBorder()
-        addGradientBackground()
         setupTagListView()
     }
 

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PriceDetailTableViewCell: UITableViewCell {
+class PriceDetailTableViewCell: BorderedGradientTableViewCell {
 
     @IBOutlet weak var regionLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
@@ -21,10 +21,6 @@ class PriceDetailTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         selectionStyle = .none
-        
-        addBorder()
-        addGradientBackground()
-
         prepareForReuse()
     }
     
