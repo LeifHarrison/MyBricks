@@ -72,7 +72,6 @@ class SetDetailViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        checkForLargeImage()
         if setDetail == nil {
             fetchSetDetail()
         }
@@ -195,43 +194,25 @@ class SetDetailViewController: UIViewController {
         }
     }
     
-    private func checkForLargeImage() {
-        if let set = currentSet, let imageURL = set.imageURL {
-            let largeImageURL = imageURL.replacingOccurrences(of: "/images/", with: "/large/")
-            Alamofire.request(largeImageURL, method: .head).response { response in
-                if let httpResponse = response.response, httpResponse.statusCode == 200 {
-                    self.hasLargeImage = true
-                    self.enableImageZoom()
-                }
-            }
-        }
-    }
-    
-    private func enableImageZoom() {
-        if let imageSection = self.sections.index(of: .heroImage), let cell = self.tableView.cellForRow(at: IndexPath(row: 0, section: imageSection)) as? SetHeroImageTableViewCell {
-            cell.showZoomButton(animated: true)
-        }
-    }
-    
     private func showLargeImage() {
         performSegue(withIdentifier: "showImageDetailView", sender: self)
     }
     
     private func showImageDetail(for setImage: SetImage?) {
-        if let vc = self.storyboard?.instantiateViewController(withIdentifier: "ImageDetailViewController") as? ImageDetailViewController {
+        if let viewController = self.storyboard?.instantiateViewController(withIdentifier: "ImageDetailViewController") as? ImageDetailViewController {
             if let selectedImage = setImage {
-                vc.imageURL = selectedImage.imageURL
+                viewController.imageURL = selectedImage.imageURL
             }
             else if let set = self.currentSet, let imageURL = set.imageURL {
                 if self.hasLargeImage {
                     let largeImageURL = imageURL.replacingOccurrences(of: "/images/", with: "/large/")
-                    vc.imageURL = largeImageURL
+                    viewController.imageURL = largeImageURL
                 }
                 else {
-                    vc.imageURL = imageURL
+                    viewController.imageURL = imageURL
                 }
             }
-            self.present(vc, animated: true, completion: nil)
+            self.present(viewController, animated: true, completion: nil)
         }
     }
     
@@ -296,9 +277,7 @@ extension SetDetailViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let set = currentSet else {
-            return UITableViewCell()
-        }
+        guard let set = currentSet else { return UITableViewCell()  }
 
         let section = sections[indexPath.section]
         switch section {
@@ -339,16 +318,16 @@ extension SetDetailViewController: UITableViewDataSource {
             return cell
             
         case .tags :
-            if let detail = setDetail {
-                let cell: SetTagsTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
-                cell.populate(with: detail)
-                
-                // Update cell width early to make sure the TagListView content size updates correctly
-                cell.frame = CGRect(x: 0, y: 0, width: tableView.frame.width, height: cell.frame.height)
-                cell.layoutIfNeeded()
-                
-                return cell
-            }
+            guard let detail = setDetail else { return UITableViewCell()  }
+
+            let cell: SetTagsTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+            cell.populate(with: detail)
+            
+            // Update cell width early to make sure the TagListView content size updates correctly
+            cell.frame = CGRect(x: 0, y: 0, width: tableView.frame.width, height: cell.frame.height)
+            cell.layoutIfNeeded()
+            
+            return cell
 
         case .collection :
             let cell: SetCollectionTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
@@ -361,18 +340,16 @@ extension SetDetailViewController: UITableViewDataSource {
             return cell
 
         case .description :
+            guard let detail = setDetail else { return UITableViewCell()  }
+
             let cell: SetDescriptionTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
-            if let detail = setDetail {
-                cell.populate(with: detail)
-            }
+            cell.populate(with: detail)
             return cell
 
         default :
             return UITableViewCell()
             
         }
-
-        return UITableViewCell()
     }
 
 }
