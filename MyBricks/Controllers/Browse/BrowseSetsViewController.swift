@@ -33,7 +33,6 @@ class BrowseSetsViewController: UIViewController {
         let backItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         navigationItem.backBarButtonItem = backItem
 
-        addGradientBackground()
         setupTableView()
     }
 

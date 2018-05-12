@@ -26,7 +26,6 @@ class PartsListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
-        addGradientBackground()
     }
 
     override func viewDidAppear(_ animated: Bool) {

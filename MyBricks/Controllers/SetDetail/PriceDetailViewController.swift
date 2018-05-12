@@ -34,15 +34,8 @@ class PriceDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        addGradientBackground()
         title = NSLocalizedString("Price Detail", comment: "")
-
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.separatorColor = UIColor(white: 0.3, alpha: 0.8)
-        tableView.separatorInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
-        tableView.tableFooterView = UIView()
-        
-        tableView.register(PriceGuideTableViewCell.self)
+        setupTableView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -59,11 +52,16 @@ class PriceDetailViewController: UIViewController {
     // MARK: - Private
     //--------------------------------------------------------------------------
     
+    private func setupTableView() {
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.tableFooterView = UIView()
+        tableView.register(PriceGuideTableViewCell.self)
+    }
+    
     private func updateSections() {
         sections.removeAll()
-        
         sections.append(.retailPrice)
-        sections.append(.priceGuide)
+        //sections.append(.priceGuide)
     }
     
 }

@@ -110,10 +110,7 @@ class FilterViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.view.backgroundColor = UIColor.cloudyBlue
         self.title = "Filter"
-
         setupTableView()
         doneButton.applyDefaultStyle()
     }

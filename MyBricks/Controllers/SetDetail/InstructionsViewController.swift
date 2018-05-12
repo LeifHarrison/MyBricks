@@ -22,11 +22,7 @@ class InstructionsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        addGradientBackground()
-
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.sectionIndexBackgroundColor = UIColor.clear
-        tableView.tableFooterView = UIView()
+        setupTableView()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -37,7 +33,12 @@ class InstructionsViewController: UIViewController {
     //--------------------------------------------------------------------------
     // MARK: - Private
     //--------------------------------------------------------------------------
-
+    
+    private func setupTableView() {
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.tableFooterView = UIView()
+    }
+    
     private func fetchInstructions() {
         if let set = currentSet, let setID = set.setID {
             SimpleActivityHUD.show(overView: view)

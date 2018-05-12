@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BricksetProfileTableViewCell: UITableViewCell {
+class BricksetProfileTableViewCell: BorderedGradientTableViewCell {
 
     static let nibName = "BricksetProfileTableViewCell"
     static let reuseIdentifier = "BricksetProfileTableViewCell"

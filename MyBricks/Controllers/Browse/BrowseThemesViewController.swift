@@ -22,19 +22,11 @@ class BrowseThemesViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        addGradientBackground()
-
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = UITableViewAutomaticDimension
-        tableView.sectionIndexColor = UIColor.slateBlue
-        tableView.separatorStyle = .none
-        tableView.tableFooterView = UIView()
-        tableView.register(ThemeTableViewCell.self)
+        setupTableView()
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-
         if allThemes.count == 0 {
             fetchThemes()
         }
@@ -43,6 +35,15 @@ class BrowseThemesViewController: UIViewController {
     //--------------------------------------------------------------------------
     // MARK: - Private
     //--------------------------------------------------------------------------
+
+    private func setupTableView() {
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = UITableViewAutomaticDimension
+        tableView.sectionIndexColor = UIColor.slateBlue
+        tableView.separatorStyle = .none
+        tableView.tableFooterView = UIView()
+        tableView.register(ThemeTableViewCell.self)
+    }
 
     fileprivate func fetchThemes() {
         SimpleActivityHUD.show(overView: view)

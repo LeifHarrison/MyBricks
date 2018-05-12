@@ -23,11 +23,7 @@ class NewsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        addGradientBackground()
-
-        tableView.register(UINib(nibName: "NewsItemTableViewCell", bundle: nil), forCellReuseIdentifier: "NewsItemTableViewCell")
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.tableFooterView = UIView()
+        setupTableView()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -45,6 +41,16 @@ class NewsViewController: UIViewController {
         })
     }
 
+    //--------------------------------------------------------------------------
+    // MARK: - Private
+    //--------------------------------------------------------------------------
+    
+    fileprivate func setupTableView() {
+        tableView.register(NewsItemTableViewCell.self)
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.tableFooterView = UIView()
+    }
+    
 }
 
 //==============================================================================

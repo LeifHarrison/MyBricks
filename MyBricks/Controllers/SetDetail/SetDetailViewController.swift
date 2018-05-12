@@ -50,7 +50,8 @@ class SetDetailViewController: UIViewController {
         hideKeyboardWhenViewTapped()
         
         // Add 'Share' button to navigation bar
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Share", style: .plain, target: self, action: #selector(share(sender:)))
+        //navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Share", style: .plain, target: self, action: #selector(share(sender:)))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "share"), style: .plain, target: self, action: #selector(share(sender:)))
 
         setupTableView()
     }
@@ -285,6 +286,7 @@ extension SetDetailViewController: UITableViewDataSource {
         case .heroImage :
             let cell: SetHeroImageTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
             cell.populate(with: set, additionalImages: additionalImages)
+            cell.selectionStyle = .none
 
             cell.imageTapped = { image in
                 self.showImageDetail(for: image)
@@ -295,6 +297,7 @@ extension SetDetailViewController: UITableViewDataSource {
         case .detail :
             let cell: SetDetailTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
             cell.populate(with: set)
+            cell.selectionStyle = .none
             return cell
 
         case .price :
@@ -322,7 +325,8 @@ extension SetDetailViewController: UITableViewDataSource {
 
             let cell: SetTagsTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
             cell.populate(with: detail)
-            
+            cell.selectionStyle = .none
+
             // Update cell width early to make sure the TagListView content size updates correctly
             cell.frame = CGRect(x: 0, y: 0, width: tableView.frame.width, height: cell.frame.height)
             cell.layoutIfNeeded()
@@ -332,7 +336,8 @@ extension SetDetailViewController: UITableViewDataSource {
         case .collection :
             let cell: SetCollectionTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
             cell.populate(with: set)
-            
+            cell.selectionStyle = .none
+
             cell.setUpdated = { set in
                 self.currentSet = set
             }
@@ -344,6 +349,7 @@ extension SetDetailViewController: UITableViewDataSource {
 
             let cell: SetDescriptionTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
             cell.populate(with: detail)
+            cell.selectionStyle = .none
             return cell
 
         default :

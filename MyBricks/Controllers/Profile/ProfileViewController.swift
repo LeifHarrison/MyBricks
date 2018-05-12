@@ -39,10 +39,7 @@ class ProfileViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        addGradientBackground()
         setupTableView()
-
         instructionLabel.applyInstructionsStyle()
         loginButton.applyDefaultStyle()
     }
