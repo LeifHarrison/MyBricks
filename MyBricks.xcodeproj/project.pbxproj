@@ -87,6 +87,7 @@
 		9B4B4C4E203CD2630026B3AC /* SimpleActivityHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4B4C4D203CD2630026B3AC /* SimpleActivityHUD.swift */; };
 		9B5450372024E2DD0021074D /* ImageDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5450362024E2DD0021074D /* ImageDetailViewController.swift */; };
 		9B5450392025206D0021074D /* SetImagesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5450382025206D0021074D /* SetImagesTableViewCell.swift */; };
+		9B58D93420AB50CF00F6E92A /* FilterCheckboxButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B58D93320AB50CF00F6E92A /* FilterCheckboxButton.swift */; };
 		9B5B4A53204DDBEA00F2324C /* PriceGuideTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B5B4A52204DDBEA00F2324C /* PriceGuideTableViewCell.xib */; };
 		9B5CA746201946CE00B09BCB /* FilterSelectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5CA745201946CE00B09BCB /* FilterSelectionTableViewCell.swift */; };
 		9B5E4D37203352250057610E /* UITableView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5E4D36203352250057610E /* UITableView+Extensions.swift */; };
@@ -109,6 +110,7 @@
 		9B6D8E99203250380037ADFD /* SetReviewsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B6D8E98203250380037ADFD /* SetReviewsTableViewCell.xib */; };
 		9B6D8E9B20325D900037ADFD /* UIFont+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6D8E9A20325D900037ADFD /* UIFont+Extensions.swift */; };
 		9B722FC2208E5F5400F322E4 /* ThemeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B722FC1208E5F5400F322E4 /* ThemeTableViewCell.xib */; };
+		9B74301B20AA137F0002E146 /* CollectionDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B74301A20AA137F0002E146 /* CollectionDetailViewController.swift */; };
 		9B83E436202A21BC004433F0 /* SetImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B83E435202A21BC004433F0 /* SetImageCollectionViewCell.swift */; };
 		9B8803DC20A0CA89006CB444 /* SetReviewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B8803DB20A0CA89006CB444 /* SetReviewTableViewCell.xib */; };
 		9B8803DE20A10035006CB444 /* FilterUnreleasedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8803DD20A10035006CB444 /* FilterUnreleasedTableViewCell.swift */; };
@@ -254,6 +256,7 @@
 		9B4B4C4D203CD2630026B3AC /* SimpleActivityHUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleActivityHUD.swift; sourceTree = "<group>"; };
 		9B5450362024E2DD0021074D /* ImageDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDetailViewController.swift; sourceTree = "<group>"; };
 		9B5450382025206D0021074D /* SetImagesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetImagesTableViewCell.swift; sourceTree = "<group>"; };
+		9B58D93320AB50CF00F6E92A /* FilterCheckboxButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCheckboxButton.swift; sourceTree = "<group>"; };
 		9B5B4A52204DDBEA00F2324C /* PriceGuideTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PriceGuideTableViewCell.xib; sourceTree = "<group>"; };
 		9B5CA745201946CE00B09BCB /* FilterSelectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterSelectionTableViewCell.swift; sourceTree = "<group>"; };
 		9B5E4D36203352250057610E /* UITableView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extensions.swift"; sourceTree = "<group>"; };
@@ -276,6 +279,7 @@
 		9B6D8E98203250380037ADFD /* SetReviewsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SetReviewsTableViewCell.xib; sourceTree = "<group>"; };
 		9B6D8E9A20325D900037ADFD /* UIFont+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extensions.swift"; sourceTree = "<group>"; };
 		9B722FC1208E5F5400F322E4 /* ThemeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ThemeTableViewCell.xib; sourceTree = "<group>"; };
+		9B74301A20AA137F0002E146 /* CollectionDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionDetailViewController.swift; sourceTree = "<group>"; };
 		9B83E435202A21BC004433F0 /* SetImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		9B8803DB20A0CA89006CB444 /* SetReviewTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SetReviewTableViewCell.xib; sourceTree = "<group>"; };
 		9B8803DD20A10035006CB444 /* FilterUnreleasedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterUnreleasedTableViewCell.swift; sourceTree = "<group>"; };
@@ -356,6 +360,7 @@
 				9B92A914202E4BE8001E7AC9 /* TagView.swift */,
 				294F18791FB4EDC20026342F /* GradientView.swift */,
 				9B4B4C4D203CD2630026B3AC /* SimpleActivityHUD.swift */,
+				9B58D93320AB50CF00F6E92A /* FilterCheckboxButton.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -650,6 +655,7 @@
 			children = (
 				9B85355C202389D200D77DF9 /* Cells */,
 				9B3E1EEA202A68E40094DD3E /* Views */,
+				9B74301A20AA137F0002E146 /* CollectionDetailViewController.swift */,
 				9B5450362024E2DD0021074D /* ImageDetailViewController.swift */,
 				2949A94E1FBFBEC800676D59 /* InstructionsViewController.swift */,
 				2949A9501FBFBEE000676D59 /* PartsListViewController.swift */,
@@ -733,8 +739,7 @@
 			children = (
 				9BF4EED920362DE6006F3180 /* BrowseHeaderView.swift */,
 			);
-			name = Views;
-			path = "New Group";
+			path = Views;
 			sourceTree = "<group>";
 		};
 		FF63C2F8FBB7E309CDB9D36A /* Pods */ = {
@@ -988,6 +993,7 @@
 				29C111A51FC48988007CBDB4 /* ReviewDetailAnimator.swift in Sources */,
 				2949A9531FBFDAED00676D59 /* SetReview.swift in Sources */,
 				291DEE9D1FE27604004906E4 /* UIResponder+Extensions.swift in Sources */,
+				9B58D93420AB50CF00F6E92A /* FilterCheckboxButton.swift in Sources */,
 				29365B771F8EBF2A00F6730C /* NewsViewController.swift in Sources */,
 				29F60F5B1FD3769E00DF2E48 /* PreviewView.swift in Sources */,
 				9BE2F618203E298B0035C172 /* UIButton+Extensions.swift in Sources */,
@@ -1068,6 +1074,7 @@
 				29BA70112012A1AD00D34D93 /* FilterViewController.swift in Sources */,
 				2940FD831FD4EAF400F860F3 /* SearchHistoryItem+CoreDataClass.swift in Sources */,
 				29C111A31FC4893E007CBDB4 /* ReviewDetailViewController.swift in Sources */,
+				9B74301B20AA137F0002E146 /* CollectionDetailViewController.swift in Sources */,
 				2949A9511FBFBEE000676D59 /* PartsListViewController.swift in Sources */,
 				296EB6E61FBFAA6000D4D3C6 /* Locale+Extensions.swift in Sources */,
 				9B5450392025206D0021074D /* SetImagesTableViewCell.swift in Sources */,

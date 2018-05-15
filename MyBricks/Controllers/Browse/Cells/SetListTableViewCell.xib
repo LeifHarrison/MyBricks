@@ -178,9 +178,6 @@
         <namedColor name="lightNavy">
             <color red="0.086274509803921567" green="0.25098039215686274" blue="0.44313725490196076" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <namedColor name="lightNavy">
-            <color red="0.086274509803921567" green="0.25098039215686274" blue="0.44313725490196076" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
         <namedColor name="slateBlue">
             <color red="0.34509803921568627" green="0.45490196078431372" blue="0.58823529411764708" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

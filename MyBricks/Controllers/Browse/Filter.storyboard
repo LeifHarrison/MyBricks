@@ -56,49 +56,51 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="COb-J1-W1x">
-                                                    <rect key="frame" x="50.666666666666657" y="8.0000000000000018" width="313" height="27.666666666666671"/>
+                                                    <rect key="frame" x="52.666666666666657" y="8.0000000000000018" width="310" height="27.666666666666671"/>
                                                     <subviews>
-                                                        <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gfo-X1-ESg">
-                                                            <rect key="frame" x="0.0" y="2" width="82" height="23.666666666666668"/>
+                                                        <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gfo-X1-ESg" customClass="FilterCheckboxButton" customModule="MyBricks" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="2" width="81" height="23.666666666666668"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                            <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <color key="tintColor" name="slateBlue"/>
                                                             <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="5" maxY="0.0"/>
                                                             <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="-5" maxY="0.0"/>
-                                                            <state key="normal" title="Owned" image="checkbox">
-                                                                <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <state key="normal" title="Owned" image="checkboxEmpty">
+                                                                <color key="titleColor" name="slateBlue"/>
                                                             </state>
-                                                            <state key="selected" image="checkbox_checked"/>
+                                                            <state key="selected" image="checkboxFull">
+                                                                <color key="titleColor" name="lightNavy"/>
+                                                            </state>
                                                             <connections>
                                                                 <action selector="toggleFilterOwned:" destination="q63-o3-4Kr" eventType="touchUpInside" id="oMo-qV-w6c"/>
                                                             </connections>
                                                         </button>
-                                                        <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5eg-xI-Xgm">
-                                                            <rect key="frame" x="102" y="1.6666666666666661" width="108" height="25"/>
+                                                        <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5eg-xI-Xgm" customClass="FilterCheckboxButton" customModule="MyBricks" customModuleProvider="target">
+                                                            <rect key="frame" x="101" y="1.6666666666666661" width="107" height="25"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                            <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <color key="tintColor" name="slateBlue"/>
                                                             <inset key="contentEdgeInsets" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                             <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="-5" maxY="0.0"/>
-                                                            <state key="normal" title="Not Owned" image="checkbox">
-                                                                <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <state key="normal" title="Not Owned" image="checkboxEmpty">
+                                                                <color key="titleColor" name="slateBlue"/>
                                                             </state>
                                                             <state key="disabled">
                                                                 <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                             </state>
-                                                            <state key="selected" image="checkbox_checked"/>
+                                                            <state key="selected" image="checkboxFull"/>
                                                             <connections>
                                                                 <action selector="toggleFilterNotOwned:" destination="q63-o3-4Kr" eventType="touchUpInside" id="3eX-b9-KKG"/>
                                                             </connections>
                                                         </button>
-                                                        <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="243-KL-xXd">
-                                                            <rect key="frame" x="230" y="1.6666666666666661" width="83" height="25"/>
+                                                        <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="243-KL-xXd" customClass="FilterCheckboxButton" customModule="MyBricks" customModuleProvider="target">
+                                                            <rect key="frame" x="228" y="1.6666666666666661" width="82" height="25"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                            <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <color key="tintColor" name="slateBlue"/>
                                                             <inset key="contentEdgeInsets" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                             <inset key="titleEdgeInsets" minX="4" minY="0.0" maxX="-4" maxY="0.0"/>
-                                                            <state key="normal" title="Wanted" image="checkbox">
-                                                                <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <state key="normal" title="Wanted" image="checkboxEmpty">
+                                                                <color key="titleColor" name="slateBlue"/>
                                                             </state>
-                                                            <state key="selected" image="checkbox_checked"/>
+                                                            <state key="selected" image="checkboxFull"/>
                                                             <connections>
                                                                 <action selector="toggleFilterWanted:" destination="q63-o3-4Kr" eventType="touchUpInside" id="2Ht-PN-ZGP"/>
                                                             </connections>
@@ -137,32 +139,32 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BvV-jQ-lga">
-                                                    <rect key="frame" x="88" y="8.0000000000000018" width="239" height="27.666666666666671"/>
+                                                    <rect key="frame" x="89" y="8.0000000000000018" width="237" height="27.666666666666671"/>
                                                     <subviews>
-                                                        <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jPK-e5-Ojw">
-                                                            <rect key="frame" x="0.0" y="2" width="107" height="23.666666666666668"/>
+                                                        <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jPK-e5-Ojw" customClass="FilterCheckboxButton" customModule="MyBricks" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="2" width="106" height="23.666666666666668"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                             <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="5" maxY="0.0"/>
                                                             <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="-5" maxY="0.0"/>
-                                                            <state key="normal" title="Ascending" image="checkbox">
-                                                                <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <state key="normal" title="Ascending" image="checkboxEmpty">
+                                                                <color key="titleColor" name="slateBlue"/>
                                                             </state>
-                                                            <state key="selected" image="checkbox_checked"/>
+                                                            <state key="selected" image="checkboxFull"/>
                                                             <connections>
                                                                 <action selector="selectSortAscending:" destination="M16-4T-bwq" eventType="touchUpInside" id="0OO-43-BmW"/>
                                                             </connections>
                                                         </button>
-                                                        <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QAC-db-VWm">
-                                                            <rect key="frame" x="127" y="1.6666666666666661" width="112" height="25"/>
+                                                        <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QAC-db-VWm" customClass="FilterCheckboxButton" customModule="MyBricks" customModuleProvider="target">
+                                                            <rect key="frame" x="126" y="1.6666666666666661" width="111" height="25"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                             <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <inset key="contentEdgeInsets" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                             <inset key="titleEdgeInsets" minX="4" minY="0.0" maxX="-4" maxY="0.0"/>
-                                                            <state key="normal" title="Descending" image="checkbox">
-                                                                <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <state key="normal" title="Descending" image="checkboxEmpty">
+                                                                <color key="titleColor" name="slateBlue"/>
                                                             </state>
-                                                            <state key="selected" image="checkbox_checked"/>
+                                                            <state key="selected" image="checkboxFull"/>
                                                             <connections>
                                                                 <action selector="selectSortDescending:" destination="M16-4T-bwq" eventType="touchUpInside" id="GGM-hi-GFl"/>
                                                             </connections>
@@ -198,49 +200,49 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wWh-2Y-ITe">
-                                                    <rect key="frame" x="66" y="8.0000000000000018" width="283" height="27.666666666666671"/>
+                                                    <rect key="frame" x="67.666666666666686" y="8.0000000000000018" width="280" height="27.666666666666671"/>
                                                     <subviews>
-                                                        <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wb0-Dz-ZKo">
-                                                            <rect key="frame" x="0.0" y="2" width="81" height="23.666666666666668"/>
+                                                        <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wb0-Dz-ZKo" customClass="FilterCheckboxButton" customModule="MyBricks" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="2" width="80" height="23.666666666666668"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                             <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="5" maxY="0.0"/>
                                                             <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="-5" maxY="0.0"/>
-                                                            <state key="normal" title="Theme" image="checkbox">
-                                                                <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <state key="normal" title="Theme" image="checkboxEmpty">
+                                                                <color key="titleColor" name="slateBlue"/>
                                                             </state>
-                                                            <state key="selected" image="checkbox_checked"/>
+                                                            <state key="selected" image="checkboxFull"/>
                                                             <connections>
                                                                 <action selector="selectGroupByTheme:" destination="UCB-E9-oet" eventType="touchUpInside" id="Crg-6M-Xf2"/>
                                                             </connections>
                                                         </button>
-                                                        <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DhZ-uc-bV1">
-                                                            <rect key="frame" x="101" y="1.6666666666666661" width="101" height="25"/>
+                                                        <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DhZ-uc-bV1" customClass="FilterCheckboxButton" customModule="MyBricks" customModuleProvider="target">
+                                                            <rect key="frame" x="100" y="1.6666666666666661" width="100" height="25"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                             <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <inset key="contentEdgeInsets" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                             <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="-5" maxY="0.0"/>
-                                                            <state key="normal" title="Subtheme" image="checkbox">
-                                                                <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <state key="normal" title="Subtheme" image="checkboxEmpty">
+                                                                <color key="titleColor" name="slateBlue"/>
                                                             </state>
                                                             <state key="disabled">
                                                                 <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                             </state>
-                                                            <state key="selected" image="checkbox_checked"/>
+                                                            <state key="selected" image="checkboxFull"/>
                                                             <connections>
                                                                 <action selector="selectGroupBySubtheme:" destination="UCB-E9-oet" eventType="touchUpInside" id="cdH-KU-ryd"/>
                                                             </connections>
                                                         </button>
-                                                        <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cm6-D8-NLL">
-                                                            <rect key="frame" x="222" y="1.6666666666666661" width="61" height="25"/>
+                                                        <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cm6-D8-NLL" customClass="FilterCheckboxButton" customModule="MyBricks" customModuleProvider="target">
+                                                            <rect key="frame" x="220" y="1.6666666666666661" width="60" height="25"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                             <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <inset key="contentEdgeInsets" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                             <inset key="titleEdgeInsets" minX="4" minY="0.0" maxX="-4" maxY="0.0"/>
-                                                            <state key="normal" title="Year" image="checkbox">
-                                                                <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <state key="normal" title="Year" image="checkboxEmpty">
+                                                                <color key="titleColor" name="slateBlue"/>
                                                             </state>
-                                                            <state key="selected" image="checkbox_checked"/>
+                                                            <state key="selected" image="checkboxFull"/>
                                                             <connections>
                                                                 <action selector="selectGroupByYear:" destination="UCB-E9-oet" eventType="touchUpInside" id="f95-l1-0ZU"/>
                                                             </connections>
@@ -279,18 +281,18 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iaG-ZT-6zi">
-                                                    <rect key="frame" x="111.33333333333331" y="8.0000000000000018" width="193" height="27.666666666666671"/>
+                                                    <rect key="frame" x="111" y="8.0000000000000018" width="192" height="27.666666666666671"/>
                                                     <subviews>
-                                                        <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CLH-af-ADZ">
-                                                            <rect key="frame" x="0.0" y="2" width="193" height="23.666666666666668"/>
+                                                        <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CLH-af-ADZ" customClass="FilterCheckboxButton" customModule="MyBricks" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="2" width="192" height="23.666666666666668"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                             <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="5" maxY="0.0"/>
                                                             <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="-5" maxY="0.0"/>
-                                                            <state key="normal" title="Show Unreleased Sets" image="checkbox">
-                                                                <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <state key="normal" title="Show Unreleased Sets" image="checkboxEmpty">
+                                                                <color key="titleColor" name="slateBlue"/>
                                                             </state>
-                                                            <state key="selected" image="checkbox_checked"/>
+                                                            <state key="selected" image="checkboxFull"/>
                                                             <connections>
                                                                 <action selector="toggleShowUnreleased:" destination="LAu-my-tA9" eventType="touchUpInside" id="Vx8-Xs-5vW"/>
                                                             </connections>
@@ -619,13 +621,16 @@
         </scene>
     </scenes>
     <resources>
-        <image name="checkbox" width="25" height="25"/>
-        <image name="checkbox_checked" width="25" height="25"/>
+        <image name="checkboxEmpty" width="24" height="25"/>
+        <image name="checkboxFull" width="24" height="25"/>
         <namedColor name="cloudyBlue">
             <color red="0.6940000057220459" green="0.76499998569488525" blue="0.83099997043609619" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="lightNavy">
             <color red="0.086274509803921567" green="0.25098039215686274" blue="0.44313725490196076" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="slateBlue">
+            <color red="0.34509803921568627" green="0.45490196078431372" blue="0.58823529411764708" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

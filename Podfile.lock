@@ -8,7 +8,7 @@ PODS:
     - Alamofire (~> 4.6)
   - AlamofireRSSParser (2.1.0):
     - Alamofire
-  - Cosmos (15.0.0)
+  - Cosmos (16.0.0)
   - Fuzi (2.1.0)
   - KeychainAccess (3.1.1)
   - SwiftLint (0.25.1)
@@ -42,11 +42,11 @@ SPEC CHECKSUMS:
   AlamofireNetworkActivityIndicator: aeac50e6ecb78ec71a5f1f29098bcf4ec2962910
   AlamofireNetworkActivityLogger: 6f3076652ab7fa6c819b59be08ea038d339e36d8
   AlamofireRSSParser: 5fed94de51ff88ea48496d7dfa6e3274100d90d6
-  Cosmos: a6dbd3d0baa0cc8f51f8598f7508d5a09d0a9ade
+  Cosmos: 7bcee0fa858a9355a214f2a181be5dffcee42c81
   Fuzi: 8c57344debff6d3a0c76a9e0f549152defdaaa48
   KeychainAccess: 7bd430028059754a3debab3cfc0bd1fc7fb85df3
   SwiftLint: ce933681be10c3266e82576dad676fa815a602e9
 
-PODFILE CHECKSUM: 5de80dde4d074a464431be4057670b9637ae62d4
+PODFILE CHECKSUM: 18428fc8e1a5ad9ea8e9b22c4ec1fa224cddb73b
 
 COCOAPODS: 1.5.2

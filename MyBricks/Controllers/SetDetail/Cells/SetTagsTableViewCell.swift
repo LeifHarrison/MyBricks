@@ -49,12 +49,12 @@ class SetTagsTableViewCell: BorderedGradientTableViewCell, ReusableView, NibLoad
     //--------------------------------------------------------------------------
     
     private func setupTagListView() {
-        tagListView.cornerRadius = 11
+        tagListView.cornerRadius = 14
         tagListView.marginY = 5
-        tagListView.paddingX = 10
-        tagListView.paddingY = 5
+        tagListView.paddingX = 13
+        tagListView.paddingY = 7
         tagListView.tagBackgroundColor = UIColor.lightNavy
-        tagListView.textFont = UIFont.systemFont(ofSize: 14)
+        tagListView.textFont = UIFont.systemFont(ofSize: 12, weight: .semibold)
     }
     
 }

@@ -37,15 +37,6 @@
                             <outlet property="delegate" destination="UEw-YJ-jk3" id="O30-7q-aAe"/>
                         </connections>
                     </collectionView>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3d9-f7-z64">
-                        <rect key="frame" x="342" y="234.5" width="30" height="30"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="30" id="Zir-c0-LUD"/>
-                            <constraint firstAttribute="height" constant="30" id="mRE-pM-v0E"/>
-                        </constraints>
-                        <color key="tintColor" name="lightNavy"/>
-                        <state key="normal" image="zoom"/>
-                    </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M9f-Ba-qMp">
                         <rect key="frame" x="5" y="110" width="30" height="30"/>
                         <constraints>
@@ -88,14 +79,12 @@
                 <constraints>
                     <constraint firstItem="5th-Bu-QKn" firstAttribute="centerY" secondItem="YF5-TZ-duZ" secondAttribute="centerY" id="2lp-BF-mVN"/>
                     <constraint firstItem="M9f-Ba-qMp" firstAttribute="centerY" secondItem="YF5-TZ-duZ" secondAttribute="centerY" id="3rl-2d-8Od"/>
-                    <constraint firstAttribute="bottom" secondItem="3d9-f7-z64" secondAttribute="bottom" constant="5" id="BIy-3b-Ml7"/>
                     <constraint firstItem="vfg-um-2Ic" firstAttribute="centerY" secondItem="Wdf-rj-dPu" secondAttribute="centerY" id="K32-1O-VKe"/>
                     <constraint firstAttribute="trailing" secondItem="5th-Bu-QKn" secondAttribute="trailing" constant="5" id="NKI-d5-iGm"/>
                     <constraint firstItem="vfg-um-2Ic" firstAttribute="centerX" secondItem="cJb-ba-5aV" secondAttribute="centerX" id="aJw-7o-7Vp"/>
                     <constraint firstItem="YF5-TZ-duZ" firstAttribute="top" secondItem="cJb-ba-5aV" secondAttribute="top" constant="20" id="cWj-gq-8xC"/>
                     <constraint firstAttribute="bottom" secondItem="YF5-TZ-duZ" secondAttribute="bottom" constant="40" id="fkX-nO-kgD"/>
                     <constraint firstItem="Wdf-rj-dPu" firstAttribute="centerX" secondItem="cJb-ba-5aV" secondAttribute="centerX" id="oC5-oB-JVH"/>
-                    <constraint firstAttribute="trailing" secondItem="3d9-f7-z64" secondAttribute="trailing" constant="5" id="rNF-IO-D6j"/>
                     <constraint firstItem="M9f-Ba-qMp" firstAttribute="leading" secondItem="cJb-ba-5aV" secondAttribute="leading" constant="5" id="sLy-FD-8Uz"/>
                     <constraint firstItem="YF5-TZ-duZ" firstAttribute="centerX" secondItem="cJb-ba-5aV" secondAttribute="centerX" id="uCp-gc-xtn"/>
                     <constraint firstAttribute="bottom" secondItem="Wdf-rj-dPu" secondAttribute="bottom" constant="2" id="yeh-wq-4lU"/>
@@ -107,7 +96,6 @@
                 <outlet property="pageControl" destination="Wdf-rj-dPu" id="vC1-30-fLf"/>
                 <outlet property="pageLabel" destination="vfg-um-2Ic" id="Xic-Ag-6xp"/>
                 <outlet property="previousButton" destination="M9f-Ba-qMp" id="N9t-r9-d3A"/>
-                <outlet property="zoomButton" destination="3d9-f7-z64" id="46l-ez-4Yf"/>
             </connections>
             <point key="canvasLocation" x="-396.5" y="-24.5"/>
         </tableViewCell>
@@ -115,7 +103,6 @@
     <resources>
         <image name="arrowLeft" width="25" height="25"/>
         <image name="arrowRight" width="25" height="25"/>
-        <image name="zoom" width="25" height="25"/>
         <namedColor name="cloudyBlue">
             <color red="0.6940000057220459" green="0.76499998569488525" blue="0.83099997043609619" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

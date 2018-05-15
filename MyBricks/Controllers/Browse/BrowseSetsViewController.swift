@@ -170,7 +170,7 @@ class BrowseSetsViewController: UIViewController {
     internal func updateDisplay(animated: Bool = false) {
         
         if self.allSets.count > 0 {
-            let item = UIBarButtonItem(title: "Filter", style: .plain, target: self, action: #selector(showFilters(_:)))
+            let item = UIBarButtonItem(image: #imageLiteral(resourceName: "filter"), style: .plain, target: self, action: #selector(showFilters(_:)))
             navigationItem.setRightBarButton(item, animated: animated)
         }
         else {

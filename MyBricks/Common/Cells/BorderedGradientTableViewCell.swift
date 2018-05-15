@@ -19,12 +19,15 @@ class BorderedGradientTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        addBorder()
         addGradient()
         addHighlightOverlay()
     }
     
     override func setHighlighted(_ highlighted: Bool, animated: Bool) {
-        highlightOverlay.isHidden = !highlighted
+        if selectionStyle != .none {
+            highlightOverlay.isHidden = !highlighted
+        }
     }
     
     //--------------------------------------------------------------------------
@@ -34,7 +37,7 @@ class BorderedGradientTableViewCell: UITableViewCell {
     func addGradient() {
         gradientView.frame = self.bounds
         gradientView.translatesAutoresizingMaskIntoConstraints = false
-        gradientView.startColor = UIColor.almostWhite
+        gradientView.startColor = UIColor.white
         gradientView.endColor = UIColor.whiteTwo
         insertSubview(gradientView, at: 0)
         

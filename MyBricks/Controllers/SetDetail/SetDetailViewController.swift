@@ -11,23 +11,32 @@ import Alamofire
 
 class SetDetailViewController: UIViewController {
 
-    enum TableSectionType: Int {
-        case heroImage
+    enum TableSection: Int {
+        case content
         case detail
+        case tags
+        case description
+    }
+    
+    enum ContentRow: Int {
+        case images
+        case detail
+    }
+    
+    enum DetailRow: Int {
         case price
         case reviews
         case instructions
         case parts
-        case tags
         case collection
-        case description
-        case barcodes
     }
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
 
-    var sections: [TableSectionType] = []
+    var sections: [TableSection] = []
+    var contentRows: [ContentRow] = []
+    var detailRows: [DetailRow] = []
 
     var currentSet: Set?
     var setDetail: SetDetail?
@@ -59,9 +68,6 @@ class SetDetailViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(with:)), name: .UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(with:)), name: .UIKeyboardWillHide, object: nil)
-        
         updateSections()
         if let footerView = tableView.tableFooterView as? SetDetailFooterView, let set = self.currentSet {
             footerView.populateWithSet(set)
@@ -83,10 +89,6 @@ class SetDetailViewController: UIViewController {
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        view.endEditing(true)
-        
-        NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillHide, object: nil)
 
         if let request = self.setDetailRequest {
             request.cancel()
@@ -114,6 +116,9 @@ class SetDetailViewController: UIViewController {
 
     private func setupTableView() {
         tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedSectionFooterHeight = 0
+        tableView.estimatedSectionHeaderHeight = 5
+        tableView.contentInset = UIEdgeInsets(top: 5, left: 0, bottom: 5, right: 0)
         
         tableView.register(SetCollectionTableViewCell.self)
         tableView.register(SetDetailTableViewCell.self)
@@ -133,20 +138,26 @@ class SetDetailViewController: UIViewController {
     
     private func updateSections() {
         sections.removeAll()
-        
-        sections.append(.heroImage)
+        contentRows.removeAll()
+        detailRows.removeAll()
+
+        sections.append(.content)
+        contentRows.append(.images)
+        contentRows.append(.detail)
+
         sections.append(.detail)
-        sections.append(.price)
-        sections.append(.parts)
+        detailRows.append(.price)
+        detailRows.append(.parts)
         if let reviewCount = currentSet?.reviewCount, reviewCount > 0 {
-            sections.append(.reviews)
+            detailRows.append(.reviews)
         }
         if let instructionsCount = currentSet?.instructionsCount, instructionsCount > 0 {
-            sections.append(.instructions)
+            detailRows.append(.instructions)
         }
         if BricksetServices.isLoggedIn() {
-            sections.append(.collection)
+            detailRows.append(.collection)
         }
+        
         if let tags = setDetail?.tags, tags.count > 0 {
             sections.append(.tags)
         }
@@ -187,7 +198,7 @@ class SetDetailViewController: UIViewController {
                 strongSelf.additionalImagesRequest = nil
                 if result.isSuccess, let images = result.value, images.count > 0 {
                     strongSelf.additionalImages = images
-                    if let imageSectionIndex = strongSelf.sections.index(of: .heroImage) {
+                    if let imageSectionIndex = strongSelf.sections.index(of: .content) {
                         strongSelf.tableView.reloadSections([imageSectionIndex], with: .fade)
                     }
                 }
@@ -218,38 +229,6 @@ class SetDetailViewController: UIViewController {
     }
     
     //--------------------------------------------------------------------------
-    // MARK: - Keyboard Notifications
-    //--------------------------------------------------------------------------
-    
-    @objc private func keyboardWillShow(with notification: Notification) {
-        guard let userInfo = notification.userInfo as? [String: AnyObject],
-            let keyboardFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
-            else { return }
-        
-        var contentInset = self.tableView.contentInset
-        contentInset.bottom += keyboardFrame.height
-        if let tabController = self.tabBarController {
-            contentInset.bottom -= tabController.tabBar.frame.height
-        }
-
-        self.tableView.contentInset = contentInset
-        self.tableView.scrollIndicatorInsets = contentInset
-
-        if let section = sections.index(of: .collection) {
-            let indexPath = IndexPath(row: 0, section: section)
-            self.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
-        }
-    }
-    
-    @objc private func keyboardWillHide(with notification: Notification) {
-        var contentInset = self.tableView.contentInset
-        contentInset.bottom = 0
-        
-        self.tableView.contentInset = contentInset
-        self.tableView.scrollIndicatorInsets = contentInset
-    }
-    
-    //--------------------------------------------------------------------------
     // MARK: - Storyboards and Segues
     //--------------------------------------------------------------------------
     
@@ -274,7 +253,15 @@ extension SetDetailViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        let sectionType = sections[section]
+        switch sectionType {
+        case .content :
+            return contentRows.count
+        case .detail:
+            return detailRows.count
+        case .tags, .description :
+            return 1
+        }
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -282,80 +269,85 @@ extension SetDetailViewController: UITableViewDataSource {
 
         let section = sections[indexPath.section]
         switch section {
+        
+            // "Content" section - images and primary set information
             
-        case .heroImage :
-            let cell: SetHeroImageTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
-            cell.populate(with: set, additionalImages: additionalImages)
-            cell.selectionStyle = .none
+        case .content :
+            let row = contentRows[indexPath.row]
+            switch row {
+            case .images:
+                let cell: SetHeroImageTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+                cell.populate(with: set, additionalImages: additionalImages)
+                
+                cell.imageTapped = { image in
+                    self.showImageDetail(for: image)
+                }
+                
+                return cell
 
-            cell.imageTapped = { image in
-                self.showImageDetail(for: image)
+            case .detail :
+                let cell: SetDetailTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+                cell.populate(with: set)
+                cell.indentationLevel = 1
+                cell.indentationWidth = 10
+                return cell
+                
             }
-
-            return cell
             
-        case .detail :
-            let cell: SetDetailTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
-            cell.populate(with: set)
-            cell.selectionStyle = .none
-            return cell
-
-        case .price :
-            let cell: SetPriceTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
-            cell.populate(with: set)
-            return cell
-
-        case .parts :
-            let cell: SetPartsTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
-            cell.populate(with: set)
-            return cell
-
-        case .reviews :
-            let cell: SetReviewsTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
-            cell.populate(with: set)
-            return cell
+            // "Details" section - rows that summarize set details that can be selected to show more information
             
-        case .instructions :
-            let cell: SetInstructionsTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
-            cell.populate(with: set)
-            return cell
+        case .detail:
+            let row = detailRows[indexPath.row]
+            switch row {
+
+            case .price :
+                let cell: SetPriceTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+                cell.populate(with: set)
+                return cell
+
+            case .parts :
+                let cell: SetPartsTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+                cell.populate(with: set)
+                return cell
+
+            case .reviews :
+                let cell: SetReviewsTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+                cell.populate(with: set)
+                return cell
+                
+            case .instructions :
+                let cell: SetInstructionsTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+                cell.populate(with: set)
+                return cell
+                
+            case .collection :
+                let cell: SetCollectionTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+                cell.populate(with: set)
+                return cell
+                
+            }
             
         case .tags :
             guard let detail = setDetail else { return UITableViewCell()  }
-
             let cell: SetTagsTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
             cell.populate(with: detail)
-            cell.selectionStyle = .none
-
+            cell.backgroundColor = UIColor.clear
+            cell.contentView.directionalLayoutMargins = NSDirectionalEdgeInsets(top: 4, leading: 8, bottom: 4, trailing: 8)
+            
             // Update cell width early to make sure the TagListView content size updates correctly
             cell.frame = CGRect(x: 0, y: 0, width: tableView.frame.width, height: cell.frame.height)
             cell.layoutIfNeeded()
             
             return cell
-
-        case .collection :
-            let cell: SetCollectionTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
-            cell.populate(with: set)
-            cell.selectionStyle = .none
-
-            cell.setUpdated = { set in
-                self.currentSet = set
-            }
             
-            return cell
-
         case .description :
             guard let detail = setDetail else { return UITableViewCell()  }
-
             let cell: SetDescriptionTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
             cell.populate(with: detail)
-            cell.selectionStyle = .none
             return cell
-
-        default :
-            return UITableViewCell()
             
         }
+        
     }
 
 }
@@ -365,36 +357,71 @@ extension SetDetailViewController: UITableViewDataSource {
 //==============================================================================
 
 extension SetDetailViewController: UITableViewDelegate {
-
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let section = sections[indexPath.section]
-
-        if section == .price {
-            if let viewController = storyboard?.instantiateViewController(withIdentifier: "PriceDetailViewController") as? PriceDetailViewController {
-                viewController.currentSet = currentSet
-                show(viewController, sender: self)
-            }
-        }
-        if section == .parts {
-            if let viewController = storyboard?.instantiateViewController(withIdentifier: "PartsListViewController") as? PartsListViewController {
-                viewController.currentSet = currentSet
-                show(viewController, sender: self)
-            }
-        }
-        if section == .reviews {
-            if let viewController = storyboard?.instantiateViewController(withIdentifier: "ReviewsViewController") as? ReviewsViewController {
-                viewController.currentSet = currentSet
-                show(viewController, sender: self)
-            }
-        }
-        if section == .instructions {
-            if let viewController = storyboard?.instantiateViewController(withIdentifier: "InstructionsViewController") as? InstructionsViewController {
-                viewController.currentSet = currentSet
-                show(viewController, sender: self)
-            }
-        }
-
-        tableView.deselectRow(at: indexPath, animated: true)
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 0.0
     }
-
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let clearSpacerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 5))
+        clearSpacerView.backgroundColor = UIColor.clear
+        return clearSpacerView
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        if section == (sections.count - 1) {
+            return 5
+        }
+        return 5
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let height: CGFloat = (section == (sections.count - 1) ? 5 : 0)
+        let clearSpacerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: height))
+        clearSpacerView.backgroundColor = UIColor.clear
+        return clearSpacerView
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        NSLog("didSelectRowAt: \(indexPath)")
+        let section = sections[indexPath.section]
+        
+        if section == .detail {
+            let row = detailRows[indexPath.row]
+            switch row {
+            case .price:
+                if let viewController = storyboard?.instantiateViewController(withIdentifier: "PriceDetailViewController") as? PriceDetailViewController {
+                    viewController.currentSet = currentSet
+                    show(viewController, sender: self)
+                }
+                
+            case .parts:
+                if let viewController = storyboard?.instantiateViewController(withIdentifier: "PartsListViewController") as? PartsListViewController {
+                    viewController.currentSet = currentSet
+                    show(viewController, sender: self)
+                }
+                
+            case .reviews:
+                if let viewController = storyboard?.instantiateViewController(withIdentifier: "ReviewsViewController") as? ReviewsViewController {
+                    viewController.currentSet = currentSet
+                    show(viewController, sender: self)
+                }
+                
+            case .instructions:
+                if let viewController = storyboard?.instantiateViewController(withIdentifier: "InstructionsViewController") as? InstructionsViewController {
+                    viewController.currentSet = currentSet
+                    show(viewController, sender: self)
+                }
+                
+            case .collection:
+                if let viewController = storyboard?.instantiateViewController(withIdentifier: "CollectionDetailViewController") as? CollectionDetailViewController {
+                    viewController.currentSet = currentSet
+                    show(viewController, sender: self)
+                }
+                
+            }
+            
+            tableView.deselectRow(at: indexPath, animated: true)
+        }
+    }
 }

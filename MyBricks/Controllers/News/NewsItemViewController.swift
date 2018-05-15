@@ -23,7 +23,7 @@ class NewsItemViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        //addGradientBackground()
+        addGradientBackground()
     }
 
     override func viewWillAppear(_ animated: Bool) {

@@ -14,8 +14,8 @@ extension UIViewController {
     func addGradientBackground() {
         let gradientView = GradientView(frame: view.bounds)
         gradientView.translatesAutoresizingMaskIntoConstraints = false
-        gradientView.startColor = UIColor.white
-        gradientView.endColor = UIColor.cloudyBlue
+        gradientView.startColor = UIColor.almostWhite
+        gradientView.endColor = UIColor.paleGrey
         view.insertSubview(gradientView, at: 0)
 
         if #available(iOS 11, *) {
