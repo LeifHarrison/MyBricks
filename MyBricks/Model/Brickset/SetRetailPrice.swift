@@ -24,21 +24,11 @@ public struct SetRetailPrice {
 
     func priceDescription() -> String {
         let currencySymbol = locale.currencySymbol ?? "$"
-        if price.count > 0 {
-            return (currencySymbol + price)
-        }
-        else {
-            return "Unknown"
-        }
+        return (price.count > 0) ? (currencySymbol + price) : "PRICE N/A"
     }
 
     func pricePerPieceDescription() -> String {
-        if price.count > 0 {
-            return pricePerPiece + " / piece"
-        }
-        else {
-            return ""
-        }
+        return (price.count > 0) ? (pricePerPiece + " / piece") : ""
     }
 
 }

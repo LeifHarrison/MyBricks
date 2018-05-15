@@ -115,6 +115,7 @@ class SetDetailViewController: UIViewController {
     //--------------------------------------------------------------------------
 
     private func setupTableView() {
+        
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedSectionFooterHeight = 0
         tableView.estimatedSectionHeaderHeight = 5
@@ -141,13 +142,17 @@ class SetDetailViewController: UIViewController {
         contentRows.removeAll()
         detailRows.removeAll()
 
+        // Main Content
         sections.append(.content)
         contentRows.append(.images)
         contentRows.append(.detail)
 
+        // Section for content with additional detail
         sections.append(.detail)
         detailRows.append(.price)
-        detailRows.append(.parts)
+        if let partsCount = currentSet?.pieces, partsCount > 0 {
+            detailRows.append(.parts)
+        }
         if let reviewCount = currentSet?.reviewCount, reviewCount > 0 {
             detailRows.append(.reviews)
         }
@@ -158,10 +163,11 @@ class SetDetailViewController: UIViewController {
             detailRows.append(.collection)
         }
         
+        // Tags and set description
         if let tags = setDetail?.tags, tags.count > 0 {
             sections.append(.tags)
         }
-        if setDetail != nil {
+        if let detail = setDetail, let setDescription = detail.setDescription, setDescription.count > 0 {
             sections.append(.description)
         }
     }

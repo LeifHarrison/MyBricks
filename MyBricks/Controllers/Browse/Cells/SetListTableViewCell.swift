@@ -30,6 +30,7 @@ class SetListTableViewCell: BorderedGradientTableViewCell, NibLoadableView, Reus
     override func awakeFromNib() {
         super.awakeFromNib()
 
+        setImageView.backgroundColor = UIColor.clear
         imageBorderView.applyBorderShadowStyle()
 
         collectionStatusView.layer.shadowColor = UIColor.black.cgColor
@@ -72,7 +73,12 @@ class SetListTableViewCell: BorderedGradientTableViewCell, NibLoadableView, Reus
 
     func populate(with set: Set, options: FilterOptions) {
         
-        nameLabel.text = set.name
+        if let name = set.name, name == "{?}" { // Unreleased set
+            nameLabel.text = "Not Yet Released"
+        }
+        else {
+            nameLabel.text = set.name
+        }
         setNumberLabel.text = set.displayableSetNumber
         
         if let grouping = options.grouping, grouping == .subtheme {
@@ -82,8 +88,15 @@ class SetListTableViewCell: BorderedGradientTableViewCell, NibLoadableView, Reus
             subthemeLabel.text = set.subtheme
         }
         
-        piecesLabel.text = "\(set.pieces ?? 0)"
-        minifigsLabel.text = "\(set.minifigs ?? 0)"
+        if set.pieces == nil && set.minifigs == nil {
+            partsContainerView.isHidden = true
+        }
+        else {
+            partsContainerView.isHidden = false
+            piecesLabel.text = "\(set.pieces ?? 0)"
+            minifigsLabel.text = "\(set.minifigs ?? 0)"
+        }
+
         priceLabel.text = set.preferredPriceString
 
         collectionStatusView.isHidden = !set.owned && !set.wanted
@@ -96,9 +109,19 @@ class SetListTableViewCell: BorderedGradientTableViewCell, NibLoadableView, Reus
             collectionStatusView.backgroundColor = UIColor.bricksetWanted
         }
         
+        setImageView.contentMode = .center
+        setImageView.image = UIImage(named: "notAvailable")
+        imageBorderView.backgroundColor = UIColor.lightBlueGreyTwo
+
         let urlString = (UIScreen.main.scale > 1.5) ? set.largeThumbnailURL : set.thumbnailURL
         if let urlString = urlString, let url = URL(string: urlString) {
-            setImageView.af_setImage(withURL: url, imageTransition: .crossDissolve(0.3))
+            setImageView.af_setImage(withURL: url, imageTransition: .crossDissolve(0.3)) { response in
+                if response.result.value != nil {
+                    self.setImageView.contentMode = .scaleAspectFit
+                    self.imageBorderView.backgroundColor = UIColor.white
+                    //NSLog("image size: \(image.size)")
+                }
+            }
         }
 
     }
