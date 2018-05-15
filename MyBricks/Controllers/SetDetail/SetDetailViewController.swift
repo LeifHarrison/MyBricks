@@ -82,6 +82,9 @@ class SetDetailViewController: UIViewController {
         if setDetail == nil {
             fetchSetDetail()
         }
+        if let set = currentSet, set.imageURL != nil {
+            checkForLargeImage()
+        }
         if additionalImages == nil {
             fetchAdditionalImages()
         }
@@ -200,15 +203,33 @@ class SetDetailViewController: UIViewController {
         if let set = currentSet, let setID = set.setID {
             additionalImagesRequest = BricksetServices.shared.getAdditionalImages(setID: setID, completion: { [weak self] result in
                 guard let strongSelf = self else { return }
-
                 strongSelf.additionalImagesRequest = nil
                 if result.isSuccess, let images = result.value, images.count > 0 {
-                    strongSelf.additionalImages = images
-                    if let imageSectionIndex = strongSelf.sections.index(of: .content) {
-                        strongSelf.tableView.reloadSections([imageSectionIndex], with: .fade)
-                    }
+                    strongSelf.updateAdditionalImages(images: images)
                 }
             })
+        }
+    }
+    
+    private func updateAdditionalImages(images: [SetImage]) {
+        additionalImages = images
+        if let contentSection = sections.index(of: .content), let imagesRow = contentRows.index(of: .images) {
+            let indexPath = IndexPath(row: imagesRow, section: contentSection)
+            if let cell = tableView.cellForRow(at: indexPath) as? SetHeroImageTableViewCell {
+                cell.additionalImages = images
+            }
+        }
+    }
+    
+    private func checkForLargeImage() {
+        if let set = currentSet, let imageURL = set.imageURL {
+            let largeImageURL = imageURL.replacingOccurrences(of: "/images/", with: "/large/")
+            Alamofire.request(largeImageURL, method: .head).response { response in
+                if let httpResponse = response.response, httpResponse.statusCode == 200 {
+                    self.hasLargeImage = true
+                    //self.enableImageZoom()
+                }
+            }
         }
     }
     

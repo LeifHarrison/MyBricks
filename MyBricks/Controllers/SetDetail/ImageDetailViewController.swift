@@ -63,12 +63,15 @@ class ImageDetailViewController: UIViewController {
     }
     
     fileprivate func updateMinZoomScaleForSize(_ size: CGSize) {
-        let widthScale = size.width / imageView.bounds.width
-        let heightScale = size.height / imageView.bounds.height
-        let minScale = min(widthScale, heightScale)
-        
-        scrollView.minimumZoomScale = minScale
-        scrollView.zoomScale = minScale
+        if imageView.bounds.width > 0, imageView.bounds.height > 0 {
+            let widthScale = size.width / (imageView.bounds.width + 5*defaultInsets)
+            let heightScale = size.height / (imageView.bounds.height + 5*defaultInsets)
+            let minScale = min(widthScale, heightScale)
+            
+            scrollView.minimumZoomScale = minScale
+            scrollView.maximumZoomScale = 3.0
+            scrollView.zoomScale = minScale
+        }
     }
     
     fileprivate func updateConstraintsForSize(_ size: CGSize) {

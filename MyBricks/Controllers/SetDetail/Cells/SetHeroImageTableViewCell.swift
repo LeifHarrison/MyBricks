@@ -31,6 +31,7 @@ class SetHeroImageTableViewCell: UITableViewCell, ReusableView, NibLoadableView 
             if additionalImages.count > 0 {
                 showPageControls(animated: true)
                 updatePageIndicater()
+                collectionView.reloadData()
             }
         }
     }
