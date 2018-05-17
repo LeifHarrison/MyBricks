@@ -9,7 +9,7 @@
 import Foundation
 import Fuzi
 
-public struct SetImage {
+public struct SetImage: Equatable {
     
     var thumbnailURL: String?
     var imageURL: String?

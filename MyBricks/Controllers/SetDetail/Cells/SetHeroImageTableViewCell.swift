@@ -201,12 +201,13 @@ extension SetHeroImageTableViewCell: UICollectionViewDelegate {
             let image = self.additionalImages[indexPath.item-1]
             imageTapped?(image)
         }
+        collectionView.deselectItem(at: indexPath, animated: true)
     }
     
 }
 
 //==============================================================================
-// MARK: - UICollectionViewDelegate
+// MARK: - UIScrollViewDelegate
 //==============================================================================
 
 extension SetHeroImageTableViewCell: UIScrollViewDelegate {

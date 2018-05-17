@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="ZoomImageCollectionViewCell" customModule="MyBricks" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="577"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="577"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VsV-Ep-wbq">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="577"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="E6w-Cw-kR8">
+                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                            </imageView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="E6w-Cw-kR8" secondAttribute="trailing" id="0LN-uH-cv6"/>
+                            <constraint firstItem="E6w-Cw-kR8" firstAttribute="leading" secondItem="VsV-Ep-wbq" secondAttribute="leading" id="88r-LS-k56"/>
+                            <constraint firstItem="E6w-Cw-kR8" firstAttribute="top" secondItem="VsV-Ep-wbq" secondAttribute="top" id="Fwn-gG-yhB"/>
+                            <constraint firstAttribute="bottom" secondItem="E6w-Cw-kR8" secondAttribute="bottom" id="pXS-jp-Sol"/>
+                        </constraints>
+                        <connections>
+                            <outlet property="delegate" destination="gTV-IL-0wX" id="lhs-0q-GtS"/>
+                        </connections>
+                    </scrollView>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="VsV-Ep-wbq" secondAttribute="trailing" id="2bb-fS-kSE"/>
+                <constraint firstItem="VsV-Ep-wbq" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="JBh-Ho-yE2"/>
+                <constraint firstAttribute="bottom" secondItem="VsV-Ep-wbq" secondAttribute="bottom" id="d1e-R5-mSO"/>
+                <constraint firstItem="VsV-Ep-wbq" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="fSv-mN-PN8"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <connections>
+                <outlet property="imageView" destination="E6w-Cw-kR8" id="5FO-e9-ZBN"/>
+                <outlet property="imageViewBottomConstraint" destination="pXS-jp-Sol" id="J9A-tm-IQt"/>
+                <outlet property="imageViewLeadingConstraint" destination="88r-LS-k56" id="AOO-zs-IZv"/>
+                <outlet property="imageViewTopConstraint" destination="Fwn-gG-yhB" id="j0H-HO-g38"/>
+                <outlet property="imageViewTrailingConstraint" destination="0LN-uH-cv6" id="Ozs-hL-abs"/>
+                <outlet property="scrollView" destination="VsV-Ep-wbq" id="hh5-9v-bK6"/>
+            </connections>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="image_placeholder" width="50" height="50"/>
+    </resources>
+</document>

@@ -85,7 +85,6 @@
 		9B48CBF22045E3270074908B /* SetInstructionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B48CBF02045E3270074908B /* SetInstructionsTableViewCell.swift */; };
 		9B48CBF32045E3270074908B /* SetInstructionsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B48CBF12045E3270074908B /* SetInstructionsTableViewCell.xib */; };
 		9B4B4C4E203CD2630026B3AC /* SimpleActivityHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4B4C4D203CD2630026B3AC /* SimpleActivityHUD.swift */; };
-		9B5450372024E2DD0021074D /* ImageDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5450362024E2DD0021074D /* ImageDetailViewController.swift */; };
 		9B5450392025206D0021074D /* SetImagesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5450382025206D0021074D /* SetImagesTableViewCell.swift */; };
 		9B58D93420AB50CF00F6E92A /* FilterCheckboxButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B58D93320AB50CF00F6E92A /* FilterCheckboxButton.swift */; };
 		9B5B4A53204DDBEA00F2324C /* PriceGuideTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B5B4A52204DDBEA00F2324C /* PriceGuideTableViewCell.xib */; };
@@ -114,6 +113,8 @@
 		9B83E436202A21BC004433F0 /* SetImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B83E435202A21BC004433F0 /* SetImageCollectionViewCell.swift */; };
 		9B8803DC20A0CA89006CB444 /* SetReviewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B8803DB20A0CA89006CB444 /* SetReviewTableViewCell.xib */; };
 		9B8803DE20A10035006CB444 /* FilterUnreleasedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8803DD20A10035006CB444 /* FilterUnreleasedTableViewCell.swift */; };
+		9B8C323320AE2702006E48A5 /* ZoomImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B8C323120AE2702006E48A5 /* ZoomImageCollectionViewCell.swift */; };
+		9B8C323420AE2702006E48A5 /* ZoomImageCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B8C323220AE2702006E48A5 /* ZoomImageCollectionViewCell.xib */; };
 		9B92A916202E4BE8001E7AC9 /* TagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B92A914202E4BE8001E7AC9 /* TagView.swift */; };
 		9B92A917202E4BE8001E7AC9 /* TagListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B92A915202E4BE8001E7AC9 /* TagListView.swift */; };
 		9B92EFA4201FC062007610BD /* FilterOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B92EFA3201FC062007610BD /* FilterOptions.swift */; };
@@ -123,6 +124,7 @@
 		9B92EFAE201FE084007610BD /* FilterSelectSubthemeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B92EFAD201FE084007610BD /* FilterSelectSubthemeViewController.swift */; };
 		9B92EFB0201FE09D007610BD /* FilterSelectYearViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B92EFAF201FE09D007610BD /* FilterSelectYearViewController.swift */; };
 		9BB4710F20910523006DBB06 /* SetDescriptionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9BB4710E20910523006DBB06 /* SetDescriptionTableViewCell.xib */; };
+		9BC7A64420AB94890095DF65 /* SetImagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC7A64320AB94890095DF65 /* SetImagesViewController.swift */; };
 		9BCA7E302028DA6E00FA7BDC /* SetPriceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BCA7E2F2028DA6E00FA7BDC /* SetPriceTableViewCell.swift */; };
 		9BD4D5C0202E27000019A057 /* SetTagsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD4D5BE202E27000019A057 /* SetTagsTableViewCell.swift */; };
 		9BD4D5C1202E27000019A057 /* SetTagsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9BD4D5BF202E27000019A057 /* SetTagsTableViewCell.xib */; };
@@ -254,7 +256,6 @@
 		9B48CBF02045E3270074908B /* SetInstructionsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetInstructionsTableViewCell.swift; sourceTree = "<group>"; };
 		9B48CBF12045E3270074908B /* SetInstructionsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SetInstructionsTableViewCell.xib; sourceTree = "<group>"; };
 		9B4B4C4D203CD2630026B3AC /* SimpleActivityHUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleActivityHUD.swift; sourceTree = "<group>"; };
-		9B5450362024E2DD0021074D /* ImageDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDetailViewController.swift; sourceTree = "<group>"; };
 		9B5450382025206D0021074D /* SetImagesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetImagesTableViewCell.swift; sourceTree = "<group>"; };
 		9B58D93320AB50CF00F6E92A /* FilterCheckboxButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCheckboxButton.swift; sourceTree = "<group>"; };
 		9B5B4A52204DDBEA00F2324C /* PriceGuideTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PriceGuideTableViewCell.xib; sourceTree = "<group>"; };
@@ -283,6 +284,8 @@
 		9B83E435202A21BC004433F0 /* SetImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		9B8803DB20A0CA89006CB444 /* SetReviewTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SetReviewTableViewCell.xib; sourceTree = "<group>"; };
 		9B8803DD20A10035006CB444 /* FilterUnreleasedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterUnreleasedTableViewCell.swift; sourceTree = "<group>"; };
+		9B8C323120AE2702006E48A5 /* ZoomImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoomImageCollectionViewCell.swift; sourceTree = "<group>"; };
+		9B8C323220AE2702006E48A5 /* ZoomImageCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ZoomImageCollectionViewCell.xib; sourceTree = "<group>"; };
 		9B92A914202E4BE8001E7AC9 /* TagView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagView.swift; sourceTree = "<group>"; };
 		9B92A915202E4BE8001E7AC9 /* TagListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagListView.swift; sourceTree = "<group>"; };
 		9B92EFA3201FC062007610BD /* FilterOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterOptions.swift; sourceTree = "<group>"; };
@@ -292,6 +295,7 @@
 		9B92EFAD201FE084007610BD /* FilterSelectSubthemeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterSelectSubthemeViewController.swift; sourceTree = "<group>"; };
 		9B92EFAF201FE09D007610BD /* FilterSelectYearViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterSelectYearViewController.swift; sourceTree = "<group>"; };
 		9BB4710E20910523006DBB06 /* SetDescriptionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SetDescriptionTableViewCell.xib; sourceTree = "<group>"; };
+		9BC7A64320AB94890095DF65 /* SetImagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetImagesViewController.swift; sourceTree = "<group>"; };
 		9BCA7E2F2028DA6E00FA7BDC /* SetPriceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetPriceTableViewCell.swift; sourceTree = "<group>"; };
 		9BD4D5BE202E27000019A057 /* SetTagsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetTagsTableViewCell.swift; sourceTree = "<group>"; };
 		9BD4D5BF202E27000019A057 /* SetTagsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SetTagsTableViewCell.xib; sourceTree = "<group>"; };
@@ -656,7 +660,6 @@
 				9B85355C202389D200D77DF9 /* Cells */,
 				9B3E1EEA202A68E40094DD3E /* Views */,
 				9B74301A20AA137F0002E146 /* CollectionDetailViewController.swift */,
-				9B5450362024E2DD0021074D /* ImageDetailViewController.swift */,
 				2949A94E1FBFBEC800676D59 /* InstructionsViewController.swift */,
 				2949A9501FBFBEE000676D59 /* PartsListViewController.swift */,
 				9BE7838D20486EED00FD078E /* PriceDetailViewController.swift */,
@@ -665,6 +668,7 @@
 				2949A94C1FBFBEB500676D59 /* ReviewsViewController.swift */,
 				9BFFDEAA20212E5F0070C812 /* SetDetail.storyboard */,
 				29CCD8ED1F993E12009A39CF /* SetDetailViewController.swift */,
+				9BC7A64320AB94890095DF65 /* SetImagesViewController.swift */,
 			);
 			path = SetDetail;
 			sourceTree = "<group>";
@@ -702,6 +706,8 @@
 				9B8803DB20A0CA89006CB444 /* SetReviewTableViewCell.xib */,
 				9BD4D5BE202E27000019A057 /* SetTagsTableViewCell.swift */,
 				9BD4D5BF202E27000019A057 /* SetTagsTableViewCell.xib */,
+				9B8C323120AE2702006E48A5 /* ZoomImageCollectionViewCell.swift */,
+				9B8C323220AE2702006E48A5 /* ZoomImageCollectionViewCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -891,6 +897,7 @@
 				295ADFC61F16AFFD002E6802 /* Assets.xcassets in Resources */,
 				9B48CBF32045E3270074908B /* SetInstructionsTableViewCell.xib in Resources */,
 				9B63D27A202CD73600E1C3B0 /* SetImagesTableViewCell.xib in Resources */,
+				9B8C323420AE2702006E48A5 /* ZoomImageCollectionViewCell.xib in Resources */,
 				295ADFC41F16AFFD002E6802 /* Main.storyboard in Resources */,
 				291AC5EE1FAF6FAC000DC9DD /* Profile.storyboard in Resources */,
 			);
@@ -1003,18 +1010,19 @@
 				29E86FDB1F31293900A67179 /* ThemeTableViewCell.swift in Sources */,
 				29C111A11FC3F0F6007CBDB4 /* UIView+Extensions.swift in Sources */,
 				9B4B4C4E203CD2630026B3AC /* SimpleActivityHUD.swift in Sources */,
-				9B5450372024E2DD0021074D /* ImageDetailViewController.swift in Sources */,
 				294F187A1FB4EDC20026342F /* GradientView.swift in Sources */,
 				298FC8311FBA45940094D6DF /* BarcodeScannerViewController.swift in Sources */,
 				295ADFC11F16AFFD002E6802 /* SearchViewController.swift in Sources */,
 				2940FD821FD4EAF400F860F3 /* SearchHistoryItem+CoreDataProperties.swift in Sources */,
 				9BE7838E20486EED00FD078E /* PriceDetailViewController.swift in Sources */,
+				9BC7A64420AB94890095DF65 /* SetImagesViewController.swift in Sources */,
 				9B5E4D37203352250057610E /* UITableView+Extensions.swift in Sources */,
 				298F10901FFF3BC800CC14E9 /* GetSetsRequest.swift in Sources */,
 				29B9514D1FDBCC8B0049147E /* Element.swift in Sources */,
 				9BCA7E302028DA6E00FA7BDC /* SetPriceTableViewCell.swift in Sources */,
 				29C111A91FCA411B007CBDB4 /* InstructionsTableViewCell.swift in Sources */,
 				9B67EC2A2044A0CE001FAF77 /* FilterSortingDirectionTableViewCell.swift in Sources */,
+				9B8C323320AE2702006E48A5 /* ZoomImageCollectionViewCell.swift in Sources */,
 				2949A94F1FBFBEC800676D59 /* InstructionsViewController.swift in Sources */,
 				29B951511FDBCCA00049147E /* Color.swift in Sources */,
 				29D30CA51FDE1A690076DB85 /* PartsListTableViewCell.swift in Sources */,

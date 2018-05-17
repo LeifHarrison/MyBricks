@@ -18,10 +18,9 @@ class SetImageCollectionViewCell: UICollectionViewCell, ReusableView, NibLoadabl
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
         contentView.backgroundColor = UIColor.clear
-        //imageView.layer.borderColor = UIColor.whiteThree.cgColor
-        //imageView.layer.borderWidth = 1.0 / UIScreen.main.scale
-
+        self.layer.cornerRadius = 4.0
     }
     
     //--------------------------------------------------------------------------
@@ -33,4 +32,10 @@ class SetImageCollectionViewCell: UICollectionViewCell, ReusableView, NibLoadabl
         imageView.image = nil
     }
     
+    override var isSelected: Bool {
+        didSet {
+            self.layer.borderColor = isSelected ? UIColor.lightNavy.cgColor : nil
+            self.layer.borderWidth = isSelected ? 2 : 0
+        }
+    }
 }

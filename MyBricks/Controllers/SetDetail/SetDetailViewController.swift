@@ -233,40 +233,14 @@ class SetDetailViewController: UIViewController {
         }
     }
     
-    private func showLargeImage() {
-        performSegue(withIdentifier: "showImageDetailView", sender: self)
-    }
-    
     private func showImageDetail(for setImage: SetImage?) {
-        if let viewController = self.storyboard?.instantiateViewController(withIdentifier: "ImageDetailViewController") as? ImageDetailViewController {
-            if let selectedImage = setImage {
-                viewController.imageURL = selectedImage.imageURL
-            }
-            else if let set = self.currentSet, let imageURL = set.imageURL {
-                if self.hasLargeImage {
-                    let largeImageURL = imageURL.replacingOccurrences(of: "/images/", with: "/large/")
-                    viewController.imageURL = largeImageURL
-                }
-                else {
-                    viewController.imageURL = imageURL
-                }
-            }
+        if let viewController = self.storyboard?.instantiateViewController(withIdentifier: "SetImagesViewController") as? SetImagesViewController {
+            viewController.images = additionalImages ?? []
+            viewController.selectedImage = setImage
             self.present(viewController, animated: true, completion: nil)
         }
     }
     
-    //--------------------------------------------------------------------------
-    // MARK: - Storyboards and Segues
-    //--------------------------------------------------------------------------
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let imageVC = segue.destination as? ImageDetailViewController {
-            if let set = currentSet, let imageURL = set.imageURL {
-                let largeImageURL = imageURL.replacingOccurrences(of: "/images/", with: "/large/")
-                imageVC.imageURL = largeImageURL
-            }
-        }
-    }
 }
 
 //==============================================================================
@@ -410,7 +384,6 @@ extension SetDetailViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        NSLog("didSelectRowAt: \(indexPath)")
         let section = sections[indexPath.section]
         
         if section == .detail {
