@@ -102,4 +102,10 @@ extension UIView {
         layer.shadowRadius = 2
     }
     
+    func applyLightBlackShadowStyle() {
+        layer.shadowColor = UIColor.black.cgColor
+        layer.shadowOffset =  CGSize(width: 1, height: 1)
+        layer.shadowOpacity = 0.4
+        layer.shadowRadius = 2
+    }
 }

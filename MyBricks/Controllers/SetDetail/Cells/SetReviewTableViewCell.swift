@@ -15,8 +15,8 @@ class SetReviewTableViewCell: UITableViewCell, ReusableView, NibLoadableView {
     
     let defaultStarSize: Double = 18
     let smallStarSize: Double = 16
-    let defaultStarMargin: CGFloat = 2
-    let smallStarMargin: CGFloat = 1
+    let defaultStarMargin: Double = 2
+    let smallStarMargin: Double = 1
 
     @IBOutlet weak var summaryContainerView: UIView!
     @IBOutlet weak var titleLabel: UILabel!
@@ -49,11 +49,7 @@ class SetReviewTableViewCell: UITableViewCell, ReusableView, NibLoadableView {
         reviewContainerView.addBorder()
         reviewContainerView.addGradientBackground()
 
-        moreButton.layer.cornerRadius = moreButton.bounds.height / 2
-        moreButton.layer.shadowColor = UIColor.blueGrey.cgColor
-        moreButton.layer.shadowRadius = 2
-        moreButton.layer.shadowOpacity = 0.7
-        moreButton.layer.shadowOffset =  CGSize(width: 1, height: 1)
+        moreButton.applyRoundedShadowStyle()
 
         prepareForReuse()
     }
@@ -84,20 +80,7 @@ class SetReviewTableViewCell: UITableViewCell, ReusableView, NibLoadableView {
     
     var useSmallLayout: Bool = false {
         didSet {
-            if useSmallLayout {
-                overallRatingView.settings.starSize = smallStarSize
-                buildingRatingView.settings.starSize = smallStarSize
-                partsRatingView.settings.starSize = smallStarSize
-                playabilityRatingView.settings.starSize = smallStarSize
-                valueRatingView.settings.starSize = smallStarSize
-            }
-            else {
-                overallRatingView.settings.starSize = defaultStarSize + 2
-                buildingRatingView.settings.starSize = defaultStarSize
-                partsRatingView.settings.starSize = defaultStarSize
-                playabilityRatingView.settings.starSize = defaultStarSize
-                valueRatingView.settings.starSize = defaultStarSize
-            }
+            configureRatingsViews()
         }
     }
     
@@ -136,6 +119,26 @@ class SetReviewTableViewCell: UITableViewCell, ReusableView, NibLoadableView {
         }
     }
 
+    //--------------------------------------------------------------------------
+    // MARK: - Private
+    //--------------------------------------------------------------------------
+    
+    private func configureRatingsViews() {
+        configureRatingsView(ratingView: buildingRatingView)
+        configureRatingsView(ratingView: partsRatingView)
+        configureRatingsView(ratingView: playabilityRatingView)
+        configureRatingsView(ratingView: valueRatingView)
+        configureRatingsView(ratingView: overallRatingView)
+    }
+    
+    private func configureRatingsView(ratingView: CosmosView) {
+        ratingView.settings.starSize = useSmallLayout ? smallStarSize : defaultStarSize
+        ratingView.settings.fillMode = .precise
+        ratingView.settings.starMargin = useSmallLayout ? smallStarMargin : defaultStarMargin
+        ratingView.settings.updateOnTouch = false
+        ratingView.settings.emptyImage = #imageLiteral(resourceName: "ratingStarEmpty")
+        ratingView.settings.filledImage = #imageLiteral(resourceName: "ratingStarFilled")
+    }
 }
 
 //==============================================================================

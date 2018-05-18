@@ -11,6 +11,8 @@ import Cosmos
 
 class CollectionDetailViewController: UIViewController {
 
+    @IBOutlet weak var contentView: UIView!
+
     @IBOutlet weak var ownedContainer: UIView!
     @IBOutlet weak var wantedContainer: UIView!
     @IBOutlet weak var ratingView: CosmosView!
@@ -28,37 +30,30 @@ class CollectionDetailViewController: UIViewController {
     var previousQuantityOwned: Int = 0
     var previousNotesText: String = ""
     
+    //--------------------------------------------------------------------------
+    // MARK: - View Lifecycle
+    //--------------------------------------------------------------------------
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        contentView.addBorder()
+        contentView.addGradientBackground()
+        
         ownedContainer.layer.cornerRadius = ownedContainer.bounds.height / 2
         wantedContainer.layer.cornerRadius = wantedContainer.bounds.height / 2
         
-        ownedCountField.layer.borderColor = UIColor.darkGray.cgColor
+        ownedCountField.layer.borderColor = UIColor.lightNavy.cgColor
         ownedCountField.layer.borderWidth = 1.0
-        ownedCountField.layer.cornerRadius = 8.0
-        
-        ratingView.settings.starSize = 25.0
-        
-        notesTextView.layer.borderColor = UIColor.darkGray.cgColor
+        ownedCountField.layer.cornerRadius = 2.0
+
+        notesTextView.layer.borderColor = UIColor.lightNavy.cgColor
         notesTextView.layer.borderWidth = 1.0
         notesTextView.layer.cornerRadius = 5.0
         
+        setupRatingView()
         addOwnedCountInputAccessoryView()
         addUserNotesInputAccessoryView()
-        
-        ratingView.didFinishTouchingCosmos = { rating in
-            if var set = self.currentSet, let setID = set.setID {
-                BricksetServices.shared.setUserRating(setID: setID, rating: Int(rating), completion: { result in
-                    if result.isSuccess {
-                        set.userRating = Int(rating)
-                        self.setUpdated?(set)
-                        self.currentSet = set
-                    }
-                })
-            }
-        }
-        
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -139,7 +134,7 @@ class CollectionDetailViewController: UIViewController {
     //--------------------------------------------------------------------------
     
     private func addOwnedCountInputAccessoryView() {
-        let doneToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 320, height: 50))
+        let doneToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 44))
         doneToolbar.barStyle = UIBarStyle.default
         
         let cancel = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelButtonAction))
@@ -174,6 +169,25 @@ class CollectionDetailViewController: UIViewController {
         doneToolbar.sizeToFit()
         
         notesTextView.inputAccessoryView = doneToolbar
+    }
+    
+    private func setupRatingView() {
+        ratingView.settings.starSize = 28.0
+        ratingView.settings.starMargin = 4
+        ratingView.settings.emptyImage = #imageLiteral(resourceName: "ratingStarEmpty")
+        ratingView.settings.filledImage = #imageLiteral(resourceName: "ratingStarFilled")
+
+        ratingView.didFinishTouchingCosmos = { rating in
+            if var set = self.currentSet, let setID = set.setID {
+                BricksetServices.shared.setUserRating(setID: setID, rating: Int(rating), completion: { result in
+                    if result.isSuccess {
+                        set.userRating = Int(rating)
+                        self.setUpdated?(set)
+                        self.currentSet = set
+                    }
+                })
+            }
+        }
     }
     
     private func updateQuantityOwned(newQuantity: Int) {

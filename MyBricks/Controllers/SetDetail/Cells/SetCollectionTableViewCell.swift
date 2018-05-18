@@ -11,8 +11,11 @@ import Cosmos
 
 class SetCollectionTableViewCell: BorderedGradientTableViewCell, ReusableView, NibLoadableView {
 
-    @IBOutlet weak var collectionStatusView: UIView!
-    @IBOutlet weak var collectionStatusLabel: UILabel!
+    @IBOutlet weak var ownedStatusView: UIView!
+    @IBOutlet weak var ownedStatusLabel: UILabel!
+    @IBOutlet weak var wantedStatusView: UIView!
+    @IBOutlet weak var wantedStatusLabel: UILabel!
+    @IBOutlet weak var ratingContainerView: UIView!
     @IBOutlet weak var ratingIndicator: UIImageView!
     @IBOutlet weak var ratingLabel: UILabel!
     @IBOutlet weak var notesIndicator: UIImageView!
@@ -27,17 +30,16 @@ class SetCollectionTableViewCell: BorderedGradientTableViewCell, ReusableView, N
         accessoryView = UIImageView(image: UIImage(named:"forward"))
         accessoryView?.tintColor = UIColor.lightNavy
         
-        collectionStatusView.layer.shadowColor = UIColor.black.cgColor
-        collectionStatusView.layer.shadowOffset =  CGSize(width: 1, height: 1)
-        collectionStatusView.layer.shadowOpacity = 0.4
-        collectionStatusView.layer.shadowRadius = 2
+        ownedStatusView.applyLightBlackShadowStyle()
+        wantedStatusView.applyLightBlackShadowStyle()
 
         prepareForReuse()
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        collectionStatusView.layer.cornerRadius = collectionStatusView.frame.height / 2
+        ownedStatusView.layer.cornerRadius = ownedStatusView.frame.height / 2
+        wantedStatusView.layer.cornerRadius = wantedStatusView.frame.height / 2
     }
     
     //--------------------------------------------------------------------------
@@ -46,6 +48,11 @@ class SetCollectionTableViewCell: BorderedGradientTableViewCell, ReusableView, N
 
     override func prepareForReuse() {
         super.prepareForReuse()
+        
+        ownedStatusView.isHidden = true
+        wantedStatusView.isHidden = true
+        ratingContainerView.isHidden = true
+        notesIndicator.isHidden = true
     }
     
     //--------------------------------------------------------------------------
@@ -57,16 +64,26 @@ class SetCollectionTableViewCell: BorderedGradientTableViewCell, ReusableView, N
     //--------------------------------------------------------------------------
     
     func populate(with set: Set) {
-        collectionStatusView.isHidden = !set.owned && !set.wanted
+        ownedStatusView.isHidden = !set.owned
+        wantedStatusView.isHidden = !set.wanted
+
         if set.owned {
-            collectionStatusLabel.text = "\(set.quantityOwned ?? 0)"
-            collectionStatusView.backgroundColor = UIColor.bricksetOwned
+            ownedStatusLabel.text = "\(set.quantityOwned ?? 0)"
+            ownedStatusView.backgroundColor = UIColor.bricksetOwned
         }
         else if set.wanted {
-            collectionStatusLabel.text = "W"
-            collectionStatusView.backgroundColor = UIColor.bricksetWanted
+            wantedStatusLabel.text = "W"
+            wantedStatusView.backgroundColor = UIColor.bricksetWanted
         }
 
+        if let rating = set.userRating, rating > 0 {
+            ratingContainerView.isHidden = false
+            ratingLabel.text = "\(rating)"
+        }
+
+        if let notes = set.userNotes, notes.count > 0 {
+            notesIndicator.isHidden = false
+        }
     }
 
     //--------------------------------------------------------------------------

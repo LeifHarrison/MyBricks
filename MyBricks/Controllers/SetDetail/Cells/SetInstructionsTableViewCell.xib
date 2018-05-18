@@ -20,7 +20,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" insetsLayoutMarginsFromSafeArea="NO" text="Instructions" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fQX-2f-4TE">
-                        <rect key="frame" x="15" y="12" width="319.5" height="21.5"/>
+                        <rect key="frame" x="15" y="12" width="292.5" height="21.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" name="lightNavy"/>
                         <nil key="highlightedColor"/>
@@ -31,13 +31,19 @@
                         <color key="textColor" name="lightNavy"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" image="instructions" translatesAutoresizingMaskIntoConstraints="NO" id="9HW-VO-I0H">
+                        <rect key="frame" x="322.5" y="13" width="17" height="20"/>
+                        <color key="tintColor" name="lightNavy"/>
+                    </imageView>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="i6g-IB-Zzz" secondAttribute="trailing" constant="15" id="Bs8-8L-tev"/>
                     <constraint firstItem="fQX-2f-4TE" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="FCD-UC-1j9"/>
+                    <constraint firstItem="9HW-VO-I0H" firstAttribute="leading" secondItem="fQX-2f-4TE" secondAttribute="trailing" constant="15" id="G8Z-Ld-XzN"/>
                     <constraint firstItem="i6g-IB-Zzz" firstAttribute="baseline" secondItem="fQX-2f-4TE" secondAttribute="baseline" id="WZv-nv-LN5"/>
+                    <constraint firstItem="i6g-IB-Zzz" firstAttribute="leading" secondItem="9HW-VO-I0H" secondAttribute="trailing" constant="10" id="aMV-Je-F2z"/>
                     <constraint firstAttribute="bottom" secondItem="fQX-2f-4TE" secondAttribute="bottom" constant="12" id="c5a-HC-T0F"/>
-                    <constraint firstItem="i6g-IB-Zzz" firstAttribute="leading" secondItem="fQX-2f-4TE" secondAttribute="trailing" constant="15" id="dUp-8h-6hN"/>
+                    <constraint firstItem="9HW-VO-I0H" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="iUr-7b-1ic"/>
                     <constraint firstItem="fQX-2f-4TE" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="m8t-d1-hTi"/>
                 </constraints>
             </tableViewCellContentView>
@@ -50,6 +56,10 @@
         </tableViewCell>
     </objects>
     <resources>
+        <image name="instructions" width="17" height="20"/>
+        <namedColor name="lightNavy">
+            <color red="0.086274509799999996" green="0.25098039220000001" blue="0.4431372549" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="lightNavy">
             <color red="0.086274509803921567" green="0.25098039215686274" blue="0.44313725490196076" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

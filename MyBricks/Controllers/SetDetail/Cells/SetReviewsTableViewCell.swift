@@ -21,23 +21,13 @@ class SetReviewsTableViewCell: BorderedGradientTableViewCell, ReusableView, NibL
 
     override func awakeFromNib() {
         super.awakeFromNib()
-
-        ratingView.settings.starSize = 22.0
-        ratingView.settings.fillMode = .precise
-        ratingView.settings.starMargin = 0.0
-        ratingView.settings.updateOnTouch = false
-        ratingView.settings.filledColor = UIColor.orangeyYellow
-        ratingView.settings.emptyColor = UIColor.white
-        ratingView.settings.emptyBorderColor = UIColor.slateBlue
-        //ratingView.settings.filledBorderColor = UIColor.slateBlue
-        ratingView.settings.textColor = UIColor.lightNavy
-        ratingView.settings.textFont = UIFont.systemFont(ofSize: 16, weight: .semibold)
-
+        
         titleLabel.text = "Rating"
+        setupRatingView()
 
         accessoryView = UIImageView(image: UIImage(named:"forward"))
         accessoryView?.tintColor = UIColor.lightNavy
-
+        
         prepareForReuse()
     }
 
@@ -62,4 +52,16 @@ class SetReviewsTableViewCell: BorderedGradientTableViewCell, ReusableView, NibL
         }
     }
     
+    //--------------------------------------------------------------------------
+    // MARK: - Private
+    //--------------------------------------------------------------------------
+    
+    private func setupRatingView() {
+        ratingView.settings.starSize = 28.0
+        ratingView.settings.fillMode = .precise
+        ratingView.settings.starMargin = 2.0
+        ratingView.settings.textColor = UIColor.lightNavy
+        ratingView.settings.textFont = UIFont.systemFont(ofSize: 16, weight: .semibold)
+        ratingView.settings.updateOnTouch = false
+    }
 }
