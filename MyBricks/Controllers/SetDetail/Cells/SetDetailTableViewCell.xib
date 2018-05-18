@@ -12,10 +12,10 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SetDetailTableViewCell" id="okH-rH-g0E" customClass="SetDetailTableViewCell" customModule="MyBricks" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="194"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="190"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="okH-rH-g0E" id="5p0-dj-Kdv">
-                <rect key="frame" x="0.0" y="0.0" width="375" height="193.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="375" height="189.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="750" text="Set Name" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uwx-K5-LbG">
@@ -24,91 +24,89 @@
                         <color key="textColor" name="lightNavy"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="750" text="Set Number" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V8p-de-25A">
-                        <rect key="frame" x="15" y="49" width="96" height="21.5"/>
-                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="18"/>
-                        <color key="textColor" name="lightNavy"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="750" text="Age" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cs8-zJ-u4w">
-                        <rect key="frame" x="172" y="49" width="31.5" height="21.5"/>
-                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="18"/>
-                        <color key="textColor" name="lightNavy"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="750" text="Year" textAlignment="right" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ors-fy-VYq">
-                        <rect key="frame" x="324" y="49" width="35.5" height="21.5"/>
-                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="18"/>
-                        <color key="textColor" name="lightNavy"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="750" text="Theme / Subtheme" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k6v-CV-xiL">
-                        <rect key="frame" x="15" y="90.5" width="345" height="19.5"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="750" text="Set Number / Age / Year" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XUW-Kk-0jg">
+                        <rect key="frame" x="15" y="59" width="345" height="20.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <color key="textColor" name="lightNavy"/>
                         <nil key="highlightedColor"/>
+                        <color key="shadowColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FVl-gZ-qJ9">
+                        <rect key="frame" x="15" y="85" width="345" height="1"/>
+                        <color key="backgroundColor" name="lightBlueGrey"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="Of5-89-Mnv"/>
+                        </constraints>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="750" text="Theme / Subtheme" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k6v-CV-xiL">
+                        <rect key="frame" x="15" y="91" width="345" height="20.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <color key="textColor" name="lightNavy"/>
+                        <nil key="highlightedColor"/>
+                        <color key="shadowColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F4d-FV-gB8">
-                        <rect key="frame" x="15" y="115" width="345" height="1"/>
-                        <color key="backgroundColor" name="cloudyBlue"/>
+                        <rect key="frame" x="15" y="116.5" width="345" height="1"/>
+                        <color key="backgroundColor" name="lightBlueGrey"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="1" id="HBW-aO-ny8"/>
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="252" horizontalCompressionResistancePriority="752" verticalCompressionResistancePriority="752" text="Theme Group" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XBT-2m-MXd">
-                        <rect key="frame" x="15" y="121" width="345" height="19.5"/>
+                        <rect key="frame" x="15" y="122.5" width="345" height="20.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <color key="textColor" name="lightNavy"/>
                         <nil key="highlightedColor"/>
+                        <color key="shadowColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ppk-jQ-zGg">
-                        <rect key="frame" x="15" y="145.5" width="345" height="1"/>
-                        <color key="backgroundColor" name="cloudyBlue"/>
+                        <rect key="frame" x="15" y="148" width="345" height="1"/>
+                        <color key="backgroundColor" name="lightBlueGrey"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="1" id="WTS-TV-f0v"/>
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="252" horizontalCompressionResistancePriority="752" verticalCompressionResistancePriority="752" text="Availability / Packaging (Weight)" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" minimumFontSize="14" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lwf-4a-gAF">
-                        <rect key="frame" x="15" y="151.5" width="345" height="19.5"/>
+                        <rect key="frame" x="15" y="154" width="345" height="20.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <color key="textColor" name="lightNavy"/>
                         <nil key="highlightedColor"/>
+                        <color key="shadowColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </label>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="XUW-Kk-0jg" firstAttribute="leading" secondItem="5p0-dj-Kdv" secondAttribute="leading" constant="15" id="3gS-hJ-wkv"/>
                     <constraint firstItem="Uwx-K5-LbG" firstAttribute="top" secondItem="5p0-dj-Kdv" secondAttribute="top" constant="15" id="6Kb-V7-5bH"/>
-                    <constraint firstItem="cs8-zJ-u4w" firstAttribute="baseline" secondItem="V8p-de-25A" secondAttribute="baseline" id="7fy-kk-eLg"/>
                     <constraint firstItem="lwf-4a-gAF" firstAttribute="top" secondItem="ppk-jQ-zGg" secondAttribute="bottom" constant="5" id="8ew-MV-r2g"/>
+                    <constraint firstItem="k6v-CV-xiL" firstAttribute="top" secondItem="FVl-gZ-qJ9" secondAttribute="bottom" constant="5" id="D5A-EN-uit"/>
                     <constraint firstItem="F4d-FV-gB8" firstAttribute="leading" secondItem="5p0-dj-Kdv" secondAttribute="leading" constant="15" id="GTK-sj-yGv"/>
                     <constraint firstItem="XBT-2m-MXd" firstAttribute="top" secondItem="F4d-FV-gB8" secondAttribute="bottom" constant="5" id="Jbt-AM-UCy"/>
                     <constraint firstAttribute="trailing" secondItem="k6v-CV-xiL" secondAttribute="trailing" constant="15" id="Ldg-08-VKn"/>
-                    <constraint firstItem="V8p-de-25A" firstAttribute="top" secondItem="Uwx-K5-LbG" secondAttribute="bottom" constant="5" id="Pra-HU-sKW"/>
                     <constraint firstItem="ppk-jQ-zGg" firstAttribute="top" secondItem="XBT-2m-MXd" secondAttribute="bottom" constant="5" id="Pyq-eb-lTv"/>
                     <constraint firstItem="ppk-jQ-zGg" firstAttribute="leading" secondItem="5p0-dj-Kdv" secondAttribute="leading" constant="15" id="TUx-Kg-36g"/>
-                    <constraint firstItem="ors-fy-VYq" firstAttribute="baseline" secondItem="V8p-de-25A" secondAttribute="baseline" id="Uqq-Nf-Ggi"/>
                     <constraint firstAttribute="trailing" secondItem="Uwx-K5-LbG" secondAttribute="trailing" constant="15" id="W4e-eX-64z"/>
                     <constraint firstItem="F4d-FV-gB8" firstAttribute="top" secondItem="k6v-CV-xiL" secondAttribute="bottom" constant="5" id="Xmo-ce-iGY"/>
+                    <constraint firstAttribute="trailing" secondItem="XUW-Kk-0jg" secondAttribute="trailing" constant="15" id="bUk-K0-3sP"/>
                     <constraint firstAttribute="trailing" secondItem="ppk-jQ-zGg" secondAttribute="trailing" constant="15" id="dCm-GT-X7c"/>
+                    <constraint firstItem="FVl-gZ-qJ9" firstAttribute="leading" secondItem="5p0-dj-Kdv" secondAttribute="leading" constant="15" id="ds3-30-APT"/>
+                    <constraint firstItem="FVl-gZ-qJ9" firstAttribute="top" secondItem="XUW-Kk-0jg" secondAttribute="bottom" constant="5" id="f13-2q-ndh"/>
                     <constraint firstItem="k6v-CV-xiL" firstAttribute="leading" secondItem="5p0-dj-Kdv" secondAttribute="leading" constant="15" id="fML-ZE-Z8d"/>
                     <constraint firstAttribute="trailing" secondItem="F4d-FV-gB8" secondAttribute="trailing" constant="15" id="gJD-84-GX7"/>
                     <constraint firstAttribute="trailing" secondItem="XBT-2m-MXd" secondAttribute="trailing" constant="15" id="hCw-ra-uYv"/>
                     <constraint firstItem="lwf-4a-gAF" firstAttribute="leading" secondItem="5p0-dj-Kdv" secondAttribute="leading" constant="15" id="leR-gi-reg"/>
-                    <constraint firstItem="k6v-CV-xiL" firstAttribute="top" secondItem="V8p-de-25A" secondAttribute="bottom" constant="20" id="pDW-B3-bv3"/>
                     <constraint firstItem="Uwx-K5-LbG" firstAttribute="leading" secondItem="5p0-dj-Kdv" secondAttribute="leading" constant="15" id="q4T-wt-qps"/>
-                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="lwf-4a-gAF" secondAttribute="bottom" constant="20" id="qZH-yy-AjP"/>
-                    <constraint firstAttribute="trailing" secondItem="ors-fy-VYq" secondAttribute="trailing" constant="15" id="t2f-iR-dQ0"/>
+                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="lwf-4a-gAF" secondAttribute="bottom" constant="15" id="qZH-yy-AjP"/>
+                    <constraint firstItem="FVl-gZ-qJ9" firstAttribute="top" secondItem="XUW-Kk-0jg" secondAttribute="bottom" constant="5" id="rVh-3D-lDa"/>
+                    <constraint firstAttribute="trailing" secondItem="FVl-gZ-qJ9" secondAttribute="trailing" constant="15" id="sUM-cu-T6O"/>
                     <constraint firstItem="XBT-2m-MXd" firstAttribute="leading" secondItem="5p0-dj-Kdv" secondAttribute="leading" constant="15" id="wAq-JL-o0m"/>
                     <constraint firstAttribute="trailing" secondItem="lwf-4a-gAF" secondAttribute="trailing" constant="15" id="wQH-a9-MJJ"/>
-                    <constraint firstItem="cs8-zJ-u4w" firstAttribute="centerX" secondItem="5p0-dj-Kdv" secondAttribute="centerX" id="x1o-vk-uMU"/>
-                    <constraint firstItem="V8p-de-25A" firstAttribute="leading" secondItem="5p0-dj-Kdv" secondAttribute="leading" constant="15" id="xtd-YN-0Zy"/>
+                    <constraint firstItem="XUW-Kk-0jg" firstAttribute="top" secondItem="Uwx-K5-LbG" secondAttribute="bottom" constant="15" id="zRW-Ur-AKP"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="ageRangeField" destination="cs8-zJ-u4w" id="ZKi-jM-6zv"/>
                 <outlet property="availabilityField" destination="lwf-4a-gAF" id="cjE-bB-LT8"/>
                 <outlet property="setNameField" destination="Uwx-K5-LbG" id="5BT-ub-uXn"/>
-                <outlet property="setNumberField" destination="V8p-de-25A" id="OKN-aZ-1RX"/>
-                <outlet property="setYearField" destination="ors-fy-VYq" id="QRh-iN-Lzd"/>
+                <outlet property="setNumberField" destination="XUW-Kk-0jg" id="2PD-FX-LPg"/>
                 <outlet property="themeField" destination="k6v-CV-xiL" id="BGm-pL-03z"/>
                 <outlet property="themeGroupField" destination="XBT-2m-MXd" id="5f0-jJ-iEq"/>
             </connections>
@@ -116,8 +114,11 @@
         </tableViewCell>
     </objects>
     <resources>
-        <namedColor name="cloudyBlue">
-            <color red="0.6940000057220459" green="0.76499998569488525" blue="0.83099997043609619" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <namedColor name="lightBlueGrey">
+            <color red="0.77300000190734863" green="0.83499997854232788" blue="0.90600001811981201" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="lightNavy">
+            <color red="0.086274509799999996" green="0.25098039220000001" blue="0.4431372549" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="lightNavy">
             <color red="0.086274509799999996" green="0.25098039220000001" blue="0.4431372549" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

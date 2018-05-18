@@ -227,7 +227,6 @@ class SetDetailViewController: UIViewController {
             Alamofire.request(largeImageURL, method: .head).response { response in
                 if let httpResponse = response.response, httpResponse.statusCode == 200 {
                     self.hasLargeImage = true
-                    //self.enableImageZoom()
                 }
             }
         }
@@ -235,8 +234,10 @@ class SetDetailViewController: UIViewController {
     
     private func showImageDetail(for setImage: SetImage?) {
         if let viewController = self.storyboard?.instantiateViewController(withIdentifier: "SetImagesViewController") as? SetImagesViewController {
-            viewController.images = additionalImages ?? []
-            viewController.selectedImage = setImage
+            let mainImage = SetImage(thumbnailURL: currentSet?.thumbnailURL, imageURL: hasLargeImage ? currentSet?.largeImageURL : currentSet?.imageURL)
+            let images = [mainImage]
+            viewController.images = images + (additionalImages ?? [])
+            viewController.selectedImage = setImage ?? mainImage
             self.present(viewController, animated: true, completion: nil)
         }
     }

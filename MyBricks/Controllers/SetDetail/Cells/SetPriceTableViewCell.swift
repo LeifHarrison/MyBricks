@@ -42,7 +42,7 @@ class SetPriceTableViewCell: BorderedGradientTableViewCell, ReusableView, NibLoa
     //--------------------------------------------------------------------------
     
     func populate(with set: Set) {
-        priceLabel.text = set.preferredPriceString
+        priceLabel.text = set.preferredPriceDescription
     }
     
 }

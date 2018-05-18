@@ -185,7 +185,20 @@ struct Set {
         }
     }
     
-    var ageRangeString: String? {
+    var setNumberAgeYearDescription: String? {
+        var descriptionString = fullSetNumber
+        if let ageDescription = ageRangeDescription, ageDescription.count > 0 {
+            descriptionString.append(" / ")
+            descriptionString.append(ageDescription)
+        }
+        if let yearDescription = year, yearDescription.count > 0 {
+            descriptionString.append(" / ")
+            descriptionString.append(yearDescription)
+        }
+        return descriptionString
+    }
+
+    var ageRangeDescription: String? {
         if let ageMin = ageMin, let ageMax = ageMax {
             return "\(ageMin)-\(ageMax)"
         }
@@ -197,7 +210,7 @@ struct Set {
         }
     }
     
-    var preferredPriceString: String? {
+    var preferredPriceDescription: String? {
         var preferredPrice = retailPrices.first
         for price in retailPrices where Locale.current.currencyCode == price.locale.currencyCode {
             preferredPrice = price
@@ -206,6 +219,13 @@ struct Set {
         return preferredPrice?.priceDescription()
     }
 
+    var largeImageURL: String? {
+        if let imageURL = self.imageURL {
+            return imageURL.replacingOccurrences(of: "/images/", with: "/large/")
+        }
+        return nil
+    }
+    
     //--------------------------------------------------------------------------
     // MARK: - Public
     //--------------------------------------------------------------------------

@@ -21,8 +21,8 @@
                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VsV-Ep-wbq">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="577"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="E6w-Cw-kR8">
-                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="notAvailable" translatesAutoresizingMaskIntoConstraints="NO" id="E6w-Cw-kR8">
+                                <rect key="frame" x="0.0" y="0.0" width="40" height="32"/>
                             </imageView>
                         </subviews>
                         <constraints>
@@ -55,6 +55,6 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="image_placeholder" width="50" height="50"/>
+        <image name="notAvailable" width="40" height="32"/>
     </resources>
 </document>

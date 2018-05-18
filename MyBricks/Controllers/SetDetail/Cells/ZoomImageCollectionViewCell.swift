@@ -56,8 +56,6 @@ class ZoomImageCollectionViewCell: UICollectionViewCell, ReusableView, NibLoadab
                 //self.activityIndicator.stopAnimating()
                 if response.value != nil {
                     self.imageView.sizeToFit()
-                    //self.updateMinZoomScale()
-                    //self.updateImageViewConstraints()
                 }
             }
         }

@@ -109,6 +109,7 @@ extension SetImagesViewController: UICollectionViewDelegate {
                 cell.isSelected = true
             }
             largeCollectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
+            smallCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
         }
     }
     

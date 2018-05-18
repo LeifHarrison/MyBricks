@@ -97,7 +97,7 @@ class SetListTableViewCell: BorderedGradientTableViewCell, NibLoadableView, Reus
             minifigsLabel.text = "\(set.minifigs ?? 0)"
         }
 
-        priceLabel.text = set.preferredPriceString
+        priceLabel.text = set.preferredPriceDescription
 
         collectionStatusView.isHidden = !set.owned && !set.wanted
         if set.owned {
