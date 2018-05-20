@@ -21,11 +21,6 @@ class ZoomImageCollectionViewCell: UICollectionViewCell, ReusableView, NibLoadab
     @IBOutlet weak var imageViewTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var imageViewTrailingConstraint: NSLayoutConstraint!
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-    
     //--------------------------------------------------------------------------
     // MARK: - Reuse
     //--------------------------------------------------------------------------
@@ -41,7 +36,7 @@ class ZoomImageCollectionViewCell: UICollectionViewCell, ReusableView, NibLoadab
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        updateMinZoomScale()
+        updateZoomScales()
         updateImageViewConstraints()
     }
 
@@ -65,9 +60,7 @@ class ZoomImageCollectionViewCell: UICollectionViewCell, ReusableView, NibLoadab
     // MARK: - Private
     //--------------------------------------------------------------------------
     
-    fileprivate func updateMinZoomScale() {
-        //print("updateMinZoomScale scrollViewSize: \(size), imageView bounds: \(imageView.bounds.size)")
-        //print("   image size: \(imageView.image.size)")
+    fileprivate func updateZoomScales() {
         if imageView.bounds.width > 0, imageView.bounds.height > 0 {
             let widthScale = scrollView.frame.size.width / (imageView.bounds.width + 5*defaultInsets)
             let heightScale = scrollView.frame.size.height / (imageView.bounds.height + 5*defaultInsets)
@@ -103,6 +96,7 @@ extension ZoomImageCollectionViewCell: UIScrollViewDelegate {
     
     func scrollViewDidZoom(_ scrollView: UIScrollView) {
         updateImageViewConstraints()
+        scrollView.isScrollEnabled = scrollView.zoomScale > (scrollView.minimumZoomScale + 0.0000001)
     }
     
 }

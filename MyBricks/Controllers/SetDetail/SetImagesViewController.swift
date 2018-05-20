@@ -121,11 +121,24 @@ extension SetImagesViewController: UICollectionViewDelegate {
 
 extension SetImagesViewController: UIScrollViewDelegate {
     
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        if scrollView == largeCollectionView && decelerate {
+            if let indexPath = self.largeCollectionView.indexPathsForVisibleItems.first {
+                self.smallCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+            }
+        }
+    }
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         if scrollView == largeCollectionView {
-            if let indexPath = largeCollectionView.indexPathsForVisibleItems.first {
-                smallCollectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
-            }
+            // This, along with the scrollToItem above seems to fix an issue where sometimes the
+            // selection wouldn't "take" when scrolling through several items rapidly in succession
+            // (from the large image collection view)
+            let tinyDelay = DispatchTime.now() + Double(Int64(0.01 * Float(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
+            DispatchQueue.main.asyncAfter(deadline: tinyDelay, execute: {
+                if let indexPath = self.largeCollectionView.indexPathsForVisibleItems.first {
+                    self.smallCollectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
+                }
+            })
         }
     }
     

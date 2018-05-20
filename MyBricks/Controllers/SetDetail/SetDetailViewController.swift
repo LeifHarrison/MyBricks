@@ -200,6 +200,7 @@ class SetDetailViewController: UIViewController {
     }
     
     private func fetchAdditionalImages() {
+        // TODO: Disable image collection view selection while attempting to load additional images
         if let set = currentSet, let setID = set.setID {
             additionalImagesRequest = BricksetServices.shared.getAdditionalImages(setID: setID, completion: { [weak self] result in
                 guard let strongSelf = self else { return }

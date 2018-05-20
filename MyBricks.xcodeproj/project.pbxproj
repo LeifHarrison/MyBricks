@@ -764,8 +764,8 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 295ADFE31F16AFFD002E6802 /* Build configuration list for PBXNativeTarget "MyBricks" */;
 			buildPhases = (
-				29C3309120A4C2FF00D59093 /* Run SwiftLint */,
 				0667D550158D584828E9CF9D /* [CP] Check Pods Manifest.lock */,
+				29C3309120A4C2FF00D59093 /* Run SwiftLint */,
 				295ADFB51F16AFFC002E6802 /* Sources */,
 				295ADFB61F16AFFC002E6802 /* Frameworks */,
 				295ADFB71F16AFFC002E6802 /* Resources */,
