@@ -9,6 +9,18 @@
 import UIKit
 import Cosmos
 
+extension Notification.Name {
+    public struct Collection {
+        public static let DidUpdate = Notification.Name(rawValue: "app.mybricks.notification.name.collection.didUpdate")
+    }
+}
+
+extension Notification {
+    public struct Key {
+        public static let Set = "app.mybricks.notification.key.set"
+    }
+}
+
 class CollectionDetailViewController: UIViewController {
 
     @IBOutlet weak var contentView: UIView!
@@ -23,8 +35,6 @@ class CollectionDetailViewController: UIViewController {
     @IBOutlet weak var wantedCheckboxButton: UIButton!
     
     let maxQuantityLength = 3
-    
-    var setUpdated: ((Set?) -> Void)?
     
     var currentSet: Set?
     var previousQuantityOwned: Int = 0
@@ -80,17 +90,17 @@ class CollectionDetailViewController: UIViewController {
     @IBAction func toggleSetOwned(_ sender: UIButton) {
         if var set = currentSet, let setID = set.setID {
             set.owned = !set.owned
+            set.quantityOwned = set.owned ? 1 : nil
+            
+            ownedCheckboxButton.isSelected = set.owned
+            ownedContainer.backgroundColor = set.owned ? UIColor(named: "bricksetOwned") : UIColor.clear
+            ownedCountField.isEnabled = set.owned
+            ownedCountField.text = "\(set.quantityOwned ?? 0)"
+
             BricksetServices.shared.setCollectionOwns(setID: setID, owned: set.owned, completion: { result in
                 if result.isSuccess {
-                    set.quantityOwned = set.owned ? 1 : nil
-                    
-                    self.ownedCheckboxButton.isSelected = set.owned
-                    self.ownedContainer.backgroundColor = set.owned ? UIColor(named: "bricksetOwned") : UIColor.clear
-                    self.ownedCountField.isEnabled = set.owned
-                    self.ownedCountField.text = "\(set.quantityOwned ?? 0)"
-                    
-                    self.setUpdated?(set)
                     self.currentSet = set
+                    self.notifySetUpdated(set: set)
                 }
             })
         }
@@ -98,14 +108,17 @@ class CollectionDetailViewController: UIViewController {
     }
     
     @IBAction func toggleSetWanted(_ sender: UIButton) {
+
         if var set = currentSet, let setID = set.setID {
             set.wanted = !set.wanted
+            
+            wantedCheckboxButton.isSelected = set.wanted
+            wantedContainer.backgroundColor = set.wanted ? UIColor(named: "bricksetWanted") : UIColor.clear
+
             BricksetServices.shared.setCollectionWants(setID: setID, wanted: set.wanted, completion: { result in
                 if result.isSuccess {
-                    self.wantedCheckboxButton.isSelected = set.wanted
-                    self.wantedContainer.backgroundColor = set.wanted ? UIColor(named: "bricksetWanted") : UIColor.clear
-                    self.setUpdated?(set)
                     self.currentSet = set
+                    self.notifySetUpdated(set: set)
                 }
             })
         }
@@ -182,8 +195,8 @@ class CollectionDetailViewController: UIViewController {
                 BricksetServices.shared.setUserRating(setID: setID, rating: Int(rating), completion: { result in
                     if result.isSuccess {
                         set.userRating = Int(rating)
-                        self.setUpdated?(set)
                         self.currentSet = set
+                        self.notifySetUpdated(set: set)
                     }
                 })
             }
@@ -192,12 +205,13 @@ class CollectionDetailViewController: UIViewController {
     
     private func updateQuantityOwned(newQuantity: Int) {
         if var set = currentSet, let setID = set.setID {
+            set.owned = (newQuantity > 0) ? true : false
+            set.quantityOwned = newQuantity
+
             BricksetServices.shared.setCollectionQuantityOwned(setID: setID, quantityOwned: newQuantity, completion: { result in
                 if result.isSuccess {
-                    set.owned = (newQuantity > 0) ? true : false
-                    set.quantityOwned = newQuantity
-                    self.setUpdated?(set)
                     self.currentSet = set
+                    self.notifySetUpdated(set: set)
                 }
             })
         }
@@ -208,12 +222,17 @@ class CollectionDetailViewController: UIViewController {
             BricksetServices.shared.setCollectionUserNotes(setID: setID, notes: newNotes, completion: { result in
                 if result.isSuccess {
                     set.userNotes = newNotes
-                    self.setUpdated?(set)
                     self.currentSet = set
+                    self.notifySetUpdated(set: set)
                 }
             })
         }
     }
+    
+    private func notifySetUpdated(set: Set) {
+        NotificationCenter.default.post(name: Notification.Name.Collection.DidUpdate, object: self, userInfo: [Notification.Key.Set: set])
+    }
+    
 }
 
 //==============================================================================

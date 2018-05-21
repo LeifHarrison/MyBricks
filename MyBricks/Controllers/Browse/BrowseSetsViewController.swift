@@ -34,6 +34,7 @@ class BrowseSetsViewController: UIViewController {
         navigationItem.backBarButtonItem = backItem
 
         setupTableView()
+        NotificationCenter.default.addObserver(self, selector: #selector(collectionUpdated(_:)), name: Notification.Name.Collection.DidUpdate, object: nil)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -74,6 +75,10 @@ class BrowseSetsViewController: UIViewController {
         }
     }
     
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     //--------------------------------------------------------------------------
     // MARK: - Actions
     //--------------------------------------------------------------------------
@@ -86,6 +91,25 @@ class BrowseSetsViewController: UIViewController {
             
             let navController = UINavigationController(rootViewController: filterVC)
             show(navController, sender: self)
+        }
+    }
+    
+    //--------------------------------------------------------------------------
+    // MARK: - Collection Update Notification
+    //--------------------------------------------------------------------------
+    
+    @objc private func collectionUpdated(_ notification: Notification) {
+        if let updatedSet = notification.userInfo?[Notification.Key.Set] as? Set {
+            if let index = allSets.index(where: { $0.setID == updatedSet.setID }) {
+                allSets[index] = updatedSet
+                for (sectionIndex, sectionTitle) in sectionTitles.enumerated() {
+                    if var setsForSection = setsBySection[sectionTitle], let rowIndex = setsForSection.index(where: { $0.setID == updatedSet.setID }) {
+                        setsForSection[rowIndex] = updatedSet
+                        setsBySection[sectionTitle] = setsForSection
+                        tableView.reloadRows(at: [IndexPath(row: rowIndex, section: sectionIndex)], with: .fade)
+                    }
+                }
+            }
         }
     }
     

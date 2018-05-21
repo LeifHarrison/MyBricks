@@ -63,6 +63,8 @@ class SetDetailViewController: UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "share"), style: .plain, target: self, action: #selector(share(sender:)))
 
         setupTableView()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(collectionUpdated(_:)), name: Notification.Name.Collection.DidUpdate, object: nil)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -98,6 +100,10 @@ class SetDetailViewController: UIViewController {
         }
     }
     
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     //--------------------------------------------------------------------------
     // MARK: - Actions
     //--------------------------------------------------------------------------
@@ -110,6 +116,20 @@ class SetDetailViewController: UIViewController {
             
             activityVC.popoverPresentationController?.sourceView = sender
             self.present(activityVC, animated: true, completion: nil)
+        }
+    }
+    
+    //--------------------------------------------------------------------------
+    // MARK: - Collection Update Notification
+    //--------------------------------------------------------------------------
+    
+    @objc private func collectionUpdated(_ notification: Notification) {
+        if let updatedSet = notification.userInfo?[Notification.Key.Set] as? Set, updatedSet.setID == currentSet?.setID {
+            self.currentSet = updatedSet
+            if let detailSection = sections.index(of: .detail), let collectionRow = detailRows.index(of: .collection) {
+                let indexPath = IndexPath(row: collectionRow, section: detailSection)
+                tableView.reloadRows(at: [indexPath], with: .fade)
+            }
         }
     }
     
