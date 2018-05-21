@@ -20,7 +20,7 @@ class SetDetailFooterView: UIView {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        SetDetailFooterView.dateFormatter.dateStyle = .long
+        SetDetailFooterView.dateFormatter.dateStyle = .medium
         SetDetailFooterView.dateFormatter.timeStyle = .medium
 
         addBorder()

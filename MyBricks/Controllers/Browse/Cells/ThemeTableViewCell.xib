@@ -12,27 +12,27 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="ThemeTableViewCell" rowHeight="66" id="7XI-Iw-NaW" customClass="ThemeTableViewCell" customModule="MyBricks" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="66"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="ThemeTableViewCell" id="7XI-Iw-NaW" customClass="ThemeTableViewCell" customModule="MyBricks" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7XI-Iw-NaW" id="ZxW-Hv-WQO">
-                <rect key="frame" x="0.0" y="0.0" width="375" height="65.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="375" height="69.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Theme Name" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N0G-sW-V9t">
-                        <rect key="frame" x="15" y="10" width="271" height="29"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalCompressionResistancePriority="751" text="Theme Name" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N0G-sW-V9t">
+                        <rect key="frame" x="15" y="12" width="271" height="31"/>
                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="24"/>
                         <color key="textColor" name="lightNavy"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="Theme Years" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2BF-UA-0xe">
-                        <rect key="frame" x="15" y="38" width="345" height="14.5"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="Theme Years" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2BF-UA-0xe">
+                        <rect key="frame" x="15" y="43" width="271" height="14.5"/>
                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="12"/>
                         <color key="textColor" name="slateBlue"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <view contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="752" verticalCompressionResistancePriority="752" translatesAutoresizingMaskIntoConstraints="NO" id="ILO-4x-4X4">
-                        <rect key="frame" x="301" y="21.5" width="40" height="22.5"/>
+                    <view contentMode="scaleToFill" horizontalHuggingPriority="252" verticalHuggingPriority="252" horizontalCompressionResistancePriority="752" verticalCompressionResistancePriority="752" translatesAutoresizingMaskIntoConstraints="NO" id="ILO-4x-4X4">
+                        <rect key="frame" x="301" y="23.5" width="40" height="22.5"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="752" verticalCompressionResistancePriority="752" text="425" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1QH-b1-EON">
                                 <rect key="frame" x="8" y="4" width="24" height="14.5"/>
@@ -54,19 +54,19 @@
                         </constraints>
                     </view>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="forward" translatesAutoresizingMaskIntoConstraints="NO" id="lqH-0g-3IQ">
-                        <rect key="frame" x="356" y="26" width="9" height="14"/>
+                        <rect key="frame" x="356" y="27.5" width="9" height="14"/>
                         <color key="tintColor" name="lightNavy"/>
                     </imageView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="2BF-UA-0xe" firstAttribute="top" secondItem="N0G-sW-V9t" secondAttribute="baseline" constant="5" id="1B0-Iy-suY"/>
-                    <constraint firstItem="N0G-sW-V9t" firstAttribute="top" secondItem="ZxW-Hv-WQO" secondAttribute="top" constant="10" id="9kq-6Q-l4k"/>
+                    <constraint firstItem="2BF-UA-0xe" firstAttribute="top" secondItem="N0G-sW-V9t" secondAttribute="bottom" id="1B0-Iy-suY"/>
+                    <constraint firstItem="N0G-sW-V9t" firstAttribute="top" secondItem="ZxW-Hv-WQO" secondAttribute="top" constant="12" id="9kq-6Q-l4k"/>
                     <constraint firstItem="lqH-0g-3IQ" firstAttribute="leading" secondItem="ILO-4x-4X4" secondAttribute="trailing" constant="15" id="HoA-wU-aHE"/>
                     <constraint firstItem="ILO-4x-4X4" firstAttribute="centerY" secondItem="ZxW-Hv-WQO" secondAttribute="centerY" id="bie-ud-Vvu"/>
-                    <constraint firstAttribute="bottom" secondItem="2BF-UA-0xe" secondAttribute="bottom" constant="13" id="gio-nG-av8"/>
+                    <constraint firstItem="ILO-4x-4X4" firstAttribute="leading" secondItem="2BF-UA-0xe" secondAttribute="trailing" constant="15" id="cAS-cj-kda"/>
+                    <constraint firstAttribute="bottom" secondItem="2BF-UA-0xe" secondAttribute="bottom" constant="12" id="gio-nG-av8"/>
                     <constraint firstItem="2BF-UA-0xe" firstAttribute="leading" secondItem="ZxW-Hv-WQO" secondAttribute="leading" constant="15" id="hqJ-e7-BWe"/>
                     <constraint firstItem="lqH-0g-3IQ" firstAttribute="centerY" secondItem="ZxW-Hv-WQO" secondAttribute="centerY" id="j9i-8z-U2Y"/>
-                    <constraint firstAttribute="trailing" secondItem="2BF-UA-0xe" secondAttribute="trailing" constant="15" id="wD8-6S-jAE"/>
                     <constraint firstItem="ILO-4x-4X4" firstAttribute="leading" secondItem="N0G-sW-V9t" secondAttribute="trailing" constant="15" id="wJD-NB-hit"/>
                     <constraint firstAttribute="trailing" secondItem="lqH-0g-3IQ" secondAttribute="trailing" constant="10" id="xru-nZ-IrQ"/>
                     <constraint firstItem="N0G-sW-V9t" firstAttribute="leading" secondItem="ZxW-Hv-WQO" secondAttribute="leading" constant="15" id="y85-NW-1DE"/>
@@ -88,16 +88,13 @@
             <color red="0.69400000569999998" green="0.76499998570000005" blue="0.83099997039999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="lightNavy">
-            <color red="0.086274509803921567" green="0.25098039215686274" blue="0.44313725490196076" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="lightNavy">
-            <color red="0.086274509799999996" green="0.25098039220000001" blue="0.4431372549" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.086000002920627594" green="0.25099998712539673" blue="0.44299998879432678" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="slateBlue">
-            <color red="0.34509803919999998" green="0.4549019608" blue="0.58823529409999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.3449999988079071" green="0.45500001311302185" blue="0.58799999952316284" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="white">
-            <color red="0.99599999189999999" green="0.99599999189999999" blue="0.99599999189999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>
