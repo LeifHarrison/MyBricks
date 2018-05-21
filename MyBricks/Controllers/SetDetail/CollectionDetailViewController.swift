@@ -26,13 +26,13 @@ class CollectionDetailViewController: UIViewController {
     @IBOutlet weak var contentView: UIView!
 
     @IBOutlet weak var ownedContainer: UIView!
-    @IBOutlet weak var wantedContainer: UIView!
-    @IBOutlet weak var ratingView: CosmosView!
-    @IBOutlet weak var notesTextView: UITextView!
-    
     @IBOutlet weak var ownedCheckboxButton: UIButton!
     @IBOutlet weak var ownedCountField: UITextField!
     @IBOutlet weak var wantedCheckboxButton: UIButton!
+    @IBOutlet weak var wantedContainer: UIView!
+    @IBOutlet weak var ratingView: CosmosView!
+    @IBOutlet weak var removeRatingButton: UIButton!
+    @IBOutlet weak var notesTextView: UITextView!
     
     let maxQuantityLength = 3
     
@@ -108,7 +108,6 @@ class CollectionDetailViewController: UIViewController {
     }
     
     @IBAction func toggleSetWanted(_ sender: UIButton) {
-
         if var set = currentSet, let setID = set.setID {
             set.wanted = !set.wanted
             
@@ -124,13 +123,23 @@ class CollectionDetailViewController: UIViewController {
         }
     }
     
-    @objc func cancelButtonAction() {
+    @IBAction func removeRating(_ sender: UIButton) {
+        ratingView.rating = 0.0
+        updateRating(newRating: 0)
+    }
+    
+    @objc func cancelEditingQuantity() {
         ownedCountField.text = "\(previousQuantityOwned)"
         ownedCountField.resignFirstResponder()
     }
     
-    @objc func doneButtonAction() {
+    @objc func doneEditingQuantity() {
         ownedCountField.resignFirstResponder()
+        let newQuantity = Int(ownedCountField.text ?? "0") ?? 0
+        if newQuantity != previousQuantityOwned {
+            updateQuantityOwned(newQuantity: newQuantity)
+        }
+
     }
     
     @objc func cancelEditingNotes() {
@@ -140,6 +149,10 @@ class CollectionDetailViewController: UIViewController {
     
     @objc func doneEditingNotes() {
         notesTextView.resignFirstResponder()
+        let newNotes = notesTextView.text ?? ""
+        if newNotes != previousNotesText {
+            updateUserNotes(newNotes: newNotes)
+        }
     }
     
     //--------------------------------------------------------------------------
@@ -150,9 +163,9 @@ class CollectionDetailViewController: UIViewController {
         let doneToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 44))
         doneToolbar.barStyle = UIBarStyle.default
         
-        let cancel = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelButtonAction))
+        let cancel = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelEditingQuantity))
         let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        let done = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(doneButtonAction))
+        let done = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(doneEditingQuantity))
         
         var items = [UIBarButtonItem]()
         items.append(cancel)
@@ -191,15 +204,7 @@ class CollectionDetailViewController: UIViewController {
         ratingView.settings.filledImage = #imageLiteral(resourceName: "ratingStarFilled")
 
         ratingView.didFinishTouchingCosmos = { rating in
-            if var set = self.currentSet, let setID = set.setID {
-                BricksetServices.shared.setUserRating(setID: setID, rating: Int(rating), completion: { result in
-                    if result.isSuccess {
-                        set.userRating = Int(rating)
-                        self.currentSet = set
-                        self.notifySetUpdated(set: set)
-                    }
-                })
-            }
+            self.updateRating(newRating: Int(rating))
         }
     }
     
@@ -210,6 +215,18 @@ class CollectionDetailViewController: UIViewController {
 
             BricksetServices.shared.setCollectionQuantityOwned(setID: setID, quantityOwned: newQuantity, completion: { result in
                 if result.isSuccess {
+                    self.currentSet = set
+                    self.notifySetUpdated(set: set)
+                }
+            })
+        }
+    }
+    
+    private func updateRating(newRating: Int) {
+        if var set = self.currentSet, let setID = set.setID {
+            BricksetServices.shared.setUserRating(setID: setID, rating: newRating, completion: { result in
+                if result.isSuccess {
+                    set.userRating = newRating
                     self.currentSet = set
                     self.notifySetUpdated(set: set)
                 }
