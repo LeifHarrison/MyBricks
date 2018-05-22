@@ -20,31 +20,25 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TTk-pm-yGK">
-                        <rect key="frame" x="15" y="15" width="270" height="24"/>
-                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="20"/>
+                        <rect key="frame" x="15" y="15" width="289" height="24"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
                         <color key="textColor" name="lightNavy"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Posted by &lt;Author&gt;, &lt;Date&gt;" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="REu-fV-KuL">
-                        <rect key="frame" x="15" y="44" width="270" height="17"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <rect key="frame" x="15" y="44" width="289" height="17"/>
+                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
                         <color key="textColor" name="slateBlue"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" verticalHuggingPriority="252" image="forward" translatesAutoresizingMaskIntoConstraints="NO" id="nq5-ua-nfA">
-                        <rect key="frame" x="300" y="31" width="9" height="14"/>
-                        <color key="tintColor" name="lightNavy"/>
-                    </imageView>
                 </subviews>
                 <constraints>
+                    <constraint firstAttribute="trailing" secondItem="REu-fV-KuL" secondAttribute="trailing" constant="15" id="1hx-gm-TL0"/>
                     <constraint firstItem="TTk-pm-yGK" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="Aj1-Iv-9eN"/>
                     <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="REu-fV-KuL" secondAttribute="bottom" constant="15" id="MNB-Kk-L2I"/>
                     <constraint firstItem="REu-fV-KuL" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="MQi-HE-2A5"/>
-                    <constraint firstItem="nq5-ua-nfA" firstAttribute="leading" secondItem="TTk-pm-yGK" secondAttribute="trailing" constant="15" id="bEe-MI-V6z"/>
                     <constraint firstItem="REu-fV-KuL" firstAttribute="top" secondItem="TTk-pm-yGK" secondAttribute="baseline" constant="10" id="fOF-Az-WDV"/>
-                    <constraint firstItem="nq5-ua-nfA" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="oft-gw-mlt"/>
-                    <constraint firstItem="nq5-ua-nfA" firstAttribute="leading" secondItem="REu-fV-KuL" secondAttribute="trailing" constant="15" id="r8n-Q1-kBz"/>
-                    <constraint firstAttribute="trailing" secondItem="nq5-ua-nfA" secondAttribute="trailing" constant="10" id="xG4-b1-z6P"/>
+                    <constraint firstAttribute="trailing" secondItem="TTk-pm-yGK" secondAttribute="trailing" constant="15" id="kax-9W-exe"/>
                     <constraint firstItem="TTk-pm-yGK" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="xmk-MJ-Fg1"/>
                 </constraints>
             </tableViewCellContentView>
@@ -57,15 +51,11 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="forward" width="9" height="14"/>
         <namedColor name="lightNavy">
-            <color red="0.086274509799999996" green="0.25098039220000001" blue="0.4431372549" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="lightNavy">
-            <color red="0.086274509803921567" green="0.25098039215686274" blue="0.44313725490196076" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.086000002920627594" green="0.25099998712539673" blue="0.44299998879432678" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="slateBlue">
-            <color red="0.34509803921568627" green="0.45490196078431372" blue="0.58823529411764708" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.3449999988079071" green="0.45500001311302185" blue="0.58799999952316284" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

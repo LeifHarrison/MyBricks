@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import AlamofireRSSParser
 
-class NewsItemTableViewCell: UITableViewCell, NibLoadableView, ReusableView {
+class NewsItemTableViewCell: BorderedGradientTableViewCell, NibLoadableView, ReusableView {
 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var autherAndDateLabel: UILabel!
@@ -19,11 +20,42 @@ class NewsItemTableViewCell: UITableViewCell, NibLoadableView, ReusableView {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
-        tintColor = UIColor.lightNavy
-        
-        addBorder()
-        addGradientBackground()
+        accessoryView = UIImageView(image: UIImage(named:"forward"))
+        accessoryView?.tintColor = UIColor.lightNavy
     }
     
+    //--------------------------------------------------------------------------
+    // MARK: - Public
+    //--------------------------------------------------------------------------
+    
+    func populate(with feedItem: RSSItem) {
+        titleLabel.text = feedItem.title
+        autherAndDateLabel.attributedText = feedItem.authorAndDateAttributedDecription()
+    }
+    
+}
+
+//==============================================================================
+// MARK: - RSSItem extensions
+//==============================================================================
+
+extension RSSItem {
+    
+    static let templateAttributes = [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14, weight: .light), NSAttributedStringKey.foregroundColor: UIColor.slateBlue]
+    static let authorAttributes = [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14, weight: .bold), NSAttributedStringKey.foregroundColor: UIColor.lightNavy]
+    static let dateFormatter = DateFormatter()
+    
+    func authorAndDateAttributedDecription() -> NSAttributedString {
+        RSSItem.dateFormatter.dateStyle = .medium
+        RSSItem.dateFormatter.timeStyle = .short
+        
+        let attributedDescription = NSMutableAttributedString(string:"Posted by ", attributes:RSSItem.templateAttributes)
+        attributedDescription.append(NSAttributedString(string:author ?? "", attributes:RSSItem.authorAttributes))
+        if let date = pubDate {
+            attributedDescription.append(NSAttributedString(string:", \(RSSItem.dateFormatter.string(from: date))", attributes:RSSItem.templateAttributes))
+        }
+        
+        return attributedDescription
+    }
+
 }

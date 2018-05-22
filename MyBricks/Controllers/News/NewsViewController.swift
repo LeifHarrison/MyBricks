@@ -70,8 +70,7 @@ extension NewsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let feedItem = feedItems[indexPath.row]
         let cell: NewsItemTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
-        cell.titleLabel.text = feedItem.title
-        cell.autherAndDateLabel.attributedText = feedItem.authorAndDateAttributedDecription()
+        cell.populate(with: feedItem)
         return cell
     }
 
@@ -91,29 +90,4 @@ extension NewsViewController: UITableViewDelegate {
             tableView.deselectRow(at: indexPath, animated: true)
         }
     }
-}
-
-//==============================================================================
-// MARK: - RSSItem extensions
-//==============================================================================
-
-extension RSSItem {
-
-    static let templateAttributes = [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14), NSAttributedStringKey.foregroundColor: UIColor.slateBlue]
-    static let authorAttributes = [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14, weight: .bold), NSAttributedStringKey.foregroundColor: UIColor.lightNavy]
-    static let dateFormatter = DateFormatter()
-
-    func authorAndDateAttributedDecription() -> NSAttributedString {
-        RSSItem.dateFormatter.dateStyle = .medium
-        RSSItem.dateFormatter.timeStyle = .short
-
-        let attributedDescription = NSMutableAttributedString(string:"Posted by ", attributes:RSSItem.templateAttributes)
-        attributedDescription.append(NSAttributedString(string:author ?? "", attributes:RSSItem.authorAttributes))
-        if let date = pubDate {
-            attributedDescription.append(NSAttributedString(string:", \(RSSItem.dateFormatter.string(from: date))", attributes:RSSItem.templateAttributes))
-        }
-
-        return attributedDescription
-    }
-
 }
