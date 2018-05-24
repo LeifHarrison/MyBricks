@@ -25,7 +25,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="cTx-z1-Ik2">
-                        <rect key="frame" x="245" y="13" width="120" height="24"/>
+                        <rect key="frame" x="240" y="13" width="125" height="24"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Dv-uV-STa">
                                 <rect key="frame" x="0.0" y="0.0" width="24" height="24"/>
@@ -93,7 +93,7 @@
                                 </constraints>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" image="document" translatesAutoresizingMaskIntoConstraints="NO" id="Tag-EB-xV2">
-                                <rect key="frame" x="103" y="0.0" width="17" height="24"/>
+                                <rect key="frame" x="103" y="0.0" width="22" height="24"/>
                                 <color key="tintColor" name="lightNavy"/>
                             </imageView>
                         </subviews>
@@ -121,7 +121,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="document" width="17" height="20"/>
+        <image name="document" width="22" height="20"/>
         <image name="ratingStarFilled" width="31" height="33"/>
         <namedColor name="bricksetOwned">
             <color red="0.6705882352941176" green="0.83137254901960789" blue="0.27843137254901962" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -130,13 +130,10 @@
             <color red="0.95294117647058818" green="0.71372549019607845" blue="0.25882352941176473" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <namedColor name="lightNavy">
-            <color red="0.086274509803921567" green="0.25098039215686274" blue="0.44313725490196076" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.086000002920627594" green="0.25099998712539673" blue="0.44299998879432678" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="white">
-            <color red="0.99599999189999999" green="0.99599999189999999" blue="0.99599999189999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="white">
-            <color red="0.99599999189999999" green="0.99599999189999999" blue="0.99599999189999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

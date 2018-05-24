@@ -82,6 +82,7 @@ extension UIView {
         layer.borderColor = color.cgColor
         layer.borderWidth = 1.0
         layer.cornerRadius = 2
+        layer.masksToBounds = true
     }
     
     func applyBorderShadowStyle() {

@@ -11,6 +11,8 @@ import AlamofireRSSParser
 
 class NewsItemViewController: UIViewController {
 
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var autherAndDateLabel: UILabel!
     @IBOutlet weak var contentTextView: UITextView!
@@ -23,9 +25,11 @@ class NewsItemViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        addGradientBackground()
+        contentView.addBorder()
+        contentView.addGradientBackground()
+        scrollView.contentInset = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
@@ -66,8 +70,7 @@ extension RSSItem {
 
                 // Center and add some spacing to any attached images
                 let fullRange = NSRange(location: 0, length: formattedDescription.length)
-                //let fullRange = NSRange(location: 0, length: formattedDescription.length)
-                formattedDescription.enumerateAttribute(NSAttributedStringKey.attachment, in:fullRange, options: []) { (value, range, stop) in
+                formattedDescription.enumerateAttribute(.attachment, in:fullRange, options: []) { (value, range, stop) in
                     if value != nil {
                         let paragraphStyle = formattedDescription.attribute(.paragraphStyle, at: range.location, longestEffectiveRange: nil, in: range)
                         if let style = paragraphStyle as? NSParagraphStyle, let newStyle = style.mutableCopy() as? NSMutableParagraphStyle {
