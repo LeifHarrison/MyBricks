@@ -17,6 +17,9 @@ class NewsViewController: UIViewController {
     var feed: RSSFeed?
     var feedItems: [RSSItem] = []
 
+    private let newsLastUpdatedKey = "newsLastUpdated"
+    private let updateInterval: TimeInterval = 5 * 60 // Only refresh every 5 minutes
+
     //--------------------------------------------------------------------------
     // MARK: - View Lifecycle
     //--------------------------------------------------------------------------
@@ -28,17 +31,11 @@ class NewsViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-
-        SimpleActivityHUD.show(overView: view)
-        BricksetServices.shared.getNews(completion: { result in
-            SimpleActivityHUD.hide()
-            if let value = result.value {
-                self.feed = value
-                self.feedItems = value.items
-            }
-
-            self.tableView.reloadData()
-        })
+        
+        let lastUpdated = UserDefaults.standard.value(forKey: newsLastUpdatedKey) as? Date ?? Date.distantPast
+        if feed == nil || Date().timeIntervalSince(lastUpdated) > updateInterval {
+            fetchNews()
+        }
     }
 
     //--------------------------------------------------------------------------
@@ -51,6 +48,19 @@ class NewsViewController: UIViewController {
         tableView.tableFooterView = UIView()
     }
     
+    private func fetchNews() {
+        SimpleActivityHUD.show(overView: view)
+        BricksetServices.shared.getNews(completion: { result in
+            SimpleActivityHUD.hide()
+            if let value = result.value {
+                UserDefaults.standard.set(Date(), forKey: self.newsLastUpdatedKey)
+                self.feed = value
+                self.feedItems = value.items
+            }
+            
+            self.tableView.reloadData()
+        })
+    }
 }
 
 //==============================================================================
