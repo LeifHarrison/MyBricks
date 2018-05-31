@@ -559,7 +559,7 @@
                                     <outlet property="delegate" destination="2gf-gh-Zwe" id="G3Q-en-c6K"/>
                                 </connections>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Parts List\nAvailable" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BTr-NZ-TmA">
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Parts List Available" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BTr-NZ-TmA">
                                 <rect key="frame" x="40" y="329.5" width="295" height="29"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -579,6 +579,7 @@
                         <viewLayoutGuide key="safeArea" id="yTJ-Z6-h5b"/>
                     </view>
                     <connections>
+                        <outlet property="noResultsLabel" destination="BTr-NZ-TmA" id="1sJ-HZ-EVu"/>
                         <outlet property="tableView" destination="nBp-Z4-uHv" id="kHz-4c-xs5"/>
                     </connections>
                 </viewController>

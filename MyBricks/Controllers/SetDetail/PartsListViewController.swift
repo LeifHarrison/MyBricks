@@ -13,10 +13,11 @@ class PartsListViewController: UIViewController {
 
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var noResultsLabel: UILabel!
 
     var currentSet: Set?
     var lastResponse: GetPartsResponse?
-    var elements: [Element]? = []
+    var elements: [Element] = []
     var isLoading: Bool = false
     
     //--------------------------------------------------------------------------
@@ -56,7 +57,7 @@ class PartsListViewController: UIViewController {
                     if let response = result.value {
                         self.lastResponse = response
                         if let newElements = response.results {
-                            self.elements?.append(contentsOf: newElements)
+                            self.elements.append(contentsOf: newElements)
                             self.tableView.reloadData()
                         }
                     }
@@ -64,6 +65,8 @@ class PartsListViewController: UIViewController {
                 else {
                     // Display alert
                 }
+                
+                self.noResultsLabel.isHidden = self.elements.count > 0
             }
             RebrickableServices.shared.getParts(setNumber: setNumber, pageURL: lastResponse?.nextPage, completion: completion)
         }
@@ -82,12 +85,13 @@ extension PartsListViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return elements?.count ?? 0
+        return elements.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let element = elements?[indexPath.row] {
+        if indexPath.row < elements.count {
             let cell: PartsListTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+            let element = elements[indexPath.row]
             cell.populate(with: element)
             cell.selectionStyle = .none
             if let urlString = element.part?.imageURL, let url = URL(string: urlString) {
@@ -96,7 +100,7 @@ extension PartsListViewController: UITableViewDataSource {
             
             // See if we need to load more species
             let rowsToLoadFromBottom = 5
-            let rowsLoaded = elements?.count ?? 0
+            let rowsLoaded = elements.count
             if !self.isLoading && (indexPath.row >= (rowsLoaded - rowsToLoadFromBottom)) {
                 let totalRows = self.lastResponse?.count ?? 0
                 let remainingPartsToLoad = totalRows - rowsLoaded

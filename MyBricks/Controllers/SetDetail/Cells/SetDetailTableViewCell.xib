@@ -84,7 +84,7 @@
                                     <constraint firstAttribute="width" secondItem="gJH-nQ-YRY" secondAttribute="height" multiplier="4:3" id="WNH-ev-PRn"/>
                                 </constraints>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="9dr-N8-bHd">
-                                    <size key="itemSize" width="285" height="214"/>
+                                    <size key="itemSize" width="295" height="221.5"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
