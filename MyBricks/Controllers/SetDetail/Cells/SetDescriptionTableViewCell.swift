@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SetDescriptionTableViewCell: BorderedGradientTableViewCell, ReusableView, NibLoadableView {
+class SetDescriptionTableViewCell: BlueGradientTableViewCell, ReusableView, NibLoadableView {
 
     @IBOutlet weak var descriptionTextView: UITextView!
 
@@ -49,7 +49,7 @@ class SetDescriptionTableViewCell: BorderedGradientTableViewCell, ReusableView, 
 
 extension SetDetail {
     
-    static let descriptionFontSize: CGFloat = 16
+    static let descriptionFontSize: CGFloat = 14
 
     func formattedDescription() -> NSAttributedString? {
         if let string = self.setDescription {
@@ -59,19 +59,19 @@ extension SetDetail {
                     .characterEncoding : String.Encoding.utf8.rawValue
                 ]
                 
-                var formattedReview = NSMutableAttributedString()
+                var formattedDescription = NSMutableAttributedString()
                 do {
-                    formattedReview = try NSMutableAttributedString(data: data, options: options, documentAttributes: nil)
+                    formattedDescription = try NSMutableAttributedString(data: data, options: options, documentAttributes: nil)
                 }
                 catch {
                     return nil
                 }
                 
-                formattedReview.beginEditing()
+                formattedDescription.beginEditing()
                 
                 // Change fonts to something a bit more readable
-                let fullRange = NSRange(location: 0, length:formattedReview.length)
-                formattedReview.enumerateAttribute(.font, in: fullRange, options: []) { (value, range, stop) in
+                let fullRange = NSRange(location: 0, length:formattedDescription.length)
+                formattedDescription.enumerateAttribute(.font, in: fullRange, options: []) { (value, range, stop) in
                     if let font = value as? UIFont {
                         let isBold = font.fontDescriptor.symbolicTraits.contains(.traitBold)
                         let isItalic = font.fontDescriptor.symbolicTraits.contains(.traitItalic)
@@ -85,16 +85,18 @@ extension SetDetail {
                         else if isItalic {
                             font = UIFont.italicSystemFont(ofSize: size)
                         }
-                        formattedReview.addAttribute(.font, value: font, range: range)
+                        formattedDescription.addAttribute(.font, value: font, range: range)
                     }
                 }
-                formattedReview.enumerateAttribute(.foregroundColor, in: fullRange, options: []) { (value, range, stop) in
-                    formattedReview.addAttribute(.foregroundColor, value: UIColor.lightNavy, range: range)
+                
+                // Change text color
+                formattedDescription.enumerateAttribute(.foregroundColor, in: fullRange, options: []) { (value, range, stop) in
+                    formattedDescription.addAttribute(.foregroundColor, value: UIColor.lightNavy, range: range)
                 }
                 
-                formattedReview.endEditing()
+                formattedDescription.endEditing()
                 
-                return formattedReview
+                return formattedDescription
             }
         }
         return nil

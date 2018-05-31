@@ -24,7 +24,7 @@ class SetDetailFooterView: UIView {
         SetDetailFooterView.dateFormatter.timeStyle = .medium
 
         addBorder()
-        addGradientBackground()
+        addGradientBackground(withColors: [UIColor.almostWhite, UIColor.paleGrey])
     }
     
     //--------------------------------------------------------------------------

@@ -1,16 +1,15 @@
 //
-//  BorderedGradientTableViewCell.swift
+//  BlueGradientTableViewCell.swift
 //  MyBricks
 //
-//  Created by Leif on 5/12/18.
+//  Created by Harrison, Leif (US - Seattle) on 5/30/18.
 //  Copyright © 2018 Leif Harrison. All rights reserved.
 //
 
 import UIKit
 
-class BorderedGradientTableViewCell: UITableViewCell {
+class BlueGradientTableViewCell: UITableViewCell {
 
-    let gradientView = GradientView()
     let highlightOverlay = UIView()
     
     //--------------------------------------------------------------------------
@@ -20,7 +19,7 @@ class BorderedGradientTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         addBorder()
-        addGradient()
+        addGradientBackground(withColors: [UIColor.almostWhite, UIColor.paleGrey])
         addHighlightOverlay()
     }
     
@@ -34,21 +33,12 @@ class BorderedGradientTableViewCell: UITableViewCell {
     // MARK: - Nib Loading
     //--------------------------------------------------------------------------
     
-    func addGradient() {
-        gradientView.frame = self.bounds
-        gradientView.translatesAutoresizingMaskIntoConstraints = false
-        gradientView.startColor = UIColor.white
-        gradientView.endColor = UIColor.whiteTwo
-        insertSubview(gradientView, at: 0)
-        gradientView.constrainToSuperview()
-    }
-
     func addHighlightOverlay() {
         highlightOverlay.backgroundColor = UIColor.lightNavy.withAlphaComponent(0.1)
         highlightOverlay.frame = self.bounds
         highlightOverlay.translatesAutoresizingMaskIntoConstraints = false
         highlightOverlay.isHidden = true
-        insertSubview(highlightOverlay, aboveSubview: gradientView)
+        insertSubview(highlightOverlay, at: 1)
         highlightOverlay.constrainToSuperview()
     }
     

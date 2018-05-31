@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SetInstructionsTableViewCell: BorderedGradientTableViewCell, ReusableView, NibLoadableView {
+class SetInstructionsTableViewCell: BlueGradientTableViewCell, ReusableView, NibLoadableView {
 
     @IBOutlet weak var instructionsTitleLabel: UILabel!
     @IBOutlet weak var instructionsCountLabel: UILabel!

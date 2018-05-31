@@ -40,6 +40,12 @@ extension UIView {
         NSLayoutConstraint.activate([top, bottom, leading, trailing])
     }
     
+    func constrainToSuperview() {
+        if let view = superview {
+            self.constrainToView(view: view)
+        }
+    }
+    
     func fadeIn(duration: TimeInterval = 0.3) {
         if isHidden == false, alpha == 1.0 { return }
         
@@ -70,12 +76,7 @@ extension UIView {
         gradientView.startColor = colors?[0] ?? UIColor.almostWhite
         gradientView.endColor = colors?[1] ?? UIColor.whiteTwo
         insertSubview(gradientView, at: 0)
-        
-        let top = gradientView.topAnchor.constraint(equalTo: self.topAnchor)
-        let bottom = self.bottomAnchor.constraint(equalTo: gradientView.bottomAnchor)
-        let leading = gradientView.leadingAnchor.constraint(equalTo: self.leadingAnchor)
-        let trailing = self.trailingAnchor.constraint(equalTo: gradientView.trailingAnchor)
-        NSLayoutConstraint.activate([top, bottom, leading, trailing])
+        gradientView.constrainToSuperview()
     }
 
     func addBorder(withColor color: UIColor = UIColor.whiteThree) {

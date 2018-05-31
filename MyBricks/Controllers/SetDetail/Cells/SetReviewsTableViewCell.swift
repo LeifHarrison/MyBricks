@@ -9,7 +9,7 @@
 import UIKit
 import Cosmos
 
-class SetReviewsTableViewCell: BorderedGradientTableViewCell, ReusableView, NibLoadableView {
+class SetReviewsTableViewCell: BlueGradientTableViewCell, ReusableView, NibLoadableView {
 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var ratingView: CosmosView!
@@ -57,11 +57,11 @@ class SetReviewsTableViewCell: BorderedGradientTableViewCell, ReusableView, NibL
     //--------------------------------------------------------------------------
     
     private func setupRatingView() {
-        ratingView.settings.starSize = 28.0
+        ratingView.settings.starSize = 22.0
         ratingView.settings.fillMode = .precise
         ratingView.settings.starMargin = 2.0
         ratingView.settings.textColor = UIColor.lightNavy
-        ratingView.settings.textFont = UIFont.systemFont(ofSize: 16, weight: .semibold)
+        ratingView.settings.textFont = UIFont.systemFont(ofSize: 14, weight: .bold)
         ratingView.settings.updateOnTouch = false
     }
 }

@@ -18,11 +18,6 @@ class SetDetailViewController: UIViewController {
         case description
     }
     
-    enum ContentRow: Int {
-        case images
-        case detail
-    }
-    
     enum DetailRow: Int {
         case price
         case reviews
@@ -35,7 +30,6 @@ class SetDetailViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
 
     var sections: [TableSection] = []
-    var contentRows: [ContentRow] = []
     var detailRows: [DetailRow] = []
 
     var currentSet: Set?
@@ -53,13 +47,12 @@ class SetDetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         title = NSLocalizedString("Set Detail", comment: "")
         
         hideKeyboardWhenViewTapped()
         
         // Add 'Share' button to navigation bar
-        //navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Share", style: .plain, target: self, action: #selector(share(sender:)))
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "share"), style: .plain, target: self, action: #selector(share(sender:)))
 
         setupTableView()
@@ -69,7 +62,7 @@ class SetDetailViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+
         updateSections()
         if let footerView = tableView.tableFooterView as? SetDetailFooterView, let set = self.currentSet {
             footerView.populateWithSet(set)
@@ -81,6 +74,7 @@ class SetDetailViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+
         if setDetail == nil {
             fetchSetDetail()
         }
@@ -146,8 +140,6 @@ class SetDetailViewController: UIViewController {
         
         tableView.register(SetCollectionTableViewCell.self)
         tableView.register(SetDetailTableViewCell.self)
-        tableView.register(SetHeroImageTableViewCell.self)
-        tableView.register(SetImagesTableViewCell.self)
         tableView.register(SetPartsTableViewCell.self)
         tableView.register(SetPriceTableViewCell.self)
         tableView.register(SetReviewsTableViewCell.self)
@@ -162,13 +154,10 @@ class SetDetailViewController: UIViewController {
     
     private func updateSections() {
         sections.removeAll()
-        contentRows.removeAll()
         detailRows.removeAll()
 
         // Main Content
         sections.append(.content)
-        contentRows.append(.images)
-        contentRows.append(.detail)
 
         // Section for content with additional detail
         sections.append(.detail)
@@ -234,9 +223,9 @@ class SetDetailViewController: UIViewController {
     
     private func updateAdditionalImages(images: [SetImage]) {
         additionalImages = images
-        if let contentSection = sections.index(of: .content), let imagesRow = contentRows.index(of: .images) {
-            let indexPath = IndexPath(row: imagesRow, section: contentSection)
-            if let cell = tableView.cellForRow(at: indexPath) as? SetHeroImageTableViewCell {
+        if let contentSection = sections.index(of: .content) {
+            let indexPath = IndexPath(row: 0, section: contentSection)
+            if let cell = tableView.cellForRow(at: indexPath) as? SetDetailTableViewCell {
                 cell.additionalImages = images
             }
         }
@@ -279,7 +268,7 @@ extension SetDetailViewController: UITableViewDataSource {
         let sectionType = sections[section]
         switch sectionType {
         case .content :
-            return contentRows.count
+            return 1
         case .detail:
             return detailRows.count
         case .tags, .description :
@@ -292,34 +281,19 @@ extension SetDetailViewController: UITableViewDataSource {
 
         let section = sections[indexPath.section]
         switch section {
-        
-            // "Content" section - images and primary set information
             
         case .content :
-            let row = contentRows[indexPath.row]
-            switch row {
-            case .images:
-                let cell: SetHeroImageTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
-                cell.populate(with: set, additionalImages: additionalImages)
-                
-                cell.imageTapped = { image in
-                    self.showImageDetail(for: image)
-                }
-                
-                return cell
-
-            case .detail :
-                let cell: SetDetailTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
-                cell.populate(with: set)
-                cell.indentationLevel = 1
-                cell.indentationWidth = 10
-                return cell
-                
+            // "Content" section - images and primary set information
+            let cell: SetDetailTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+            cell.populate(with: set, additionalImages: additionalImages)
+            cell.imageTapped = { image in
+                self.showImageDetail(for: image)
             }
             
-            // "Details" section - rows that summarize set details that can be selected to show more information
-            
+            return cell
+
         case .detail:
+            // "Details" section - rows that summarize set details that can be selected to show more information
             let row = detailRows[indexPath.row]
             switch row {
 

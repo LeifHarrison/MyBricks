@@ -9,7 +9,7 @@
 import UIKit
 import Cosmos
 
-class SetCollectionTableViewCell: BorderedGradientTableViewCell, ReusableView, NibLoadableView {
+class SetCollectionTableViewCell: BlueGradientTableViewCell, ReusableView, NibLoadableView {
 
     @IBOutlet weak var ownedStatusView: UIView!
     @IBOutlet weak var ownedStatusLabel: UILabel!

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SetTagsTableViewCell: BorderedGradientTableViewCell, ReusableView, NibLoadableView {
+class SetTagsTableViewCell: BlueGradientTableViewCell, ReusableView, NibLoadableView {
 
     static let nibName = "SetTagsTableViewCell"
     static let reuseIdentifier = "SetTagsTableViewCell"

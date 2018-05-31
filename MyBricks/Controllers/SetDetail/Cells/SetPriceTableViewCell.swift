@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SetPriceTableViewCell: BorderedGradientTableViewCell, ReusableView, NibLoadableView {
+class SetPriceTableViewCell: BlueGradientTableViewCell, ReusableView, NibLoadableView {
 
     @IBOutlet weak var priceTitleLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -19,14 +19,14 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" insetsLayoutMarginsFromSafeArea="NO" text="Retail Price" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1eL-ZX-X2B">
-                        <rect key="frame" x="15" y="12" width="277.5" height="21.5"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <rect key="frame" x="10" y="12" width="287" height="21.5"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                         <color key="textColor" name="lightNavy"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="$19.99" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dSy-HK-wZ2">
-                        <rect key="frame" x="307" y="14" width="53" height="19.5"/>
-                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                        <rect key="frame" x="311.5" y="16.5" width="48.5" height="17"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                         <color key="textColor" name="lightNavy"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -37,7 +37,7 @@
                     <constraint firstAttribute="bottom" secondItem="1eL-ZX-X2B" secondAttribute="bottom" constant="12" id="HFj-8i-3SY"/>
                     <constraint firstItem="dSy-HK-wZ2" firstAttribute="leading" secondItem="1eL-ZX-X2B" secondAttribute="trailing" constant="15" id="jvg-y4-DpX"/>
                     <constraint firstItem="dSy-HK-wZ2" firstAttribute="leading" secondItem="1eL-ZX-X2B" secondAttribute="trailing" constant="15" id="lBw-Xw-PAZ"/>
-                    <constraint firstItem="1eL-ZX-X2B" firstAttribute="leading" secondItem="Eu8-VN-wAJ" secondAttribute="leading" constant="15" id="lE0-PY-hKK"/>
+                    <constraint firstItem="1eL-ZX-X2B" firstAttribute="leading" secondItem="Eu8-VN-wAJ" secondAttribute="leading" constant="10" id="lE0-PY-hKK"/>
                     <constraint firstItem="dSy-HK-wZ2" firstAttribute="baseline" secondItem="1eL-ZX-X2B" secondAttribute="baseline" id="wPI-af-1cZ"/>
                 </constraints>
             </tableViewCellContentView>
@@ -50,7 +50,7 @@
     </objects>
     <resources>
         <namedColor name="lightNavy">
-            <color red="0.086274509799999996" green="0.25098039220000001" blue="0.4431372549" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.086000002920627594" green="0.25099998712539673" blue="0.44299998879432678" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

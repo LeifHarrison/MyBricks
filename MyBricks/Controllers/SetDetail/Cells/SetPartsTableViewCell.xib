@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -19,31 +19,31 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Parts List" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aEf-4Y-WI5">
-                        <rect key="frame" x="15" y="12" width="223" height="20"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <rect key="frame" x="10" y="12" width="229" height="20"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                         <color key="textColor" name="lightNavy"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1aM-AT-Tzd">
-                        <rect key="frame" x="253" y="10.5" width="107" height="21"/>
+                        <rect key="frame" x="254" y="10.5" width="106" height="21"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" image="legoBrick" translatesAutoresizingMaskIntoConstraints="NO" id="1UT-5X-nZD">
                                 <rect key="frame" x="0.0" y="0.0" width="23" height="21"/>
                                 <color key="tintColor" name="lightNavy"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="225" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6N9-Pj-AtN">
-                                <rect key="frame" x="30" y="2" width="28" height="18"/>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                <rect key="frame" x="30" y="2.5" width="27" height="17"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                 <color key="textColor" name="lightNavy"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="legoHead" translatesAutoresizingMaskIntoConstraints="NO" id="WDb-UX-vko">
-                                <rect key="frame" x="73" y="0.5" width="17" height="20"/>
+                                <rect key="frame" x="72" y="0.5" width="17" height="20"/>
                                 <color key="tintColor" name="lightNavy"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="3" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p8q-dR-0YE">
-                                <rect key="frame" x="97" y="2" width="10" height="18"/>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                <rect key="frame" x="96" y="2.5" width="10" height="17"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                 <color key="textColor" name="lightNavy"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -67,7 +67,7 @@
                     <constraint firstItem="1aM-AT-Tzd" firstAttribute="centerY" secondItem="PuD-5b-7A8" secondAttribute="centerY" id="07p-qd-eoF"/>
                     <constraint firstItem="aEf-4Y-WI5" firstAttribute="top" secondItem="PuD-5b-7A8" secondAttribute="top" constant="12" id="1qc-vc-u6p"/>
                     <constraint firstAttribute="bottom" secondItem="aEf-4Y-WI5" secondAttribute="bottom" constant="12" id="2L0-ne-VbX"/>
-                    <constraint firstItem="aEf-4Y-WI5" firstAttribute="leading" secondItem="PuD-5b-7A8" secondAttribute="leading" constant="15" id="OYN-iY-Dc2"/>
+                    <constraint firstItem="aEf-4Y-WI5" firstAttribute="leading" secondItem="PuD-5b-7A8" secondAttribute="leading" constant="10" id="OYN-iY-Dc2"/>
                     <constraint firstItem="1aM-AT-Tzd" firstAttribute="leading" secondItem="aEf-4Y-WI5" secondAttribute="trailing" constant="15" id="eYA-7M-ZYB"/>
                     <constraint firstAttribute="trailing" secondItem="1aM-AT-Tzd" secondAttribute="trailing" constant="15" id="mfg-oQ-xLK"/>
                 </constraints>

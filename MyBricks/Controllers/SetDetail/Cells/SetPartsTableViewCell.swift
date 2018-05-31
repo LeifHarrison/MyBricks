@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SetPartsTableViewCell: BorderedGradientTableViewCell, ReusableView, NibLoadableView {
+class SetPartsTableViewCell: BlueGradientTableViewCell, ReusableView, NibLoadableView {
 
     @IBOutlet weak var partsLabel: UILabel!
     @IBOutlet weak var setContentsView: UIView!
