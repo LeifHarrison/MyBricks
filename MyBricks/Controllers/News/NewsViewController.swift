@@ -20,12 +20,15 @@ class NewsViewController: UIViewController {
     private let newsLastUpdatedKey = "newsLastUpdated"
     private let updateInterval: TimeInterval = 5 * 60 // Only refresh every 5 minutes
 
+    private var refreshControl: UIRefreshControl = UIRefreshControl()
+    
     //--------------------------------------------------------------------------
     // MARK: - View Lifecycle
     //--------------------------------------------------------------------------
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         setupTableView()
     }
 
@@ -39,6 +42,14 @@ class NewsViewController: UIViewController {
     }
 
     //--------------------------------------------------------------------------
+    // MARK: - Actions
+    //--------------------------------------------------------------------------
+    
+    @IBAction func refreshNews(_ sender: Any) {
+        fetchNews()
+    }
+    
+    //--------------------------------------------------------------------------
     // MARK: - Private
     //--------------------------------------------------------------------------
     
@@ -46,12 +57,21 @@ class NewsViewController: UIViewController {
         tableView.register(NewsItemTableViewCell.self)
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.tableFooterView = UIView()
+        
+        refreshControl.addTarget(self, action: #selector(refreshNews(_:)), for: .valueChanged)
+        refreshControl.tintColor = UIColor.lightNavy
+        tableView.addSubview(refreshControl)
     }
     
     private func fetchNews() {
-        SimpleActivityHUD.show(overView: view)
+        if !refreshControl.isRefreshing {
+            SimpleActivityHUD.show(overView: view)
+        }
         BricksetServices.shared.getNews(completion: { result in
-            SimpleActivityHUD.hide()
+            if !self.refreshControl.isRefreshing {
+                SimpleActivityHUD.hide()
+            }
+            if self.refreshControl.isRefreshing { self.refreshControl.endRefreshing() }
             if let value = result.value {
                 UserDefaults.standard.set(Date(), forKey: self.newsLastUpdatedKey)
                 self.feed = value
