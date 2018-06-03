@@ -8,10 +8,7 @@
 
 import UIKit
 
-class BricksetCollectionTableViewCell: BorderedGradientTableViewCell {
-
-    static let nibName = "BricksetCollectionTableViewCell"
-    static let reuseIdentifier = "BricksetCollectionTableViewCell"
+class BricksetCollectionTableViewCell: BorderedGradientTableViewCell, ReusableView, NibLoadableView {
 
     @IBOutlet weak var ownedSetsLabel: UILabel!
     @IBOutlet weak var wantedSetsLabel: UILabel!
@@ -24,6 +21,7 @@ class BricksetCollectionTableViewCell: BorderedGradientTableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        selectionStyle = .none
         prepareForReuse()
     }
     

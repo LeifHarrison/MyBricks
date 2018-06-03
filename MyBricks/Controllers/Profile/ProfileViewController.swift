@@ -21,15 +21,32 @@ class ProfileViewController: UIViewController {
 
     enum TableSection: Int {
         case brickset
+        case general
     }
     
     enum TableRow: Int {
         case profile
         case collection
     }
+
+    enum GeneralTableRow: Int {
+        case about
+        case acknowledgements
+        case donate
+        
+        var title: String {
+            switch self {
+            case .about: return NSLocalizedString("About", comment: "")
+            case .acknowledgements: return NSLocalizedString("Acknowledgments", comment: "")
+            case .donate: return NSLocalizedString("Donate", comment: "")
+            }
+        }
+
+    }
     
     var sections: [TableSection] = []
     var bricksetRows: [TableRow] = []
+    var generalRows: [GeneralTableRow] = []
 
     var collectionTotals: UserCollectionTotals?
 
@@ -80,21 +97,21 @@ class ProfileViewController: UIViewController {
     //--------------------------------------------------------------------------
 
     fileprivate func setupTableView() {
+        tableView.contentInset = UIEdgeInsets(top: 5, left: 0, bottom: 5, right: 0)
         tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.sectionIndexBackgroundColor = UIColor.clear
-        tableView.separatorColor = UIColor(white: 0.3, alpha: 0.8)
-        tableView.separatorInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
         tableView.tableFooterView = UIView()
 
-        tableView.register(UINib(nibName:BricksetCollectionTableViewCell.nibName, bundle:nil), forCellReuseIdentifier: BricksetCollectionTableViewCell.reuseIdentifier)
-        tableView.register(UINib(nibName:BricksetProfileTableViewCell.nibName, bundle:nil), forCellReuseIdentifier: BricksetProfileTableViewCell.reuseIdentifier)
+        tableView.register(BricksetCollectionTableViewCell.self)
+        tableView.register(BricksetProfileTableViewCell.self)
+        tableView.register(ProfileGeneralTableViewCell.self)
     }
     
     fileprivate func updateDisplay(animated: Bool) {
 
         sections.removeAll()
         bricksetRows.removeAll()
-        
+        generalRows.removeAll()
+
         //let buttonItem = loggedIn ? UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logout)) : nil
         //navigationItem.setRightBarButton(buttonItem, animated: animated)
 
@@ -107,6 +124,11 @@ class ProfileViewController: UIViewController {
         else {
             transitionViews(fromView: tableView, toView: loginView, animated: animated)
         }
+        
+        sections.append(.general)
+        generalRows.append(.about)
+        generalRows.append(.acknowledgements)
+        generalRows.append(.donate)
     }
 
     fileprivate func transitionViews(fromView: UIView, toView: UIView, animated: Bool = true) {
@@ -227,9 +249,11 @@ extension ProfileViewController: UITableViewDataSource {
         if section == .brickset {
             return bricksetRows.count
         }
-        else {
-            return 0
+        else if section == .general {
+            return generalRows.count
         }
+            
+        return 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -239,24 +263,28 @@ extension ProfileViewController: UITableViewDataSource {
         if section == .brickset {
             let row = bricksetRows[indexPath.row]
             if row == .profile {
-                if let cell = tableView.dequeueReusableCell(withIdentifier: BricksetProfileTableViewCell.reuseIdentifier, for: indexPath) as? BricksetProfileTableViewCell {
-                    let keychain = Keychain(service: BricksetServices.serviceName)
-                    if let username = UserDefaults.standard.value(forKey: "username") as? String, keychain[username] != nil {
-                        cell.populateWith(username: username)
-                    }
-                    cell.logoutButtonTapped = {
-                        BricksetServices.logout()
-                        self.updateDisplay(animated: true)
-                    }
-                    return cell
+                let cell: BricksetProfileTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+                let keychain = Keychain(service: BricksetServices.serviceName)
+                if let username = UserDefaults.standard.value(forKey: "username") as? String, keychain[username] != nil {
+                    cell.populateWith(username: username)
                 }
+                cell.logoutButtonTapped = {
+                    BricksetServices.logout()
+                    self.updateDisplay(animated: true)
+                }
+                return cell
             }
             else if row == .collection {
-                if let cell = tableView.dequeueReusableCell(withIdentifier: BricksetCollectionTableViewCell.reuseIdentifier, for: indexPath) as? BricksetCollectionTableViewCell {
-                    cell.populateWithCollectionTotals(collectionTotals!)
-                    return cell
-                }
+                let cell: BricksetCollectionTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+                cell.populateWithCollectionTotals(collectionTotals!)
+                return cell
             }
+        }
+        else if section == .general {
+            let cell: ProfileGeneralTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+            let row = generalRows[indexPath.row]
+            cell.titleLabel.text = row.title
+            return cell
         }
         
         return UITableViewCell()
@@ -272,6 +300,23 @@ extension ProfileViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 0.0
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let clearSpacerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 5))
+        clearSpacerView.backgroundColor = UIColor.clear
+        return clearSpacerView
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        if section == (sections.count - 1) {
+            return 5
+        }
+        return 5
     }
     
 }

@@ -8,10 +8,7 @@
 
 import UIKit
 
-class BricksetProfileTableViewCell: BorderedGradientTableViewCell {
-
-    static let nibName = "BricksetProfileTableViewCell"
-    static let reuseIdentifier = "BricksetProfileTableViewCell"
+class BricksetProfileTableViewCell: BorderedGradientTableViewCell, ReusableView, NibLoadableView {
 
     @IBOutlet weak var loggedInAsLabel: UILabel!
     @IBOutlet weak var logoutButton: UIButton!
@@ -24,6 +21,7 @@ class BricksetProfileTableViewCell: BorderedGradientTableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        selectionStyle = .none
         logoutButton.applyDefaultStyle()
         prepareForReuse()
     }

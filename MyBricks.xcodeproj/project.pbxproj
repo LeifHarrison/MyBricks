@@ -124,6 +124,10 @@
 		9BCA7E302028DA6E00FA7BDC /* SetPriceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BCA7E2F2028DA6E00FA7BDC /* SetPriceTableViewCell.swift */; };
 		9BD4D5C0202E27000019A057 /* SetTagsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD4D5BE202E27000019A057 /* SetTagsTableViewCell.swift */; };
 		9BD4D5C1202E27000019A057 /* SetTagsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9BD4D5BF202E27000019A057 /* SetTagsTableViewCell.xib */; };
+		9BD89EF520C09E27007E9A23 /* ProfileGeneralTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD89EF320C09E27007E9A23 /* ProfileGeneralTableViewCell.swift */; };
+		9BD89EF620C09E27007E9A23 /* ProfileGeneralTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9BD89EF420C09E27007E9A23 /* ProfileGeneralTableViewCell.xib */; };
+		9BD89EF820C0A5E7007E9A23 /* ProfileAboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD89EF720C0A5E7007E9A23 /* ProfileAboutViewController.swift */; };
+		9BD89EFA20C0A609007E9A23 /* ProfileCreditsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD89EF920C0A609007E9A23 /* ProfileCreditsViewController.swift */; };
 		9BE2F618203E298B0035C172 /* UIButton+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE2F617203E298B0035C172 /* UIButton+Extensions.swift */; };
 		9BE2F61A203E2A0C0035C172 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE2F619203E2A0C0035C172 /* UIColor+Extensions.swift */; };
 		9BE7838E20486EED00FD078E /* PriceDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE7838D20486EED00FD078E /* PriceDetailViewController.swift */; };
@@ -293,6 +297,10 @@
 		9BCA7E2F2028DA6E00FA7BDC /* SetPriceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetPriceTableViewCell.swift; sourceTree = "<group>"; };
 		9BD4D5BE202E27000019A057 /* SetTagsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetTagsTableViewCell.swift; sourceTree = "<group>"; };
 		9BD4D5BF202E27000019A057 /* SetTagsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SetTagsTableViewCell.xib; sourceTree = "<group>"; };
+		9BD89EF320C09E27007E9A23 /* ProfileGeneralTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileGeneralTableViewCell.swift; sourceTree = "<group>"; };
+		9BD89EF420C09E27007E9A23 /* ProfileGeneralTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileGeneralTableViewCell.xib; sourceTree = "<group>"; };
+		9BD89EF720C0A5E7007E9A23 /* ProfileAboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileAboutViewController.swift; sourceTree = "<group>"; };
+		9BD89EF920C0A609007E9A23 /* ProfileCreditsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCreditsViewController.swift; sourceTree = "<group>"; };
 		9BE2F617203E298B0035C172 /* UIButton+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extensions.swift"; sourceTree = "<group>"; };
 		9BE2F619203E2A0C0035C172 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
 		9BE7838D20486EED00FD078E /* PriceDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceDetailViewController.swift; sourceTree = "<group>"; };
@@ -412,6 +420,8 @@
 				29365B7B1F8EDAA500F6730C /* LoginViewController.swift */,
 				2921AD8D1FAF6EF200180268 /* Profile.storyboard */,
 				29365B781F8EBF3B00F6730C /* ProfileViewController.swift */,
+				9BD89EF720C0A5E7007E9A23 /* ProfileAboutViewController.swift */,
+				9BD89EF920C0A609007E9A23 /* ProfileCreditsViewController.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -648,6 +658,8 @@
 				9B63D28C202CFCE400E1C3B0 /* BricksetCollectionTableViewCell.xib */,
 				9B63D287202CFCB900E1C3B0 /* BricksetProfileTableViewCell.swift */,
 				9B63D288202CFCB900E1C3B0 /* BricksetProfileTableViewCell.xib */,
+				9BD89EF320C09E27007E9A23 /* ProfileGeneralTableViewCell.swift */,
+				9BD89EF420C09E27007E9A23 /* ProfileGeneralTableViewCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -865,6 +877,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9B63D283202CE08700E1C3B0 /* SetListTableViewCell.xib in Resources */,
+				9BD89EF620C09E27007E9A23 /* ProfileGeneralTableViewCell.xib in Resources */,
 				294F187D1FB519A70026342F /* Browse.storyboard in Resources */,
 				9B6D8E99203250380037ADFD /* SetReviewsTableViewCell.xib in Resources */,
 				9B5B4A53204DDBEA00F2324C /* PriceGuideTableViewCell.xib in Resources */,
@@ -989,6 +1002,8 @@
 				9BD4D5C0202E27000019A057 /* SetTagsTableViewCell.swift in Sources */,
 				29CA94A11F8D508A000F1DE3 /* BrowseSetsViewController.swift in Sources */,
 				29CA94A61F8D72DC000F1DE3 /* SetListTableViewCell.swift in Sources */,
+				9BD89EF820C0A5E7007E9A23 /* ProfileAboutViewController.swift in Sources */,
+				9BD89EF520C09E27007E9A23 /* ProfileGeneralTableViewCell.swift in Sources */,
 				29C111A51FC48988007CBDB4 /* ReviewDetailAnimator.swift in Sources */,
 				2949A9531FBFDAED00676D59 /* SetReview.swift in Sources */,
 				291DEE9D1FE27604004906E4 /* UIResponder+Extensions.swift in Sources */,
@@ -1009,6 +1024,7 @@
 				9BE7838E20486EED00FD078E /* PriceDetailViewController.swift in Sources */,
 				9BC7A64420AB94890095DF65 /* SetImagesViewController.swift in Sources */,
 				9B5E4D37203352250057610E /* UITableView+Extensions.swift in Sources */,
+				9BD89EFA20C0A609007E9A23 /* ProfileCreditsViewController.swift in Sources */,
 				298F10901FFF3BC800CC14E9 /* GetSetsRequest.swift in Sources */,
 				29B9514D1FDBCC8B0049147E /* Element.swift in Sources */,
 				9BCA7E302028DA6E00FA7BDC /* SetPriceTableViewCell.swift in Sources */,
