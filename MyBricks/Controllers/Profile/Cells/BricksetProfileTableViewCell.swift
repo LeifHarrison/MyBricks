@@ -10,10 +10,10 @@ import UIKit
 
 class BricksetProfileTableViewCell: BorderedGradientTableViewCell, ReusableView, NibLoadableView {
 
-    @IBOutlet weak var loggedInAsLabel: UILabel!
-    @IBOutlet weak var logoutButton: UIButton!
+    @IBOutlet weak var statusLabel: UILabel!
+    @IBOutlet weak var loginButton: UIButton!
 
-    var logoutButtonTapped : (() -> Void)?
+    var loginButtonTapped : (() -> Void)?
 
     //--------------------------------------------------------------------------
     // MARK: - Nib Loading
@@ -22,7 +22,7 @@ class BricksetProfileTableViewCell: BorderedGradientTableViewCell, ReusableView,
     override func awakeFromNib() {
         super.awakeFromNib()
         selectionStyle = .none
-        logoutButton.applyDefaultStyle()
+        loginButton.applyDefaultStyle()
         prepareForReuse()
     }
     
@@ -32,36 +32,14 @@ class BricksetProfileTableViewCell: BorderedGradientTableViewCell, ReusableView,
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        loggedInAsLabel.text = ""
     }
     
     //--------------------------------------------------------------------------
     // MARK: - Actions
     //--------------------------------------------------------------------------
     
-    @IBAction func logoutButtonTapped(_ sender: UIButton) {
-        logoutButtonTapped?()
+    @IBAction func loginButtonTapped(_ sender: UIButton) {
+        loginButtonTapped?()
     }
     
-    //--------------------------------------------------------------------------
-    // MARK: - Public
-    //--------------------------------------------------------------------------
-    
-    func populateWith(username: String) {
-        loggedInAsLabel.attributedText = loggedInAsAttributedDescription(forUsername: username)
-    }
-
-    //--------------------------------------------------------------------------
-    // MARK: - Private
-    //--------------------------------------------------------------------------
-    
-    private let regularAttributes = [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 18), NSAttributedStringKey.foregroundColor: UIColor.black]
-    private let boldAttributes = [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 18, weight: .bold), NSAttributedStringKey.foregroundColor: UIColor.black]
-
-    private func loggedInAsAttributedDescription(forUsername username: String) -> NSAttributedString {
-        let attributedDescription = NSMutableAttributedString(string: "You are logged in as ", attributes: regularAttributes)
-        attributedDescription.append(NSAttributedString(string:"\(username)", attributes: boldAttributes))
-        return attributedDescription
-    }
-
 }

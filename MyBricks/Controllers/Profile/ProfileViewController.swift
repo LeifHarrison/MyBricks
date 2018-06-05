@@ -15,9 +15,6 @@ class ProfileViewController: UIViewController {
 
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var loginView: UIView!
-    @IBOutlet weak var instructionLabel: UILabel!
-    @IBOutlet weak var loginButton: UIButton!
 
     enum TableSection: Int {
         case brickset
@@ -50,6 +47,9 @@ class ProfileViewController: UIViewController {
 
     var collectionTotals: UserCollectionTotals?
 
+    private let lastUpdatedKey = "collectionLastUpdated"
+    private let updateInterval: TimeInterval = 5 * 60 // Only refresh every 5 minutes
+
     //--------------------------------------------------------------------------
     // MARK: - View Lifecycle
     //--------------------------------------------------------------------------
@@ -57,20 +57,21 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
-        instructionLabel.applyInstructionsStyle()
-        loginButton.applyDefaultStyle()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        updateDisplay(animated: false)
+        updateDisplayedRows()
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        if BricksetServices.isLoggedIn() {
+
+        let lastUpdated = UserDefaults.standard.value(forKey: lastUpdatedKey) as? Date ?? Date.distantPast
+        if BricksetServices.isLoggedIn() && (collectionTotals == nil || Date().timeIntervalSince(lastUpdated) > updateInterval) {
             updateCollectionInformation()
         }
+
     }
 
     //--------------------------------------------------------------------------
@@ -89,7 +90,7 @@ class ProfileViewController: UIViewController {
 
     @IBAction func logout(_ sender: AnyObject?) {
         BricksetServices.logout()
-        updateDisplay(animated: true)
+        updateDisplayedRows()
     }
 
     //--------------------------------------------------------------------------
@@ -106,7 +107,7 @@ class ProfileViewController: UIViewController {
         tableView.register(ProfileGeneralTableViewCell.self)
     }
     
-    fileprivate func updateDisplay(animated: Bool) {
+    fileprivate func updateDisplayedRows() {
 
         sections.removeAll()
         bricksetRows.removeAll()
@@ -115,38 +116,26 @@ class ProfileViewController: UIViewController {
         //let buttonItem = loggedIn ? UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logout)) : nil
         //navigationItem.setRightBarButton(buttonItem, animated: animated)
 
-        if BricksetServices.isLoggedIn() {
-            transitionViews(fromView: loginView, toView: tableView, animated: animated)
-            sections.append(.brickset)
-            bricksetRows.append(.profile)
-            tableView.reloadData()
+        sections.append(.brickset)
+        bricksetRows.append(.profile)
+        if collectionTotals != nil {
+            bricksetRows.append(.collection)
         }
-        else {
-            transitionViews(fromView: tableView, toView: loginView, animated: animated)
-        }
-        
+
         sections.append(.general)
         generalRows.append(.about)
         generalRows.append(.acknowledgements)
         generalRows.append(.donate)
+        tableView.reloadData()
     }
 
-    fileprivate func transitionViews(fromView: UIView, toView: UIView, animated: Bool = true) {
-        toView.alpha = 0.0
-        let fadeOutAnimations = { () -> Void in
-            fromView.alpha = 0.0
-        }
-        let fadeOutCompletion = { (finished: Bool) -> Void in
-            fromView.isHidden = true
-            toView.isHidden = false
-            let fadeInAnimations = { () -> Void in
-                toView.alpha = 1.0
-            }
-            let fadeInCompletion = { (finished: Bool) -> Void in
-            }
-            UIView.animate(withDuration: animated ? 0.7 : 0, animations: fadeInAnimations, completion:fadeInCompletion)
-        }
-        UIView.animate(withDuration: animated ? 0.3 : 0, animations: fadeOutAnimations, completion:fadeOutCompletion)
+    private let regularAttributes = [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 18), NSAttributedStringKey.foregroundColor: UIColor.black]
+    private let boldAttributes = [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 18, weight: .bold), NSAttributedStringKey.foregroundColor: UIColor.black]
+    
+    private func loggedInAsAttributedDescription(forUsername username: String) -> NSAttributedString {
+        let attributedDescription = NSMutableAttributedString(string: "You are logged in as ", attributes: regularAttributes)
+        attributedDescription.append(NSAttributedString(string:"\(username)", attributes: boldAttributes))
+        return attributedDescription
     }
 
     // MARK: - Updating Profile Information
@@ -163,6 +152,7 @@ class ProfileViewController: UIViewController {
         BricksetServices.shared.getCollectionTotals(completion: { result in
             self.activityIndicator.stopAnimating()
             if result.isSuccess {
+                UserDefaults.standard.set(Date(), forKey: self.lastUpdatedKey)
                 self.collectionTotals = result.value
                 self.bricksetRows.append(.collection)
                 if let section = self.sections.index(of: .brickset), let row = self.bricksetRows.index(of: .collection) {
@@ -218,7 +208,7 @@ class ProfileViewController: UIViewController {
         if let username = credential.user, let password = credential.password {
             BricksetServices.shared.login(username: username, password: password, completion: { result in
                 if result.isSuccess {
-                    self.updateDisplay(animated: true)
+                    self.updateDisplayedRows()
                     self.updateProfileInformation()
                     self.updateCollectionInformation()
                 }
@@ -257,20 +247,34 @@ extension ProfileViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let section = sections[indexPath.section]
 
         if section == .brickset {
             let row = bricksetRows[indexPath.row]
             if row == .profile {
                 let cell: BricksetProfileTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
-                let keychain = Keychain(service: BricksetServices.serviceName)
-                if let username = UserDefaults.standard.value(forKey: "username") as? String, keychain[username] != nil {
-                    cell.populateWith(username: username)
+                if BricksetServices.isLoggedIn() {
+                    let keychain = Keychain(service: BricksetServices.serviceName)
+                    if let username = UserDefaults.standard.value(forKey: "username") as? String, keychain[username] != nil {
+                        cell.statusLabel.attributedText = self.loggedInAsAttributedDescription(forUsername: username)
+                        cell.loginButton.setTitle("LOGOUT", for: .normal)
+                    }
+                    cell.loginButtonTapped = {
+                        BricksetServices.logout()
+                        tableView.reloadRows(at: [indexPath], with: .fade)
+                        if let section = self.sections.index(of: .brickset), let row = self.bricksetRows.index(of: .collection) {
+                            self.bricksetRows.remove(at: row)
+                            self.tableView.deleteRows(at: [IndexPath(row: row, section: section)], with: .fade)
+                        }
+                    }
                 }
-                cell.logoutButtonTapped = {
-                    BricksetServices.logout()
-                    self.updateDisplay(animated: true)
+                else {
+                    cell.statusLabel.text = NSLocalizedString("profile.login.helptext", comment:"")
+                    cell.statusLabel.applyInstructionsStyle()
+                    cell.loginButton.setTitle("LOGIN", for: .normal)
+                    cell.loginButtonTapped = {
+                        self.login(self)
+                    }
                 }
                 return cell
             }
@@ -299,6 +303,19 @@ extension ProfileViewController: UITableViewDataSource {
 extension ProfileViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let section = sections[indexPath.section]
+        if section == .general {
+            let row = generalRows[indexPath.row]
+            switch row {
+                case .about:
+                    performSegue(withIdentifier: "showAboutView", sender: self)
+                case .acknowledgements:
+                    performSegue(withIdentifier: "showCreditsView", sender: self)
+                case .donate:
+                    performSegue(withIdentifier: "showDonateView", sender: self)
+            }
+        }
+        
         tableView.deselectRow(at: indexPath, animated: true)
     }
     

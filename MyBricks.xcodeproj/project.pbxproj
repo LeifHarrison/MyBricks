@@ -99,6 +99,8 @@
 		9B63D28A202CFCB900E1C3B0 /* BricksetProfileTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B63D288202CFCB900E1C3B0 /* BricksetProfileTableViewCell.xib */; };
 		9B63D28D202CFCE400E1C3B0 /* BricksetCollectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B63D28B202CFCE400E1C3B0 /* BricksetCollectionTableViewCell.swift */; };
 		9B63D28E202CFCE400E1C3B0 /* BricksetCollectionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B63D28C202CFCE400E1C3B0 /* BricksetCollectionTableViewCell.xib */; };
+		9B64EB7520C59E68001D05CD /* ProfileDonateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B64EB7420C59E68001D05CD /* ProfileDonateViewController.swift */; };
+		9B64EB7720C59E77001D05CD /* ProfileLegalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B64EB7620C59E77001D05CD /* ProfileLegalViewController.swift */; };
 		9B67EC2A2044A0CE001FAF77 /* FilterSortingDirectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B67EC282044A0CE001FAF77 /* FilterSortingDirectionTableViewCell.swift */; };
 		9B67EC2B2044A0CE001FAF77 /* FilterGroupingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B67EC292044A0CE001FAF77 /* FilterGroupingTableViewCell.swift */; };
 		9B67EC2D2044BDEC001FAF77 /* FilterSelectSortingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B67EC2C2044BDEC001FAF77 /* FilterSelectSortingViewController.swift */; };
@@ -272,6 +274,8 @@
 		9B63D288202CFCB900E1C3B0 /* BricksetProfileTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BricksetProfileTableViewCell.xib; sourceTree = "<group>"; };
 		9B63D28B202CFCE400E1C3B0 /* BricksetCollectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BricksetCollectionTableViewCell.swift; sourceTree = "<group>"; };
 		9B63D28C202CFCE400E1C3B0 /* BricksetCollectionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BricksetCollectionTableViewCell.xib; sourceTree = "<group>"; };
+		9B64EB7420C59E68001D05CD /* ProfileDonateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDonateViewController.swift; sourceTree = "<group>"; };
+		9B64EB7620C59E77001D05CD /* ProfileLegalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileLegalViewController.swift; sourceTree = "<group>"; };
 		9B67EC282044A0CE001FAF77 /* FilterSortingDirectionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterSortingDirectionTableViewCell.swift; sourceTree = "<group>"; };
 		9B67EC292044A0CE001FAF77 /* FilterGroupingTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterGroupingTableViewCell.swift; sourceTree = "<group>"; };
 		9B67EC2C2044BDEC001FAF77 /* FilterSelectSortingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterSelectSortingViewController.swift; sourceTree = "<group>"; };
@@ -419,9 +423,11 @@
 				9B63D286202CFC8600E1C3B0 /* Cells */,
 				29365B7B1F8EDAA500F6730C /* LoginViewController.swift */,
 				2921AD8D1FAF6EF200180268 /* Profile.storyboard */,
-				29365B781F8EBF3B00F6730C /* ProfileViewController.swift */,
 				9BD89EF720C0A5E7007E9A23 /* ProfileAboutViewController.swift */,
 				9BD89EF920C0A609007E9A23 /* ProfileCreditsViewController.swift */,
+				9B64EB7420C59E68001D05CD /* ProfileDonateViewController.swift */,
+				9B64EB7620C59E77001D05CD /* ProfileLegalViewController.swift */,
+				29365B781F8EBF3B00F6730C /* ProfileViewController.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -998,6 +1004,7 @@
 			files = (
 				9B63D289202CFCB900E1C3B0 /* BricksetProfileTableViewCell.swift in Sources */,
 				29365B7C1F8EDAA500F6730C /* LoginViewController.swift in Sources */,
+				9B64EB7720C59E77001D05CD /* ProfileLegalViewController.swift in Sources */,
 				292F4F571F193092006D5F5B /* BricksetServices.swift in Sources */,
 				9BD4D5C0202E27000019A057 /* SetTagsTableViewCell.swift in Sources */,
 				29CA94A11F8D508A000F1DE3 /* BrowseSetsViewController.swift in Sources */,
@@ -1077,6 +1084,7 @@
 				2949A9551FBFE05E00676D59 /* SetReviewTableViewCell.swift in Sources */,
 				9B92A916202E4BE8001E7AC9 /* TagView.swift in Sources */,
 				9B3E1EEC202A690D0094DD3E /* SetDetailFooterView.swift in Sources */,
+				9B64EB7520C59E68001D05CD /* ProfileDonateViewController.swift in Sources */,
 				29365B791F8EBF3B00F6730C /* ProfileViewController.swift in Sources */,
 				295ADFBF1F16AFFD002E6802 /* BrowseThemesViewController.swift in Sources */,
 				296EB6E41FBFA71A00D4D3C6 /* SetRetailPrice.swift in Sources */,

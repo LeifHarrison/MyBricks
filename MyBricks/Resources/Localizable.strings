@@ -7,3 +7,7 @@
 */
 
 "filter.error.notowned" = "You must select 'Owned' or 'Wanted' when viewing your collection.\n\nFor browsing sets you do not own or want, use the 'Browse' tab.";
+
+"profile.loginbutton.title" = "LOGIN";
+"profile.logoutbutton.title" = "LOGOUT";
+"profile.login.helptext" = "Log in to view and update your set collection and wanted list";

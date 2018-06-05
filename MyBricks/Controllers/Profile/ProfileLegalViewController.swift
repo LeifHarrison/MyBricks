@@ -1,14 +1,14 @@
 //
-//  ProfileCreditsViewController.swift
+//  ProfileLegalViewController.swift
 //  MyBricks
 //
-//  Created by Harrison, Leif (US - Seattle) on 5/31/18.
+//  Created by Harrison, Leif (US - Seattle) on 6/4/18.
 //  Copyright © 2018 Leif Harrison. All rights reserved.
 //
 
 import UIKit
 
-class ProfileCreditsViewController: UIViewController {
+class ProfileLegalViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
