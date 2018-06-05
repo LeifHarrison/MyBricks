@@ -23,26 +23,35 @@ class SetImagesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         largeCollectionView.register(ZoomImageCollectionViewCell.self)
-        if let layout = largeCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
-            layout.itemSize = largeCollectionView.frame.size
-        }
-
         smallCollectionView.addBorder()
         smallCollectionView.register(SetImageCollectionViewCell.self)
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        view.layoutIfNeeded()
+
         if selectedImage == nil {
             selectedImage = images.first
         }
         guard let currentImage = selectedImage else { return }
         let indexPath = IndexPath(item: images.index(of: currentImage) ?? 0, section: 0)
-        largeCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
-        smallCollectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
+        largeCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: false)
+        smallCollectionView.selectItem(at: indexPath, animated: false, scrollPosition: .centeredHorizontally)
+    }
+    
+    //--------------------------------------------------------------------------
+    // MARK: - Layout
+    //--------------------------------------------------------------------------
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        if let layout = largeCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+            layout.itemSize = largeCollectionView.frame.size
+            layout.invalidateLayout()
+            largeCollectionView.reloadData()
+        }
     }
     
     //--------------------------------------------------------------------------
@@ -102,9 +111,7 @@ extension SetImagesViewController: UICollectionViewDataSource {
 extension SetImagesViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if collectionView == largeCollectionView {
-        }
-        else if collectionView == smallCollectionView {
+        if collectionView == smallCollectionView {
             if let cell = collectionView.cellForItem(at: indexPath) {
                 cell.isSelected = true
             }
