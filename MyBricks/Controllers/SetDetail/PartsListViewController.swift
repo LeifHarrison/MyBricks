@@ -95,7 +95,7 @@ extension PartsListViewController: UITableViewDataSource {
             cell.populate(with: element)
             cell.selectionStyle = .none
             if let urlString = element.part?.imageURL, let url = URL(string: urlString) {
-                cell.partImageView.af_setImage(withURL: url, imageTransition: .crossDissolve(0.3))
+                cell.partImageView.af_setImage(withURL: url, placeholderImage: #imageLiteral(resourceName: "placeholder1"), imageTransition: .crossDissolve(0.3))
             }
             
             // See if we need to load more species

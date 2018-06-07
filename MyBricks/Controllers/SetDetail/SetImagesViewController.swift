@@ -16,7 +16,7 @@ class SetImagesViewController: UIViewController {
 
     var images: [SetImage] = []
     var selectedImage: SetImage?
-
+    
     //--------------------------------------------------------------------------
     // MARK: - View Lifecycle
     //--------------------------------------------------------------------------
@@ -30,15 +30,20 @@ class SetImagesViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        view.layoutIfNeeded()
 
         if selectedImage == nil {
             selectedImage = images.first
         }
-        guard let currentImage = selectedImage else { return }
-        let indexPath = IndexPath(item: images.index(of: currentImage) ?? 0, section: 0)
-        largeCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: false)
-        smallCollectionView.selectItem(at: indexPath, animated: false, scrollPosition: .centeredHorizontally)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if let currentImage = selectedImage {
+            let indexPath = IndexPath(item: images.index(of: currentImage) ?? 0, section: 0)
+            largeCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: false)
+            smallCollectionView.selectItem(at: indexPath, animated: false, scrollPosition: .centeredHorizontally)
+        }
     }
     
     //--------------------------------------------------------------------------
@@ -62,13 +67,6 @@ class SetImagesViewController: UIViewController {
         presentingViewController?.dismiss(animated: true, completion: nil)
     }
     
-    //--------------------------------------------------------------------------
-    // MARK: - Private
-    //--------------------------------------------------------------------------
-    
-    private func updateCurrentPage() {
-        
-    }
 }
 
 //==============================================================================
@@ -94,8 +92,16 @@ extension SetImagesViewController: UICollectionViewDataSource {
         }
         else if collectionView == smallCollectionView {
             let cell: SetImageCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
+            
+            cell.imageView.contentMode = .center
+            cell.imageView.image = #imageLiteral(resourceName: "placeholder1")
+
             if let thumbnailURLString = image.thumbnailURL, let thumbnailURL = URL(string: thumbnailURLString) {
-                cell.imageView.af_setImage(withURL: thumbnailURL, imageTransition: .crossDissolve(0.3))
+                cell.imageView.af_setImage(withURL: thumbnailURL, imageTransition: .crossDissolve(0.3)) { response in
+                    if response.result.value != nil {
+                        cell.imageView.contentMode = .scaleAspectFit
+                    }
+                }
             }
             return cell
         }

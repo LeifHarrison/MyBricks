@@ -27,7 +27,12 @@ class ZoomImageCollectionViewCell: UICollectionViewCell, ReusableView, NibLoadab
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        imageView.image = nil
+        
+        imageView.image = #imageLiteral(resourceName: "placeholder2Large")
+        imageView.sizeToFit()
+        scrollView.contentSize = self.imageView.frame.size
+        updateZoomScales()
+        updateImageViewConstraints()
     }
     
     //--------------------------------------------------------------------------
@@ -46,11 +51,10 @@ class ZoomImageCollectionViewCell: UICollectionViewCell, ReusableView, NibLoadab
     
     func populate(with setImage: SetImage) {
         if let imageURLString = setImage.imageURL, let imageURL = URL(string: imageURLString) {
-            //activityIndicator.startAnimating()
-            imageView.af_setImage(withURL: imageURL, imageTransition: .crossDissolve(0.3)) { response in
-                //self.activityIndicator.stopAnimating()
+            imageView.af_setImage(withURL: imageURL, placeholderImage: #imageLiteral(resourceName: "placeholder2Large"), imageTransition: .crossDissolve(0.3)) { response in
                 if response.value != nil {
                     self.imageView.sizeToFit()
+                    self.scrollView.contentSize = self.imageView.frame.size
                 }
             }
         }

@@ -110,7 +110,7 @@ class SetListTableViewCell: BorderedGradientTableViewCell, NibLoadableView, Reus
         }
         
         setImageView.contentMode = .center
-        setImageView.image = UIImage(named: "notAvailable")
+        setImageView.image = #imageLiteral(resourceName: "placeholder1")
         imageBorderView.backgroundColor = UIColor.lightBlueGreyTwo
 
         let urlString = (UIScreen.main.scale > 1.5) ? set.largeThumbnailURL : set.thumbnailURL

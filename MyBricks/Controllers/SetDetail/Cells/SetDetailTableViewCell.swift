@@ -177,15 +177,27 @@ extension SetDetailTableViewCell: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: SetImageCollectionViewCell = collectionView.dequeueReusableCell(forIndexPath: indexPath)
+        
+        cell.imageView.contentMode = .center
+        cell.imageView.image = #imageLiteral(resourceName: "placeholder2Large")
+
         if indexPath.item == 0 {
             if let urlString = mainImageURL, let thumbnailURL = URL(string: urlString) {
-                cell.imageView.af_setImage(withURL: thumbnailURL, imageTransition: .crossDissolve(0.3))
+                cell.imageView.af_setImage(withURL: thumbnailURL, imageTransition: .crossDissolve(0.3)) { response in
+                    if response.result.value != nil {
+                        cell.imageView.contentMode = .scaleAspectFit
+                    }
+                }
             }
         }
         else {
             let image = self.additionalImages[indexPath.item-1]
             if let thumbnailURLString = image.thumbnailURL, let thumbnailURL = URL(string: thumbnailURLString) {
-                cell.imageView.af_setImage(withURL: thumbnailURL, imageTransition: .crossDissolve(0.3))
+                cell.imageView.af_setImage(withURL: thumbnailURL, imageTransition: .crossDissolve(0.3)) { response in
+                    if response.result.value != nil {
+                        cell.imageView.contentMode = .scaleAspectFit
+                    }
+                }
             }
         }
         return cell
