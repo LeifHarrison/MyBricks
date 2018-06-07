@@ -13,7 +13,6 @@ import LocalAuthentication
 
 class ProfileViewController: UIViewController {
 
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
 
     enum TableSection: Int {
@@ -117,7 +116,7 @@ class ProfileViewController: UIViewController {
 
         sections.append(.brickset)
         bricksetRows.append(.profile)
-        if collectionTotals != nil {
+        if BricksetServices.isLoggedIn() {
             bricksetRows.append(.collection)
         }
 
@@ -147,15 +146,13 @@ class ProfileViewController: UIViewController {
     // MARK: - Updating Collection Information
 
     fileprivate func updateCollectionInformation() {
-        activityIndicator.startAnimating()
         BricksetServices.shared.getCollectionTotals(completion: { result in
-            self.activityIndicator.stopAnimating()
             if result.isSuccess {
                 UserDefaults.standard.set(Date(), forKey: self.lastUpdatedKey)
                 self.collectionTotals = result.value
-                self.bricksetRows.append(.collection)
                 if let section = self.sections.index(of: .brickset), let row = self.bricksetRows.index(of: .collection) {
-                    self.tableView.insertRows(at: [IndexPath(row: row, section: section)], with: .fade)
+                    let indexPath = IndexPath(row: row, section: section)
+                    self.tableView.reloadRows(at: [indexPath], with: .fade)
                 }
             }
         })
@@ -278,7 +275,7 @@ extension ProfileViewController: UITableViewDataSource {
             }
             else if row == .collection {
                 let cell: BricksetCollectionTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
-                cell.populateWithCollectionTotals(collectionTotals!)
+                cell.populateWithCollectionTotals(collectionTotals)
                 return cell
             }
         }

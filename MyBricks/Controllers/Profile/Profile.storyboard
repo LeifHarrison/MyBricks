@@ -43,17 +43,11 @@
                                     <outlet property="delegate" destination="KQN-99-oaK" id="tQp-jT-Sl9"/>
                                 </connections>
                             </tableView>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="BSE-e2-gmi">
-                                <rect key="frame" x="169" y="347" width="37" height="37"/>
-                                <color key="color" red="0.47058823529999999" green="0.47058823529999999" blue="0.47058823529999999" alpha="1" colorSpace="calibratedRGB"/>
-                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" name="cloudyBlue"/>
                         <constraints>
                             <constraint firstItem="zPo-ko-P53" firstAttribute="leading" secondItem="jJk-GK-0dn" secondAttribute="leading" constant="5" id="1AJ-0L-hzo"/>
                             <constraint firstItem="zPo-ko-P53" firstAttribute="top" secondItem="jJk-GK-0dn" secondAttribute="top" id="8oP-je-uv3"/>
-                            <constraint firstItem="BSE-e2-gmi" firstAttribute="centerX" secondItem="jJk-GK-0dn" secondAttribute="centerX" id="g3D-Uf-cLC"/>
-                            <constraint firstItem="BSE-e2-gmi" firstAttribute="centerY" secondItem="jJk-GK-0dn" secondAttribute="centerY" id="lLV-Lm-EQr"/>
                             <constraint firstItem="jJk-GK-0dn" firstAttribute="trailing" secondItem="zPo-ko-P53" secondAttribute="trailing" constant="5" id="vJV-9H-X3w"/>
                             <constraint firstItem="jJk-GK-0dn" firstAttribute="bottom" secondItem="zPo-ko-P53" secondAttribute="bottom" id="yV5-0M-N8l"/>
                         </constraints>
@@ -61,7 +55,6 @@
                     </view>
                     <navigationItem key="navigationItem" title="Profile" id="3rW-HM-YH7"/>
                     <connections>
-                        <outlet property="activityIndicator" destination="BSE-e2-gmi" id="ADn-mf-cyD"/>
                         <outlet property="tableView" destination="zPo-ko-P53" id="A0X-5z-MF2"/>
                         <segue destination="CRl-O7-t69" kind="presentation" identifier="showLoginView" id="fV6-Rj-Be5"/>
                         <segue destination="Wmn-16-g65" kind="show" identifier="showAboutView" id="coe-ke-w63"/>

@@ -15,6 +15,9 @@ class BricksetCollectionTableViewCell: BorderedGradientTableViewCell, ReusableVi
     @IBOutlet weak var ownedMinifigsLabel: UILabel!
     @IBOutlet weak var wantedMinifigsLabel: UILabel!
 
+    @IBOutlet weak var activityContainerView: UIView!
+    @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
+
     //--------------------------------------------------------------------------
     // MARK: - Nib Loading
     //--------------------------------------------------------------------------
@@ -41,11 +44,19 @@ class BricksetCollectionTableViewCell: BorderedGradientTableViewCell, ReusableVi
     // MARK: - Public
     //--------------------------------------------------------------------------
     
-    func populateWithCollectionTotals(_ collectionTotals: UserCollectionTotals) {
-        ownedSetsLabel.attributedText = collectionTotals.setsOwnedAttributedDescription()
-        wantedSetsLabel.attributedText = collectionTotals.setsWantedAttributedDescription()
-        ownedMinifigsLabel.attributedText = collectionTotals.minifigsOwnedAttributedDescription()
-        wantedMinifigsLabel.attributedText = collectionTotals.minifigsWantedAttributedDescription()
+    func populateWithCollectionTotals(_ collectionTotals: UserCollectionTotals?) {
+        if let totals = collectionTotals {
+            activityIndicatorView.stopAnimating()
+            activityContainerView.isHidden = true
+            ownedSetsLabel.attributedText = totals.setsOwnedAttributedDescription()
+            wantedSetsLabel.attributedText = totals.setsWantedAttributedDescription()
+            ownedMinifigsLabel.attributedText = totals.minifigsOwnedAttributedDescription()
+            wantedMinifigsLabel.attributedText = totals.minifigsWantedAttributedDescription()
+        }
+        else {
+            activityContainerView.isHidden = false
+            activityIndicatorView.startAnimating()
+        }
     }
 }
 
