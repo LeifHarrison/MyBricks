@@ -119,7 +119,6 @@ class SetListTableViewCell: BorderedGradientTableViewCell, NibLoadableView, Reus
                 if response.result.value != nil {
                     self.setImageView.contentMode = .scaleAspectFit
                     self.imageBorderView.backgroundColor = UIColor.white
-                    //NSLog("image size: \(image.size)")
                 }
             }
         }

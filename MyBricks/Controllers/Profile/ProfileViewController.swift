@@ -80,7 +80,6 @@ class ProfileViewController: UIViewController {
 
     @IBAction func login(_ sender: AnyObject?) {
         if let protectionSpace = BricksetServices.shared.loginProtectionSpace, let credential = URLCredentialStorage.shared.defaultCredential(for: protectionSpace) {
-            NSLog("Credential: \(credential), password: \(String(describing: credential.password))")
             evaluateBiometricAuthentication(credential: credential)
         }
         else {
@@ -171,7 +170,6 @@ class ProfileViewController: UIViewController {
             myContext.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: myLocalizedReasonString) { success, evaluateError in
                 if success {
                     // User authenticated successfully, take appropriate action
-                    NSLog("Biometric authentication success!")
                     DispatchQueue.main.async {
                         self.performLogin(credential: credential)
                     }

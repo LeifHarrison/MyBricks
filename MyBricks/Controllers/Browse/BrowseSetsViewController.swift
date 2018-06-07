@@ -314,7 +314,6 @@ extension BrowseSetsViewController: UITableViewDelegate {
 extension BrowseSetsViewController: FilterViewControllerDelegate {
     
     func filterViewController(_ controller: FilterViewController, didUpdateFilterOptions filterOptions: FilterOptions) {
-        //NSLog("Filter Options = \(filterOptions)")
         self.filterOptions = filterOptions
         fetchSets()
     }

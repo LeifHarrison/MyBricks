@@ -54,7 +54,6 @@ extension UIViewController {
             myContext.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: myLocalizedReasonString) { success, evaluateError in
                 if success {
                     // User authenticated successfully, take appropriate action
-                    NSLog("Biometric authentication success!")
                     DispatchQueue.main.async {
                         self.performLogin(credential: credential, completion: completion)
                     }
@@ -99,11 +98,11 @@ extension UIViewController {
     func performLogin(credential: URLCredential, completion: @escaping ((Bool) -> Void)) {
         if let username = credential.user, let password = credential.password {
             BricksetServices.shared.login(username: username, password: password, completion: { result in
-                NSLog("Result: \(result)")
                 if result.isSuccess {
                     completion(true)
                 }
                 else {
+                    NSLog("Error: \(String(describing: result.error?.localizedDescription))")
                     let alert = UIAlertController(title: "Error", message: result.error?.localizedDescription, preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (_) in
                         completion(true)

@@ -390,7 +390,6 @@ extension FilterViewController: FilterSelectYearViewControllerDelegate {
 extension FilterViewController: FilterSelectSortingViewControllerDelegate {
     
     func selectSortingController(_ controller: FilterSelectSortingViewController, didSelectSortingType sortingType: SortingType) {
-        //NSLog("sortingType = \(sortingType)")
         filterOptions.sortingSelection.sortingType = sortingType
         let indexPath = IndexPath(row: TableRowsSorting.sortingType.rawValue, section: TableSection.sorting.rawValue)
         tableView.reloadRows(at: [indexPath], with: .fade)
