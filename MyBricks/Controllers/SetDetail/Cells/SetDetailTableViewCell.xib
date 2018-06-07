@@ -80,7 +80,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t9p-gC-tJt">
                                 <rect key="frame" x="8" y="109" width="17" height="28"/>
                                 <color key="tintColor" name="lightNavy"/>
-                                <state key="normal" image="backGallery"/>
+                                <state key="normal" image="galleryBack"/>
                                 <connections>
                                     <action selector="previous:" destination="okH-rH-g0E" eventType="touchUpInside" id="93D-Cy-zea"/>
                                 </connections>
@@ -106,7 +106,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xCc-dK-S0e">
                                 <rect key="frame" x="330" y="109" width="17" height="28"/>
                                 <color key="tintColor" name="lightNavy"/>
-                                <state key="normal" image="forwardGallery"/>
+                                <state key="normal" image="galleryForward"/>
                                 <connections>
                                     <action selector="next:" destination="okH-rH-g0E" eventType="touchUpInside" id="AFB-Dc-yJu"/>
                                 </connections>
@@ -188,8 +188,8 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="backGallery" width="17" height="28"/>
-        <image name="forwardGallery" width="17" height="28"/>
+        <image name="galleryBack" width="17" height="28"/>
+        <image name="galleryForward" width="17" height="28"/>
         <namedColor name="cloudyBlue">
             <color red="0.69400000569999998" green="0.76499998570000005" blue="0.83099997039999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

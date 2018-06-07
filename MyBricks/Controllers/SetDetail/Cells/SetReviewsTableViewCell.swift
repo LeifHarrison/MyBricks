@@ -25,7 +25,7 @@ class SetReviewsTableViewCell: BlueGradientTableViewCell, ReusableView, NibLoada
         titleLabel.text = "Rating"
         setupRatingView()
 
-        accessoryView = UIImageView(image: UIImage(named:"forward"))
+        accessoryView = UIImageView(image: UIImage(named:"disclosure"))
         accessoryView?.tintColor = UIColor.lightNavy
         
         prepareForReuse()

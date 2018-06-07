@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -53,7 +53,7 @@
                             <constraint firstItem="1QH-b1-EON" firstAttribute="top" secondItem="ILO-4x-4X4" secondAttribute="top" constant="4" id="lPo-ao-M54"/>
                         </constraints>
                     </view>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="forward" translatesAutoresizingMaskIntoConstraints="NO" id="lqH-0g-3IQ">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="disclosure" translatesAutoresizingMaskIntoConstraints="NO" id="lqH-0g-3IQ">
                         <rect key="frame" x="356" y="27.5" width="9" height="14"/>
                         <color key="tintColor" name="lightNavy"/>
                     </imageView>
@@ -83,7 +83,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="forward" width="9" height="14"/>
+        <image name="disclosure" width="9" height="14"/>
         <namedColor name="cloudyBlue">
             <color red="0.69400000569999998" green="0.76499998570000005" blue="0.83099997039999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

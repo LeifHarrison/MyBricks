@@ -20,7 +20,7 @@ class NewsItemTableViewCell: BorderedGradientTableViewCell, NibLoadableView, Reu
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        accessoryView = UIImageView(image: UIImage(named:"forward"))
+        accessoryView = UIImageView(image: UIImage(named:"disclosure"))
         accessoryView?.tintColor = UIColor.lightNavy
     }
     

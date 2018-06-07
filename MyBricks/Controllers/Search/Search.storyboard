@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -158,7 +158,7 @@ Search by scanning a barcode</string>
                         <viewLayoutGuide key="safeArea" id="O1u-W8-tvY"/>
                     </view>
                     <navigationItem key="navigationItem" title="Search" id="196-3i-fAu">
-                        <barButtonItem key="rightBarButtonItem" image="scanBarcode" id="Vgl-Zb-BUx">
+                        <barButtonItem key="rightBarButtonItem" image="scan" id="Vgl-Zb-BUx">
                             <color key="tintColor" name="lightNavy"/>
                             <connections>
                                 <action selector="showBarcodeScanner:" destination="8rJ-Kc-sve" id="afw-Yi-zQv"/>
@@ -213,11 +213,12 @@ Search by scanning a barcode</string>
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="66.5"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" verticalHuggingPriority="252" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" image="info" translatesAutoresizingMaskIntoConstraints="NO" id="NdL-Ok-V2p">
-                                            <rect key="frame" x="20" y="20" width="30" height="27"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" verticalHuggingPriority="252" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" image="scan" translatesAutoresizingMaskIntoConstraints="NO" id="NdL-Ok-V2p">
+                                            <rect key="frame" x="20" y="20.5" width="25" height="26"/>
+                                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Place the barcode within the window to scan. The search will start automatically." textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="usu-w1-yGh">
-                                            <rect key="frame" x="70" y="15.5" width="290" height="36"/>
+                                            <rect key="frame" x="65" y="15.5" width="295" height="36"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -322,20 +323,16 @@ Search by scanning a barcode</string>
         <image name="cancel" width="41" height="41"/>
         <image name="flashOff" width="41" height="41"/>
         <image name="flashOn" width="41" height="41"/>
-        <image name="info" width="30" height="27"/>
-        <image name="scanBarcode" width="25" height="26"/>
+        <image name="scan" width="25" height="26"/>
         <image name="search" width="24" height="24"/>
         <namedColor name="cloudyBlue">
             <color red="0.6940000057220459" green="0.76499998569488525" blue="0.83099997043609619" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <namedColor name="cloudyBlue">
-            <color red="0.6940000057220459" green="0.76499998569488525" blue="0.83099997043609619" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
         <namedColor name="lightNavy">
-            <color red="0.086274509803921567" green="0.25098039215686274" blue="0.44313725490196076" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.086000002920627594" green="0.25099998712539673" blue="0.44299998879432678" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="slateBlue">
-            <color red="0.34509803921568627" green="0.45490196078431372" blue="0.58823529411764708" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.3449999988079071" green="0.45500001311302185" blue="0.58799999952316284" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>
