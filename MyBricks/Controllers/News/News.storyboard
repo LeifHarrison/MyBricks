@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -99,6 +99,21 @@
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 <dataDetectorType key="dataDetectorTypes" link="YES"/>
                                             </textView>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Tc-rC-nmm">
+                                                <rect key="frame" x="20" y="92" width="325" height="80"/>
+                                                <subviews>
+                                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="qAU-LU-Zsd">
+                                                        <rect key="frame" x="144" y="21.5" width="37" height="37"/>
+                                                        <color key="color" name="lightNavy"/>
+                                                    </activityIndicatorView>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="80" id="7w1-J1-zlF"/>
+                                                    <constraint firstItem="qAU-LU-Zsd" firstAttribute="centerY" secondItem="5Tc-rC-nmm" secondAttribute="centerY" id="c3X-PV-O5Y"/>
+                                                    <constraint firstItem="qAU-LU-Zsd" firstAttribute="centerX" secondItem="5Tc-rC-nmm" secondAttribute="centerX" id="kRS-es-CAz"/>
+                                                </constraints>
+                                            </view>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -110,9 +125,13 @@
                                             <constraint firstItem="hiA-RT-DyM" firstAttribute="leading" secondItem="lNa-i1-5Bm" secondAttribute="leading" constant="20" id="BNU-WF-5nO"/>
                                             <constraint firstAttribute="trailing" secondItem="TbA-5e-BMA" secondAttribute="trailing" constant="20" id="BdF-Sk-PGm"/>
                                             <constraint firstAttribute="trailing" secondItem="0LZ-fI-pnj" secondAttribute="trailing" constant="20" id="H7F-iC-wie"/>
+                                            <constraint firstAttribute="trailing" secondItem="5Tc-rC-nmm" secondAttribute="trailing" constant="20" id="Hkm-Bg-39d"/>
+                                            <constraint firstItem="5Tc-rC-nmm" firstAttribute="top" secondItem="hiA-RT-DyM" secondAttribute="top" id="JQj-4w-4Un"/>
                                             <constraint firstItem="0LZ-fI-pnj" firstAttribute="leading" secondItem="lNa-i1-5Bm" secondAttribute="leading" constant="20" id="QMl-cy-E7H"/>
+                                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="5Tc-rC-nmm" secondAttribute="bottom" constant="20" id="cyi-dG-KRg"/>
                                             <constraint firstAttribute="bottom" secondItem="hiA-RT-DyM" secondAttribute="bottom" constant="20" id="fUT-Mt-BUL"/>
                                             <constraint firstItem="TbA-5e-BMA" firstAttribute="leading" secondItem="lNa-i1-5Bm" secondAttribute="leading" constant="20" id="ldu-tJ-qV2"/>
+                                            <constraint firstItem="5Tc-rC-nmm" firstAttribute="leading" secondItem="lNa-i1-5Bm" secondAttribute="leading" constant="20" id="uyP-N4-b7B"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -136,6 +155,8 @@
                         <viewLayoutGuide key="safeArea" id="1CW-MT-FyX"/>
                     </view>
                     <connections>
+                        <outlet property="activityIndicatorView" destination="qAU-LU-Zsd" id="cr0-Kx-044"/>
+                        <outlet property="activityPlaceholderView" destination="5Tc-rC-nmm" id="2bQ-fN-psd"/>
                         <outlet property="autherAndDateLabel" destination="TbA-5e-BMA" id="0i4-5l-x3T"/>
                         <outlet property="contentTextView" destination="hiA-RT-DyM" id="Yaw-iT-YVn"/>
                         <outlet property="contentView" destination="lNa-i1-5Bm" id="aXJ-Zb-LKe"/>
@@ -153,8 +174,8 @@
         <namedColor name="cloudyBlue">
             <color red="0.6940000057220459" green="0.76499998569488525" blue="0.83099997043609619" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <namedColor name="cloudyBlue">
-            <color red="0.6940000057220459" green="0.76499998569488525" blue="0.83099997043609619" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <namedColor name="lightNavy">
+            <color red="0.086000002920627594" green="0.25099998712539673" blue="0.44299998879432678" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="lightNavy">
             <color red="0.086000002920627594" green="0.25099998712539673" blue="0.44299998879432678" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

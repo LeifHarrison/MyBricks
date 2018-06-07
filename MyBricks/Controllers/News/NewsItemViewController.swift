@@ -17,6 +17,9 @@ class NewsItemViewController: UIViewController {
     @IBOutlet weak var autherAndDateLabel: UILabel!
     @IBOutlet weak var contentTextView: UITextView!
 
+    @IBOutlet weak var activityPlaceholderView: UIView!
+    @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
+
     var newsItem: RSSItem?
 
     //--------------------------------------------------------------------------
@@ -25,9 +28,13 @@ class NewsItemViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
         contentView.addBorder()
         contentView.addGradientBackground()
+
         scrollView.contentInset = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
+        
+        contentTextView.text = nil
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -36,10 +43,18 @@ class NewsItemViewController: UIViewController {
         if let newsItem = self.newsItem {
             titleLabel.text = newsItem.title
             autherAndDateLabel.attributedText = newsItem.authorAndDateAttributedDecription()
-            contentTextView.attributedText = newsItem.formattedDescription()
         }
+        activityIndicatorView.startAnimating()
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if let newsItem = self.newsItem {
+            contentTextView.attributedText = newsItem.formattedDescription()
+        }
+        activityIndicatorView.stopAnimating()
+    }
+    
 }
 
 //==============================================================================
@@ -53,6 +68,7 @@ extension RSSItem {
     func formattedDescription() -> NSAttributedString? {
         if let string = self.itemDescription {
             if let data = string.data(using: String.Encoding.utf8, allowLossyConversion: true) {
+                
                 let options: [NSAttributedString.DocumentReadingOptionKey: Any] = [
                     .documentType: NSAttributedString.DocumentType.html,
                     .characterEncoding: String.Encoding.utf8.rawValue
