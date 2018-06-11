@@ -18,6 +18,7 @@ Mobile (iOS) application for interacting with the BrickSet LEGO database.
 ## Search
 
 <img src="Screenshots/Search.png" width="25%"></img>
+<img src="Screenshots/Search2.png" width="25%"></img>
 <img src="Screenshots/Scan.png" width="25%"></img>
 
 ## My Sets
@@ -38,14 +39,14 @@ Mobile (iOS) application for interacting with the BrickSet LEGO database.
 <img src="Screenshots/Detail.png" width="25%"></img>
 <img src="Screenshots/Detail2.png" width="25%"></img>
 <img src="Screenshots/Detail3.png" width="25%"></img>
-<img src="Screenshots/ImageDetail.png" width="25%"></img>
+<img src="Screenshots/ImageGallery.png" width="25%"></img>
 <img src="Screenshots/PriceDetail.png" width="25%"></img>
-<img src="Screenshots/PriceDetail2.png" width="25%"></img>
 <img src="Screenshots/PartsList.png" width="25%"></img>
 <img src="Screenshots/Reviews.png" width="25%"></img>
 <img src="Screenshots/Reviews2.png" width="25%"></img>
-<img src="Screenshots/Instructions1.png" width="25%"></img>
+<img src="Screenshots/Instructions.png" width="25%"></img>
 <img src="Screenshots/Instructions2.png" width="25%"></img>
+<img src="Screenshots/MyCollection.png" width="25%"></img>
 
 # Getting Started
 

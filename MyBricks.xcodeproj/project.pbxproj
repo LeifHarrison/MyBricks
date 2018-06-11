@@ -84,6 +84,7 @@
 		9B48CBF22045E3270074908B /* SetInstructionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B48CBF02045E3270074908B /* SetInstructionsTableViewCell.swift */; };
 		9B48CBF32045E3270074908B /* SetInstructionsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B48CBF12045E3270074908B /* SetInstructionsTableViewCell.xib */; };
 		9B4B4C4E203CD2630026B3AC /* SimpleActivityHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4B4C4D203CD2630026B3AC /* SimpleActivityHUD.swift */; };
+		9B4C25B920CED7BA00116C82 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4C25B820CED7BA00116C82 /* Constants.swift */; };
 		9B58D93420AB50CF00F6E92A /* FilterCheckboxButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B58D93320AB50CF00F6E92A /* FilterCheckboxButton.swift */; };
 		9B5B4A53204DDBEA00F2324C /* PriceGuideTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B5B4A52204DDBEA00F2324C /* PriceGuideTableViewCell.xib */; };
 		9B5CA746201946CE00B09BCB /* FilterSelectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5CA745201946CE00B09BCB /* FilterSelectionTableViewCell.swift */; };
@@ -259,6 +260,7 @@
 		9B48CBF02045E3270074908B /* SetInstructionsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetInstructionsTableViewCell.swift; sourceTree = "<group>"; };
 		9B48CBF12045E3270074908B /* SetInstructionsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SetInstructionsTableViewCell.xib; sourceTree = "<group>"; };
 		9B4B4C4D203CD2630026B3AC /* SimpleActivityHUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleActivityHUD.swift; sourceTree = "<group>"; };
+		9B4C25B820CED7BA00116C82 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		9B58D93320AB50CF00F6E92A /* FilterCheckboxButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCheckboxButton.swift; sourceTree = "<group>"; };
 		9B5B4A52204DDBEA00F2324C /* PriceGuideTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PriceGuideTableViewCell.xib; sourceTree = "<group>"; };
 		9B5CA745201946CE00B09BCB /* FilterSelectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterSelectionTableViewCell.swift; sourceTree = "<group>"; };
@@ -361,6 +363,7 @@
 				290B677120A7311E0089C6FC /* Cells */,
 				290F179E1FD8D3880002C70B /* Views */,
 				295ADFBC1F16AFFC002E6802 /* AppDelegate.swift */,
+				9B4C25B820CED7BA00116C82 /* Constants.swift */,
 				29EE120D202B698A00C05C55 /* SafariActivity.swift */,
 			);
 			path = Common;
@@ -1037,6 +1040,7 @@
 				9BCA7E302028DA6E00FA7BDC /* SetPriceTableViewCell.swift in Sources */,
 				29C111A91FCA411B007CBDB4 /* InstructionsTableViewCell.swift in Sources */,
 				9B67EC2A2044A0CE001FAF77 /* FilterSortingDirectionTableViewCell.swift in Sources */,
+				9B4C25B920CED7BA00116C82 /* Constants.swift in Sources */,
 				9B8C323320AE2702006E48A5 /* ZoomImageCollectionViewCell.swift in Sources */,
 				2949A94F1FBFBEC800676D59 /* InstructionsViewController.swift in Sources */,
 				29B951511FDBCCA00049147E /* Color.swift in Sources */,
