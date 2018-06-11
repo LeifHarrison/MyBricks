@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PartsListTableViewCell: BlueGradientTableViewCell, NibLoadableView, ReusableView {
+class PartsListTableViewCell: BorderedGradientTableViewCell, NibLoadableView, ReusableView {
 
     @IBOutlet weak var imageBorderView: UIView!
     @IBOutlet weak var partImageView: UIImageView!

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SearchHistoryTableViewCell: UITableViewCell {
+class SearchHistoryTableViewCell: BorderedGradientTableViewCell {
 
     @IBOutlet weak var searchTypeImageView: UIImageView!
     @IBOutlet weak var searchTermLabel: UILabel!
@@ -19,10 +19,6 @@ class SearchHistoryTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
-        addBorder()
-        addGradientBackground()
-
         prepareForReuse()
     }
     
