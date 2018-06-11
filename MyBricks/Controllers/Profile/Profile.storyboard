@@ -90,18 +90,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Set information and images provided by brickset.com." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DDE-qS-avp">
-                                <rect key="frame" x="20" y="264.5" width="335" height="38.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Parts information provided by rebrickable.com." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ESn-1g-KEx">
-                                <rect key="frame" x="20" y="318" width="335" height="38.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Design guidance and graphics provided by Jure Verc." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6vB-ob-sJH">
                                 <rect key="frame" x="20" y="371.5" width="335" height="38.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -112,20 +100,14 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="TiH-uS-sB5" firstAttribute="top" secondItem="WTF-pv-v3F" secondAttribute="bottom" constant="8" id="0Lx-68-E29"/>
-                            <constraint firstItem="6vB-ob-sJH" firstAttribute="top" secondItem="ESn-1g-KEx" secondAttribute="bottom" constant="15" id="10f-Sh-rfz"/>
                             <constraint firstItem="WTF-pv-v3F" firstAttribute="centerX" secondItem="GGA-nn-h0F" secondAttribute="centerX" id="CoN-sq-DXk"/>
                             <constraint firstItem="4Uu-cl-IDn" firstAttribute="top" secondItem="TiH-uS-sB5" secondAttribute="bottom" constant="7.5" id="Eeq-eP-za0"/>
-                            <constraint firstItem="DDE-qS-avp" firstAttribute="top" secondItem="4Uu-cl-IDn" secondAttribute="bottom" constant="30" id="GOH-nO-goj"/>
-                            <constraint firstItem="ESn-1g-KEx" firstAttribute="leading" secondItem="GGA-nn-h0F" secondAttribute="leading" constant="20" id="KpF-Er-m9e"/>
                             <constraint firstItem="WTF-pv-v3F" firstAttribute="top" secondItem="GGA-nn-h0F" secondAttribute="top" constant="17" id="OSc-g1-fVP"/>
-                            <constraint firstAttribute="trailing" secondItem="DDE-qS-avp" secondAttribute="trailing" constant="20" id="UoL-sy-ZVG"/>
                             <constraint firstItem="6vB-ob-sJH" firstAttribute="leading" secondItem="GGA-nn-h0F" secondAttribute="leading" constant="20" id="Z8b-Ld-kVn"/>
                             <constraint firstItem="GGA-nn-h0F" firstAttribute="trailing" secondItem="6vB-ob-sJH" secondAttribute="trailing" constant="20" id="bad-8H-A21"/>
+                            <constraint firstItem="6vB-ob-sJH" firstAttribute="top" secondItem="4Uu-cl-IDn" secondAttribute="bottom" constant="137" id="bmS-8R-NAW"/>
                             <constraint firstItem="TiH-uS-sB5" firstAttribute="centerX" secondItem="WTF-pv-v3F" secondAttribute="centerX" id="dyJ-W1-tpC"/>
-                            <constraint firstItem="ESn-1g-KEx" firstAttribute="top" secondItem="DDE-qS-avp" secondAttribute="bottom" constant="15" id="fdE-fN-2aT"/>
                             <constraint firstItem="4Uu-cl-IDn" firstAttribute="centerX" secondItem="TiH-uS-sB5" secondAttribute="centerX" id="pJP-95-Nmi"/>
-                            <constraint firstAttribute="trailing" secondItem="ESn-1g-KEx" secondAttribute="trailing" constant="20" id="rhV-BJ-4uY"/>
-                            <constraint firstItem="DDE-qS-avp" firstAttribute="leading" secondItem="GGA-nn-h0F" secondAttribute="leading" constant="20" id="xwH-sR-qHH"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="GGA-nn-h0F"/>
                     </view>
@@ -134,85 +116,141 @@
             </objects>
             <point key="canvasLocation" x="672.79999999999995" y="3365.667166416792"/>
         </scene>
-        <!--Acknowledgements-->
+        <!--Credits-->
         <scene sceneID="imn-nb-pRt">
             <objects>
-                <viewController title="Acknowledgements" id="ogy-Zb-3z4" customClass="ProfileCreditsViewController" customModule="MyBricks" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Credits" id="ogy-Zb-3z4" customClass="ProfileCreditsViewController" customModule="MyBricks" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Jii-YW-trb">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zzJ-uk-ozW">
-                                <rect key="frame" x="20" y="94" width="335" height="115"/>
-                                <string key="text">Great thanks the Huw and the staff at Brickset for all their contributions to the LEGO community and for providing the wealth of data used by this app. And apologies for being such a pest. I really just wanted to make the best app I could.</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q96-gS-s8e">
-                                <rect key="frame" x="143" y="219" width="89" height="30"/>
-                                <state key="normal" title="brickset.com"/>
-                            </button>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="rMK-QD-AHn">
-                                <rect key="frame" x="20" y="365.5" width="335" height="240"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tLa-EE-QCO">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vFO-2P-ecj">
-                                        <rect key="frame" x="0.0" y="0.0" width="66" height="30"/>
-                                        <state key="normal" title="Alamofire"/>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wyj-tw-WjQ">
-                                        <rect key="frame" x="0.0" y="30" width="108" height="30"/>
-                                        <state key="normal" title="AlamofireImage"/>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zi2-sG-6VU">
-                                        <rect key="frame" x="0.0" y="60" width="234" height="30"/>
-                                        <state key="normal" title="AlamofireNetworkActivityIndicator"/>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rlW-3U-Se2">
-                                        <rect key="frame" x="0.0" y="90" width="222" height="30"/>
-                                        <state key="normal" title="AlamofireNetworkActivityLogger"/>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UiZ-Dg-nn6">
-                                        <rect key="frame" x="0.0" y="120" width="138" height="30"/>
-                                        <state key="normal" title="AlamofireRSSParser"/>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u8c-y9-Nlr">
-                                        <rect key="frame" x="0.0" y="150" width="30" height="30"/>
-                                        <state key="normal" title="Fuzi"/>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3FO-rc-7P5">
-                                        <rect key="frame" x="0.0" y="180" width="111" height="30"/>
-                                        <state key="normal" title="KeychainAccess"/>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zy3-Fz-aXm">
-                                        <rect key="frame" x="0.0" y="210" width="56" height="30"/>
-                                        <state key="normal" title="Cosmos"/>
-                                    </button>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oXy-ve-hJf">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="509"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Set information and images provided by brickset.com." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DDE-qS-avp">
+                                                <rect key="frame" x="20" y="20" width="335" height="38.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                <color key="textColor" name="lightNavy"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q96-gS-s8e">
+                                                <rect key="frame" x="143.5" y="68.5" width="89" height="30"/>
+                                                <state key="normal" title="brickset.com"/>
+                                            </button>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cmn-Ox-FCb">
+                                                <rect key="frame" x="20" y="108.5" width="335" height="1"/>
+                                                <color key="backgroundColor" name="cloudyBlue"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="1" id="nQ9-Hm-ecG"/>
+                                                </constraints>
+                                            </view>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Parts information provided by rebrickable.com." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ESn-1g-KEx">
+                                                <rect key="frame" x="20" y="119.5" width="335" height="38.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                <color key="textColor" name="lightNavy"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8d2-aW-b1h">
+                                                <rect key="frame" x="132.5" y="168.5" width="110" height="30"/>
+                                                <state key="normal" title="rebrickable.com"/>
+                                            </button>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HYO-6R-9xC">
+                                                <rect key="frame" x="20" y="208.5" width="335" height="1"/>
+                                                <color key="backgroundColor" name="cloudyBlue"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="1" id="4aE-1F-IKs"/>
+                                                </constraints>
+                                            </view>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Other resources/third party frameworks:" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pMA-Xt-z16">
+                                                <rect key="frame" x="20" y="219.5" width="335" height="19.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="rMK-QD-AHn">
+                                                <rect key="frame" x="20" y="249" width="335" height="240"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vFO-2P-ecj">
+                                                        <rect key="frame" x="0.0" y="0.0" width="66" height="30"/>
+                                                        <state key="normal" title="Alamofire"/>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wyj-tw-WjQ">
+                                                        <rect key="frame" x="0.0" y="30" width="108" height="30"/>
+                                                        <state key="normal" title="AlamofireImage"/>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zi2-sG-6VU">
+                                                        <rect key="frame" x="0.0" y="60" width="234" height="30"/>
+                                                        <state key="normal" title="AlamofireNetworkActivityIndicator"/>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rlW-3U-Se2">
+                                                        <rect key="frame" x="0.0" y="90" width="222" height="30"/>
+                                                        <state key="normal" title="AlamofireNetworkActivityLogger"/>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UiZ-Dg-nn6">
+                                                        <rect key="frame" x="0.0" y="120" width="138" height="30"/>
+                                                        <state key="normal" title="AlamofireRSSParser"/>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u8c-y9-Nlr">
+                                                        <rect key="frame" x="0.0" y="150" width="30" height="30"/>
+                                                        <state key="normal" title="Fuzi"/>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3FO-rc-7P5">
+                                                        <rect key="frame" x="0.0" y="180" width="111" height="30"/>
+                                                        <state key="normal" title="KeychainAccess"/>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zy3-Fz-aXm">
+                                                        <rect key="frame" x="0.0" y="210" width="56" height="30"/>
+                                                        <state key="normal" title="Cosmos"/>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="ESn-1g-KEx" firstAttribute="leading" secondItem="oXy-ve-hJf" secondAttribute="leading" constant="20" id="22I-6g-GZq"/>
+                                            <constraint firstAttribute="trailing" secondItem="pMA-Xt-z16" secondAttribute="trailing" constant="20" id="3GY-zW-EYq"/>
+                                            <constraint firstItem="ESn-1g-KEx" firstAttribute="top" secondItem="cmn-Ox-FCb" secondAttribute="bottom" constant="10" id="A6l-Hg-221"/>
+                                            <constraint firstAttribute="trailing" secondItem="cmn-Ox-FCb" secondAttribute="trailing" constant="20" id="D8C-X0-ash"/>
+                                            <constraint firstAttribute="trailing" secondItem="rMK-QD-AHn" secondAttribute="trailing" constant="20" id="EmV-eW-xvh"/>
+                                            <constraint firstItem="cmn-Ox-FCb" firstAttribute="leading" secondItem="oXy-ve-hJf" secondAttribute="leading" constant="20" id="HFk-QF-0l2"/>
+                                            <constraint firstItem="rMK-QD-AHn" firstAttribute="leading" secondItem="oXy-ve-hJf" secondAttribute="leading" constant="20" id="OkC-VL-UjD"/>
+                                            <constraint firstItem="q96-gS-s8e" firstAttribute="centerX" secondItem="oXy-ve-hJf" secondAttribute="centerX" id="Q2p-pR-yZf"/>
+                                            <constraint firstAttribute="trailing" secondItem="DDE-qS-avp" secondAttribute="trailing" constant="20" id="QNR-RK-Itf"/>
+                                            <constraint firstAttribute="bottom" secondItem="rMK-QD-AHn" secondAttribute="bottom" constant="20" id="TUL-NR-DuU"/>
+                                            <constraint firstItem="8d2-aW-b1h" firstAttribute="top" secondItem="ESn-1g-KEx" secondAttribute="bottom" constant="10" id="UWC-gz-tLc"/>
+                                            <constraint firstItem="cmn-Ox-FCb" firstAttribute="top" secondItem="q96-gS-s8e" secondAttribute="bottom" constant="10" id="VLa-rH-38d"/>
+                                            <constraint firstItem="pMA-Xt-z16" firstAttribute="leading" secondItem="oXy-ve-hJf" secondAttribute="leading" constant="20" id="W3d-dS-6E6"/>
+                                            <constraint firstItem="DDE-qS-avp" firstAttribute="leading" secondItem="oXy-ve-hJf" secondAttribute="leading" constant="20" id="WOZ-GG-3HT"/>
+                                            <constraint firstItem="HYO-6R-9xC" firstAttribute="leading" secondItem="oXy-ve-hJf" secondAttribute="leading" constant="20" id="WyE-Vl-i04"/>
+                                            <constraint firstItem="8d2-aW-b1h" firstAttribute="centerX" secondItem="oXy-ve-hJf" secondAttribute="centerX" id="YQj-UQ-6W0"/>
+                                            <constraint firstAttribute="trailing" secondItem="ESn-1g-KEx" secondAttribute="trailing" constant="20" id="cAD-pa-0UR"/>
+                                            <constraint firstItem="DDE-qS-avp" firstAttribute="top" secondItem="oXy-ve-hJf" secondAttribute="top" constant="20" id="jVT-tu-jda"/>
+                                            <constraint firstItem="pMA-Xt-z16" firstAttribute="top" secondItem="HYO-6R-9xC" secondAttribute="bottom" constant="10" id="mya-Sm-FNh"/>
+                                            <constraint firstItem="rMK-QD-AHn" firstAttribute="top" secondItem="pMA-Xt-z16" secondAttribute="bottom" constant="10" id="oL8-1l-9Um"/>
+                                            <constraint firstItem="q96-gS-s8e" firstAttribute="top" secondItem="DDE-qS-avp" secondAttribute="bottom" constant="10" id="q1a-Bw-jFd"/>
+                                            <constraint firstItem="HYO-6R-9xC" firstAttribute="top" secondItem="8d2-aW-b1h" secondAttribute="bottom" constant="10" id="sqC-Wi-qNe"/>
+                                            <constraint firstAttribute="trailing" secondItem="HYO-6R-9xC" secondAttribute="trailing" constant="20" id="z2K-Sv-6v4"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
-                            </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pMA-Xt-z16">
-                                <rect key="frame" x="20" y="279" width="335" height="76.5"/>
-                                <string key="text">Several third-party libraries were used in the making of MyBricks. My thanks to each and every one of them for making the creation of this app that much easier:</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="oXy-ve-hJf" secondAttribute="bottom" id="5dv-pW-0LQ"/>
+                                    <constraint firstAttribute="trailing" secondItem="oXy-ve-hJf" secondAttribute="trailing" id="s7t-lA-hS6"/>
+                                    <constraint firstItem="oXy-ve-hJf" firstAttribute="width" secondItem="tLa-EE-QCO" secondAttribute="width" id="sc4-20-EBN"/>
+                                    <constraint firstItem="oXy-ve-hJf" firstAttribute="leading" secondItem="tLa-EE-QCO" secondAttribute="leading" id="usw-dK-eji"/>
+                                    <constraint firstItem="oXy-ve-hJf" firstAttribute="top" secondItem="tLa-EE-QCO" secondAttribute="top" id="wqH-Hy-UxM"/>
+                                </constraints>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="q96-gS-s8e" firstAttribute="centerX" secondItem="Jii-YW-trb" secondAttribute="centerX" id="1km-pP-ZAl"/>
-                            <constraint firstItem="TKW-l4-HOs" firstAttribute="trailing" secondItem="pMA-Xt-z16" secondAttribute="trailing" constant="20" id="3Pn-YV-fdj"/>
-                            <constraint firstItem="pMA-Xt-z16" firstAttribute="top" secondItem="q96-gS-s8e" secondAttribute="bottom" constant="30" id="BGg-KQ-mCF"/>
-                            <constraint firstItem="zzJ-uk-ozW" firstAttribute="leading" secondItem="TKW-l4-HOs" secondAttribute="leading" constant="20" id="IJ8-hl-TcN"/>
-                            <constraint firstItem="zzJ-uk-ozW" firstAttribute="top" secondItem="TKW-l4-HOs" secondAttribute="top" constant="30" id="KzW-rN-7de"/>
-                            <constraint firstItem="pMA-Xt-z16" firstAttribute="leading" secondItem="TKW-l4-HOs" secondAttribute="leading" constant="20" id="TPr-bD-VdO"/>
-                            <constraint firstItem="rMK-QD-AHn" firstAttribute="top" secondItem="pMA-Xt-z16" secondAttribute="bottom" constant="10" id="UH8-MC-2DP"/>
-                            <constraint firstItem="zzJ-uk-ozW" firstAttribute="leading" secondItem="TKW-l4-HOs" secondAttribute="leading" constant="20" id="bNq-Vw-XfN"/>
-                            <constraint firstAttribute="trailing" secondItem="zzJ-uk-ozW" secondAttribute="trailing" constant="20" id="cGu-bu-YLA"/>
-                            <constraint firstItem="rMK-QD-AHn" firstAttribute="leading" secondItem="TKW-l4-HOs" secondAttribute="leading" constant="20" id="ji9-Ex-fvW"/>
-                            <constraint firstItem="q96-gS-s8e" firstAttribute="top" secondItem="zzJ-uk-ozW" secondAttribute="bottom" constant="10" id="mCL-FQ-ncN"/>
-                            <constraint firstItem="TKW-l4-HOs" firstAttribute="trailing" secondItem="rMK-QD-AHn" secondAttribute="trailing" constant="20" id="vD3-3c-KL2"/>
-                            <constraint firstItem="TKW-l4-HOs" firstAttribute="trailing" secondItem="zzJ-uk-ozW" secondAttribute="trailing" constant="20" id="vg3-VX-CTE"/>
+                            <constraint firstItem="tLa-EE-QCO" firstAttribute="top" secondItem="TKW-l4-HOs" secondAttribute="top" id="Jsg-OZ-M5w"/>
+                            <constraint firstItem="TKW-l4-HOs" firstAttribute="bottom" secondItem="tLa-EE-QCO" secondAttribute="bottom" id="bwc-YF-RIR"/>
+                            <constraint firstItem="tLa-EE-QCO" firstAttribute="leading" secondItem="TKW-l4-HOs" secondAttribute="leading" id="dAF-si-Xd5"/>
+                            <constraint firstItem="TKW-l4-HOs" firstAttribute="trailing" secondItem="tLa-EE-QCO" secondAttribute="trailing" id="iJn-ay-JOe"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="TKW-l4-HOs"/>
                     </view>
@@ -229,32 +267,26 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MyBricks  relies on your support to fund it's development." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lew-Qt-pzp">
-                                <rect key="frame" x="20" y="94" width="335" height="38.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="If you find this app useful, please consider supporting it by leaving a tip in our Tip Jar." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4O6-KZ-PTt">
-                                <rect key="frame" x="20" y="152.5" width="335" height="38.5"/>
+                                <rect key="frame" x="20" y="104" width="335" height="38.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Any tip given will also remove all advertisements from the app" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pId-os-taN">
-                                <rect key="frame" x="20" y="211" width="335" height="38.5"/>
+                                <rect key="frame" x="20" y="162.5" width="335" height="38.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z4F-By-0Mv">
-                                <rect key="frame" x="123" y="339.5" width="129" height="30"/>
+                                <rect key="frame" x="123" y="291" width="129" height="30"/>
                                 <state key="normal" title="Restore Purchases">
                                     <color key="titleColor" name="lightNavy"/>
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kyZ-YG-f0K">
-                                <rect key="frame" x="168" y="279.5" width="39" height="30"/>
+                                <rect key="frame" x="168" y="231" width="39" height="30"/>
                                 <state key="normal" title="$1.99">
                                     <color key="titleColor" name="lightNavy"/>
                                 </state>
@@ -262,14 +294,11 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="Lew-Qt-pzp" firstAttribute="leading" secondItem="9Ni-ae-dBp" secondAttribute="leading" constant="20" id="ApA-Vh-WE1"/>
                             <constraint firstItem="kyZ-YG-f0K" firstAttribute="top" secondItem="pId-os-taN" secondAttribute="bottom" constant="30" id="B8b-hN-b5V"/>
                             <constraint firstItem="z4F-By-0Mv" firstAttribute="top" secondItem="kyZ-YG-f0K" secondAttribute="bottom" constant="30" id="BOV-HI-GnI"/>
                             <constraint firstItem="kyZ-YG-f0K" firstAttribute="centerX" secondItem="5rP-qy-0cR" secondAttribute="centerX" id="FfI-2d-QXR"/>
-                            <constraint firstItem="Lew-Qt-pzp" firstAttribute="top" secondItem="9Ni-ae-dBp" secondAttribute="top" constant="30" id="YBk-Vx-X2V"/>
-                            <constraint firstItem="4O6-KZ-PTt" firstAttribute="top" secondItem="Lew-Qt-pzp" secondAttribute="bottom" constant="20" id="c37-KF-IY9"/>
+                            <constraint firstItem="4O6-KZ-PTt" firstAttribute="top" secondItem="9Ni-ae-dBp" secondAttribute="top" constant="40" id="HiZ-vE-7oD"/>
                             <constraint firstItem="9Ni-ae-dBp" firstAttribute="trailing" secondItem="pId-os-taN" secondAttribute="trailing" constant="20" id="fy6-O1-qC1"/>
-                            <constraint firstItem="9Ni-ae-dBp" firstAttribute="trailing" secondItem="Lew-Qt-pzp" secondAttribute="trailing" constant="20" id="nul-p5-3En"/>
                             <constraint firstItem="z4F-By-0Mv" firstAttribute="centerX" secondItem="5rP-qy-0cR" secondAttribute="centerX" id="oiE-oa-Uu0"/>
                             <constraint firstItem="pId-os-taN" firstAttribute="leading" secondItem="9Ni-ae-dBp" secondAttribute="leading" constant="20" id="sIQ-g8-zxD"/>
                             <constraint firstItem="pId-os-taN" firstAttribute="top" secondItem="4O6-KZ-PTt" secondAttribute="bottom" constant="20" id="tAB-88-28L"/>
@@ -292,14 +321,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hl8-ud-xec">
-                                <rect key="frame" x="20" y="84" width="335" height="243.5"/>
-                                <string key="text">LEGO, the LEGO logo, the Minifigure, DUPLO, the DUPLO logo, BIONICLE, the BIONICLE logo, LEGENDS OF CHIMA, the LEGENDS OF CHIMA logo, DIMENSIONS, the DIMENSIONS logo, the FRIENDS logo, the MINIFIGURES logo, MINDSTORMS, the MINDSTORMS EV3 logo, MIXELS, the MIXELS logo, NINJAGO, the NINJAGO logo, NEXO KNIGHTS, and the NEXO KNIGHTS logo are trademarks and/or copyrights of the LEGO Group. ©2018 The LEGO Group. All rights reserved.</string>
+                                <rect key="frame" x="20" y="84" width="335" height="101.5"/>
+                                <string key="text">LEGO, the LEGO logo, the Minifigure, and the Brick and Knob configurations are trademarks of the LEGO Group of Companies. ©2018 The LEGO Group. All rights reserved.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eao-wh-Eid">
-                                <rect key="frame" x="20" y="357.5" width="335" height="81.5"/>
+                                <rect key="frame" x="20" y="215.5" width="335" height="81.5"/>
                                 <string key="text">Brickset, the Brickset logo and all content not covered by The LEGO Group's copyright is, unless otherwise stated, ©1997-2018 Brickset ltd.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -416,6 +445,15 @@
         <image name="profile" width="24" height="24"/>
         <namedColor name="cloudyBlue">
             <color red="0.6940000057220459" green="0.76499998569488525" blue="0.83099997043609619" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="cloudyBlue">
+            <color red="0.6940000057220459" green="0.76499998569488525" blue="0.83099997043609619" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="cloudyBlue">
+            <color red="0.69400000569999998" green="0.76499998570000005" blue="0.83099997039999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="lightNavy">
+            <color red="0.086000002920627594" green="0.25099998712539673" blue="0.44299998879432678" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="lightNavy">
             <color red="0.086000002920627594" green="0.25099998712539673" blue="0.44299998879432678" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

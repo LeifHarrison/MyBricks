@@ -27,14 +27,16 @@ class ProfileViewController: UIViewController {
 
     enum GeneralTableRow: Int {
         case about
-        case acknowledgements
+        case credits
         case donate
-        
+        case legal
+
         var title: String {
             switch self {
             case .about: return NSLocalizedString("About", comment: "")
-            case .acknowledgements: return NSLocalizedString("Acknowledgments", comment: "")
+            case .credits: return NSLocalizedString("Credits", comment: "")
             case .donate: return NSLocalizedString("Donate", comment: "")
+            case .legal: return NSLocalizedString("Legal", comment: "")
             }
         }
 
@@ -122,8 +124,9 @@ class ProfileViewController: UIViewController {
 
         sections.append(.general)
         generalRows.append(.about)
-        generalRows.append(.acknowledgements)
+        generalRows.append(.credits)
         generalRows.append(.donate)
+        generalRows.append(.legal)
         tableView.reloadData()
     }
 
@@ -302,12 +305,14 @@ extension ProfileViewController: UITableViewDelegate {
         if section == .general {
             let row = generalRows[indexPath.row]
             switch row {
-                case .about:
-                    performSegue(withIdentifier: "showAboutView", sender: self)
-                case .acknowledgements:
-                    performSegue(withIdentifier: "showCreditsView", sender: self)
-                case .donate:
-                    performSegue(withIdentifier: "showDonateView", sender: self)
+            case .about:
+                performSegue(withIdentifier: "showAboutView", sender: self)
+            case .credits:
+                performSegue(withIdentifier: "showCreditsView", sender: self)
+            case .donate:
+                performSegue(withIdentifier: "showDonateView", sender: self)
+            case .legal:
+                performSegue(withIdentifier: "showLegalView", sender: self)
             }
         }
         
