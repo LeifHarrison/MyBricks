@@ -43,7 +43,6 @@ class BricksetServices {
     }()
 
     let baseURL = "https://brickset.com/api/v2.asmx/"
-    let apiKey = "PJ6U-J8Ob-GG1k"
 
     class func isLoggedIn() -> Bool {
         let keychain = Keychain(service: BricksetServices.serviceName)
@@ -681,7 +680,7 @@ class BricksetServices {
     }
 
     fileprivate func defaultParameters() -> Parameters {
-        return ["apiKey": apiKey]
+        return ["apiKey": Constants.Brickset.apiKey]
     }
 
     //--------------------------------------------------------------------------

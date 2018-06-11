@@ -14,7 +14,6 @@ class RebrickableServices {
     
     static let shared = RebrickableServices()
     
-    let apiKey = "7ee6c70b29646296c7d4778cabb4d476"
     let baseURL = "https://rebrickable.com/api/v3/"
 
     static let shortDateFormatter: DateFormatter = {
@@ -36,7 +35,7 @@ class RebrickableServices {
         let url = pageURL ?? baseURL + "lego/sets/" + setNumber + "/parts/"
         
         let headers: HTTPHeaders = [
-            "Authorization": "key \(apiKey)",
+            "Authorization": "key \(Constants.Rebrickable.apiKey)",
             "Accept": "application/json"
         ]
 
