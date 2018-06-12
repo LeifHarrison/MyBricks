@@ -35,6 +35,10 @@ class BrowseSetsViewController: UIViewController {
 
         setupTableView()
         NotificationCenter.default.addObserver(self, selector: #selector(collectionUpdated(_:)), name: Notification.Name.Collection.DidUpdate, object: nil)
+        
+        if traitCollection.forceTouchCapability == .available {
+            registerForPreviewing(with: self, sourceView: tableView)
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -318,4 +322,39 @@ extension BrowseSetsViewController: FilterViewControllerDelegate {
         fetchSets()
     }
     
+}
+
+//==============================================================================
+// MARK: - UIViewControllerPreviewingDelegate
+//==============================================================================
+
+extension BrowseSetsViewController: UIViewControllerPreviewingDelegate {
+
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
+        if let indexPath = tableView.indexPathForRow(at: location) {
+            previewingContext.sourceRect = tableView.rectForRow(at: indexPath)
+            
+            let sectionTitle = sectionTitles[indexPath.section]
+            if let sets = setsBySection[sectionTitle] {
+                let set = sets[indexPath.row]
+                let detailStoryboard = UIStoryboard(name: "SetDetail", bundle: nil)
+                if let detailVC = detailStoryboard.instantiateInitialViewController() as? SetDetailViewController {
+                    detailVC.currentSet = set
+                    detailVC.isPreview = true
+                    return detailVC
+                }
+            }
+            return nil
+        }
+        
+        return nil
+    }
+    
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
+        if let detailVC = viewControllerToCommit as? SetDetailViewController {
+            detailVC.isPreview = false
+        }
+        navigationController?.pushViewController(viewControllerToCommit, animated: true)
+    }
+
 }

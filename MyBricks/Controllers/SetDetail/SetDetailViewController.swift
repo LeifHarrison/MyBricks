@@ -32,6 +32,7 @@ class SetDetailViewController: UIViewController {
     var sections: [TableSection] = []
     var detailRows: [DetailRow] = []
 
+    var isPreview: Bool = false
     var currentSet: Set?
     var setDetail: SetDetail?
     var additionalImages: [SetImage]?
@@ -70,18 +71,19 @@ class SetDetailViewController: UIViewController {
         else {
             tableView.tableFooterView = UIView()
         }
+        tableView.reloadData()
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        if setDetail == nil {
+        if setDetail == nil && !isPreview {
             fetchSetDetail()
         }
-        if let set = currentSet, set.imageURL != nil {
+        if let set = currentSet, set.imageURL != nil && !isPreview {
             checkForLargeImage()
         }
-        if additionalImages == nil {
+        if additionalImages == nil && !isPreview {
             fetchAdditionalImages()
         }
     }
@@ -113,6 +115,57 @@ class SetDetailViewController: UIViewController {
         }
     }
     
+    //--------------------------------------------------------------------------
+    // MARK: - Preview Actions
+    //--------------------------------------------------------------------------
+    
+    override var previewActionItems: [UIPreviewActionItem] {
+        var actionItems: [UIPreviewActionItem] = []
+        
+        if BricksetServices.isLoggedIn() {
+            if let owned = currentSet?.owned, !owned {
+                let action1 = UIPreviewAction(title: "I own this set", style: .default) { (_, _) in
+                    print("I own this set")
+                    if var set = self.currentSet, let setID = set.setID {
+                        set.owned = true
+                        set.quantityOwned = set.owned ? 1 : nil
+                        
+                        BricksetServices.shared.setCollectionOwns(setID: setID, owned: set.owned, completion: { result in
+                            if result.isSuccess {
+                                self.currentSet = set
+                                self.notifySetUpdated(set: set)
+                            }
+                        })
+                    }
+                }
+                actionItems.append(action1)
+            }
+            
+            if let wanted = currentSet?.wanted, !wanted {
+                let action2 = UIPreviewAction(title: "I want this set", style: .default) { (_, _) in
+                    print("I want this set")
+                    if var set = self.currentSet, let setID = set.setID {
+                        set.wanted = true
+                        
+                        BricksetServices.shared.setCollectionWants(setID: setID, wanted: set.wanted, completion: { result in
+                            if result.isSuccess {
+                                self.currentSet = set
+                                self.notifySetUpdated(set: set)
+                            }
+                        })
+                    }
+                }
+                actionItems.append(action2)
+            }
+        }
+        
+        return actionItems
+    }
+    
+    private func notifySetUpdated(set: Set) {
+        NotificationCenter.default.post(name: Notification.Name.Collection.DidUpdate, object: self, userInfo: [Notification.Key.Set: set])
+    }
+
     //--------------------------------------------------------------------------
     // MARK: - Collection Update Notification
     //--------------------------------------------------------------------------
@@ -209,7 +262,6 @@ class SetDetailViewController: UIViewController {
     }
     
     private func fetchAdditionalImages() {
-        // TODO: Disable image collection view selection while attempting to load additional images
         if let set = currentSet, let setID = set.setID {
             additionalImagesRequest = BricksetServices.shared.getAdditionalImages(setID: setID, completion: { [weak self] result in
                 guard let strongSelf = self else { return }
