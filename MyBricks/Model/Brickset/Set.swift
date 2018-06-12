@@ -188,11 +188,11 @@ struct Set {
     var setNumberAgeYearDescription: String? {
         var descriptionString = fullSetNumber
         if let ageDescription = ageRangeDescription, ageDescription.count > 0 {
-            descriptionString.append(" / ")
+            descriptionString.append(" | ")
             descriptionString.append(ageDescription)
         }
         if let yearDescription = year, yearDescription.count > 0 {
-            descriptionString.append(" / ")
+            descriptionString.append(" | ")
             descriptionString.append(yearDescription)
         }
         return descriptionString
@@ -236,7 +236,7 @@ struct Set {
 
     func themeDescription() -> String? {
         if let theme = theme, let subtheme = subtheme, theme.count > 0 && subtheme.count > 0 {
-            return "\(theme) / \(subtheme)"
+            return "\(theme) | \(subtheme)"
         }
         else if let theme = theme {
             return theme
@@ -248,7 +248,7 @@ struct Set {
     
     func categoryAndGroupDescription() -> String? {
         if let category = category, let themeGroup = themeGroup {
-            return "\(category) / \(themeGroup.capitalized)"
+            return "\(category) | \(themeGroup.capitalized)"
         }
         else if let category = category {
             return category
@@ -268,14 +268,14 @@ struct Set {
         }
         if let packagingType = packagingType {
             if result.count > 0 {
-                result.append(" / ")
+                result.append(" | ")
             }
             result.append(packagingType.capitalized)
         }
         if let dimensions = dimensionsDescription() {
             result.append(" (\(dimensions)")
             if let weightDescription = weightDescription() {
-                result.append(" / \(weightDescription))")
+                result.append(" | \(weightDescription))")
             }
             else {
                 result.append(")")

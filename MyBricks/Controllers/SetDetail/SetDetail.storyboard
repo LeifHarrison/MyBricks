@@ -30,24 +30,24 @@
                                             <rect key="frame" x="0.0" y="0.0" width="365" height="66"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="5TH-Be-3wX">
-                                                    <rect key="frame" x="109" y="10" width="147" height="27"/>
+                                                    <rect key="frame" x="105" y="10" width="155.5" height="21"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="252" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="Open on" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q4P-B2-ZbH">
-                                                            <rect key="frame" x="0.0" y="4.5" width="55" height="17"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                            <rect key="frame" x="0.0" y="1.5" width="58.5" height="18"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                             <color key="textColor" name="lightNavy"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d7B-QQ-bLC">
-                                                            <rect key="frame" x="58" y="0.0" width="89" height="27"/>
-                                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
+                                                            <rect key="frame" x="61.5" y="0.0" width="94" height="21"/>
+                                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                                             <state key="normal" title="Brickset.com"/>
                                                             <connections>
                                                                 <action selector="openOnBricksetButtonTapped:" destination="sfS-D8-TsJ" eventType="touchUpInside" id="M91-9Y-tko"/>
                                                             </connections>
                                                         </button>
                                                     </subviews>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstItem="d7B-QQ-bLC" firstAttribute="top" secondItem="5TH-Be-3wX" secondAttribute="top" id="0v5-nx-4yz"/>
                                                         <constraint firstAttribute="trailing" secondItem="d7B-QQ-bLC" secondAttribute="trailing" id="9de-9m-gsf"/>
@@ -58,8 +58,8 @@
                                                     </constraints>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="252" horizontalCompressionResistancePriority="752" verticalCompressionResistancePriority="752" text="Last Updated 2016-01-14 @ 10:11:20 PM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pit-rp-pzd">
-                                                    <rect key="frame" x="59.5" y="40" width="247.5" height="16"/>
-                                                    <fontDescription key="fontDescription" type="italicSystem" pointSize="13"/>
+                                                    <rect key="frame" x="50.5" y="36" width="264" height="17"/>
+                                                    <fontDescription key="fontDescription" type="italicSystem" pointSize="14"/>
                                                     <color key="textColor" name="lightNavy"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -67,8 +67,8 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstItem="5TH-Be-3wX" firstAttribute="centerX" secondItem="e1n-Dm-ZVq" secondAttribute="centerX" id="RqX-Oa-oqp"/>
-                                                <constraint firstItem="pit-rp-pzd" firstAttribute="top" secondItem="5TH-Be-3wX" secondAttribute="bottom" constant="3" id="Tf7-bz-ar7"/>
-                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="pit-rp-pzd" secondAttribute="bottom" constant="10" id="UPx-GO-JIv"/>
+                                                <constraint firstItem="pit-rp-pzd" firstAttribute="top" secondItem="5TH-Be-3wX" secondAttribute="bottom" constant="5" id="Tf7-bz-ar7"/>
+                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="pit-rp-pzd" secondAttribute="bottom" constant="13" id="UPx-GO-JIv"/>
                                                 <constraint firstItem="5TH-Be-3wX" firstAttribute="top" secondItem="e1n-Dm-ZVq" secondAttribute="top" constant="10" id="VuN-zg-CqL"/>
                                                 <constraint firstItem="pit-rp-pzd" firstAttribute="centerX" secondItem="e1n-Dm-ZVq" secondAttribute="centerX" id="zYx-yH-MFm"/>
                                             </constraints>

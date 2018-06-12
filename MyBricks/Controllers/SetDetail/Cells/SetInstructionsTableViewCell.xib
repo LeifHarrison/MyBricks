@@ -20,14 +20,14 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" insetsLayoutMarginsFromSafeArea="NO" text="Instructions" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fQX-2f-4TE">
-                        <rect key="frame" x="10" y="12" width="298" height="21.5"/>
-                        <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                        <rect key="frame" x="10" y="14" width="298" height="17.5"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                         <color key="textColor" name="lightNavy"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="4" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i6g-IB-Zzz">
-                        <rect key="frame" x="350" y="16.5" width="10" height="17"/>
-                        <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                        <rect key="frame" x="350" y="13.5" width="10" height="18"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                         <color key="textColor" name="lightNavy"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -38,11 +38,11 @@
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="i6g-IB-Zzz" secondAttribute="trailing" constant="15" id="Bs8-8L-tev"/>
-                    <constraint firstItem="fQX-2f-4TE" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="FCD-UC-1j9"/>
+                    <constraint firstItem="fQX-2f-4TE" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="14" id="FCD-UC-1j9"/>
                     <constraint firstItem="9HW-VO-I0H" firstAttribute="leading" secondItem="fQX-2f-4TE" secondAttribute="trailing" constant="15" id="G8Z-Ld-XzN"/>
                     <constraint firstItem="i6g-IB-Zzz" firstAttribute="baseline" secondItem="fQX-2f-4TE" secondAttribute="baseline" id="WZv-nv-LN5"/>
                     <constraint firstItem="i6g-IB-Zzz" firstAttribute="leading" secondItem="9HW-VO-I0H" secondAttribute="trailing" constant="10" id="aMV-Je-F2z"/>
-                    <constraint firstAttribute="bottom" secondItem="fQX-2f-4TE" secondAttribute="bottom" constant="12" id="c5a-HC-T0F"/>
+                    <constraint firstAttribute="bottom" secondItem="fQX-2f-4TE" secondAttribute="bottom" constant="14" id="c5a-HC-T0F"/>
                     <constraint firstItem="9HW-VO-I0H" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="iUr-7b-1ic"/>
                     <constraint firstItem="fQX-2f-4TE" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="m8t-d1-hTi"/>
                 </constraints>

@@ -19,23 +19,22 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" insetsLayoutMarginsFromSafeArea="NO" text="Retail Price" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1eL-ZX-X2B">
-                        <rect key="frame" x="10" y="12" width="287" height="21.5"/>
-                        <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                        <rect key="frame" x="10" y="14" width="284" height="17.5"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                         <color key="textColor" name="lightNavy"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="$19.99" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dSy-HK-wZ2">
-                        <rect key="frame" x="311.5" y="16.5" width="48.5" height="17"/>
-                        <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                        <rect key="frame" x="308.5" y="13.5" width="51.5" height="18"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                         <color key="textColor" name="lightNavy"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="1eL-ZX-X2B" firstAttribute="top" secondItem="Eu8-VN-wAJ" secondAttribute="top" constant="12" id="0QR-an-e6A"/>
+                    <constraint firstItem="1eL-ZX-X2B" firstAttribute="top" secondItem="Eu8-VN-wAJ" secondAttribute="top" constant="14" id="0QR-an-e6A"/>
                     <constraint firstAttribute="trailing" secondItem="dSy-HK-wZ2" secondAttribute="trailing" constant="15" id="9v4-JA-kYK"/>
-                    <constraint firstAttribute="bottom" secondItem="1eL-ZX-X2B" secondAttribute="bottom" constant="12" id="HFj-8i-3SY"/>
-                    <constraint firstItem="dSy-HK-wZ2" firstAttribute="leading" secondItem="1eL-ZX-X2B" secondAttribute="trailing" constant="15" id="jvg-y4-DpX"/>
+                    <constraint firstAttribute="bottom" secondItem="1eL-ZX-X2B" secondAttribute="bottom" constant="14" id="HFj-8i-3SY"/>
                     <constraint firstItem="dSy-HK-wZ2" firstAttribute="leading" secondItem="1eL-ZX-X2B" secondAttribute="trailing" constant="15" id="lBw-Xw-PAZ"/>
                     <constraint firstItem="1eL-ZX-X2B" firstAttribute="leading" secondItem="Eu8-VN-wAJ" secondAttribute="leading" constant="10" id="lE0-PY-hKK"/>
                     <constraint firstItem="dSy-HK-wZ2" firstAttribute="baseline" secondItem="1eL-ZX-X2B" secondAttribute="baseline" id="wPI-af-1cZ"/>
@@ -45,7 +44,7 @@
                 <outlet property="priceLabel" destination="dSy-HK-wZ2" id="woj-Cq-vWQ"/>
                 <outlet property="priceTitleLabel" destination="1eL-ZX-X2B" id="FpG-mR-fKS"/>
             </connections>
-            <point key="canvasLocation" x="-326" y="-123"/>
+            <point key="canvasLocation" x="-326.5" y="-123"/>
         </tableViewCell>
     </objects>
     <resources>

@@ -48,16 +48,14 @@ class SetDetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         title = NSLocalizedString("Set Detail", comment: "")
-        
-        hideKeyboardWhenViewTapped()
         
         // Add 'Share' button to navigation bar
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "share"), style: .plain, target: self, action: #selector(share(sender:)))
 
         setupTableView()
         
+        // Keep tabs on when our collection is updated
         NotificationCenter.default.addObserver(self, selector: #selector(collectionUpdated(_:)), name: Notification.Name.Collection.DidUpdate, object: nil)
     }
 
@@ -191,12 +189,12 @@ class SetDetailViewController: UIViewController {
         tableView.estimatedSectionHeaderHeight = 5
         tableView.contentInset = UIEdgeInsets(top: 5, left: 0, bottom: 5, right: 0)
         
-        tableView.register(SetCollectionTableViewCell.self)
         tableView.register(SetDetailTableViewCell.self)
-        tableView.register(SetPartsTableViewCell.self)
         tableView.register(SetPriceTableViewCell.self)
+        tableView.register(SetPartsTableViewCell.self)
         tableView.register(SetReviewsTableViewCell.self)
         tableView.register(SetInstructionsTableViewCell.self)
+        tableView.register(SetCollectionTableViewCell.self)
         tableView.register(SetTagsTableViewCell.self)
         tableView.register(SetDescriptionTableViewCell.self)
         
