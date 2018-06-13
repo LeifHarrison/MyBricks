@@ -46,12 +46,12 @@ class PartsListViewController: UIViewController {
     
     private func fetchPartsList() {
         if let set = currentSet {
-            if lastResponse == nil { SimpleActivityHUD.show(overView: view) }
+            if lastResponse == nil { ActivityOverlayView.show(overView: view) }
             isLoading = true
 
             let setNumber = set.fullSetNumber
             let completion: (Result<GetPartsResponse>) -> Void = { result in
-                if self.lastResponse == nil { SimpleActivityHUD.hide() }
+                if self.lastResponse == nil { ActivityOverlayView.hide() }
                 self.isLoading = false
                 if result.isSuccess {
                     if let response = result.value {

@@ -130,11 +130,11 @@ class BrowseSetsViewController: UIViewController {
     }
     
     fileprivate func fetchSets() {
-        SimpleActivityHUD.show(overView: view)
+        ActivityOverlayView.show(overView: view)
         let request = GetSetsRequest(filterOptions: self.filterOptions)
         self.browseRequest = BricksetServices.shared.getSets(request, completion: { [weak self] result in
             guard let strongSelf = self else { return }
-            SimpleActivityHUD.hide()
+            ActivityOverlayView.hide()
             if result.isSuccess {
                 strongSelf.allSets = result.value ?? []
                 strongSelf.processSets()

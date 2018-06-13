@@ -52,9 +52,9 @@ class ReviewsViewController: UIViewController {
     
     private func fetchReviews() {
         if let set = currentSet, let setID = set.setID {
-            SimpleActivityHUD.show(overView: view)
+            ActivityOverlayView.show(overView: view)
             BricksetServices.shared.getReviews(setID: setID, completion: { result in
-                SimpleActivityHUD.hide()
+                ActivityOverlayView.hide()
                 self.reviews = result.value ?? []
                 if let value = result.value {
                     self.reviews = value.sorted {

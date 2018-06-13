@@ -66,9 +66,9 @@ class FilterSelectYearViewController: UIViewController {
     
     fileprivate func fetchYears() {
         if let theme = filterOptions.selectedTheme {
-            SimpleActivityHUD.show(overView: view)
+            ActivityOverlayView.show(overView: view)
             let completion: GetYearsCompletion = { result in
-                SimpleActivityHUD.hide()
+                ActivityOverlayView.hide()
                 if result.isSuccess, let availableYears = result.value {
                     self.filterOptions.availableYears = availableYears.sorted {
                         return $0.name > $1.name

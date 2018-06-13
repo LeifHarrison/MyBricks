@@ -83,7 +83,7 @@
 		9B42C15E208FE7AA00260B0F /* SetPriceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B42C15D208FE7AA00260B0F /* SetPriceTableViewCell.xib */; };
 		9B48CBF22045E3270074908B /* SetInstructionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B48CBF02045E3270074908B /* SetInstructionsTableViewCell.swift */; };
 		9B48CBF32045E3270074908B /* SetInstructionsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B48CBF12045E3270074908B /* SetInstructionsTableViewCell.xib */; };
-		9B4B4C4E203CD2630026B3AC /* SimpleActivityHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4B4C4D203CD2630026B3AC /* SimpleActivityHUD.swift */; };
+		9B4B4C4E203CD2630026B3AC /* ActivityOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4B4C4D203CD2630026B3AC /* ActivityOverlayView.swift */; };
 		9B4C25B920CED7BA00116C82 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4C25B820CED7BA00116C82 /* Constants.swift */; };
 		9B58D93420AB50CF00F6E92A /* FilterCheckboxButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B58D93320AB50CF00F6E92A /* FilterCheckboxButton.swift */; };
 		9B5B4A53204DDBEA00F2324C /* PriceGuideTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B5B4A52204DDBEA00F2324C /* PriceGuideTableViewCell.xib */; };
@@ -122,7 +122,7 @@
 		9B92EFAC201FE06D007610BD /* FilterSelectThemeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B92EFAB201FE06D007610BD /* FilterSelectThemeTableViewController.swift */; };
 		9B92EFAE201FE084007610BD /* FilterSelectSubthemeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B92EFAD201FE084007610BD /* FilterSelectSubthemeViewController.swift */; };
 		9B92EFB0201FE09D007610BD /* FilterSelectYearViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B92EFAF201FE09D007610BD /* FilterSelectYearViewController.swift */; };
-		9BAE69AB20D058EE009EBC9B /* CirclesActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BAE69AA20D058EE009EBC9B /* CirclesActivityIndicatorView.swift */; };
+		9BAE69AB20D058EE009EBC9B /* ActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BAE69AA20D058EE009EBC9B /* ActivityIndicatorView.swift */; };
 		9BB4710F20910523006DBB06 /* SetDescriptionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9BB4710E20910523006DBB06 /* SetDescriptionTableViewCell.xib */; };
 		9BC7A64420AB94890095DF65 /* SetImagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC7A64320AB94890095DF65 /* SetImagesViewController.swift */; };
 		9BCA7E302028DA6E00FA7BDC /* SetPriceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BCA7E2F2028DA6E00FA7BDC /* SetPriceTableViewCell.swift */; };
@@ -139,7 +139,6 @@
 		9BE783922048745500FD078E /* PriceGuideTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE783912048745500FD078E /* PriceGuideTableViewCell.swift */; };
 		9BF4EEDA20362DE6006F3180 /* BrowseHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF4EED920362DE6006F3180 /* BrowseHeaderView.swift */; };
 		9BF9D1B420BF641C003B1FF1 /* BlueGradientTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF9D1B320BF641C003B1FF1 /* BlueGradientTableViewCell.swift */; };
-		9BF9D1B620BF6509003B1FF1 /* MyBricksActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF9D1B520BF6509003B1FF1 /* MyBricksActivityIndicatorView.swift */; };
 		9BFFDEA92020E3C90070C812 /* Filter.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BFFDEA82020E3C90070C812 /* Filter.storyboard */; };
 		9BFFDEAB20212E5F0070C812 /* SetDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BFFDEAA20212E5F0070C812 /* SetDetail.storyboard */; };
 /* End PBXBuildFile section */
@@ -260,7 +259,7 @@
 		9B42C15D208FE7AA00260B0F /* SetPriceTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SetPriceTableViewCell.xib; sourceTree = "<group>"; };
 		9B48CBF02045E3270074908B /* SetInstructionsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetInstructionsTableViewCell.swift; sourceTree = "<group>"; };
 		9B48CBF12045E3270074908B /* SetInstructionsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SetInstructionsTableViewCell.xib; sourceTree = "<group>"; };
-		9B4B4C4D203CD2630026B3AC /* SimpleActivityHUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleActivityHUD.swift; sourceTree = "<group>"; };
+		9B4B4C4D203CD2630026B3AC /* ActivityOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityOverlayView.swift; sourceTree = "<group>"; };
 		9B4C25B820CED7BA00116C82 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		9B58D93320AB50CF00F6E92A /* FilterCheckboxButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCheckboxButton.swift; sourceTree = "<group>"; };
 		9B5B4A52204DDBEA00F2324C /* PriceGuideTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PriceGuideTableViewCell.xib; sourceTree = "<group>"; };
@@ -299,7 +298,7 @@
 		9B92EFAB201FE06D007610BD /* FilterSelectThemeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterSelectThemeTableViewController.swift; sourceTree = "<group>"; };
 		9B92EFAD201FE084007610BD /* FilterSelectSubthemeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterSelectSubthemeViewController.swift; sourceTree = "<group>"; };
 		9B92EFAF201FE09D007610BD /* FilterSelectYearViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterSelectYearViewController.swift; sourceTree = "<group>"; };
-		9BAE69AA20D058EE009EBC9B /* CirclesActivityIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CirclesActivityIndicatorView.swift; sourceTree = "<group>"; };
+		9BAE69AA20D058EE009EBC9B /* ActivityIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorView.swift; sourceTree = "<group>"; };
 		9BB4710E20910523006DBB06 /* SetDescriptionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SetDescriptionTableViewCell.xib; sourceTree = "<group>"; };
 		9BC7A64320AB94890095DF65 /* SetImagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetImagesViewController.swift; sourceTree = "<group>"; };
 		9BCA7E2F2028DA6E00FA7BDC /* SetPriceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetPriceTableViewCell.swift; sourceTree = "<group>"; };
@@ -316,7 +315,6 @@
 		9BE783912048745500FD078E /* PriceGuideTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceGuideTableViewCell.swift; sourceTree = "<group>"; };
 		9BF4EED920362DE6006F3180 /* BrowseHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseHeaderView.swift; sourceTree = "<group>"; };
 		9BF9D1B320BF641C003B1FF1 /* BlueGradientTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlueGradientTableViewCell.swift; sourceTree = "<group>"; };
-		9BF9D1B520BF6509003B1FF1 /* MyBricksActivityIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyBricksActivityIndicatorView.swift; sourceTree = "<group>"; };
 		9BFFDEA82020E3C90070C812 /* Filter.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Filter.storyboard; sourceTree = "<group>"; };
 		9BFFDEAA20212E5F0070C812 /* SetDetail.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SetDetail.storyboard; sourceTree = "<group>"; };
 		9C22940D3A15FE3E6B89AED7 /* Pods-MyBricks.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyBricks.release.xcconfig"; path = "Pods/Target Support Files/Pods-MyBricks/Pods-MyBricks.release.xcconfig"; sourceTree = "<group>"; };
@@ -376,11 +374,10 @@
 			children = (
 				9B58D93320AB50CF00F6E92A /* FilterCheckboxButton.swift */,
 				294F18791FB4EDC20026342F /* GradientView.swift */,
-				9BF9D1B520BF6509003B1FF1 /* MyBricksActivityIndicatorView.swift */,
-				9B4B4C4D203CD2630026B3AC /* SimpleActivityHUD.swift */,
+				9B4B4C4D203CD2630026B3AC /* ActivityOverlayView.swift */,
 				9B92A915202E4BE8001E7AC9 /* TagListView.swift */,
 				9B92A914202E4BE8001E7AC9 /* TagView.swift */,
-				9BAE69AA20D058EE009EBC9B /* CirclesActivityIndicatorView.swift */,
+				9BAE69AA20D058EE009EBC9B /* ActivityIndicatorView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1008,7 +1005,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9BAE69AB20D058EE009EBC9B /* CirclesActivityIndicatorView.swift in Sources */,
+				9BAE69AB20D058EE009EBC9B /* ActivityIndicatorView.swift in Sources */,
 				9B63D289202CFCB900E1C3B0 /* BricksetProfileTableViewCell.swift in Sources */,
 				29365B7C1F8EDAA500F6730C /* LoginViewController.swift in Sources */,
 				9B64EB7720C59E77001D05CD /* ProfileLegalViewController.swift in Sources */,
@@ -1030,7 +1027,7 @@
 				9B92EFAC201FE06D007610BD /* FilterSelectThemeTableViewController.swift in Sources */,
 				29E86FDB1F31293900A67179 /* ThemeTableViewCell.swift in Sources */,
 				29C111A11FC3F0F6007CBDB4 /* UIView+Extensions.swift in Sources */,
-				9B4B4C4E203CD2630026B3AC /* SimpleActivityHUD.swift in Sources */,
+				9B4B4C4E203CD2630026B3AC /* ActivityOverlayView.swift in Sources */,
 				294F187A1FB4EDC20026342F /* GradientView.swift in Sources */,
 				298FC8311FBA45940094D6DF /* BarcodeScannerViewController.swift in Sources */,
 				295ADFC11F16AFFD002E6802 /* SearchViewController.swift in Sources */,
@@ -1100,7 +1097,6 @@
 				29EE120E202B698A00C05C55 /* SafariActivity.swift in Sources */,
 				9B5CA746201946CE00B09BCB /* FilterSelectionTableViewCell.swift in Sources */,
 				296460A11FA92AA2004850F8 /* NewsItemViewController.swift in Sources */,
-				9BF9D1B620BF6509003B1FF1 /* MyBricksActivityIndicatorView.swift in Sources */,
 				29FCC3461FBA14F500079032 /* SetDetail.swift in Sources */,
 				9B92EFAA201FCC66007610BD /* SetYear.swift in Sources */,
 				29BA70112012A1AD00D34D93 /* FilterViewController.swift in Sources */,

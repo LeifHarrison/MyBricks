@@ -88,7 +88,7 @@ class BarcodeScannerViewController: UIViewController {
     }
 
     override func viewWillDisappear(_ animated: Bool) {
-        SimpleActivityHUD.hide()
+        ActivityOverlayView.hide()
         captureSession.stopRunning()
         super.viewWillDisappear(animated)
     }
@@ -250,7 +250,7 @@ extension BarcodeScannerViewController: AVCaptureMetadataOutputObjectsDelegate {
         }
 
         DispatchQueue.main.async {
-            SimpleActivityHUD.show(overView: self.view)
+            ActivityOverlayView.show(overView: self.view)
         }
 
         delegate?.barcodeScanner(self, didCaptureCode: code, type: rawType)

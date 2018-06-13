@@ -1,5 +1,5 @@
 //
-//  CirclesActivityIndicatorView.swift
+//  ActivityIndicatorView.swift
 //  MyBricks
 //
 //  Created by Harrison, Leif (US - Seattle) on 6/12/18.
@@ -9,7 +9,7 @@
 import UIKit
 
 @IBDesignable
-class CirclesActivityIndicatorView: UIView {
+class ActivityIndicatorView: UIView {
 
     // MARK: - Types
     
@@ -20,14 +20,31 @@ class CirclesActivityIndicatorView: UIView {
         
         var dimension: CGFloat {
             switch self {
-            case .small: return 20
-            case .large: return 40
+            case .small: return 30
+            case .large: return 50
             case .huge: return 80
             }
         }
         
+        var numberOfDots: Int {
+            switch self {
+            case .small: return 12
+            case .large: return 14
+            case .huge:  return 16
+            }
+        }
+
+        var dotSize: CGFloat {
+            switch self {
+            case .small: return 5
+            case .large: return 9
+            case .huge:  return 11
+            }
+        }
     }
 
+    //private let numberOfDots = 16
+    
     private var animating: Bool = false
 
     //--------------------------------------------------------------------------
@@ -116,9 +133,11 @@ class CirclesActivityIndicatorView: UIView {
     func startAnimating() {
         isHidden = false
         animating = true
+        setupAnimations()
     }
     
     func stopAnimating() {
+        removeAnimations()
         animating = false
         isHidden = hidesWhenStopped
     }
@@ -132,59 +151,21 @@ class CirclesActivityIndicatorView: UIView {
     //--------------------------------------------------------------------------
 
     func setupLayers() {
-        print("layer.frane = \(layer.frame)")
-        //layer.borderColor = UIColor.cloudyBlue.cgColor
-        //layer.borderWidth = 2.0
-        
-        let dotCount = 16
         let size = CGSize(width: style.dimension, height: style.dimension)
         let circleSpacing: CGFloat = -2
         let circleSize = (style.dimension - 4 * circleSpacing) / 7
-        //let centerX = (layer.bounds.size.width - style.dimension) / 2
-        //let centerY = (layer.bounds.size.height - style.dimension) / 2
-        let duration: CFTimeInterval = 0.9
-        let beginTime = CACurrentMediaTime()
-        
-        let interval: CFTimeInterval = duration / Double(dotCount)
-        //let beginTimes: [CFTimeInterval] = [0, 0.12, 0.24, 0.36, 0.48, 0.6, 0.72, 0.84]
-        
-        // Scale animation
-        let scaleAnimation = CAKeyframeAnimation(keyPath: "transform.scale")
-        
-        scaleAnimation.keyTimes = [0, 1]
-        scaleAnimation.values = [1, 0.4]
-        scaleAnimation.duration = duration
-        
-        // Opacity animation
-        let opacityAnimaton = CAKeyframeAnimation(keyPath: "opacity")
-        
-        opacityAnimaton.keyTimes = [0, 1]
-        opacityAnimaton.values = [1, 0.3]
-        opacityAnimaton.duration = duration
-        
-        // Animation
-        let animation = CAAnimationGroup()
-        
-        animation.animations = [scaleAnimation, opacityAnimaton]
-        animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
-        animation.duration = duration
-        animation.repeatCount = HUGE
-        animation.isRemovedOnCompletion = false
         
         // Draw circles
-        for index in 0 ..< dotCount {
-            let angle = (CGFloat(Double.pi / Double(dotCount/2)) * CGFloat(index)) - CGFloat(Double.pi / 2)
+        for index in 0 ..< style.numberOfDots {
+            let angle = (CGFloat(Double.pi / Double(style.numberOfDots/2)) * CGFloat(index)) - CGFloat(Double.pi / 2)
             let circle = circleAt(angle: angle, diameter: circleSize, origin: CGPoint(x: 0, y: 0), containerSize: size, color: UIColor.lightBlueGrey)
-            animation.beginTime = beginTime + (Double(index) * interval)
-            circle.add(animation, forKey: "animation")
             layer.addSublayer(circle)
         }
     }
     
     func circleAt(angle: CGFloat, diameter: CGFloat, origin: CGPoint, containerSize: CGSize, color: UIColor) -> CALayer {
-        print("angle: \(angle), diameter: \(diameter), origin: \(origin), containerSize: \(containerSize)")
         let radius = (containerSize.width / 2) - (diameter / 2)
-        let size = CGSize(width: 11, height: 11)
+        let size = CGSize(width: style.dotSize, height: style.dotSize)
         
         let dotLayer: CAShapeLayer = CAShapeLayer()
         dotLayer.fillColor = color.cgColor
@@ -198,8 +179,48 @@ class CirclesActivityIndicatorView: UIView {
         let dotY = origin.y + radius * (sin(angle) + 1)
         let frame = CGRect( x: dotX, y: dotY, width: size.width, height: size.height)
         dotLayer.frame = frame
-        print("dotLayer.frame = \(dotLayer.frame)")
 
         return dotLayer
+    }
+    
+    private func setupAnimations() {
+        let duration: CFTimeInterval = 0.9
+        let beginTime = CACurrentMediaTime()
+        let interval: CFTimeInterval = duration / Double(style.numberOfDots)
+        
+        // Scale animation
+        let scaleAnimation = CAKeyframeAnimation(keyPath: "transform.scale")
+        scaleAnimation.keyTimes = [0, 1]
+        scaleAnimation.values = [1, 0.4]
+        scaleAnimation.duration = duration
+        
+        // Opacity animation
+        let opacityAnimaton = CAKeyframeAnimation(keyPath: "opacity")
+        opacityAnimaton.keyTimes = [0, 1]
+        opacityAnimaton.values = [1, 0.3]
+        opacityAnimaton.duration = duration
+        
+        // Animation Group
+        let animation = CAAnimationGroup()
+        animation.animations = [scaleAnimation, opacityAnimaton]
+        animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear)
+        animation.duration = duration
+        animation.repeatCount = HUGE
+        animation.isRemovedOnCompletion = false
+
+        if let dots = layer.sublayers {
+            for (index, circle) in dots.enumerated() {
+                animation.beginTime = beginTime + (Double(index) * interval)
+                circle.add(animation, forKey: "animation")
+            }
+        }
+    }
+    
+    private func removeAnimations() {
+        if let dots = layer.sublayers {
+            for circle in dots {
+                circle.removeAllAnimations()
+            }
+        }
     }
 }

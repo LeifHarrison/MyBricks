@@ -71,9 +71,9 @@ class FilterSelectThemeViewController: UIViewController {
     //--------------------------------------------------------------------------
     
     fileprivate func fetchThemes() {
-        SimpleActivityHUD.show(overView: view)
+        ActivityOverlayView.show(overView: view)
         let completion: GetThemesCompletion = { result in
-            SimpleActivityHUD.hide()
+            ActivityOverlayView.hide()
             if result.isSuccess {
                 self.filterOptions.availableThemes = result.value ?? []
                 self.delegate?.selectThemeController(self, didUpdateAvailableThemes: self.filterOptions.availableThemes)

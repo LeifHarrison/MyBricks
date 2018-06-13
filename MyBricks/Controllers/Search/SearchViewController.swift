@@ -155,10 +155,10 @@ class SearchViewController: UIViewController {
         }
 
         hideInstructions(animated: true)
-        SimpleActivityHUD.show(overView: view)
+        ActivityOverlayView.show(overView: view)
         let request = GetSetsRequest(query: searchTerm)
         self.searchRequest = BricksetServices.shared.getSets(request, completion: { result in
-            SimpleActivityHUD.hide()
+            ActivityOverlayView.hide()
             self.saveSearch(withType: searchType, searchTerm: searchTerm)
             
             if result.isSuccess, let sets = result.value {

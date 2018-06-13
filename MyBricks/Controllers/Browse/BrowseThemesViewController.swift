@@ -46,9 +46,9 @@ class BrowseThemesViewController: UIViewController {
     }
 
     fileprivate func fetchThemes() {
-        SimpleActivityHUD.show(overView: view)
+        ActivityOverlayView.show(overView: view)
         BricksetServices.shared.getThemes(completion: { result in
-            SimpleActivityHUD.hide()
+            ActivityOverlayView.hide()
             if result.isSuccess {
                 self.allThemes = result.value ?? []
                 self.processThemes()

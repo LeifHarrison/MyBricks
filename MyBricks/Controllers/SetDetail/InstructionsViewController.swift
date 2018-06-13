@@ -41,9 +41,9 @@ class InstructionsViewController: UIViewController {
     
     private func fetchInstructions() {
         if let set = currentSet, let setID = set.setID {
-            SimpleActivityHUD.show(overView: view)
+            ActivityOverlayView.show(overView: view)
             BricksetServices.shared.getInstructions(setID: setID, completion: { result in
-                SimpleActivityHUD.hide()
+                ActivityOverlayView.hide()
                 self.instructions = result.value ?? []
                 self.tableView.reloadData()
             })

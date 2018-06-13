@@ -67,9 +67,9 @@ class FilterSelectSubthemeViewController: UIViewController {
     
     fileprivate func fetchSubthemes() {
         if let theme = filterOptions.selectedTheme {
-            SimpleActivityHUD.show(overView: view)
+            ActivityOverlayView.show(overView: view)
             let completion: GetSubthemesCompletion = { result in
-                SimpleActivityHUD.hide()
+                ActivityOverlayView.hide()
                 if result.isSuccess {
                     self.filterOptions.availableSubthemes = result.value ?? []
                     self.tableView.reloadData()

@@ -1,5 +1,5 @@
 //
-//  SimpleActivityHUD.swift
+//  ActivityOverlayView.swift
 //  MyBricks
 //
 //  Created by Leif Harrison on 2/20/18.
@@ -8,13 +8,13 @@
 
 import UIKit
 
-public class SimpleActivityHUD: UIView {
+public class ActivityOverlayView: UIView {
 
-    fileprivate var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
+    fileprivate var activityIndicator: ActivityIndicatorView = ActivityIndicatorView()
     fileprivate var textLabel: UILabel = UILabel()
-    fileprivate var hudView: UIView = UIView()
+    fileprivate var backgroundView: UIView = UIView()
 
-    static private let shared = SimpleActivityHUD()
+    static private let shared = ActivityOverlayView()
 
     //--------------------------------------------------------------------------
     // MARK: - Type Methods
@@ -62,13 +62,13 @@ public class SimpleActivityHUD: UIView {
         view.addSubview(self)
         activityIndicator.startAnimating()
 
-        hudView.isHidden = false
-        hudView.alpha = 0.1
-        hudView.transform = CGAffineTransform.init(scaleX: 0.5, y: 0.5)
+        backgroundView.isHidden = false
+        backgroundView.alpha = 0.1
+        backgroundView.transform = CGAffineTransform.init(scaleX: 0.5, y: 0.5)
         
         let animations = {
-            self.hudView.alpha = 1.0
-            self.hudView.transform = CGAffineTransform.identity
+            self.backgroundView.alpha = 1.0
+            self.backgroundView.transform = CGAffineTransform.identity
         }
         let options: UIViewAnimationOptions = [ .beginFromCurrentState, .curveEaseIn ]
         UIView.animate(withDuration: animated ? 0.2 : 0, delay: 0, options: options, animations: animations, completion: nil)
@@ -77,8 +77,8 @@ public class SimpleActivityHUD: UIView {
     
     public func hide(animated: Bool = true) {
         let animations = {
-            self.hudView.alpha = 0.0
-            self.hudView.transform = CGAffineTransform.init(scaleX: 0.5, y: 0.5)
+            self.backgroundView.alpha = 0.0
+            self.backgroundView.transform = CGAffineTransform.init(scaleX: 0.5, y: 0.5)
         }
         let completion = { (finished: Bool) -> Void in
             self.activityIndicator.stopAnimating()
@@ -93,11 +93,8 @@ public class SimpleActivityHUD: UIView {
     //--------------------------------------------------------------------------
     
     private func setup() {
-        backgroundColor =  UIColor.black.withAlphaComponent(0.4)
-        tintColor = UIColor.darkGray
+        tintColor = UIColor.lightBlueGrey
         
-        activityIndicator.activityIndicatorViewStyle = .whiteLarge
-        activityIndicator.color = tintColor
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
         
         textLabel.text = "Loading..."
@@ -105,28 +102,29 @@ public class SimpleActivityHUD: UIView {
         textLabel.font = .systemFont(ofSize: UIFont.labelFontSize)
         textLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        hudView.backgroundColor = UIColor(white: 0.95, alpha: 0.8)
-        hudView.layer.cornerRadius = 5
-        hudView.layer.shadowColor = UIColor.black.cgColor
-        hudView.layer.shadowRadius = 5
-        hudView.layer.shadowOpacity = 0.7
-        hudView.layer.shadowOffset =  CGSize(width: 1, height: 1)
-        hudView.translatesAutoresizingMaskIntoConstraints = false
+        //backgroundView.backgroundColor = UIColor(white: 0.95, alpha: 0.8)
+        backgroundView.backgroundColor = UIColor.white
+        backgroundView.layer.cornerRadius = 5
+        backgroundView.layer.shadowColor = UIColor.black.cgColor
+        backgroundView.layer.shadowRadius = 5
+        backgroundView.layer.shadowOpacity = 0.7
+        backgroundView.layer.shadowOffset =  CGSize(width: 1, height: 1)
+        backgroundView.translatesAutoresizingMaskIntoConstraints = false
         
-        hudView.addSubview(activityIndicator)
-        hudView.addSubview(textLabel)
+        backgroundView.addSubview(activityIndicator)
+        backgroundView.addSubview(textLabel)
         
-        activityIndicator.topAnchor.constraint(equalTo: hudView.topAnchor, constant: 20).isActive = true
-        activityIndicator.centerXAnchor.constraint(equalTo: hudView.centerXAnchor).isActive = true
+        activityIndicator.topAnchor.constraint(equalTo: backgroundView.topAnchor, constant: 20).isActive = true
+        activityIndicator.centerXAnchor.constraint(equalTo: backgroundView.centerXAnchor).isActive = true
         
-        textLabel.leadingAnchor.constraint(equalTo: hudView.leadingAnchor, constant: 25).isActive = true
-        hudView.trailingAnchor.constraint(equalTo: textLabel.trailingAnchor, constant: 25).isActive = true
+        textLabel.leadingAnchor.constraint(equalTo: backgroundView.leadingAnchor, constant: 25).isActive = true
+        backgroundView.trailingAnchor.constraint(equalTo: textLabel.trailingAnchor, constant: 25).isActive = true
         textLabel.topAnchor.constraint(equalTo: activityIndicator.bottomAnchor, constant: 15).isActive = true
-        hudView.bottomAnchor.constraint(equalTo: textLabel.bottomAnchor, constant: 20).isActive = true
+        backgroundView.bottomAnchor.constraint(equalTo: textLabel.bottomAnchor, constant: 20).isActive = true
         
-        addSubview(hudView)
-        hudView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        hudView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+        addSubview(backgroundView)
+        backgroundView.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
+        backgroundView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
         
     }
     

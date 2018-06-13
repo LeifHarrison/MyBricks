@@ -65,11 +65,11 @@ class NewsViewController: UIViewController {
     
     private func fetchNews() {
         if !refreshControl.isRefreshing {
-            SimpleActivityHUD.show(overView: view)
+            ActivityOverlayView.show(overView: view)
         }
         BricksetServices.shared.getNews(completion: { result in
             if !self.refreshControl.isRefreshing {
-                SimpleActivityHUD.hide()
+                ActivityOverlayView.hide()
             }
             if self.refreshControl.isRefreshing { self.refreshControl.endRefreshing() }
             if let value = result.value {
