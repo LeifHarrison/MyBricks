@@ -122,6 +122,7 @@
 		9B92EFAC201FE06D007610BD /* FilterSelectThemeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B92EFAB201FE06D007610BD /* FilterSelectThemeTableViewController.swift */; };
 		9B92EFAE201FE084007610BD /* FilterSelectSubthemeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B92EFAD201FE084007610BD /* FilterSelectSubthemeViewController.swift */; };
 		9B92EFB0201FE09D007610BD /* FilterSelectYearViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B92EFAF201FE09D007610BD /* FilterSelectYearViewController.swift */; };
+		9BAE69AB20D058EE009EBC9B /* CirclesActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BAE69AA20D058EE009EBC9B /* CirclesActivityIndicatorView.swift */; };
 		9BB4710F20910523006DBB06 /* SetDescriptionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9BB4710E20910523006DBB06 /* SetDescriptionTableViewCell.xib */; };
 		9BC7A64420AB94890095DF65 /* SetImagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC7A64320AB94890095DF65 /* SetImagesViewController.swift */; };
 		9BCA7E302028DA6E00FA7BDC /* SetPriceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BCA7E2F2028DA6E00FA7BDC /* SetPriceTableViewCell.swift */; };
@@ -298,6 +299,7 @@
 		9B92EFAB201FE06D007610BD /* FilterSelectThemeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterSelectThemeTableViewController.swift; sourceTree = "<group>"; };
 		9B92EFAD201FE084007610BD /* FilterSelectSubthemeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterSelectSubthemeViewController.swift; sourceTree = "<group>"; };
 		9B92EFAF201FE09D007610BD /* FilterSelectYearViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterSelectYearViewController.swift; sourceTree = "<group>"; };
+		9BAE69AA20D058EE009EBC9B /* CirclesActivityIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CirclesActivityIndicatorView.swift; sourceTree = "<group>"; };
 		9BB4710E20910523006DBB06 /* SetDescriptionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SetDescriptionTableViewCell.xib; sourceTree = "<group>"; };
 		9BC7A64320AB94890095DF65 /* SetImagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetImagesViewController.swift; sourceTree = "<group>"; };
 		9BCA7E2F2028DA6E00FA7BDC /* SetPriceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetPriceTableViewCell.swift; sourceTree = "<group>"; };
@@ -378,6 +380,7 @@
 				9B4B4C4D203CD2630026B3AC /* SimpleActivityHUD.swift */,
 				9B92A915202E4BE8001E7AC9 /* TagListView.swift */,
 				9B92A914202E4BE8001E7AC9 /* TagView.swift */,
+				9BAE69AA20D058EE009EBC9B /* CirclesActivityIndicatorView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1005,6 +1008,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9BAE69AB20D058EE009EBC9B /* CirclesActivityIndicatorView.swift in Sources */,
 				9B63D289202CFCB900E1C3B0 /* BricksetProfileTableViewCell.swift in Sources */,
 				29365B7C1F8EDAA500F6730C /* LoginViewController.swift in Sources */,
 				9B64EB7720C59E77001D05CD /* ProfileLegalViewController.swift in Sources */,
