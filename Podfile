@@ -11,9 +11,10 @@ target 'MyBricks' do
   pod 'AlamofireNetworkActivityIndicator'
   pod 'AlamofireNetworkActivityLogger'
   pod 'AlamofireRSSParser'
-  pod 'Fuzi'
-  pod 'KeychainAccess'
   pod 'Cosmos'
+  pod 'Fuzi'
+  pod 'Google-Mobile-Ads-SDK'
+  pod 'KeychainAccess'
   pod 'SwiftLint'
 
 end

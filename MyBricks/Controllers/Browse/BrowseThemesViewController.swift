@@ -7,10 +7,13 @@
 //
 
 import UIKit
+import GoogleMobileAds
 
 class BrowseThemesViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
+
+    var bannerView: GADBannerView = GADBannerView(adSize: kGADAdSizeSmartBannerPortrait)
 
     var allThemes: [SetTheme] = []
     var sectionTitles: [String] = []
@@ -23,10 +26,19 @@ class BrowseThemesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
+        
+        addBannerViewToView(bannerView)
+        bannerView.adUnitID = Constants.GoogleMobileAds.AdUnits.browseThemes
+        bannerView.rootViewController = self
+        bannerView.load(GADRequest())
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
+        // Adjust insets for Ad Banner
+        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: bannerView.frame.height, right: 0)
+        
         if allThemes.count == 0 {
             fetchThemes()
         }
@@ -45,6 +57,14 @@ class BrowseThemesViewController: UIViewController {
         tableView.register(ThemeTableViewCell.self)
     }
 
+    func addBannerViewToView(_ bannerView: GADBannerView) {
+        bannerView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(bannerView)
+        
+        bannerView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        bannerView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+    }
+    
     fileprivate func fetchThemes() {
         ActivityOverlayView.show(overView: view)
         BricksetServices.shared.getThemes(completion: { result in
