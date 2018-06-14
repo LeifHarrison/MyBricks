@@ -21,7 +21,8 @@ class NewsViewController: UIViewController {
     private let updateInterval: TimeInterval = 5 * 60 // Only refresh every 5 minutes
 
     private var refreshControl: UIRefreshControl = UIRefreshControl()
-    
+    private var refreshActivityIndicator: ActivityIndicatorView = ActivityIndicatorView(style: .small)
+
     //--------------------------------------------------------------------------
     // MARK: - View Lifecycle
     //--------------------------------------------------------------------------
@@ -59,19 +60,33 @@ class NewsViewController: UIViewController {
         tableView.tableFooterView = UIView()
         
         refreshControl.addTarget(self, action: #selector(refreshNews(_:)), for: .valueChanged)
-        refreshControl.tintColor = UIColor.lightNavy
+        refreshControl.tintColor = UIColor.clear
+        refreshControl.backgroundColor = UIColor.white
         tableView.addSubview(refreshControl)
+        
+        refreshActivityIndicator.hidesWhenStopped = false
+        refreshActivityIndicator.tintColor = UIColor.lightBlueGrey
+        refreshActivityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        refreshControl.addSubview(refreshActivityIndicator)
+        refreshActivityIndicator.centerXAnchor.constraint(equalTo: refreshControl.centerXAnchor).isActive = true
+        refreshActivityIndicator.centerYAnchor.constraint(equalTo: refreshControl.centerYAnchor).isActive = true
     }
     
     private func fetchNews() {
-        if !refreshControl.isRefreshing {
+        if refreshControl.isRefreshing {
+            refreshActivityIndicator.startAnimating()
+        }
+        else {
             ActivityOverlayView.show(overView: view)
         }
         BricksetServices.shared.getNews(completion: { result in
-            if !self.refreshControl.isRefreshing {
+            if self.refreshControl.isRefreshing {
+                self.refreshActivityIndicator.stopAnimating()
+                self.refreshControl.endRefreshing()
+            }
+            else {
                 ActivityOverlayView.hide()
             }
-            if self.refreshControl.isRefreshing { self.refreshControl.endRefreshing() }
             if let value = result.value {
                 UserDefaults.standard.set(Date(), forKey: self.newsLastUpdatedKey)
                 self.feed = value
@@ -81,6 +96,7 @@ class NewsViewController: UIViewController {
             self.tableView.reloadData()
         })
     }
+    
 }
 
 //==============================================================================

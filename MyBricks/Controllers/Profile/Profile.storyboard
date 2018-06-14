@@ -25,7 +25,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9fb-ay-o2S" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="780" y="2569"/>
+            <point key="canvasLocation" x="748" y="2569"/>
         </scene>
         <!--Profile View-->
         <scene sceneID="d7z-Al-fgk">
@@ -90,12 +90,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Design guidance and graphics provided by Jure Verc." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6vB-ob-sJH">
-                                <rect key="frame" x="20" y="371.5" width="335" height="38.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -103,9 +97,6 @@
                             <constraint firstItem="WTF-pv-v3F" firstAttribute="centerX" secondItem="GGA-nn-h0F" secondAttribute="centerX" id="CoN-sq-DXk"/>
                             <constraint firstItem="4Uu-cl-IDn" firstAttribute="top" secondItem="TiH-uS-sB5" secondAttribute="bottom" constant="7.5" id="Eeq-eP-za0"/>
                             <constraint firstItem="WTF-pv-v3F" firstAttribute="top" secondItem="GGA-nn-h0F" secondAttribute="top" constant="17" id="OSc-g1-fVP"/>
-                            <constraint firstItem="6vB-ob-sJH" firstAttribute="leading" secondItem="GGA-nn-h0F" secondAttribute="leading" constant="20" id="Z8b-Ld-kVn"/>
-                            <constraint firstItem="GGA-nn-h0F" firstAttribute="trailing" secondItem="6vB-ob-sJH" secondAttribute="trailing" constant="20" id="bad-8H-A21"/>
-                            <constraint firstItem="6vB-ob-sJH" firstAttribute="top" secondItem="4Uu-cl-IDn" secondAttribute="bottom" constant="137" id="bmS-8R-NAW"/>
                             <constraint firstItem="TiH-uS-sB5" firstAttribute="centerX" secondItem="WTF-pv-v3F" secondAttribute="centerX" id="dyJ-W1-tpC"/>
                             <constraint firstItem="4Uu-cl-IDn" firstAttribute="centerX" secondItem="TiH-uS-sB5" secondAttribute="centerX" id="pJP-95-Nmi"/>
                         </constraints>
@@ -114,7 +105,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QQh-go-olr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="672.79999999999995" y="3365.667166416792"/>
+            <point key="canvasLocation" x="748" y="3366"/>
         </scene>
         <!--Credits-->
         <scene sceneID="imn-nb-pRt">
@@ -128,7 +119,7 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oXy-ve-hJf">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="509"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="598.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Set information and images provided by brickset.com." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DDE-qS-avp">
                                                 <rect key="frame" x="20" y="20" width="335" height="38.5"/>
@@ -164,14 +155,27 @@
                                                     <constraint firstAttribute="height" constant="1" id="4aE-1F-IKs"/>
                                                 </constraints>
                                             </view>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Design guidance and graphics provided by Jure Verc." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="INg-1y-Rul">
+                                                <rect key="frame" x="20" y="230" width="335" height="38.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cdp-tW-9op">
+                                                <rect key="frame" x="20" y="288" width="335" height="1"/>
+                                                <color key="backgroundColor" name="cloudyBlue"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="1" id="9JD-YY-d2a"/>
+                                                </constraints>
+                                            </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Other resources/third party frameworks:" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pMA-Xt-z16">
-                                                <rect key="frame" x="20" y="219.5" width="335" height="19.5"/>
+                                                <rect key="frame" x="20" y="309" width="335" height="19.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="rMK-QD-AHn">
-                                                <rect key="frame" x="20" y="249" width="335" height="240"/>
+                                                <rect key="frame" x="20" y="338.5" width="335" height="240"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vFO-2P-ecj">
                                                         <rect key="frame" x="0.0" y="0.0" width="66" height="30"/>
@@ -210,15 +214,20 @@
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
+                                            <constraint firstItem="INg-1y-Rul" firstAttribute="leading" secondItem="oXy-ve-hJf" secondAttribute="leading" constant="20" id="1uB-IT-JOa"/>
+                                            <constraint firstItem="INg-1y-Rul" firstAttribute="top" secondItem="HYO-6R-9xC" secondAttribute="bottom" constant="20" id="21D-oS-WsD"/>
                                             <constraint firstItem="ESn-1g-KEx" firstAttribute="leading" secondItem="oXy-ve-hJf" secondAttribute="leading" constant="20" id="22I-6g-GZq"/>
+                                            <constraint firstItem="cdp-tW-9op" firstAttribute="leading" secondItem="oXy-ve-hJf" secondAttribute="leading" constant="20" id="2Jh-nh-DGM"/>
                                             <constraint firstAttribute="trailing" secondItem="pMA-Xt-z16" secondAttribute="trailing" constant="20" id="3GY-zW-EYq"/>
                                             <constraint firstItem="ESn-1g-KEx" firstAttribute="top" secondItem="cmn-Ox-FCb" secondAttribute="bottom" constant="10" id="A6l-Hg-221"/>
                                             <constraint firstAttribute="trailing" secondItem="cmn-Ox-FCb" secondAttribute="trailing" constant="20" id="D8C-X0-ash"/>
                                             <constraint firstAttribute="trailing" secondItem="rMK-QD-AHn" secondAttribute="trailing" constant="20" id="EmV-eW-xvh"/>
+                                            <constraint firstItem="cdp-tW-9op" firstAttribute="top" secondItem="INg-1y-Rul" secondAttribute="bottom" constant="20" id="GQH-rq-ohr"/>
                                             <constraint firstItem="cmn-Ox-FCb" firstAttribute="leading" secondItem="oXy-ve-hJf" secondAttribute="leading" constant="20" id="HFk-QF-0l2"/>
                                             <constraint firstItem="rMK-QD-AHn" firstAttribute="leading" secondItem="oXy-ve-hJf" secondAttribute="leading" constant="20" id="OkC-VL-UjD"/>
                                             <constraint firstItem="q96-gS-s8e" firstAttribute="centerX" secondItem="oXy-ve-hJf" secondAttribute="centerX" id="Q2p-pR-yZf"/>
                                             <constraint firstAttribute="trailing" secondItem="DDE-qS-avp" secondAttribute="trailing" constant="20" id="QNR-RK-Itf"/>
+                                            <constraint firstAttribute="trailing" secondItem="cdp-tW-9op" secondAttribute="trailing" constant="20" id="QVz-E4-xys"/>
                                             <constraint firstAttribute="bottom" secondItem="rMK-QD-AHn" secondAttribute="bottom" constant="20" id="TUL-NR-DuU"/>
                                             <constraint firstItem="8d2-aW-b1h" firstAttribute="top" secondItem="ESn-1g-KEx" secondAttribute="bottom" constant="10" id="UWC-gz-tLc"/>
                                             <constraint firstItem="cmn-Ox-FCb" firstAttribute="top" secondItem="q96-gS-s8e" secondAttribute="bottom" constant="10" id="VLa-rH-38d"/>
@@ -228,11 +237,12 @@
                                             <constraint firstItem="8d2-aW-b1h" firstAttribute="centerX" secondItem="oXy-ve-hJf" secondAttribute="centerX" id="YQj-UQ-6W0"/>
                                             <constraint firstAttribute="trailing" secondItem="ESn-1g-KEx" secondAttribute="trailing" constant="20" id="cAD-pa-0UR"/>
                                             <constraint firstItem="DDE-qS-avp" firstAttribute="top" secondItem="oXy-ve-hJf" secondAttribute="top" constant="20" id="jVT-tu-jda"/>
-                                            <constraint firstItem="pMA-Xt-z16" firstAttribute="top" secondItem="HYO-6R-9xC" secondAttribute="bottom" constant="10" id="mya-Sm-FNh"/>
                                             <constraint firstItem="rMK-QD-AHn" firstAttribute="top" secondItem="pMA-Xt-z16" secondAttribute="bottom" constant="10" id="oL8-1l-9Um"/>
                                             <constraint firstItem="q96-gS-s8e" firstAttribute="top" secondItem="DDE-qS-avp" secondAttribute="bottom" constant="10" id="q1a-Bw-jFd"/>
                                             <constraint firstItem="HYO-6R-9xC" firstAttribute="top" secondItem="8d2-aW-b1h" secondAttribute="bottom" constant="10" id="sqC-Wi-qNe"/>
+                                            <constraint firstAttribute="trailing" secondItem="INg-1y-Rul" secondAttribute="trailing" constant="20" id="wLQ-uN-Abt"/>
                                             <constraint firstAttribute="trailing" secondItem="HYO-6R-9xC" secondAttribute="trailing" constant="20" id="z2K-Sv-6v4"/>
+                                            <constraint firstItem="pMA-Xt-z16" firstAttribute="top" secondItem="cdp-tW-9op" secondAttribute="bottom" constant="20" id="zrz-hb-54a"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -257,7 +267,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ipC-cq-c15" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1548" y="3365.667166416792"/>
+            <point key="canvasLocation" x="1548" y="3366"/>
         </scene>
         <!--Donate-->
         <scene sceneID="Lj4-9x-zXU">
@@ -286,9 +296,13 @@
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kyZ-YG-f0K">
-                                <rect key="frame" x="168" y="231" width="39" height="30"/>
+                                <rect key="frame" x="127.5" y="231" width="120" height="30"/>
+                                <color key="backgroundColor" name="lightNavy"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="120" id="rtq-1r-vgw"/>
+                                </constraints>
                                 <state key="normal" title="$1.99">
-                                    <color key="titleColor" name="lightNavy"/>
+                                    <color key="titleColor" name="white"/>
                                 </state>
                             </button>
                         </subviews>
@@ -307,10 +321,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="9Ni-ae-dBp"/>
                     </view>
+                    <connections>
+                        <outlet property="donateButton" destination="kyZ-YG-f0K" id="TTe-iI-0Kc"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4gh-IC-uAU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2384.8000000000002" y="3365.667166416792"/>
+            <point key="canvasLocation" x="2350" y="3366"/>
         </scene>
         <!--Legal-->
         <scene sceneID="gPT-99-tBI">
@@ -349,7 +366,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lEG-CH-iZx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3218" y="3366"/>
+            <point key="canvasLocation" x="3169" y="3366"/>
         </scene>
         <!--Login View-->
         <scene sceneID="zNM-DN-9lF">
@@ -409,6 +426,13 @@
                             <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="brickset_logo" translatesAutoresizingMaskIntoConstraints="NO" id="lzW-U6-xEL">
                                 <rect key="frame" x="50.5" y="80" width="274" height="97"/>
                             </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z1q-s6-NAg" customClass="ActivityIndicatorView" customModule="MyBricks" customModuleProvider="target">
+                                <rect key="frame" x="147.5" y="382" width="80" height="80"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="hidesWhenStopped" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -417,6 +441,7 @@
                             <constraint firstItem="JlT-vq-xet" firstAttribute="top" secondItem="cGw-kb-o5Y" secondAttribute="bottom" constant="10" id="53n-Wg-Ht5"/>
                             <constraint firstItem="cGw-kb-o5Y" firstAttribute="top" secondItem="lzW-U6-xEL" secondAttribute="bottom" constant="20" id="6WG-HR-Paj"/>
                             <constraint firstItem="jgg-Xd-3OH" firstAttribute="trailing" secondItem="cGw-kb-o5Y" secondAttribute="trailing" constant="20" id="AqJ-zI-nn4"/>
+                            <constraint firstItem="Z1q-s6-NAg" firstAttribute="centerX" secondItem="jgg-Xd-3OH" secondAttribute="centerX" id="Ddz-ag-KUH"/>
                             <constraint firstItem="jgg-Xd-3OH" firstAttribute="trailing" secondItem="JlT-vq-xet" secondAttribute="trailing" constant="20" id="L0E-Cg-upm"/>
                             <constraint firstItem="JlT-vq-xet" firstAttribute="leading" secondItem="jgg-Xd-3OH" secondAttribute="leading" constant="20" id="SdT-VG-Z95"/>
                             <constraint firstItem="9R3-NO-sYB" firstAttribute="centerX" secondItem="jgg-Xd-3OH" secondAttribute="centerX" id="eO1-Vu-roD"/>
@@ -424,12 +449,14 @@
                             <constraint firstItem="jgg-Xd-3OH" firstAttribute="trailing" secondItem="PFm-s2-aEo" secondAttribute="trailing" constant="15" id="l1Z-F8-1dv"/>
                             <constraint firstItem="9R3-NO-sYB" firstAttribute="top" secondItem="JlT-vq-xet" secondAttribute="bottom" constant="20" id="y1O-66-UEg"/>
                             <constraint firstItem="lzW-U6-xEL" firstAttribute="top" secondItem="jgg-Xd-3OH" secondAttribute="top" constant="60" id="yES-DN-XLZ"/>
+                            <constraint firstItem="Z1q-s6-NAg" firstAttribute="top" secondItem="9R3-NO-sYB" secondAttribute="bottom" constant="40" id="z2K-i2-tdi"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="jgg-Xd-3OH"/>
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Login" id="0ZS-nD-rKr"/>
                     <connections>
+                        <outlet property="activityIndicatorView" destination="Z1q-s6-NAg" id="Xb1-oE-UEO"/>
                         <outlet property="loginButton" destination="9R3-NO-sYB" id="GLx-IY-Cpj"/>
                         <outlet property="passwordField" destination="JlT-vq-xet" id="t9V-jq-X53"/>
                         <outlet property="usernameField" destination="cGw-kb-o5Y" id="RGs-5N-qDu"/>
@@ -437,14 +464,14 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hCl-00-C1r" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2460" y="2568.6656671664168"/>
+            <point key="canvasLocation" x="2350" y="2569"/>
         </scene>
     </scenes>
     <resources>
         <image name="brickset_logo" width="274" height="97"/>
         <image name="profile" width="24" height="24"/>
         <namedColor name="cloudyBlue">
-            <color red="0.6940000057220459" green="0.76499998569488525" blue="0.83099997043609619" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.69400000569999998" green="0.76499998570000005" blue="0.83099997039999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="lightNavy">
             <color red="0.086000002920627594" green="0.25099998712539673" blue="0.44299998879432678" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

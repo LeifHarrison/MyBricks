@@ -44,19 +44,20 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WXL-qb-bQL">
-                        <rect key="frame" x="131.5" y="32" width="57" height="57"/>
+                        <rect key="frame" x="120" y="20.5" width="80" height="80"/>
                         <subviews>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="abx-1r-7CP">
-                                <rect key="frame" x="10" y="10" width="37" height="37"/>
-                                <color key="color" name="lightNavy"/>
-                            </activityIndicatorView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gUp-YE-BiL" customClass="ActivityIndicatorView" customModule="MyBricks" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" name="lightBlueGrey"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="0.70170697773972601" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="abx-1r-7CP" firstAttribute="top" secondItem="WXL-qb-bQL" secondAttribute="top" constant="10" id="7yr-2M-cI1"/>
-                            <constraint firstItem="abx-1r-7CP" firstAttribute="leading" secondItem="WXL-qb-bQL" secondAttribute="leading" constant="10" id="FLi-2L-oD9"/>
-                            <constraint firstAttribute="trailing" secondItem="abx-1r-7CP" secondAttribute="trailing" constant="10" id="JzI-Wu-CPg"/>
-                            <constraint firstAttribute="bottom" secondItem="abx-1r-7CP" secondAttribute="bottom" constant="10" id="yJZ-iI-mR9"/>
+                            <constraint firstAttribute="trailing" secondItem="gUp-YE-BiL" secondAttribute="trailing" id="GAF-BW-eOX"/>
+                            <constraint firstItem="gUp-YE-BiL" firstAttribute="leading" secondItem="WXL-qb-bQL" secondAttribute="leading" id="bbw-As-nL9"/>
+                            <constraint firstItem="gUp-YE-BiL" firstAttribute="top" secondItem="WXL-qb-bQL" secondAttribute="top" id="vQG-UW-Dod"/>
+                            <constraint firstAttribute="bottom" secondItem="gUp-YE-BiL" secondAttribute="bottom" id="ysd-dR-T1X"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -83,7 +84,7 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="activityContainerView" destination="WXL-qb-bQL" id="h7w-q5-KS4"/>
-                <outlet property="activityIndicatorView" destination="abx-1r-7CP" id="RDV-OR-Kvg"/>
+                <outlet property="activityIndicatorView" destination="gUp-YE-BiL" id="wiq-zs-aXl"/>
                 <outlet property="ownedMinifigsLabel" destination="ntZ-Sk-mQ9" id="DQD-de-T7j"/>
                 <outlet property="ownedSetsLabel" destination="rdK-Lw-uzG" id="EmH-8a-lpC"/>
                 <outlet property="wantedMinifigsLabel" destination="tEB-9B-5zd" id="V9C-Yd-kJj"/>
@@ -93,6 +94,9 @@
         </tableViewCell>
     </objects>
     <resources>
+        <namedColor name="lightBlueGrey">
+            <color red="0.77300000190734863" green="0.83499997854232788" blue="0.90600001811981201" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="lightNavy">
             <color red="0.086000002920627594" green="0.25099998712539673" blue="0.44299998879432678" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

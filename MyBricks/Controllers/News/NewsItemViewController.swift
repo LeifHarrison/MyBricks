@@ -18,7 +18,7 @@ class NewsItemViewController: UIViewController {
     @IBOutlet weak var contentTextView: UITextView!
 
     @IBOutlet weak var activityPlaceholderView: UIView!
-    @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
+    @IBOutlet weak var activityIndicatorView: ActivityIndicatorView!
 
     var newsItem: RSSItem?
 
@@ -29,6 +29,8 @@ class NewsItemViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        activityIndicatorView.style = .large
+        
         contentView.addBorder()
         contentView.addGradientBackground()
 

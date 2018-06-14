@@ -16,7 +16,7 @@ class BricksetCollectionTableViewCell: BorderedGradientTableViewCell, ReusableVi
     @IBOutlet weak var wantedMinifigsLabel: UILabel!
 
     @IBOutlet weak var activityContainerView: UIView!
-    @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
+    @IBOutlet weak var activityIndicatorView: ActivityIndicatorView!
 
     //--------------------------------------------------------------------------
     // MARK: - Nib Loading
@@ -25,6 +25,7 @@ class BricksetCollectionTableViewCell: BorderedGradientTableViewCell, ReusableVi
     override func awakeFromNib() {
         super.awakeFromNib()
         selectionStyle = .none
+        activityIndicatorView.style = .small
         prepareForReuse()
     }
     

@@ -87,7 +87,7 @@
                                 </connections>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k3a-CI-M01">
-                                <rect key="frame" x="55" y="224" width="265" height="86"/>
+                                <rect key="frame" x="55" y="322.5" width="265" height="86"/>
                                 <string key="text">Search for Lego sets by title, set number, theme or subtheme
 OR
 Search by scanning a barcode</string>
@@ -96,7 +96,7 @@ Search by scanning a barcode</string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tpd-sT-jyn">
-                                <rect key="frame" x="40" y="224" width="295" height="162.5"/>
+                                <rect key="frame" x="40" y="284.5" width="295" height="162.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No results found." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vqf-bm-173">
                                         <rect key="frame" x="69.5" y="0.0" width="156" height="24"/>
@@ -142,7 +142,7 @@ Search by scanning a barcode</string>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="O1u-W8-tvY" firstAttribute="trailing" secondItem="k3a-CI-M01" secondAttribute="trailing" constant="55" id="1mu-Qv-Tqd"/>
-                            <constraint firstItem="k3a-CI-M01" firstAttribute="top" secondItem="O1u-W8-tvY" secondAttribute="top" constant="160" id="3B4-ct-rsj"/>
+                            <constraint firstItem="Tpd-sT-jyn" firstAttribute="centerY" secondItem="O1u-W8-tvY" secondAttribute="centerY" id="4am-iB-cYP"/>
                             <constraint firstItem="8Mc-QV-cXp" firstAttribute="leading" secondItem="O1u-W8-tvY" secondAttribute="leading" constant="1" id="73a-6g-B6M"/>
                             <constraint firstItem="k3a-CI-M01" firstAttribute="leading" secondItem="O1u-W8-tvY" secondAttribute="leading" constant="55" id="8HT-Vc-jQS"/>
                             <constraint firstItem="O1u-W8-tvY" firstAttribute="trailing" secondItem="t39-YW-Rlf" secondAttribute="trailing" id="8zE-7U-BVq"/>
@@ -151,8 +151,8 @@ Search by scanning a barcode</string>
                             <constraint firstItem="Tpd-sT-jyn" firstAttribute="leading" secondItem="O1u-W8-tvY" secondAttribute="leading" constant="40" id="UBE-c6-foU"/>
                             <constraint firstItem="O1u-W8-tvY" firstAttribute="trailing" secondItem="Tpd-sT-jyn" secondAttribute="trailing" constant="40" id="VGx-q6-BzT"/>
                             <constraint firstItem="O1u-W8-tvY" firstAttribute="bottom" secondItem="t39-YW-Rlf" secondAttribute="bottom" id="eaM-AJ-mAZ"/>
+                            <constraint firstItem="k3a-CI-M01" firstAttribute="centerY" secondItem="O1u-W8-tvY" secondAttribute="centerY" id="gc3-kB-R09"/>
                             <constraint firstItem="t39-YW-Rlf" firstAttribute="top" secondItem="8Mc-QV-cXp" secondAttribute="bottom" id="giL-Nl-eGz"/>
-                            <constraint firstItem="Tpd-sT-jyn" firstAttribute="top" secondItem="O1u-W8-tvY" secondAttribute="top" constant="160" id="isX-l5-vqU"/>
                             <constraint firstItem="t39-YW-Rlf" firstAttribute="leading" secondItem="O1u-W8-tvY" secondAttribute="leading" id="zFu-3x-YmO"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="O1u-W8-tvY"/>

@@ -43,10 +43,12 @@ class ActivityIndicatorView: UIView {
         }
     }
 
-    //private let numberOfDots = 16
+    private let minimumScale = 0.4
+    private let minimumAlpha = 0.3
     
     private var animating: Bool = false
-
+    private var dots: [CAShapeLayer] = []
+    
     //--------------------------------------------------------------------------
     // MARK: - Initialization
     //--------------------------------------------------------------------------
@@ -73,22 +75,15 @@ class ActivityIndicatorView: UIView {
     
     var style: ActivityIndicatorStyle = .huge {
         didSet {
+            removeLayers()
+            setupLayers()
             invalidateIntrinsicContentSize()
-            if let view = superview {
-                view.layoutIfNeeded()
-            }
-        }
-    }
-    
-    @IBInspectable var circleRadius: CGFloat = 2.0 {
-        didSet {
-            //updateLayerProperties()
         }
     }
     
     @IBInspectable var hidesWhenStopped: Bool = true {
         didSet {
-            isHidden = hidesWhenStopped && !isAnimating()
+            isHidden = hidesWhenStopped && !isAnimating
         }
     }
     
@@ -102,15 +97,7 @@ class ActivityIndicatorView: UIView {
     }
     
     //--------------------------------------------------------------------------
-    // MARK: - Layout
-    //--------------------------------------------------------------------------
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-    }
-    
-    //--------------------------------------------------------------------------
-    // MARK: - Public
+    // MARK: - UIView Overrides
     //--------------------------------------------------------------------------
     
     override var intrinsicContentSize: CGSize {
@@ -119,10 +106,23 @@ class ActivityIndicatorView: UIView {
     
     override func tintColorDidChange() {
         super.tintColorDidChange()
+        if let color = tintColor {
+            for dot in dots {
+                dot.fillColor = color.cgColor
+            }
+        }
+    }
+    
+    //--------------------------------------------------------------------------
+    // MARK: - Public
+    //--------------------------------------------------------------------------
+    
+    var isAnimating: Bool {
+        return animating
     }
     
     func setAnimating(animating: Bool) {
-        if animating && !isAnimating() {
+        if animating && !isAnimating {
             startAnimating()
         }
         else {
@@ -142,10 +142,6 @@ class ActivityIndicatorView: UIView {
         isHidden = hidesWhenStopped
     }
     
-    func isAnimating() -> Bool {
-        return animating
-    }
-    
     //--------------------------------------------------------------------------
     // MARK: - Private
     //--------------------------------------------------------------------------
@@ -155,20 +151,29 @@ class ActivityIndicatorView: UIView {
         let circleSpacing: CGFloat = -2
         let circleSize = (style.dimension - 4 * circleSpacing) / 7
         
+        let scaleInterval = CGFloat(1 - minimumScale) / CGFloat(style.numberOfDots)
+        let opacityInterval = Float(1 - minimumAlpha) / Float(style.numberOfDots)
+        
         // Draw circles
         for index in 0 ..< style.numberOfDots {
             let angle = (CGFloat(Double.pi / Double(style.numberOfDots/2)) * CGFloat(index)) - CGFloat(Double.pi / 2)
-            let circle = circleAt(angle: angle, diameter: circleSize, origin: CGPoint(x: 0, y: 0), containerSize: size, color: UIColor.lightBlueGrey)
+            let circle = circleAt(angle: angle, diameter: circleSize, origin: CGPoint(x: 0, y: 0), containerSize: size)
+
+            let scale = 1.0 - (CGFloat(index) * scaleInterval)
+            circle.transform = CATransform3DMakeScale(scale, scale, scale)
+            circle.opacity = 1.0 - (Float(index) * opacityInterval)
+            
             layer.addSublayer(circle)
+            dots.append(circle)
         }
     }
     
-    func circleAt(angle: CGFloat, diameter: CGFloat, origin: CGPoint, containerSize: CGSize, color: UIColor) -> CALayer {
+    func circleAt(angle: CGFloat, diameter: CGFloat, origin: CGPoint, containerSize: CGSize) -> CAShapeLayer {
         let radius = (containerSize.width / 2) - (diameter / 2)
         let size = CGSize(width: style.dotSize, height: style.dotSize)
         
         let dotLayer: CAShapeLayer = CAShapeLayer()
-        dotLayer.fillColor = color.cgColor
+        dotLayer.fillColor = tintColor.cgColor
         dotLayer.backgroundColor = nil
 
         let rect = CGRect(x: 0, y: 0, width: size.width, height: size.height)
@@ -191,13 +196,13 @@ class ActivityIndicatorView: UIView {
         // Scale animation
         let scaleAnimation = CAKeyframeAnimation(keyPath: "transform.scale")
         scaleAnimation.keyTimes = [0, 1]
-        scaleAnimation.values = [1, 0.4]
+        scaleAnimation.values = [1, minimumScale]
         scaleAnimation.duration = duration
         
         // Opacity animation
         let opacityAnimaton = CAKeyframeAnimation(keyPath: "opacity")
         opacityAnimaton.keyTimes = [0, 1]
-        opacityAnimaton.values = [1, 0.3]
+        opacityAnimaton.values = [1, minimumAlpha]
         opacityAnimaton.duration = duration
         
         // Animation Group
@@ -223,4 +228,12 @@ class ActivityIndicatorView: UIView {
             }
         }
     }
+    
+    private func removeLayers() {
+        for dot in dots {
+            dot.removeFromSuperlayer()
+        }
+        dots.removeAll(keepingCapacity: true)
+    }
+    
 }

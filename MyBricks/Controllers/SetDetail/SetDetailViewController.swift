@@ -26,7 +26,6 @@ class SetDetailViewController: UIViewController {
         case collection
     }
     
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
 
     var sections: [TableSection] = []

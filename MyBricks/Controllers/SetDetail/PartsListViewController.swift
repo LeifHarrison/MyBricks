@@ -11,7 +11,6 @@ import Alamofire
 
 class PartsListViewController: UIViewController {
 
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var noResultsLabel: UILabel!
 

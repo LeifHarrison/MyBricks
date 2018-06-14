@@ -14,6 +14,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var usernameField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var activityIndicatorView: ActivityIndicatorView!
 
     //--------------------------------------------------------------------------
     // MARK: - View Lifecycle
@@ -22,6 +23,8 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         loginButton.applyDefaultStyle()
+        activityIndicatorView.style = .large
+        activityIndicatorView.tintColor = UIColor.lightBlueGrey
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -35,7 +38,9 @@ class LoginViewController: UIViewController {
 
     @IBAction func login(_ sender: AnyObject?) {
         if let username = usernameField.text, let password = passwordField.text {
+            activityIndicatorView.startAnimating()
             BricksetServices.shared.login(username: username, password: password, completion: { result in
+                self.activityIndicatorView.stopAnimating()
                 if result.isSuccess {
                     let myContext = LAContext()
                     let myLocalizedReasonString = "Login to your Brickset account"

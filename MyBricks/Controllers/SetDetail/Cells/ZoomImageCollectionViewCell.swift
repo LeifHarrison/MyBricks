@@ -12,7 +12,7 @@ class ZoomImageCollectionViewCell: UICollectionViewCell, ReusableView, NibLoadab
 
     let defaultInsets: CGFloat = 20.0
 
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var activityIndicatorView: ActivityIndicatorView!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var imageView: UIImageView!
     
@@ -51,7 +51,9 @@ class ZoomImageCollectionViewCell: UICollectionViewCell, ReusableView, NibLoadab
     
     func populate(with setImage: SetImage) {
         if let imageURLString = setImage.imageURL, let imageURL = URL(string: imageURLString) {
+            activityIndicatorView.startAnimating()
             imageView.af_setImage(withURL: imageURL, placeholderImage: #imageLiteral(resourceName: "placeholder2Large"), imageTransition: .crossDissolve(0.3)) { response in
+                self.activityIndicatorView.stopAnimating()
                 if response.value != nil {
                     self.imageView.sizeToFit()
                     self.scrollView.contentSize = self.imageView.frame.size

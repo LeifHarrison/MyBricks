@@ -10,7 +10,6 @@ import UIKit
 
 class ReviewsViewController: UIViewController {
 
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
 
     var currentSet: Set?
