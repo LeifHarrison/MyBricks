@@ -29,7 +29,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         NetworkActivityIndicatorManager.shared.isEnabled = true
         
+#if DEBUG
         configureLogging()
+#endif
+
         validateAPIKey() // Validate that our BrickSet API Key is still valid
 
         styleNavigationBar()
