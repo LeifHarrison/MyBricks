@@ -132,6 +132,7 @@
 		9BD89EF620C09E27007E9A23 /* ProfileGeneralTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9BD89EF420C09E27007E9A23 /* ProfileGeneralTableViewCell.xib */; };
 		9BD89EF820C0A5E7007E9A23 /* ProfileAboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD89EF720C0A5E7007E9A23 /* ProfileAboutViewController.swift */; };
 		9BD89EFA20C0A609007E9A23 /* ProfileCreditsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD89EF920C0A609007E9A23 /* ProfileCreditsViewController.swift */; };
+		9BD984F820D421F8002AF4BA /* Bundle+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD984F720D421F8002AF4BA /* Bundle+Extensions.swift */; };
 		9BE2F618203E298B0035C172 /* UIButton+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE2F617203E298B0035C172 /* UIButton+Extensions.swift */; };
 		9BE2F61A203E2A0C0035C172 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE2F619203E2A0C0035C172 /* UIColor+Extensions.swift */; };
 		9BE7838E20486EED00FD078E /* PriceDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE7838D20486EED00FD078E /* PriceDetailViewController.swift */; };
@@ -308,6 +309,8 @@
 		9BD89EF420C09E27007E9A23 /* ProfileGeneralTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileGeneralTableViewCell.xib; sourceTree = "<group>"; };
 		9BD89EF720C0A5E7007E9A23 /* ProfileAboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileAboutViewController.swift; sourceTree = "<group>"; };
 		9BD89EF920C0A609007E9A23 /* ProfileCreditsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCreditsViewController.swift; sourceTree = "<group>"; };
+		9BD984F720D421F8002AF4BA /* Bundle+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extensions.swift"; sourceTree = "<group>"; };
+		9BD984F920D4250E002AF4BA /* plist_build_info.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = plist_build_info.sh; sourceTree = "<group>"; };
 		9BE2F617203E298B0035C172 /* UIButton+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extensions.swift"; sourceTree = "<group>"; };
 		9BE2F619203E2A0C0035C172 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
 		9BE7838D20486EED00FD078E /* PriceDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceDetailViewController.swift; sourceTree = "<group>"; };
@@ -554,6 +557,7 @@
 		29A523361F310243005F2145 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				9BD984F720D421F8002AF4BA /* Bundle+Extensions.swift */,
 				296EB6E51FBFAA6000D4D3C6 /* Locale+Extensions.swift */,
 				9BE2F617203E298B0035C172 /* UIButton+Extensions.swift */,
 				9B5E4D38203354FA0057610E /* UICollectionView+Extensions.swift */,
@@ -584,6 +588,7 @@
 			children = (
 				295ADFCA1F16AFFD002E6802 /* Info.plist */,
 				29365B7D1F8EDAEC00F6730C /* MyBricks.entitlements */,
+				9BD984F920D4250E002AF4BA /* plist_build_info.sh */,
 				29AF63FA1FB66445001B14AD /* README.md */,
 			);
 			path = Support;
@@ -786,6 +791,7 @@
 				295ADFB71F16AFFC002E6802 /* Resources */,
 				AE91F3939A2E845F1D4B3DCA /* [CP] Embed Pods Frameworks */,
 				29E820251FA7A6CF001444C8 /* Embed Frameworks */,
+				9BD984FA20D425BF002AF4BA /* Update Build Info */,
 			);
 			buildRules = (
 			);
@@ -966,6 +972,21 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"";
 		};
+		9BD984FA20D425BF002AF4BA /* Update Build Info */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Update Build Info";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "${PROJECT_DIR}/${PRODUCT_NAME}/Support/plist_build_info.sh";
+			showEnvVarsInLog = 0;
+		};
 		AE91F3939A2E845F1D4B3DCA /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1101,6 +1122,7 @@
 				9B92EFAA201FCC66007610BD /* SetYear.swift in Sources */,
 				29BA70112012A1AD00D34D93 /* FilterViewController.swift in Sources */,
 				2940FD831FD4EAF400F860F3 /* SearchHistoryItem+CoreDataClass.swift in Sources */,
+				9BD984F820D421F8002AF4BA /* Bundle+Extensions.swift in Sources */,
 				9BF9D1B420BF641C003B1FF1 /* BlueGradientTableViewCell.swift in Sources */,
 				29C111A31FC4893E007CBDB4 /* ReviewDetailViewController.swift in Sources */,
 				9B74301B20AA137F0002E146 /* CollectionDetailViewController.swift in Sources */,
