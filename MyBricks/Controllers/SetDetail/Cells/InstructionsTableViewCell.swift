@@ -47,4 +47,10 @@ class InstructionsTableViewCell: BorderedGradientTableViewCell {
         previewButtonTapped?()
     }
     
+    //--------------------------------------------------------------------------
+    // MARK: - Public
+    //--------------------------------------------------------------------------
+
+    func populate(with instructions: SetInstructions) {
+    }
 }
