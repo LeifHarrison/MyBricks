@@ -14,7 +14,6 @@ class ProfileDonateViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         donateButton.applyDefaultStyle()
     }
 

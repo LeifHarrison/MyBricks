@@ -10,25 +10,58 @@ import UIKit
 
 class ProfileCreditsViewController: UIViewController {
 
+    //--------------------------------------------------------------------------
+    // MARK: - View Lifecycle
+    //--------------------------------------------------------------------------
+
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    //--------------------------------------------------------------------------
+    // MARK: - Actions
+    //--------------------------------------------------------------------------
+
+    @IBAction func goToBrickset(_ sender: AnyObject?) {
+        if let url = URL(string: Constants.Brickset.url) {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        }
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    @IBAction func goToRebrickable(_ sender: AnyObject?) {
+        if let url = URL(string: Constants.Rebrickable.url) {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        }
     }
-    */
 
+    @IBAction func goToAlamofire(_ sender: AnyObject?) {
+        if let url = URL(string: Constants.Alamofire.url) {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        }
+    }
+
+    @IBAction func goToAlamofireImage(_ sender: AnyObject?) {
+        if let url = URL(string: Constants.AlamofireImage.url) {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        }
+    }
+    
+    @IBAction func goToCosmos(_ sender: AnyObject?) {
+        if let url = URL(string: Constants.Cosmos.url) {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        }
+    }
+    
+    @IBAction func goToFuzi(_ sender: AnyObject?) {
+        if let url = URL(string: Constants.Fuzi.url) {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        }
+    }
+    
+    @IBAction func goToKeychainAccess(_ sender: AnyObject?) {
+        if let url = URL(string: Constants.KeychainAccess.url) {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        }
+    }
+    
 }
