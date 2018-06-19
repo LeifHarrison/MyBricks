@@ -23,6 +23,10 @@ class BlueGradientTableViewCell: UITableViewCell {
         addHighlightOverlay()
     }
     
+    //--------------------------------------------------------------------------
+    // MARK: - Superclass Overrides
+    //--------------------------------------------------------------------------
+    
     override func setHighlighted(_ highlighted: Bool, animated: Bool) {
         if selectionStyle != .none {
             highlightOverlay.isHidden = !highlighted
@@ -30,7 +34,7 @@ class BlueGradientTableViewCell: UITableViewCell {
     }
     
     //--------------------------------------------------------------------------
-    // MARK: - Nib Loading
+    // MARK: - Private
     //--------------------------------------------------------------------------
     
     func addHighlightOverlay() {

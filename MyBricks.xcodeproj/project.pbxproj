@@ -116,6 +116,7 @@
 		9B8C323420AE2702006E48A5 /* ZoomImageCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B8C323220AE2702006E48A5 /* ZoomImageCollectionViewCell.xib */; };
 		9B92A916202E4BE8001E7AC9 /* TagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B92A914202E4BE8001E7AC9 /* TagView.swift */; };
 		9B92A917202E4BE8001E7AC9 /* TagListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B92A915202E4BE8001E7AC9 /* TagListView.swift */; };
+		9B92CE6C20D9871500DD270D /* LightGradientButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B92CE6B20D9871500DD270D /* LightGradientButton.swift */; };
 		9B92EFA4201FC062007610BD /* FilterOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B92EFA3201FC062007610BD /* FilterOptions.swift */; };
 		9B92EFA9201FCC66007610BD /* SetSubtheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B92EFA7201FCC65007610BD /* SetSubtheme.swift */; };
 		9B92EFAA201FCC66007610BD /* SetYear.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B92EFA8201FCC66007610BD /* SetYear.swift */; };
@@ -293,6 +294,7 @@
 		9B8C323220AE2702006E48A5 /* ZoomImageCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ZoomImageCollectionViewCell.xib; sourceTree = "<group>"; };
 		9B92A914202E4BE8001E7AC9 /* TagView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagView.swift; sourceTree = "<group>"; };
 		9B92A915202E4BE8001E7AC9 /* TagListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagListView.swift; sourceTree = "<group>"; };
+		9B92CE6B20D9871500DD270D /* LightGradientButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightGradientButton.swift; sourceTree = "<group>"; };
 		9B92EFA3201FC062007610BD /* FilterOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterOptions.swift; sourceTree = "<group>"; };
 		9B92EFA7201FCC65007610BD /* SetSubtheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetSubtheme.swift; sourceTree = "<group>"; };
 		9B92EFA8201FCC66007610BD /* SetYear.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetYear.swift; sourceTree = "<group>"; };
@@ -375,12 +377,13 @@
 		290F179E1FD8D3880002C70B /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				9BAE69AA20D058EE009EBC9B /* ActivityIndicatorView.swift */,
+				9B4B4C4D203CD2630026B3AC /* ActivityOverlayView.swift */,
 				9B58D93320AB50CF00F6E92A /* FilterCheckboxButton.swift */,
 				294F18791FB4EDC20026342F /* GradientView.swift */,
-				9B4B4C4D203CD2630026B3AC /* ActivityOverlayView.swift */,
+				9B92CE6B20D9871500DD270D /* LightGradientButton.swift */,
 				9B92A915202E4BE8001E7AC9 /* TagListView.swift */,
 				9B92A914202E4BE8001E7AC9 /* TagView.swift */,
-				9BAE69AA20D058EE009EBC9B /* ActivityIndicatorView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1104,6 +1107,7 @@
 				2973F3441FBE173800861125 /* UIDevice+Extensions.swift in Sources */,
 				29A523421F310261005F2145 /* UIViewController+Extensions.swift in Sources */,
 				9BF4EEDA20362DE6006F3180 /* BrowseHeaderView.swift in Sources */,
+				9B92CE6C20D9871500DD270D /* LightGradientButton.swift in Sources */,
 				9B5E4D39203354FA0057610E /* UICollectionView+Extensions.swift in Sources */,
 				9B48CBF22045E3270074908B /* SetInstructionsTableViewCell.swift in Sources */,
 				29B9514F1FDBCC950049147E /* Part.swift in Sources */,

@@ -70,40 +70,89 @@
         <!--About-->
         <scene sceneID="GkC-CB-csv">
             <objects>
-                <viewController title="About" id="Wmn-16-g65" customClass="ProfileAboutViewController" customModule="MyBricks" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="About" hidesBottomBarWhenPushed="YES" id="Wmn-16-g65" customClass="ProfileAboutViewController" customModule="MyBricks" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cGB-J1-i5Q">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Version 1.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TiH-uS-sB5">
-                                <rect key="frame" x="146" y="186" width="83" height="20.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" name="lightNavy"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="brickset_logo" translatesAutoresizingMaskIntoConstraints="NO" id="WTF-pv-v3F">
-                                <rect key="frame" x="50.5" y="81" width="274" height="97"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="about_header" translatesAutoresizingMaskIntoConstraints="NO" id="WTF-pv-v3F">
+                                <rect key="frame" x="41" y="109" width="293" height="111"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Build 1234 (10/21/2018 10:45PM)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Uu-cl-IDn">
-                                <rect key="frame" x="60.5" y="214" width="254" height="20.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" name="lightNavy"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Version 1.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TiH-uS-sB5">
+                                <rect key="frame" x="156.5" y="230" width="63.5" height="14.5"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
+                                <color key="textColor" name="slateBlue"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Build 1234 (10/21/2018 10:45PM)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Uu-cl-IDn">
+                                <rect key="frame" x="94" y="246.5" width="188" height="14.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" name="slateBlue"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="about_left" translatesAutoresizingMaskIntoConstraints="NO" id="RqH-I5-itL">
+                                <rect key="frame" x="0.0" y="404" width="259" height="263"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="about_right" translatesAutoresizingMaskIntoConstraints="NO" id="Pqi-LY-pyq">
+                                <rect key="frame" x="229" y="435" width="146" height="232"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Dy-63-bFt" customClass="LightGradientButton" customModule="MyBricks" customModuleProvider="target">
+                                <rect key="frame" x="47" y="301" width="280" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="280" id="EpM-AG-Bhh"/>
+                                    <constraint firstAttribute="height" constant="40" id="KNW-Fe-Ouw"/>
+                                </constraints>
+                                <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <state key="normal" title="Contact Us">
+                                    <color key="titleColor" name="cobalt"/>
+                                </state>
+                                <connections>
+                                    <action selector="contactUs:" destination="Wmn-16-g65" eventType="touchUpInside" id="pXw-iq-vXD"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X4P-hL-6tY" customClass="LightGradientButton" customModule="MyBricks" customModuleProvider="target">
+                                <rect key="frame" x="47" y="351" width="280" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="MBJ-at-UpA"/>
+                                    <constraint firstAttribute="width" constant="280" id="pM3-aL-lFG"/>
+                                </constraints>
+                                <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <state key="normal" title="Rate MyBricks">
+                                    <color key="titleColor" name="cobalt"/>
+                                </state>
+                                <connections>
+                                    <action selector="rateApp:" destination="Wmn-16-g65" eventType="touchUpInside" id="F74-5U-3Oo"/>
+                                </connections>
+                            </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" name="paleGreyTwo"/>
                         <constraints>
-                            <constraint firstItem="TiH-uS-sB5" firstAttribute="top" secondItem="WTF-pv-v3F" secondAttribute="bottom" constant="8" id="0Lx-68-E29"/>
+                            <constraint firstItem="TiH-uS-sB5" firstAttribute="top" secondItem="WTF-pv-v3F" secondAttribute="bottom" constant="10" id="0Lx-68-E29"/>
+                            <constraint firstAttribute="bottom" secondItem="Pqi-LY-pyq" secondAttribute="bottom" id="8Wh-s2-sMU"/>
                             <constraint firstItem="WTF-pv-v3F" firstAttribute="centerX" secondItem="GGA-nn-h0F" secondAttribute="centerX" id="CoN-sq-DXk"/>
-                            <constraint firstItem="4Uu-cl-IDn" firstAttribute="top" secondItem="TiH-uS-sB5" secondAttribute="bottom" constant="7.5" id="Eeq-eP-za0"/>
-                            <constraint firstItem="WTF-pv-v3F" firstAttribute="top" secondItem="GGA-nn-h0F" secondAttribute="top" constant="17" id="OSc-g1-fVP"/>
+                            <constraint firstItem="4Uu-cl-IDn" firstAttribute="top" secondItem="TiH-uS-sB5" secondAttribute="bottom" constant="2" id="Eeq-eP-za0"/>
+                            <constraint firstItem="X4P-hL-6tY" firstAttribute="centerX" secondItem="2Dy-63-bFt" secondAttribute="centerX" id="G4g-cF-0ma"/>
+                            <constraint firstItem="RqH-I5-itL" firstAttribute="leading" secondItem="GGA-nn-h0F" secondAttribute="leading" id="Gf9-A0-6at"/>
+                            <constraint firstItem="WTF-pv-v3F" firstAttribute="top" secondItem="GGA-nn-h0F" secondAttribute="top" constant="45" id="OSc-g1-fVP"/>
+                            <constraint firstItem="2Dy-63-bFt" firstAttribute="centerX" secondItem="GGA-nn-h0F" secondAttribute="centerX" id="SQ7-Kw-bB4"/>
+                            <constraint firstItem="GGA-nn-h0F" firstAttribute="trailing" secondItem="Pqi-LY-pyq" secondAttribute="trailing" id="cVc-xH-xaH"/>
+                            <constraint firstAttribute="bottom" secondItem="RqH-I5-itL" secondAttribute="bottom" id="dnK-Kg-47j"/>
                             <constraint firstItem="TiH-uS-sB5" firstAttribute="centerX" secondItem="WTF-pv-v3F" secondAttribute="centerX" id="dyJ-W1-tpC"/>
                             <constraint firstItem="4Uu-cl-IDn" firstAttribute="centerX" secondItem="TiH-uS-sB5" secondAttribute="centerX" id="pJP-95-Nmi"/>
+                            <constraint firstItem="2Dy-63-bFt" firstAttribute="top" secondItem="4Uu-cl-IDn" secondAttribute="bottom" constant="40" id="roW-ef-mHV"/>
+                            <constraint firstItem="X4P-hL-6tY" firstAttribute="top" secondItem="2Dy-63-bFt" secondAttribute="bottom" constant="10" id="yOP-t6-7tM"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="GGA-nn-h0F"/>
                     </view>
                     <connections>
                         <outlet property="buildLabel" destination="4Uu-cl-IDn" id="P0U-Mo-ljX"/>
+                        <outlet property="contactUsButton" destination="2Dy-63-bFt" id="m7k-OT-6uL"/>
+                        <outlet property="contactUsTopConstraint" destination="roW-ef-mHV" id="r23-sd-kTN"/>
+                        <outlet property="headerImageView" destination="WTF-pv-v3F" id="NW7-GJ-Ew2"/>
+                        <outlet property="headerTopConstraint" destination="OSc-g1-fVP" id="AVA-0q-9GP"/>
+                        <outlet property="leftImageView" destination="RqH-I5-itL" id="7Ml-RD-YtL"/>
+                        <outlet property="rateAppButton" destination="X4P-hL-6tY" id="7qL-DB-eLb"/>
+                        <outlet property="rightImageView" destination="Pqi-LY-pyq" id="w9q-bH-h4a"/>
                         <outlet property="versionLabel" destination="TiH-uS-sB5" id="4d4-eK-4ld"/>
                     </connections>
                 </viewController>
@@ -114,7 +163,7 @@
         <!--Credits-->
         <scene sceneID="imn-nb-pRt">
             <objects>
-                <viewController title="Credits" id="ogy-Zb-3z4" customClass="ProfileCreditsViewController" customModule="MyBricks" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Credits" hidesBottomBarWhenPushed="YES" id="ogy-Zb-3z4" customClass="ProfileCreditsViewController" customModule="MyBricks" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Jii-YW-trb">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -229,7 +278,7 @@
                                                 </subviews>
                                             </stackView>
                                         </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" name="paleGreyTwo"/>
                                         <constraints>
                                             <constraint firstItem="INg-1y-Rul" firstAttribute="leading" secondItem="oXy-ve-hJf" secondAttribute="leading" constant="20" id="1uB-IT-JOa"/>
                                             <constraint firstItem="INg-1y-Rul" firstAttribute="top" secondItem="HYO-6R-9xC" secondAttribute="bottom" constant="20" id="21D-oS-WsD"/>
@@ -323,7 +372,7 @@
                                 </state>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" name="paleGreyTwo"/>
                         <constraints>
                             <constraint firstItem="kyZ-YG-f0K" firstAttribute="top" secondItem="pId-os-taN" secondAttribute="bottom" constant="30" id="B8b-hN-b5V"/>
                             <constraint firstItem="z4F-By-0Mv" firstAttribute="top" secondItem="kyZ-YG-f0K" secondAttribute="bottom" constant="30" id="BOV-HI-GnI"/>
@@ -369,7 +418,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" name="paleGreyTwo"/>
                         <constraints>
                             <constraint firstItem="6FA-4i-9Ha" firstAttribute="trailing" secondItem="hl8-ud-xec" secondAttribute="trailing" constant="20" id="2nh-PC-WiR"/>
                             <constraint firstItem="hl8-ud-xec" firstAttribute="top" secondItem="6FA-4i-9Ha" secondAttribute="top" constant="20" id="2vn-N4-OeW"/>
@@ -485,13 +534,28 @@
         </scene>
     </scenes>
     <resources>
+        <image name="about_header" width="293" height="111"/>
+        <image name="about_left" width="259" height="263"/>
+        <image name="about_right" width="146" height="232"/>
         <image name="brickset_logo" width="274" height="97"/>
         <image name="profile" width="24" height="24"/>
         <namedColor name="cloudyBlue">
             <color red="0.69400000569999998" green="0.76499998570000005" blue="0.83099997039999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <namedColor name="cobalt">
+            <color red="0.10199999809265137" green="0.2630000114440918" blue="0.45100000500679016" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="cobalt">
+            <color red="0.1019999981" green="0.26300001140000001" blue="0.45100000499999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="lightNavy">
             <color red="0.086000002920627594" green="0.25099998712539673" blue="0.44299998879432678" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="paleGreyTwo">
+            <color red="0.92500001192092896" green="0.94099998474121094" blue="0.95300000905990601" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="slateBlue">
+            <color red="0.3449999988079071" green="0.45500001311302185" blue="0.58799999952316284" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="white">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
