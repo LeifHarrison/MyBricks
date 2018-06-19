@@ -3,7 +3,7 @@
 info_plist="${BUILT_PRODUCTS_DIR}/${EXECUTABLE_FOLDER_PATH}/Info.plist"
 
 buildNumber=$(/usr/libexec/PlistBuddy -c "Print CFBundleVersion" "$info_plist")
-buildNumber=$(($buildNumber + 1))
+buildNumber=`printf %04d $(($buildNumber + 1))`
 /usr/libexec/PlistBuddy -c "Set :CFBundleVersion $buildNumber" "$info_plist"
 
 build_time=`date "+%Y-%m-%d %H:%M:%S %Z"`
