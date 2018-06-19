@@ -27,7 +27,9 @@ class InstructionsViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        fetchInstructions()
+        if instructions.count == 0 {
+            fetchInstructions()
+        }
     }
     
     //--------------------------------------------------------------------------
@@ -66,9 +68,17 @@ class InstructionsViewController: UIViewController {
         UIView.animate(withDuration: 0.2, animations: animations)
     }
 
-    private func previewInstructions(_ instructions: SetInstructions, fromCell cell: InstructionsTableViewCell) {
-        let destination = DownloadRequest.suggestedDownloadDestination()
+    private func downloadInstructions(_ instructions: SetInstructions, fromCell cell: InstructionsTableViewCell) {
+        guard let urlString = instructions.url, let url = URL(string: urlString) else {
+            return
+        }
         
+        if let destination = destinationURL(for: url), FileManager.default.fileExists(atPath: destination.path) {
+            showPreview(for: destination)
+            return
+        }
+        
+        let destination = DownloadRequest.suggestedDownloadDestination()
         if let urlString = instructions.url {
             showProgressView(forCell: cell)
             Alamofire.download(urlString, to: destination)
@@ -77,18 +87,32 @@ class InstructionsViewController: UIViewController {
                 }
                 .validate()
                 .responseData { ( response ) in
-                    let docInteractionController = UIDocumentInteractionController(url: response.destinationURL!)
-                    docInteractionController.delegate = self
-                    docInteractionController.presentPreview(animated: true)
+                    NSLog("destinationURL: \(String(describing: response.destinationURL))")
+                    if let destinationURL = response.destinationURL {
+                        self.showPreview(for: destinationURL)
+                    }
             }
         }
         
     }
 
+    private func showPreview(for url: URL) {
+        let docInteractionController = UIDocumentInteractionController(url: url)
+        docInteractionController.delegate = self
+        docInteractionController.presentPreview(animated: true)
+    }
+    
     private func shareInstructions(_ instructions: SetInstructions) {
         
     }
 
+    private func destinationURL(for url: URL) -> URL? {
+        let directoryURLs = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        if !directoryURLs.isEmpty {
+            return directoryURLs[0].appendingPathComponent(url.lastPathComponent)
+        }
+        return nil
+    }
 }
 
 //==============================================================================
@@ -110,10 +134,13 @@ extension InstructionsViewController: UITableViewDataSource {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "InstructionsTableViewCell", for: indexPath) as? InstructionsTableViewCell {
             if let urlString = instruction.url, let url = URL(string: urlString) {
                 cell.filenameLabel.text = url.lastPathComponent
+                if let destination = destinationURL(for: url), FileManager.default.fileExists(atPath: destination.path) {
+                    cell.previewButton.imageView?.image = #imageLiteral(resourceName: "documentView")
+                }
             }
             cell.titleLabel.text = instruction.description
             cell.previewButtonTapped = {
-                self.previewInstructions(instruction, fromCell: cell)
+                self.downloadInstructions(instruction, fromCell: cell)
             }
             return cell
         }
@@ -128,10 +155,24 @@ extension InstructionsViewController: UITableViewDataSource {
 
 extension InstructionsViewController: UITableViewDelegate {
     
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if let instructionsCell = cell as? InstructionsTableViewCell {
+            let instruction = instructions[indexPath.row]
+            if let urlString = instruction.url, let url = URL(string: urlString) {
+                if let destination = destinationURL(for: url), FileManager.default.fileExists(atPath: destination.path) {
+                    instructionsCell.previewButton.imageView?.image = #imageLiteral(resourceName: "documentView")
+                }
+                else {
+                    instructionsCell.previewButton.imageView?.image = #imageLiteral(resourceName: "documentDownload")
+                }
+            }
+        }
+    }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let instruction = instructions[indexPath.row]
         if let cell = tableView.cellForRow(at: indexPath) as? InstructionsTableViewCell {
-            self.previewInstructions(instruction, fromCell: cell)
+            downloadInstructions(instruction, fromCell: cell)
         }
         tableView.deselectRow(at: indexPath, animated: true)
     }
