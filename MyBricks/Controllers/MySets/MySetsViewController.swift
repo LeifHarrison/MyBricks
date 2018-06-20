@@ -15,6 +15,8 @@ class MySetsViewController: BrowseSetsViewController {
     @IBOutlet weak var loginView: UIView!
     @IBOutlet weak var instructionLabel: UILabel!
     @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var signupLabel: UILabel!
+    @IBOutlet weak var signupButton: UIButton!
 
     var mySetsRequest: Request?
 
@@ -27,6 +29,7 @@ class MySetsViewController: BrowseSetsViewController {
 
         instructionLabel.applyInstructionsStyle()
         loginButton.applyDefaultStyle()
+        signupLabel.applyInstructionsStyle()
 
         filterOptions.showingUserSets = true
         filterOptions.filterOwned = true
@@ -50,6 +53,12 @@ class MySetsViewController: BrowseSetsViewController {
         }
     }
 
+    @IBAction func goToBrickset(_ sender: AnyObject?) {
+        if let url = URL(string: Constants.Brickset.signupURL) {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        }
+    }
+    
     //--------------------------------------------------------------------------
     // MARK: - Public
     //--------------------------------------------------------------------------
@@ -64,11 +73,13 @@ class MySetsViewController: BrowseSetsViewController {
             headerView.isHidden = false
             tableView.isHidden = false
             loginView.isHidden = true
+            navigationItem.rightBarButtonItem?.isEnabled = true
         }
         else {
             headerView.isHidden = true
             tableView.isHidden = true
             loginView.isHidden = false
+            navigationItem.rightBarButtonItem?.isEnabled = false
         }
     }
     

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -44,16 +44,16 @@
                                 </connections>
                             </tableView>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W5R-GN-wxk">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="225" width="375" height="281"/>
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Log in to view and update your set collection and wanted list" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6iu-ZR-0I0">
-                                        <rect key="frame" x="60" y="180" width="255" height="43"/>
+                                        <rect key="frame" x="50" y="20" width="275" height="43"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         <color key="textColor" name="lightNavy"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Qu-Lf-PVl">
-                                        <rect key="frame" x="97.5" y="268.5" width="180" height="35"/>
+                                        <rect key="frame" x="97.5" y="88.5" width="180.5" height="35"/>
                                         <color key="backgroundColor" name="lightNavy"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="35" id="FiH-HS-bjE"/>
@@ -68,14 +68,39 @@
                                             <action selector="login:" destination="ikw-rL-php" eventType="touchUpInside" id="J6I-mC-IV2"/>
                                         </connections>
                                     </button>
+                                    <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="If you don't have an account, you can create one at:" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yNN-cS-3A1">
+                                        <rect key="frame" x="50" y="173" width="275" height="43"/>
+                                        <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="18"/>
+                                        <color key="textColor" name="lightNavy"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eq8-S1-knd">
+                                        <rect key="frame" x="88" y="226" width="200" height="35"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="35" id="nyp-Xg-qND"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="180" id="zmy-dj-fZW"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <state key="normal" title="https://brickset.com/signup"/>
+                                        <connections>
+                                            <action selector="goToBrickset:" destination="ikw-rL-php" eventType="touchUpInside" id="FzU-5z-gnJ"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="right" secondItem="6iu-ZR-0I0" secondAttribute="right" constant="60" id="AIE-2d-K1X"/>
-                                    <constraint firstItem="9Qu-Lf-PVl" firstAttribute="top" secondItem="6iu-ZR-0I0" secondAttribute="baseline" constant="50" id="Tje-8T-Gc7"/>
+                                    <constraint firstItem="6iu-ZR-0I0" firstAttribute="top" secondItem="W5R-GN-wxk" secondAttribute="top" constant="20" id="3sj-Vg-NJF"/>
+                                    <constraint firstAttribute="right" secondItem="6iu-ZR-0I0" secondAttribute="right" constant="50" id="AIE-2d-K1X"/>
+                                    <constraint firstAttribute="trailing" secondItem="yNN-cS-3A1" secondAttribute="trailing" constant="50" id="LSY-sU-d8b"/>
+                                    <constraint firstItem="eq8-S1-knd" firstAttribute="top" secondItem="yNN-cS-3A1" secondAttribute="bottom" constant="10" id="PQJ-bd-Esk"/>
+                                    <constraint firstItem="yNN-cS-3A1" firstAttribute="top" secondItem="9Qu-Lf-PVl" secondAttribute="bottom" constant="50" id="QVf-wO-eQe"/>
+                                    <constraint firstItem="eq8-S1-knd" firstAttribute="centerX" secondItem="W5R-GN-wxk" secondAttribute="centerX" id="SaV-d3-efC"/>
+                                    <constraint firstItem="9Qu-Lf-PVl" firstAttribute="top" secondItem="6iu-ZR-0I0" secondAttribute="baseline" constant="30" id="Tje-8T-Gc7"/>
                                     <constraint firstItem="9Qu-Lf-PVl" firstAttribute="centerX" secondItem="W5R-GN-wxk" secondAttribute="centerX" id="gqQ-am-hWb"/>
-                                    <constraint firstItem="6iu-ZR-0I0" firstAttribute="left" secondItem="W5R-GN-wxk" secondAttribute="left" constant="60" id="uyZ-6h-04k"/>
-                                    <constraint firstItem="6iu-ZR-0I0" firstAttribute="top" secondItem="W5R-GN-wxk" secondAttribute="top" constant="180" id="zBI-Xx-6Wn"/>
+                                    <constraint firstAttribute="bottom" secondItem="eq8-S1-knd" secondAttribute="bottom" constant="20" id="lDd-AN-ZKv"/>
+                                    <constraint firstItem="6iu-ZR-0I0" firstAttribute="left" secondItem="W5R-GN-wxk" secondAttribute="left" constant="50" id="uyZ-6h-04k"/>
+                                    <constraint firstItem="yNN-cS-3A1" firstAttribute="leading" secondItem="W5R-GN-wxk" secondAttribute="leading" constant="50" id="xQE-J9-1uf"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kIA-w2-FyF" customClass="BrowseHeaderView" customModule="MyBricks" customModuleProvider="target">
@@ -124,18 +149,17 @@
                                 </connections>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" name="paleGreyTwo"/>
                         <constraints>
                             <constraint firstItem="QOa-yd-L6d" firstAttribute="leading" secondItem="XV8-WS-GS1" secondAttribute="leading" id="42k-m2-mxE"/>
                             <constraint firstItem="QOa-yd-L6d" firstAttribute="bottom" secondItem="XV8-WS-GS1" secondAttribute="bottom" id="5Mf-JD-BSs"/>
+                            <constraint firstItem="W5R-GN-wxk" firstAttribute="trailing" secondItem="XV8-WS-GS1" secondAttribute="trailing" id="6dL-Wc-tCA"/>
+                            <constraint firstItem="W5R-GN-wxk" firstAttribute="leading" secondItem="ato-Uk-FLE" secondAttribute="leading" id="DCv-ag-Cuq"/>
                             <constraint firstItem="QOa-yd-L6d" firstAttribute="top" secondItem="XV8-WS-GS1" secondAttribute="top" id="Mer-XU-UMt"/>
-                            <constraint firstItem="W5R-GN-wxk" firstAttribute="leading" secondItem="XV8-WS-GS1" secondAttribute="leading" id="QUU-hV-3ae"/>
-                            <constraint firstItem="XV8-WS-GS1" firstAttribute="top" secondItem="W5R-GN-wxk" secondAttribute="top" id="SIe-gh-SdX"/>
-                            <constraint firstItem="W5R-GN-wxk" firstAttribute="trailing" secondItem="XV8-WS-GS1" secondAttribute="trailing" id="ViW-49-I8s"/>
                             <constraint firstItem="kIA-w2-FyF" firstAttribute="leading" secondItem="XV8-WS-GS1" secondAttribute="leading" id="b0f-CC-a2d"/>
                             <constraint firstItem="kIA-w2-FyF" firstAttribute="trailing" secondItem="XV8-WS-GS1" secondAttribute="trailing" id="gQQ-SG-X1o"/>
                             <constraint firstItem="kIA-w2-FyF" firstAttribute="top" secondItem="XV8-WS-GS1" secondAttribute="top" id="ncw-MC-Q0K"/>
-                            <constraint firstItem="XV8-WS-GS1" firstAttribute="bottom" secondItem="W5R-GN-wxk" secondAttribute="bottom" id="rve-J1-Phx"/>
+                            <constraint firstItem="W5R-GN-wxk" firstAttribute="centerY" secondItem="XV8-WS-GS1" secondAttribute="centerY" id="rxQ-DC-3v0"/>
                             <constraint firstItem="QOa-yd-L6d" firstAttribute="trailing" secondItem="XV8-WS-GS1" secondAttribute="trailing" id="zrQ-cc-TM0"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="XV8-WS-GS1"/>
@@ -146,6 +170,8 @@
                         <outlet property="instructionLabel" destination="6iu-ZR-0I0" id="IEA-IW-2pM"/>
                         <outlet property="loginButton" destination="9Qu-Lf-PVl" id="gtd-ZW-LB9"/>
                         <outlet property="loginView" destination="W5R-GN-wxk" id="Rsz-nG-iGS"/>
+                        <outlet property="signupButton" destination="eq8-S1-knd" id="AMv-dz-sNI"/>
+                        <outlet property="signupLabel" destination="yNN-cS-3A1" id="iMS-Va-FBs"/>
                         <outlet property="tableView" destination="QOa-yd-L6d" id="Lfz-Ni-cOv"/>
                     </connections>
                 </viewController>
@@ -160,10 +186,16 @@
             <color red="0.6940000057220459" green="0.76499998569488525" blue="0.83099997043609619" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="lightNavy">
-            <color red="0.086274509803921567" green="0.25098039215686274" blue="0.44313725490196076" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.086000002919999999" green="0.25099998709999999" blue="0.44299998880000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="lightNavy">
+            <color red="0.086000002920627594" green="0.25099998712539673" blue="0.44299998879432678" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="paleGreyTwo">
+            <color red="0.92500001192092896" green="0.94099998474121094" blue="0.95300000905990601" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="white">
-            <color red="0.99599999189376831" green="0.99599999189376831" blue="0.99599999189376831" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

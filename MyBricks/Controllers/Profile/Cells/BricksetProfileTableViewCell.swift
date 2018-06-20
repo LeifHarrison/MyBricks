@@ -13,7 +13,13 @@ class BricksetProfileTableViewCell: BorderedGradientTableViewCell, ReusableView,
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var loginButton: UIButton!
 
-    var loginButtonTapped : (() -> Void)?
+    @IBOutlet weak var signupLabel: UILabel!
+    @IBOutlet weak var signupButton: UIButton!
+
+    @IBOutlet var signupBottomConstraint: NSLayoutConstraint!
+
+    var loginButtonTapped: (() -> Void)?
+    var signupButtonTapped: (() -> Void)?
 
     //--------------------------------------------------------------------------
     // MARK: - Nib Loading
@@ -22,7 +28,9 @@ class BricksetProfileTableViewCell: BorderedGradientTableViewCell, ReusableView,
     override func awakeFromNib() {
         super.awakeFromNib()
         selectionStyle = .none
+        statusLabel.applyInstructionsStyle()
         loginButton.applyDefaultStyle()
+        signupLabel.applyInstructionsStyle()
         prepareForReuse()
     }
     
@@ -40,6 +48,47 @@ class BricksetProfileTableViewCell: BorderedGradientTableViewCell, ReusableView,
     
     @IBAction func loginButtonTapped(_ sender: UIButton) {
         loginButtonTapped?()
+    }
+    
+    @IBAction func signupButtonTapped(_ sender: UIButton) {
+        signupButtonTapped?()
+    }
+    
+    //--------------------------------------------------------------------------
+    // MARK: - Public
+    //--------------------------------------------------------------------------
+    
+    func populate(withUserName username: String?) {
+        if let username = username {
+            statusLabel.attributedText = self.loggedInAsAttributedDescription(forUsername: username)
+            loginButton.setTitle("LOGOUT", for: .normal)
+            
+            signupBottomConstraint.isActive = false
+            signupLabel.isHidden = true
+            signupButton.isHidden = true
+        }
+        else {
+            statusLabel.text = NSLocalizedString("profile.login.helptext", comment:"")
+            statusLabel.applyInstructionsStyle()
+            loginButton.setTitle("LOGIN", for: .normal)
+            
+            signupBottomConstraint.isActive = true
+            signupLabel.isHidden = false
+            signupButton.isHidden = false
+        }
+    }
+    
+    //--------------------------------------------------------------------------
+    // MARK: - Private
+    //--------------------------------------------------------------------------
+    
+    private let regularAttributes = [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 18), NSAttributedStringKey.foregroundColor: UIColor.black]
+    private let boldAttributes = [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 18, weight: .bold), NSAttributedStringKey.foregroundColor: UIColor.black]
+    
+    private func loggedInAsAttributedDescription(forUsername username: String) -> NSAttributedString {
+        let attributedDescription = NSMutableAttributedString(string: "You are logged in as ", attributes: regularAttributes)
+        attributedDescription.append(NSAttributedString(string:"\(username)", attributes: boldAttributes))
+        return attributedDescription
     }
     
 }

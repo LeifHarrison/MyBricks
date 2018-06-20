@@ -130,15 +130,6 @@ class ProfileViewController: UIViewController {
         tableView.reloadData()
     }
 
-    private let regularAttributes = [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 18), NSAttributedStringKey.foregroundColor: UIColor.black]
-    private let boldAttributes = [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 18, weight: .bold), NSAttributedStringKey.foregroundColor: UIColor.black]
-    
-    private func loggedInAsAttributedDescription(forUsername username: String) -> NSAttributedString {
-        let attributedDescription = NSMutableAttributedString(string: "You are logged in as ", attributes: regularAttributes)
-        attributedDescription.append(NSAttributedString(string:"\(username)", attributes: boldAttributes))
-        return attributedDescription
-    }
-
     // MARK: - Updating Profile Information
 
     fileprivate func updateProfileInformation() {
@@ -254,8 +245,7 @@ extension ProfileViewController: UITableViewDataSource {
                 if BricksetServices.isLoggedIn() {
                     let keychain = Keychain(service: BricksetServices.serviceName)
                     if let username = UserDefaults.standard.value(forKey: "username") as? String, keychain[username] != nil {
-                        cell.statusLabel.attributedText = self.loggedInAsAttributedDescription(forUsername: username)
-                        cell.loginButton.setTitle("LOGOUT", for: .normal)
+                        cell.populate(withUserName: username)
                     }
                     cell.loginButtonTapped = {
                         BricksetServices.logout()
@@ -265,13 +255,17 @@ extension ProfileViewController: UITableViewDataSource {
                             self.tableView.deleteRows(at: [IndexPath(row: row, section: section)], with: .fade)
                         }
                     }
+                    cell.signupButtonTapped = nil
                 }
                 else {
-                    cell.statusLabel.text = NSLocalizedString("profile.login.helptext", comment:"")
-                    cell.statusLabel.applyInstructionsStyle()
-                    cell.loginButton.setTitle("LOGIN", for: .normal)
+                    cell.populate(withUserName: nil)
                     cell.loginButtonTapped = {
                         self.login(self)
+                    }
+                    cell.signupButtonTapped = {
+                        if let url = URL(string: Constants.Brickset.signupURL) {
+                            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                        }
                     }
                 }
                 return cell
