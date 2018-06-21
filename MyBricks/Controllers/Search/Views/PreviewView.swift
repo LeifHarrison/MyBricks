@@ -12,9 +12,13 @@ import AVFoundation
 class PreviewView: UIView {
 	
     private let regionOfInterestCornerRadius: CGFloat = 4.0
-    
+    private let regionOfInterestWidthScale: CGFloat = 0.8
+    private let regionOfInterestHeightScale: CGFloat = 0.25
+
     private let maskLayer = CAShapeLayer()
+    private let maskAlpha: Float = 0.4
     private let regionOfInterestOutline = CAShapeLayer()
+    private let outlineAlpha: CGFloat = 0.8
 
     var regionOfInterest = CGRect.null
 
@@ -37,19 +41,19 @@ class PreviewView: UIView {
 
 		maskLayer.fillRule = kCAFillRuleEvenOdd
 		maskLayer.fillColor = UIColor.black.cgColor
-		maskLayer.opacity = 0.5
+		maskLayer.opacity = maskAlpha
 		layer.addSublayer(maskLayer)
 		
-        let width = 0.8 * bounds.width
-        let height = 0.25 * bounds.height
+        let width = regionOfInterestWidthScale * bounds.width
+        let height = regionOfInterestHeightScale * bounds.height
         let regionX = (bounds.width - width) / 2.0
         let regionY = (bounds.height - height) / 2.0
         regionOfInterest = CGRect(x: regionX, y: regionY, width: width, height: height)
 
-        regionOfInterestOutline.path = UIBezierPath(roundedRect: regionOfInterest, cornerRadius: regionOfInterestCornerRadius).cgPath
         regionOfInterestOutline.fillColor = UIColor.clear.cgColor
         regionOfInterestOutline.lineWidth = 2.0
-        regionOfInterestOutline.strokeColor = UIColor(white: 0.9, alpha: 0.9).cgColor
+        regionOfInterestOutline.path = UIBezierPath(roundedRect: regionOfInterest, cornerRadius: regionOfInterestCornerRadius).cgPath
+        regionOfInterestOutline.strokeColor = UIColor(white: 1.0, alpha: outlineAlpha).cgColor
 		layer.addSublayer(regionOfInterestOutline)
 	}
 	
@@ -69,7 +73,6 @@ class PreviewView: UIView {
 		get {
 			return videoPreviewLayer.session
 		}
-		
 		set {
 			videoPreviewLayer.session = newValue
 		}
@@ -91,6 +94,12 @@ class PreviewView: UIView {
 		CATransaction.setDisableActions(true)
 		
         // Create the region of interest outline
+        let width = regionOfInterestWidthScale * bounds.width
+        let height = regionOfInterestHeightScale * bounds.height
+        let regionX = (bounds.width - width) / 2.0
+        let regionY = (bounds.height - height) / 2.0
+        regionOfInterest = CGRect(x: regionX, y: regionY, width: width, height: height)
+        
         let outlinePath = UIBezierPath(roundedRect: regionOfInterest, cornerRadius: regionOfInterestCornerRadius)
         regionOfInterestOutline.path = outlinePath.cgPath
 

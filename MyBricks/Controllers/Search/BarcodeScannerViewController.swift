@@ -25,10 +25,12 @@ class BarcodeScannerViewController: UIViewController {
 
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var flashButton: UIButton!
+    @IBOutlet weak var instructionsContainerView: UIView!
+    @IBOutlet weak var instructionLabel: UILabel!
     @IBOutlet weak var previewView: PreviewView!
-    @IBOutlet weak var instructionView: UIView!
     @IBOutlet weak var noCameraView: UIView!
     @IBOutlet weak var testBarcodesButton: UIView!
+    @IBOutlet weak var scanAreaView: UIView!
 
     weak var delegate: BarcodeScannerDelegate?
 
@@ -59,19 +61,21 @@ class BarcodeScannerViewController: UIViewController {
             setupCamera()
         }
         else {
-            addGradientBackground()
-            
             // Device doesn't support video capture. Display informational
             // overlay and, on the simulator, a "Test Barcodes" button
             noCameraView.isHidden = false
             
             if UIDevice.isSimulator {
+                scanAreaView.layer.borderColor = UIColor.white.cgColor
+                scanAreaView.layer.borderWidth = 2.0
+                scanAreaView.layer.cornerRadius = 4.0
+                
                 testBarcodesButton.layer.cornerRadius = 5.0
                 testBarcodesButton.isHidden = false
             }
 
             // Hide everything else
-            instructionView.isHidden = true
+            instructionLabel.isHidden = true
             previewView.isHidden = true
         }
     }

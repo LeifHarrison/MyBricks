@@ -15,6 +15,7 @@ struct Constants {
     struct Brickset {
         static let url = "https://brickset.com"
         static let apiKey = "<brickset-api-key>"
+        static let signupURL = "https://brickset.com/signup"
     }
     
     struct Rebrickable {
