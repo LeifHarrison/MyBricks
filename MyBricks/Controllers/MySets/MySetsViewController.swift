@@ -26,11 +26,6 @@ class MySetsViewController: BrowseSetsViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        instructionLabel.applyInstructionsStyle()
-        loginButton.applyDefaultStyle()
-        signupLabel.applyInstructionsStyle()
-
         filterOptions.showingUserSets = true
         filterOptions.filterOwned = true
     }
@@ -49,7 +44,7 @@ class MySetsViewController: BrowseSetsViewController {
             })
         }
         else {
-            showLoginView()
+            showLoginView(for: BricksetServices.shared)
         }
     }
 

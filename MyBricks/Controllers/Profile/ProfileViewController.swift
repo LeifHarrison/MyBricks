@@ -17,6 +17,7 @@ class ProfileViewController: UIViewController {
 
     enum TableSection: Int {
         case brickset
+        case rebrickable
         case general
     }
     
@@ -44,13 +45,15 @@ class ProfileViewController: UIViewController {
     
     var sections: [TableSection] = []
     var bricksetRows: [TableRow] = []
+    var rebrickableRows: [TableRow] = []
     var generalRows: [GeneralTableRow] = []
 
     var collectionTotals: UserCollectionTotals?
 
     private let lastUpdatedKey = "collectionLastUpdated"
     private let updateInterval: TimeInterval = 5 * 60 // Only refresh every 5 minutes
-
+    private let spacerHeight: CGFloat = 5
+    
     //--------------------------------------------------------------------------
     // MARK: - View Lifecycle
     //--------------------------------------------------------------------------
@@ -72,38 +75,29 @@ class ProfileViewController: UIViewController {
         if BricksetServices.isLoggedIn() && (collectionTotals == nil || Date().timeIntervalSince(lastUpdated) > updateInterval) {
             updateCollectionInformation()
         }
-
+//        if RebrickableServices.isLoggedIn() {
+//            updateProfileInformation()
+//        }
     }
 
     //--------------------------------------------------------------------------
     // MARK: - Actions
     //--------------------------------------------------------------------------
 
-    @IBAction func login(_ sender: AnyObject?) {
-        if let protectionSpace = BricksetServices.shared.loginProtectionSpace, let credential = URLCredentialStorage.shared.defaultCredential(for: protectionSpace) {
-            evaluateBiometricAuthentication(credential: credential)
-        }
-        else {
-            performSegue(withIdentifier: "showLoginView", sender: self)
-        }
-    }
-
-    @IBAction func logout(_ sender: AnyObject?) {
-        BricksetServices.logout()
-        updateDisplayedRows()
-    }
-
     //--------------------------------------------------------------------------
     // MARK: - Private
     //--------------------------------------------------------------------------
 
     fileprivate func setupTableView() {
+        
         tableView.contentInset = UIEdgeInsets(top: 5, left: 0, bottom: 5, right: 0)
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = UITableViewAutomaticDimension
+        tableView.estimatedSectionFooterHeight = UITableViewAutomaticDimension
+        tableView.estimatedSectionHeaderHeight = UITableViewAutomaticDimension
         tableView.tableFooterView = UIView()
 
+        tableView.register(ProfileLoginTableViewCell.self)
         tableView.register(BricksetCollectionTableViewCell.self)
-        tableView.register(BricksetProfileTableViewCell.self)
         tableView.register(ProfileGeneralTableViewCell.self)
     }
     
@@ -111,10 +105,8 @@ class ProfileViewController: UIViewController {
 
         sections.removeAll()
         bricksetRows.removeAll()
+        rebrickableRows.removeAll()
         generalRows.removeAll()
-
-        //let buttonItem = loggedIn ? UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logout)) : nil
-        //navigationItem.setRightBarButton(buttonItem, animated: animated)
 
         sections.append(.brickset)
         bricksetRows.append(.profile)
@@ -122,6 +114,12 @@ class ProfileViewController: UIViewController {
             bricksetRows.append(.collection)
         }
 
+//        sections.append(.rebrickable)
+//        rebrickableRows.append(.profile)
+//        if BricksetServices.isLoggedIn() {
+//            rebrickableRows.append(.collection)
+//        }
+        
         sections.append(.general)
         generalRows.append(.about)
         generalRows.append(.credits)
@@ -130,11 +128,43 @@ class ProfileViewController: UIViewController {
         tableView.reloadData()
     }
 
+    private func loginToBrickset() {
+        if hasDefaultCredentials(for: BricksetServices.shared) {
+            evaluateBiometricAuthentication(for: BricksetServices.shared)
+        }
+        else {
+            if let loginVC: ProfileLoginViewController = storyboard?.instantiateViewController() {
+                loginVC.serviceAPI = BricksetServices.shared
+                present(loginVC, animated: true, completion: nil)
+            }
+        }
+    }
+    
+    private func loginToRebrickable() {
+        if hasDefaultCredentials(for: RebrickableServices.shared) {
+            evaluateBiometricAuthentication(for: RebrickableServices.shared)
+        }
+        else {
+            if let loginVC: ProfileLoginViewController = storyboard?.instantiateViewController() {
+                loginVC.serviceAPI = RebrickableServices.shared
+                present(loginVC, animated: true, completion: nil)
+            }
+        }
+    }
+    
     // MARK: - Updating Profile Information
 
     fileprivate func updateProfileInformation() {
         // TODO: Implement fetching Profile information once profile
         // service is available
+//        RebrickableServices.shared.getProfile(completion: { result in
+//            if result.isSuccess, let profile = result.value {
+//                NSLog("Result: \(profile)")
+//            }
+//            else {
+//                NSLog("Error updating profile: \(String(describing: result.error))")
+//            }
+//        })
     }
 
     // MARK: - Updating Collection Information
@@ -152,7 +182,21 @@ class ProfileViewController: UIViewController {
         })
     }
     
-    fileprivate func evaluateBiometricAuthentication(credential: URLCredential) {
+    fileprivate func hasDefaultCredentials(for serviceAPI: AuthenticatedServiceAPI) -> Bool {
+        if let protectionSpace = serviceAPI.loginProtectionSpace {
+            NSLog("protectionSpace = \(protectionSpace)")
+            if URLCredentialStorage.shared.defaultCredential(for: protectionSpace) != nil {
+                return true
+            }
+        }
+        return false
+    }
+    
+    fileprivate func evaluateBiometricAuthentication(for serviceAPI: AuthenticatedServiceAPI) {
+        guard let protectionSpace = serviceAPI.loginProtectionSpace, let credential = URLCredentialStorage.shared.defaultCredential(for: protectionSpace) else {
+            return
+        }
+        
         let myContext = LAContext()
         let myLocalizedReasonString = "Login to your Brickset account"
 
@@ -162,7 +206,7 @@ class ProfileViewController: UIViewController {
                 if success {
                     // User authenticated successfully, take appropriate action
                     DispatchQueue.main.async {
-                        self.performLogin(credential: credential)
+                        self.performLogin(service: serviceAPI, credential: credential)
                     }
                 }
                 else if let error = evaluateError as? LAError {
@@ -193,9 +237,9 @@ class ProfileViewController: UIViewController {
         }
     }
 
-    fileprivate func performLogin(credential: URLCredential) {
+    fileprivate func performLogin(service: AuthenticatedServiceAPI, credential: URLCredential) {
         if let username = credential.user, let password = credential.password {
-            BricksetServices.shared.login(username: username, password: password, completion: { result in
+            service.login(username: username, password: password, completion: { result in
                 if result.isSuccess {
                     self.updateDisplayedRows()
                     self.updateProfileInformation()
@@ -228,6 +272,9 @@ extension ProfileViewController: UITableViewDataSource {
         if section == .brickset {
             return bricksetRows.count
         }
+        else if section == .rebrickable {
+            return rebrickableRows.count
+        }
         else if section == .general {
             return generalRows.count
         }
@@ -241,26 +288,60 @@ extension ProfileViewController: UITableViewDataSource {
         if section == .brickset {
             let row = bricksetRows[indexPath.row]
             if row == .profile {
-                let cell: BricksetProfileTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+                let cell: ProfileLoginTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+                cell.populate(for: BricksetServices.shared)
                 if BricksetServices.isLoggedIn() {
-                    let keychain = Keychain(service: BricksetServices.serviceName)
-                    if let username = UserDefaults.standard.value(forKey: "username") as? String, keychain[username] != nil {
-                        cell.populate(withUserName: username)
-                    }
                     cell.loginButtonTapped = {
-                        BricksetServices.logout()
-                        tableView.reloadRows(at: [indexPath], with: .fade)
-                        if let section = self.sections.index(of: .brickset), let row = self.bricksetRows.index(of: .collection) {
-                            self.bricksetRows.remove(at: row)
-                            self.tableView.deleteRows(at: [IndexPath(row: row, section: section)], with: .fade)
+                        let completion = {
+                            tableView.reloadRows(at: [indexPath], with: .fade)
+                            if let section = self.sections.index(of: .brickset), let row = self.bricksetRows.index(of: .collection) {
+                                self.bricksetRows.remove(at: row)
+                                self.tableView.deleteRows(at: [IndexPath(row: row, section: section)], with: .fade)
+                            }
                         }
+                        BricksetServices.shared.logout(completion)
                     }
                     cell.signupButtonTapped = nil
                 }
                 else {
-                    cell.populate(withUserName: nil)
                     cell.loginButtonTapped = {
-                        self.login(self)
+                        self.loginToBrickset()
+                    }
+                    cell.signupButtonTapped = {
+                        if let url = URL(string: Constants.Brickset.signupURL) {
+                            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                        }
+                    }
+                }
+                return cell
+            }
+            else if row == .collection {
+                let cell: BricksetCollectionTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+                cell.populateWithCollectionTotals(collectionTotals)
+                return cell
+            }
+        }
+        if section == .rebrickable {
+            let row = rebrickableRows[indexPath.row]
+            if row == .profile {
+                let cell: ProfileLoginTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+                cell.populate(for: RebrickableServices.shared)
+                if RebrickableServices.isLoggedIn() {
+                    cell.loginButtonTapped = {
+                        let completion = {
+                            if let section = self.sections.index(of: .rebrickable), let row = self.rebrickableRows.index(of: .collection) {
+                                self.rebrickableRows.remove(at: row)
+                                self.tableView.deleteRows(at: [IndexPath(row: row, section: section)], with: .fade)
+                            }
+                            tableView.reloadRows(at: [indexPath], with: .fade)
+                        }
+                        RebrickableServices.shared.logout(completion)
+                    }
+                    cell.signupButtonTapped = nil
+                }
+                else {
+                    cell.loginButtonTapped = {
+                        self.loginToRebrickable()
                     }
                     cell.signupButtonTapped = {
                         if let url = URL(string: Constants.Brickset.signupURL) {
@@ -313,21 +394,23 @@ extension ProfileViewController: UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        if section == (sections.count - 1) {
+            return spacerHeight
+        }
+        return 0
+    }
+    
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 0.0
+        return spacerHeight
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return nil
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let clearSpacerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 5))
-        clearSpacerView.backgroundColor = UIColor.clear
-        return clearSpacerView
-    }
-    
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        if section == (sections.count - 1) {
-            return 5
-        }
-        return 5
+        return nil
     }
     
 }

@@ -44,44 +44,53 @@
                                 </connections>
                             </tableView>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W5R-GN-wxk">
-                                <rect key="frame" x="0.0" y="225" width="375" height="281"/>
+                                <rect key="frame" x="0.0" y="242.5" width="375" height="247.5"/>
                                 <subviews>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Log in to view and update your set collection and wanted list" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6iu-ZR-0I0">
-                                        <rect key="frame" x="50" y="20" width="275" height="43"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                        <color key="textColor" name="lightNavy"/>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="252" horizontalCompressionResistancePriority="752" verticalCompressionResistancePriority="752" text="Log in to view and update your set collection and wanted list" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6iu-ZR-0I0">
+                                        <rect key="frame" x="57.5" y="20" width="260" height="38.5"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="260" id="7Wx-2a-Dlo"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
+                                        <color key="textColor" name="slateBlue"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Qu-Lf-PVl">
-                                        <rect key="frame" x="97.5" y="88.5" width="180.5" height="35"/>
-                                        <color key="backgroundColor" name="lightNavy"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Qu-Lf-PVl" customClass="LightGradientButton" customModule="MyBricks" customModuleProvider="target">
+                                        <rect key="frame" x="58" y="74" width="260" height="40"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="35" id="FiH-HS-bjE"/>
-                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="180" id="qsa-AZ-W39"/>
+                                            <constraint firstAttribute="height" constant="40" id="FiH-HS-bjE"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="260" id="qsa-AZ-W39"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="18"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <state key="normal" title="LOGIN">
-                                            <color key="titleColor" name="white"/>
+                                            <color key="titleColor" name="lightNavy"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" name="lightNavy"/>
                                         </state>
                                         <connections>
                                             <action selector="login:" destination="ikw-rL-php" eventType="touchUpInside" id="J6I-mC-IV2"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="If you don't have an account, you can create one at:" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yNN-cS-3A1">
-                                        <rect key="frame" x="50" y="173" width="275" height="43"/>
-                                        <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="18"/>
-                                        <color key="textColor" name="lightNavy"/>
+                                        <rect key="frame" x="57.5" y="144" width="260" height="38.5"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="260" id="sl8-LU-TTh"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
+                                        <color key="textColor" name="slateBlue"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eq8-S1-knd">
-                                        <rect key="frame" x="88" y="226" width="200" height="35"/>
+                                        <rect key="frame" x="88" y="192.5" width="200" height="35"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="35" id="nyp-Xg-qND"/>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="180" id="zmy-dj-fZW"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <color key="tintColor" name="lightNavy"/>
                                         <state key="normal" title="https://brickset.com/signup"/>
                                         <connections>
                                             <action selector="goToBrickset:" destination="ikw-rL-php" eventType="touchUpInside" id="FzU-5z-gnJ"/>
@@ -91,16 +100,14 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="6iu-ZR-0I0" firstAttribute="top" secondItem="W5R-GN-wxk" secondAttribute="top" constant="20" id="3sj-Vg-NJF"/>
-                                    <constraint firstAttribute="right" secondItem="6iu-ZR-0I0" secondAttribute="right" constant="50" id="AIE-2d-K1X"/>
-                                    <constraint firstAttribute="trailing" secondItem="yNN-cS-3A1" secondAttribute="trailing" constant="50" id="LSY-sU-d8b"/>
                                     <constraint firstItem="eq8-S1-knd" firstAttribute="top" secondItem="yNN-cS-3A1" secondAttribute="bottom" constant="10" id="PQJ-bd-Esk"/>
-                                    <constraint firstItem="yNN-cS-3A1" firstAttribute="top" secondItem="9Qu-Lf-PVl" secondAttribute="bottom" constant="50" id="QVf-wO-eQe"/>
+                                    <constraint firstItem="yNN-cS-3A1" firstAttribute="top" secondItem="9Qu-Lf-PVl" secondAttribute="bottom" constant="30" id="QVf-wO-eQe"/>
                                     <constraint firstItem="eq8-S1-knd" firstAttribute="centerX" secondItem="W5R-GN-wxk" secondAttribute="centerX" id="SaV-d3-efC"/>
-                                    <constraint firstItem="9Qu-Lf-PVl" firstAttribute="top" secondItem="6iu-ZR-0I0" secondAttribute="baseline" constant="30" id="Tje-8T-Gc7"/>
+                                    <constraint firstItem="9Qu-Lf-PVl" firstAttribute="top" secondItem="6iu-ZR-0I0" secondAttribute="baseline" constant="20" id="Tje-8T-Gc7"/>
                                     <constraint firstItem="9Qu-Lf-PVl" firstAttribute="centerX" secondItem="W5R-GN-wxk" secondAttribute="centerX" id="gqQ-am-hWb"/>
+                                    <constraint firstItem="6iu-ZR-0I0" firstAttribute="centerX" secondItem="W5R-GN-wxk" secondAttribute="centerX" id="hT3-ys-jkJ"/>
                                     <constraint firstAttribute="bottom" secondItem="eq8-S1-knd" secondAttribute="bottom" constant="20" id="lDd-AN-ZKv"/>
-                                    <constraint firstItem="6iu-ZR-0I0" firstAttribute="left" secondItem="W5R-GN-wxk" secondAttribute="left" constant="50" id="uyZ-6h-04k"/>
-                                    <constraint firstItem="yNN-cS-3A1" firstAttribute="leading" secondItem="W5R-GN-wxk" secondAttribute="leading" constant="50" id="xQE-J9-1uf"/>
+                                    <constraint firstItem="yNN-cS-3A1" firstAttribute="centerX" secondItem="W5R-GN-wxk" secondAttribute="centerX" id="qOb-QD-T4d"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kIA-w2-FyF" customClass="BrowseHeaderView" customModule="MyBricks" customModuleProvider="target">
@@ -193,6 +200,9 @@
         </namedColor>
         <namedColor name="paleGreyTwo">
             <color red="0.92500001192092896" green="0.94099998474121094" blue="0.95300000905990601" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="slateBlue">
+            <color red="0.3449999988079071" green="0.45500001311302185" blue="0.58799999952316284" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="white">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

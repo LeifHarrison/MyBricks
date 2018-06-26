@@ -35,9 +35,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zPo-ko-P53">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="zPo-ko-P53">
                                 <rect key="frame" x="5" y="64" width="365" height="603"/>
-                                <color key="backgroundColor" name="cloudyBlue"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <outlet property="dataSource" destination="KQN-99-oaK" id="wfT-K9-RiN"/>
                                     <outlet property="delegate" destination="KQN-99-oaK" id="tQp-jT-Sl9"/>
@@ -437,7 +437,7 @@
         <!--Login View-->
         <scene sceneID="zNM-DN-9lF">
             <objects>
-                <viewController storyboardIdentifier="LoginViewController" title="Login" id="CRl-O7-t69" userLabel="Login View" customClass="LoginViewController" customModule="MyBricks" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ProfileLoginViewController" title="Login" id="CRl-O7-t69" userLabel="Login View" customClass="ProfileLoginViewController" customModule="MyBricks" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Boi-D7-bK9">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -523,6 +523,7 @@
                     <navigationItem key="navigationItem" title="Login" id="0ZS-nD-rKr"/>
                     <connections>
                         <outlet property="activityIndicatorView" destination="Z1q-s6-NAg" id="Xb1-oE-UEO"/>
+                        <outlet property="imageView" destination="lzW-U6-xEL" id="SPc-2y-J7i"/>
                         <outlet property="loginButton" destination="9R3-NO-sYB" id="GLx-IY-Cpj"/>
                         <outlet property="passwordField" destination="JlT-vq-xet" id="t9V-jq-X53"/>
                         <outlet property="usernameField" destination="cGw-kb-o5Y" id="RGs-5N-qDu"/>
@@ -547,9 +548,6 @@
         </namedColor>
         <namedColor name="lightNavy">
             <color red="0.086000002920627594" green="0.25099998712539673" blue="0.44299998879432678" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="paleGreyTwo">
-            <color red="0.92500001192092896" green="0.94099998474121094" blue="0.95300000905990601" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="paleGreyTwo">
             <color red="0.92500001192092896" green="0.94099998474121094" blue="0.95300000905990601" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

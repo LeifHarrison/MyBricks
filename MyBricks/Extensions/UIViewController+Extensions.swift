@@ -9,6 +9,17 @@
 import UIKit
 import LocalAuthentication
 
+protocol StoryboardIdentifiable {
+    static var storyboardIdentifier: String { get }
+}
+
+extension StoryboardIdentifiable where Self: UIViewController {
+    static var storyboardIdentifier: String {
+        return String(describing: self)
+    }
+}
+extension UIViewController: StoryboardIdentifiable { }
+
 extension UIViewController {
 
     func addGradientBackground() {
@@ -63,7 +74,7 @@ extension UIViewController {
                     NSLog("Biometric authentication error: \(String(describing: evaluateError))")
                     if error.code == LAError.userFallback {
                         DispatchQueue.main.async {
-                            self.showLoginView()
+                            self.showLoginView(for: BricksetServices.shared)
                         }
                     }
                     else if error.code == LAError.userCancel {
@@ -84,15 +95,15 @@ extension UIViewController {
         else if let error = authError as? LAError {
             // Could not evaluate policy; look at authError and present an appropriate message to user
             NSLog("Biometric authentication error: \(String(describing: error))")
-            showLoginView()
+            showLoginView(for: BricksetServices.shared)
         }
     }
 
-    func showLoginView() {
+    func showLoginView(for serviceAPI: AuthenticatedServiceAPI) {
         let profileStoryboard = UIStoryboard(name: "Profile", bundle: nil)
-        if let loginVC = profileStoryboard.instantiateViewController(withIdentifier: "LoginViewController") as? LoginViewController {
-            present(loginVC, animated: true, completion: nil)
-        }
+        let loginVC: ProfileLoginViewController = profileStoryboard.instantiateViewController()
+        loginVC.serviceAPI = serviceAPI
+        present(loginVC, animated: true, completion: nil)
     }
 
     func performLogin(credential: URLCredential, completion: @escaping ((Bool) -> Void)) {

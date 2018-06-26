@@ -57,9 +57,6 @@ class LightGradientButton: UIButton {
     //--------------------------------------------------------------------------
     
     func commitInit() {
-        titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .bold)
-        setTitleColor(.cobalt, for: .normal)
-        
         clipsToBounds = false
         layer.cornerRadius = 2.0
         layer.shadowColor = UIColor.black.cgColor

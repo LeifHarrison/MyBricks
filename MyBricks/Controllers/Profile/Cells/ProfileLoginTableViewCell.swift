@@ -1,5 +1,5 @@
 //
-//  BricksetProfileTableViewCell.swift
+//  ProfileLoginTableViewCell.swift
 //  MyBricks
 //
 //  Created by Leif Harrison on 2/8/18.
@@ -8,8 +8,9 @@
 
 import UIKit
 
-class BricksetProfileTableViewCell: BorderedGradientTableViewCell, ReusableView, NibLoadableView {
+class ProfileLoginTableViewCell: BorderedGradientTableViewCell, ReusableView, NibLoadableView {
 
+    @IBOutlet weak var logoImageView: UIImageView!
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var loginButton: UIButton!
 
@@ -27,10 +28,6 @@ class BricksetProfileTableViewCell: BorderedGradientTableViewCell, ReusableView,
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        selectionStyle = .none
-        statusLabel.applyInstructionsStyle()
-        loginButton.applyDefaultStyle()
-        signupLabel.applyInstructionsStyle()
         prepareForReuse()
     }
     
@@ -40,6 +37,14 @@ class BricksetProfileTableViewCell: BorderedGradientTableViewCell, ReusableView,
     
     override func prepareForReuse() {
         super.prepareForReuse()
+        
+        statusLabel.text = NSLocalizedString("profile.login.helptext", comment:"")
+        loginButton.setTitle("LOGIN", for: .normal)
+        
+        signupBottomConstraint.isActive = true
+        signupLabel.isHidden = false
+        signupButton.isHidden = false
+
     }
     
     //--------------------------------------------------------------------------
@@ -58,8 +63,11 @@ class BricksetProfileTableViewCell: BorderedGradientTableViewCell, ReusableView,
     // MARK: - Public
     //--------------------------------------------------------------------------
     
-    func populate(withUserName username: String?) {
-        if let username = username {
+    func populate(for serviceAPI: AuthenticatedServiceAPI) {
+        if let logoImage = serviceAPI.logoImage {
+            logoImageView.image = logoImage
+        }
+        if let username = serviceAPI.userName {
             statusLabel.attributedText = self.loggedInAsAttributedDescription(forUsername: username)
             loginButton.setTitle("LOGOUT", for: .normal)
             
@@ -69,7 +77,6 @@ class BricksetProfileTableViewCell: BorderedGradientTableViewCell, ReusableView,
         }
         else {
             statusLabel.text = NSLocalizedString("profile.login.helptext", comment:"")
-            statusLabel.applyInstructionsStyle()
             loginButton.setTitle("LOGIN", for: .normal)
             
             signupBottomConstraint.isActive = true

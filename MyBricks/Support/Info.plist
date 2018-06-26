@@ -24,6 +24,13 @@
 	<dict>
 		<key>NSExceptionDomains</key>
 		<dict>
+			<key>brickset.com</key>
+			<dict>
+				<key>NSExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+			</dict>
 			<key>lego.com</key>
 			<dict>
 				<key>NSExceptionAllowsInsecureHTTPLoads</key>
@@ -34,7 +41,7 @@
 		</dict>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>scan Lego barcodes to search for sets</string>
+	<string>This allows MyBricks to scan barcodes to search for LEGO sets.</string>
 	<key>NSFaceIDUsageDescription</key>
 	<string>Enabling Face ID allows you quick and secure access to your Brickset account.</string>
 	<key>UIMainStoryboardFile</key>

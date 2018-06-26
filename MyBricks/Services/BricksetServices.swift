@@ -25,10 +25,12 @@ typealias GetThemesCompletion = (Result<[SetTheme]>) -> Void
 typealias GetSubthemesCompletion = (Result<[SetSubtheme]>) -> Void
 typealias GetYearsCompletion = (Result<[SetYear]>) -> Void
 
-class BricksetServices {
+class BricksetServices: AuthenticatedServiceAPI {
 
     static let shared = BricksetServices()
-    static let serviceName = "com.brickset.userHash"
+    
+    private let keychainServiceName = "com.brickset.userHash"
+    private let userNameKey = "BricksetUsername"
 
     static let shortDateFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -43,32 +45,6 @@ class BricksetServices {
     }()
 
     let baseURL = "https://brickset.com/api/v2.asmx/"
-
-    class func isLoggedIn() -> Bool {
-        let keychain = Keychain(service: BricksetServices.serviceName)
-        if let username = UserDefaults.standard.value(forKey: "username") as? String, keychain[username] != nil {
-            return true
-        }
-        else {
-            return false
-        }
-    }
-
-    class func logout() {
-        let keychain = Keychain(service: BricksetServices.serviceName)
-        if let username = UserDefaults.standard.value(forKey: "username") as? String, keychain[username] != nil {
-            keychain[username] = nil
-            UserDefaults.standard.removeObject(forKey: "username")
-        }
-
-    }
-
-    var loginProtectionSpace: URLProtectionSpace? {
-        if let url = URL(string: baseURL) {
-            return URLProtectionSpace(host: url.host!, port: 0, protocol: NSURLProtectionSpaceHTTPS, realm: nil, authenticationMethod: NSURLAuthenticationMethodDefault)
-        }
-        return nil
-    }
 
     //--------------------------------------------------------------------------
     // MARK: - General Services
@@ -109,6 +85,43 @@ class BricksetServices {
         request.responseXMLDocument(completionHandler: requestCompletion)
     }
 
+    //--------------------------------------------------------------------------
+    // MARK: - Login
+    //--------------------------------------------------------------------------
+    
+    class func isLoggedIn() -> Bool {
+        return BricksetServices.shared.isLoggedIn
+    }
+    
+    var isLoggedIn: Bool {
+        let keychain = Keychain(service: keychainServiceName)
+        if let username = UserDefaults.standard.value(forKey: userNameKey) as? String, keychain[username] != nil {
+            return true
+        }
+        else {
+            return false
+        }
+    }
+    
+    var userName: String? {
+        let keychain = Keychain(service: keychainServiceName)
+        if let username = UserDefaults.standard.value(forKey: userNameKey) as? String, keychain[username] != nil {
+            return username
+        }
+        return nil
+    }
+    
+    var loginProtectionSpace: URLProtectionSpace? {
+        if let url = URL(string: baseURL), let host = url.host {
+            return URLProtectionSpace(host: host, port: url.port ?? 0, protocol: NSURLProtectionSpaceHTTPS, realm: host, authenticationMethod: NSURLAuthenticationMethodDefault)
+        }
+        return nil
+    }
+    
+    var logoImage: UIImage? {
+        return #imageLiteral(resourceName: "brickset_logo")
+    }
+    
     // Log in as a user and retrieve a token that can be used in subsequent API calls.
     func login(username: String, password: String, completion: @escaping (Result<String>) -> Void) {
         let url = baseURL + "login"
@@ -131,8 +144,8 @@ class BricksetServices {
                     }
                 }
                 
-                UserDefaults.standard.setValue(username, forKey: "username")
-                let keychain = Keychain(service: BricksetServices.serviceName)
+                UserDefaults.standard.setValue(username, forKey: self.userNameKey)
+                let keychain = Keychain(service: self.keychainServiceName)
                 keychain[username] = result
 
                 completion(Result.success(result))
@@ -147,8 +160,8 @@ class BricksetServices {
         let url = baseURL + "checkUserHash"
         var parameters = defaultParameters()
 
-        let keychain = Keychain(service: BricksetServices.serviceName)
-        guard let username = UserDefaults.standard.value(forKey: "username") as? String, let userHash = keychain[username] else {
+        let keychain = Keychain(service: keychainServiceName)
+        guard let username = UserDefaults.standard.value(forKey: userNameKey) as? String, let userHash = keychain[username] else {
             completion(Result.failure(ServiceError.unknownError))
             return
         }
@@ -181,6 +194,15 @@ class BricksetServices {
             }
         }
         request.responseXMLDocument(completionHandler: requestCompletion)
+    }
+    
+    func logout(_ completion: @escaping () -> Void) {
+        let keychain = Keychain(service: keychainServiceName)
+        if let username = UserDefaults.standard.value(forKey: userNameKey) as? String, keychain[username] != nil {
+            keychain[username] = nil
+            UserDefaults.standard.removeObject(forKey: userNameKey)
+        }
+        completion()
     }
     
     //--------------------------------------------------------------------------
@@ -679,19 +701,19 @@ class BricksetServices {
         })
     }
 
-    fileprivate func defaultParameters() -> Parameters {
-        return ["apiKey": Constants.Brickset.apiKey]
-    }
-
     //--------------------------------------------------------------------------
     // MARK: - Private
     //--------------------------------------------------------------------------
 
+    fileprivate func defaultParameters() -> Parameters {
+        return ["apiKey": Constants.Brickset.apiKey]
+    }
+    
     fileprivate func userParameters() -> Parameters {
         var parameters = defaultParameters()
 
-        let keychain = Keychain(service: BricksetServices.serviceName)
-        if let username = UserDefaults.standard.value(forKey: "username") as? String, let userHash = keychain[username] {
+        let keychain = Keychain(service: keychainServiceName)
+        if let username = UserDefaults.standard.value(forKey: userNameKey) as? String, let userHash = keychain[username] {
             parameters["userHash"] = userHash
         }
         else {

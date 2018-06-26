@@ -14,23 +14,23 @@ struct Constants {
     
     struct Brickset {
         static let url = "https://brickset.com"
-        static let apiKey = "<brickset-api-key>"
         static let signupURL = "https://brickset.com/signup"
+        static let apiKey = "PJ6U-J8Ob-GG1k"
     }
     
     struct Rebrickable {
         static let url = "https://rebrickable.com"
-        static let apiKey = "<rebrickable-api-key>"
+        static let apiKey = "7ee6c70b29646296c7d4778cabb4d476"
     }
     
     struct GoogleMobileAds {
-        static let appId = "<admob-app-id>"
+        static let appId = "ca-app-pub-2158913963073917~7545030919"
         
         struct AdUnits {
 #if DEBUG
             static let browseThemes = "ca-app-pub-3940256099942544/2934735716" // Test Banner Ad ID
 #else
-            static let browseThemes = "<admob-banner-id>" // Production Banner Ad ID
+            static let browseThemes = "ca-app-pub-2158913963073917/8970503662" // Production Banner Ad ID
 #endif
         }
         
