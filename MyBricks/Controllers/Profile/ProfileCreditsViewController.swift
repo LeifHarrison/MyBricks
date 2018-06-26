@@ -46,6 +46,12 @@ class ProfileCreditsViewController: UIViewController {
         }
     }
     
+    @IBAction func goToAlamofireRSSParser(_ sender: AnyObject?) {
+        if let url = URL(string: Constants.AlamofireRSSParser.url) {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        }
+    }
+    
     @IBAction func goToCosmos(_ sender: AnyObject?) {
         if let url = URL(string: Constants.Cosmos.url) {
             UIApplication.shared.open(url, options: [:], completionHandler: nil)

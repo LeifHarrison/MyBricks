@@ -119,7 +119,7 @@ class BricksetServices: AuthenticatedServiceAPI {
     }
     
     var logoImage: UIImage? {
-        return #imageLiteral(resourceName: "brickset_logo")
+        return #imageLiteral(resourceName: "logo_brickset")
     }
     
     // Log in as a user and retrieve a token that can be used in subsequent API calls.

@@ -212,7 +212,7 @@ Search by scanning a barcode</string>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="juK-NZ-bNN">
                                 <rect key="frame" x="330" y="35" width="30" height="30"/>
-                                <state key="normal" image="close"/>
+                                <state key="normal" image="closeScan"/>
                                 <connections>
                                     <action selector="cancel:" destination="1ar-8a-lmi" eventType="touchUpInside" id="621-s7-xPp"/>
                                 </connections>
@@ -318,7 +318,7 @@ Search by scanning a barcode</string>
         </scene>
     </scenes>
     <resources>
-        <image name="close" width="30" height="30"/>
+        <image name="closeScan" width="30" height="30"/>
         <image name="flashOff" width="30" height="30"/>
         <image name="flashOn" width="30" height="30"/>
         <image name="scan" width="25" height="26"/>

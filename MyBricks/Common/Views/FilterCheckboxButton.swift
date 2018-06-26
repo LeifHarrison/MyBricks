@@ -15,13 +15,13 @@ class FilterCheckboxButton: UIButton {
     // MARK: - Initialization
     //--------------------------------------------------------------------------
     
-    required public init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         commitInit()
     }
     
-    public init(title: String) {
-        super.init(frame: CGRect.zero)
+    required public init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
         commitInit()
     }
     
@@ -38,10 +38,10 @@ class FilterCheckboxButton: UIButton {
         titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .regular)
         
         setTitleColor(UIColor.slateBlue, for: .normal)
-        setImage(#imageLiteral(resourceName: "checkboxEmpty"), for: .normal)
+        setImage(UIImage(named:"checkboxEmpty"), for: .normal)
         
         setTitleColor(UIColor.lightNavy, for: .selected)
-        setImage(#imageLiteral(resourceName: "checkboxFull"), for: .selected)
+        setImage(UIImage(named:"checkboxFull"), for: .selected)
     }
 
 }

@@ -25,7 +25,6 @@ class ProfileLoginViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        loginButton.applyDefaultStyle()
         activityIndicatorView.style = .large
         activityIndicatorView.tintColor = UIColor.lightBlueGrey
     }

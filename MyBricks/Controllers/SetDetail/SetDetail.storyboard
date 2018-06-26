@@ -158,8 +158,8 @@
                                 </connections>
                             </collectionView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VvU-81-NSJ">
-                                <rect key="frame" x="314" y="40" width="41" height="41"/>
-                                <state key="normal" image="cancel"/>
+                                <rect key="frame" x="333" y="40" width="22" height="22"/>
+                                <state key="normal" image="close"/>
                                 <connections>
                                     <action selector="close:" destination="1at-vt-0qm" eventType="touchUpInside" id="4DX-TH-BfG"/>
                                 </connections>
@@ -723,15 +723,12 @@
         </scene>
     </scenes>
     <resources>
-        <image name="cancel" width="41" height="41"/>
         <image name="checkboxEmpty" width="24" height="25"/>
         <image name="checkboxFull" width="24" height="25"/>
+        <image name="close" width="22" height="22"/>
         <image name="documentDownload" width="22" height="20"/>
         <namedColor name="cloudyBlue">
             <color red="0.6940000057220459" green="0.76499998569488525" blue="0.83099997043609619" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="lightNavy">
-            <color red="0.086000002920627594" green="0.25099998712539673" blue="0.44299998879432678" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="lightNavy">
             <color red="0.086000002920627594" green="0.25099998712539673" blue="0.44299998879432678" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
