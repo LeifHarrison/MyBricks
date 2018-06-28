@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="DownloadedInstructionsTableViewCell" customModule="MyBricks" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="410" height="60"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="410" height="59.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="File Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qLi-n1-HVI">
+                        <rect key="frame" x="15" y="10" width="333.5" height="21.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                        <color key="textColor" name="lightNavy"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Set Number / Set Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e4f-KA-zbZ">
+                        <rect key="frame" x="15" y="32.5" width="333.5" height="17"/>
+                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
+                        <color key="textColor" name="lightNavy"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="252" text="Size" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8eO-WM-R8e">
+                        <rect key="frame" x="363.5" y="20" width="31.5" height="19.5"/>
+                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                        <color key="textColor" name="lightNavy"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="8eO-WM-R8e" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="2O2-NR-sKK"/>
+                    <constraint firstItem="qLi-n1-HVI" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="4H3-4T-6E5"/>
+                    <constraint firstItem="8eO-WM-R8e" firstAttribute="leading" secondItem="e4f-KA-zbZ" secondAttribute="trailing" constant="15" id="58D-oV-cwi"/>
+                    <constraint firstAttribute="trailing" secondItem="8eO-WM-R8e" secondAttribute="trailing" constant="15" id="Y0h-mD-oWE"/>
+                    <constraint firstItem="e4f-KA-zbZ" firstAttribute="top" secondItem="qLi-n1-HVI" secondAttribute="baseline" constant="6" id="aCo-h7-qV6"/>
+                    <constraint firstItem="e4f-KA-zbZ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="fvK-ye-vBo"/>
+                    <constraint firstItem="qLi-n1-HVI" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="jDa-xI-gxI"/>
+                    <constraint firstItem="8eO-WM-R8e" firstAttribute="leading" secondItem="qLi-n1-HVI" secondAttribute="trailing" constant="15" id="kF3-2m-Pai"/>
+                    <constraint firstAttribute="bottom" secondItem="e4f-KA-zbZ" secondAttribute="bottom" constant="10" id="tNw-dK-JkI"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="filenameLabel" destination="qLi-n1-HVI" id="Lwf-Pj-4yo"/>
+                <outlet property="setInfoLabel" destination="e4f-KA-zbZ" id="hSg-Me-7XD"/>
+                <outlet property="sizeLabel" destination="8eO-WM-R8e" id="d9L-Ab-Lha"/>
+            </connections>
+            <point key="canvasLocation" x="71" y="57.5"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <namedColor name="lightNavy">
+            <color red="0.086000002919999999" green="0.25099998709999999" blue="0.44299998880000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="lightNavy">
+            <color red="0.086000002919999999" green="0.25099998709999999" blue="0.44299998880000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

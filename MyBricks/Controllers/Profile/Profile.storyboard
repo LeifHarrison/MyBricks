@@ -61,6 +61,7 @@
                         <segue destination="ogy-Zb-3z4" kind="show" identifier="showCreditsView" id="I6f-em-ldE"/>
                         <segue destination="fqR-gw-rgf" kind="show" identifier="showDonateView" id="y7A-4D-QIi"/>
                         <segue destination="O9G-Lp-Whx" kind="show" identifier="showLegalView" id="niD-qf-Xz4"/>
+                        <segue destination="Aoo-hw-1mt" kind="show" identifier="showDownloadedInstructionsView" id="O2V-vu-z1A"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O24-fv-G8Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -444,6 +445,40 @@
             </objects>
             <point key="canvasLocation" x="3169" y="3366"/>
         </scene>
+        <!--Downloaded Instructions-->
+        <scene sceneID="TB7-bi-GAV">
+            <objects>
+                <viewController title="Downloaded Instructions" id="Aoo-hw-1mt" customClass="ProfileInstructionsViewController" customModule="MyBricks" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="4Mn-RW-7R9">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="EDa-A4-ByF">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="Aoo-hw-1mt" id="l1m-Js-3z1"/>
+                                    <outlet property="delegate" destination="Aoo-hw-1mt" id="Lbi-GH-HkN"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" name="cloudyBlue"/>
+                        <constraints>
+                            <constraint firstItem="VRr-GR-fRf" firstAttribute="trailing" secondItem="EDa-A4-ByF" secondAttribute="trailing" id="0Na-Vb-hqS"/>
+                            <constraint firstItem="EDa-A4-ByF" firstAttribute="leading" secondItem="VRr-GR-fRf" secondAttribute="leading" id="GEQ-Ql-KqA"/>
+                            <constraint firstItem="VRr-GR-fRf" firstAttribute="bottom" secondItem="EDa-A4-ByF" secondAttribute="bottom" id="bXE-6L-eOL"/>
+                            <constraint firstItem="EDa-A4-ByF" firstAttribute="top" secondItem="VRr-GR-fRf" secondAttribute="top" id="z6L-Ff-wvu"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="VRr-GR-fRf"/>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="EDa-A4-ByF" id="Rl0-wu-3Xm"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9vZ-e2-zrc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3974" y="3366"/>
+        </scene>
         <!--Login View-->
         <scene sceneID="zNM-DN-9lF">
             <objects>
@@ -554,6 +589,9 @@
         <image name="about_right" width="146" height="232"/>
         <image name="logo_brickset" width="274" height="97"/>
         <image name="profile" width="24" height="24"/>
+        <namedColor name="cloudyBlue">
+            <color red="0.6940000057220459" green="0.76499998569488525" blue="0.83099997043609619" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="cloudyBlue">
             <color red="0.69400000569999998" green="0.76499998570000005" blue="0.83099997039999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

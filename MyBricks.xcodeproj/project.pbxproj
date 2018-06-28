@@ -81,6 +81,12 @@
 		9B2804CF2023CE970026FC73 /* SetImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2804CE2023CE970026FC73 /* SetImage.swift */; };
 		9B3E1EEC202A690D0094DD3E /* SetDetailFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3E1EEB202A690D0094DD3E /* SetDetailFooterView.swift */; };
 		9B42C15E208FE7AA00260B0F /* SetPriceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B42C15D208FE7AA00260B0F /* SetPriceTableViewCell.xib */; };
+		9B465AA120E2E03A00A9AD9F /* DownloadedInstructions+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B465A9F20E2E03900A9AD9F /* DownloadedInstructions+CoreDataClass.swift */; };
+		9B465AA220E2E03A00A9AD9F /* DownloadedInstructions+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B465AA020E2E03900A9AD9F /* DownloadedInstructions+CoreDataProperties.swift */; };
+		9B465AA420E2EE7C00A9AD9F /* ProfileInstructionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B465AA320E2EE7C00A9AD9F /* ProfileInstructionsViewController.swift */; };
+		9B465AA720E2F52B00A9AD9F /* DownloadedInstructionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B465AA520E2F52B00A9AD9F /* DownloadedInstructionsTableViewCell.swift */; };
+		9B465AA820E2F52B00A9AD9F /* DownloadedInstructionsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B465AA620E2F52B00A9AD9F /* DownloadedInstructionsTableViewCell.xib */; };
+		9B465AAA20E2F87500A9AD9F /* Formatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B465AA920E2F87500A9AD9F /* Formatters.swift */; };
 		9B48CBF22045E3270074908B /* SetInstructionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B48CBF02045E3270074908B /* SetInstructionsTableViewCell.swift */; };
 		9B48CBF32045E3270074908B /* SetInstructionsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B48CBF12045E3270074908B /* SetInstructionsTableViewCell.xib */; };
 		9B4B4C4E203CD2630026B3AC /* ActivityOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4B4C4D203CD2630026B3AC /* ActivityOverlayView.swift */; };
@@ -127,6 +133,7 @@
 		9B92EFAC201FE06D007610BD /* FilterSelectThemeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B92EFAB201FE06D007610BD /* FilterSelectThemeTableViewController.swift */; };
 		9B92EFAE201FE084007610BD /* FilterSelectSubthemeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B92EFAD201FE084007610BD /* FilterSelectSubthemeViewController.swift */; };
 		9B92EFB0201FE09D007610BD /* FilterSelectYearViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B92EFAF201FE09D007610BD /* FilterSelectYearViewController.swift */; };
+		9B95E6E020E5574C001E5655 /* InstructionsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B95E6DF20E5574C001E5655 /* InstructionsTableViewCell.xib */; };
 		9BAE69AB20D058EE009EBC9B /* ActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BAE69AA20D058EE009EBC9B /* ActivityIndicatorView.swift */; };
 		9BB4710F20910523006DBB06 /* SetDescriptionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9BB4710E20910523006DBB06 /* SetDescriptionTableViewCell.xib */; };
 		9BC7A64420AB94890095DF65 /* SetImagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC7A64320AB94890095DF65 /* SetImagesViewController.swift */; };
@@ -263,6 +270,12 @@
 		9B2804CE2023CE970026FC73 /* SetImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetImage.swift; sourceTree = "<group>"; };
 		9B3E1EEB202A690D0094DD3E /* SetDetailFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetDetailFooterView.swift; sourceTree = "<group>"; };
 		9B42C15D208FE7AA00260B0F /* SetPriceTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SetPriceTableViewCell.xib; sourceTree = "<group>"; };
+		9B465A9F20E2E03900A9AD9F /* DownloadedInstructions+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DownloadedInstructions+CoreDataClass.swift"; sourceTree = "<group>"; };
+		9B465AA020E2E03900A9AD9F /* DownloadedInstructions+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DownloadedInstructions+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		9B465AA320E2EE7C00A9AD9F /* ProfileInstructionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInstructionsViewController.swift; sourceTree = "<group>"; };
+		9B465AA520E2F52B00A9AD9F /* DownloadedInstructionsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadedInstructionsTableViewCell.swift; sourceTree = "<group>"; };
+		9B465AA620E2F52B00A9AD9F /* DownloadedInstructionsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DownloadedInstructionsTableViewCell.xib; sourceTree = "<group>"; };
+		9B465AA920E2F87500A9AD9F /* Formatters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Formatters.swift; sourceTree = "<group>"; };
 		9B48CBF02045E3270074908B /* SetInstructionsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetInstructionsTableViewCell.swift; sourceTree = "<group>"; };
 		9B48CBF12045E3270074908B /* SetInstructionsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SetInstructionsTableViewCell.xib; sourceTree = "<group>"; };
 		9B4B4C4D203CD2630026B3AC /* ActivityOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityOverlayView.swift; sourceTree = "<group>"; };
@@ -309,6 +322,7 @@
 		9B92EFAB201FE06D007610BD /* FilterSelectThemeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterSelectThemeTableViewController.swift; sourceTree = "<group>"; };
 		9B92EFAD201FE084007610BD /* FilterSelectSubthemeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterSelectSubthemeViewController.swift; sourceTree = "<group>"; };
 		9B92EFAF201FE09D007610BD /* FilterSelectYearViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterSelectYearViewController.swift; sourceTree = "<group>"; };
+		9B95E6DF20E5574C001E5655 /* InstructionsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InstructionsTableViewCell.xib; sourceTree = "<group>"; };
 		9BAE69AA20D058EE009EBC9B /* ActivityIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorView.swift; sourceTree = "<group>"; };
 		9BB4710E20910523006DBB06 /* SetDescriptionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SetDescriptionTableViewCell.xib; sourceTree = "<group>"; };
 		9BC7A64320AB94890095DF65 /* SetImagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetImagesViewController.swift; sourceTree = "<group>"; };
@@ -377,6 +391,7 @@
 				290F179E1FD8D3880002C70B /* Views */,
 				295ADFBC1F16AFFC002E6802 /* AppDelegate.swift */,
 				9B4C25B820CED7BA00116C82 /* Constants.swift */,
+				9B465AA920E2F87500A9AD9F /* Formatters.swift */,
 				29EE120D202B698A00C05C55 /* SafariActivity.swift */,
 			);
 			path = Common;
@@ -442,6 +457,7 @@
 				9BD89EF720C0A5E7007E9A23 /* ProfileAboutViewController.swift */,
 				9BD89EF920C0A609007E9A23 /* ProfileCreditsViewController.swift */,
 				9B64EB7420C59E68001D05CD /* ProfileDonateViewController.swift */,
+				9B465AA320E2EE7C00A9AD9F /* ProfileInstructionsViewController.swift */,
 				9B64EB7620C59E77001D05CD /* ProfileLegalViewController.swift */,
 				29365B7B1F8EDAA500F6730C /* ProfileLoginViewController.swift */,
 				29365B781F8EBF3B00F6730C /* ProfileViewController.swift */,
@@ -472,6 +488,8 @@
 		2940FD7F1FD4EADF00F860F3 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
+				9B465A9F20E2E03900A9AD9F /* DownloadedInstructions+CoreDataClass.swift */,
+				9B465AA020E2E03900A9AD9F /* DownloadedInstructions+CoreDataProperties.swift */,
 				2940FD811FD4EAF400F860F3 /* SearchHistoryItem+CoreDataClass.swift */,
 				2940FD801FD4EAF400F860F3 /* SearchHistoryItem+CoreDataProperties.swift */,
 			);
@@ -683,10 +701,12 @@
 			children = (
 				9B63D28B202CFCE400E1C3B0 /* BricksetCollectionTableViewCell.swift */,
 				9B63D28C202CFCE400E1C3B0 /* BricksetCollectionTableViewCell.xib */,
-				9B63D287202CFCB900E1C3B0 /* ProfileLoginTableViewCell.swift */,
-				9B63D288202CFCB900E1C3B0 /* ProfileLoginTableViewCell.xib */,
+				9B465AA520E2F52B00A9AD9F /* DownloadedInstructionsTableViewCell.swift */,
+				9B465AA620E2F52B00A9AD9F /* DownloadedInstructionsTableViewCell.xib */,
 				9BD89EF320C09E27007E9A23 /* ProfileGeneralTableViewCell.swift */,
 				9BD89EF420C09E27007E9A23 /* ProfileGeneralTableViewCell.xib */,
+				9B63D287202CFCB900E1C3B0 /* ProfileLoginTableViewCell.swift */,
+				9B63D288202CFCB900E1C3B0 /* ProfileLoginTableViewCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -730,6 +750,7 @@
 			isa = PBXGroup;
 			children = (
 				29C111A81FCA411B007CBDB4 /* InstructionsTableViewCell.swift */,
+				9B95E6DF20E5574C001E5655 /* InstructionsTableViewCell.xib */,
 				29D30CA41FDE1A690076DB85 /* PartsListTableViewCell.swift */,
 				9B0041CA209B6F9D00569FD1 /* PartsListTableViewCell.xib */,
 				9BE7838F2048744500FD078E /* PriceDetailTableViewCell.swift */,
@@ -929,6 +950,7 @@
 				9B5B4A53204DDBEA00F2324C /* PriceGuideTableViewCell.xib in Resources */,
 				9B63D285202CEDFB00E1C3B0 /* SetCollectionTableViewCell.xib in Resources */,
 				9B63D27E202CDCD800E1C3B0 /* SetDetailTableViewCell.xib in Resources */,
+				9B465AA820E2F52B00A9AD9F /* DownloadedInstructionsTableViewCell.xib in Resources */,
 				9B63D280202CDD7900E1C3B0 /* SetPartsTableViewCell.xib in Resources */,
 				9BFFDEA92020E3C90070C812 /* Filter.storyboard in Resources */,
 				2964609F1FA907FC004850F8 /* NewsItemTableViewCell.xib in Resources */,
@@ -949,6 +971,7 @@
 				295ADFC61F16AFFD002E6802 /* Assets.xcassets in Resources */,
 				9B48CBF32045E3270074908B /* SetInstructionsTableViewCell.xib in Resources */,
 				9B8C323420AE2702006E48A5 /* ZoomImageCollectionViewCell.xib in Resources */,
+				9B95E6E020E5574C001E5655 /* InstructionsTableViewCell.xib in Resources */,
 				295ADFC41F16AFFD002E6802 /* Main.storyboard in Resources */,
 				291AC5EE1FAF6FAC000DC9DD /* Profile.storyboard in Resources */,
 			);
@@ -1059,6 +1082,7 @@
 			files = (
 				9BAE69AB20D058EE009EBC9B /* ActivityIndicatorView.swift in Sources */,
 				9B63D289202CFCB900E1C3B0 /* ProfileLoginTableViewCell.swift in Sources */,
+				9B465AA120E2E03A00A9AD9F /* DownloadedInstructions+CoreDataClass.swift in Sources */,
 				29365B7C1F8EDAA500F6730C /* ProfileLoginViewController.swift in Sources */,
 				9B64EB7720C59E77001D05CD /* ProfileLegalViewController.swift in Sources */,
 				292F4F571F193092006D5F5B /* BricksetServices.swift in Sources */,
@@ -1069,6 +1093,7 @@
 				9BD89EF520C09E27007E9A23 /* ProfileGeneralTableViewCell.swift in Sources */,
 				29C111A51FC48988007CBDB4 /* ReviewDetailAnimator.swift in Sources */,
 				2949A9531FBFDAED00676D59 /* SetReview.swift in Sources */,
+				9B465AA720E2F52B00A9AD9F /* DownloadedInstructionsTableViewCell.swift in Sources */,
 				291DEE9D1FE27604004906E4 /* UIResponder+Extensions.swift in Sources */,
 				9B58D93420AB50CF00F6E92A /* FilterCheckboxButton.swift in Sources */,
 				29365B771F8EBF2A00F6730C /* NewsViewController.swift in Sources */,
@@ -1087,6 +1112,7 @@
 				295ADFC11F16AFFD002E6802 /* SearchViewController.swift in Sources */,
 				2940FD821FD4EAF400F860F3 /* SearchHistoryItem+CoreDataProperties.swift in Sources */,
 				9BE7838E20486EED00FD078E /* PriceDetailViewController.swift in Sources */,
+				9B465AAA20E2F87500A9AD9F /* Formatters.swift in Sources */,
 				9BC7A64420AB94890095DF65 /* SetImagesViewController.swift in Sources */,
 				9B5E4D37203352250057610E /* UITableView+Extensions.swift in Sources */,
 				9BD89EFA20C0A609007E9A23 /* ProfileCreditsViewController.swift in Sources */,
@@ -1105,6 +1131,7 @@
 				293C9A701FD496BB0058DA59 /* DataManager.swift in Sources */,
 				29365B751F8EBF1C00F6730C /* MySetsViewController.swift in Sources */,
 				9BE783922048745500FD078E /* PriceGuideTableViewCell.swift in Sources */,
+				9B465AA220E2E03A00A9AD9F /* DownloadedInstructions+CoreDataProperties.swift in Sources */,
 				297476EE1F1D3DC600FC354B /* SetTheme.swift in Sources */,
 				9BE783902048744500FD078E /* PriceDetailTableViewCell.swift in Sources */,
 				2973B5781F96834D002CD0DA /* UserPofile.swift in Sources */,
@@ -1145,6 +1172,7 @@
 				2949A9551FBFE05E00676D59 /* SetReviewTableViewCell.swift in Sources */,
 				9B92A916202E4BE8001E7AC9 /* TagView.swift in Sources */,
 				9B3E1EEC202A690D0094DD3E /* SetDetailFooterView.swift in Sources */,
+				9B465AA420E2EE7C00A9AD9F /* ProfileInstructionsViewController.swift in Sources */,
 				9B64EB7520C59E68001D05CD /* ProfileDonateViewController.swift in Sources */,
 				29365B791F8EBF3B00F6730C /* ProfileViewController.swift in Sources */,
 				295ADFBF1F16AFFD002E6802 /* BrowseThemesViewController.swift in Sources */,

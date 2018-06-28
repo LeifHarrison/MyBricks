@@ -1,11 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13772" systemVersion="17B1003" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14135" systemVersion="17F77" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="DownloadedInstructions" representedClassName="DownloadedInstructions" syncable="YES">
+        <attribute name="creationDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="fileDescription" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="fileName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="fileSize" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="setName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="setNumber" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <entity name="SearchHistoryItem" representedClassName="SearchHistoryItem" syncable="YES">
         <attribute name="searchDate" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="searchTerm" attributeType="String" syncable="YES"/>
         <attribute name="searchTypeValue" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
     </entity>
     <elements>
+        <element name="DownloadedInstructions" positionX="88" positionY="-18" width="128" height="135"/>
         <element name="SearchHistoryItem" positionX="-63" positionY="-18" width="128" height="90"/>
     </elements>
 </model>

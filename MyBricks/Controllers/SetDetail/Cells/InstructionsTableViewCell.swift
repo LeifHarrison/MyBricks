@@ -8,7 +8,7 @@
 
 import UIKit
 
-class InstructionsTableViewCell: BorderedGradientTableViewCell {
+class InstructionsTableViewCell: BorderedGradientTableViewCell, NibLoadableView, ReusableView {
 
     @IBOutlet weak var filenameLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
@@ -52,5 +52,15 @@ class InstructionsTableViewCell: BorderedGradientTableViewCell {
     //--------------------------------------------------------------------------
 
     func populate(with instructions: SetInstructions) {
+        if let urlString = instructions.fileURL, let url = URL(string: urlString) {
+            filenameLabel.text = url.lastPathComponent
+            if let destination = instructions.destinationURL, FileManager.default.fileExists(atPath: destination.path) {
+                previewButton.imageView?.image = #imageLiteral(resourceName: "documentView")
+            }
+            else {
+                previewButton.imageView?.image = #imageLiteral(resourceName: "documentDownload")
+            }
+        }
+        titleLabel.text = instructions.fileDescription
     }
 }

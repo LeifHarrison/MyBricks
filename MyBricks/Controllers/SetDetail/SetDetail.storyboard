@@ -200,66 +200,6 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="61" sectionHeaderHeight="35" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="8q8-Ao-q2x">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <color key="backgroundColor" name="cloudyBlue"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="InstructionsTableViewCell" rowHeight="63" id="lnO-Pj-ndv" customClass="InstructionsTableViewCell" customModule="MyBricks" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="35" width="375" height="63"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="lnO-Pj-ndv" id="r2y-Uo-Ye1">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="62.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iNm-Ls-ClR">
-                                                    <rect key="frame" x="15" y="10" width="308" height="24"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                    <color key="textColor" name="lightNavy"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fad-42-wyV">
-                                                    <rect key="frame" x="15" y="35.5" width="308" height="17"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
-                                                    <color key="textColor" name="lightNavy"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" verticalHuggingPriority="252" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T7i-UA-5e2">
-                                                    <rect key="frame" x="338" y="20" width="22" height="22"/>
-                                                    <color key="tintColor" name="lightNavy"/>
-                                                    <state key="normal" image="documentDownload"/>
-                                                    <connections>
-                                                        <action selector="previewButtonTapped:" destination="lnO-Pj-ndv" eventType="touchUpInside" id="3RK-Ji-yj9"/>
-                                                    </connections>
-                                                </button>
-                                                <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progressViewStyle="bar" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Hd6-VH-cLc">
-                                                    <rect key="frame" x="0.0" y="58.5" width="375" height="5"/>
-                                                    <color key="tintColor" name="lightNavy"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="4" id="g9u-fD-z7s"/>
-                                                    </constraints>
-                                                    <color key="progressTintColor" name="lightNavy"/>
-                                                </progressView>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="T7i-UA-5e2" secondAttribute="trailing" constant="15" id="1Sb-et-sLQ"/>
-                                                <constraint firstItem="fad-42-wyV" firstAttribute="top" secondItem="iNm-Ls-ClR" secondAttribute="baseline" constant="6" id="2Oq-U9-la1"/>
-                                                <constraint firstItem="fad-42-wyV" firstAttribute="leading" secondItem="r2y-Uo-Ye1" secondAttribute="leading" constant="15" id="3AQ-HY-unq"/>
-                                                <constraint firstAttribute="bottom" secondItem="Hd6-VH-cLc" secondAttribute="bottom" id="Llc-gq-ew2"/>
-                                                <constraint firstItem="iNm-Ls-ClR" firstAttribute="top" secondItem="r2y-Uo-Ye1" secondAttribute="top" constant="10" id="RlD-Vs-GtP"/>
-                                                <constraint firstItem="T7i-UA-5e2" firstAttribute="centerY" secondItem="r2y-Uo-Ye1" secondAttribute="centerY" id="S7R-8d-KKI"/>
-                                                <constraint firstItem="T7i-UA-5e2" firstAttribute="leading" secondItem="iNm-Ls-ClR" secondAttribute="trailing" constant="15" id="XP8-d9-HBN"/>
-                                                <constraint firstAttribute="trailing" secondItem="Hd6-VH-cLc" secondAttribute="trailing" id="cvA-sJ-2LI"/>
-                                                <constraint firstItem="iNm-Ls-ClR" firstAttribute="leading" secondItem="r2y-Uo-Ye1" secondAttribute="leading" constant="15" id="fYM-Ef-Kp6"/>
-                                                <constraint firstItem="T7i-UA-5e2" firstAttribute="leading" secondItem="fad-42-wyV" secondAttribute="trailing" constant="15" id="ggt-8y-rwd"/>
-                                                <constraint firstItem="Hd6-VH-cLc" firstAttribute="leading" secondItem="r2y-Uo-Ye1" secondAttribute="leading" id="pzg-qV-b8F"/>
-                                                <constraint firstAttribute="bottom" secondItem="fad-42-wyV" secondAttribute="bottom" constant="10" id="zkE-a8-MBe"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="filenameLabel" destination="iNm-Ls-ClR" id="YPF-D5-5Hk"/>
-                                            <outlet property="previewButton" destination="T7i-UA-5e2" id="zuN-XY-M9b"/>
-                                            <outlet property="progressView" destination="Hd6-VH-cLc" id="uQZ-7d-kW9"/>
-                                            <outlet property="titleLabel" destination="fad-42-wyV" id="k72-Q2-kFv"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="r15-l5-xF4" id="0yy-an-mkL"/>
                                     <outlet property="delegate" destination="r15-l5-xF4" id="eid-PV-TZS"/>
@@ -726,7 +666,6 @@
         <image name="checkboxEmpty" width="24" height="25"/>
         <image name="checkboxFull" width="24" height="25"/>
         <image name="close" width="22" height="22"/>
-        <image name="documentDownload" width="22" height="20"/>
         <namedColor name="cloudyBlue">
             <color red="0.6940000057220459" green="0.76499998569488525" blue="0.83099997043609619" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

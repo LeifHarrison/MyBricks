@@ -209,7 +209,6 @@ class SearchViewController: UIViewController {
             }
         }
         container.performBackgroundTask(saveBlock)
-    
     }
     
     private func updateSearchHistory() {

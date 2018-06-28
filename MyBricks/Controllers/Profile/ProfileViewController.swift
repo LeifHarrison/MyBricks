@@ -8,6 +8,7 @@
 
 import UIKit
 
+import CoreData
 import KeychainAccess
 import LocalAuthentication
 
@@ -18,6 +19,7 @@ class ProfileViewController: UIViewController {
     enum TableSection: Int {
         case brickset
         case rebrickable
+        case instructions
         case general
     }
     
@@ -120,11 +122,25 @@ class ProfileViewController: UIViewController {
 //            rebrickableRows.append(.collection)
 //        }
         
+        // Only show Downloaded Instructions if we have actually downloaded instructions
+        let context = DataManager.shared.persistentContainer.viewContext
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "DownloadedInstructions")
+        do {
+            let instructionCount = try context.count(for: request)
+            if instructionCount > 0 {
+                sections.append(.instructions)
+            }
+        }
+        catch {
+            // Do Nothing
+        }
+        
         sections.append(.general)
         generalRows.append(.about)
         generalRows.append(.credits)
         generalRows.append(.donate)
         generalRows.append(.legal)
+        
         tableView.reloadData()
     }
 
@@ -275,6 +291,9 @@ extension ProfileViewController: UITableViewDataSource {
         else if section == .rebrickable {
             return rebrickableRows.count
         }
+        else if section == .instructions {
+            return 1
+        }
         else if section == .general {
             return generalRows.count
         }
@@ -321,7 +340,7 @@ extension ProfileViewController: UITableViewDataSource {
                 return cell
             }
         }
-        if section == .rebrickable {
+        else if section == .rebrickable {
             let row = rebrickableRows[indexPath.row]
             if row == .profile {
                 let cell: ProfileLoginTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
@@ -357,6 +376,11 @@ extension ProfileViewController: UITableViewDataSource {
                 return cell
             }
         }
+        else if section == .instructions {
+            let cell: ProfileGeneralTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
+            cell.titleLabel.text = NSLocalizedString("Downloaded Instructions", comment: "")
+            return cell
+        }
         else if section == .general {
             let cell: ProfileGeneralTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
             let row = generalRows[indexPath.row]
@@ -377,7 +401,10 @@ extension ProfileViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let section = sections[indexPath.section]
-        if section == .general {
+        if section == .instructions {
+            performSegue(withIdentifier: "showDownloadedInstructionsView", sender: self)
+        }
+        else if section == .general {
             let row = generalRows[indexPath.row]
             switch row {
             case .about:

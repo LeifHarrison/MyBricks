@@ -7,7 +7,9 @@
 //
 
 import UIKit
+
 import Alamofire
+import CoreData
 
 class InstructionsViewController: UIViewController {
 
@@ -25,6 +27,12 @@ class InstructionsViewController: UIViewController {
         setupTableView()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if instructions.count > 0 {
+            tableView.reloadData()
+        }
+    }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if instructions.count == 0 {
@@ -37,6 +45,7 @@ class InstructionsViewController: UIViewController {
     //--------------------------------------------------------------------------
     
     private func setupTableView() {
+        tableView.register(InstructionsTableViewCell.self)
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.tableFooterView = UIView()
     }
@@ -69,7 +78,7 @@ class InstructionsViewController: UIViewController {
     }
 
     private func downloadInstructions(_ instructions: SetInstructions, fromCell cell: InstructionsTableViewCell) {
-        guard let urlString = instructions.url, let url = URL(string: urlString) else {
+        guard let urlString = instructions.fileURL, let url = URL(string: urlString) else {
             return
         }
         
@@ -79,7 +88,7 @@ class InstructionsViewController: UIViewController {
         }
         
         let destination = DownloadRequest.suggestedDownloadDestination()
-        if let urlString = instructions.url {
+        if let urlString = instructions.fileURL {
             showProgressView(forCell: cell)
             Alamofire.download(urlString, to: destination)
                 .downloadProgress { (progress) in
@@ -87,8 +96,9 @@ class InstructionsViewController: UIViewController {
                 }
                 .validate()
                 .responseData { ( response ) in
-                    NSLog("destinationURL: \(String(describing: response.destinationURL))")
                     if let destinationURL = response.destinationURL {
+                        //NSLog("destinationURL: \(String(describing: response.destinationURL))")
+                        self.saveDownloadedInstructions(instructions, destinationURL: destinationURL)
                         self.showPreview(for: destinationURL)
                     }
             }
@@ -100,6 +110,45 @@ class InstructionsViewController: UIViewController {
         let docInteractionController = UIDocumentInteractionController(url: url)
         docInteractionController.delegate = self
         docInteractionController.presentPreview(animated: true)
+    }
+    
+    fileprivate func saveDownloadedInstructions(_ instructions: SetInstructions, destinationURL: URL) {
+        NSLog("destinationURL: \(destinationURL)")
+        var creationDate = Date()
+        var fileSize = 0
+        do {
+            let resourceValues = try destinationURL.resourceValues(forKeys: [.fileSizeKey, .creationDateKey])
+            if let date = resourceValues.creationDate {
+                creationDate = date
+            }
+            if let size = resourceValues.fileSize {
+                fileSize = size
+            }
+        }
+        catch let error {
+            NSLog("Error getting resource values: \(error)")
+        }
+        NSLog("creationDate: \(creationDate)")
+        NSLog("fileSize: \(fileSize)")
+
+        let container = DataManager.shared.persistentContainer
+        let saveBlock = { (context: NSManagedObjectContext) in
+            do {
+                let downloadedInstructions = DownloadedInstructions(context: context)
+                downloadedInstructions.creationDate = creationDate
+                downloadedInstructions.fileDescription = instructions.fileDescription
+                downloadedInstructions.fileName = destinationURL.lastPathComponent
+                downloadedInstructions.fileSize = Int64(fileSize)
+                downloadedInstructions.setName = self.currentSet?.name
+                downloadedInstructions.setNumber = self.currentSet?.fullSetNumber
+                NSLog("downloadedInstructions: \(downloadedInstructions)")
+                try context.save()
+            }
+            catch {
+                fatalError("Failed to save downloaded instructions: \(error)")
+            }
+        }
+        container.performBackgroundTask(saveBlock)
     }
     
     private func shareInstructions(_ instructions: SetInstructions) {
@@ -132,13 +181,7 @@ extension InstructionsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let instruction = instructions[indexPath.row]
         if let cell = tableView.dequeueReusableCell(withIdentifier: "InstructionsTableViewCell", for: indexPath) as? InstructionsTableViewCell {
-            if let urlString = instruction.url, let url = URL(string: urlString) {
-                cell.filenameLabel.text = url.lastPathComponent
-                if let destination = destinationURL(for: url), FileManager.default.fileExists(atPath: destination.path) {
-                    cell.previewButton.imageView?.image = #imageLiteral(resourceName: "documentView")
-                }
-            }
-            cell.titleLabel.text = instruction.description
+            cell.populate(with: instruction)
             cell.previewButtonTapped = {
                 self.downloadInstructions(instruction, fromCell: cell)
             }
@@ -158,13 +201,11 @@ extension InstructionsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if let instructionsCell = cell as? InstructionsTableViewCell {
             let instruction = instructions[indexPath.row]
-            if let urlString = instruction.url, let url = URL(string: urlString) {
-                if let destination = destinationURL(for: url), FileManager.default.fileExists(atPath: destination.path) {
-                    instructionsCell.previewButton.imageView?.image = #imageLiteral(resourceName: "documentView")
-                }
-                else {
-                    instructionsCell.previewButton.imageView?.image = #imageLiteral(resourceName: "documentDownload")
-                }
+            if let destination = instruction.destinationURL, FileManager.default.fileExists(atPath: destination.path) {
+                instructionsCell.previewButton.imageView?.image = #imageLiteral(resourceName: "documentView")
+            }
+            else {
+                instructionsCell.previewButton.imageView?.image = #imageLiteral(resourceName: "documentDownload")
             }
         }
     }
