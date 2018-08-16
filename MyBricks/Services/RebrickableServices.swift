@@ -81,7 +81,7 @@ class RebrickableServices: AuthenticatedServiceAPI {
         
         let requestCompletion: ((DataResponse<Any>) -> Void) = { response in
             guard response.result.isSuccess else {
-                print("Error while generating token: \(String(describing: response.result.error))")
+                NSLog("Error while generating token: \(String(describing: response.result.error))")
                 if let error = response.result.error {
                     completion(.failure(error))
                 }
@@ -89,7 +89,7 @@ class RebrickableServices: AuthenticatedServiceAPI {
             }
             
             guard let value = response.result.value as? [String: Any], let token = value["user_token"] as? String else {
-                print("Malformed data received from token service")
+                NSLog("Malformed data received from token service")
                 completion(.failure(ServiceError.loginFailed(reason:"Malformed data received from token service")))
                 return
             }

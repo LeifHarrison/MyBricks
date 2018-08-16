@@ -122,7 +122,6 @@ class SetDetailViewController: UIViewController {
         if BricksetServices.isLoggedIn() {
             if let owned = currentSet?.owned, !owned {
                 let action1 = UIPreviewAction(title: "I own this set", style: .default) { (_, _) in
-                    print("I own this set")
                     if var set = self.currentSet, let setID = set.setID {
                         set.owned = true
                         set.quantityOwned = set.owned ? 1 : nil
@@ -140,7 +139,6 @@ class SetDetailViewController: UIViewController {
             
             if let wanted = currentSet?.wanted, !wanted {
                 let action2 = UIPreviewAction(title: "I want this set", style: .default) { (_, _) in
-                    print("I want this set")
                     if var set = self.currentSet, let setID = set.setID {
                         set.wanted = true
                         

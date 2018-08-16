@@ -65,7 +65,7 @@ class ProfileLoginViewController: UIViewController {
                                 if let protectionSpace = api.loginProtectionSpace {
                                     URLCredentialStorage.shared.setDefaultCredential(credential, for: protectionSpace)
                                 }
-                                NSLog("Biometric authentication success!")
+                                //NSLog("Biometric authentication success!")
                                 self.dismiss(animated: true, completion: nil)
                             }
                             else {

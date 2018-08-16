@@ -36,7 +36,7 @@ class MySetsViewController: BrowseSetsViewController {
 
     @IBAction func login(_ sender: AnyObject?) {
         if let protectionSpace = BricksetServices.shared.loginProtectionSpace, let credential = URLCredentialStorage.shared.defaultCredential(for: protectionSpace) {
-            NSLog("Credential: \(credential), password: \(String(describing: credential.password))")
+            //NSLog("Credential: \(credential), password: \(String(describing: credential.password))")
             evaluateBiometricAuthentication(credential: credential, completion: { (result) in
                 if result {
                     self.updateDisplay()

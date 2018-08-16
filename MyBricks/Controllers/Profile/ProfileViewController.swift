@@ -200,7 +200,7 @@ class ProfileViewController: UIViewController {
     
     fileprivate func hasDefaultCredentials(for serviceAPI: AuthenticatedServiceAPI) -> Bool {
         if let protectionSpace = serviceAPI.loginProtectionSpace {
-            NSLog("protectionSpace = \(protectionSpace)")
+            //NSLog("protectionSpace = \(protectionSpace)")
             if URLCredentialStorage.shared.defaultCredential(for: protectionSpace) != nil {
                 return true
             }
