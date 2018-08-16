@@ -97,9 +97,12 @@ class InstructionsViewController: UIViewController {
                 .validate()
                 .responseData { ( response ) in
                     if let destinationURL = response.destinationURL {
-                        //NSLog("destinationURL: \(String(describing: response.destinationURL))")
+                        NSLog("destinationURL: \(destinationURL)")
                         self.saveDownloadedInstructions(instructions, destinationURL: destinationURL)
-                        self.showPreview(for: destinationURL)
+                        NSLog("presentedViewController: \(String(describing: self.presentedViewController))")
+                        if self.presentedViewController == nil {
+                            self.showPreview(for: destinationURL)
+                        }
                     }
             }
         }
@@ -113,7 +116,7 @@ class InstructionsViewController: UIViewController {
     }
     
     fileprivate func saveDownloadedInstructions(_ instructions: SetInstructions, destinationURL: URL) {
-        NSLog("destinationURL: \(destinationURL)")
+        //NSLog("destinationURL: \(destinationURL)")
         var creationDate = Date()
         var fileSize = 0
         do {
@@ -128,8 +131,8 @@ class InstructionsViewController: UIViewController {
         catch let error {
             NSLog("Error getting resource values: \(error)")
         }
-        NSLog("creationDate: \(creationDate)")
-        NSLog("fileSize: \(fileSize)")
+        //NSLog("creationDate: \(creationDate)")
+        //NSLog("fileSize: \(fileSize)")
 
         let container = DataManager.shared.persistentContainer
         let saveBlock = { (context: NSManagedObjectContext) in
@@ -141,11 +144,11 @@ class InstructionsViewController: UIViewController {
                 downloadedInstructions.fileSize = Int64(fileSize)
                 downloadedInstructions.setName = self.currentSet?.name
                 downloadedInstructions.setNumber = self.currentSet?.fullSetNumber
-                NSLog("downloadedInstructions: \(downloadedInstructions)")
+                //NSLog("downloadedInstructions: \(downloadedInstructions)")
                 try context.save()
             }
             catch {
-                fatalError("Failed to save downloaded instructions: \(error)")
+                NSLog("Failed to save downloaded instructions: \(error)")
             }
         }
         container.performBackgroundTask(saveBlock)
