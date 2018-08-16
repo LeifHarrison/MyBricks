@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.13.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.9"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -80,13 +81,13 @@
                                 <rect key="frame" x="41" y="109" width="293" height="111"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Version 1.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TiH-uS-sB5">
-                                <rect key="frame" x="156.5" y="230" width="63.5" height="14.5"/>
+                                <rect key="frame" x="156" y="230" width="63.5" height="14.5"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
                                 <color key="textColor" name="slateBlue"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Build 1234 (10/21/2018 10:45PM)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Uu-cl-IDn">
-                                <rect key="frame" x="94" y="246.5" width="188" height="14.5"/>
+                                <rect key="frame" x="93.5" y="246.5" width="188" height="14.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" name="slateBlue"/>
                                 <nil key="highlightedColor"/>
@@ -98,7 +99,7 @@
                                 <rect key="frame" x="229" y="435" width="146" height="232"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Dy-63-bFt" customClass="LightGradientButton" customModule="MyBricks" customModuleProvider="target">
-                                <rect key="frame" x="47" y="301" width="280" height="40"/>
+                                <rect key="frame" x="47.5" y="301" width="280" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="280" id="EpM-AG-Bhh"/>
                                     <constraint firstAttribute="height" constant="40" id="KNW-Fe-Ouw"/>
@@ -112,7 +113,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X4P-hL-6tY" customClass="LightGradientButton" customModule="MyBricks" customModuleProvider="target">
-                                <rect key="frame" x="47" y="351" width="280" height="40"/>
+                                <rect key="frame" x="47.5" y="351" width="280" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="MBJ-at-UpA"/>
                                     <constraint firstAttribute="width" constant="280" id="pM3-aL-lFG"/>
@@ -173,7 +174,7 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oXy-ve-hJf">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="539.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="539"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Set information and images provided by brickset.com." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DDE-qS-avp">
                                                 <rect key="frame" x="20" y="30" width="335" height="38.5"/>
@@ -182,7 +183,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q96-gS-s8e">
-                                                <rect key="frame" x="143.5" y="78.5" width="89" height="30"/>
+                                                <rect key="frame" x="143" y="78.5" width="89" height="30"/>
                                                 <color key="tintColor" name="lightNavy"/>
                                                 <state key="normal" title="brickset.com"/>
                                                 <connections>
@@ -203,7 +204,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8d2-aW-b1h">
-                                                <rect key="frame" x="132.5" y="169.5" width="110" height="30"/>
+                                                <rect key="frame" x="132.5" y="169" width="110" height="30"/>
                                                 <color key="tintColor" name="lightNavy"/>
                                                 <state key="normal" title="rebrickable.com"/>
                                                 <connections>
@@ -211,33 +212,33 @@
                                                 </connections>
                                             </button>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HYO-6R-9xC">
-                                                <rect key="frame" x="20" y="209.5" width="335" height="1"/>
+                                                <rect key="frame" x="20" y="209" width="335" height="1"/>
                                                 <color key="backgroundColor" name="cloudyBlue"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="1" id="4aE-1F-IKs"/>
                                                 </constraints>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Design guidance and graphics provided by Jure Verc." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="INg-1y-Rul">
-                                                <rect key="frame" x="20" y="231" width="335" height="38.5"/>
+                                                <rect key="frame" x="20" y="230" width="335" height="38.5"/>
                                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
                                                 <color key="textColor" name="slateBlue"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cdp-tW-9op">
-                                                <rect key="frame" x="20" y="289" width="335" height="1"/>
+                                                <rect key="frame" x="20" y="288.5" width="335" height="1"/>
                                                 <color key="backgroundColor" name="cloudyBlue"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="1" id="9JD-YY-d2a"/>
                                                 </constraints>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Other resources/third party frameworks:" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pMA-Xt-z16">
-                                                <rect key="frame" x="20" y="310" width="335" height="19.5"/>
+                                                <rect key="frame" x="20" y="309.5" width="335" height="19.5"/>
                                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
                                                 <color key="textColor" name="slateBlue"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="rMK-QD-AHn">
-                                                <rect key="frame" x="40" y="339.5" width="295" height="180"/>
+                                                <rect key="frame" x="40" y="339" width="295" height="180"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vFO-2P-ecj">
                                                         <rect key="frame" x="0.0" y="0.0" width="66" height="30"/>
@@ -453,7 +454,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="EDa-A4-ByF">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" directionalLockEnabled="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="EDa-A4-ByF">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
@@ -541,7 +542,7 @@
                             <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_brickset" translatesAutoresizingMaskIntoConstraints="NO" id="lzW-U6-xEL">
                                 <rect key="frame" x="50.5" y="80" width="274" height="97"/>
                             </imageView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z1q-s6-NAg" customClass="ActivityIndicatorView" customModule="MyBricks" customModuleProvider="target">
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Z1q-s6-NAg" customClass="ActivityIndicatorView" customModule="MyBricks" customModuleProvider="target">
                                 <rect key="frame" x="147.5" y="412" width="80" height="80"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <userDefinedRuntimeAttributes>
@@ -591,9 +592,6 @@
         <image name="profile" width="24" height="24"/>
         <namedColor name="cloudyBlue">
             <color red="0.6940000057220459" green="0.76499998569488525" blue="0.83099997043609619" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="cloudyBlue">
-            <color red="0.69400000569999998" green="0.76499998570000005" blue="0.83099997039999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="cobalt">
             <color red="0.10199999809265137" green="0.2630000114440918" blue="0.45100000500679016" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

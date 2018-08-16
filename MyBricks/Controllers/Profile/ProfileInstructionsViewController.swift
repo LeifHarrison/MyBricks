@@ -43,23 +43,29 @@ class ProfileInstructionsViewController: UIViewController {
     //--------------------------------------------------------------------------
     
     private func setupTableView() {
+        tableView.alwaysBounceVertical = false
         tableView.register(DownloadedInstructionsTableViewCell.self)
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.tableFooterView = UIView()
     }
     
     private func fetchDownloadedInstructions() {
+        ActivityOverlayView.show(overView: view)
+
         let context = DataManager.shared.persistentContainer.viewContext
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "DownloadedInstructions")
         request.sortDescriptors = [NSSortDescriptor(key: #keyPath(DownloadedInstructions.creationDate), ascending: false)]
-        
         do {
             if let fetchedItems = try context.fetch(request) as? [DownloadedInstructions] {
+                ActivityOverlayView.hide()
                 downloadedInstructions = fetchedItems
                 tableView.reloadData()
+                updateDisplay(animated: true)
             }
         }
         catch {
+            ActivityOverlayView.hide()
+            updateDisplay(animated: true)
             fatalError("Failed to fetch search history: \(error)")
         }
     }
@@ -70,7 +76,8 @@ class ProfileInstructionsViewController: UIViewController {
         docInteractionController.presentPreview(animated: true)
     }
     
-    private func removeInstructions(_ instructions: DownloadedInstructions) {
+    private func removeInstructions(_ instructions: DownloadedInstructions, indexPath: IndexPath) {
+        //NSLog("Downloaded Instructions count = \(downloadedInstructions.count)")
         // Remove the saved file
         if let url = instructions.fileURL {
             do {
@@ -86,11 +93,34 @@ class ProfileInstructionsViewController: UIViewController {
         context.delete(instructions)
         do {
             try context.save()
+            downloadedInstructions.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
         }
         catch let error {
             NSLog("Error saving context: \(error.localizedDescription)")
         }
+        //NSLog("Downloaded Instructions count = \(downloadedInstructions.count)")
     }
+    
+    private func updateDisplay(animated: Bool = false) {
+        if downloadedInstructions.count > 0 {
+            let item = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(toggleEdit(_:)))
+            navigationItem.setRightBarButton(item, animated: animated)
+        }
+        else {
+            navigationItem.setRightBarButton(nil, animated: animated)
+        }
+    }
+
+    //--------------------------------------------------------------------------
+    // MARK: - Actions
+    //--------------------------------------------------------------------------
+    
+    @IBAction func toggleEdit(_ sender: UIBarButtonItem) {
+        tableView.setEditing(!tableView.isEditing, animated: true)
+        sender.title = tableView.isEditing ? "Done" : "Edit"
+    }
+    
 }
 
 //==============================================================================
@@ -122,12 +152,19 @@ extension ProfileInstructionsViewController: UITableViewDataSource {
 
 extension ProfileInstructionsViewController: UITableViewDelegate {
     
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        let instructions = downloadedInstructions[indexPath.row]
+        if editingStyle == .delete {
+            self.removeInstructions(instructions, indexPath: indexPath)
+        }
+    }
+    
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let instructions = downloadedInstructions[indexPath.row]
         var actions: [UIContextualAction] = []
         
         let deleteHandler: UIContextualActionHandler = { (action, view, completionHandler) in
-            self.removeInstructions(instructions)
+            self.removeInstructions(instructions, indexPath: indexPath)
             completionHandler(true)
         }
         let deleteAction = UIContextualAction(style: .destructive, title: "Remove", handler: deleteHandler)
