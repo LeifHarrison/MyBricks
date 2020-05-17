@@ -10,7 +10,6 @@ import UIKit
 
 import AlamofireNetworkActivityIndicator
 import AlamofireNetworkActivityLogger
-import GoogleMobileAds
 import LocalAuthentication
 
 @UIApplicationMain
@@ -23,9 +22,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     //--------------------------------------------------------------------------
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-
-        // Initialize the Google Mobile Ads SDK.
-        GADMobileAds.configure(withApplicationID: Constants.GoogleMobileAds.appId)
 
         NetworkActivityIndicatorManager.shared.isEnabled = true
         

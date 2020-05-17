@@ -13,7 +13,6 @@ target 'MyBricks' do
   pod 'AlamofireRSSParser'
   pod 'Cosmos'
   pod 'Fuzi'
-  pod 'Google-Mobile-Ads-SDK'
   pod 'KeychainAccess'
   pod 'SwiftLint'
 
