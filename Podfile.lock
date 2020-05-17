@@ -1,17 +1,17 @@
 PODS:
-  - Alamofire (4.7.3)
-  - AlamofireImage (3.3.1):
-    - Alamofire (~> 4.5)
-  - AlamofireNetworkActivityIndicator (2.2.1):
-    - Alamofire (~> 4.7)
-  - AlamofireNetworkActivityLogger (2.3.0):
-    - Alamofire (~> 4.6)
-  - AlamofireRSSParser (2.1.0):
-    - Alamofire
-  - Cosmos (16.0.0)
-  - Fuzi (2.1.0)
-  - KeychainAccess (3.1.1)
-  - SwiftLint (0.27.0)
+  - Alamofire (5.0.5)
+  - AlamofireImage (4.0.3):
+    - Alamofire (< 6.0.0, >= 5.0.2)
+  - AlamofireNetworkActivityIndicator (3.0.1):
+    - Alamofire (~> 5.0)
+  - AlamofireNetworkActivityLogger (3.0.0):
+    - Alamofire (~> 5.0.0-rc.2)
+  - AlamofireRSSParser (2.3.0):
+    - Alamofire (~> 5.0)
+  - Cosmos (21.0.0)
+  - Fuzi (3.1.2)
+  - KeychainAccess (4.2.0)
+  - SwiftLint (0.39.2)
 
 DEPENDENCIES:
   - Alamofire
@@ -25,7 +25,7 @@ DEPENDENCIES:
   - SwiftLint
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  trunk:
     - Alamofire
     - AlamofireImage
     - AlamofireNetworkActivityIndicator
@@ -33,22 +33,20 @@ SPEC REPOS:
     - AlamofireRSSParser
     - Cosmos
     - Fuzi
-    - Google-Mobile-Ads-SDK
     - KeychainAccess
     - SwiftLint
 
 SPEC CHECKSUMS:
-  Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
-  AlamofireImage: 3b35b586853abaf94ca1250f4e94cff3c21a4c0d
-  AlamofireNetworkActivityIndicator: aeac50e6ecb78ec71a5f1f29098bcf4ec2962910
-  AlamofireNetworkActivityLogger: 6f3076652ab7fa6c819b59be08ea038d339e36d8
-  AlamofireRSSParser: 5fed94de51ff88ea48496d7dfa6e3274100d90d6
-  Cosmos: 7bcee0fa858a9355a214f2a181be5dffcee42c81
-  Fuzi: 8c57344debff6d3a0c76a9e0f549152defdaaa48
-  Google-Mobile-Ads-SDK: 2aca87e46e860f1e1fc0fdc1201dd9caa4be9ba6
-  KeychainAccess: 7bd430028059754a3debab3cfc0bd1fc7fb85df3
-  SwiftLint: 3207c1faa2240bf8973b191820a116113cd11073
+  Alamofire: df2f8f826963b08b9a870791ad48e07a10090b2e
+  AlamofireImage: 3d1a2010519e58675318735580eb856e88840ff7
+  AlamofireNetworkActivityIndicator: f7d4cd8d12bcf61dc569cbe000b0c35e9c8d8d32
+  AlamofireNetworkActivityLogger: 94e8a7d454a4a9800cef1d0c1d3699754493684b
+  AlamofireRSSParser: ced366c481685cb6ed24e6d50b7b7a5a47c2da6d
+  Cosmos: 3dfb6e4ba48bd48b8c9aa2a77048ae11ed114f96
+  Fuzi: dba7215e52fb39dd7b1a62f69ede1e30edff0ae1
+  KeychainAccess: 3f760109aa99b05d0f231e28b22642da7153e38a
+  SwiftLint: 22ccbbe3b8008684be5955693bab135e0ed6a447
 
-PODFILE CHECKSUM: de71894b00cf66dc72af75e62b59d80e3eea5ccb
+PODFILE CHECKSUM: 28c3e63af438ca3ea7a42b711f36b3e5d78006aa
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.9.1
