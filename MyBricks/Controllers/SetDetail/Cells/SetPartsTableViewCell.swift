@@ -43,7 +43,7 @@ class SetPartsTableViewCell: BlueGradientTableViewCell, ReusableView, NibLoadabl
     // MARK: - Public
     //--------------------------------------------------------------------------
 
-    func populate(with set: Set) {
+    func populate(with set: SetDetail) {
         partsLabel.text = "Parts List"
         piecesLabel.text = "\(set.pieces ?? 0)"
         minifiguresLabel.text = "\(set.minifigs ?? 0)"

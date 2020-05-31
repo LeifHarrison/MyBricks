@@ -109,17 +109,17 @@ extension UIViewController {
     func performLogin(credential: URLCredential, completion: @escaping ((Bool) -> Void)) {
         if let username = credential.user, let password = credential.password {
             BricksetServices.shared.login(username: username, password: password, completion: { result in
-                if result.isSuccess {
-                    completion(true)
-                }
-                else {
-                    NSLog("Error: \(String(describing: result.error?.localizedDescription))")
-                    let alert = UIAlertController(title: "Error", message: result.error?.localizedDescription, preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (_) in
+                switch result {
+                    case .success:
                         completion(true)
-                    }))
-                    self.present(alert, animated: true, completion: nil)
-                    self.performSegue(withIdentifier: "showLoginView", sender: self)
+                    case .failure(let error):
+                        NSLog("Error: \(error.localizedDescription)")
+                        let alert = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (_) in
+                            completion(true)
+                        }))
+                        self.present(alert, animated: true, completion: nil)
+                        self.performSegue(withIdentifier: "showLoginView", sender: self)
                 }
             })
         }

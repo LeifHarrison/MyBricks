@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Fuzi
 
 public struct UserProfile {
 
@@ -25,9 +24,6 @@ public struct UserProfile {
         country = "United States"
         location = "Legoland, CA"
         interests = "Star Wars, Ninjago, Chima, Disney, Elves, Architecture"
-    }
-
-    init?(element: XMLElement) {
     }
 
 }

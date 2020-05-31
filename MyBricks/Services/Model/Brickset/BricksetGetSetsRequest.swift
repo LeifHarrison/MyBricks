@@ -76,17 +76,25 @@ struct SortingSelection {
     }
 }
 
-public struct GetSetsRequest {
+public struct BricksetGetSetsRequest: Encodable {
     
+    var setID: Int?
     var query: String?
     var theme: String?
     var subtheme: String?
-    var year: String?
     var setNumber: String?
-    var owned: Bool
-    var wanted: Bool
-    var sortingSelection: SortingSelection = SortingSelection()
-    var grouping: GroupingType?
+    var year: String?
+    var tag: String?
+    var owned: Bool?
+    var wanted: Bool?
+    var updatedSince: Date?
+    //var sortingSelection: SortingSelection = SortingSelection()
+    //var grouping: GroupingType?
+
+    var orderBy: String?
+    var pageSize: Int? = 500
+    var pageNumber: Int? = 1
+    var extendedData: Bool?
 
     init(query: String? = "", theme: String? = "", subtheme: String? = "", year: String? = "", setNumber: String? = "", owned: Bool = false, wanted: Bool = false) {
         self.query = query
@@ -98,15 +106,20 @@ public struct GetSetsRequest {
         self.wanted = wanted
     }
     
+    init(setID: Int, includeExtendedData: Bool = false) {
+        self.setID = setID
+        self.extendedData = includeExtendedData
+    }
+    
     init(filterOptions: FilterOptions) {
         self.query = filterOptions.searchTerm
-        self.theme = filterOptions.selectedTheme?.name
-        self.subtheme = filterOptions.selectedSubtheme?.name
-        self.year = filterOptions.selectedYear?.name
+        self.theme = filterOptions.selectedTheme?.theme
+        self.subtheme = filterOptions.selectedSubtheme?.subtheme
+        self.year = filterOptions.selectedYear?.year
         self.owned = filterOptions.filterOwned
         self.wanted = filterOptions.filterWanted
-        self.sortingSelection = filterOptions.sortingSelection
-        self.grouping = filterOptions.grouping
+        //self.sortingSelection = filterOptions.sortingSelection
+        //self.grouping = filterOptions.grouping
     }
     
 }

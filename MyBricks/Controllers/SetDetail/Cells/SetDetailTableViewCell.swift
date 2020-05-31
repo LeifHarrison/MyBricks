@@ -100,8 +100,8 @@ class SetDetailTableViewCell: BlueGradientTableViewCell, ReusableView, NibLoadab
     // MARK: - Public
     //--------------------------------------------------------------------------
     
-    func populate(with set: Set, additionalImages: [SetImage]?) {
-        mainImageURL = set.largeThumbnailURL
+    func populate(with set: SetDetail, additionalImages: [SetImage]?) {
+        mainImageURL = set.image?.imageURL
         if let images = additionalImages {
             self.additionalImages = images
             //collectionView.reloadData()
@@ -183,8 +183,8 @@ extension SetDetailTableViewCell: UICollectionViewDataSource {
 
         if indexPath.item == 0 {
             if let urlString = mainImageURL, let thumbnailURL = URL(string: urlString) {
-                cell.imageView.af_setImage(withURL: thumbnailURL, imageTransition: .crossDissolve(0.3)) { response in
-                    if response.result.value != nil {
+                cell.imageView.af.setImage(withURL: thumbnailURL, imageTransition: .crossDissolve(0.3)) { response in
+                    if response.value != nil {
                         cell.imageView.contentMode = .scaleAspectFit
                     }
                 }
@@ -193,8 +193,8 @@ extension SetDetailTableViewCell: UICollectionViewDataSource {
         else {
             let image = self.additionalImages[indexPath.item-1]
             if let thumbnailURLString = image.thumbnailURL, let thumbnailURL = URL(string: thumbnailURLString) {
-                cell.imageView.af_setImage(withURL: thumbnailURL, imageTransition: .crossDissolve(0.3)) { response in
-                    if response.result.value != nil {
+                cell.imageView.af.setImage(withURL: thumbnailURL, imageTransition: .crossDissolve(0.3)) { response in
+                    if response.value != nil {
                         cell.imageView.contentMode = .scaleAspectFit
                     }
                 }

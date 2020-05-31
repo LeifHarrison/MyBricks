@@ -36,18 +36,16 @@ class SetDescriptionTableViewCell: BlueGradientTableViewCell, ReusableView, NibL
     //--------------------------------------------------------------------------
     
     func populate(with setDetail: SetDetail) {
-        descriptionTextView.attributedText = setDetail.formattedDescription()
+        descriptionTextView.attributedText = setDetail.extendedData?.formattedDescription()
     }
 
 }
 
 //==============================================================================
-// MARK: - SetDetail extension
+// MARK: - SetExtendedData extension
 //==============================================================================
 
-// swiftlint:disable unused_closure_parameter
-
-extension SetDetail {
+extension SetExtendedData {
     
     static let descriptionFontSize: CGFloat = 14
 
@@ -71,12 +69,12 @@ extension SetDetail {
                 
                 // Change fonts to something a bit more readable
                 let fullRange = NSRange(location: 0, length:formattedDescription.length)
-                formattedDescription.enumerateAttribute(.font, in: fullRange, options: []) { (value, range, stop) in
+                formattedDescription.enumerateAttribute(.font, in: fullRange, options: []) { (value, range, _) in
                     if let font = value as? UIFont {
                         let isBold = font.fontDescriptor.symbolicTraits.contains(.traitBold)
                         let isItalic = font.fontDescriptor.symbolicTraits.contains(.traitItalic)
                         
-                        let size: CGFloat = SetDetail.descriptionFontSize
+                        let size: CGFloat = SetExtendedData.descriptionFontSize
                         
                         var font = UIFont.systemFont(ofSize: size)
                         if isBold {
@@ -90,7 +88,7 @@ extension SetDetail {
                 }
                 
                 // Change text color
-                formattedDescription.enumerateAttribute(.foregroundColor, in: fullRange, options: []) { (value, range, stop) in
+                formattedDescription.enumerateAttribute(.foregroundColor, in: fullRange, options: []) { (value, range, _) in
                     formattedDescription.addAttribute(.foregroundColor, value: UIColor.lightNavy, range: range)
                 }
                 
@@ -102,5 +100,3 @@ extension SetDetail {
         return nil
     }
 }
-
-// swiftlint:enable unused_closure_parameter

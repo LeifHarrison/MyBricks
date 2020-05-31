@@ -15,7 +15,7 @@ class InstructionsViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
 
-    var currentSet: Set?
+    var currentSet: SetDetail?
     var instructions: [SetInstructions] = []
 
     //--------------------------------------------------------------------------
@@ -55,8 +55,13 @@ class InstructionsViewController: UIViewController {
             ActivityOverlayView.show(overView: view)
             BricksetServices.shared.getInstructions(setID: setID, completion: { result in
                 ActivityOverlayView.hide()
-                self.instructions = result.value ?? []
-                self.tableView.reloadData()
+                switch result {
+                    case .success(let instructions):
+                        self.instructions = instructions
+                        self.tableView.reloadData()
+                    case .failure(let error):
+                        NSLog("Error fetching instructions: \(error.localizedDescription)")
+                }
             })
         }
     }
@@ -90,13 +95,13 @@ class InstructionsViewController: UIViewController {
         let destination = DownloadRequest.suggestedDownloadDestination()
         if let urlString = instructions.fileURL {
             showProgressView(forCell: cell)
-            Alamofire.download(urlString, to: destination)
+            AF.download(urlString, to: destination)
                 .downloadProgress { (progress) in
                     cell.progressView.progress = Float(progress.fractionCompleted)
                 }
                 .validate()
                 .responseData { ( response ) in
-                    if let destinationURL = response.destinationURL {
+                    if let destinationURL = response.fileURL {
                         NSLog("destinationURL: \(destinationURL)")
                         self.saveDownloadedInstructions(instructions, destinationURL: destinationURL)
                         NSLog("presentedViewController: \(String(describing: self.presentedViewController))")

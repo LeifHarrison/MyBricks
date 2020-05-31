@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.13.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.9"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -17,7 +14,7 @@
                 <navigationController storyboardIdentifier="ProfileNavigationController" id="Jq9-jH-Ad1" userLabel="Profile Navigation Controller" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Profile" image="profile" id="iSL-0G-DLt"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="6f4-9G-ZoY">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -37,7 +34,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="zPo-ko-P53">
-                                <rect key="frame" x="5" y="64" width="365" height="603"/>
+                                <rect key="frame" x="5" y="44" width="365" height="623"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <outlet property="dataSource" destination="KQN-99-oaK" id="wfT-K9-RiN"/>
@@ -78,16 +75,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="about_header" translatesAutoresizingMaskIntoConstraints="NO" id="WTF-pv-v3F">
-                                <rect key="frame" x="41" y="109" width="293" height="111"/>
+                                <rect key="frame" x="41" y="89" width="293" height="111"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Version 1.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TiH-uS-sB5">
-                                <rect key="frame" x="156" y="230" width="63.5" height="14.5"/>
+                                <rect key="frame" x="156" y="210" width="63.5" height="14.5"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
                                 <color key="textColor" name="slateBlue"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Build 1234 (10/21/2018 10:45PM)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Uu-cl-IDn">
-                                <rect key="frame" x="93.5" y="246.5" width="188" height="14.5"/>
+                                <rect key="frame" x="93.5" y="226.5" width="188" height="14.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" name="slateBlue"/>
                                 <nil key="highlightedColor"/>
@@ -99,7 +96,7 @@
                                 <rect key="frame" x="229" y="435" width="146" height="232"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Dy-63-bFt" customClass="LightGradientButton" customModule="MyBricks" customModuleProvider="target">
-                                <rect key="frame" x="47.5" y="301" width="280" height="40"/>
+                                <rect key="frame" x="47.5" y="281" width="280" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="280" id="EpM-AG-Bhh"/>
                                     <constraint firstAttribute="height" constant="40" id="KNW-Fe-Ouw"/>
@@ -113,7 +110,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X4P-hL-6tY" customClass="LightGradientButton" customModule="MyBricks" customModuleProvider="target">
-                                <rect key="frame" x="47.5" y="351" width="280" height="40"/>
+                                <rect key="frame" x="47.5" y="331" width="280" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="MBJ-at-UpA"/>
                                     <constraint firstAttribute="width" constant="280" id="pM3-aL-lFG"/>
@@ -171,10 +168,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tLa-EE-QCO">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="623"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oXy-ve-hJf">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="539"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="509"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Set information and images provided by brickset.com." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DDE-qS-avp">
                                                 <rect key="frame" x="20" y="30" width="335" height="38.5"/>
@@ -238,7 +235,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="rMK-QD-AHn">
-                                                <rect key="frame" x="40" y="339" width="295" height="180"/>
+                                                <rect key="frame" x="40" y="339" width="295" height="150"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vFO-2P-ecj">
                                                         <rect key="frame" x="0.0" y="0.0" width="66" height="30"/>
@@ -272,16 +269,8 @@
                                                             <action selector="goToCosmos:" destination="ogy-Zb-3z4" eventType="touchUpInside" id="b77-u3-SDv"/>
                                                         </connections>
                                                     </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u8c-y9-Nlr">
-                                                        <rect key="frame" x="0.0" y="120" width="30" height="30"/>
-                                                        <color key="tintColor" name="lightNavy"/>
-                                                        <state key="normal" title="Fuzi"/>
-                                                        <connections>
-                                                            <action selector="goToFuzi:" destination="ogy-Zb-3z4" eventType="touchUpInside" id="4v8-jb-53t"/>
-                                                        </connections>
-                                                    </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3FO-rc-7P5">
-                                                        <rect key="frame" x="0.0" y="150" width="111" height="30"/>
+                                                        <rect key="frame" x="0.0" y="120" width="111" height="30"/>
                                                         <color key="tintColor" name="lightNavy"/>
                                                         <state key="normal" title="KeychainAccess"/>
                                                         <connections>
@@ -357,25 +346,25 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="If you find this app useful, please consider supporting it by leaving a tip in our Tip Jar." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4O6-KZ-PTt">
-                                <rect key="frame" x="20" y="94" width="335" height="38.5"/>
+                                <rect key="frame" x="20" y="74" width="335" height="38.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <color key="textColor" name="slateBlue"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Any tip given will also remove all advertisements from the app" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pId-os-taN">
-                                <rect key="frame" x="20" y="152.5" width="335" height="38.5"/>
+                                <rect key="frame" x="20" y="132.5" width="335" height="38.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <color key="textColor" name="slateBlue"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z4F-By-0Mv">
-                                <rect key="frame" x="123" y="281" width="129" height="30"/>
+                                <rect key="frame" x="123" y="261" width="129" height="30"/>
                                 <state key="normal" title="Restore Purchases">
                                     <color key="titleColor" name="lightNavy"/>
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kyZ-YG-f0K" customClass="LightGradientButton" customModule="MyBricks" customModuleProvider="target">
-                                <rect key="frame" x="127.5" y="221" width="120" height="30"/>
+                                <rect key="frame" x="127.5" y="201" width="120" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="120" id="rtq-1r-vgw"/>
                                 </constraints>
@@ -416,14 +405,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hl8-ud-xec">
-                                <rect key="frame" x="20" y="94" width="335" height="76.5"/>
+                                <rect key="frame" x="20" y="74" width="335" height="76.5"/>
                                 <string key="text">LEGO, the LEGO logo, the Minifigure, and the Brick and Knob configurations are trademarks of the LEGO Group of Companies. ©2018 The LEGO Group. All rights reserved.</string>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
                                 <color key="textColor" name="slateBlue"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eao-wh-Eid">
-                                <rect key="frame" x="20" y="200.5" width="335" height="76.5"/>
+                                <rect key="frame" x="20" y="180.5" width="335" height="76.5"/>
                                 <string key="text">Brickset, the Brickset logo and all content not covered by The LEGO Group's copyright is, unless otherwise stated, ©1997-2018 Brickset ltd.</string>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
                                 <color key="textColor" name="slateBlue"/>
@@ -455,7 +444,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" directionalLockEnabled="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="EDa-A4-ByF">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="623"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <outlet property="dataSource" destination="Aoo-hw-1mt" id="l1m-Js-3z1"/>
@@ -485,11 +474,11 @@
             <objects>
                 <viewController storyboardIdentifier="ProfileLoginViewController" title="Login" id="CRl-O7-t69" userLabel="Login View" customClass="ProfileLoginViewController" customModule="MyBricks" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Boi-D7-bK9">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PFm-s2-aEo">
-                                <rect key="frame" x="310" y="35" width="50" height="32"/>
+                                <rect key="frame" x="310" y="15" width="50" height="32"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <color key="tintColor" name="lightNavy"/>
                                 <state key="normal" title="Cancel">
@@ -500,7 +489,7 @@
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="User name or email address" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="cGw-kb-o5Y">
-                                <rect key="frame" x="30" y="207" width="315" height="40"/>
+                                <rect key="frame" x="30" y="187" width="315" height="40"/>
                                 <color key="tintColor" name="lightNavy"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="4jn-eq-IFm"/>
@@ -513,7 +502,7 @@
                                 </connections>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="JlT-vq-xet">
-                                <rect key="frame" x="30" y="267" width="315" height="40"/>
+                                <rect key="frame" x="30" y="247" width="315" height="40"/>
                                 <color key="tintColor" name="lightNavy"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="5C1-gQ-uik"/>
@@ -526,7 +515,7 @@
                                 </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9R3-NO-sYB" customClass="LightGradientButton" customModule="MyBricks" customModuleProvider="target">
-                                <rect key="frame" x="97.5" y="337" width="180" height="35"/>
+                                <rect key="frame" x="97.5" y="317" width="180" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="180" id="XZa-aT-y46"/>
                                     <constraint firstAttribute="height" constant="35" id="sy0-Hd-yJ1"/>
@@ -540,7 +529,7 @@
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_brickset" translatesAutoresizingMaskIntoConstraints="NO" id="lzW-U6-xEL">
-                                <rect key="frame" x="50.5" y="80" width="274" height="97"/>
+                                <rect key="frame" x="50.5" y="60" width="274" height="97"/>
                             </imageView>
                             <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Z1q-s6-NAg" customClass="ActivityIndicatorView" customModule="MyBricks" customModuleProvider="target">
                                 <rect key="frame" x="147.5" y="412" width="80" height="80"/>

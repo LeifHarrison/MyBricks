@@ -69,21 +69,25 @@ class FilterSelectYearViewController: UIViewController {
             ActivityOverlayView.show(overView: view)
             let completion: GetYearsCompletion = { result in
                 ActivityOverlayView.hide()
-                if result.isSuccess, let availableYears = result.value {
-                    self.filterOptions.availableYears = availableYears.sorted {
-                        return $0.name > $1.name
-                    }
-                    self.tableView.reloadData()
-                    if let year = self.filterOptions.selectedYear, let selectedIndex = self.filterOptions.availableYears.index(of: year) {
-                        self.tableView.selectRow(at: IndexPath(row: selectedIndex, section: 0), animated: false, scrollPosition: .middle)
-                    }
+                switch result {
+                    case .success(let availableYears ):
+                        self.filterOptions.availableYears = availableYears.sorted {
+                            return $0.year > $1.year
+                        }
+                        self.tableView.reloadData()
+                        if let year = self.filterOptions.selectedYear, let selectedIndex = self.filterOptions.availableYears.index(of: year) {
+                            self.tableView.selectRow(at: IndexPath(row: selectedIndex, section: 0), animated: false, scrollPosition: .middle)
+                        }
+                    case .failure(let error):
+                        NSLog("Error in \(#function): \(error.localizedDescription)")
                 }
             }
             if filterOptions.showingUserSets {
-                BricksetServices.shared.getYearsForUser(theme: theme.name, owned: filterOptions.filterOwned, wanted: filterOptions.filterWanted, completion: completion)
+                //BricksetServices.shared.getYearsForUser(theme: theme.theme, owned: filterOptions.filterOwned, wanted: filterOptions.filterWanted, completion: completion)
+                BricksetServices.shared.getYears(theme: theme.theme, completion: completion)
             }
             else {
-                BricksetServices.shared.getYears(theme: theme.name, completion: completion)
+                BricksetServices.shared.getYears(theme: theme.theme, completion: completion)
             }
         }
     }
@@ -107,7 +111,7 @@ extension FilterSelectYearViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let year = filterOptions.availableYears[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
-        cell.textLabel?.text = year.name
+        cell.textLabel?.text = year.year
         return cell
     }
     

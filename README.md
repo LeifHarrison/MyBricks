@@ -103,5 +103,4 @@ Parts data provided by **[Rebrickable](http://rebrickable.com)** using it's web 
 * **[AlamofireImage](https://github.com/Alamofire/AlamofireImage)** - Swift framework to simplify fetching/caching images
 * **[AlamofireNetworkActivityIndicator](https://github.com/Alamofire/AlamofireNetworkActivityIndicator)** -
 * **[AlamofireRSSParser](https://github.com/AdeptusAstartes/AlamofireRSSParser)** - Swift framework for parsing RSS feeds
-* **[Fuzi](https://github.com/cezheng/Fuzi)** - Framework for parsing XML returned by the Brickset API
 * **[Cosmos](https://github.com/evgenyneu/Cosmos)** - A handy configurable star/rating view

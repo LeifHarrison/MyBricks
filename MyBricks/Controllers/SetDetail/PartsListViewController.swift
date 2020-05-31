@@ -14,7 +14,7 @@ class PartsListViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var noResultsLabel: UILabel!
 
-    var currentSet: Set?
+    var currentSet: SetDetail?
     var lastResponse: GetPartsResponse?
     var elements: [Element] = []
     var isLoading: Bool = false
@@ -49,20 +49,19 @@ class PartsListViewController: UIViewController {
             isLoading = true
 
             let setNumber = set.fullSetNumber
-            let completion: (Result<GetPartsResponse>) -> Void = { result in
+            let completion: (Result<GetPartsResponse, ServiceError>) -> Void = { result in
                 if self.lastResponse == nil { ActivityOverlayView.hide() }
                 self.isLoading = false
-                if result.isSuccess {
-                    if let response = result.value {
+                
+                switch result {
+                    case .success(let response):
                         self.lastResponse = response
                         if let newElements = response.results {
                             self.elements.append(contentsOf: newElements)
                             self.tableView.reloadData()
                         }
-                    }
-                }
-                else {
-                    // Display alert
+                    case .failure(let error):
+                        NSLog("Error fetching parts list: \(error.localizedDescription)")
                 }
                 
                 self.noResultsLabel.isHidden = self.elements.count > 0
@@ -94,7 +93,7 @@ extension PartsListViewController: UITableViewDataSource {
             cell.populate(with: element)
             cell.selectionStyle = .none
             if let urlString = element.part?.imageURL, let url = URL(string: urlString) {
-                cell.partImageView.af_setImage(withURL: url, placeholderImage: #imageLiteral(resourceName: "placeholder1"), imageTransition: .crossDissolve(0.3))
+                cell.partImageView.af.setImage(withURL: url, placeholderImage: #imageLiteral(resourceName: "placeholder1"), imageTransition: .crossDissolve(0.3))
             }
             
             // See if we need to load more species

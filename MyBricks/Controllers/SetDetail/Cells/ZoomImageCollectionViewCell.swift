@@ -52,7 +52,7 @@ class ZoomImageCollectionViewCell: UICollectionViewCell, ReusableView, NibLoadab
     func populate(with setImage: SetImage) {
         if let imageURLString = setImage.imageURL, let imageURL = URL(string: imageURLString) {
             activityIndicatorView.startAnimating()
-            imageView.af_setImage(withURL: imageURL, placeholderImage: #imageLiteral(resourceName: "placeholder2Large"), imageTransition: .crossDissolve(0.3)) { response in
+            imageView.af.setImage(withURL: imageURL, placeholderImage: #imageLiteral(resourceName: "placeholder2Large"), imageTransition: .crossDissolve(0.3)) { response in
                 self.activityIndicatorView.stopAnimating()
                 if response.value != nil {
                     self.imageView.sizeToFit()

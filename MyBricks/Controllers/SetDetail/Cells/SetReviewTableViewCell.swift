@@ -170,8 +170,6 @@ extension SetReview {
         return attributedDescription
     }
 
-    // swiftlint:disable unused_closure_parameter
-
     func formattedReview() -> NSAttributedString? {
         if let string = self.review {
             if let data = string.data(using: String.Encoding.utf8, allowLossyConversion: true) {
@@ -192,7 +190,7 @@ extension SetReview {
 
                 // Change fonts to something a bit more readable
                 let fullRange = NSRange(location: 0, length: formattedReview.length)
-                formattedReview.enumerateAttribute(.font, in: fullRange, options: []) { (value, range, stop) in
+                formattedReview.enumerateAttribute(.font, in: fullRange, options: []) { (value, range, _) in
                     if let font = value as? UIFont {
                         let isBold = font.fontDescriptor.symbolicTraits.contains(.traitBold)
                         let isItalic = font.fontDescriptor.symbolicTraits.contains(.traitItalic)
@@ -217,6 +215,4 @@ extension SetReview {
         return nil
     }
     
-    // swiftlint:enable unused_closure_parameter
-
 }

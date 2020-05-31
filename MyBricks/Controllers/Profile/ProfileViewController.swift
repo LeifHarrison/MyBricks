@@ -187,13 +187,16 @@ class ProfileViewController: UIViewController {
 
     fileprivate func updateCollectionInformation() {
         BricksetServices.shared.getCollectionTotals(completion: { result in
-            if result.isSuccess {
-                UserDefaults.standard.set(Date(), forKey: self.lastUpdatedKey)
-                self.collectionTotals = result.value
-                if let section = self.sections.index(of: .brickset), let row = self.bricksetRows.index(of: .collection) {
-                    let indexPath = IndexPath(row: row, section: section)
-                    self.tableView.reloadRows(at: [indexPath], with: .fade)
-                }
+            switch result {
+                case .success(let collectionTotals):
+                    UserDefaults.standard.set(Date(), forKey: self.lastUpdatedKey)
+                    self.collectionTotals = collectionTotals
+                    if let section = self.sections.index(of: .brickset), let row = self.bricksetRows.index(of: .collection) {
+                        let indexPath = IndexPath(row: row, section: section)
+                        self.tableView.reloadRows(at: [indexPath], with: .fade)
+                    }
+                case .failure(let error):
+                    NSLog("Error updating collection information: \(error)")
             }
         })
     }
@@ -256,16 +259,17 @@ class ProfileViewController: UIViewController {
     fileprivate func performLogin(service: AuthenticatedServiceAPI, credential: URLCredential) {
         if let username = credential.user, let password = credential.password {
             service.login(username: username, password: password, completion: { result in
-                if result.isSuccess {
-                    self.updateDisplayedRows()
-                    self.updateProfileInformation()
-                    self.updateCollectionInformation()
-                }
-                else {
-                    let alert = UIAlertController(title: "Error", message: result.error?.localizedDescription, preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                    self.present(alert, animated: true, completion: nil)
-                    self.performSegue(withIdentifier: "showLoginView", sender: self)
+                switch result {
+                    case .success:
+                        self.updateDisplayedRows()
+                        self.updateProfileInformation()
+                        self.updateCollectionInformation()
+                    case .failure(let error):
+                        NSLog("Error setting item owned: \(error.localizedDescription)")
+                        let alert = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                        self.present(alert, animated: true, completion: nil)
+                        self.performSegue(withIdentifier: "showLoginView", sender: self)
                 }
             })
         }

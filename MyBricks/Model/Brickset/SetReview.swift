@@ -7,9 +7,8 @@
 //
 
 import Foundation
-import Fuzi
 
-public struct SetReview {
+public struct SetReview: Codable {
 
     var author: String?
     var datePosted: Date?
@@ -21,21 +20,5 @@ public struct SetReview {
     var valueForMoney: Int?
     var review: String?
     var isHTML: Bool?
-
-    init?(element: XMLElement) {
-        author = element.firstChild(tag: "author")?.stringValue
-        title = element.firstChild(tag: "title")?.stringValue
-        overallRating = Int(element.firstChild(tag: "overallRating")?.stringValue ?? "0")
-        parts = Int(element.firstChild(tag: "parts")?.stringValue ?? "0")
-        buildingExperience = Int(element.firstChild(tag: "buildingExperience")?.stringValue ?? "0")
-        playability = Int(element.firstChild(tag: "playability")?.stringValue ?? "0")
-        valueForMoney = Int(element.firstChild(tag: "valueForMoney")?.stringValue ?? "0")
-        review = element.firstChild(tag: "review")?.stringValue
-        isHTML = Bool(element.firstChild(tag: "HTML")?.stringValue ?? "false")
-
-        if let date = element.firstChild(tag: "datePosted")?.stringValue {
-            datePosted = BricksetServices.longDateFormatter.date(from: date)
-        }
-    }
 
 }

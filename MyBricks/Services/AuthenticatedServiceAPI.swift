@@ -17,7 +17,7 @@ protocol AuthenticatedServiceAPI: class {
     var loginProtectionSpace: URLProtectionSpace? { get }
     var logoImage: UIImage? { get }
     
-    func login(username: String, password: String, completion: @escaping (Result<String>) -> Void)
+    func login(username: String, password: String, completion: @escaping (Result<String, ServiceError>) -> Void)
     func logout(_ completion: @escaping () -> Void)
 
 }

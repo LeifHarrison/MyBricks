@@ -97,8 +97,8 @@ extension SetImagesViewController: UICollectionViewDataSource {
             cell.imageView.image = #imageLiteral(resourceName: "placeholder1")
 
             if let thumbnailURLString = image.thumbnailURL, let thumbnailURL = URL(string: thumbnailURLString) {
-                cell.imageView.af_setImage(withURL: thumbnailURL, imageTransition: .crossDissolve(0.3)) { response in
-                    if response.result.value != nil {
+                cell.imageView.af.setImage(withURL: thumbnailURL, imageTransition: .crossDissolve(0.3)) { response in
+                    if response.value != nil {
                         cell.imageView.contentMode = .scaleAspectFit
                     }
                 }

@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct SetRetailPrice {
+public struct SetRetailPrice: Codable {
 
     static var PricePerPieceFormatter = NumberFormatter()
     

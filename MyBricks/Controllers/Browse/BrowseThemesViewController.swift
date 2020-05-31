@@ -50,28 +50,20 @@ class BrowseThemesViewController: UIViewController {
         ActivityOverlayView.show(overView: view)
         BricksetServices.shared.getThemes(completion: { result in
             ActivityOverlayView.hide()
-            if result.isSuccess {
-                self.allThemes = result.value ?? []
-                self.processThemes()
-                self.tableView.reloadData()
-            }
-            else {
-                if let error = result.error as? URLError, error.code == .cancelled {
-                    return
-                }
-                else if let error = result.error as? URLError {
-                    //NSLog("Error loading themes: \(error)")
-                    NSLog("Code: \(error.errorCode), Description: \(error.localizedDescription)")
-                }
-
-                // TODO: Display error view
+            switch result {
+                case .success(let themes):
+                    self.allThemes = themes
+                    self.processThemes()
+                    self.tableView.reloadData()
+                case .failure(let error):
+                    NSLog("Error loading themes: \(error)")
             }
         })
     }
     
     fileprivate func processThemes() {
         for theme in allThemes {
-            let indexName = String(theme.name.prefix(1))
+            let indexName = String(theme.theme.prefix(1))
             var themes: [SetTheme] = themesBySection[indexName] ?? []
             themes.append(theme)
             themesBySection[indexName] = themes

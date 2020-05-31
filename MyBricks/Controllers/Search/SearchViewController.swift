@@ -156,26 +156,26 @@ class SearchViewController: UIViewController {
 
         hideInstructions(animated: true)
         ActivityOverlayView.show(overView: view)
-        let request = GetSetsRequest(query: searchTerm)
+        let request = BricksetGetSetsRequest(query: searchTerm)
         self.searchRequest = BricksetServices.shared.getSets(request, completion: { result in
             ActivityOverlayView.hide()
             self.saveSearch(withType: searchType, searchTerm: searchTerm)
-            
-            if result.isSuccess, let sets = result.value {
-                if sets.count == 0 {
+            switch result {
+                case .success(let sets):
+                    if sets.count == 0 {
+                         self.showNoResultsView(animated: false)
+                     }
+                     else if sets.count == 1 {
+                         // If we only found a single set, go immediately to set detail
+                         self.showDetail(forSet: sets.first!)
+                     }
+                     else {
+                         // If we found more than one, go to Browse Sets
+                         self.showResults(searchType: searchType, searchTerm: searchTerm, results: sets)
+                     }
+                case .failure(let error):
+                    NSLog("Error fetching instructions: \(error.localizedDescription)")
                     self.showNoResultsView(animated: false)
-                }
-                else if sets.count == 1 {
-                    // If we only found a single set, go immediately to set detail
-                    self.showDetail(forSet: sets.first!)
-                }
-                else {
-                    // If we found more than one, go to Browse Sets
-                    self.showResults(searchType: searchType, searchTerm: searchTerm, results: sets)
-                }
-            }
-            else {
-                self.showNoResultsView(animated: false)
             }
         })
     }
@@ -227,7 +227,7 @@ class SearchViewController: UIViewController {
         }
     }
     
-    fileprivate func showDetail(forSet set: Set) {
+    fileprivate func showDetail(forSet set: SetDetail) {
         let detailStoryboard = UIStoryboard(name: "SetDetail", bundle: nil)
         if let detailVC = detailStoryboard.instantiateInitialViewController() as? SetDetailViewController {
             detailVC.currentSet = set
@@ -235,7 +235,7 @@ class SearchViewController: UIViewController {
         }
     }
     
-    fileprivate func showResults(searchType: SearchType, searchTerm: String, results: [Set]) {
+    fileprivate func showResults(searchType: SearchType, searchTerm: String, results: [SetDetail]) {
         let browseStoryboard = UIStoryboard(name: "Browse", bundle: nil)
         if let browseVC = browseStoryboard.instantiateViewController(withIdentifier: "BrowseSetsViewController") as? BrowseSetsViewController {
 

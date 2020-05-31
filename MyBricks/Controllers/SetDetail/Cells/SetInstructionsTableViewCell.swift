@@ -41,7 +41,7 @@ class SetInstructionsTableViewCell: BlueGradientTableViewCell, ReusableView, Nib
     // MARK: - Public
     //--------------------------------------------------------------------------
     
-    func populate(with set: Set) {
+    func populate(with set: SetDetail) {
         instructionsCountLabel.text = "\(set.instructionsCount ?? 0)"
     }
     

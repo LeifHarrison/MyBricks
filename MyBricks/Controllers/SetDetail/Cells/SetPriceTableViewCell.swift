@@ -41,7 +41,7 @@ class SetPriceTableViewCell: BlueGradientTableViewCell, ReusableView, NibLoadabl
     // MARK: - Public
     //--------------------------------------------------------------------------
     
-    func populate(with set: Set) {
+    func populate(with set: SetDetail) {
         priceLabel.text = set.preferredPriceDescription
     }
     

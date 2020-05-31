@@ -32,13 +32,13 @@ class SetDetailViewController: UIViewController {
     var detailRows: [DetailRow] = []
 
     var isPreview: Bool = false
-    var currentSet: Set?
+    var currentSet: SetDetail?
     var setDetail: SetDetail?
     var additionalImages: [SetImage]?
     var currentSetImage: UIImage?
     var hasLargeImage: Bool = false
     
-    var setDetailRequest: DataRequest?
+    var setDetailRequest: Request?
     var additionalImagesRequest: DataRequest?
 
     //--------------------------------------------------------------------------
@@ -77,7 +77,7 @@ class SetDetailViewController: UIViewController {
         if setDetail == nil && !isPreview {
             fetchSetDetail()
         }
-        if let set = currentSet, set.imageURL != nil && !isPreview {
+        if let set = currentSet, set.image?.imageURL != nil && !isPreview {
             checkForLargeImage()
         }
         if additionalImages == nil && !isPreview {
@@ -120,16 +120,20 @@ class SetDetailViewController: UIViewController {
         var actionItems: [UIPreviewActionItem] = []
         
         if BricksetServices.isLoggedIn() {
-            if let owned = currentSet?.owned, !owned {
+            if let owned = currentSet?.isOwned, !owned {
                 let action1 = UIPreviewAction(title: "I own this set", style: .default) { (_, _) in
-                    if var set = self.currentSet, let setID = set.setID {
-                        set.owned = true
-                        set.quantityOwned = set.owned ? 1 : nil
-                        
-                        BricksetServices.shared.setCollectionOwns(setID: setID, owned: set.owned, completion: { result in
-                            if result.isSuccess {
-                                self.currentSet = set
-                                self.notifySetUpdated(set: set)
+                    if let set = self.currentSet, let setID = set.setID {
+                        set.collection?.owned = true
+                        set.collection?.qtyOwned = set.isOwned ? 1 : nil
+
+                        let request = BricksetSetCollectionRequest(own: set.isOwned)
+                        BricksetServices.shared.setCollection(setID: setID, request: request, completion: { result in
+                            switch result {
+                                case .success:
+                                    self.currentSet = set
+                                    self.notifySetUpdated(set: set)
+                                case .failure(let error):
+                                    NSLog("Error setting item owned: \(error.localizedDescription)")
                             }
                         })
                     }
@@ -137,15 +141,19 @@ class SetDetailViewController: UIViewController {
                 actionItems.append(action1)
             }
             
-            if let wanted = currentSet?.wanted, !wanted {
+            if let wanted = currentSet?.isWanted, !wanted {
                 let action2 = UIPreviewAction(title: "I want this set", style: .default) { (_, _) in
-                    if var set = self.currentSet, let setID = set.setID {
-                        set.wanted = true
+                    if let set = self.currentSet, let setID = set.setID {
+                        set.collection?.wanted = true
                         
-                        BricksetServices.shared.setCollectionWants(setID: setID, wanted: set.wanted, completion: { result in
-                            if result.isSuccess {
-                                self.currentSet = set
-                                self.notifySetUpdated(set: set)
+                        let request = BricksetSetCollectionRequest(want: set.isWanted)
+                        BricksetServices.shared.setCollection(setID: setID, request: request, completion: { result in
+                            switch result {
+                                case .success:
+                                    self.currentSet = set
+                                    self.notifySetUpdated(set: set)
+                                case .failure(let error):
+                                    NSLog("Error setting item owned: \(error.localizedDescription)")
                             }
                         })
                     }
@@ -157,7 +165,7 @@ class SetDetailViewController: UIViewController {
         return actionItems
     }
     
-    private func notifySetUpdated(set: Set) {
+    private func notifySetUpdated(set: SetDetail) {
         NotificationCenter.default.post(name: Notification.Name.Collection.DidUpdate, object: self, userInfo: [Notification.Key.Set: set])
     }
 
@@ -166,11 +174,13 @@ class SetDetailViewController: UIViewController {
     //--------------------------------------------------------------------------
     
     @objc private func collectionUpdated(_ notification: Notification) {
-        if let updatedSet = notification.userInfo?[Notification.Key.Set] as? Set, updatedSet.setID == currentSet?.setID {
+        if let updatedSet = notification.userInfo?[Notification.Key.Set] as? SetDetail, updatedSet.setID == currentSet?.setID {
             self.currentSet = updatedSet
             if let detailSection = sections.index(of: .detail), let collectionRow = detailRows.index(of: .collection) {
                 let indexPath = IndexPath(row: collectionRow, section: detailSection)
-                tableView.reloadRows(at: [indexPath], with: .fade)
+                if view.superview != nil {
+                    tableView.reloadRows(at: [indexPath], with: .fade)
+                }
             }
         }
     }
@@ -224,10 +234,10 @@ class SetDetailViewController: UIViewController {
         }
         
         // Tags and set description
-        if let tags = setDetail?.tags, tags.count > 0 {
+        if let tags = setDetail?.extendedData?.tags, tags.count > 0 {
             sections.append(.tags)
         }
-        if let detail = setDetail, let setDescription = detail.setDescription, setDescription.count > 0 {
+        if let detail = setDetail, let setDescription = detail.extendedData?.setDescription, setDescription.count > 0 {
             sections.append(.description)
         }
     }
@@ -239,18 +249,21 @@ class SetDetailViewController: UIViewController {
                 
                 strongSelf.setDetailRequest = nil
                 
-                if result.isSuccess, let detail = result.value {
-                    strongSelf.setDetail = detail
-                    
-                    strongSelf.tableView.beginUpdates()
-                    strongSelf.updateSections()
-                    if let index = strongSelf.sections.index(of: .tags) {
-                        strongSelf.tableView.insertSections([index], with: .fade)
-                    }
-                    if let index = strongSelf.sections.index(of: .description) {
-                        strongSelf.tableView.insertSections([index], with: .fade)
-                    }
-                    strongSelf.tableView.endUpdates()
+                switch result {
+                    case .success(let detail):
+                        strongSelf.setDetail = detail
+                        
+                        strongSelf.tableView.beginUpdates()
+                        strongSelf.updateSections()
+                        if let index = strongSelf.sections.index(of: .tags) {
+                            strongSelf.tableView.insertSections([index], with: .fade)
+                        }
+                        if let index = strongSelf.sections.index(of: .description) {
+                            strongSelf.tableView.insertSections([index], with: .fade)
+                        }
+                        strongSelf.tableView.endUpdates()
+                    case .failure(let error):
+                        NSLog("Error fetching set detail: \(error.localizedDescription)")
                 }
             })
         }
@@ -261,8 +274,12 @@ class SetDetailViewController: UIViewController {
             additionalImagesRequest = BricksetServices.shared.getAdditionalImages(setID: setID, completion: { [weak self] result in
                 guard let strongSelf = self else { return }
                 strongSelf.additionalImagesRequest = nil
-                if result.isSuccess, let images = result.value, images.count > 0 {
-                    strongSelf.updateAdditionalImages(images: images)
+
+                switch result {
+                    case .success(let images):
+                        strongSelf.updateAdditionalImages(images: images)
+                    case .failure(let error):
+                        NSLog("Error fetching additional images: \(error.localizedDescription)")
                 }
             })
         }
@@ -279,9 +296,9 @@ class SetDetailViewController: UIViewController {
     }
     
     private func checkForLargeImage() {
-        if let set = currentSet, let imageURL = set.imageURL {
+        if let set = currentSet, let imageURL = set.image?.imageURL {
             let largeImageURL = imageURL.replacingOccurrences(of: "/images/", with: "/large/")
-            Alamofire.request(largeImageURL, method: .head).response { response in
+            Session.default.request(largeImageURL, method: .head).response { response in
                 if let httpResponse = response.response, httpResponse.statusCode == 200 {
                     self.hasLargeImage = true
                 }
@@ -291,7 +308,7 @@ class SetDetailViewController: UIViewController {
     
     private func showImageDetail(for setImage: SetImage?) {
         if let viewController = self.storyboard?.instantiateViewController(withIdentifier: "SetImagesViewController") as? SetImagesViewController {
-            let mainImage = SetImage(thumbnailURL: currentSet?.thumbnailURL, imageURL: hasLargeImage ? currentSet?.largeImageURL : currentSet?.imageURL)
+            let mainImage = SetImage(thumbnailURL: currentSet?.image?.thumbnailURL, imageURL: hasLargeImage ? currentSet?.largeImageURL : currentSet?.image?.imageURL)
             let images = [mainImage]
             viewController.images = images + (additionalImages ?? [])
             viewController.selectedImage = setImage ?? mainImage

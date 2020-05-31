@@ -58,12 +58,6 @@ class ProfileCreditsViewController: UIViewController {
         }
     }
     
-    @IBAction func goToFuzi(_ sender: AnyObject?) {
-        if let url = URL(string: Constants.Fuzi.url) {
-            UIApplication.shared.open(url, options: [:], completionHandler: nil)
-        }
-    }
-    
     @IBAction func goToKeychainAccess(_ sender: AnyObject?) {
         if let url = URL(string: Constants.KeychainAccess.url) {
             UIApplication.shared.open(url, options: [:], completionHandler: nil)

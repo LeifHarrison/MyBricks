@@ -48,9 +48,6 @@ struct Constants {
     struct Cosmos {
         static let url = "https://github.com/evgenyneu/Cosmos"
     }
-    struct Fuzi {
-        static let url = "https://github.com/cezheng/Fuzi"
-    }
     struct KeychainAccess {
         static let url = "https://github.com/kishikawakatsumi/KeychainAccess"
     }

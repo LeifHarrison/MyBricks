@@ -63,25 +63,25 @@ class SetCollectionTableViewCell: BlueGradientTableViewCell, ReusableView, NibLo
     // MARK: - Public
     //--------------------------------------------------------------------------
     
-    func populate(with set: Set) {
-        ownedStatusView.isHidden = !set.owned
-        wantedStatusView.isHidden = !set.wanted
+    func populate(with set: SetDetail) {
+        ownedStatusView.isHidden = !set.isOwned
+        wantedStatusView.isHidden = !set.isWanted
 
-        if set.owned {
-            ownedStatusLabel.text = "\(set.quantityOwned ?? 0)"
+        if set.isOwned {
+            ownedStatusLabel.text = "\(set.collection?.qtyOwned ?? 0)"
             ownedStatusView.backgroundColor = UIColor.bricksetOwned
         }
-        else if set.wanted {
+        else if set.isWanted {
             wantedStatusLabel.text = "W"
             wantedStatusView.backgroundColor = UIColor.bricksetWanted
         }
 
-        if let rating = set.userRating, rating > 0 {
+        if let rating = set.collection?.rating, rating > 0 {
             ratingContainerView.isHidden = false
             ratingLabel.text = "\(rating)"
         }
 
-        if let notes = set.userNotes, notes.count > 0 {
+        if let notes = set.collection?.notes, notes.count > 0 {
             notesIndicator.isHidden = false
         }
     }

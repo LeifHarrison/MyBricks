@@ -10,20 +10,33 @@ import Foundation
 
 import Alamofire
 import AlamofireRSSParser
-import Fuzi
 import KeychainAccess
 
-// swiftlint:disable file_length, type_body_length
-
 enum ServiceError: Error {
-    case serviceFailure(reason: String)
     case loginFailed(reason: String)
+    case serviceFailure(reason: String)
+    case decodeError(reason: String)
     case unknownError
 }
 
-typealias GetThemesCompletion = (Result<[SetTheme]>) -> Void
-typealias GetSubthemesCompletion = (Result<[SetSubtheme]>) -> Void
-typealias GetYearsCompletion = (Result<[SetYear]>) -> Void
+extension ServiceError: LocalizedError {
+    public var errorDescription: String? {
+        switch self {
+            case .loginFailed(let reason):
+                return reason
+            case .serviceFailure(let reason):
+                return reason
+            case .decodeError(let reason):
+                return reason
+            case .unknownError:
+                return "Unknown service error."
+        }
+    }
+}
+
+typealias GetThemesCompletion = (Result<[SetTheme], ServiceError>) -> Void
+typealias GetSubthemesCompletion = (Result<[SetSubtheme], ServiceError>) -> Void
+typealias GetYearsCompletion = (Result<[SetYear], ServiceError>) -> Void
 
 class BricksetServices: AuthenticatedServiceAPI {
 
@@ -44,45 +57,36 @@ class BricksetServices: AuthenticatedServiceAPI {
         return formatter
     }()
 
-    let baseURL = "https://brickset.com/api/v2.asmx/"
+    let baseURL = "https://brickset.com/api/v3.asmx/"
 
     //--------------------------------------------------------------------------
     // MARK: - General Services
     //--------------------------------------------------------------------------
 
     // Check if an API key is valid.
-    func checkKey(completion: @escaping (Result<Bool>) -> Void) {
+    func checkKey(completion: @escaping (Result<Bool, ServiceError>) -> Void) {
         let url = baseURL + "checkKey"
         let parameters = defaultParameters()
 
-        let request = Alamofire.request( url, parameters: parameters)
-        let requestCompletion: (DataResponse<XMLDocument>) -> Void = { response in
-            if let error = response.result.error {
-                completion(Result.failure(error))
-            }
-            else if let document = response.result.value, let result = document.root?.stringValue {
-                if result.contains("ERROR") {
-                    let array = result.components(separatedBy: ": ")
-                    if array.count > 0 {
-                        let errorDetail = array[1]
-                        completion(Result.failure(ServiceError.serviceFailure(reason:errorDetail)))
-                        return
+        let request = AF.request( url, parameters: parameters)
+        let requestCompletion: (AFDataResponse<BricksetBasicResponse>) -> Void = { dataResponse in
+            switch dataResponse.result {
+                case .success(let response):
+                    if response.status == "success" {
+                        completion(.success(true))
                     }
-                }
-
-                if result.contains("OK") {
-                    completion(Result.success(true))
-                }
-                else if result.contains("INVALIDKEY") {
-                    completion(Result.success(false))
-                }
-                else {
-                    completion(Result.failure(ServiceError.unknownError))
-                }
-
+                    else if let error = response.message {
+                        completion(.failure(.serviceFailure(reason: error)))
+                    }
+                    else {
+                        completion(.failure(.unknownError))
+                    }
+                case .failure(let error):
+                    NSLog("Error checking API key: \(error.localizedDescription)")
+                    completion(.failure(.serviceFailure(reason: error.localizedDescription)))
             }
         }
-        request.responseXMLDocument(completionHandler: requestCompletion)
+        request.responseDecodable(of: BricksetBasicResponse.self, completionHandler: requestCompletion)
     }
 
     //--------------------------------------------------------------------------
@@ -123,77 +127,63 @@ class BricksetServices: AuthenticatedServiceAPI {
     }
     
     // Log in as a user and retrieve a token that can be used in subsequent API calls.
-    func login(username: String, password: String, completion: @escaping (Result<String>) -> Void) {
+    func login(username: String, password: String, completion: @escaping (Result<String, ServiceError>) -> Void) {
         let url = baseURL + "login"
         var parameters = defaultParameters()
         parameters["username"] = username
         parameters["password"] = password
 
-        let request = Alamofire.request( url, parameters: parameters)
-        let requestCompletion: (DataResponse<XMLDocument>) -> Void = { response in
-            if let error = response.result.error {
-                completion(Result.failure(error))
-            }
-            else if let document = response.result.value, let result = document.root?.stringValue {
-                if result.contains("ERROR") {
-                    let array = result.components(separatedBy: ": ")
-                    if array.count > 0 {
-                        let errorDetail = array[1]
-                        completion(Result.failure(ServiceError.loginFailed(reason:errorDetail)))
+        let request = AF.request( url, parameters: parameters)
+        let requestCompletion: (AFDataResponse<BricksetLoginResponse>) -> Void = { dataResponse in
+            switch dataResponse.result {
+                case .success(let response):
+                    guard let userHash = response.hash else {
+                        completion(.failure(.serviceFailure(reason: "Response missing user hash!")))
                         return
                     }
-                }
-                
-                UserDefaults.standard.setValue(username, forKey: self.userNameKey)
-                let keychain = Keychain(service: self.keychainServiceName)
-                keychain[username] = result
+                    UserDefaults.standard.setValue(username, forKey: self.userNameKey)
+                    let keychain = Keychain(service: self.keychainServiceName)
+                    keychain[username] = userHash
+                    completion(.success(userHash))
 
-                completion(Result.success(result))
+                case .failure(let error):
+                    completion(.failure(.serviceFailure(reason: error.localizedDescription)))
             }
         }
-
-        request.responseXMLDocument(completionHandler: requestCompletion)
+        request.responseDecodable(of: BricksetLoginResponse.self, completionHandler: requestCompletion)
     }
 
     // Check if a userHash key is valid.
-    func checkUserHash(completion: @escaping (Result<Bool>) -> Void) {
+    func checkUserHash(completion: @escaping (Result<Bool, ServiceError>) -> Void) {
         let url = baseURL + "checkUserHash"
         var parameters = defaultParameters()
 
         let keychain = Keychain(service: keychainServiceName)
         guard let username = UserDefaults.standard.value(forKey: userNameKey) as? String, let userHash = keychain[username] else {
-            completion(Result.failure(ServiceError.unknownError))
+            completion(.failure(ServiceError.unknownError))
             return
         }
         parameters["userHash"] = userHash
 
-        let request = Alamofire.request( url, parameters: parameters)
-        let requestCompletion: (DataResponse<XMLDocument>) -> Void = { response in
-            if let error = response.result.error {
-                completion(Result.failure(error))
-            }
-            else if let document = response.result.value, let result = document.root?.stringValue {
-                if result.contains("ERROR") {
-                    let array = result.components(separatedBy: ": ")
-                    if array.count > 0 {
-                        let errorDetail = array[1]
-                        completion(Result.failure(ServiceError.loginFailed(reason:errorDetail)))
-                        return
+        let request = AF.request( url, parameters: parameters)
+        let requestCompletion: (AFDataResponse<BricksetBasicResponse>) -> Void = { dataResponse in
+            switch dataResponse.result {
+                case .success(let response):
+                    if response.status == "success" {
+                        completion(.success(true))
                     }
-                }
+                    else if let error = response.message {
+                        completion(.failure(.serviceFailure(reason: error)))
+                    }
+                    else {
+                        completion(.failure(.unknownError))
+                    }
 
-                if result.contains(username) {
-                    completion(Result.success(true))
-                }
-                else if result.contains("INVALID") {
-                    completion(Result.success(false))
-                }
-                else {
-                    completion(Result.failure(ServiceError.unknownError))
-                }
+                case .failure(let error):
+                    completion(.failure(.serviceFailure(reason: error.localizedDescription)))
             }
         }
-        request.responseXMLDocument(completionHandler: requestCompletion)
+        request.responseDecodable(of: BricksetBasicResponse.self, completionHandler: requestCompletion)
     }
     
     func logout(_ completion: @escaping () -> Void) {
@@ -213,333 +203,220 @@ class BricksetServices: AuthenticatedServiceAPI {
         let url = baseURL + "getThemes"
         
         let parameters = defaultParameters()
-        let request = Alamofire.request( url, parameters: parameters)
-        let requestCompletion: (DataResponse<XMLDocument>) -> Void = { response in
-            if let error = response.result.error {
-                completion(Result.failure(error))
-            }
-            else if let document = response.result.value {
-                if let root = document.root {
-                    var themes: [SetTheme] = []
-                    
-                    for element in root.children {
-                        if let theme = SetTheme(element: element) {
-                            themes.append(theme)
-                        }
-                    }
-                    
-                    completion(Result.success(themes))
-                }
+        let request = AF.request(url, parameters: parameters)
+        let requestCompletion: (AFDataResponse<BricksetGetThemesResponse>) -> Void = { dataResponse in
+            switch dataResponse.result {
+                case .success(let response):
+                    completion(.success(response.themes ?? []))
+
+                case .failure(let error):
+                    completion(.failure(.serviceFailure(reason: error.localizedDescription)))
             }
         }
-        request.responseXMLDocument(completionHandler: requestCompletion)
+        request.responseDecodable(of: BricksetGetThemesResponse.self, completionHandler: requestCompletion)
     }
     
-    func getThemesForUser(owned: Bool, wanted: Bool, completion: @escaping GetThemesCompletion) {
-        let url = baseURL + "getThemesForUser"
-        
-        var parameters = userParameters()
-        parameters["owned"] = owned ? "1" : ""
-        parameters["wanted"] = wanted ? "1" : ""
-
-        let request = Alamofire.request( url, parameters: parameters)
-        let requestCompletion: (DataResponse<XMLDocument>) -> Void = { response in
-            if let error = response.result.error {
-                completion(Result.failure(error))
-            }
-            else if let document = response.result.value {
-                if let root = document.root {
-                    var themes: [SetTheme] = []
-                    
-                    for element in root.children {
-                        if let theme = SetTheme(element: element) {
-                            themes.append(theme)
-                        }
-                    }
-                    
-                    completion(Result.success(themes))
-                }
-            }
-        }
-        request.responseXMLDocument(completionHandler: requestCompletion)
-    }
+    // Not available in Brickset v3 API
+//    func getThemesForUser(owned: Bool, wanted: Bool, completion: @escaping GetThemesCompletion) {
+//        let url = baseURL + "getThemesForUser"
+//
+//        var parameters = userParameters()
+//        parameters["owned"] = owned ? "1" : ""
+//        parameters["wanted"] = wanted ? "1" : ""
+//
+//        let request = AF.request( url, parameters: parameters)
+//        let requestCompletion: (AFDataResponse<BricksetGetThemesResponse>) -> Void = { dataResponse in
+//            switch dataResponse.result {
+//                case .success(let response):
+//                    completion(.success(response.themes ?? []))
+//
+//                case .failure(let error):
+//                    completion(.failure(.serviceFailure(reason: error.localizedDescription)))
+//            }
+//        }
+//        request.responseDecodable(of: BricksetGetThemesResponse.self, completionHandler: requestCompletion)
+//    }
     
     func getSubthemes(theme: String, completion: @escaping GetSubthemesCompletion) {
         let url = baseURL + "getSubthemes"
-        
+
         var parameters = defaultParameters()
         parameters["theme"] = theme
 
-        let request = Alamofire.request( url, parameters: parameters)
-        let requestCompletion: (DataResponse<XMLDocument>) -> Void = { response in
-            if let error = response.result.error {
-                completion(Result.failure(error))
-            }
-            else if let document = response.result.value {
-                if let root = document.root {
-                    var subthemes: [SetSubtheme] = []
-                    
-                    for element in root.children {
-                        if let theme = SetSubtheme(element: element) {
-                            subthemes.append(theme)
-                        }
-                    }
-                    
-                    completion(Result.success(subthemes))
-                }
+        let request = AF.request( url, parameters: parameters)
+        let requestCompletion: (AFDataResponse<BricksetGetSubthemesResponse>) -> Void = { dataResponse in
+            switch dataResponse.result {
+                case .success(let response):
+                    completion(.success(response.subthemes ?? []))
+
+                case .failure(let error):
+                    completion(.failure(.serviceFailure(reason: error.localizedDescription)))
             }
         }
-        request.responseXMLDocument(completionHandler: requestCompletion)
+        request.responseDecodable(of: BricksetGetSubthemesResponse.self, completionHandler: requestCompletion)
     }
     
-    func getSubthemesForUser(theme: String, owned: Bool, wanted: Bool, completion: @escaping GetSubthemesCompletion) {
-        let url = baseURL + "getSubthemes"
-        
-        var parameters = userParameters()
-        parameters["theme"] = theme
-        parameters["owned"] = owned ? "1" : ""
-        parameters["wanted"] = wanted ? "1" : ""
-
-        let request = Alamofire.request( url, parameters: parameters)
-        let requestCompletion: (DataResponse<XMLDocument>) -> Void = { response in
-            if let error = response.result.error {
-                completion(Result.failure(error))
-            }
-            else if let document = response.result.value {
-                if let root = document.root {
-                    var subthemes: [SetSubtheme] = []
-                    
-                    for element in root.children {
-                        if let theme = SetSubtheme(element: element) {
-                            subthemes.append(theme)
-                        }
-                    }
-                    
-                    completion(Result.success(subthemes))
-                }
-            }
-        }
-        request.responseXMLDocument(completionHandler: requestCompletion)
-    }
+    // Not available in Brickset v3 API
+//    func getSubthemesForUser(theme: String, owned: Bool, wanted: Bool, completion: @escaping GetSubthemesCompletion) {
+//        let url = baseURL + "getSubthemes"
+//
+//        var parameters = userParameters()
+//        parameters["theme"] = theme
+//        parameters["owned"] = owned ? "1" : ""
+//        parameters["wanted"] = wanted ? "1" : ""
+//
+//        let request = AF.request( url, parameters: parameters)
+//        let requestCompletion: (AFDataResponse<BricksetGetSubthemesResponse>) -> Void = { dataResponse in
+//            switch dataResponse.result {
+//                case .success(let response):
+//                    completion(.success(response.subthemes ?? []))
+//
+//                case .failure(let error):
+//                    completion(.failure(.serviceFailure(reason: error.localizedDescription)))
+//            }
+//        }
+//        request.responseDecodable(of: BricksetGetSubthemesResponse.self, completionHandler: requestCompletion)
+//    }
     
     func getYears(theme: String, completion: @escaping GetYearsCompletion) {
         let url = baseURL + "getYears"
-        
+
         var parameters = defaultParameters()
         parameters["theme"] = theme
-        
-        let request = Alamofire.request( url, parameters: parameters)
-        let requestCompletion: (DataResponse<XMLDocument>) -> Void = { response in
-            if let error = response.result.error {
-                completion(Result.failure(error))
-            }
-            else if let document = response.result.value {
-                if let root = document.root {
-                    var years: [SetYear] = []
-                    
-                    for element in root.children {
-                        if let theme = SetYear(element: element) {
-                            years.append(theme)
-                        }
-                    }
-                    
-                    completion(Result.success(years))
-                }
+
+        let request = AF.request( url, parameters: parameters)
+        let requestCompletion: (AFDataResponse<BricksetGetYearsResponse>) -> Void = { dataResponse in
+            switch dataResponse.result {
+                case .success(let response):
+                    completion(.success(response.years ?? []))
+
+                case .failure(let error):
+                    completion(.failure(.serviceFailure(reason: error.localizedDescription)))
             }
         }
-        request.responseXMLDocument(completionHandler: requestCompletion)
+        request.responseDecodable(of: BricksetGetYearsResponse.self, completionHandler: requestCompletion)
     }
     
-    func getYearsForUser(theme: String, owned: Bool, wanted: Bool, completion: @escaping GetYearsCompletion) {
-        let url = baseURL + "getYears"
-        
-        var parameters = userParameters()
-        parameters["theme"] = theme
-        parameters["owned"] = owned ? "1" : ""
-        parameters["wanted"] = wanted ? "1" : ""
-
-        let request = Alamofire.request( url, parameters: parameters)
-        let requestCompletion: (DataResponse<XMLDocument>) -> Void = { response in
-            if let error = response.result.error {
-                completion(Result.failure(error))
-            }
-            else if let document = response.result.value {
-                if let root = document.root {
-                    var years: [SetYear] = []
-                    
-                    for element in root.children {
-                        if let theme = SetYear(element: element) {
-                            years.append(theme)
-                        }
-                    }
-                    
-                    completion(Result.success(years))
-                }
-            }
-        }
-        request.responseXMLDocument(completionHandler: requestCompletion)
-    }
+    // Not available in Brickset v3 API
+//    func getYearsForUser(theme: String, owned: Bool, wanted: Bool, completion: @escaping GetYearsCompletion) {
+//        let url = baseURL + "getYears"
+//
+//        var parameters = userParameters()
+//        parameters["theme"] = theme
+//        parameters["owned"] = owned ? "1" : ""
+//        parameters["wanted"] = wanted ? "1" : ""
+//
+//        let request = AF.request( url, parameters: parameters)
+//        let requestCompletion: (AFDataResponse<BricksetGetYearsResponse>) -> Void = { dataResponse in
+//            switch dataResponse.result {
+//                case .success(let response):
+//                    completion(.success(response.years ?? []))
+//
+//                case .failure(let error):
+//                    completion(.failure(.serviceFailure(reason: error.localizedDescription)))
+//            }
+//        }
+//        request.responseDecodable(of: BricksetGetYearsResponse.self, completionHandler: requestCompletion)
+//    }
     
     //--------------------------------------------------------------------------
     // MARK: - Sets
     //--------------------------------------------------------------------------
 
     // Retrieve a list of sets. All parameters except apiKey are optional but must be passed as blanks if not used.
-    @discardableResult func getSets(_ request: GetSetsRequest, completion: @escaping (Result<[Set]>) -> Void) -> Request {
+    @discardableResult func getSets(_ request: BricksetGetSetsRequest, completion: @escaping (Result<[SetDetail], ServiceError>) -> Void) -> Request {
         let url = baseURL + "getSets"
 
         var parameters = userParameters()
-        parameters["query"] = request.query ?? ""
-        parameters["theme"] = request.theme ?? ""
-        parameters["subtheme"] = request.subtheme ?? ""
-        parameters["setNumber"] = request.setNumber ?? ""
-        parameters["year"] = request.year ?? ""
-        parameters["owned"] = request.owned ? "1" : ""
-        parameters["wanted"] = request.wanted ? "1" : ""
-        parameters["orderBy"] = request.sortingSelection.parameterValue
-        parameters["pageSize"] = "1000"
-        parameters["pageNumber"] = ""
-        parameters["userName"] = ""
 
-        let request = Alamofire.request( url, parameters: parameters)
-        let requestCompletion: (DataResponse<XMLDocument>) -> Void = { response in
-            if let error = response.result.error {
-                completion(Result.failure(error))
-            }
-            else if let document = response.result.value {
-                if let root = document.root {
-                    var sets: [Set] = []
+        let jsonData = try! JSONEncoder().encode(request)
+        let jsonString = String(data: jsonData, encoding: .utf8)!
+        parameters["params"] = jsonString
 
-                    for element in root.children {
-                        if let set = Set(element: element) {
-                            sets.append(set)
-                        }
-                    }
-
-                    completion(Result.success(sets))
-                }
+        let request = AF.request(url, parameters: parameters)
+        let requestCompletion: (AFDataResponse<BricksetGetSetsResponse>) -> Void = { dataResponse in
+            switch dataResponse.result {
+                case .success(let response):
+                    completion(.success(response.sets ?? []))
+                case .failure(let error):
+                    completion(.failure(.serviceFailure(reason: error.localizedDescription)))
             }
         }
-        request.responseXMLDocument(completionHandler: requestCompletion)
+        request.responseDecodable(of: BricksetGetSetsResponse.self, completionHandler: requestCompletion)
         return request
     }
 
-    @discardableResult func getSet(setID: String, completion: @escaping (Result<SetDetail>) -> Void) -> DataRequest {
-        let url = baseURL + "getSet"
-
-        var parameters = userParameters()
-        parameters["setID"] = setID
-
-        let request = Alamofire.request( url, parameters: parameters)
-        let requestCompletion: (DataResponse<XMLDocument>) -> Void = { response in
-            if let error = response.result.error {
-                completion(Result.failure(error))
-            }
-            else if let document = response.result.value {
-                if let root = document.root {
-                    var sets: [SetDetail] = []
-
-                    for element in root.children {
-                        if let set = SetDetail(element: element) {
-                            sets.append(set)
-                        }
-                    }
-
-                    if sets.count == 1, let firstSet = sets.first {
-                        completion(Result.success(firstSet))
+    // Convenience cover to getSets for just a specific setID
+    @discardableResult func getSet(setID: Int, completion: @escaping (Result<SetDetail, ServiceError>) -> Void) -> Request {
+        let setRequest = BricksetGetSetsRequest(setID: setID, includeExtendedData: true)
+        let innerCompletion: (Result<[SetDetail], ServiceError>) -> Void = { result in
+            switch result {
+                case .success(let sets):
+                    if let firstSet = sets.first {
+                        completion(.success(firstSet))
                     }
                     else {
-                        completion(Result.failure(ServiceError.unknownError))
-                    }
+                        completion(.failure(.serviceFailure(reason: "No results")))
                 }
+                case .failure(let error):
+                    completion(.failure(error))
             }
         }
-        request.responseXMLDocument(completionHandler: requestCompletion)
-        return request
+        return getSets(setRequest, completion: innerCompletion)
     }
 
-    func getReviews(setID: String, completion: @escaping (Result<[SetReview]>) -> Void) {
+    func getReviews(setID: Int, completion: @escaping (Result<[SetReview], ServiceError>) -> Void) {
         let url = baseURL + "getReviews"
 
         var parameters = defaultParameters()
         parameters["setID"] = setID
 
-        let request = Alamofire.request( url, parameters: parameters)
-        let requestCompletion: (DataResponse<XMLDocument>) -> Void = { response in
-            if let error = response.result.error {
-                completion(Result.failure(error))
-            }
-            else if let document = response.result.value {
-                if let root = document.root {
-                    var reviews: [SetReview] = []
-
-                    for element in root.children {
-                        if let review = SetReview(element: element) {
-                            reviews.append(review)
-                        }
-                    }
-
-                    completion(Result.success(reviews))
-                }
+        let request = AF.request( url, parameters: parameters)
+        let requestCompletion: (AFDataResponse<BricksetGetReviewsResponse>) -> Void = { dataResponse in
+             switch dataResponse.result {
+                case .success(let response):
+                    completion(.success(response.reviews ?? []))
+                case .failure(let error):
+                    completion(.failure(.serviceFailure(reason: error.localizedDescription)))
             }
         }
-        request.responseXMLDocument(completionHandler: requestCompletion)
+        request.responseDecodable(of: BricksetGetReviewsResponse.self, completionHandler: requestCompletion)
     }
 
-    func getInstructions(setID: String, completion: @escaping (Result<[SetInstructions]>) -> Void) {
+    func getInstructions(setID: Int, completion: @escaping (Result<[SetInstructions], ServiceError>) -> Void) {
         let url = baseURL + "getInstructions"
-        
+
         var parameters = defaultParameters()
         parameters["setID"] = setID
-        
-        let request = Alamofire.request( url, parameters: parameters)
-        let requestCompletion: (DataResponse<XMLDocument>) -> Void = { response in
-            if let error = response.result.error {
-                completion(Result.failure(error))
-            }
-            else if let document = response.result.value {
-                if let root = document.root {
-                    var instructions: [SetInstructions] = []
-                    
-                    for element in root.children {
-                        if let instruction = SetInstructions(element: element) {
-                            instructions.append(instruction)
-                        }
-                    }
-                    
-                    completion(Result.success(instructions))
-                }
+
+        let request = AF.request( url, parameters: parameters)
+        let requestCompletion: (AFDataResponse<BricksetGetInstructionsResponse>) -> Void = { dataResponse in
+             switch dataResponse.result {
+                case .success(let response):
+                    completion(.success(response.instructions ?? []))
+                case .failure(let error):
+                    completion(.failure(.serviceFailure(reason: error.localizedDescription)))
             }
         }
-        request.responseXMLDocument(completionHandler: requestCompletion)
+        request.responseDecodable(of: BricksetGetInstructionsResponse.self, completionHandler: requestCompletion)
     }
     
-    @discardableResult func getAdditionalImages(setID: String, completion: @escaping (Result<[SetImage]>) -> Void) -> DataRequest {
+    @discardableResult func getAdditionalImages(setID: Int, completion: @escaping (Result<[SetImage], ServiceError>) -> Void) -> DataRequest {
         let url = baseURL + "getAdditionalImages"
-        
+
         var parameters = defaultParameters()
         parameters["setID"] = setID
-        
-        let request = Alamofire.request( url, parameters: parameters)
-        let requestCompletion: (DataResponse<XMLDocument>) -> Void = { response in
-            if let error = response.result.error {
-                completion(Result.failure(error))
-            }
-            else if let document = response.result.value {
-                if let root = document.root {
-                    var images: [SetImage] = []
-                    
-                    for element in root.children {
-                        if let image = SetImage(element: element) {
-                            images.append(image)
-                        }
-                    }
-                    
-                    completion(Result.success(images))
-                }
+
+        let request = AF.request( url, parameters: parameters)
+        let requestCompletion: (AFDataResponse<BricksetGetImagesResponse>) -> Void = { dataResponse in
+            switch dataResponse.result {
+                case .success(let response):
+                    completion(.success(response.additionalImages ?? []))
+                case .failure(let error):
+                    completion(.failure(.serviceFailure(reason: error.localizedDescription)))
             }
         }
-        request.responseXMLDocument(completionHandler: requestCompletion)
+        request.responseDecodable(of: BricksetGetImagesResponse.self, completionHandler: requestCompletion)
         return request
     }
     
@@ -547,158 +424,79 @@ class BricksetServices: AuthenticatedServiceAPI {
     // MARK: - Set Collection Management
     //--------------------------------------------------------------------------
 
-    func getCollectionTotals(completion: @escaping (Result<UserCollectionTotals>) -> Void) {
+    // Not available in Brickset v3 API
+    func getCollectionTotals(completion: @escaping (Result<UserCollectionTotals, ServiceError>) -> Void) {
         let url = baseURL + "getCollectionTotals"
         let parameters = userParameters()
 
-        let request = Alamofire.request( url, parameters: parameters)
-        let requestCompletion: (DataResponse<XMLDocument>) -> Void = { response in
-            if let error = response.result.error {
-                completion(Result.failure(error))
+        let request = AF.request( url, parameters: parameters)
+        let requestCompletion: (AFDataResponse<Any>) -> Void = { dataResponse in
+            switch dataResponse.result {
+                case .success(let json):
+                    NSLog("JSON: \(json)")
+//                    if let root = document.root {
+//                        if let collectionTotals = UserCollectionTotals(element: root) {
+//                            completion(Result.success(collectionTotals))
+//                        }
+//                    }
+                    completion(.failure(.unknownError))
+
+                case .failure(let error):
+                    completion(.failure(.serviceFailure(reason: error.localizedDescription)))
             }
-            else if let document = response.result.value, let root = document.root {
-                if let collectionTotals = UserCollectionTotals(element: root) {
-                    completion(Result.success(collectionTotals))
-                }
-            }
+
         }
-        request.responseXMLDocument(completionHandler: requestCompletion)
+        request.responseJSON(completionHandler: requestCompletion)
     }
 
-    func setCollectionOwns(setID: String, owned: Bool, completion: @escaping (Result<Bool>) -> Void) {
-        let url = baseURL + "setCollection_owns"
+    func setCollection(setID: Int, request: BricksetSetCollectionRequest, completion: @escaping (Result<Bool, ServiceError>) -> Void) {
+        let url = baseURL + "setCollection"
 
         var parameters = userParameters()
-        parameters["setID"] = setID
-        parameters["owned"] = owned
+        parameters["SetID"] = setID
 
-        let request = Alamofire.request( url, method: .post, parameters: parameters)
-        let requestCompletion: (DataResponse<XMLDocument>) -> Void = { response in
-            if let error = response.result.error {
-                completion(Result.failure(error))
-            }
-            else if let document = response.result.value, let result = document.root?.stringValue {
-                if result.contains("OK") {
-                    completion(Result.success(true))
-                }
-                else {
-                    completion(Result.failure(ServiceError.unknownError))
-                }
-            }
-        }
-        request.responseXMLDocument(completionHandler: requestCompletion)
-    }
-    
-    func setCollectionWants(setID: String, wanted: Bool, completion: @escaping (Result<Bool>) -> Void) {
-        let url = baseURL + "setCollection_wants"
-        
-        var parameters = userParameters()
-        parameters["setID"] = setID
-        parameters["wanted"] = wanted
-        
-        let request = Alamofire.request( url, method: .post, parameters: parameters)
-        let requestCompletion: (DataResponse<XMLDocument>) -> Void = { response in
-            if let error = response.result.error {
-                completion(Result.failure(error))
-            }
-            else if let document = response.result.value, let result = document.root?.stringValue {
-                if result.contains("OK") {
-                    completion(Result.success(true))
-                }
-                else {
-                    completion(Result.failure(ServiceError.unknownError))
-                }
+        let jsonData = try! JSONEncoder().encode(request)
+        let jsonString = String(data: jsonData, encoding: .utf8)!
+        parameters["params"] = jsonString
+
+        let request = AF.request(url, method: .post,parameters: parameters)
+        let requestCompletion: (AFDataResponse<BricksetBasicResponse>) -> Void = { dataResponse in
+            switch dataResponse.result {
+                case .success(let response):
+                    if response.status == "success" {
+                        completion(.success(true))
+                    }
+                    else if let error = response.message {
+                        completion(.failure(.serviceFailure(reason: error)))
+                    }
+                    else {
+                        completion(.failure(.unknownError))
+                    }
+                case .failure(let error):
+                    NSLog("Error updating set collection: \(error.localizedDescription)")
+                    completion(.failure(.serviceFailure(reason: error.localizedDescription)))
             }
         }
-        request.responseXMLDocument(completionHandler: requestCompletion)
-    }
-    
-    func setCollectionQuantityOwned(setID: String, quantityOwned: Int, completion: @escaping (Result<Bool>) -> Void) {
-        let url = baseURL + "setCollection_qtyOwned"
-        
-        var parameters = userParameters()
-        parameters["setID"] = setID
-        parameters["qtyOwned"] = quantityOwned
-        
-        let request = Alamofire.request( url, method: .post, parameters: parameters)
-        let requestCompletion: (DataResponse<XMLDocument>) -> Void = { response in
-            if let error = response.result.error {
-                completion(Result.failure(error))
-            }
-            else if let document = response.result.value, let result = document.root?.stringValue {
-                if result.contains("OK") {
-                    completion(Result.success(true))
-                }
-                else {
-                    completion(Result.failure(ServiceError.unknownError))
-                }
-            }
-        }
-        request.responseXMLDocument(completionHandler: requestCompletion)
-    }
-    
-    func setUserRating(setID: String, rating: Int, completion: @escaping (Result<Bool>) -> Void) {
-        let url = baseURL + "setUserRating"
-        
-        var parameters = userParameters()
-        parameters["setID"] = setID
-        parameters["rating"] = rating
-        
-        let request = Alamofire.request( url, method: .post, parameters: parameters)
-        let requestCompletion: (DataResponse<XMLDocument>) -> Void = { response in
-            if let error = response.result.error {
-                completion(Result.failure(error))
-            }
-            else if let document = response.result.value, let result = document.root?.stringValue {
-                if result.contains("OK") {
-                    completion(Result.success(true))
-                }
-                else {
-                    completion(Result.failure(ServiceError.unknownError))
-                }
-            }
-        }
-        request.responseXMLDocument(completionHandler: requestCompletion)
-    }
-    
-    func setCollectionUserNotes(setID: String, notes: String, completion: @escaping (Result<Bool>) -> Void) {
-        let url = baseURL + "setCollection_userNotes"
-        
-        var parameters = userParameters()
-        parameters["setID"] = setID
-        parameters["notes"] = notes
-        
-        let request = Alamofire.request( url, method: .post, parameters: parameters)
-        let requestCompletion: (DataResponse<XMLDocument>) -> Void = { response in
-            if let error = response.result.error {
-                completion(Result.failure(error))
-            }
-            else if let document = response.result.value, let result = document.root?.stringValue {
-                if result.contains("OK") {
-                    completion(Result.success(true))
-                }
-                else {
-                    completion(Result.failure(ServiceError.unknownError))
-                }
-            }
-        }
-        request.responseXMLDocument(completionHandler: requestCompletion)
+        request.responseDecodable(of: BricksetBasicResponse.self, completionHandler: requestCompletion)
     }
     
     //--------------------------------------------------------------------------
     // MARK: - RSS Feeds
     //--------------------------------------------------------------------------
 
-    func getNews(completion: @escaping (Result<RSSFeed>) -> Void) {
+    func getNews(completion: @escaping (Result<RSSFeed, ServiceError>) -> Void) {
         let url = "https://brickset.com/feed"
-        Alamofire.request(url).responseRSS({ (response) -> Void in
-            if let feed: RSSFeed = response.result.value {
-                completion(Result.success(feed))
+        let request = AF.request(url)
+        let requestCompletion: (AFDataResponse<RSSFeed>) -> Void = { dataResponse in
+            switch dataResponse.result {
+                case .success(let feed):
+                    completion(.success(feed))
+
+                case .failure(let error):
+                    completion(.failure(.serviceFailure(reason: error.localizedDescription)))
             }
-            else {
-                completion(Result.failure(ServiceError.unknownError))
-            }
-        })
+        }
+        request.responseRSS(completionHandler: requestCompletion)
     }
 
     //--------------------------------------------------------------------------
@@ -707,6 +505,7 @@ class BricksetServices: AuthenticatedServiceAPI {
 
     fileprivate func defaultParameters() -> Parameters {
         return ["apiKey": Constants.Brickset.apiKey]
+        //return ["apiKey": "TestBadAPIKey"]
     }
     
     fileprivate func userParameters() -> Parameters {
@@ -715,9 +514,11 @@ class BricksetServices: AuthenticatedServiceAPI {
         let keychain = Keychain(service: keychainServiceName)
         if let username = UserDefaults.standard.value(forKey: userNameKey) as? String, let userHash = keychain[username] {
             parameters["userHash"] = userHash
+            //parameters["userHash"] = "TestBadUserHash"
         }
         else {
             parameters["userHash"] = ""
+            //parameters["userHash"] = "TestBadUserHash"
         }
 
         return parameters
@@ -725,41 +526,14 @@ class BricksetServices: AuthenticatedServiceAPI {
 
 }
 
-//==============================================================================
-// MARK: - DataRequest Extension (XML Parsing)
-//==============================================================================
-
-extension DataRequest {
-
-    // swiftlint:disable unused_closure_parameter
-
-    public static func XMLResponseSerializer() -> DataResponseSerializer<XMLDocument> {
-        return DataResponseSerializer { request, response, data, error in
-            // Pass through any underlying URLSession error to the .network case.
-            guard error == nil else { return .failure(error!) }
-
-            // Use Alamofire's existing data serializer to extract the data, passing the error as nil, as it has
-            // already been handled.
-            let result = Request.serializeResponseData(response: response, data: data, error: nil)
-
-            guard case let .success(validData) = result else {
-                return .failure(result.error!)
-            }
-
-            do {
-                let xml = try XMLDocument(data: validData)
-                return .success(xml)
-            }
-            catch {
-                return .failure(error)
-            }
-        }
-    }
-
-    // swiftlint:enable unused_closure_parameter
-
-    @discardableResult func responseXMLDocument( queue: DispatchQueue? = nil, completionHandler: @escaping (DataResponse<XMLDocument>) -> Void) -> Self {
-        return response(queue: queue, responseSerializer: DataRequest.XMLResponseSerializer(), completionHandler: completionHandler)
-    }
-
+extension Formatters {
+    
+    static let bricksetDateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "en_US_POSIX")
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+        formatter.timeZone = TimeZone(secondsFromGMT: 0)
+        return formatter
+    }()
+    
 }

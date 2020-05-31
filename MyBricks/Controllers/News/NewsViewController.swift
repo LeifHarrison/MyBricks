@@ -87,7 +87,7 @@ class NewsViewController: UIViewController {
             else {
                 ActivityOverlayView.hide()
             }
-            if let value = result.value {
+            if let value = try? result.get() {
                 UserDefaults.standard.set(Date(), forKey: self.newsLastUpdatedKey)
                 self.feed = value
                 self.feedItems = value.items

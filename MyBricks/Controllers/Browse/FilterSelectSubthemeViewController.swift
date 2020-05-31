@@ -70,19 +70,23 @@ class FilterSelectSubthemeViewController: UIViewController {
             ActivityOverlayView.show(overView: view)
             let completion: GetSubthemesCompletion = { result in
                 ActivityOverlayView.hide()
-                if result.isSuccess {
-                    self.filterOptions.availableSubthemes = result.value ?? []
-                    self.tableView.reloadData()
-                    if let subtheme = self.filterOptions.selectedSubtheme, let selectedIndex = self.filterOptions.availableSubthemes.index(of: subtheme) {
-                        self.tableView.selectRow(at: IndexPath(row: selectedIndex, section: 0), animated: false, scrollPosition: .middle)
-                    }
+                switch result {
+                    case .success(let subthemes):
+                        self.filterOptions.availableSubthemes = subthemes
+                        self.tableView.reloadData()
+                        if let subtheme = self.filterOptions.selectedSubtheme, let selectedIndex = self.filterOptions.availableSubthemes.index(of: subtheme) {
+                            self.tableView.selectRow(at: IndexPath(row: selectedIndex, section: 0), animated: false, scrollPosition: .middle)
+                        }
+                    case .failure(let error):
+                        NSLog("Error fetching subthemes: \(error.localizedDescription)")
                 }
             }
             if filterOptions.showingUserSets {
-                BricksetServices.shared.getSubthemesForUser(theme: theme.name, owned: filterOptions.filterOwned, wanted: filterOptions.filterWanted, completion: completion)
+                BricksetServices.shared.getSubthemes(theme: theme.theme, completion: completion)
+                //BricksetServices.shared.getSubthemesForUser(theme: theme.theme, owned: filterOptions.filterOwned, wanted: filterOptions.filterWanted, completion: completion)
             }
             else {
-                BricksetServices.shared.getSubthemes(theme: theme.name, completion: completion)
+                BricksetServices.shared.getSubthemes(theme: theme.theme, completion: completion)
             }
 
         }
@@ -108,10 +112,10 @@ extension FilterSelectSubthemeViewController: UITableViewDataSource {
         let subtheme = filterOptions.availableSubthemes[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
         if let setCount = subtheme.setCount {
-            cell.textLabel?.text = subtheme.name + " (\(setCount))"
+            cell.textLabel?.text = subtheme.subtheme + " (\(setCount))"
         }
         else {
-            cell.textLabel?.text = subtheme.name
+            cell.textLabel?.text = subtheme.subtheme
         }
         return cell
     }

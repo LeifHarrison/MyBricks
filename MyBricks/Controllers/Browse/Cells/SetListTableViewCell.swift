@@ -57,7 +57,7 @@ class SetListTableViewCell: BorderedGradientTableViewCell, NibLoadableView, Reus
 
         collectionStatusView.isHidden = true
 
-        setImageView.af_cancelImageRequest()
+        setImageView.af.cancelImageRequest()
         setImageView.layer.removeAllAnimations()
         setImageView.image = nil
     }
@@ -71,7 +71,7 @@ class SetListTableViewCell: BorderedGradientTableViewCell, NibLoadableView, Reus
     // MARK: - Public
     //--------------------------------------------------------------------------
 
-    func populate(with set: Set, options: FilterOptions) {
+    func populate(with set: SetDetail, options: FilterOptions) {
         
         if let name = set.name, name == "{?}" { // Unreleased set
             nameLabel.text = "Not Yet Released"
@@ -82,10 +82,15 @@ class SetListTableViewCell: BorderedGradientTableViewCell, NibLoadableView, Reus
         setNumberLabel.text = set.displayableSetNumber
         
         if let grouping = options.grouping, grouping == .subtheme {
-            subthemeLabel.text = set.year
+            if let year = set.year {
+                subthemeLabel.text = "\(year)"
+            }
+            else {
+                subthemeLabel.text = "None"
+            }
         }
         else {
-            subthemeLabel.text = set.subtheme
+            subthemeLabel.text = set.subtheme ?? "None"
         }
         
         if set.pieces == nil && set.minifigs == nil {
@@ -99,12 +104,12 @@ class SetListTableViewCell: BorderedGradientTableViewCell, NibLoadableView, Reus
 
         priceLabel.text = set.preferredPriceDescription
 
-        collectionStatusView.isHidden = !set.owned && !set.wanted
-        if set.owned {
-            collectionStatusLabel.text = "\(set.quantityOwned ?? 0)"
+        collectionStatusView.isHidden = !set.isOwned && !set.isWanted
+        if set.isOwned {
+            collectionStatusLabel.text = "\(set.collection?.qtyOwned ?? 0)"
             collectionStatusView.backgroundColor = UIColor.bricksetOwned
         }
-        else if set.wanted {
+        else if set.isWanted {
             collectionStatusLabel.text = "W"
             collectionStatusView.backgroundColor = UIColor.bricksetWanted
         }
@@ -113,10 +118,9 @@ class SetListTableViewCell: BorderedGradientTableViewCell, NibLoadableView, Reus
         setImageView.image = #imageLiteral(resourceName: "placeholder1")
         imageBorderView.backgroundColor = UIColor.lightBlueGreyTwo
 
-        let urlString = (UIScreen.main.scale > 1.5) ? set.largeThumbnailURL : set.thumbnailURL
-        if let urlString = urlString, let url = URL(string: urlString) {
-            setImageView.af_setImage(withURL: url, imageTransition: .crossDissolve(0.3)) { response in
-                if response.result.value != nil {
+        if let urlString = set.image?.thumbnailURL, let url = URL(string: urlString) {
+            setImageView.af.setImage(withURL: url, imageTransition: .crossDissolve(0.3)) { result in
+                if result.value != nil {
                     self.setImageView.contentMode = .scaleAspectFit
                     self.imageBorderView.backgroundColor = UIColor.white
                 }

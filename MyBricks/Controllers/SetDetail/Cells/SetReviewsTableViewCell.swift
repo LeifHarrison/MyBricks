@@ -44,7 +44,7 @@ class SetReviewsTableViewCell: BlueGradientTableViewCell, ReusableView, NibLoada
     // MARK: - Public
     //--------------------------------------------------------------------------
 
-    func populate(with set: Set) {
+    func populate(with set: SetDetail) {
         if let rating = set.rating {
             let ratingDouble = NSDecimalNumber(decimal:rating).doubleValue
             ratingView.rating = ratingDouble

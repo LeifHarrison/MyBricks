@@ -70,11 +70,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     private func validateAPIKey() {
         BricksetServices.shared.checkKey(completion: { result in
-            if let valid = result.value, valid != true {
-                let message = NSLocalizedString("It looks like the BrickSet API key is no longer valid. Please update the application or notify the developer.", comment: "")
-                let alert = UIAlertController(title: "Invalid Key", message: message, preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                self.window?.rootViewController?.present(alert, animated: true, completion: nil)
+            switch result {
+                case let .success(isValid):
+                    if !isValid {
+                        let message = NSLocalizedString("It looks like the BrickSet API key is no longer valid. Please update the application or notify the developer.", comment: "")
+                        let alert = UIAlertController(title: "Invalid Key", message: message, preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                        self.window?.rootViewController?.present(alert, animated: true, completion: nil)
+                    }
+
+                case let .failure(error):
+                    NSLog("Error validating API Key: \(error.localizedDescription)")
             }
             self.validateUserHash()
         })
@@ -83,11 +89,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private func validateUserHash() {
         if BricksetServices.isLoggedIn() {
             BricksetServices.shared.checkUserHash(completion: { result in
-                if let valid = result.value, valid != true {
-                    let message = NSLocalizedString("It looks like the userHash is no longer valid.", comment: "")
-                    let alert = UIAlertController(title: "Invalid Key", message: message, preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                    self.window?.rootViewController?.present(alert, animated: true, completion: nil)
+                switch result {
+                    case let .success(isValid):
+                        if !isValid {
+                            let message = NSLocalizedString("It looks like the userHash is no longer valid.", comment: "")
+                            let alert = UIAlertController(title: "Invalid Key", message: message, preferredStyle: .alert)
+                            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                            self.window?.rootViewController?.present(alert, animated: true, completion: nil)
+                        }
+
+                    case let .failure(error):
+                        NSLog("Error validating user hash: \(error.localizedDescription)")
                 }
             })
         }

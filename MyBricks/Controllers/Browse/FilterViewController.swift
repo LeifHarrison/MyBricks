@@ -238,11 +238,11 @@ extension FilterViewController: UITableViewDataSource {
                 
                 switch row {
                     case .theme:
-                        cell.detailTextLabel?.text = filterOptions.selectedTheme?.name ?? "All"
+                        cell.detailTextLabel?.text = filterOptions.selectedTheme?.theme ?? "All"
                     case .subtheme:
-                        cell.detailTextLabel?.text = filterOptions.selectedSubtheme?.name ?? "All"
+                        cell.detailTextLabel?.text = filterOptions.selectedSubtheme?.subtheme ?? "All"
                     case .year:
-                        cell.detailTextLabel?.text = filterOptions.selectedYear?.name ?? "All"
+                        cell.detailTextLabel?.text = filterOptions.selectedYear?.year ?? "All"
                     case .unreleased:
                         break // Do Nothing - handled above, hopefully
                 }

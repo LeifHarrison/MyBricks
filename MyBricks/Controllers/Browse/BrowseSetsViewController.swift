@@ -19,9 +19,9 @@ class BrowseSetsViewController: UIViewController {
     var filterOptions: FilterOptions = FilterOptions()
     var browseRequest: Request?
     
-    var allSets: [Set] = []
+    var allSets: [SetDetail] = []
     var sectionTitles: [String] = []
-    var setsBySection: [String: [Set]] = [:]
+    var setsBySection: [String: [SetDetail]] = [:]
     
     //--------------------------------------------------------------------------
     // MARK: - View Lifecycle
@@ -51,7 +51,7 @@ class BrowseSetsViewController: UIViewController {
             self.title = "Search Results"
         }
         else if let theme = filterOptions.selectedTheme {
-            self.title = theme.name
+            self.title = theme.theme
         }
         else {
             self.title = "Browse Sets"
@@ -103,14 +103,16 @@ class BrowseSetsViewController: UIViewController {
     //--------------------------------------------------------------------------
     
     @objc private func collectionUpdated(_ notification: Notification) {
-        if let updatedSet = notification.userInfo?[Notification.Key.Set] as? Set {
+        if let updatedSet = notification.userInfo?[Notification.Key.Set] as? SetDetail {
             if let index = allSets.index(where: { $0.setID == updatedSet.setID }) {
                 allSets[index] = updatedSet
                 for (sectionIndex, sectionTitle) in sectionTitles.enumerated() {
                     if var setsForSection = setsBySection[sectionTitle], let rowIndex = setsForSection.index(where: { $0.setID == updatedSet.setID }) {
                         setsForSection[rowIndex] = updatedSet
                         setsBySection[sectionTitle] = setsForSection
-                        tableView.reloadRows(at: [IndexPath(row: rowIndex, section: sectionIndex)], with: .fade)
+                        if view.superview != nil {
+                            tableView.reloadRows(at: [IndexPath(row: rowIndex, section: sectionIndex)], with: .fade)
+                        }
                     }
                 }
             }
@@ -131,22 +133,17 @@ class BrowseSetsViewController: UIViewController {
     
     fileprivate func fetchSets() {
         ActivityOverlayView.show(overView: view)
-        let request = GetSetsRequest(filterOptions: self.filterOptions)
+        let request = BricksetGetSetsRequest(filterOptions: self.filterOptions)
         self.browseRequest = BricksetServices.shared.getSets(request, completion: { [weak self] result in
             guard let strongSelf = self else { return }
             ActivityOverlayView.hide()
-            if result.isSuccess {
-                strongSelf.allSets = result.value ?? []
-                strongSelf.processSets()
-                strongSelf.updateDisplay(animated: true)
-            }
-            else {
-                if let error = result.error as? URLError, error.code == .cancelled {
-                    return
-                }
-                else if let error = result.error {
+            switch result {
+                case .success(let sets):
+                    strongSelf.allSets = sets
+                    strongSelf.processSets()
+                    strongSelf.updateDisplay(animated: true)
+                case .failure(let error):
                     NSLog("Error loading sets: \(error)")
-                }
             }
         })
     }
@@ -157,11 +154,11 @@ class BrowseSetsViewController: UIViewController {
 
         // Have to filter for "Not Owned" ourselves
         if filterOptions.filterNotOwned {
-            allSets = allSets.filter { return !$0.owned }
+            allSets = allSets.filter { return !$0.isOwned }
         }
 
         for set in allSets {
-            if !set.released && !filterOptions.showUnreleased {
+            if !(set.released ?? false) && !filterOptions.showUnreleased {
                 continue
             }
             
@@ -170,11 +167,11 @@ class BrowseSetsViewController: UIViewController {
                 switch grouping {
                     case .theme    : indexName = set.theme ?? ""
                     case .subtheme : indexName = set.subtheme ?? ""
-                    case .year     : indexName = set.year ?? ""
+                    case .year     : indexName = "\(set.year ?? 0)"
                 }
             }
             
-            var sets: [Set] = setsBySection[indexName] ?? []
+            var sets: [SetDetail] = setsBySection[indexName] ?? []
             sets.append(set)
             setsBySection[indexName] = sets
         }
@@ -274,10 +271,10 @@ extension BrowseSetsViewController: UITableViewDelegate {
         let sectionTitle = sectionTitles[indexPath.section]
         if let setListCell = cell as? SetListTableViewCell, let sets = setsBySection[sectionTitle] {
             let set = sets[indexPath.row]
-            if set.owned {
+            if set.isOwned {
                 setListCell.collectionStatusView.backgroundColor = UIColor.bricksetOwned
             }
-            else if set.wanted {
+            else if set.isWanted {
                 setListCell.collectionStatusView.backgroundColor = UIColor.bricksetWanted
             }
         }

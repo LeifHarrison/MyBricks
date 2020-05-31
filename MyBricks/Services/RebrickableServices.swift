@@ -70,35 +70,34 @@ class RebrickableServices: AuthenticatedServiceAPI {
     }
     
     // Log in as a user and retrieve a token that can be used in subsequent API calls.
-    func login(username: String, password: String, completion: @escaping (Result<String>) -> Void) {
+    func login(username: String, password: String, completion: @escaping (Result<String, ServiceError>) -> Void) {
         var parameters: Parameters = [:]
         parameters["username"] = username
         parameters["password"] = password
         
         let url = baseURL + "users/_token/"
         let headers = defaultHeaders()
-        let request = Alamofire.request( url, method: .post, parameters: parameters, headers: headers )
+        let request = Session.default.request( url, method: .post, parameters: parameters, headers: headers )
         
-        let requestCompletion: ((DataResponse<Any>) -> Void) = { response in
-            guard response.result.isSuccess else {
-                NSLog("Error while generating token: \(String(describing: response.result.error))")
-                if let error = response.result.error {
-                    completion(.failure(error))
-                }
-                return
+        let requestCompletion: ((AFDataResponse<Any>) -> Void) = { response in
+            switch response.result {
+                case .success(let value):
+                    guard let valueDict = value as? [String: Any], let token = valueDict["user_token"] as? String else {
+                        NSLog("Malformed data received from token service")
+                        completion(.failure(ServiceError.loginFailed(reason:"Malformed data received from token service")))
+                        return
+                    }
+
+                    UserDefaults.standard.setValue(username, forKey: self.userNameKey)
+                    let keychain = Keychain(service: self.keychainServiceName)
+                    keychain[username] = token
+                    
+                    completion(.success(token))
+
+                case .failure(let error):
+                    NSLog("Error while generating token: \(error.localizedDescription)")
+                    completion(.failure(ServiceError.loginFailed(reason: error.localizedDescription)))
             }
-            
-            guard let value = response.result.value as? [String: Any], let token = value["user_token"] as? String else {
-                NSLog("Malformed data received from token service")
-                completion(.failure(ServiceError.loginFailed(reason:"Malformed data received from token service")))
-                return
-            }
-            
-            UserDefaults.standard.setValue(username, forKey: self.userNameKey)
-            let keychain = Keychain(service: self.keychainServiceName)
-            keychain[username] = token
-            
-            completion(.success(token))
         }
         request.responseJSON(completionHandler: requestCompletion)
     }
@@ -119,11 +118,11 @@ class RebrickableServices: AuthenticatedServiceAPI {
     // Get Parts
     // URL: https://rebrickable.com/api/v3/lego/sets/<set number>/parts/
     @discardableResult
-    func getParts(setNumber: String, pageURL: String? = nil, completion: @escaping (Result<GetPartsResponse>) -> Void) -> DataRequest {
+    func getParts(setNumber: String, pageURL: String? = nil, completion: @escaping (Result<GetPartsResponse, ServiceError>) -> Void) -> DataRequest {
         let url = pageURL ?? baseURL + "lego/sets/" + setNumber + "/parts/"
         let headers = defaultHeaders()
-        let request = Alamofire.request( url, method: .get, headers: headers )
-        let requestCompletion: ((DataResponse<Data>) -> Void) = { response in
+        let request = Session.default.request( url, method: .get, headers: headers )
+        let requestCompletion: ((AFDataResponse<Data>) -> Void) = { response in
             switch response.result {
                 case .success(let data):
                     let decoder = JSONDecoder()
@@ -132,11 +131,11 @@ class RebrickableServices: AuthenticatedServiceAPI {
                         completion(.success(decodedResponse))
                     }
                     catch {
-                        completion(.failure(error))
+                        completion(.failure(ServiceError.decodeError(reason:error.localizedDescription)))
                     }
                 case .failure(let error):
                     NSLog("Error: \(error)")
-                    completion(.failure(error))
+                    completion(.failure(ServiceError.serviceFailure(reason:error.localizedDescription)))
             }
         }
         request.responseData(completionHandler: requestCompletion)
@@ -150,7 +149,7 @@ class RebrickableServices: AuthenticatedServiceAPI {
     // Get Parts
     // URL: https://rebrickable.com/api/v3/users/<user_token>/profile/
     @discardableResult
-    func getProfile(completion: @escaping (Result<RebrickableProfile>) -> Void) -> DataRequest? {
+    func getProfile(completion: @escaping (Result<RebrickableProfile, ServiceError>) -> Void) -> DataRequest? {
         guard let userToken = userToken() else {
             completion(.failure(ServiceError.serviceFailure(reason: "Missing user token")))
             return nil
@@ -158,21 +157,21 @@ class RebrickableServices: AuthenticatedServiceAPI {
         
         let url = baseURL + "users/" + userToken + "/profile/"
         let headers = defaultHeaders()
-        let request = Alamofire.request( url, method: .get, headers: headers )
-        let requestCompletion: ((DataResponse<Data>) -> Void) = { response in
+        let request = Session.default.request(url, method: .get, headers: headers)
+        let requestCompletion: ((AFDataResponse<Data>) -> Void) = { response in
             switch response.result {
-            case .success(let data):
-                let decoder = JSONDecoder()
-                do {
-                    let decodedResponse = try decoder.decode(RebrickableProfile.self, from: data)
-                    completion(.success(decodedResponse))
-                }
-                catch {
-                    completion(.failure(error))
-                }
-            case .failure(let error):
-                NSLog("Error: \(error)")
-                completion(.failure(error))
+                case let .success(data):
+                    let decoder = JSONDecoder()
+                    do {
+                        let decodedResponse = try decoder.decode(RebrickableProfile.self, from: data)
+                        completion(.success(decodedResponse))
+                    }
+                    catch {
+                        completion(.failure(ServiceError.decodeError(reason:error.localizedDescription)))
+                    }
+                case let .failure(error):
+                    NSLog("Error: \(error)")
+                    completion(.failure(ServiceError.serviceFailure(reason:error.localizedDescription)))
             }
         }
         request.responseData(completionHandler: requestCompletion)

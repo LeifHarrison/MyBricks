@@ -7,9 +7,8 @@
 //
 
 import Foundation
-import Fuzi
 
-public struct UserCollectionTotals {
+public struct UserCollectionTotals: Codable {
 
     var totalSetsOwned: Int?
     var totalDistinctSetsOwned: Int?
@@ -17,15 +16,6 @@ public struct UserCollectionTotals {
     var totalMinifigsOwned: Int?
     var totalDistinctMinifigsOwned: Int?
     var totalMinifigsWanted: Int?
-
-    init?(element: XMLElement) {
-        totalSetsOwned = Int(element.firstChild(tag: "totalSetsOwned")?.stringValue ?? "0")
-        totalDistinctSetsOwned = Int(element.firstChild(tag: "totalDistinctSetsOwned")?.stringValue ?? "0")
-        totalSetsWanted = Int(element.firstChild(tag: "totalSetsWanted")?.stringValue ?? "0")
-        totalMinifigsOwned = Int(element.firstChild(tag: "totalMinifigsOwned")?.stringValue ?? "0")
-        totalDistinctMinifigsOwned = Int(element.firstChild(tag: "totalDistinctMinifigsOwned")?.stringValue ?? "0")
-        totalMinifigsWanted = Int(element.firstChild(tag: "totalMinifigsWanted")?.stringValue ?? "0")
-    }
 
     func setsOwnedDescription() -> String {
         return "You own \(totalSetsOwned ?? 0) sets, \(totalDistinctSetsOwned ?? 0) different"

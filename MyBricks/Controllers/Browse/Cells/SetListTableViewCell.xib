@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -17,7 +14,7 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="119"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DY2-6C-9U5" id="PYZ-Bq-g0V">
-                <rect key="frame" x="0.0" y="0.0" width="375" height="118.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="375" height="119"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ky9-p5-Map">
@@ -78,7 +75,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Price" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bbp-Yz-42V">
-                        <rect key="frame" x="120" y="84" width="60" height="19.5"/>
+                        <rect key="frame" x="120" y="84" width="60" height="20"/>
                         <constraints>
                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="j0F-1N-QMQ"/>
                         </constraints>
@@ -87,14 +84,14 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CJ8-bo-BbE">
-                        <rect key="frame" x="190" y="85.5" width="96" height="20.5"/>
+                        <rect key="frame" x="190" y="85.5" width="96" height="21"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" image="legoBrick" translatesAutoresizingMaskIntoConstraints="NO" id="YEO-x9-Zb9">
-                                <rect key="frame" x="0.0" y="0.0" width="23" height="20.5"/>
+                                <rect key="frame" x="0.0" y="0.0" width="23" height="21"/>
                                 <color key="tintColor" name="lightNavy"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="225" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="13d-KZ-bwo">
-                                <rect key="frame" x="29" y="2.5" width="27" height="17"/>
+                                <rect key="frame" x="29" y="2" width="27" height="17"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                 <color key="textColor" name="lightNavy"/>
                                 <nil key="highlightedColor"/>
@@ -125,7 +122,7 @@
                         </constraints>
                     </view>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" verticalHuggingPriority="252" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="752" image="disclosure" translatesAutoresizingMaskIntoConstraints="NO" id="5w7-kW-1h0">
-                        <rect key="frame" x="356" y="51.5" width="9" height="14"/>
+                        <rect key="frame" x="356" y="52.5" width="9" height="14"/>
                         <color key="tintColor" name="lightNavy"/>
                     </imageView>
                 </subviews>

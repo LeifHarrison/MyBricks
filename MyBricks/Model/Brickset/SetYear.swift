@@ -7,31 +7,19 @@
 //
 
 import Foundation
-import Fuzi
 
-struct SetYear {
+struct SetYear: Codable {
 
     var theme: String
-    var name: String
+    var year: String
     var setCount: Int?
-
-    init?(element: XMLElement) {
-        guard let xmlTheme = element.firstChild(tag: "theme")?.stringValue, let xmlYear = element.firstChild(tag: "year")?.stringValue else {
-            return nil
-        }
-        
-        theme = xmlTheme
-        name = xmlYear
-
-        setCount = Int(element.firstChild(tag: "setCount")?.stringValue ?? "0")
-    }
 
 }
 
 extension SetYear: Equatable {
     
     static func == (lhs: SetYear, rhs: SetYear) -> Bool {
-        return lhs.theme == rhs.theme && lhs.name == rhs.name
+        return lhs.theme == rhs.theme && lhs.year == rhs.year
     }
     
 }

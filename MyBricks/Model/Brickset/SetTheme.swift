@@ -7,29 +7,16 @@
 //
 
 import Foundation
-import Fuzi
 
-struct SetTheme {
-
-    var name: String
+struct SetTheme: Codable {
+    
+    var theme: String
     var setCount: Int?
-    var subThemeCount: Int?
+    var subthemeCount: Int?
     var yearFrom: Int?
     var yearTo: Int?
-
-    init?(element: XMLElement) {
-        guard let xmlName = element.firstChild(tag: "theme")?.stringValue else {
-            return nil
-        }
-        
-        name = xmlName
-        setCount = Int(element.firstChild(tag: "setCount")?.stringValue ?? "0")
-        subThemeCount = Int(element.firstChild(tag: "subThemeCount")?.stringValue ?? "0")
-        yearFrom = Int(element.firstChild(tag: "yearFrom")?.stringValue ?? "0")
-        yearTo = Int(element.firstChild(tag: "yearTo")?.stringValue ?? "0")
-    }
-
-    func yearsDecription() -> String {
+    
+    func yearsDescription() -> String {
         if let yearFrom = yearFrom, let yearTo = yearTo, yearTo != yearFrom {
             return "\(yearFrom) - \(yearTo)"
         }
@@ -47,9 +34,9 @@ struct SetTheme {
 }
 
 extension SetTheme: Equatable {
-
+    
     static func == (lhs: SetTheme, rhs: SetTheme) -> Bool {
-        return lhs.name == rhs.name
+        return lhs.theme == rhs.theme
     }
-
+    
 }

@@ -44,8 +44,8 @@ class ThemeTableViewCell: BorderedGradientTableViewCell, NibLoadableView, Reusab
     //--------------------------------------------------------------------------
 
     func populateWithTheme(_ theme: SetTheme) {
-        nameLabel.text = theme.name
-        yearsLabel.text = theme.yearsDecription()
+        nameLabel.text = theme.theme
+        yearsLabel.text = theme.yearsDescription()
 
         if let setCount = theme.setCount, setCount > 0 {
             setCountLabel.text = "\(setCount)"
@@ -68,7 +68,7 @@ extension SetTheme {
     func setsAttributedDescription() -> NSAttributedString {
         let attributedDescription = NSMutableAttributedString(string:"\( setCount ?? 0)", attributes:SetTheme.boldAttributes)
         attributedDescription.append(NSAttributedString(string:" sets", attributes:SetTheme.regularAttributes))
-        if let subthemeCount = subThemeCount, subthemeCount > 0 {
+        if let subthemeCount = subthemeCount, subthemeCount > 0 {
             attributedDescription.append(NSAttributedString(string:", ", attributes:SetTheme.regularAttributes))
             attributedDescription.append(subthemesAttributedDescription())
         }
@@ -77,7 +77,7 @@ extension SetTheme {
     }
 
     func subthemesAttributedDescription() -> NSAttributedString {
-        let attributedDescription = NSMutableAttributedString(string:"\( subThemeCount ?? 0)", attributes:SetTheme.boldAttributes)
+        let attributedDescription = NSMutableAttributedString(string:"\( subthemeCount ?? 0)", attributes:SetTheme.boldAttributes)
         attributedDescription.append(NSAttributedString(string:" subthemes", attributes:SetTheme.regularAttributes))
         return attributedDescription
     }

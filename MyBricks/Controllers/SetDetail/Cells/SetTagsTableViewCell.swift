@@ -39,7 +39,7 @@ class SetTagsTableViewCell: BlueGradientTableViewCell, ReusableView, NibLoadable
     //--------------------------------------------------------------------------
     
     func populate(with setDetail: SetDetail) {
-        if let tags = setDetail.tags {
+        if let tags = setDetail.extendedData?.tags {
             tagListView.addTags(tags)
         }
     }

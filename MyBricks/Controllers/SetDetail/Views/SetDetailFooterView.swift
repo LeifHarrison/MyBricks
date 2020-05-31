@@ -41,8 +41,8 @@ class SetDetailFooterView: UIView {
     // MARK: - Public
     //--------------------------------------------------------------------------
     
-    func populateWithSet(_ set: Set) {
-        if let dateLastUpdated = set.lastUpdated {
+    func populateWithSet(_ set: SetDetail) {
+        if let dateLastUpdated = set.lastUpdatedDate() {
             dateLastUpdatedLabel.text = "Last Updated " + SetDetailFooterView.dateFormatter.string(from: dateLastUpdated)
         }
         if let bricksetURLString = set.bricksetURL {

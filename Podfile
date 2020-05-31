@@ -1,6 +1,9 @@
 # Uncomment the next line to define a global platform for your project
 platform :ios, '13.0'
 
+# Hide warnings in dependent pods
+inhibit_all_warnings!
+
 target 'MyBricks' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
@@ -12,7 +15,6 @@ target 'MyBricks' do
   pod 'AlamofireNetworkActivityLogger'
   pod 'AlamofireRSSParser'
   pod 'Cosmos'
-  pod 'Fuzi'
   pod 'KeychainAccess'
   pod 'SwiftLint'
 

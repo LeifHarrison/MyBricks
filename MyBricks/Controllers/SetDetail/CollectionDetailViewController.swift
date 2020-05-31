@@ -36,7 +36,7 @@ class CollectionDetailViewController: UIViewController {
     
     let maxQuantityLength = 3
     
-    var currentSet: Set?
+    var currentSet: SetDetail?
     var previousQuantityOwned: Int = 0
     var previousNotesText: String = ""
     
@@ -70,15 +70,15 @@ class CollectionDetailViewController: UIViewController {
         super.viewWillAppear(animated)
 
         if let set = currentSet {
-            ownedCheckboxButton.isSelected = set.owned
+            ownedCheckboxButton.isSelected = set.isOwned
             self.ownedContainer.backgroundColor = ownedCheckboxButton.isSelected ? UIColor(named: "bricksetOwned") : UIColor.clear
-            wantedCheckboxButton.isSelected = set.wanted
+            wantedCheckboxButton.isSelected = set.isWanted
             self.wantedContainer.backgroundColor = wantedCheckboxButton.isSelected ? UIColor(named: "bricksetWanted") : UIColor.clear
             
-            ownedCountField.isEnabled = set.owned
-            ownedCountField.text = "\(set.quantityOwned ?? 0)"
-            ratingView.rating = Double(set.userRating ?? 0)
-            notesTextView.text = set.userNotes
+            ownedCountField.isEnabled = set.isOwned
+            ownedCountField.text = "\(set.collection?.qtyOwned ?? 0)"
+            ratingView.rating = Double(set.collection?.rating ?? 0)
+            notesTextView.text = set.collection?.notes
         }
 
     }
@@ -88,19 +88,23 @@ class CollectionDetailViewController: UIViewController {
     //--------------------------------------------------------------------------
     
     @IBAction func toggleSetOwned(_ sender: UIButton) {
-        if var set = currentSet, let setID = set.setID {
-            set.owned = !set.owned
-            set.quantityOwned = set.owned ? 1 : nil
+        if let set = currentSet, let setID = set.setID {
+            set.collection?.owned = !set.isOwned
+            set.collection?.qtyOwned = set.isOwned ? 1 : 0
             
-            ownedCheckboxButton.isSelected = set.owned
-            ownedContainer.backgroundColor = set.owned ? UIColor(named: "bricksetOwned") : UIColor.clear
-            ownedCountField.isEnabled = set.owned
-            ownedCountField.text = "\(set.quantityOwned ?? 0)"
+            ownedCheckboxButton.isSelected = set.isOwned
+            ownedContainer.backgroundColor = set.isOwned ? UIColor(named: "bricksetOwned") : UIColor.clear
+            ownedCountField.isEnabled = set.isOwned
+            ownedCountField.text = "\(set.collection?.qtyOwned ?? 0)"
 
-            BricksetServices.shared.setCollectionOwns(setID: setID, owned: set.owned, completion: { result in
-                if result.isSuccess {
-                    self.currentSet = set
-                    self.notifySetUpdated(set: set)
+            let request = BricksetSetCollectionRequest(own: set.isOwned, qtyOwned: set.collection?.qtyOwned)
+            BricksetServices.shared.setCollection(setID: setID, request: request, completion: { result in
+                switch result {
+                    case .success:
+                        self.currentSet = set
+                        self.notifySetUpdated(set: set)
+                    case .failure(let error):
+                        NSLog("Error setting item owned: \(error)")
                 }
             })
         }
@@ -108,16 +112,20 @@ class CollectionDetailViewController: UIViewController {
     }
     
     @IBAction func toggleSetWanted(_ sender: UIButton) {
-        if var set = currentSet, let setID = set.setID {
-            set.wanted = !set.wanted
+        if let set = currentSet, let setID = set.setID {
+            set.collection?.wanted = !set.isWanted
             
-            wantedCheckboxButton.isSelected = set.wanted
-            wantedContainer.backgroundColor = set.wanted ? UIColor(named: "bricksetWanted") : UIColor.clear
+            wantedCheckboxButton.isSelected = set.isWanted
+            wantedContainer.backgroundColor = set.isWanted ? UIColor(named: "bricksetWanted") : UIColor.clear
 
-            BricksetServices.shared.setCollectionWants(setID: setID, wanted: set.wanted, completion: { result in
-                if result.isSuccess {
-                    self.currentSet = set
-                    self.notifySetUpdated(set: set)
+            let request = BricksetSetCollectionRequest(own: set.isOwned, want: set.isWanted, qtyOwned: set.collection?.qtyOwned)
+            BricksetServices.shared.setCollection(setID: setID, request: request, completion: { result in
+                switch result {
+                    case .success:
+                        self.currentSet = set
+                        self.notifySetUpdated(set: set)
+                    case .failure(let error):
+                        NSLog("Error setting item wanted: \(error)")
                 }
             })
         }
@@ -209,44 +217,56 @@ class CollectionDetailViewController: UIViewController {
     }
     
     private func updateQuantityOwned(newQuantity: Int) {
-        if var set = currentSet, let setID = set.setID {
-            set.owned = (newQuantity > 0) ? true : false
-            set.quantityOwned = newQuantity
+        if let set = currentSet, let setID = set.setID {
+            set.collection?.owned = (newQuantity > 0) ? true : false
+            set.collection?.qtyOwned = newQuantity
 
-            BricksetServices.shared.setCollectionQuantityOwned(setID: setID, quantityOwned: newQuantity, completion: { result in
-                if result.isSuccess {
-                    self.currentSet = set
-                    self.notifySetUpdated(set: set)
+            let request = BricksetSetCollectionRequest(qtyOwned: newQuantity)
+            BricksetServices.shared.setCollection(setID: setID, request: request, completion: { result in
+                switch result {
+                    case .success:
+                        self.currentSet = set
+                        self.notifySetUpdated(set: set)
+                    case .failure(let error):
+                        NSLog("Error setting quantity owned: \(error.localizedDescription)")
                 }
             })
         }
     }
     
     private func updateRating(newRating: Int) {
-        if var set = self.currentSet, let setID = set.setID {
-            BricksetServices.shared.setUserRating(setID: setID, rating: newRating, completion: { result in
-                if result.isSuccess {
-                    set.userRating = newRating
-                    self.currentSet = set
-                    self.notifySetUpdated(set: set)
+        if let set = self.currentSet, let setID = set.setID {
+            let request = BricksetSetCollectionRequest(rating: newRating)
+            BricksetServices.shared.setCollection(setID: setID, request: request, completion: { result in
+                switch result {
+                    case .success:
+                        set.collection?.rating = newRating
+                        self.currentSet = set
+                        self.notifySetUpdated(set: set)
+                    case .failure(let error):
+                        NSLog("Error setting user rating: \(error.localizedDescription)")
                 }
             })
         }
     }
     
     private func updateUserNotes(newNotes: String) {
-        if var set = currentSet, let setID = set.setID {
-            BricksetServices.shared.setCollectionUserNotes(setID: setID, notes: newNotes, completion: { result in
-                if result.isSuccess {
-                    set.userNotes = newNotes
-                    self.currentSet = set
-                    self.notifySetUpdated(set: set)
+        if let set = currentSet, let setID = set.setID {
+            let request = BricksetSetCollectionRequest(notes: newNotes)
+            BricksetServices.shared.setCollection(setID: setID, request: request, completion: { result in
+                switch result {
+                    case .success:
+                        set.collection?.notes = newNotes
+                        self.currentSet = set
+                        self.notifySetUpdated(set: set)
+                    case .failure(let error):
+                        NSLog("Error setting user notes: \(error.localizedDescription)")
                 }
             })
         }
     }
     
-    private func notifySetUpdated(set: Set) {
+    private func notifySetUpdated(set: SetDetail) {
         NotificationCenter.default.post(name: Notification.Name.Collection.DidUpdate, object: self, userInfo: [Notification.Key.Set: set])
     }
     

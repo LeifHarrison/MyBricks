@@ -52,40 +52,39 @@ class ProfileLoginViewController: UIViewController {
             activityIndicatorView.startAnimating()
             api.login(username: username, password: password, completion: { result in
                 self.activityIndicatorView.stopAnimating()
-                if result.isSuccess {
-                    let myContext = LAContext()
+                switch result {
+                    case .success:
+                        let myContext = LAContext()
 
-                    var authError: NSError?
-                    if myContext.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &authError) {
-                        let reason = "Enabling Touch ID allows you quick and secure access to your Brickset account."
-                        myContext.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason) { success, evaluateError in
-                            if success {
-                                // User authenticated successfully, take appropriate action
-                                let credential = URLCredential(user: username, password: password, persistence: .permanent)
-                                if let protectionSpace = api.loginProtectionSpace {
-                                    URLCredentialStorage.shared.setDefaultCredential(credential, for: protectionSpace)
+                        var authError: NSError?
+                        if myContext.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &authError) {
+                            let reason = "Enabling Touch ID allows you quick and secure access to your Brickset account."
+                            myContext.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason) { success, evaluateError in
+                                if success {
+                                    // User authenticated successfully, take appropriate action
+                                    let credential = URLCredential(user: username, password: password, persistence: .permanent)
+                                    if let protectionSpace = api.loginProtectionSpace {
+                                        URLCredentialStorage.shared.setDefaultCredential(credential, for: protectionSpace)
+                                    }
+                                    //NSLog("Biometric authentication success!")
+                                    self.dismiss(animated: true, completion: nil)
                                 }
-                                //NSLog("Biometric authentication success!")
-                                self.dismiss(animated: true, completion: nil)
-                            }
-                            else {
-                                // User did not authenticate successfully, look at error and take appropriate action
-                                NSLog("Biometric authentication error: \(String(describing: evaluateError))")
-                                self.dismiss(animated: true, completion: nil)
+                                else {
+                                    // User did not authenticate successfully, look at error and take appropriate action
+                                    NSLog("Biometric authentication error: \(String(describing: evaluateError))")
+                                    self.dismiss(animated: true, completion: nil)
+                                }
                             }
                         }
-                    }
-                    else {
-                        // Could not evaluate policy; look at authError and present an appropriate message to user
-                        NSLog("Biometric authentication error: \(String(describing: authError))")
-                        self.dismiss(animated: true, completion: nil)
-                    }
-
-                }
-                else {
-                    let alert = UIAlertController(title: "Error", message: result.error?.localizedDescription, preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                    self.present(alert, animated: true, completion: nil)
+                        else {
+                            // Could not evaluate policy; look at authError and present an appropriate message to user
+                            NSLog("Biometric authentication error: \(String(describing: authError))")
+                            self.dismiss(animated: true, completion: nil)
+                        }
+                    case .failure(let error):
+                        let alert = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                        self.present(alert, animated: true, completion: nil)
                 }
             })
         }

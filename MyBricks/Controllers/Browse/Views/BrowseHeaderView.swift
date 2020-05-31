@@ -51,15 +51,15 @@ class BrowseHeaderView: UIView {
             }
             if options.showingUserSets, let theme = options.selectedTheme {
                 if filterString.length > 0 { filterString.append(separator) }
-                filterString.append(NSAttributedString(string:"\(theme.name)", attributes:boldAttributes))
+                filterString.append(NSAttributedString(string:"\(theme.theme)", attributes:boldAttributes))
             }
             if let subtheme = options.selectedSubtheme {
                 if filterString.length > 0 { filterString.append(separator) }
-                filterString.append(NSAttributedString(string:"\(subtheme.name)", attributes:boldAttributes))
+                filterString.append(NSAttributedString(string:"\(subtheme.subtheme)", attributes:boldAttributes))
             }
             if let year = options.selectedYear {
                 if filterString.length > 0 { filterString.append(separator) }
-                filterString.append(NSAttributedString(string:"\(year.name)", attributes:boldAttributes))
+                filterString.append(NSAttributedString(string:"\(year.year)", attributes:boldAttributes))
             }
             if options.filterOwned {
                 if filterString.length > 0 { filterString.append(separator) }

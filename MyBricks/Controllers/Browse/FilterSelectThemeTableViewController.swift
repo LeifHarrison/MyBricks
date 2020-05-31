@@ -74,18 +74,22 @@ class FilterSelectThemeViewController: UIViewController {
         ActivityOverlayView.show(overView: view)
         let completion: GetThemesCompletion = { result in
             ActivityOverlayView.hide()
-            if result.isSuccess {
-                self.filterOptions.availableThemes = result.value ?? []
-                self.delegate?.selectThemeController(self, didUpdateAvailableThemes: self.filterOptions.availableThemes)
-                self.tableView.reloadData()
-                if let selectedTheme = self.filterOptions.selectedTheme, let selectedIndex = self.filterOptions.availableThemes.index(of: selectedTheme) {
-                    self.tableView.selectRow(at: IndexPath(row: selectedIndex, section: 0), animated: false, scrollPosition: .middle)
-                }
+            switch result {
+                case .success(let themes):
+                    self.filterOptions.availableThemes = themes
+                    self.delegate?.selectThemeController(self, didUpdateAvailableThemes: self.filterOptions.availableThemes)
+                    self.tableView.reloadData()
+                    if let selectedTheme = self.filterOptions.selectedTheme, let selectedIndex = self.filterOptions.availableThemes.index(of: selectedTheme) {
+                        self.tableView.selectRow(at: IndexPath(row: selectedIndex, section: 0), animated: false, scrollPosition: .middle)
+                    }
+                case .failure(let error):
+                    NSLog("Error fetching themes: \(error.localizedDescription)")
             }
         }
         
         if filterOptions.showingUserSets {
-            BricksetServices.shared.getThemesForUser(owned: filterOptions.filterOwned, wanted: filterOptions.filterWanted, completion: completion)
+            BricksetServices.shared.getThemes(completion: completion)
+            //BricksetServices.shared.getThemesForUser(owned: filterOptions.filterOwned, wanted: filterOptions.filterWanted, completion: completion)
         }
         else {
             BricksetServices.shared.getThemes(completion: completion)
@@ -111,7 +115,7 @@ extension FilterSelectThemeViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let theme = filterOptions.availableThemes[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
-        cell.textLabel?.text = theme.name
+        cell.textLabel?.text = theme.theme
         return cell
     }
     

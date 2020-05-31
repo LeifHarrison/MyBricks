@@ -7,18 +7,12 @@
 //
 
 import Foundation
-import Fuzi
 
-public struct SetInstructions {
+public struct SetInstructions: Codable {
     
     var fileDescription: String?
     var fileURL: String?
     
-    init?(element: XMLElement) {
-        fileDescription = element.firstChild(tag: "description")?.stringValue
-        fileURL = element.firstChild(tag: "URL")?.stringValue
-    }
-
     var destinationURL: URL? {
         if let urlString = self.fileURL, let sourceURL = URL(string: urlString) {
             let directoryURLs = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
@@ -28,6 +22,11 @@ public struct SetInstructions {
         }
         
         return nil
+    }
+
+    enum CodingKeys: String, CodingKey {
+        case fileDescription = "description"
+        case fileURL = "URL"
     }
 
 }

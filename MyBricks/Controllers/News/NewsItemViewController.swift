@@ -63,8 +63,6 @@ class NewsItemViewController: UIViewController {
 // MARK: - RSSItem extension
 //==============================================================================
 
-// swiftlint:disable unused_closure_parameter
-
 extension RSSItem {
 
     func formattedDescription() -> NSAttributedString? {
@@ -88,7 +86,7 @@ extension RSSItem {
 
                 // Center and add some spacing to any attached images
                 let fullRange = NSRange(location: 0, length: formattedDescription.length)
-                formattedDescription.enumerateAttribute(.attachment, in:fullRange, options: []) { (value, range, stop) in
+                formattedDescription.enumerateAttribute(.attachment, in:fullRange, options: []) { (value, range, _) in
                     if value != nil {
                         let paragraphStyle = formattedDescription.attribute(.paragraphStyle, at: range.location, longestEffectiveRange: nil, in: range)
                         if let style = paragraphStyle as? NSParagraphStyle, let newStyle = style.mutableCopy() as? NSMutableParagraphStyle {
@@ -100,7 +98,7 @@ extension RSSItem {
                 }
 
                 // Change fonts to something a bit more readable
-                formattedDescription.enumerateAttribute(.font, in: fullRange, options: []) { (value, range, stop) in
+                formattedDescription.enumerateAttribute(.font, in: fullRange, options: []) { (value, range, _) in
                     if let font = value as? UIFont {
                         let substring = formattedDescription.attributedSubstring(from: range).string
                         let isBold = font.fontDescriptor.symbolicTraits.contains(.traitBold)
@@ -130,5 +128,3 @@ extension RSSItem {
         return nil
     }
 }
-
-// swiftlint:enable unused_closure_parameter

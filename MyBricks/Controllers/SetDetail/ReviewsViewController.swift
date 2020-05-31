@@ -12,7 +12,7 @@ class ReviewsViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
 
-    var currentSet: Set?
+    var currentSet: SetDetail?
     var reviews: [SetReview] = []
 
     let transition = ReviewDetailAnimator()
@@ -54,22 +54,24 @@ class ReviewsViewController: UIViewController {
             ActivityOverlayView.show(overView: view)
             BricksetServices.shared.getReviews(setID: setID, completion: { result in
                 ActivityOverlayView.hide()
-                self.reviews = result.value ?? []
-                if let value = result.value {
-                    self.reviews = value.sorted {
-                        if let date1 = $0.datePosted, let date2 = $1.datePosted {
-                            return date1 > date2
-                        }
-                        else if $0.datePosted != nil {
-                            return false
-                        }
-                        else if $1.datePosted != nil {
+                switch result {
+                    case .success(let reviews):
+                        self.reviews = reviews.sorted {
+                            if let date1 = $0.datePosted, let date2 = $1.datePosted {
+                                return date1 > date2
+                            }
+                            else if $0.datePosted != nil {
+                                return false
+                            }
+                            else if $1.datePosted != nil {
+                                return true
+                            }
                             return true
                         }
-                        return true
-                    }
+                        self.tableView.reloadData()
+                    case .failure(let error):
+                        NSLog("Error getting set reviews: \(error.localizedDescription)")
                 }
-                self.tableView.reloadData()
             })
         }
     }
