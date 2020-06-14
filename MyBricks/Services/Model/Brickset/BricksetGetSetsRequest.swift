@@ -85,8 +85,8 @@ public struct BricksetGetSetsRequest: Encodable {
     var setNumber: String?
     var year: String?
     var tag: String?
-    var owned: Bool?
-    var wanted: Bool?
+    var owned: Int? // Really a Bool -> should be 0 or 1
+    var wanted: Int? // Really a Bool -> should be 0 or 1
     var updatedSince: Date?
     //var sortingSelection: SortingSelection = SortingSelection()
     //var grouping: GroupingType?
@@ -96,7 +96,7 @@ public struct BricksetGetSetsRequest: Encodable {
     var pageNumber: Int? = 1
     var extendedData: Bool?
 
-    init(query: String? = "", theme: String? = "", subtheme: String? = "", year: String? = "", setNumber: String? = "", owned: Bool = false, wanted: Bool = false) {
+    init(query: String? = "", theme: String? = "", subtheme: String? = "", year: String? = "", setNumber: String? = "", owned: Int = 0, wanted: Int = 0) {
         self.query = query
         self.theme = theme
         self.subtheme = subtheme
@@ -116,8 +116,8 @@ public struct BricksetGetSetsRequest: Encodable {
         self.theme = filterOptions.selectedTheme?.theme
         self.subtheme = filterOptions.selectedSubtheme?.subtheme
         self.year = filterOptions.selectedYear?.year
-        self.owned = filterOptions.filterOwned
-        self.wanted = filterOptions.filterWanted
+        self.owned = filterOptions.filterOwned ? 1 : 0
+        self.wanted = filterOptions.filterWanted ? 1 : 0
         //self.sortingSelection = filterOptions.sortingSelection
         //self.grouping = filterOptions.grouping
     }
