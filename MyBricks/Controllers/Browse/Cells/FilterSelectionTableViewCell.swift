@@ -18,9 +18,9 @@ class FilterSelectionTableViewCell: BorderedGradientTableViewCell {
         super.awakeFromNib()
         
         tintColor = UIColor.lightNavy
-        textLabel?.backgroundColor = UIColor.white
+        textLabel?.backgroundColor = UIColor.clear
         textLabel?.textColor = UIColor.lightNavy
-        detailTextLabel?.backgroundColor = UIColor.white
+        detailTextLabel?.backgroundColor = UIColor.clear
         detailTextLabel?.textColor = UIColor.slateBlue
     }
     

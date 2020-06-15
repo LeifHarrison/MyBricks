@@ -111,8 +111,8 @@ class FilterViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Filter"
+        view.backgroundColor = .cloudyBlue
         setupTableView()
-        doneButton.applyDefaultStyle()
     }
 
     override func viewWillAppear(_ animated: Bool) {
