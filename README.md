@@ -52,8 +52,8 @@ Mobile (iOS) application for interacting with the BrickSet LEGO database.
 
 ### Requirements
 
-* Xcode 9.2 or greater (https://developer.apple.com/xcode/)
-* CocoaPods 1.4.0 or greater (https://cocoapods.org)
+* Xcode 10 or greater (https://developer.apple.com/xcode/)
+* CocoaPods 1.8.0 or greater (https://cocoapods.org)
 
 ### Building
 
@@ -79,28 +79,32 @@ Mobile (iOS) application for interacting with the BrickSet LEGO database.
 - [ ] Add part detail view
 - [ ] Add more detail to price information (new view with prices in all available currencies + current prices from Bricklink)
 - [x] Implement support for additional images in Set Detail view
-- [ ] Implement TouchID support for login
-- [ ] Implement About/Credits views
+- [x] Implement TouchID/FaceID support for login
+- [x] Implement About/Credits views
 - [x] Refactor Profile view to use table view cells
 - [ ] Improved transition animation (zoom?) for displaying large set images
-- [ ] Implement force touch actions on Set List view
-- [ ] Implement force touch actions on Set Detail view
+- [x] Implement force/3D touch actions on Set List view
+- [ ] Implement force/3D touch actions on Set Detail view
 
 # Future Enhancements
 
 * More Profile Information / Editing Profile (requires Brickset API changes)
 * Local/offline storage of set data (using Core Data)
+* Dark Mode support
 * iPad support, iPad specific layouts
 
 # Credits
 
-Application data graciously provided by **[Brickset](http://www.brickset.com)** using it's web services API.
-Parts data provided by **[Rebrickable](http://rebrickable.com)** using it's web services API.
+* Theme/Set data graciously provided by **[Brickset](http://www.brickset.com)** using it's web services API.
+* Parts data provided by **[Rebrickable](http://rebrickable.com)** using it's web services API.
 
 # Third Party Libraries/Frameworks
 
-* **[Alamofire](https://github.com/Alamofire/Alamofire)** - Swift framework to simplify networking code
-* **[AlamofireImage](https://github.com/Alamofire/AlamofireImage)** - Swift framework to simplify fetching/caching images
-* **[AlamofireNetworkActivityIndicator](https://github.com/Alamofire/AlamofireNetworkActivityIndicator)** -
-* **[AlamofireRSSParser](https://github.com/AdeptusAstartes/AlamofireRSSParser)** - Swift framework for parsing RSS feeds
-* **[Cosmos](https://github.com/evgenyneu/Cosmos)** - A handy configurable star/rating view
+* **[Alamofire](https://github.com/Alamofire/Alamofire)** - HTTP networking library
+* **[AlamofireImage](https://github.com/Alamofire/AlamofireImage)** - Image (download) component library for Alamofire
+* **[AlamofireNetworkActivityIndicator](https://github.com/Alamofire/AlamofireNetworkActivityIndicator)** - Controls the visibility of the network activity indicator on iOS using Alamofire
+* **[AlamofireNetworkActivityLogger](https://github.com/Alamofire/AlamofireNetworkActivityIndicator)** - Network activity logger for Alamofire
+* **[AlamofireRSSParser](https://github.com/AdeptusAstartes/AlamofireRSSParser)** - An RSS parser response handler for Alamofire
+* **[Cosmos](https://github.com/evgenyneu/Cosmos)** - A star rating control for iOS and tvOS
+* **[KeychainAccess](https://github.com/kishikawakatsumi/KeychainAccess)** - Simple Swift wrapper for Keychain that works on iOS, watchOS, tvOS and macOS
+* **[SwiftLint](https://github.com/realm/SwiftLint)** - A tool to enforce Swift style and conventions
