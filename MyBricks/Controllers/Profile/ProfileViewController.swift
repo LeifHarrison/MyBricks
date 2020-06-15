@@ -73,10 +73,10 @@ class ProfileViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        let lastUpdated = UserDefaults.standard.value(forKey: lastUpdatedKey) as? Date ?? Date.distantPast
-        if BricksetServices.isLoggedIn() && (collectionTotals == nil || Date().timeIntervalSince(lastUpdated) > updateInterval) {
-            updateCollectionInformation()
-        }
+//        let lastUpdated = UserDefaults.standard.value(forKey: lastUpdatedKey) as? Date ?? Date.distantPast
+//        if BricksetServices.isLoggedIn() && (collectionTotals == nil || Date().timeIntervalSince(lastUpdated) > updateInterval) {
+//            updateCollectionInformation()
+//        }
 //        if RebrickableServices.isLoggedIn() {
 //            updateProfileInformation()
 //        }
@@ -112,9 +112,9 @@ class ProfileViewController: UIViewController {
 
         sections.append(.brickset)
         bricksetRows.append(.profile)
-        if BricksetServices.isLoggedIn() {
-            bricksetRows.append(.collection)
-        }
+//        if BricksetServices.isLoggedIn() {
+//            bricksetRows.append(.collection)
+//        }
 
 //        sections.append(.rebrickable)
 //        rebrickableRows.append(.profile)
@@ -262,8 +262,8 @@ class ProfileViewController: UIViewController {
                 switch result {
                     case .success:
                         self.updateDisplayedRows()
-                        self.updateProfileInformation()
-                        self.updateCollectionInformation()
+                        //self.updateProfileInformation()
+                        //self.updateCollectionInformation()
                     case .failure(let error):
                         NSLog("Error setting item owned: \(error.localizedDescription)")
                         let alert = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
