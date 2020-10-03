@@ -79,8 +79,7 @@ extension PriceDetailViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let section = sections[section]
         if section == .retailPrice {
-            //return currentSet?.retailPrices.count ?? 0
-            return 0
+            return currentSet?.retailPrices?.count ?? 0
         }
         else if section == .priceGuide {
             return 1
@@ -93,12 +92,12 @@ extension PriceDetailViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let section = sections[indexPath.section]
         if section == .retailPrice {
-//            if let retailPrice = currentSet?.retailPrices[indexPath.row] {
-//                if let cell = tableView.dequeueReusableCell(withIdentifier: "PriceDetailTableViewCell", for: indexPath) as? PriceDetailTableViewCell {
-//                    cell.populate(with: retailPrice)
-//                    return cell
-//                }
-//            }
+            if let retailPrice = currentSet?.retailPrices?[indexPath.row] {
+                if let cell = tableView.dequeueReusableCell(withIdentifier: "PriceDetailTableViewCell", for: indexPath) as? PriceDetailTableViewCell {
+                    cell.populate(with: retailPrice)
+                    return cell
+                }
+            }
         }
         else if section == .priceGuide {
             let cell: PriceGuideTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)

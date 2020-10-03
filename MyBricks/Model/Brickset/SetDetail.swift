@@ -40,20 +40,38 @@ struct SetDetail: Codable {
     var extendedData: SetExtendedData?
 
     //var images: [SetImage] = []
-    //var retailPrices: [SetRetailPrice] = []
+    var storeDetails: [String: SetStoreDetail]?
+    
+    enum CodingKeys: String, CodingKey {
+        case setID
+        case number
+        case numberVariant
+        case name
+        case year
+        case theme
+        case themeGroup
+        case subtheme
+        case category
+        case released
+        case pieces
+        case minifigs
+        case bricksetURL
+        case rating
+        case reviewCount
+        case packagingType
+        case availability
+        case instructionsCount
+        case additionalImageCount
+        case lastUpdated
+        case image
+        case collection
+        case ageRange
+        case dimensions
+        case extendedData
+        case storeDetails = "LEGOCom"
+    }
 
-    // Move to SetBarcode
-    var EAN: String?
-    var UPC: String?
-
-    // Move to LEGOCom
-    var dateAddedToSAH: Date? // The date the set was first sold as shop.LEGO.com in the USA
-    var dateRemovedFromSAH: Date? // The date the set was last sold as shop.LEGO.com in the USA. If USDateAddedToSAH is not blank but this is, it's still available.
-
-    // Move to SetCollections
-    var ownedByTotal: Int?
-    var wantedByTotal: Int?
-
+    
     //--------------------------------------------------------------------------
     // MARK: - Computed Properties
     //--------------------------------------------------------------------------
@@ -109,13 +127,29 @@ struct SetDetail: Codable {
         }
     }
     
+    var retailPrices: [SetRetailPrice]? {
+        if let storeDetails = storeDetails {
+            let prices: [SetRetailPrice] = storeDetails.compactMap { key, value in
+                if let price = value.retailPrice, let pieces = pieces {
+                    let pricePerPiece = price / Decimal(pieces)
+                    return SetRetailPrice(locale: Locale(identifier: "en_" + key.uppercased()), price: price.rounded(2, .bankers), pricePerPiece: pricePerPiece.rounded(2, .bankers))
+                }
+                return nil
+            }
+            return prices
+        }
+        return nil
+    }
+    
     var preferredPriceDescription: String? {
-//        var preferredPrice = retailPrices.first
-//        for price in retailPrices where Locale.current.currencyCode == price.locale.currencyCode {
-//            preferredPrice = price
-//        }
-//
-//        return preferredPrice?.priceDescription()
+        if let prices = retailPrices {
+            var preferredPrice = prices.first
+            for price in prices where Locale.current.currencyCode == price.locale.currencyCode {
+                preferredPrice = price
+            }
+
+            return preferredPrice?.priceDescription()
+        }
         return nil
     }
 
@@ -131,7 +165,8 @@ struct SetDetail: Codable {
     //--------------------------------------------------------------------------
 
     func isRetired() -> Bool {
-        return (dateAddedToSAH == nil) || (dateRemovedFromSAH != nil)
+        //return (dateAddedToSAH == nil) || (dateRemovedFromSAH != nil)
+        return false
     }
 
     func themeDescription() -> String? {
@@ -224,6 +259,7 @@ struct SetDetail: Codable {
         }
         return nil
     }
+    
 }
 
 struct SetAgeRange: Codable {
@@ -262,4 +298,11 @@ class SetUserCollection: Codable {
     var qtyOwned: Int?
     var rating: Int?
     var notes: String?
+}
+
+struct SetStoreDetail: Codable {
+    var retailPrice: Decimal?
+    var dateFirstAvailable: String?
+    var dateLastAvailable: String?
+
 }

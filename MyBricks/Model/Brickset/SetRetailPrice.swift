@@ -13,10 +13,10 @@ public struct SetRetailPrice: Codable {
     static var PricePerPieceFormatter = NumberFormatter()
     
     var locale: Locale
-    var price: String
-    var pricePerPiece: String
+    var price: Decimal
+    var pricePerPiece: Decimal
 
-    init(locale: Locale, price: String, pricePerPiece: String) {
+    init(locale: Locale, price: Decimal, pricePerPiece: Decimal) {
         self.locale = locale
         self.price = price
         self.pricePerPiece = pricePerPiece
@@ -24,11 +24,12 @@ public struct SetRetailPrice: Codable {
 
     func priceDescription() -> String {
         let currencySymbol = locale.currencySymbol ?? "$"
-        return (price.count > 0) ? (currencySymbol + price) : (currencySymbol + " N/A")
+        return currencySymbol + "\(price)"
     }
 
     func pricePerPieceDescription() -> String {
-        return (price.count > 0) ? (pricePerPiece + " / piece") : ""
+        let currencySymbol = locale.currencySymbol ?? "$"
+        return currencySymbol + "\(pricePerPiece)" + " / piece"
     }
 
 }

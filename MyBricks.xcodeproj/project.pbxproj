@@ -60,6 +60,7 @@
 		298FC8311FBA45940094D6DF /* BarcodeScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298FC8301FBA45940094D6DF /* BarcodeScannerViewController.swift */; };
 		29A523421F310261005F2145 /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A523411F310261005F2145 /* UIViewController+Extensions.swift */; };
 		29AE22CF1FCB9A6500744045 /* SetDescriptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AE22CE1FCB9A6500744045 /* SetDescriptionTableViewCell.swift */; };
+		29B402C624B29726008A7633 /* Decimal+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B402C524B29726008A7633 /* Decimal+Extensions.swift */; };
 		29B9514B1FDBA73E0049147E /* RebrickableServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B9514A1FDBA73E0049147E /* RebrickableServices.swift */; };
 		29B9514D1FDBCC8B0049147E /* Element.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B9514C1FDBCC8B0049147E /* Element.swift */; };
 		29B9514F1FDBCC950049147E /* Part.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B9514E1FDBCC950049147E /* Part.swift */; };
@@ -256,6 +257,7 @@
 		29A523411F310261005F2145 /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
 		29AE22CE1FCB9A6500744045 /* SetDescriptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetDescriptionTableViewCell.swift; sourceTree = "<group>"; };
 		29AF63FA1FB66445001B14AD /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
+		29B402C524B29726008A7633 /* Decimal+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Decimal+Extensions.swift"; sourceTree = "<group>"; };
 		29B9514A1FDBA73E0049147E /* RebrickableServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RebrickableServices.swift; sourceTree = "<group>"; };
 		29B9514C1FDBCC8B0049147E /* Element.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Element.swift; sourceTree = "<group>"; };
 		29B9514E1FDBCC950049147E /* Part.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Part.swift; sourceTree = "<group>"; };
@@ -528,6 +530,7 @@
 		295ADFB01F16AFFC002E6802 = {
 			isa = PBXGroup;
 			children = (
+				29AF63FA1FB66445001B14AD /* README.md */,
 				295ADFBB1F16AFFC002E6802 /* MyBricks */,
 				295ADFD21F16AFFD002E6802 /* MyBricksTests */,
 				295ADFDD1F16AFFD002E6802 /* MyBricksUITests */,
@@ -603,6 +606,7 @@
 			isa = PBXGroup;
 			children = (
 				9BD984F720D421F8002AF4BA /* Bundle+Extensions.swift */,
+				29B402C524B29726008A7633 /* Decimal+Extensions.swift */,
 				296EB6E51FBFAA6000D4D3C6 /* Locale+Extensions.swift */,
 				9BE2F617203E298B0035C172 /* UIButton+Extensions.swift */,
 				9B5E4D38203354FA0057610E /* UICollectionView+Extensions.swift */,
@@ -611,10 +615,10 @@
 				9B6D8E9A20325D900037ADFD /* UIFont+Extensions.swift */,
 				9B1F51F4209A252E000197CD /* UILabel+Extensions.swift */,
 				291DEE9C1FE27604004906E4 /* UIResponder+Extensions.swift */,
+				9B82AF0920E17B6100E83C5A /* UIStoryboard+Extensions.swift */,
 				9B5E4D36203352250057610E /* UITableView+Extensions.swift */,
 				29C111A01FC3F0F6007CBDB4 /* UIView+Extensions.swift */,
 				29A523411F310261005F2145 /* UIViewController+Extensions.swift */,
-				9B82AF0920E17B6100E83C5A /* UIStoryboard+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -636,7 +640,6 @@
 				295ADFCA1F16AFFD002E6802 /* Info.plist */,
 				29365B7D1F8EDAEC00F6730C /* MyBricks.entitlements */,
 				9BD984F920D4250E002AF4BA /* plist_build_info.sh */,
-				29AF63FA1FB66445001B14AD /* README.md */,
 			);
 			path = Support;
 			sourceTree = "<group>";
@@ -1161,6 +1164,7 @@
 				29365B751F8EBF1C00F6730C /* MySetsViewController.swift in Sources */,
 				9BE783922048745500FD078E /* PriceGuideTableViewCell.swift in Sources */,
 				9B465AA220E2E03A00A9AD9F /* DownloadedInstructions+CoreDataProperties.swift in Sources */,
+				29B402C624B29726008A7633 /* Decimal+Extensions.swift in Sources */,
 				297476EE1F1D3DC600FC354B /* SetTheme.swift in Sources */,
 				9BE783902048744500FD078E /* PriceDetailTableViewCell.swift in Sources */,
 				2973B5781F96834D002CD0DA /* UserPofile.swift in Sources */,

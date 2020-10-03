@@ -219,7 +219,9 @@ class SetDetailViewController: UIViewController {
 
         // Section for content with additional detail
         sections.append(.detail)
-        detailRows.append(.price)
+        if let detail = setDetail, let storeDetails = detail.storeDetails, storeDetails.count > 0 {
+            detailRows.append(.price)
+        }
         if let partsCount = currentSet?.pieces, partsCount > 0 {
             detailRows.append(.parts)
         }
@@ -255,6 +257,9 @@ class SetDetailViewController: UIViewController {
                         
                         strongSelf.tableView.beginUpdates()
                         strongSelf.updateSections()
+                        if let sectionIndex = strongSelf.sections.index(of: .detail), let rowIndex = strongSelf.detailRows.index(of: .price) {
+                            strongSelf.tableView.insertRows(at: [IndexPath(row: rowIndex, section: sectionIndex)], with: .fade)
+                        }
                         if let index = strongSelf.sections.index(of: .tags) {
                             strongSelf.tableView.insertSections([index], with: .fade)
                         }
@@ -362,8 +367,9 @@ extension SetDetailViewController: UITableViewDataSource {
             switch row {
 
             case .price :
+                guard let detail = setDetail else { return UITableViewCell()  }
                 let cell: SetPriceTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
-                cell.populate(with: set)
+                cell.populate(with: detail)
                 return cell
 
             case .parts :
@@ -450,8 +456,9 @@ extension SetDetailViewController: UITableViewDelegate {
             let row = detailRows[indexPath.row]
             switch row {
             case .price:
+                guard let detail = setDetail else { return }
                 if let viewController = storyboard?.instantiateViewController(withIdentifier: "PriceDetailViewController") as? PriceDetailViewController {
-                    viewController.currentSet = currentSet
+                    viewController.currentSet = detail
                     show(viewController, sender: self)
                 }
                 
