@@ -54,13 +54,17 @@ Mobile (iOS) application for interacting with the BrickSet LEGO database.
 
 * Xcode 10 or greater (https://developer.apple.com/xcode/)
 * CocoaPods 1.8.0 or greater (https://cocoapods.org)
+* In order to access the Brickset services you'll need to request your own API key from `https://brickset.com/tools/webservices/requestkey`.
+  After getting a key you'll need to update in `Constants.swift` .
 
 ### Building
+
 
 * Clone the source to your local machine using `git clone <URL>` (repository URL can be copied from the 'Clone or Download' button above)
 * Open a terminal and go to the directory where you cloned the source
 * Install the required CocoaPods using `pod install`
 * Open the project in Xcode - use the xcworkspace rather than xcodeproj, or you will get build errors from the CocoaPods dependencies not building
+* Update `Constants.swift` with your Brickset and Rebrickable API keys (see Requirements above)
 * Build and run using the Xcode Simulator
 
 # To Do
