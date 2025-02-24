@@ -3,10 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 48;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		290538022D6D34A300EF391C /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 290538012D6D34A300EF391C /* Alamofire */; };
+		290538072D6D354300EF391C /* AlamofireImage in Frameworks */ = {isa = PBXBuildFile; productRef = 290538062D6D354300EF391C /* AlamofireImage */; };
 		290B677320A731430089C6FC /* BorderedGradientTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290B677220A731430089C6FC /* BorderedGradientTableViewCell.swift */; };
 		29134BA92480A0AC00C5A6EF /* BricksetGetImagesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29134BA82480A0AC00C5A6EF /* BricksetGetImagesResponse.swift */; };
 		29134BAB2480A43B00C5A6EF /* BricksetGetInstructionsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29134BAA2480A43B00C5A6EF /* BricksetGetInstructionsResponse.swift */; };
@@ -75,6 +77,11 @@
 		29C23593247C31740083A413 /* BricksetBasicResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C23592247C31740083A413 /* BricksetBasicResponse.swift */; };
 		29C23595247C41A50083A413 /* BricksetGetSubthemesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C23594247C41A50083A413 /* BricksetGetSubthemesResponse.swift */; };
 		29C3309320A4FFC400D59093 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 29C3309220A4FFC400D59093 /* Localizable.strings */; };
+		29C833902D6D30BE00C26F34 /* AlamofireRSSParser in Frameworks */ = {isa = PBXBuildFile; productRef = 29C8338F2D6D30BE00C26F34 /* AlamofireRSSParser */; };
+		29C833932D6D313E00C26F34 /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = 29C833922D6D313E00C26F34 /* KeychainAccess */; };
+		29C833992D6D324300C26F34 /* Cosmos in Frameworks */ = {isa = PBXBuildFile; productRef = 29C833982D6D324300C26F34 /* Cosmos */; };
+		29C8339C2D6D328000C26F34 /* AlamofireNetworkActivityIndicator in Frameworks */ = {isa = PBXBuildFile; productRef = 29C8339B2D6D328000C26F34 /* AlamofireNetworkActivityIndicator */; };
+		29C8339F2D6D32AE00C26F34 /* AlamofireNetworkActivityLogger in Frameworks */ = {isa = PBXBuildFile; productRef = 29C8339E2D6D32AE00C26F34 /* AlamofireNetworkActivityLogger */; };
 		29CA94A11F8D508A000F1DE3 /* BrowseSetsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29CA94A01F8D508A000F1DE3 /* BrowseSetsViewController.swift */; };
 		29CA94A31F8D5132000F1DE3 /* SetDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29CA94A21F8D5132000F1DE3 /* SetDetail.swift */; };
 		29CA94A61F8D72DC000F1DE3 /* SetListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29CA94A41F8D72DC000F1DE3 /* SetListTableViewCell.swift */; };
@@ -85,7 +92,6 @@
 		29E86FDB1F31293900A67179 /* ThemeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E86FD91F31293900A67179 /* ThemeTableViewCell.swift */; };
 		29EE120E202B698A00C05C55 /* SafariActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EE120D202B698A00C05C55 /* SafariActivity.swift */; };
 		29F60F5B1FD3769E00DF2E48 /* PreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F60F5A1FD3769E00DF2E48 /* PreviewView.swift */; };
-		71EA93350D446E8447D819DE /* Pods_MyBricks.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C7DD5EA6F08ABC5549DF63C /* Pods_MyBricks.framework */; };
 		9B0041CB209B6F9D00569FD1 /* PartsListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B0041CA209B6F9D00569FD1 /* PartsListTableViewCell.xib */; };
 		9B1F51F5209A252E000197CD /* UILabel+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1F51F4209A252E000197CD /* UILabel+Extensions.swift */; };
 		9B3E1EEC202A690D0094DD3E /* SetDetailFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3E1EEB202A690D0094DD3E /* SetDetailFooterView.swift */; };
@@ -282,8 +288,6 @@
 		29E86FD91F31293900A67179 /* ThemeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeTableViewCell.swift; sourceTree = "<group>"; };
 		29EE120D202B698A00C05C55 /* SafariActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariActivity.swift; sourceTree = "<group>"; };
 		29F60F5A1FD3769E00DF2E48 /* PreviewView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreviewView.swift; sourceTree = "<group>"; };
-		593F839198E1796EC36B980B /* Pods-MyBricks.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyBricks.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MyBricks/Pods-MyBricks.debug.xcconfig"; sourceTree = "<group>"; };
-		8C7DD5EA6F08ABC5549DF63C /* Pods_MyBricks.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyBricks.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B0041CA209B6F9D00569FD1 /* PartsListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PartsListTableViewCell.xib; sourceTree = "<group>"; };
 		9B1F51F4209A252E000197CD /* UILabel+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extensions.swift"; sourceTree = "<group>"; };
 		9B3E1EEB202A690D0094DD3E /* SetDetailFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetDetailFooterView.swift; sourceTree = "<group>"; };
@@ -362,9 +366,6 @@
 		9BF9D1B320BF641C003B1FF1 /* BlueGradientTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlueGradientTableViewCell.swift; sourceTree = "<group>"; };
 		9BFFDEA82020E3C90070C812 /* Filter.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Filter.storyboard; sourceTree = "<group>"; };
 		9BFFDEAA20212E5F0070C812 /* SetDetail.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SetDetail.storyboard; sourceTree = "<group>"; };
-		9C22940D3A15FE3E6B89AED7 /* Pods-MyBricks.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyBricks.release.xcconfig"; path = "Pods/Target Support Files/Pods-MyBricks/Pods-MyBricks.release.xcconfig"; sourceTree = "<group>"; };
-		9D94ECA9368FE445BFD6F31C /* Pods_MyBricksUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyBricksUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		A148411968C617C0F1616A5A /* Pods_MyBricksTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyBricksTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -372,7 +373,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				71EA93350D446E8447D819DE /* Pods_MyBricks.framework in Frameworks */,
+				29C833992D6D324300C26F34 /* Cosmos in Frameworks */,
+				290538022D6D34A300EF391C /* Alamofire in Frameworks */,
+				29C8339F2D6D32AE00C26F34 /* AlamofireNetworkActivityLogger in Frameworks */,
+				29C833902D6D30BE00C26F34 /* AlamofireRSSParser in Frameworks */,
+				29C833932D6D313E00C26F34 /* KeychainAccess in Frameworks */,
+				29C8339C2D6D328000C26F34 /* AlamofireNetworkActivityIndicator in Frameworks */,
+				290538072D6D354300EF391C /* AlamofireImage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -393,6 +400,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		290538002D6D34A300EF391C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		290B677120A7311E0089C6FC /* Cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -435,16 +449,6 @@
 				2928611C1FD50D24005F15D8 /* SearchHistoryTableViewCell.swift */,
 			);
 			path = Cells;
-			sourceTree = "<group>";
-		};
-		292F4F541F192CA2006D5F5B /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				8C7DD5EA6F08ABC5549DF63C /* Pods_MyBricks.framework */,
-				A148411968C617C0F1616A5A /* Pods_MyBricksTests.framework */,
-				9D94ECA9368FE445BFD6F31C /* Pods_MyBricksUITests.framework */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		29365B701F8EBE7E00F6730C /* MySets */ = {
@@ -534,9 +538,8 @@
 				295ADFBB1F16AFFC002E6802 /* MyBricks */,
 				295ADFD21F16AFFD002E6802 /* MyBricksTests */,
 				295ADFDD1F16AFFD002E6802 /* MyBricksUITests */,
+				290538002D6D34A300EF391C /* Frameworks */,
 				295ADFBA1F16AFFC002E6802 /* Products */,
-				292F4F541F192CA2006D5F5B /* Frameworks */,
-				FF63C2F8FBB7E309CDB9D36A /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -847,15 +850,6 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		FF63C2F8FBB7E309CDB9D36A /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				593F839198E1796EC36B980B /* Pods-MyBricks.debug.xcconfig */,
-				9C22940D3A15FE3E6B89AED7 /* Pods-MyBricks.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -863,12 +857,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 295ADFE31F16AFFD002E6802 /* Build configuration list for PBXNativeTarget "MyBricks" */;
 			buildPhases = (
-				0667D550158D584828E9CF9D /* [CP] Check Pods Manifest.lock */,
 				29C3309120A4C2FF00D59093 /* Run SwiftLint */,
 				295ADFB51F16AFFC002E6802 /* Sources */,
 				295ADFB61F16AFFC002E6802 /* Frameworks */,
 				295ADFB71F16AFFC002E6802 /* Resources */,
-				AE91F3939A2E845F1D4B3DCA /* [CP] Embed Pods Frameworks */,
 				29E820251FA7A6CF001444C8 /* Embed Frameworks */,
 				9BD984FA20D425BF002AF4BA /* Update Build Info */,
 			);
@@ -924,7 +916,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0900;
-				LastUpgradeCheck = 0930;
+				LastUpgradeCheck = 1230;
 				ORGANIZATIONNAME = "Leif Harrison";
 				TargetAttributes = {
 					295ADFB81F16AFFC002E6802 = {
@@ -954,6 +946,15 @@
 				Base,
 			);
 			mainGroup = 295ADFB01F16AFFC002E6802;
+			packageReferences = (
+				29C833892D6D2FF200C26F34 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				29C8338E2D6D30BE00C26F34 /* XCRemoteSwiftPackageReference "AlamofireRSSParser" */,
+				29C833912D6D313E00C26F34 /* XCRemoteSwiftPackageReference "KeychainAccess" */,
+				29C833942D6D318600C26F34 /* XCRemoteSwiftPackageReference "AlamofireImage" */,
+				29C833972D6D31DD00C26F34 /* XCRemoteSwiftPackageReference "Cosmos" */,
+				29C8339A2D6D328000C26F34 /* XCRemoteSwiftPackageReference "AlamofireNetworkActivityIndicator" */,
+				29C8339D2D6D32AE00C26F34 /* XCRemoteSwiftPackageReference "AlamofireNetworkActivityLogger" */,
+			);
 			productRefGroup = 295ADFBA1F16AFFC002E6802 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -1021,24 +1022,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0667D550158D584828E9CF9D /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-MyBricks-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 		29C3309120A4C2FF00D59093 /* Run SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1066,36 +1049,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "${PROJECT_DIR}/${PRODUCT_NAME}/Support/plist_build_info.sh";
-			showEnvVarsInLog = 0;
-		};
-		AE91F3939A2E845F1D4B3DCA /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MyBricks/Pods-MyBricks-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework",
-				"${BUILT_PRODUCTS_DIR}/AlamofireNetworkActivityIndicator/AlamofireNetworkActivityIndicator.framework",
-				"${BUILT_PRODUCTS_DIR}/AlamofireNetworkActivityLogger/AlamofireNetworkActivityLogger.framework",
-				"${BUILT_PRODUCTS_DIR}/AlamofireRSSParser/AlamofireRSSParser.framework",
-				"${BUILT_PRODUCTS_DIR}/Cosmos/Cosmos.framework",
-				"${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireNetworkActivityIndicator.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireNetworkActivityLogger.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireRSSParser.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cosmos.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MyBricks/Pods-MyBricks-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1298,6 +1251,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -1357,6 +1311,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -1379,14 +1334,14 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
 		295ADFE41F16AFFD002E6802 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 593F839198E1796EC36B980B /* Pods-MyBricks.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -1398,8 +1353,11 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/MyBricks/Support/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-framework",
@@ -1425,7 +1383,6 @@
 		};
 		295ADFE51F16AFFD002E6802 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9C22940D3A15FE3E6B89AED7 /* Pods-MyBricks.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -1437,8 +1394,11 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/MyBricks/Support/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-framework",
@@ -1469,7 +1429,11 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = LY3N4LXUKP;
 				INFOPLIST_FILE = MyBricksTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.catsreach.MyBricksTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -1485,7 +1449,11 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = LY3N4LXUKP;
 				INFOPLIST_FILE = MyBricksTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.catsreach.MyBricksTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -1500,7 +1468,11 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = LY3N4LXUKP;
 				INFOPLIST_FILE = MyBricksUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.catsreach.MyBricksUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -1515,7 +1487,11 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = LY3N4LXUKP;
 				INFOPLIST_FILE = MyBricksUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.catsreach.MyBricksUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -1564,6 +1540,103 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		29C833892D6D2FF200C26F34 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.10.2;
+			};
+		};
+		29C8338E2D6D30BE00C26F34 /* XCRemoteSwiftPackageReference "AlamofireRSSParser" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AdeptusAstartes/AlamofireRSSParser.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
+		29C833912D6D313E00C26F34 /* XCRemoteSwiftPackageReference "KeychainAccess" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kishikawakatsumi/KeychainAccess.git/";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		29C833942D6D318600C26F34 /* XCRemoteSwiftPackageReference "AlamofireImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/AlamofireImage.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.3.0;
+			};
+		};
+		29C833972D6D31DD00C26F34 /* XCRemoteSwiftPackageReference "Cosmos" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/evgenyneu/Cosmos.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 25.0.1;
+			};
+		};
+		29C8339A2D6D328000C26F34 /* XCRemoteSwiftPackageReference "AlamofireNetworkActivityIndicator" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/AlamofireNetworkActivityIndicator";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.1.0;
+			};
+		};
+		29C8339D2D6D32AE00C26F34 /* XCRemoteSwiftPackageReference "AlamofireNetworkActivityLogger" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/konkab/AlamofireNetworkActivityLogger.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.4.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		290538012D6D34A300EF391C /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 29C833892D6D2FF200C26F34 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		290538062D6D354300EF391C /* AlamofireImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 29C833942D6D318600C26F34 /* XCRemoteSwiftPackageReference "AlamofireImage" */;
+			productName = AlamofireImage;
+		};
+		29C8338F2D6D30BE00C26F34 /* AlamofireRSSParser */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 29C8338E2D6D30BE00C26F34 /* XCRemoteSwiftPackageReference "AlamofireRSSParser" */;
+			productName = AlamofireRSSParser;
+		};
+		29C833922D6D313E00C26F34 /* KeychainAccess */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 29C833912D6D313E00C26F34 /* XCRemoteSwiftPackageReference "KeychainAccess" */;
+			productName = KeychainAccess;
+		};
+		29C833982D6D324300C26F34 /* Cosmos */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 29C833972D6D31DD00C26F34 /* XCRemoteSwiftPackageReference "Cosmos" */;
+			productName = Cosmos;
+		};
+		29C8339B2D6D328000C26F34 /* AlamofireNetworkActivityIndicator */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 29C8339A2D6D328000C26F34 /* XCRemoteSwiftPackageReference "AlamofireNetworkActivityIndicator" */;
+			productName = AlamofireNetworkActivityIndicator;
+		};
+		29C8339E2D6D32AE00C26F34 /* AlamofireNetworkActivityLogger */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 29C8339D2D6D32AE00C26F34 /* XCRemoteSwiftPackageReference "AlamofireNetworkActivityLogger" */;
+			productName = AlamofireNetworkActivityLogger;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		293C9A6C1FD495C70058DA59 /* MyBricks.xcdatamodeld */ = {

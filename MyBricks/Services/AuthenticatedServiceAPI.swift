@@ -6,9 +6,9 @@
 //  Copyright © 2018 Leif Harrison. All rights reserved.
 //
 
-import Foundation
-
 import Alamofire
+import Foundation
+import UIKit
 
 protocol AuthenticatedServiceAPI: class {
     

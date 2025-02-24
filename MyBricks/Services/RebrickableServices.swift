@@ -6,10 +6,10 @@
 //  Copyright © 2017 Leif Harrison. All rights reserved.
 //
 
-import Foundation
-
 import Alamofire
+import Foundation
 import KeychainAccess
+import UIKit
 
 class RebrickableServices: AuthenticatedServiceAPI {
     

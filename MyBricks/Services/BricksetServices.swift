@@ -6,11 +6,11 @@
 //  Copyright © 2017 Leif Harrison. All rights reserved.
 //
 
-import Foundation
-
 import Alamofire
 import AlamofireRSSParser
+import Foundation
 import KeychainAccess
+import UIKit
 
 enum ServiceError: Error {
     case loginFailed(reason: String)

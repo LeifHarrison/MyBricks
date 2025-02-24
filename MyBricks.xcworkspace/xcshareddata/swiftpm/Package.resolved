@@ -1,0 +1,69 @@
+{
+  "originHash" : "eca68e4e6bac8b43b14742e1e88ebdd73148ac114822e599fedbd317f375c2ce",
+  "pins" : [
+    {
+      "identity" : "alamofire",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Alamofire/Alamofire.git",
+      "state" : {
+        "revision" : "513364f870f6bfc468f9d2ff0a95caccc10044c5",
+        "version" : "5.10.2"
+      }
+    },
+    {
+      "identity" : "alamofireimage",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Alamofire/AlamofireImage.git",
+      "state" : {
+        "revision" : "1eaf3b6c6882bed10f6e7b119665599dd2329aa1",
+        "version" : "4.3.0"
+      }
+    },
+    {
+      "identity" : "alamofirenetworkactivityindicator",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Alamofire/AlamofireNetworkActivityIndicator",
+      "state" : {
+        "revision" : "392bed083e8d193aca16bfa684ee24e4bcff0510",
+        "version" : "3.1.0"
+      }
+    },
+    {
+      "identity" : "alamofirenetworkactivitylogger",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/konkab/AlamofireNetworkActivityLogger.git",
+      "state" : {
+        "revision" : "8db9d4e27176905298e7215e3d800e349cdfa30b",
+        "version" : "3.4.0"
+      }
+    },
+    {
+      "identity" : "alamofirerssparser",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/AdeptusAstartes/AlamofireRSSParser.git",
+      "state" : {
+        "revision" : "cec8b07ee1410a52dc34bf1618c4d664e779e80c",
+        "version" : "4.0.0"
+      }
+    },
+    {
+      "identity" : "cosmos",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/evgenyneu/Cosmos.git",
+      "state" : {
+        "revision" : "40ba10aaf175bf50abefd0e518bd3b40862af3b1",
+        "version" : "25.0.1"
+      }
+    },
+    {
+      "identity" : "keychainaccess",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/kishikawakatsumi/KeychainAccess.git/",
+      "state" : {
+        "branch" : "master",
+        "revision" : "e0c7eebc5a4465a3c4680764f26b7a61f567cdaf"
+      }
+    }
+  ],
+  "version" : 3
+}
