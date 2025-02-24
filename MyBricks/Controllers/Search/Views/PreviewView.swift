@@ -39,7 +39,7 @@ class PreviewView: UIView {
 	private func commonInit() {
         videoPreviewLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
 
-		maskLayer.fillRule = kCAFillRuleEvenOdd
+		maskLayer.fillRule = CAShapeLayerFillRule.evenOdd
 		maskLayer.fillColor = UIColor.black.cgColor
 		maskLayer.opacity = maskAlpha
 		layer.addSublayer(maskLayer)

@@ -43,7 +43,7 @@ class ReviewsViewController: UIViewController {
     }()
 
     private func setupTableView() {
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
         tableView.sectionIndexBackgroundColor = UIColor.clear
         tableView.tableFooterView = UIView()
         tableView.register(SetReviewTableViewCell.self)

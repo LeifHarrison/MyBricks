@@ -144,7 +144,7 @@ struct SetDetail: Codable {
     var preferredPriceDescription: String? {
         if let prices = retailPrices {
             var preferredPrice = prices.first
-            for price in prices where Locale.current.currencyCode == price.locale.currencyCode {
+            for price in prices where Locale.current.currency?.identifier == price.locale.currency?.identifier {
                 preferredPrice = price
             }
 

@@ -62,8 +62,8 @@ class ThemeTableViewCell: BorderedGradientTableViewCell, NibLoadableView, Reusab
 extension SetTheme {
 
     static let textColor = UIColor(white:0.1, alpha:1.0)
-    static let regularAttributes = [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 16), NSAttributedStringKey.foregroundColor: textColor]
-    static let boldAttributes = [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 16, weight: .bold), NSAttributedStringKey.foregroundColor: textColor]
+    static let regularAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16), NSAttributedString.Key.foregroundColor: textColor]
+    static let boldAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16, weight: .bold), NSAttributedString.Key.foregroundColor: textColor]
 
     func setsAttributedDescription() -> NSAttributedString {
         let attributedDescription = NSMutableAttributedString(string:"\( setCount ?? 0)", attributes:SetTheme.boldAttributes)

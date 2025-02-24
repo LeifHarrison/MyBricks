@@ -41,8 +41,14 @@ class NewsItemTableViewCell: BorderedGradientTableViewCell, NibLoadableView, Reu
 
 extension RSSItem {
     
-    static let templateAttributes = [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14, weight: .light), NSAttributedStringKey.foregroundColor: UIColor.slateBlue]
-    static let authorAttributes = [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14, weight: .bold), NSAttributedStringKey.foregroundColor: UIColor.lightNavy]
+    static let templateAttributes = [
+        NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14, weight: .light),
+        NSAttributedString.Key.foregroundColor: UIColor.slateBlue
+    ]
+    static let authorAttributes = [
+        NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14, weight: .bold),
+        NSAttributedString.Key.foregroundColor: UIColor.lightNavy
+    ]
     static let dateFormatter = DateFormatter()
     
     func authorAndDateAttributedDecription() -> NSAttributedString {

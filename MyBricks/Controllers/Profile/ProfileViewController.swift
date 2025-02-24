@@ -93,9 +93,9 @@ class ProfileViewController: UIViewController {
     fileprivate func setupTableView() {
         
         tableView.contentInset = UIEdgeInsets(top: 5, left: 0, bottom: 5, right: 0)
-        tableView.estimatedRowHeight = UITableViewAutomaticDimension
-        tableView.estimatedSectionFooterHeight = UITableViewAutomaticDimension
-        tableView.estimatedSectionHeaderHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = UITableView.automaticDimension
+        tableView.estimatedSectionFooterHeight = UITableView.automaticDimension
+        tableView.estimatedSectionHeaderHeight = UITableView.automaticDimension
         tableView.tableFooterView = UIView()
 
         tableView.register(ProfileLoginTableViewCell.self)

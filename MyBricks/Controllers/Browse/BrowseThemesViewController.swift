@@ -38,8 +38,8 @@ class BrowseThemesViewController: UIViewController {
     //--------------------------------------------------------------------------
 
     private func setupTableView() {
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = UITableView.automaticDimension
         tableView.sectionIndexColor = UIColor.slateBlue
         tableView.separatorStyle = .none
         tableView.tableFooterView = UIView()

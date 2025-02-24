@@ -150,8 +150,14 @@ extension SetReview {
     static let reviewFontSize: CGFloat = 16
     static let defaultTextColor = UIColor(white:0.1, alpha:1.0)
     static let authorTextColor = UIColor.blue
-    static let templateAttributes = [NSAttributedStringKey.font: UIFont.systemFont(ofSize: reviewFontSize), NSAttributedStringKey.foregroundColor: defaultTextColor]
-    static let authorAttributes = [NSAttributedStringKey.font: UIFont.systemFont(ofSize: reviewFontSize, weight: .bold), NSAttributedStringKey.foregroundColor: authorTextColor]
+    static let templateAttributes = [
+        NSAttributedString.Key.font: UIFont.systemFont(ofSize: reviewFontSize),
+        NSAttributedString.Key.foregroundColor: defaultTextColor
+    ]
+    static let authorAttributes = [
+        NSAttributedString.Key.font: UIFont.systemFont(ofSize: reviewFontSize, weight: .bold),
+        NSAttributedString.Key.foregroundColor: authorTextColor
+    ]
 
     static let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()

@@ -74,7 +74,7 @@ extension ReviewDetailAnimator: UIViewControllerAnimatedTransitioning {
 
         if let view = toView {
             containerView.addSubview(view)
-            containerView.bringSubview(toFront: view)
+            containerView.bringSubviewToFront(view)
         }
 
         self.animatedTextView.attributedText = detailController?.review?.formattedReview()

@@ -89,8 +89,8 @@ class ProfileLoginTableViewCell: BorderedGradientTableViewCell, ReusableView, Ni
     // MARK: - Private
     //--------------------------------------------------------------------------
     
-    private let regularAttributes = [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 18), NSAttributedStringKey.foregroundColor: UIColor.black]
-    private let boldAttributes = [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 18, weight: .bold), NSAttributedStringKey.foregroundColor: UIColor.black]
+    private let regularAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18), NSAttributedString.Key.foregroundColor: UIColor.black]
+    private let boldAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18, weight: .bold), NSAttributedString.Key.foregroundColor: UIColor.black]
     
     private func loggedInAsAttributedDescription(forUsername username: String) -> NSAttributedString {
         let attributedDescription = NSMutableAttributedString(string: "You are logged in as ", attributes: regularAttributes)

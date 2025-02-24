@@ -56,7 +56,7 @@ class NewsViewController: UIViewController {
     
     fileprivate func setupTableView() {
         tableView.register(NewsItemTableViewCell.self)
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
         tableView.tableFooterView = UIView()
         
         refreshControl.addTarget(self, action: #selector(refreshNews(_:)), for: .valueChanged)

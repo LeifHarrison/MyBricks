@@ -53,8 +53,8 @@ class SearchViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(with:)), name: .UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(with:)), name: .UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(with:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(with:)), name: UIResponder.keyboardWillHideNotification, object: nil)
 
         updateSearchHistory()
         showInstructions(animated: true)
@@ -63,8 +63,8 @@ class SearchViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(true)
         
-        NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
 
         hideNoResultsView(animated: false)
         if let request = self.searchRequest {
@@ -108,7 +108,7 @@ class SearchViewController: UIViewController {
     
     @objc private func keyboardWillShow(with notification: Notification) {
         guard let userInfo = notification.userInfo as? [String: AnyObject],
-            let keyboardFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
+              let keyboardFrame = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
             else { return }
         
         var contentInset = self.tableView.contentInset
@@ -134,8 +134,8 @@ class SearchViewController: UIViewController {
     //--------------------------------------------------------------------------
     
     fileprivate func setupTableView() {
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = UITableView.automaticDimension
         tableView.sectionIndexBackgroundColor = UIColor.clear
         tableView.tableFooterView = UIView()
     }

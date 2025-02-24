@@ -46,7 +46,7 @@ class InstructionsViewController: UIViewController {
     
     private func setupTableView() {
         tableView.register(InstructionsTableViewCell.self)
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
         tableView.tableFooterView = UIView()
     }
     

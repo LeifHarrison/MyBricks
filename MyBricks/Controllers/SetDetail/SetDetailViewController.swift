@@ -191,7 +191,7 @@ class SetDetailViewController: UIViewController {
 
     private func setupTableView() {
         
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedSectionFooterHeight = 0
         tableView.estimatedSectionHeaderHeight = 5
         tableView.contentInset = UIEdgeInsets(top: 5, left: 0, bottom: 5, right: 0)

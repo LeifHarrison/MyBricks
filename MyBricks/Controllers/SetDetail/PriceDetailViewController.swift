@@ -53,7 +53,7 @@ class PriceDetailViewController: UIViewController {
     //--------------------------------------------------------------------------
     
     private func setupTableView() {
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
         tableView.tableFooterView = UIView()
         tableView.register(PriceGuideTableViewCell.self)
     }

@@ -11,7 +11,7 @@ import Foundation
 extension Locale {
 
     var emojiFlag: String? {
-        if let code = regionCode {
+        if let code = region?.identifier {
             let base: UInt32 = 127397
             return String(String.UnicodeScalarView(code.unicodeScalars.compactMap({ UnicodeScalar(base + $0.value) })))
         }

@@ -45,7 +45,7 @@ class ProfileInstructionsViewController: UIViewController {
     private func setupTableView() {
         tableView.alwaysBounceVertical = false
         tableView.register(DownloadedInstructionsTableViewCell.self)
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
         tableView.tableFooterView = UIView()
     }
     
@@ -152,7 +152,7 @@ extension ProfileInstructionsViewController: UITableViewDataSource {
 
 extension ProfileInstructionsViewController: UITableViewDelegate {
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         let instructions = downloadedInstructions[indexPath.row]
         if editingStyle == .delete {
             self.removeInstructions(instructions, indexPath: indexPath)
@@ -163,7 +163,7 @@ extension ProfileInstructionsViewController: UITableViewDelegate {
         let instructions = downloadedInstructions[indexPath.row]
         var actions: [UIContextualAction] = []
         
-        let deleteHandler: UIContextualActionHandler = { (action, view, completionHandler) in
+        let deleteHandler: UIContextualAction.Handler = { (action, view, completionHandler) in
             self.removeInstructions(instructions, indexPath: indexPath)
             completionHandler(true)
         }
@@ -171,7 +171,7 @@ extension ProfileInstructionsViewController: UITableViewDelegate {
         actions.append(deleteAction)
         
         if let url = instructions.fileURL {
-            let viewHandler: UIContextualActionHandler  = { (action, view, completionHandler) in
+            let viewHandler: UIContextualAction.Handler  = { (action, view, completionHandler) in
                 self.showPreview(for: url)
                 completionHandler(true)
             }

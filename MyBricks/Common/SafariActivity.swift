@@ -12,8 +12,8 @@ class SafariActivity: UIActivity {
     
     public var URL: URL?
     
-    public override var activityType: UIActivityType? {
-        return UIActivityType(rawValue: "SafariActivity")
+    public override var activityType: UIActivity.ActivityType? {
+        return UIActivity.ActivityType(rawValue: "SafariActivity")
     }
     
     public override var activityTitle: String? {

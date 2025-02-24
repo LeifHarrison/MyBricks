@@ -67,8 +67,8 @@ class BricksetCollectionTableViewCell: BorderedGradientTableViewCell, ReusableVi
 
 extension UserCollectionTotals {
     
-    static let regularAttributes = [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 16), NSAttributedStringKey.foregroundColor: UIColor.black]
-    static let boldAttributes = [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 16, weight: .bold), NSAttributedStringKey.foregroundColor: UIColor.black]
+    static let regularAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16), NSAttributedString.Key.foregroundColor: UIColor.black]
+    static let boldAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16, weight: .bold), NSAttributedString.Key.foregroundColor: UIColor.black]
     
     func setsOwnedAttributedDescription() -> NSAttributedString {
         let attributedDescription = NSMutableAttributedString(string: "You own ", attributes: UserCollectionTotals.regularAttributes)

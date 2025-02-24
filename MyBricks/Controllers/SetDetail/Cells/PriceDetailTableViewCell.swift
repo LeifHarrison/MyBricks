@@ -39,7 +39,8 @@ class PriceDetailTableViewCell: BorderedGradientTableViewCell {
     //--------------------------------------------------------------------------
     
     func populate(with retailPrice: SetRetailPrice) {
-        regionLabel.text = retailPrice.locale.localizedString(forRegionCode: retailPrice.locale.regionCode!)
+        let regionCode = retailPrice.locale.region?.identifier ?? "US"
+        regionLabel.text = retailPrice.locale.localizedString(forRegionCode: regionCode)
         priceLabel.text = retailPrice.priceDescription()
         pricePerPieceLabel.text = retailPrice.pricePerPieceDescription()
     }

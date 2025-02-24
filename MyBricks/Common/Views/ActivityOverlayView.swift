@@ -70,7 +70,7 @@ public class ActivityOverlayView: UIView {
             self.backgroundView.alpha = 1.0
             self.backgroundView.transform = CGAffineTransform.identity
         }
-        let options: UIViewAnimationOptions = [ .beginFromCurrentState, .curveEaseIn ]
+        let options: UIView.AnimationOptions = [ .beginFromCurrentState, .curveEaseIn ]
         UIView.animate(withDuration: animated ? 0.2 : 0, delay: 0, options: options, animations: animations, completion: nil)
 
     }
@@ -84,7 +84,7 @@ public class ActivityOverlayView: UIView {
             self.activityIndicator.stopAnimating()
             self.removeFromSuperview()
         }
-        let options: UIViewAnimationOptions = [ .beginFromCurrentState, .curveEaseOut ]
+        let options: UIView.AnimationOptions = [ .beginFromCurrentState, .curveEaseOut ]
         UIView.animate(withDuration: animated ? 0.3 : 0, delay: 0, options: options, animations: animations, completion: completion)
     }
     

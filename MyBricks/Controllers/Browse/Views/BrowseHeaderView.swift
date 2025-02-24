@@ -37,8 +37,8 @@ class BrowseHeaderView: UIView {
     func populate(with setCount: Int, filterOptions: FilterOptions?) {
         let regularTextColor = UIColor.white
         let boldTextColor = UIColor.white
-        let regularAttributes: [NSAttributedStringKey: Any] = [ .font : resultsLabel.font, .foregroundColor : regularTextColor]
-        let boldAttributes: [NSAttributedStringKey: Any] = [ .font : resultsLabel.font.bold(), .foregroundColor : boldTextColor]
+        let regularAttributes: [NSAttributedString.Key: Any] = [ .font : resultsLabel.font, .foregroundColor : regularTextColor]
+        let boldAttributes: [NSAttributedString.Key: Any] = [ .font : resultsLabel.font.bold(), .foregroundColor : boldTextColor]
         let separator = NSAttributedString(string:" : ", attributes:regularAttributes)
         
         let attributedDescription = NSMutableAttributedString(string:"Showing ", attributes:regularAttributes)
