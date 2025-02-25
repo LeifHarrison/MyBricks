@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: - UIApplicationDelegate
     //--------------------------------------------------------------------------
     
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
         NetworkActivityIndicatorManager.shared.isEnabled = true
         
@@ -111,7 +111,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().setBackgroundImage(image, for: .default)
         UINavigationBar.appearance().tintColor = UIColor.lightNavy
         
-        let attributes: [NSAttributedStringKey: AnyObject] = [ .font : UIFont.boldSystemFont(ofSize: 18), .foregroundColor : UIColor.lightNavy ]
+        let attributes: [NSAttributedString.Key: AnyObject] = [ .font : UIFont.boldSystemFont(ofSize: 18), .foregroundColor : UIColor.lightNavy ]
         UINavigationBar.appearance().titleTextAttributes = attributes
     }
     
@@ -129,11 +129,34 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Generate gradient image
         let image = gradientImage(withSize: CGSize(width: screenHeight, height: barHeight))
 
-        UITabBar.appearance().backgroundImage = image
-        UITabBar.appearance().tintColor = UIColor.lightNavy
-        UITabBar.appearance().unselectedItemTintColor = UIColor.cloudyBlue
+        if #available(iOS 13.0, *) {
+            let tabBarAppearance: UITabBarAppearance = UITabBarAppearance()
+            tabBarAppearance.backgroundImage = image
+            //tabBarAppearance.selectionIndicatorTintColor = UIColor.lightNavy
+            //tabBarAppearance.unselectedItemTintColor = UIColor.cloudyBlue
+            
+            setTabBarItemColors(tabBarAppearance.stackedLayoutAppearance)
+            setTabBarItemColors(tabBarAppearance.inlineLayoutAppearance)
+            setTabBarItemColors(tabBarAppearance.compactInlineLayoutAppearance)
+
+            UITabBar.appearance().standardAppearance = tabBarAppearance
+            
+            if #available(iOS 15.0, *) {
+                UITabBar.appearance().scrollEdgeAppearance = tabBarAppearance
+            }
+
+        }
+        
     }
     
+    private func setTabBarItemColors(_ itemAppearance: UITabBarItemAppearance) {
+        itemAppearance.normal.iconColor = .cloudyBlue
+        itemAppearance.normal.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.cloudyBlue]
+        
+        itemAppearance.selected.iconColor = .lightNavy
+        itemAppearance.selected.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.lightNavy]
+    }
+
     private func gradientImage(withSize size: CGSize) -> UIImage {
         let gradient = CAGradientLayer()
         gradient.frame = CGRect(x: 0, y: 0, width: size.width, height: size.height)

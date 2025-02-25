@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol FilterSelectThemeViewControllerDelegate: class {
+protocol FilterSelectThemeViewControllerDelegate: AnyObject {
     func selectThemeController(_ controller: FilterSelectThemeViewController, didSelectTheme theme: SetTheme?)
     func selectThemeController(_ controller: FilterSelectThemeViewController, didUpdateAvailableThemes themes: [SetTheme])
 }
@@ -52,7 +52,7 @@ class FilterSelectThemeViewController: UIViewController {
         if filterOptions.availableThemes.count == 0 {
             fetchThemes()
         }
-        else if let selectedTheme = filterOptions.selectedTheme, let selectedIndex = filterOptions.availableThemes.index(of: selectedTheme) {
+        else if let selectedTheme = filterOptions.selectedTheme, let selectedIndex = filterOptions.availableThemes.firstIndex(of: selectedTheme) {
             tableView.selectRow(at: IndexPath(row: selectedIndex, section: 0), animated: false, scrollPosition: .middle)
         }
     }
@@ -79,7 +79,7 @@ class FilterSelectThemeViewController: UIViewController {
                     self.filterOptions.availableThemes = themes
                     self.delegate?.selectThemeController(self, didUpdateAvailableThemes: self.filterOptions.availableThemes)
                     self.tableView.reloadData()
-                    if let selectedTheme = self.filterOptions.selectedTheme, let selectedIndex = self.filterOptions.availableThemes.index(of: selectedTheme) {
+                    if let selectedTheme = self.filterOptions.selectedTheme, let selectedIndex = self.filterOptions.availableThemes.firstIndex(of: selectedTheme) {
                         self.tableView.selectRow(at: IndexPath(row: selectedIndex, section: 0), animated: false, scrollPosition: .middle)
                     }
                 case .failure(let error):

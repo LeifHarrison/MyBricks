@@ -191,7 +191,7 @@ class ProfileViewController: UIViewController {
                 case .success(let collectionTotals):
                     UserDefaults.standard.set(Date(), forKey: self.lastUpdatedKey)
                     self.collectionTotals = collectionTotals
-                    if let section = self.sections.index(of: .brickset), let row = self.bricksetRows.index(of: .collection) {
+                    if let section = self.sections.firstIndex(of: .brickset), let row = self.bricksetRows.firstIndex(of: .collection) {
                         let indexPath = IndexPath(row: row, section: section)
                         self.tableView.reloadRows(at: [indexPath], with: .fade)
                     }
@@ -317,7 +317,7 @@ extension ProfileViewController: UITableViewDataSource {
                     cell.loginButtonTapped = {
                         let completion = {
                             tableView.reloadRows(at: [indexPath], with: .fade)
-                            if let section = self.sections.index(of: .brickset), let row = self.bricksetRows.index(of: .collection) {
+                            if let section = self.sections.firstIndex(of: .brickset), let row = self.bricksetRows.firstIndex(of: .collection) {
                                 self.bricksetRows.remove(at: row)
                                 self.tableView.deleteRows(at: [IndexPath(row: row, section: section)], with: .fade)
                             }
@@ -352,7 +352,7 @@ extension ProfileViewController: UITableViewDataSource {
                 if RebrickableServices.isLoggedIn() {
                     cell.loginButtonTapped = {
                         let completion = {
-                            if let section = self.sections.index(of: .rebrickable), let row = self.rebrickableRows.index(of: .collection) {
+                            if let section = self.sections.firstIndex(of: .rebrickable), let row = self.rebrickableRows.firstIndex(of: .collection) {
                                 self.rebrickableRows.remove(at: row)
                                 self.tableView.deleteRows(at: [IndexPath(row: row, section: section)], with: .fade)
                             }

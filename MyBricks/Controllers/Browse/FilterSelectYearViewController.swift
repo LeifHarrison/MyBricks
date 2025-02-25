@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol FilterSelectYearViewControllerDelegate: class {
+protocol FilterSelectYearViewControllerDelegate: AnyObject {
     func selectYearController(_ controller: FilterSelectYearViewController, didSelectYear year: SetYear?)
 }
 
@@ -75,7 +75,7 @@ class FilterSelectYearViewController: UIViewController {
                             return $0.year > $1.year
                         }
                         self.tableView.reloadData()
-                        if let year = self.filterOptions.selectedYear, let selectedIndex = self.filterOptions.availableYears.index(of: year) {
+                        if let year = self.filterOptions.selectedYear, let selectedIndex = self.filterOptions.availableYears.firstIndex(of: year) {
                             self.tableView.selectRow(at: IndexPath(row: selectedIndex, section: 0), animated: false, scrollPosition: .middle)
                         }
                     case .failure(let error):

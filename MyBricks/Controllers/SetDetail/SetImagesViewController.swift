@@ -40,7 +40,7 @@ class SetImagesViewController: UIViewController {
         super.viewDidAppear(animated)
         
         if let currentImage = selectedImage {
-            let indexPath = IndexPath(item: images.index(of: currentImage) ?? 0, section: 0)
+            let indexPath = IndexPath(item: images.firstIndex(of: currentImage) ?? 0, section: 0)
             largeCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: false)
             smallCollectionView.selectItem(at: indexPath, animated: false, scrollPosition: .centeredHorizontally)
         }

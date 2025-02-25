@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol FilterSelectSortingViewControllerDelegate: class {
+protocol FilterSelectSortingViewControllerDelegate: AnyObject {
     func selectSortingController(_ controller: FilterSelectSortingViewController, didSelectSortingType sortingType: SortingType)
 }
 

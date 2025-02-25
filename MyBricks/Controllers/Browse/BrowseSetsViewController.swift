@@ -104,10 +104,10 @@ class BrowseSetsViewController: UIViewController {
     
     @objc private func collectionUpdated(_ notification: Notification) {
         if let updatedSet = notification.userInfo?[Notification.Key.Set] as? SetDetail {
-            if let index = allSets.index(where: { $0.setID == updatedSet.setID }) {
+            if let index = allSets.firstIndex(where: { $0.setID == updatedSet.setID }) {
                 allSets[index] = updatedSet
                 for (sectionIndex, sectionTitle) in sectionTitles.enumerated() {
-                    if var setsForSection = setsBySection[sectionTitle], let rowIndex = setsForSection.index(where: { $0.setID == updatedSet.setID }) {
+                    if var setsForSection = setsBySection[sectionTitle], let rowIndex = setsForSection.firstIndex(where: { $0.setID == updatedSet.setID }) {
                         setsForSection[rowIndex] = updatedSet
                         setsBySection[sectionTitle] = setsForSection
                         if view.superview != nil {
@@ -124,9 +124,12 @@ class BrowseSetsViewController: UIViewController {
     //--------------------------------------------------------------------------
 
     fileprivate func setupTableView() {
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = UITableView.automaticDimension
         tableView.sectionIndexBackgroundColor = UIColor.clear
+        if #available(iOS 15.0, *) {
+            tableView.sectionHeaderTopPadding = 0.0
+        }
         tableView.tableFooterView = UIView()
         tableView.register(SetListTableViewCell.self)
     }

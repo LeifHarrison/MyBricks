@@ -176,7 +176,7 @@ class SetDetailViewController: UIViewController {
     @objc private func collectionUpdated(_ notification: Notification) {
         if let updatedSet = notification.userInfo?[Notification.Key.Set] as? SetDetail, updatedSet.setID == currentSet?.setID {
             self.currentSet = updatedSet
-            if let detailSection = sections.index(of: .detail), let collectionRow = detailRows.index(of: .collection) {
+            if let detailSection = sections.firstIndex(of: .detail), let collectionRow = detailRows.firstIndex(of: .collection) {
                 let indexPath = IndexPath(row: collectionRow, section: detailSection)
                 if view.superview != nil {
                     tableView.reloadRows(at: [indexPath], with: .fade)
@@ -257,13 +257,13 @@ class SetDetailViewController: UIViewController {
                         
                         strongSelf.tableView.beginUpdates()
                         strongSelf.updateSections()
-                        if let sectionIndex = strongSelf.sections.index(of: .detail), let rowIndex = strongSelf.detailRows.index(of: .price) {
+                        if let sectionIndex = strongSelf.sections.firstIndex(of: .detail), let rowIndex = strongSelf.detailRows.firstIndex(of: .price) {
                             strongSelf.tableView.insertRows(at: [IndexPath(row: rowIndex, section: sectionIndex)], with: .fade)
                         }
-                        if let index = strongSelf.sections.index(of: .tags) {
+                        if let index = strongSelf.sections.firstIndex(of: .tags) {
                             strongSelf.tableView.insertSections([index], with: .fade)
                         }
-                        if let index = strongSelf.sections.index(of: .description) {
+                        if let index = strongSelf.sections.firstIndex(of: .description) {
                             strongSelf.tableView.insertSections([index], with: .fade)
                         }
                         strongSelf.tableView.endUpdates()
@@ -292,7 +292,7 @@ class SetDetailViewController: UIViewController {
     
     private func updateAdditionalImages(images: [SetImage]) {
         additionalImages = images
-        if let contentSection = sections.index(of: .content) {
+        if let contentSection = sections.firstIndex(of: .content) {
             let indexPath = IndexPath(row: 0, section: contentSection)
             if let cell = tableView.cellForRow(at: indexPath) as? SetDetailTableViewCell {
                 cell.additionalImages = images

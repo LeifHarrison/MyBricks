@@ -11,7 +11,7 @@ import AVFoundation
 
 // MARK: - Delegates
 
-protocol BarcodeScannerDelegate: class {
+protocol BarcodeScannerDelegate: AnyObject {
     func barcodeScanner(_ controller: BarcodeScannerViewController, didCaptureCode code: String, type: String)
     func barcodeScanner(_ controller: BarcodeScannerViewController, didReceiveError error: Error)
     func barcodeScannerDidDismiss(_ controller: BarcodeScannerViewController)

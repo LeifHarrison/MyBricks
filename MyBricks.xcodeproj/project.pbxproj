@@ -862,11 +862,11 @@
 				295ADFB61F16AFFC002E6802 /* Frameworks */,
 				295ADFB71F16AFFC002E6802 /* Resources */,
 				29E820251FA7A6CF001444C8 /* Embed Frameworks */,
-				9BD984FA20D425BF002AF4BA /* Update Build Info */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				290538092D6D3C0A00EF391C /* PBXTargetDependency */,
 			);
 			name = MyBricks;
 			productName = MyBricks;
@@ -915,8 +915,9 @@
 		295ADFB11F16AFFC002E6802 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 0900;
-				LastUpgradeCheck = 1230;
+				LastUpgradeCheck = 1620;
 				ORGANIZATIONNAME = "Leif Harrison";
 				TargetAttributes = {
 					295ADFB81F16AFFC002E6802 = {
@@ -1035,21 +1036,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "#\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
-		};
-		9BD984FA20D425BF002AF4BA /* Update Build Info */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Update Build Info";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "${PROJECT_DIR}/${PRODUCT_NAME}/Support/plist_build_info.sh";
-			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1202,6 +1188,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		290538092D6D3C0A00EF391C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 290538082D6D3C0A00EF391C /* Alamofire */;
+		};
 		295ADFD11F16AFFD002E6802 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 295ADFB81F16AFFC002E6802 /* MyBricks */;
@@ -1263,6 +1253,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -1277,12 +1268,13 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -1323,6 +1315,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -1331,11 +1324,12 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -1353,27 +1347,11 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/MyBricks/Support/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = MyBricks;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-framework",
-					"\"Alamofire\"",
-					"-framework",
-					"\"AlamofireImage\"",
-					"-framework",
-					"\"AlamofireNetworkActivityIndicator\"",
-					"-framework",
-					"\"AlamofireRSSParser\"",
-					"-framework",
-					"\"Cosmos\"",
-					"-framework",
-					"\"KeychainAccess\"",
-					"-lxml2",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = app.mybricks.MyBricks;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1394,27 +1372,11 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/MyBricks/Support/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = MyBricks;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-framework",
-					"\"Alamofire\"",
-					"-framework",
-					"\"AlamofireImage\"",
-					"-framework",
-					"\"AlamofireNetworkActivityIndicator\"",
-					"-framework",
-					"\"AlamofireRSSParser\"",
-					"-framework",
-					"\"Cosmos\"",
-					"-framework",
-					"\"KeychainAccess\"",
-					"-lxml2",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = app.mybricks.MyBricks;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1425,7 +1387,6 @@
 		295ADFE71F16AFFD002E6802 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = LY3N4LXUKP;
 				INFOPLIST_FILE = MyBricksTests/Info.plist;
@@ -1445,7 +1406,6 @@
 		295ADFE81F16AFFD002E6802 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = LY3N4LXUKP;
 				INFOPLIST_FILE = MyBricksTests/Info.plist;
@@ -1465,7 +1425,6 @@
 		295ADFEA1F16AFFD002E6802 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = LY3N4LXUKP;
 				INFOPLIST_FILE = MyBricksUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1484,7 +1443,6 @@
 		295ADFEB1F16AFFD002E6802 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = LY3N4LXUKP;
 				INFOPLIST_FILE = MyBricksUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1610,6 +1568,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 29C833942D6D318600C26F34 /* XCRemoteSwiftPackageReference "AlamofireImage" */;
 			productName = AlamofireImage;
+		};
+		290538082D6D3C0A00EF391C /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 29C833892D6D2FF200C26F34 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
 		};
 		29C8338F2D6D30BE00C26F34 /* AlamofireRSSParser */ = {
 			isa = XCSwiftPackageProductDependency;

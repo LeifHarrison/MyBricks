@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol NibLoadableView: class { }
+protocol NibLoadableView: AnyObject { }
 
 extension NibLoadableView where Self: UIView {
     
@@ -20,7 +20,7 @@ extension NibLoadableView where Self: UIView {
     
 }
 
-protocol ReusableView: class {}
+protocol ReusableView: AnyObject {}
 
 extension ReusableView where Self: UIView {
     

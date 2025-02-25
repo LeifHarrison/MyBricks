@@ -68,7 +68,7 @@ struct SortingSelection {
 
     var parameterValue: String {
         if sortingType == .retailPrice {
-            return (Locale.current.regionCode ?? "US") + sortingType.rawValue + direction.parameterValue
+            return (Locale.current.region?.identifier ?? "US") + sortingType.rawValue + direction.parameterValue
         }
         else {
             return sortingType.rawValue + direction.parameterValue

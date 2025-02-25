@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol FilterViewControllerDelegate: class {
+protocol FilterViewControllerDelegate: AnyObject {
     func filterViewController(_ controller: FilterViewController, didUpdateFilterOptions filterOptions: FilterOptions)
 }
 

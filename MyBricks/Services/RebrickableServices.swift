@@ -146,7 +146,7 @@ class RebrickableServices: AuthenticatedServiceAPI {
     // MARK: - User
     //--------------------------------------------------------------------------
     
-    // Get Parts
+    // Get Profile
     // URL: https://rebrickable.com/api/v3/users/<user_token>/profile/
     @discardableResult
     func getProfile(completion: @escaping (Result<RebrickableProfile, ServiceError>) -> Void) -> DataRequest? {

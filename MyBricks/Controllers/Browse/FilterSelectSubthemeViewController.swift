@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol FilterSelectSubthemeViewControllerDelegate: class {
+protocol FilterSelectSubthemeViewControllerDelegate: AnyObject {
     func selectSubthemeController(_ controller: FilterSelectSubthemeViewController, didSelectSubtheme subtheme: SetSubtheme?)
     
 }
@@ -74,7 +74,7 @@ class FilterSelectSubthemeViewController: UIViewController {
                     case .success(let subthemes):
                         self.filterOptions.availableSubthemes = subthemes
                         self.tableView.reloadData()
-                        if let subtheme = self.filterOptions.selectedSubtheme, let selectedIndex = self.filterOptions.availableSubthemes.index(of: subtheme) {
+                        if let subtheme = self.filterOptions.selectedSubtheme, let selectedIndex = self.filterOptions.availableSubthemes.firstIndex(of: subtheme) {
                             self.tableView.selectRow(at: IndexPath(row: selectedIndex, section: 0), animated: false, scrollPosition: .middle)
                         }
                     case .failure(let error):
