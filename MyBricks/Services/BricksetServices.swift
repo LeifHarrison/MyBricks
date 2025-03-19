@@ -59,13 +59,28 @@ class BricksetServices: AuthenticatedServiceAPI {
 
     let baseURL = "https://brickset.com/api/v3.asmx/"
 
+    enum Method: String {
+        case checkKey
+        case login
+        case checkUserHash
+        case getThemes
+        case getSubthemes
+        case getYears
+        case getSets
+        case getReviews
+        case getInstructions
+        case getAdditionalImages
+        case getCollectionTotals
+        case setCollection
+    }
+
     //--------------------------------------------------------------------------
     // MARK: - General Services
     //--------------------------------------------------------------------------
 
     // Check if an API key is valid.
     func checkKey(completion: @escaping (Result<Bool, ServiceError>) -> Void) {
-        let url = baseURL + "checkKey"
+        let url = requestURL(for: .checkKey)
         let parameters = defaultParameters()
 
         let request = AF.request( url, parameters: parameters)
@@ -126,9 +141,13 @@ class BricksetServices: AuthenticatedServiceAPI {
         return #imageLiteral(resourceName: "logo_brickset")
     }
     
+    func requestURL(for method: Method) -> String {
+        return baseURL + method.rawValue
+    }
+
     // Log in as a user and retrieve a token that can be used in subsequent API calls.
     func login(username: String, password: String, completion: @escaping (Result<String, ServiceError>) -> Void) {
-        let url = baseURL + "login"
+        let url = requestURL(for: .login)
         var parameters = defaultParameters()
         parameters["username"] = username
         parameters["password"] = password
@@ -155,7 +174,7 @@ class BricksetServices: AuthenticatedServiceAPI {
 
     // Check if a userHash key is valid.
     func checkUserHash(completion: @escaping (Result<Bool, ServiceError>) -> Void) {
-        let url = baseURL + "checkUserHash"
+        let url = requestURL(for: .checkUserHash)
         var parameters = defaultParameters()
 
         let keychain = Keychain(service: keychainServiceName)
@@ -200,7 +219,7 @@ class BricksetServices: AuthenticatedServiceAPI {
     //--------------------------------------------------------------------------
     
     func getThemes(completion: @escaping GetThemesCompletion) {
-        let url = baseURL + "getThemes"
+        let url = requestURL(for: .getThemes)
         
         let parameters = defaultParameters()
         let request = AF.request(url, parameters: parameters)
@@ -218,7 +237,7 @@ class BricksetServices: AuthenticatedServiceAPI {
     
     // Not available in Brickset v3 API
 //    func getThemesForUser(owned: Bool, wanted: Bool, completion: @escaping GetThemesCompletion) {
-//        let url = baseURL + "getThemesForUser"
+//        let url = requestURL(for: .getThemesForUser)
 //
 //        var parameters = userParameters()
 //        parameters["owned"] = owned ? "1" : ""
@@ -238,7 +257,7 @@ class BricksetServices: AuthenticatedServiceAPI {
 //    }
     
     func getSubthemes(theme: String, completion: @escaping GetSubthemesCompletion) {
-        let url = baseURL + "getSubthemes"
+        let url = requestURL(for: .getSubthemes)
 
         var parameters = defaultParameters()
         parameters["theme"] = theme
@@ -279,7 +298,7 @@ class BricksetServices: AuthenticatedServiceAPI {
 //    }
     
     func getYears(theme: String, completion: @escaping GetYearsCompletion) {
-        let url = baseURL + "getYears"
+        let url = requestURL(for: .getYears)
 
         var parameters = defaultParameters()
         parameters["theme"] = theme
@@ -325,7 +344,7 @@ class BricksetServices: AuthenticatedServiceAPI {
 
     // Retrieve a list of sets. All parameters except apiKey are optional but must be passed as blanks if not used.
     @discardableResult func getSets(_ request: BricksetGetSetsRequest, completion: @escaping (Result<[SetDetail], ServiceError>) -> Void) -> Request {
-        let url = baseURL + "getSets"
+        let url = requestURL(for: .getSets)
 
         var parameters = userParameters()
 

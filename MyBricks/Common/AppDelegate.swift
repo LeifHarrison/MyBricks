@@ -50,6 +50,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             return false
         }
         NetworkActivityLogger.shared.filterPredicate = imagePredicate
+        // Set level to 'debug' to get complete request/response detail
+        //NetworkActivityLogger.shared.level = .debug
         NetworkActivityLogger.shared.startLogging()
     }
     

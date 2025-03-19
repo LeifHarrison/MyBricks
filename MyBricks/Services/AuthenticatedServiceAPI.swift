@@ -10,7 +10,7 @@ import Alamofire
 import Foundation
 import UIKit
 
-protocol AuthenticatedServiceAPI: class {
+protocol AuthenticatedServiceAPI: AnyObject {
     
     var isLoggedIn: Bool { get }
     var userName: String? { get }
