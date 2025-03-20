@@ -12,22 +12,22 @@ class ProfileGeneralTableViewCell: BorderedGradientTableViewCell, ReusableView, 
 
     @IBOutlet weak var titleLabel: UILabel!
     
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Nib Loading
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        accessoryView = UIImageView(image: UIImage(named:"disclosure"))
+        accessoryView = UIImageView(image: UIImage(named: "disclosure"))
         accessoryView?.tintColor = UIColor.lightNavy
         
         prepareForReuse()
     }
     
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Reuse
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     
     override func prepareForReuse() {
         super.prepareForReuse()

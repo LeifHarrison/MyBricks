@@ -13,14 +13,14 @@ class SetInstructionsTableViewCell: BlueGradientTableViewCell, ReusableView, Nib
     @IBOutlet weak var instructionsTitleLabel: UILabel!
     @IBOutlet weak var instructionsCountLabel: UILabel!
 
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Nib Loading
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     
     override func awakeFromNib() {
         super.awakeFromNib()
 
-        accessoryView = UIImageView(image: UIImage(named:"disclosure"))
+        accessoryView = UIImageView(image: UIImage(named: "disclosure"))
         accessoryView?.tintColor = UIColor.lightNavy
         
         instructionsTitleLabel.text = NSLocalizedString("Instructions", comment: "")
@@ -28,18 +28,18 @@ class SetInstructionsTableViewCell: BlueGradientTableViewCell, ReusableView, Nib
         prepareForReuse()
     }
     
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Reuse
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     
     override func prepareForReuse() {
         super.prepareForReuse()
         instructionsCountLabel.text = "N/A"
     }
     
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Public
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     
     func populate(with set: SetDetail) {
         instructionsCountLabel.text = "\(set.instructionsCount ?? 0)"

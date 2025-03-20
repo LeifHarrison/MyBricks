@@ -16,6 +16,7 @@ enum ServiceError: Error {
     case loginFailed(reason: String)
     case serviceFailure(reason: String)
     case decodeError(reason: String)
+    case encodeError(reason: String)
     case unknownError
 }
 
@@ -27,6 +28,8 @@ extension ServiceError: LocalizedError {
             case .serviceFailure(let reason):
                 return reason
             case .decodeError(let reason):
+                return reason
+            case .encodeError(let reason):
                 return reason
             case .unknownError:
                 return "Unknown service error."
@@ -74,9 +77,9 @@ class BricksetServices: AuthenticatedServiceAPI {
         case setCollection
     }
 
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - General Services
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
 
     // Check if an API key is valid.
     func checkKey(completion: @escaping (Result<Bool, ServiceError>) -> Void) {
@@ -104,10 +107,10 @@ class BricksetServices: AuthenticatedServiceAPI {
         request.responseDecodable(of: BricksetBasicResponse.self, completionHandler: requestCompletion)
     }
 
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Login
-    //--------------------------------------------------------------------------
-    
+    // -------------------------------------------------------------------------
+
     class func isLoggedIn() -> Bool {
         return BricksetServices.shared.isLoggedIn
     }
@@ -214,10 +217,10 @@ class BricksetServices: AuthenticatedServiceAPI {
         completion()
     }
     
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Themes/Subthemes/Years
-    //--------------------------------------------------------------------------
-    
+    // -------------------------------------------------------------------------
+
     func getThemes(completion: @escaping GetThemesCompletion) {
         let url = requestURL(for: .getThemes)
         
@@ -338,19 +341,23 @@ class BricksetServices: AuthenticatedServiceAPI {
 //        request.responseDecodable(of: BricksetGetYearsResponse.self, completionHandler: requestCompletion)
 //    }
     
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Sets
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
 
     // Retrieve a list of sets. All parameters except apiKey are optional but must be passed as blanks if not used.
     @discardableResult func getSets(_ request: BricksetGetSetsRequest, completion: @escaping (Result<[SetDetail], ServiceError>) -> Void) -> Request {
         let url = requestURL(for: .getSets)
 
         var parameters = userParameters()
-
-        let jsonData = try! JSONEncoder().encode(request)
-        let jsonString = String(data: jsonData, encoding: .utf8)!
-        parameters["params"] = jsonString
+        do {
+            let jsonData = try JSONEncoder().encode(request)
+            let jsonString = String(data: jsonData, encoding: .utf8)
+            parameters["params"] = jsonString
+        }
+        catch {
+            completion(.failure(ServiceError.encodeError(reason: error.localizedDescription)))
+        }
 
         let request = AF.request(url, parameters: parameters)
         let requestCompletion: (AFDataResponse<BricksetGetSetsResponse>) -> Void = { dataResponse in
@@ -439,9 +446,9 @@ class BricksetServices: AuthenticatedServiceAPI {
         return request
     }
     
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Set Collection Management
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
 
     // Not available in Brickset v3 API
     func getCollectionTotals(completion: @escaping (Result<UserCollectionTotals, ServiceError>) -> Void) {
@@ -474,11 +481,16 @@ class BricksetServices: AuthenticatedServiceAPI {
         var parameters = userParameters()
         parameters["SetID"] = setID
 
-        let jsonData = try! JSONEncoder().encode(request)
-        let jsonString = String(data: jsonData, encoding: .utf8)!
-        parameters["params"] = jsonString
+        do {
+            let jsonData = try JSONEncoder().encode(request)
+            let jsonString = String(data: jsonData, encoding: .utf8)
+            parameters["params"] = jsonString
+        }
+        catch {
+            completion(.failure(ServiceError.encodeError(reason: error.localizedDescription)))
+        }
 
-        let request = AF.request(url, method: .post,parameters: parameters)
+        let request = AF.request(url, method: .post, parameters: parameters)
         let requestCompletion: (AFDataResponse<BricksetBasicResponse>) -> Void = { dataResponse in
             switch dataResponse.result {
                 case .success(let response):
@@ -499,9 +511,9 @@ class BricksetServices: AuthenticatedServiceAPI {
         request.responseDecodable(of: BricksetBasicResponse.self, completionHandler: requestCompletion)
     }
     
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - RSS Feeds
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
 
     func getNews(completion: @escaping (Result<RSSFeed, ServiceError>) -> Void) {
         let url = "https://brickset.com/feed"
@@ -518,13 +530,13 @@ class BricksetServices: AuthenticatedServiceAPI {
         request.responseRSS(completionHandler: requestCompletion)
     }
 
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Private
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
 
     fileprivate func defaultParameters() -> Parameters {
         return ["apiKey": Constants.Brickset.apiKey]
-        //return ["apiKey": "TestBadAPIKey"]
+        // return ["apiKey": "TestBadAPIKey"]
     }
     
     fileprivate func userParameters() -> Parameters {
@@ -533,11 +545,11 @@ class BricksetServices: AuthenticatedServiceAPI {
         let keychain = Keychain(service: keychainServiceName)
         if let username = UserDefaults.standard.value(forKey: userNameKey) as? String, let userHash = keychain[username] {
             parameters["userHash"] = userHash
-            //parameters["userHash"] = "TestBadUserHash"
+            // parameters["userHash"] = "TestBadUserHash"
         }
         else {
             parameters["userHash"] = ""
-            //parameters["userHash"] = "TestBadUserHash"
+            // parameters["userHash"] = "TestBadUserHash"
         }
 
         return parameters

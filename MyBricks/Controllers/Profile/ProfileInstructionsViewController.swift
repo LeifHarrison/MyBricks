@@ -16,9 +16,9 @@ class ProfileInstructionsViewController: UIViewController {
     
     var downloadedInstructions: [DownloadedInstructions] = []
     
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - View Lifecycle
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,9 +38,9 @@ class ProfileInstructionsViewController: UIViewController {
         }
     }
     
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Private
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     
     private func setupTableView() {
         tableView.alwaysBounceVertical = false
@@ -77,7 +77,7 @@ class ProfileInstructionsViewController: UIViewController {
     }
     
     private func removeInstructions(_ instructions: DownloadedInstructions, indexPath: IndexPath) {
-        //NSLog("Downloaded Instructions count = \(downloadedInstructions.count)")
+        // NSLog("Downloaded Instructions count = \(downloadedInstructions.count)")
         // Remove the saved file
         if let url = instructions.fileURL {
             do {
@@ -99,7 +99,7 @@ class ProfileInstructionsViewController: UIViewController {
         catch let error {
             NSLog("Error saving context: \(error.localizedDescription)")
         }
-        //NSLog("Downloaded Instructions count = \(downloadedInstructions.count)")
+        // NSLog("Downloaded Instructions count = \(downloadedInstructions.count)")
     }
     
     private func updateDisplay(animated: Bool = false) {
@@ -112,9 +112,9 @@ class ProfileInstructionsViewController: UIViewController {
         }
     }
 
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Actions
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     
     @IBAction func toggleEdit(_ sender: UIBarButtonItem) {
         tableView.setEditing(!tableView.isEditing, animated: true)
@@ -123,9 +123,9 @@ class ProfileInstructionsViewController: UIViewController {
     
 }
 
-//==============================================================================
+// =============================================================================
 // MARK: - UITableViewDataSource
-//==============================================================================
+// =============================================================================
 
 extension ProfileInstructionsViewController: UITableViewDataSource {
     
@@ -146,9 +146,9 @@ extension ProfileInstructionsViewController: UITableViewDataSource {
     
 }
 
-//==============================================================================
+// =============================================================================
 // MARK: - UITableViewDelegate
-//==============================================================================
+// =============================================================================
 
 extension ProfileInstructionsViewController: UITableViewDelegate {
     
@@ -163,7 +163,7 @@ extension ProfileInstructionsViewController: UITableViewDelegate {
         let instructions = downloadedInstructions[indexPath.row]
         var actions: [UIContextualAction] = []
         
-        let deleteHandler: UIContextualAction.Handler = { (action, view, completionHandler) in
+        let deleteHandler: UIContextualAction.Handler = { (_, _, completionHandler) in
             self.removeInstructions(instructions, indexPath: indexPath)
             completionHandler(true)
         }
@@ -171,7 +171,7 @@ extension ProfileInstructionsViewController: UITableViewDelegate {
         actions.append(deleteAction)
         
         if let url = instructions.fileURL {
-            let viewHandler: UIContextualAction.Handler  = { (action, view, completionHandler) in
+            let viewHandler: UIContextualAction.Handler  = { (_, _, completionHandler) in
                 self.showPreview(for: url)
                 completionHandler(true)
             }
@@ -185,9 +185,9 @@ extension ProfileInstructionsViewController: UITableViewDelegate {
     }
 }
 
-//==============================================================================
+// =============================================================================
 // MARK: - UITableViewDelegate
-//==============================================================================
+// =============================================================================
 
 extension ProfileInstructionsViewController: UIDocumentInteractionControllerDelegate {
     

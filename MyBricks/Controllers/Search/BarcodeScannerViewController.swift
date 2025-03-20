@@ -50,9 +50,9 @@ class BarcodeScannerViewController: UIViewController {
     var isOneTimeSearch = true
     var locked = false
 
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - View Lifecycle
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -80,10 +80,6 @@ class BarcodeScannerViewController: UIViewController {
         }
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if self.captureDevice != nil {
@@ -97,9 +93,9 @@ class BarcodeScannerViewController: UIViewController {
         super.viewWillDisappear(animated)
     }
 
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - View Layout
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -111,9 +107,9 @@ class BarcodeScannerViewController: UIViewController {
         }
     }
     
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Actions
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
 
     @IBAction func toggleTorch(_ sender: UIButton?) {
         if let selected = sender?.isSelected {
@@ -155,9 +151,9 @@ class BarcodeScannerViewController: UIViewController {
         self.present(alertController, animated: true, completion: nil)
     }
 
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Private
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
 
     private func setupCamera() {
         guard self.captureDevice != nil else {
@@ -169,7 +165,7 @@ class BarcodeScannerViewController: UIViewController {
             setupSession()
         }
         else if authorizationStatus == .notDetermined {
-            let completion = { (granted: Bool) -> Void in
+            let completion = { (granted: Bool) in
                 DispatchQueue.main.async {
                     if granted {
                         self.setupSession()
@@ -223,9 +219,9 @@ class BarcodeScannerViewController: UIViewController {
     
 }
 
-//==============================================================================
+// =============================================================================
 // MARK: - AVCaptureMetadataOutputObjectsDelegate
-//==============================================================================
+// =============================================================================
 
 extension BarcodeScannerViewController: AVCaptureMetadataOutputObjectsDelegate {
 

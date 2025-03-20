@@ -28,9 +28,9 @@ class PriceDetailViewController: UIViewController {
     var currentSet: SetDetail?
     var sections: [TableSection] = []
 
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - View Lifecycle
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,9 +48,9 @@ class PriceDetailViewController: UIViewController {
         // Fetch price guide
     }
     
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Private
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     
     private func setupTableView() {
         tableView.rowHeight = UITableView.automaticDimension
@@ -61,14 +61,14 @@ class PriceDetailViewController: UIViewController {
     private func updateSections() {
         sections.removeAll()
         sections.append(.retailPrice)
-        //sections.append(.priceGuide)
+        // sections.append(.priceGuide)
     }
     
 }
 
-//==============================================================================
+// =============================================================================
 // MARK: - UITableViewDataSource
-//==============================================================================
+// =============================================================================
 
 extension PriceDetailViewController: UITableViewDataSource {
     
@@ -109,9 +109,9 @@ extension PriceDetailViewController: UITableViewDataSource {
     
 }
 
-//==============================================================================
+// =============================================================================
 // MARK: - UITableViewDelegate
-//==============================================================================
+// =============================================================================
 
 extension PriceDetailViewController: UITableViewDelegate {
     

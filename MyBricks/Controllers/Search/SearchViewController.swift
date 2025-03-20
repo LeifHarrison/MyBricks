@@ -24,9 +24,9 @@ class SearchViewController: UIViewController {
 
     var searchHistoryItems: [SearchHistoryItem] = []
     
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - View Lifecycle
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,7 +43,7 @@ class SearchViewController: UIViewController {
         instructionsLabel.applyInstructionsStyle()
         // Make the middle 'OR' bold
         if let text = instructionsLabel.attributedText, let range = text.string.range(of: "OR") {
-            let substringRange = NSRange(range, in:text.string)
+            let substringRange = NSRange(range, in: text.string)
             let mutableText = NSMutableAttributedString(attributedString: text)
             mutableText.addAttribute(.font, value: instructionsLabel.font.bold(), range: substringRange)
             instructionsLabel.attributedText = mutableText
@@ -72,9 +72,9 @@ class SearchViewController: UIViewController {
         }
     }
     
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Actions
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
 
     @IBAction func showBarcodeScanner(_ sender: AnyObject?) {
         if let controller = storyboard?.instantiateViewController(withIdentifier: "BarcodeScannerViewController") as? BarcodeScannerViewController {
@@ -102,9 +102,9 @@ class SearchViewController: UIViewController {
 
     }
     
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Keyboard Notifications
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     
     @objc private func keyboardWillShow(with notification: Notification) {
         guard let userInfo = notification.userInfo as? [String: AnyObject],
@@ -129,9 +129,9 @@ class SearchViewController: UIViewController {
         self.tableView.scrollIndicatorInsets = contentInset
     }
     
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Private
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     
     fileprivate func setupTableView() {
         tableView.rowHeight = UITableView.automaticDimension
@@ -250,9 +250,9 @@ class SearchViewController: UIViewController {
         }
     }
     
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Supplementary Views
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
 
     fileprivate func showInstructions(animated: Bool) {
         instructionsLabel.fadeIn()
@@ -280,9 +280,9 @@ class SearchViewController: UIViewController {
     
 }
 
-//==============================================================================
+// =============================================================================
 // MARK: - UISearchBarDelegate
-//==============================================================================
+// =============================================================================
 
 extension SearchViewController: UISearchBarDelegate {
     
@@ -311,9 +311,9 @@ extension SearchViewController: UISearchBarDelegate {
     }
 }
 
-//==============================================================================
+// =============================================================================
 // MARK: - UITableViewDataSource
-//==============================================================================
+// =============================================================================
 
 extension SearchViewController: UITableViewDataSource {
     
@@ -336,9 +336,9 @@ extension SearchViewController: UITableViewDataSource {
     
 }
 
-//==============================================================================
+// =============================================================================
 // MARK: - UITableViewDelegate
-//==============================================================================
+// =============================================================================
 
 extension SearchViewController: UITableViewDelegate {
     
@@ -355,9 +355,9 @@ extension SearchViewController: UITableViewDelegate {
 
 }
 
-//==============================================================================
+// =============================================================================
 // MARK: - BarcodeScannerCodeDelegate
-//==============================================================================
+// =============================================================================
 
 extension SearchViewController: BarcodeScannerDelegate {
 

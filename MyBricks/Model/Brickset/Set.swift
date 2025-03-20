@@ -9,8 +9,6 @@
 import Foundation
 import Fuzi
 
-// swiftlint:disable cyclomatic_complexity
-
 struct SetDetail: Codable {
 
     var setID: String? // Unique Brickset database primary key
@@ -34,9 +32,6 @@ struct SetDetail: Codable {
     var additionalImageCount: Int?
     var lastUpdated: Date?
 
-
-
-    //var images: [SetImage] = []
     var retailPrices: [SetRetailPrice] = []
 
     // Move to SetAgeRange
@@ -73,9 +68,9 @@ struct SetDetail: Codable {
     var largeThumbnailURL: String? // Max dimensions 240x180
     var imageURL: String? // Max dimensions 690x690
 
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Computed Properties
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
 
     var fullSetNumber: String {
         if let variant = numberVariant {
@@ -136,9 +131,9 @@ struct SetDetail: Codable {
         return nil
     }
     
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Public
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
 
     func isRetired() -> Bool {
         return (dateAddedToSAH == nil) || (dateRemovedFromSAH != nil)

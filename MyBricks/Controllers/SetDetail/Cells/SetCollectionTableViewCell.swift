@@ -20,14 +20,14 @@ class SetCollectionTableViewCell: BlueGradientTableViewCell, ReusableView, NibLo
     @IBOutlet weak var ratingLabel: UILabel!
     @IBOutlet weak var notesIndicator: UIImageView!
 
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Nib Loading
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        accessoryView = UIImageView(image: UIImage(named:"disclosure"))
+        accessoryView = UIImageView(image: UIImage(named: "disclosure"))
         accessoryView?.tintColor = UIColor.lightNavy
         
         ownedStatusView.applyLightBlackShadowStyle()
@@ -42,9 +42,9 @@ class SetCollectionTableViewCell: BlueGradientTableViewCell, ReusableView, NibLo
         wantedStatusView.layer.cornerRadius = wantedStatusView.frame.height / 2
     }
     
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Reuse
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
 
     override func prepareForReuse() {
         super.prepareForReuse()
@@ -55,13 +55,13 @@ class SetCollectionTableViewCell: BlueGradientTableViewCell, ReusableView, NibLo
         notesIndicator.isHidden = true
     }
     
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Actions
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Public
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     
     func populate(with set: SetDetail) {
         ownedStatusView.isHidden = !set.isOwned
@@ -86,8 +86,8 @@ class SetCollectionTableViewCell: BlueGradientTableViewCell, ReusableView, NibLo
         }
     }
 
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Private
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     
 }

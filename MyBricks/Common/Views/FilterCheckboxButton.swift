@@ -11,9 +11,9 @@ import UIKit
 @IBDesignable
 class FilterCheckboxButton: UIButton {
     
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Initialization
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -30,18 +30,18 @@ class FilterCheckboxButton: UIButton {
         commitInit()
     }
     
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Private
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     
     private func commitInit() {
         titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .regular)
         
         setTitleColor(UIColor.slateBlue, for: .normal)
-        setImage(UIImage(named:"checkboxEmpty"), for: .normal)
+        setImage(UIImage(named: "checkboxEmpty"), for: .normal)
         
         setTitleColor(UIColor.lightNavy, for: .selected)
-        setImage(UIImage(named:"checkboxFull"), for: .selected)
+        setImage(UIImage(named: "checkboxFull"), for: .selected)
     }
 
 }

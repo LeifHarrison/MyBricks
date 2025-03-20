@@ -16,9 +16,9 @@ class FilterGroupingTableViewCell: BorderedGradientTableViewCell, ReusableView {
 
     var groupingTypeSelected: ((GroupingType?) -> Void)?
     
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Nib Loading
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -30,9 +30,9 @@ class FilterGroupingTableViewCell: BorderedGradientTableViewCell, ReusableView {
         groupYearRadioButton.applyCheckboxStyle()
     }
     
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Actions
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     
     @IBAction func selectGroupByTheme(_ sender: UIButton) {
         groupThemeRadioButton.isSelected = !groupThemeRadioButton.isSelected
@@ -55,9 +55,9 @@ class FilterGroupingTableViewCell: BorderedGradientTableViewCell, ReusableView {
         groupingTypeSelected?(groupYearRadioButton.isSelected ? .year : nil)
     }
     
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Public
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     
     func populate(with filterOptions: FilterOptions) {
         if filterOptions.selectedTheme != nil {

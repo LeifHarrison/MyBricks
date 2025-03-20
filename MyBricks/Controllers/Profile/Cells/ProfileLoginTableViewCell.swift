@@ -22,23 +22,23 @@ class ProfileLoginTableViewCell: BorderedGradientTableViewCell, ReusableView, Ni
     var loginButtonTapped: (() -> Void)?
     var signupButtonTapped: (() -> Void)?
 
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Nib Loading
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     
     override func awakeFromNib() {
         super.awakeFromNib()
         prepareForReuse()
     }
     
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Reuse
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     
     override func prepareForReuse() {
         super.prepareForReuse()
         
-        statusLabel.text = NSLocalizedString("profile.login.helptext", comment:"")
+        statusLabel.text = NSLocalizedString("profile.login.helptext", comment: "")
         loginButton.setTitle("LOGIN", for: .normal)
         
         signupBottomConstraint.isActive = true
@@ -47,9 +47,9 @@ class ProfileLoginTableViewCell: BorderedGradientTableViewCell, ReusableView, Ni
 
     }
     
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Actions
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     
     @IBAction func loginButtonTapped(_ sender: UIButton) {
         loginButtonTapped?()
@@ -59,9 +59,9 @@ class ProfileLoginTableViewCell: BorderedGradientTableViewCell, ReusableView, Ni
         signupButtonTapped?()
     }
     
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Public
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     
     func populate(for serviceAPI: AuthenticatedServiceAPI) {
         if let logoImage = serviceAPI.logoImage {
@@ -76,7 +76,7 @@ class ProfileLoginTableViewCell: BorderedGradientTableViewCell, ReusableView, Ni
             signupButton.isHidden = true
         }
         else {
-            statusLabel.text = NSLocalizedString("profile.login.helptext", comment:"")
+            statusLabel.text = NSLocalizedString("profile.login.helptext", comment: "")
             loginButton.setTitle("LOGIN", for: .normal)
             
             signupBottomConstraint.isActive = true
@@ -85,16 +85,16 @@ class ProfileLoginTableViewCell: BorderedGradientTableViewCell, ReusableView, Ni
         }
     }
     
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Private
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     
     private let regularAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18), NSAttributedString.Key.foregroundColor: UIColor.black]
     private let boldAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18, weight: .bold), NSAttributedString.Key.foregroundColor: UIColor.black]
     
     private func loggedInAsAttributedDescription(forUsername username: String) -> NSAttributedString {
         let attributedDescription = NSMutableAttributedString(string: "You are logged in as ", attributes: regularAttributes)
-        attributedDescription.append(NSAttributedString(string:"\(username)", attributes: boldAttributes))
+        attributedDescription.append(NSAttributedString(string: "\(username)", attributes: boldAttributes))
         return attributedDescription
     }
     

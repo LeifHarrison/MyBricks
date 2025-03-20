@@ -8,8 +8,6 @@
 
 import Foundation
 
-// swiftlint:disable cyclomatic_complexity
-
 struct SetDetail: Codable {
 
     var setID: Int? // Unique Brickset database primary key
@@ -39,7 +37,7 @@ struct SetDetail: Codable {
     var dimensions: SetDimensions?
     var extendedData: SetExtendedData?
 
-    //var images: [SetImage] = []
+    // var images: [SetImage] = []
     var storeDetails: [String: SetStoreDetail]?
     
     enum CodingKeys: String, CodingKey {
@@ -70,11 +68,10 @@ struct SetDetail: Codable {
         case extendedData
         case storeDetails = "LEGOCom"
     }
-
     
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Computed Properties
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     
     var isOwned: Bool {
         return collection?.owned ?? false
@@ -132,7 +129,11 @@ struct SetDetail: Codable {
             let prices: [SetRetailPrice] = storeDetails.compactMap { key, value in
                 if let price = value.retailPrice, let pieces = pieces {
                     let pricePerPiece = price / Decimal(pieces)
-                    return SetRetailPrice(locale: Locale(identifier: "en_" + key.uppercased()), price: price.rounded(2, .bankers), pricePerPiece: pricePerPiece.rounded(2, .bankers))
+                    return SetRetailPrice(
+                        locale: Locale(identifier: "en_" + key.uppercased()),
+                        price: price.rounded(2, .bankers),
+                        pricePerPiece: pricePerPiece.rounded(2, .bankers)
+                    )
                 }
                 return nil
             }
@@ -160,12 +161,12 @@ struct SetDetail: Codable {
         return nil
     }
     
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Public
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
 
     func isRetired() -> Bool {
-        //return (dateAddedToSAH == nil) || (dateRemovedFromSAH != nil)
+        // return (dateAddedToSAH == nil) || (dateRemovedFromSAH != nil)
         return false
     }
 

@@ -15,18 +15,18 @@ class ThemeTableViewCell: BorderedGradientTableViewCell, NibLoadableView, Reusab
     @IBOutlet weak var setCountLabel: UILabel!
     @IBOutlet weak var setCountContainer: UIView!
 
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Nib Loading
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     
     override func awakeFromNib() {
         super.awakeFromNib()
         setCountContainer.applyRoundedShadowStyle()
     }
     
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Reuse
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     
     override func prepareForReuse() {
         super.prepareForReuse()
@@ -39,9 +39,9 @@ class ThemeTableViewCell: BorderedGradientTableViewCell, NibLoadableView, Reusab
         setCountLabel.text = nil
     }
 
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Public
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
 
     func populateWithTheme(_ theme: SetTheme) {
         nameLabel.text = theme.theme
@@ -55,21 +55,21 @@ class ThemeTableViewCell: BorderedGradientTableViewCell, NibLoadableView, Reusab
 
 }
 
-//==============================================================================
+// =============================================================================
 // MARK: - SetTheme extensions
-//==============================================================================
+// =============================================================================
 
 extension SetTheme {
 
-    static let textColor = UIColor(white:0.1, alpha:1.0)
+    static let textColor = UIColor(white: 0.1, alpha: 1.0)
     static let regularAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16), NSAttributedString.Key.foregroundColor: textColor]
     static let boldAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16, weight: .bold), NSAttributedString.Key.foregroundColor: textColor]
 
     func setsAttributedDescription() -> NSAttributedString {
-        let attributedDescription = NSMutableAttributedString(string:"\( setCount ?? 0)", attributes:SetTheme.boldAttributes)
-        attributedDescription.append(NSAttributedString(string:" sets", attributes:SetTheme.regularAttributes))
+        let attributedDescription = NSMutableAttributedString(string: "\( setCount ?? 0)", attributes: SetTheme.boldAttributes)
+        attributedDescription.append(NSAttributedString(string: " sets", attributes: SetTheme.regularAttributes))
         if let subthemeCount = subthemeCount, subthemeCount > 0 {
-            attributedDescription.append(NSAttributedString(string:", ", attributes:SetTheme.regularAttributes))
+            attributedDescription.append(NSAttributedString(string: ", ", attributes: SetTheme.regularAttributes))
             attributedDescription.append(subthemesAttributedDescription())
         }
 
@@ -77,8 +77,8 @@ extension SetTheme {
     }
 
     func subthemesAttributedDescription() -> NSAttributedString {
-        let attributedDescription = NSMutableAttributedString(string:"\( subthemeCount ?? 0)", attributes:SetTheme.boldAttributes)
-        attributedDescription.append(NSAttributedString(string:" subthemes", attributes:SetTheme.regularAttributes))
+        let attributedDescription = NSMutableAttributedString(string: "\( subthemeCount ?? 0)", attributes: SetTheme.boldAttributes)
+        attributedDescription.append(NSAttributedString(string: " subthemes", attributes: SetTheme.regularAttributes))
         return attributedDescription
     }
 

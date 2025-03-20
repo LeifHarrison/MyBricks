@@ -15,20 +15,20 @@ class InstructionsTableViewCell: BorderedGradientTableViewCell, NibLoadableView,
     @IBOutlet weak var previewButton: UIButton!
     @IBOutlet weak var progressView: UIProgressView!
 
-    var previewButtonTapped : (() -> Void)?
+    var previewButtonTapped: (() -> Void)?
 
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Nib Loading
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     
     override func awakeFromNib() {
         super.awakeFromNib()
         prepareForReuse()
     }
 
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Reuse
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
 
     override func prepareForReuse() {
         super.prepareForReuse()
@@ -39,17 +39,17 @@ class InstructionsTableViewCell: BorderedGradientTableViewCell, NibLoadableView,
         previewButtonTapped = nil
     }
     
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Actions
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     
     @IBAction func previewButtonTapped(_ sender: UIButton) {
         previewButtonTapped?()
     }
     
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Public
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
 
     func populate(with instructions: SetInstructions) {
         if let urlString = instructions.fileURL, let url = URL(string: urlString) {

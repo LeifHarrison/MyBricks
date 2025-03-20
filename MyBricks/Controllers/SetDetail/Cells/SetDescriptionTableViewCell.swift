@@ -12,9 +12,9 @@ class SetDescriptionTableViewCell: BlueGradientTableViewCell, ReusableView, NibL
 
     @IBOutlet weak var descriptionTextView: UITextView!
 
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Nib Loading
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -22,18 +22,18 @@ class SetDescriptionTableViewCell: BlueGradientTableViewCell, ReusableView, NibL
         prepareForReuse()
     }
     
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Reuse
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     
     override func prepareForReuse() {
         super.prepareForReuse()
         descriptionTextView.text = nil
     }
     
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Public
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     
     func populate(with setDetail: SetDetail) {
         descriptionTextView.attributedText = setDetail.extendedData?.formattedDescription()
@@ -41,9 +41,9 @@ class SetDescriptionTableViewCell: BlueGradientTableViewCell, ReusableView, NibL
 
 }
 
-//==============================================================================
+// =============================================================================
 // MARK: - SetExtendedData extension
-//==============================================================================
+// =============================================================================
 
 extension SetExtendedData {
     
@@ -68,7 +68,7 @@ extension SetExtendedData {
                 formattedDescription.beginEditing()
                 
                 // Change fonts to something a bit more readable
-                let fullRange = NSRange(location: 0, length:formattedDescription.length)
+                let fullRange = NSRange(location: 0, length: formattedDescription.length)
                 formattedDescription.enumerateAttribute(.font, in: fullRange, options: []) { (value, range, _) in
                     if let font = value as? UIFont {
                         let isBold = font.fontDescriptor.symbolicTraits.contains(.traitBold)
@@ -88,7 +88,7 @@ extension SetExtendedData {
                 }
                 
                 // Change text color
-                formattedDescription.enumerateAttribute(.foregroundColor, in: fullRange, options: []) { (value, range, _) in
+                formattedDescription.enumerateAttribute(.foregroundColor, in: fullRange, options: []) { (_, range, _) in
                     formattedDescription.addAttribute(.foregroundColor, value: UIColor.lightNavy, range: range)
                 }
                 

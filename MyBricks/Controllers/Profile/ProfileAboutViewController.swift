@@ -23,13 +23,9 @@ class ProfileAboutViewController: UIViewController {
 
     let smallScreenScale: CGFloat = 0.85
     
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - View Lifecycle
-    //--------------------------------------------------------------------------
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
+    // -------------------------------------------------------------------------
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -52,9 +48,9 @@ class ProfileAboutViewController: UIViewController {
         }
     }
     
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Actions
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     
     @IBAction func contactUs(_ sender: UIButton?) {
         NSLog("contactUs")

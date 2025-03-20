@@ -19,9 +19,9 @@ class ReviewDetailViewController: UIViewController {
 
     var review: SetReview?
     
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - View Lifecycle
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,9 +43,9 @@ class ReviewDetailViewController: UIViewController {
         textView.isScrollEnabled = true
     }
     
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Actions
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     
     @IBAction func closeReview(_ sender: UIButton) {
         presentingViewController?.dismiss(animated: true, completion: nil)

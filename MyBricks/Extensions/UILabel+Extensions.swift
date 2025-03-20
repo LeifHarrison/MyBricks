@@ -14,7 +14,7 @@ extension UILabel {
         textColor = UIColor.lightNavy
         font = UIFont.systemFont(ofSize: 16)
         
-        let instructionsText = NSMutableAttributedString(string:self.text ?? "")
+        let instructionsText = NSMutableAttributedString(string: self.text ?? "")
         let range = NSRange(location: 0, length: instructionsText.length)
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.alignment = .center

@@ -21,9 +21,9 @@ class FilterSelectSortingViewController: UIViewController {
     weak var delegate: FilterSelectSortingViewControllerDelegate?
     var filterOptions: FilterOptions = FilterOptions()
     
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - View Lifecycle
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,9 +46,9 @@ class FilterSelectSortingViewController: UIViewController {
         }
     }
     
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Actions
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     
     @IBAction func resetSorting(_ sender: AnyObject?) {
         delegate?.selectSortingController(self, didSelectSortingType: .number)
@@ -57,9 +57,9 @@ class FilterSelectSortingViewController: UIViewController {
     
 }
 
-//==============================================================================
+// =============================================================================
 // MARK: - UITableViewDataSource
-//==============================================================================
+// =============================================================================
 
 extension FilterSelectSortingViewController: UITableViewDataSource {
     
@@ -80,9 +80,9 @@ extension FilterSelectSortingViewController: UITableViewDataSource {
     
 }
 
-//==============================================================================
+// =============================================================================
 // MARK: - UITableViewDelegate
-//==============================================================================
+// =============================================================================
 
 extension FilterSelectSortingViewController: UITableViewDelegate {
     

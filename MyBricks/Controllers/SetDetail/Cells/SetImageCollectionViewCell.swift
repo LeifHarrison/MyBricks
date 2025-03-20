@@ -12,9 +12,9 @@ class SetImageCollectionViewCell: UICollectionViewCell, ReusableView, NibLoadabl
 
     @IBOutlet weak var imageView: UIImageView!
 
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Nib Loading
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -23,9 +23,9 @@ class SetImageCollectionViewCell: UICollectionViewCell, ReusableView, NibLoadabl
         self.layer.cornerRadius = 4.0
     }
     
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Reuse
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     
     override func prepareForReuse() {
         super.prepareForReuse()

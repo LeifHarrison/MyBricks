@@ -18,9 +18,9 @@ class PartsListTableViewCell: BorderedGradientTableViewCell, NibLoadableView, Re
     @IBOutlet weak var quantityLabel: UILabel!
     @IBOutlet weak var quantityView: UIView!
 
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Nib Loading
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -29,9 +29,9 @@ class PartsListTableViewCell: BorderedGradientTableViewCell, NibLoadableView, Re
         prepareForReuse()
     }
     
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Reuse
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     
     override func prepareForReuse() {
         super.prepareForReuse()
@@ -43,9 +43,9 @@ class PartsListTableViewCell: BorderedGradientTableViewCell, NibLoadableView, Re
         quantityLabel.isHidden = false
     }
     
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Public
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     
     func populate(with element: Element) {
         nameLabel.text = element.part?.name

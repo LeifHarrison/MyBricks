@@ -8,68 +8,66 @@
 
 import UIKit
 
-// swiftlint:disable opening_brace closing_brace valid_ibinspectable
-
 @IBDesignable
 open class TagListView: UIView {
     
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - IBInspectable Properties
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     
     @IBInspectable open dynamic var textFont: UIFont = UIFont.systemFont(ofSize: 12) {
         didSet {
-            tagViews.forEach( { $0.textFont = textFont } )
+            tagViews.forEach({ $0.textFont = textFont })
             setNeedsLayout()
         }
     }
     
     @IBInspectable open dynamic var textColor: UIColor = UIColor.white {
         didSet {
-            tagViews.forEach( { $0.textColor = textColor } )
+            tagViews.forEach({ $0.textColor = textColor })
         }
     }
     
     @IBInspectable open dynamic var tagLineBreakMode: NSLineBreakMode = .byTruncatingMiddle {
         didSet {
-            tagViews.forEach( { $0.titleLineBreakMode = tagLineBreakMode } )
+            tagViews.forEach({ $0.titleLineBreakMode = tagLineBreakMode })
         }
     }
     
     @IBInspectable open dynamic var tagBackgroundColor: UIColor = UIColor.gray {
         didSet {
-            tagViews.forEach( { $0.tagBackgroundColor = tagBackgroundColor } )
+            tagViews.forEach({ $0.tagBackgroundColor = tagBackgroundColor })
         }
     }
     
     @IBInspectable open dynamic var borderWidth: CGFloat = 0 {
         didSet {
-            tagViews.forEach( { $0.borderWidth = borderWidth } )
+            tagViews.forEach({ $0.borderWidth = borderWidth })
         }
     }
     
     @IBInspectable open dynamic var borderColor: UIColor? {
         didSet {
-            tagViews.forEach( { $0.borderColor = borderColor } )
+            tagViews.forEach({ $0.borderColor = borderColor })
         }
     }
     
     @IBInspectable open dynamic var cornerRadius: CGFloat = 0 {
         didSet {
-            tagViews.forEach( { $0.cornerRadius = cornerRadius } )
+            tagViews.forEach({ $0.cornerRadius = cornerRadius })
         }
     }
     
     @IBInspectable open dynamic var paddingY: CGFloat = 2 {
         didSet {
-            tagViews.forEach( { $0.paddingY = paddingY } )
+            tagViews.forEach({ $0.paddingY = paddingY })
             setNeedsLayout()
         }
     }
     
     @IBInspectable open dynamic var paddingX: CGFloat = 5 {
         didSet {
-            tagViews.forEach( { $0.paddingX = paddingX } )
+            tagViews.forEach({ $0.paddingX = paddingX })
             setNeedsLayout()
         }
     }
@@ -88,37 +86,37 @@ open class TagListView: UIView {
     
     @IBInspectable open dynamic var shadowColor: UIColor = UIColor.white {
         didSet {
-            tagViews.forEach( { $0.layer.shadowColor = shadowColor.cgColor } )
+            tagViews.forEach({ $0.layer.shadowColor = shadowColor.cgColor })
         }
     }
     
     @IBInspectable open dynamic var shadowRadius: CGFloat = 0 {
         didSet {
-            tagViews.forEach( { $0.layer.shadowRadius = shadowRadius } )
+            tagViews.forEach({ $0.layer.shadowRadius = shadowRadius })
         }
     }
     
     @IBInspectable open dynamic var shadowOffset: CGSize = CGSize.zero {
         didSet {
-            tagViews.forEach( { $0.layer.shadowOffset = shadowOffset } )
+            tagViews.forEach({ $0.layer.shadowOffset = shadowOffset })
         }
     }
     
     @IBInspectable open dynamic var shadowOpacity: Float = 0 {
         didSet {
-            tagViews.forEach( { $0.layer.shadowOpacity = shadowOpacity } )
+            tagViews.forEach({ $0.layer.shadowOpacity = shadowOpacity })
         }
     }
     
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Properties
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
 
     open private(set) var tagViews: [TagView] = []
 
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Interface Builder
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
 
     open override func prepareForInterfaceBuilder() {
         addTag("Welcome")
@@ -126,9 +124,9 @@ open class TagListView: UIView {
         addTag("TagListView")
     }
     
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Layout
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
 
     open override func layoutSubviews() {
         super.layoutSubviews()
@@ -174,9 +172,9 @@ open class TagListView: UIView {
         return CGSize(width: frame.width, height: height)
     }
 
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Manage Tags
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     
     private func createNewTagView(_ title: String) -> TagView {
         let tagView = TagView(title: title)

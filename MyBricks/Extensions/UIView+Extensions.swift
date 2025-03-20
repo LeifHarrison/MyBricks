@@ -64,7 +64,7 @@ extension UIView {
         let animations: (() -> Void) = {
             self.alpha = 0.0
         }
-        let completion = { (finished: Bool) -> Void in
+        let completion = { (_: Bool) in
             self.isHidden = true
         }
         UIView.animate(withDuration: duration, animations: animations, completion: completion)

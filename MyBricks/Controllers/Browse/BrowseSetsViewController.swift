@@ -23,9 +23,9 @@ class BrowseSetsViewController: UIViewController {
     var sectionTitles: [String] = []
     var setsBySection: [String: [SetDetail]] = [:]
     
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - View Lifecycle
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -83,9 +83,9 @@ class BrowseSetsViewController: UIViewController {
         NotificationCenter.default.removeObserver(self)
     }
     
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Actions
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
 
     @IBAction func showFilters(_ sender: UIBarButtonItem) {
         let filterStoryboard = UIStoryboard(name: "Filter", bundle: nil)
@@ -98,9 +98,9 @@ class BrowseSetsViewController: UIViewController {
         }
     }
     
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Collection Update Notification
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     
     @objc private func collectionUpdated(_ notification: Notification) {
         if let updatedSet = notification.userInfo?[Notification.Key.Set] as? SetDetail {
@@ -119,9 +119,9 @@ class BrowseSetsViewController: UIViewController {
         }
     }
     
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Private
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
 
     fileprivate func setupTableView() {
         tableView.rowHeight = UITableView.automaticDimension
@@ -168,9 +168,9 @@ class BrowseSetsViewController: UIViewController {
             var indexName = ""
             if let grouping = filterOptions.grouping {
                 switch grouping {
-                    case .theme    : indexName = set.theme ?? ""
-                    case .subtheme : indexName = set.subtheme ?? ""
-                    case .year     : indexName = "\(set.year ?? 0)"
+                    case .theme: indexName = set.theme ?? ""
+                    case .subtheme: indexName = set.subtheme ?? ""
+                    case .year: indexName = "\(set.year ?? 0)"
                 }
             }
             
@@ -189,10 +189,10 @@ class BrowseSetsViewController: UIViewController {
     }
 
     fileprivate func showTableView(faded: Bool) {
-        let animations = { () -> Void in
+        let animations = { () in
             self.tableView.alpha = faded ? 0.3 : 1.0
         }
-        UIView.animate(withDuration: 0.2, animations:animations)
+        UIView.animate(withDuration: 0.2, animations: animations)
     }
 
     internal func updateDisplay(animated: Bool = false) {
@@ -205,33 +205,33 @@ class BrowseSetsViewController: UIViewController {
             navigationItem.setRightBarButton(nil, animated: animated)
         }
 
-        let animations = { () -> Void in
+        let animations = { () in
             self.headerView.alpha = 0.0
             self.tableView.alpha = 0.0
         }
-        let completion = { (finished: Bool) -> Void in
+        let completion = { (_: Bool) in
             
             if self.allSets.count > 0 {
                 self.headerView.populate(with: self.allSets.count, filterOptions: self.filterOptions)
                 self.tableView.contentInset = UIEdgeInsets(top: self.headerView.frame.height, left: 0, bottom: 0, right: 0)
                 self.tableView.reloadData()
-                let innerAnimations = { () -> Void in
+                let innerAnimations = { () in
                     self.headerView.alpha = 1.0
                     self.tableView.alpha = 1.0
                 }
-                UIView.animate(withDuration: animated ? 0.3 : 0.0, animations:innerAnimations)
+                UIView.animate(withDuration: animated ? 0.3 : 0.0, animations: innerAnimations)
             }
             else {
                 self.tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
             }
         }
-        UIView.animate(withDuration: animated ? 0.2 : 0.0, animations:animations, completion: completion)
+        UIView.animate(withDuration: animated ? 0.2 : 0.0, animations: animations, completion: completion)
     }
 }
 
-//==============================================================================
+// =============================================================================
 // MARK: - UITableViewDataSource
-//==============================================================================
+// =============================================================================
 
 extension BrowseSetsViewController: UITableViewDataSource {
 
@@ -264,9 +264,9 @@ extension BrowseSetsViewController: UITableViewDataSource {
 
 }
 
-//==============================================================================
+// =============================================================================
 // MARK: - UITableViewDelegate
-//==============================================================================
+// =============================================================================
 
 extension BrowseSetsViewController: UITableViewDelegate {
 
@@ -311,9 +311,9 @@ extension BrowseSetsViewController: UITableViewDelegate {
 
 }
 
-//==============================================================================
+// =============================================================================
 // MARK: - FilterViewControllerDelegate
-//==============================================================================
+// =============================================================================
 
 extension BrowseSetsViewController: FilterViewControllerDelegate {
     
@@ -324,9 +324,9 @@ extension BrowseSetsViewController: FilterViewControllerDelegate {
     
 }
 
-//==============================================================================
+// =============================================================================
 // MARK: - UIViewControllerPreviewingDelegate
-//==============================================================================
+// =============================================================================
 
 extension BrowseSetsViewController: UIViewControllerPreviewingDelegate {
 

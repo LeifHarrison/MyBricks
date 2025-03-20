@@ -22,9 +22,9 @@ class FilterSelectThemeViewController: UIViewController {
     weak var delegate: FilterSelectThemeViewControllerDelegate?
     var filterOptions: FilterOptions = FilterOptions()
 
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - View Lifecycle
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,18 +57,18 @@ class FilterSelectThemeViewController: UIViewController {
         }
     }
     
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Actions
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     
     @IBAction func clearFilter(_ sender: AnyObject?) {
         delegate?.selectThemeController(self, didSelectTheme: nil)
         navigationController?.popViewController(animated: true)
     }
     
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Private
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     
     fileprivate func fetchThemes() {
         ActivityOverlayView.show(overView: view)
@@ -89,7 +89,7 @@ class FilterSelectThemeViewController: UIViewController {
         
         if filterOptions.showingUserSets {
             BricksetServices.shared.getThemes(completion: completion)
-            //BricksetServices.shared.getThemesForUser(owned: filterOptions.filterOwned, wanted: filterOptions.filterWanted, completion: completion)
+            // BricksetServices.shared.getThemesForUser(owned: filterOptions.filterOwned, wanted: filterOptions.filterWanted, completion: completion)
         }
         else {
             BricksetServices.shared.getThemes(completion: completion)
@@ -98,9 +98,9 @@ class FilterSelectThemeViewController: UIViewController {
     
 }
 
-//==============================================================================
+// =============================================================================
 // MARK: - UITableViewDataSource
-//==============================================================================
+// =============================================================================
 
 extension FilterSelectThemeViewController: UITableViewDataSource {
     
@@ -121,9 +121,9 @@ extension FilterSelectThemeViewController: UITableViewDataSource {
     
 }
 
-//==============================================================================
+// =============================================================================
 // MARK: - UITableViewDelegate
-//==============================================================================
+// =============================================================================
 
 extension FilterSelectThemeViewController: UITableViewDelegate {
     

@@ -19,9 +19,9 @@ class ProfileLoginViewController: UIViewController {
 
     var serviceAPI: AuthenticatedServiceAPI?
     
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - View Lifecycle
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,9 +41,9 @@ class ProfileLoginViewController: UIViewController {
         usernameField.becomeFirstResponder()
     }
 
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Actions
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
 
     @IBAction func login(_ sender: AnyObject?) {
         guard let api = serviceAPI else { return }
@@ -66,7 +66,7 @@ class ProfileLoginViewController: UIViewController {
                                     if let protectionSpace = api.loginProtectionSpace {
                                         URLCredentialStorage.shared.setDefaultCredential(credential, for: protectionSpace)
                                     }
-                                    //NSLog("Biometric authentication success!")
+                                    // NSLog("Biometric authentication success!")
                                     self.dismiss(animated: true, completion: nil)
                                 }
                                 else {
@@ -94,18 +94,18 @@ class ProfileLoginViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
 
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Private
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     
     fileprivate func evaluateBiometricAuthentication(credential: URLCredential) {
     }
     
 }
 
-//==============================================================================
+// =============================================================================
 // MARK: - UITextFieldDelegate
-//==============================================================================
+// =============================================================================
 
 extension ProfileLoginViewController: UITextFieldDelegate {
 

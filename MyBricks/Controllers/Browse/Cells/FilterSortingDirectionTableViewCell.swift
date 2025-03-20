@@ -15,9 +15,9 @@ class FilterSortingDirectionTableViewCell: BorderedGradientTableViewCell, Reusab
 
     var sortingDirectionSelected: ((SortingDirection) -> Void)?
     
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Nib Loading
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -28,9 +28,9 @@ class FilterSortingDirectionTableViewCell: BorderedGradientTableViewCell, Reusab
         descendingRadioButton.applyCheckboxStyle()
     }
     
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Actions
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     
     @IBAction func selectSortAscending(_ sender: UIButton) {
         ascendingRadioButton.isSelected = true
@@ -44,9 +44,9 @@ class FilterSortingDirectionTableViewCell: BorderedGradientTableViewCell, Reusab
         sortingDirectionSelected?(ascendingRadioButton.isSelected ? .ascending : .descending)
     }
     
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Public
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     
     func populate(with filterOptions: FilterOptions) {
         ascendingRadioButton.isSelected = (filterOptions.sortingSelection.direction == .ascending)

@@ -21,9 +21,9 @@ class FilterSelectYearViewController: UIViewController {
     weak var delegate: FilterSelectYearViewControllerDelegate?
     var filterOptions: FilterOptions = FilterOptions()
     
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - View Lifecycle
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,18 +51,18 @@ class FilterSelectYearViewController: UIViewController {
         fetchYears()
     }
     
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Actions
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     
     @IBAction func clearFilter(_ sender: AnyObject?) {
         delegate?.selectYearController(self, didSelectYear: nil)
         navigationController?.popViewController(animated: true)
     }
     
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Private
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     
     fileprivate func fetchYears() {
         if let theme = filterOptions.selectedTheme {
@@ -83,7 +83,7 @@ class FilterSelectYearViewController: UIViewController {
                 }
             }
             if filterOptions.showingUserSets {
-                //BricksetServices.shared.getYearsForUser(theme: theme.theme, owned: filterOptions.filterOwned, wanted: filterOptions.filterWanted, completion: completion)
+                // BricksetServices.shared.getYearsForUser(theme: theme.theme, owned: filterOptions.filterOwned, wanted: filterOptions.filterWanted, completion: completion)
                 BricksetServices.shared.getYears(theme: theme.theme, completion: completion)
             }
             else {
@@ -94,9 +94,9 @@ class FilterSelectYearViewController: UIViewController {
     
 }
 
-//==============================================================================
+// =============================================================================
 // MARK: - UITableViewDataSource
-//==============================================================================
+// =============================================================================
 
 extension FilterSelectYearViewController: UITableViewDataSource {
     
@@ -117,9 +117,9 @@ extension FilterSelectYearViewController: UITableViewDataSource {
     
 }
 
-//==============================================================================
+// =============================================================================
 // MARK: - UITableViewDelegate
-//==============================================================================
+// =============================================================================
 
 extension FilterSelectYearViewController: UITableViewDelegate {
     

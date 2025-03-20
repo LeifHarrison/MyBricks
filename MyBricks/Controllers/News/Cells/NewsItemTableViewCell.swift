@@ -14,19 +14,19 @@ class NewsItemTableViewCell: BorderedGradientTableViewCell, NibLoadableView, Reu
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var autherAndDateLabel: UILabel!
 
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Nib Loading
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        accessoryView = UIImageView(image: UIImage(named:"disclosure"))
+        accessoryView = UIImageView(image: UIImage(named: "disclosure"))
         accessoryView?.tintColor = UIColor.lightNavy
     }
     
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Public
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     
     func populate(with feedItem: RSSItem) {
         titleLabel.text = feedItem.title
@@ -35,9 +35,9 @@ class NewsItemTableViewCell: BorderedGradientTableViewCell, NibLoadableView, Reu
     
 }
 
-//==============================================================================
+// =============================================================================
 // MARK: - RSSItem extensions
-//==============================================================================
+// =============================================================================
 
 extension RSSItem {
     
@@ -55,10 +55,10 @@ extension RSSItem {
         RSSItem.dateFormatter.dateStyle = .medium
         RSSItem.dateFormatter.timeStyle = .short
         
-        let attributedDescription = NSMutableAttributedString(string:"Posted by ", attributes:RSSItem.templateAttributes)
-        attributedDescription.append(NSAttributedString(string:author ?? "", attributes:RSSItem.authorAttributes))
+        let attributedDescription = NSMutableAttributedString(string: "Posted by ", attributes: RSSItem.templateAttributes)
+        attributedDescription.append(NSAttributedString(string: author ?? "", attributes: RSSItem.authorAttributes))
         if let date = pubDate {
-            attributedDescription.append(NSAttributedString(string:", \(RSSItem.dateFormatter.string(from: date))", attributes:RSSItem.templateAttributes))
+            attributedDescription.append(NSAttributedString(string: ", \(RSSItem.dateFormatter.string(from: date))", attributes: RSSItem.templateAttributes))
         }
         
         return attributedDescription

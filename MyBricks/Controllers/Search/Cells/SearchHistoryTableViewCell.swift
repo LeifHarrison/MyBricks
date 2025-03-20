@@ -13,18 +13,18 @@ class SearchHistoryTableViewCell: BorderedGradientTableViewCell {
     @IBOutlet weak var searchTypeImageView: UIImageView!
     @IBOutlet weak var searchTermLabel: UILabel!
     
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Nib Loading
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     
     override func awakeFromNib() {
         super.awakeFromNib()
         prepareForReuse()
     }
     
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Reuse
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     
     override func prepareForReuse() {
         super.prepareForReuse()
@@ -33,9 +33,9 @@ class SearchHistoryTableViewCell: BorderedGradientTableViewCell {
         searchTermLabel.font = UIFont.systemFont(ofSize: searchTermLabel.font.pointSize, weight: .regular)
     }
     
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Public
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     
     func populateWithSearchHistoryItem(_ item: SearchHistoryItem) {
         searchTypeImageView.image = UIImage(named: item.iconName)

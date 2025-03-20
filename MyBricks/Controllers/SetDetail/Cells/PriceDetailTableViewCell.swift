@@ -14,9 +14,9 @@ class PriceDetailTableViewCell: BorderedGradientTableViewCell {
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var pricePerPieceLabel: UILabel!
 
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Nib Loading
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -24,9 +24,9 @@ class PriceDetailTableViewCell: BorderedGradientTableViewCell {
         prepareForReuse()
     }
     
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Reuse
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     
     override func prepareForReuse() {
         super.prepareForReuse()
@@ -34,9 +34,9 @@ class PriceDetailTableViewCell: BorderedGradientTableViewCell {
         priceLabel.text = ""
     }
     
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Public
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     
     func populate(with retailPrice: SetRetailPrice) {
         let regionCode = retailPrice.locale.region?.identifier ?? "US"

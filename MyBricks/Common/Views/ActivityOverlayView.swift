@@ -16,9 +16,9 @@ public class ActivityOverlayView: UIView {
 
     static private let shared = ActivityOverlayView()
 
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Type Methods
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     
     static func show(overView view: UIView, text: String? = nil, animated: Bool = true) {
         shared.show(overView: view, text: text, animated: animated)
@@ -28,9 +28,9 @@ public class ActivityOverlayView: UIView {
         shared.hide(animated: animated)
     }
     
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Initialization
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -42,18 +42,18 @@ public class ActivityOverlayView: UIView {
         setup()
     }
     
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Nib Loading
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
 
     override public func awakeFromNib() {
         super.awakeFromNib()
         setup()
     }
 
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Public
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     
     public func show(overView view: UIView, text: String? = nil, animated: Bool = true) {
         self.frame = view.bounds
@@ -80,7 +80,7 @@ public class ActivityOverlayView: UIView {
             self.backgroundView.alpha = 0.0
             self.backgroundView.transform = CGAffineTransform.init(scaleX: 0.5, y: 0.5)
         }
-        let completion = { (finished: Bool) -> Void in
+        let completion = { (_: Bool) in
             self.activityIndicator.stopAnimating()
             self.removeFromSuperview()
         }
@@ -88,9 +88,9 @@ public class ActivityOverlayView: UIView {
         UIView.animate(withDuration: animated ? 0.3 : 0, delay: 0, options: options, animations: animations, completion: completion)
     }
     
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Private
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     
     private func setup() {
         tintColor = UIColor.lightBlueGrey
@@ -102,7 +102,6 @@ public class ActivityOverlayView: UIView {
         textLabel.font = .systemFont(ofSize: UIFont.labelFontSize)
         textLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        //backgroundView.backgroundColor = UIColor(white: 0.95, alpha: 0.8)
         backgroundView.backgroundColor = UIColor.white
         backgroundView.layer.cornerRadius = 5
         backgroundView.layer.shadowColor = UIColor.black.cgColor

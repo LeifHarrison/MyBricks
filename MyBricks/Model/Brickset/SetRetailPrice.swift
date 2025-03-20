@@ -16,12 +16,6 @@ public struct SetRetailPrice: Codable {
     var price: Decimal
     var pricePerPiece: Decimal
 
-    init(locale: Locale, price: Decimal, pricePerPiece: Decimal) {
-        self.locale = locale
-        self.price = price
-        self.pricePerPiece = pricePerPiece
-    }
-
     func priceDescription() -> String {
         let currencySymbol = locale.currencySymbol ?? "$"
         return currencySymbol + "\(price)"

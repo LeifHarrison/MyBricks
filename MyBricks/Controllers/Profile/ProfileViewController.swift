@@ -56,9 +56,9 @@ class ProfileViewController: UIViewController {
     private let updateInterval: TimeInterval = 5 * 60 // Only refresh every 5 minutes
     private let spacerHeight: CGFloat = 5
     
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - View Lifecycle
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,22 +73,22 @@ class ProfileViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-//        let lastUpdated = UserDefaults.standard.value(forKey: lastUpdatedKey) as? Date ?? Date.distantPast
-//        if BricksetServices.isLoggedIn() && (collectionTotals == nil || Date().timeIntervalSince(lastUpdated) > updateInterval) {
-//            updateCollectionInformation()
-//        }
-//        if RebrickableServices.isLoggedIn() {
-//            updateProfileInformation()
-//        }
+        let lastUpdated = UserDefaults.standard.value(forKey: lastUpdatedKey) as? Date ?? Date.distantPast
+        if BricksetServices.isLoggedIn() && (collectionTotals == nil || Date().timeIntervalSince(lastUpdated) > updateInterval) {
+            updateCollectionInformation()
+        }
+        if RebrickableServices.isLoggedIn() {
+            updateProfileInformation()
+        }
     }
 
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Actions
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
 
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Private
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
 
     fileprivate func setupTableView() {
         
@@ -203,7 +203,7 @@ class ProfileViewController: UIViewController {
     
     fileprivate func hasDefaultCredentials(for serviceAPI: AuthenticatedServiceAPI) -> Bool {
         if let protectionSpace = serviceAPI.loginProtectionSpace {
-            //NSLog("protectionSpace = \(protectionSpace)")
+            // NSLog("protectionSpace = \(protectionSpace)")
             if URLCredentialStorage.shared.defaultCredential(for: protectionSpace) != nil {
                 return true
             }
@@ -262,8 +262,8 @@ class ProfileViewController: UIViewController {
                 switch result {
                     case .success:
                         self.updateDisplayedRows()
-                        //self.updateProfileInformation()
-                        //self.updateCollectionInformation()
+                        // self.updateProfileInformation()
+                        // self.updateCollectionInformation()
                     case .failure(let error):
                         NSLog("Error setting item owned: \(error.localizedDescription)")
                         let alert = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
@@ -277,9 +277,9 @@ class ProfileViewController: UIViewController {
     
 }
 
-//==============================================================================
+// =============================================================================
 // MARK: - UITableViewDataSource
-//==============================================================================
+// =============================================================================
 
 extension ProfileViewController: UITableViewDataSource {
     
@@ -397,9 +397,9 @@ extension ProfileViewController: UITableViewDataSource {
     
 }
 
-//==============================================================================
+// =============================================================================
 // MARK: - UITableViewDelegate
-//==============================================================================
+// =============================================================================
 
 extension ProfileViewController: UITableViewDelegate {
     

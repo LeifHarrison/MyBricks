@@ -18,9 +18,9 @@ class BricksetCollectionTableViewCell: BorderedGradientTableViewCell, ReusableVi
     @IBOutlet weak var activityContainerView: UIView!
     @IBOutlet weak var activityIndicatorView: ActivityIndicatorView!
 
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Nib Loading
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -29,9 +29,9 @@ class BricksetCollectionTableViewCell: BorderedGradientTableViewCell, ReusableVi
         prepareForReuse()
     }
     
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Reuse
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     
     override func prepareForReuse() {
         super.prepareForReuse()
@@ -41,9 +41,9 @@ class BricksetCollectionTableViewCell: BorderedGradientTableViewCell, ReusableVi
         wantedMinifigsLabel.text = nil
     }
     
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Public
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     
     func populateWithCollectionTotals(_ collectionTotals: UserCollectionTotals?) {
         if let totals = collectionTotals {
@@ -61,9 +61,9 @@ class BricksetCollectionTableViewCell: BorderedGradientTableViewCell, ReusableVi
     }
 }
 
-//==============================================================================
+// =============================================================================
 // MARK: - UserCollectionTotals extensions
-//==============================================================================
+// =============================================================================
 
 extension UserCollectionTotals {
     
@@ -72,35 +72,35 @@ extension UserCollectionTotals {
     
     func setsOwnedAttributedDescription() -> NSAttributedString {
         let attributedDescription = NSMutableAttributedString(string: "You own ", attributes: UserCollectionTotals.regularAttributes)
-        attributedDescription.append(NSAttributedString(string:"\(totalSetsOwned ?? 0)", attributes:UserCollectionTotals.boldAttributes))
-        attributedDescription.append(NSAttributedString(string:" sets, ", attributes:UserCollectionTotals.regularAttributes))
-        attributedDescription.append(NSAttributedString(string:"\(totalDistinctSetsOwned ?? 0)", attributes:UserCollectionTotals.boldAttributes))
-        attributedDescription.append(NSAttributedString(string:" different", attributes:UserCollectionTotals.regularAttributes))
+        attributedDescription.append(NSAttributedString(string: "\(totalSetsOwned ?? 0)", attributes: UserCollectionTotals.boldAttributes))
+        attributedDescription.append(NSAttributedString(string: " sets, ", attributes: UserCollectionTotals.regularAttributes))
+        attributedDescription.append(NSAttributedString(string: "\(totalDistinctSetsOwned ?? 0)", attributes: UserCollectionTotals.boldAttributes))
+        attributedDescription.append(NSAttributedString(string: " different", attributes: UserCollectionTotals.regularAttributes))
         return attributedDescription
     }
     
     func setsWantedAttributedDescription() -> NSAttributedString {
         let attributedDescription = NSMutableAttributedString(string: "You want ", attributes: UserCollectionTotals.regularAttributes)
-        attributedDescription.append(NSAttributedString(string:"\(totalSetsWanted ?? 0)", attributes:UserCollectionTotals.boldAttributes))
-        attributedDescription.append(NSAttributedString(string:" sets", attributes:UserCollectionTotals.regularAttributes))
+        attributedDescription.append(NSAttributedString(string: "\(totalSetsWanted ?? 0)", attributes: UserCollectionTotals.boldAttributes))
+        attributedDescription.append(NSAttributedString(string: " sets", attributes: UserCollectionTotals.regularAttributes))
         return attributedDescription
     }
     
     func minifigsOwnedAttributedDescription() -> NSAttributedString {
         let attributedDescription = NSMutableAttributedString(string: "You own ", attributes: UserCollectionTotals.regularAttributes)
-        attributedDescription.append(NSAttributedString(string:"\(totalMinifigsOwned ?? 0)", attributes:UserCollectionTotals.boldAttributes))
-        attributedDescription.append(NSAttributedString(string:" minifigs", attributes:UserCollectionTotals.regularAttributes))
+        attributedDescription.append(NSAttributedString(string: "\(totalMinifigsOwned ?? 0)", attributes: UserCollectionTotals.boldAttributes))
+        attributedDescription.append(NSAttributedString(string: " minifigs", attributes: UserCollectionTotals.regularAttributes))
         // Add back in once the Brickset API supports totalDistinctMinifigsOwned
-        //attributedDescription.append(NSAttributedString(string:" minifigs, ", attributes:UserCollectionTotals.regularAttributes))
-        //attributedDescription.append(NSAttributedString(string:"\(totalDistinctMinifigsOwned ?? 0)", attributes:UserCollectionTotals.boldAttributes))
-        //attributedDescription.append(NSAttributedString(string:" different", attributes:UserCollectionTotals.regularAttributes))
+        // attributedDescription.append(NSAttributedString(string: " minifigs, ", attributes: UserCollectionTotals.regularAttributes))
+        // attributedDescription.append(NSAttributedString(string: "\(totalDistinctMinifigsOwned ?? 0)", attributes: UserCollectionTotals.boldAttributes))
+        // attributedDescription.append(NSAttributedString(string: " different", attributes: UserCollectionTotals.regularAttributes))
         return attributedDescription
     }
     
     func minifigsWantedAttributedDescription() -> NSAttributedString {
         let attributedDescription = NSMutableAttributedString(string: "You want ", attributes: UserCollectionTotals.regularAttributes)
-        attributedDescription.append(NSAttributedString(string:"\(totalMinifigsWanted ?? 0)", attributes:UserCollectionTotals.boldAttributes))
-        attributedDescription.append(NSAttributedString(string:" minifigs", attributes:UserCollectionTotals.regularAttributes))
+        attributedDescription.append(NSAttributedString(string: "\(totalMinifigsWanted ?? 0)", attributes: UserCollectionTotals.boldAttributes))
+        attributedDescription.append(NSAttributedString(string: " minifigs", attributes: UserCollectionTotals.regularAttributes))
         return attributedDescription
     }
 

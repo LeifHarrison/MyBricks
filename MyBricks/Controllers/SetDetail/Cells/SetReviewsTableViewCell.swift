@@ -15,9 +15,9 @@ class SetReviewsTableViewCell: BlueGradientTableViewCell, ReusableView, NibLoada
     @IBOutlet weak var ratingView: CosmosView!
     @IBOutlet weak var ratingLabel: UILabel!
     
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Nib Loading
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -25,36 +25,36 @@ class SetReviewsTableViewCell: BlueGradientTableViewCell, ReusableView, NibLoada
         titleLabel.text = "Rating"
         setupRatingView()
 
-        accessoryView = UIImageView(image: UIImage(named:"disclosure"))
+        accessoryView = UIImageView(image: UIImage(named: "disclosure"))
         accessoryView?.tintColor = UIColor.lightNavy
         
         prepareForReuse()
     }
 
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Reuse
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
 
     override func prepareForReuse() {
         super.prepareForReuse()
         ratingView.rating = 0
     }
 
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Public
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
 
     func populate(with set: SetDetail) {
         if let rating = set.rating {
-            let ratingDouble = NSDecimalNumber(decimal:rating).doubleValue
+            let ratingDouble = NSDecimalNumber(decimal: rating).doubleValue
             ratingView.rating = ratingDouble
-            ratingLabel.text = String(format:"%0.1f", ratingDouble)
+            ratingLabel.text = String(format: "%0.1f", ratingDouble)
         }
     }
     
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Private
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     
     private func setupRatingView() {
         ratingView.settings.starSize = 22.0

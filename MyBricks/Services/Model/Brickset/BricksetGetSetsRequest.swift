@@ -88,8 +88,8 @@ public struct BricksetGetSetsRequest: Encodable {
     var owned: Int? // Really a Bool -> should be 0 or 1
     var wanted: Int? // Really a Bool -> should be 0 or 1
     var updatedSince: Date?
-    //var sortingSelection: SortingSelection = SortingSelection()
-    //var grouping: GroupingType?
+    // var sortingSelection: SortingSelection = SortingSelection()
+    // var grouping: GroupingType?
 
     var orderBy: String?
     var pageSize: Int? = 500
@@ -118,8 +118,8 @@ public struct BricksetGetSetsRequest: Encodable {
         self.year = filterOptions.selectedYear?.year
         self.owned = filterOptions.filterOwned ? 1 : 0
         self.wanted = filterOptions.filterWanted ? 1 : 0
-        //self.sortingSelection = filterOptions.sortingSelection
-        //self.grouping = filterOptions.grouping
+        // self.sortingSelection = filterOptions.sortingSelection
+        // self.grouping = filterOptions.grouping
     }
     
 }

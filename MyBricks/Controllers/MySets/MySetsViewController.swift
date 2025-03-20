@@ -20,9 +20,9 @@ class MySetsViewController: BrowseSetsViewController {
 
     var mySetsRequest: Request?
 
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - View Lifecycle
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,13 +30,13 @@ class MySetsViewController: BrowseSetsViewController {
         filterOptions.filterOwned = true
     }
 
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Actions
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
 
     @IBAction func login(_ sender: AnyObject?) {
         if let protectionSpace = BricksetServices.shared.loginProtectionSpace, let credential = URLCredentialStorage.shared.defaultCredential(for: protectionSpace) {
-            //NSLog("Credential: \(credential), password: \(String(describing: credential.password))")
+            // NSLog("Credential: \(credential), password: \(String(describing: credential.password))")
             evaluateBiometricAuthentication(credential: credential, completion: { (result) in
                 if result {
                     self.updateDisplay()
@@ -54,13 +54,13 @@ class MySetsViewController: BrowseSetsViewController {
         }
     }
     
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Public
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
 
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Private
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
 
     override func updateDisplay(animated: Bool = false) {
         super.updateDisplay(animated: animated)

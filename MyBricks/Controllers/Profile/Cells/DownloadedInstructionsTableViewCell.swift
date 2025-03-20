@@ -17,18 +17,18 @@ class DownloadedInstructionsTableViewCell: BorderedGradientTableViewCell, Reusab
     static let dateFormatter = DateFormatter()
     static let sizeFormatter = ByteCountFormatter()
 
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Nib Loading
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     
     override func awakeFromNib() {
         super.awakeFromNib()
         prepareForReuse()
     }
     
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Reuse
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     
     override func prepareForReuse() {
         super.prepareForReuse()
@@ -37,9 +37,9 @@ class DownloadedInstructionsTableViewCell: BorderedGradientTableViewCell, Reusab
         sizeLabel.text = nil
     }
     
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Public
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     
     func populate(with instructions: DownloadedInstructions) {
         filenameLabel.text = instructions.fileName

@@ -32,9 +32,9 @@ class RebrickableServices: AuthenticatedServiceAPI {
         return formatter
     }()
     
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Login
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     
     class func isLoggedIn() -> Bool {
         return RebrickableServices.shared.isLoggedIn
@@ -84,7 +84,7 @@ class RebrickableServices: AuthenticatedServiceAPI {
                 case .success(let value):
                     guard let valueDict = value as? [String: Any], let token = valueDict["user_token"] as? String else {
                         NSLog("Malformed data received from token service")
-                        completion(.failure(ServiceError.loginFailed(reason:"Malformed data received from token service")))
+                        completion(.failure(ServiceError.loginFailed(reason: "Malformed data received from token service")))
                         return
                     }
 
@@ -111,9 +111,9 @@ class RebrickableServices: AuthenticatedServiceAPI {
         completion()
     }
     
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Lego
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
 
     // Get Parts
     // URL: https://rebrickable.com/api/v3/lego/sets/<set number>/parts/
@@ -131,20 +131,20 @@ class RebrickableServices: AuthenticatedServiceAPI {
                         completion(.success(decodedResponse))
                     }
                     catch {
-                        completion(.failure(ServiceError.decodeError(reason:error.localizedDescription)))
+                        completion(.failure(ServiceError.decodeError(reason: error.localizedDescription)))
                     }
                 case .failure(let error):
                     NSLog("Error: \(error)")
-                    completion(.failure(ServiceError.serviceFailure(reason:error.localizedDescription)))
+                    completion(.failure(ServiceError.serviceFailure(reason: error.localizedDescription)))
             }
         }
         request.responseData(completionHandler: requestCompletion)
         return request
     }
 
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - User
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     
     // Get Profile
     // URL: https://rebrickable.com/api/v3/users/<user_token>/profile/
@@ -167,20 +167,20 @@ class RebrickableServices: AuthenticatedServiceAPI {
                         completion(.success(decodedResponse))
                     }
                     catch {
-                        completion(.failure(ServiceError.decodeError(reason:error.localizedDescription)))
+                        completion(.failure(ServiceError.decodeError(reason: error.localizedDescription)))
                     }
                 case let .failure(error):
                     NSLog("Error: \(error)")
-                    completion(.failure(ServiceError.serviceFailure(reason:error.localizedDescription)))
+                    completion(.failure(ServiceError.serviceFailure(reason: error.localizedDescription)))
             }
         }
         request.responseData(completionHandler: requestCompletion)
         return request
     }
     
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Private
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     
     fileprivate func defaultHeaders() -> HTTPHeaders {
         let headers: HTTPHeaders = [

@@ -17,9 +17,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - UIApplicationDelegate
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
@@ -37,9 +37,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
 
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Private
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     
     private func configureLogging() {
         // Don't log image URL requests
@@ -51,7 +51,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         NetworkActivityLogger.shared.filterPredicate = imagePredicate
         // Set level to 'debug' to get complete request/response detail
-        //NetworkActivityLogger.shared.level = .debug
+        // NetworkActivityLogger.shared.level = .debug
         NetworkActivityLogger.shared.startLogging()
     }
     
@@ -60,7 +60,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             switch result {
                 case let .success(isValid):
                     if !isValid {
-                        let message = NSLocalizedString("It looks like the BrickSet API key is no longer valid. Please update the application or notify the developer.", comment: "")
+                        let message = NSLocalizedString(
+                            "It looks like the BrickSet API key is no longer valid. Please update the application or notify the developer.",
+                            comment: "")
                         let alert = UIAlertController(title: "Invalid Key", message: message, preferredStyle: .alert)
                         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
                         self.window?.rootViewController?.present(alert, animated: true, completion: nil)
@@ -134,8 +136,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if #available(iOS 13.0, *) {
             let tabBarAppearance: UITabBarAppearance = UITabBarAppearance()
             tabBarAppearance.backgroundImage = image
-            //tabBarAppearance.selectionIndicatorTintColor = UIColor.lightNavy
-            //tabBarAppearance.unselectedItemTintColor = UIColor.cloudyBlue
             
             setTabBarItemColors(tabBarAppearance.stackedLayoutAppearance)
             setTabBarItemColors(tabBarAppearance.inlineLayoutAppearance)

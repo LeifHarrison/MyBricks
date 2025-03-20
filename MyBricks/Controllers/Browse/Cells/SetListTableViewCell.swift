@@ -23,9 +23,9 @@ class SetListTableViewCell: BorderedGradientTableViewCell, NibLoadableView, Reus
     @IBOutlet weak var collectionStatusView: UIView!
     @IBOutlet weak var collectionStatusLabel: UILabel!
 
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Nib Loading
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -41,9 +41,9 @@ class SetListTableViewCell: BorderedGradientTableViewCell, NibLoadableView, Reus
         prepareForReuse()
     }
 
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Reuse
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
 
     override func prepareForReuse() {
         super.prepareForReuse()
@@ -67,9 +67,9 @@ class SetListTableViewCell: BorderedGradientTableViewCell, NibLoadableView, Reus
         collectionStatusView.layer.cornerRadius = collectionStatusView.frame.height / 2
     }
     
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Public
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
 
     func populate(with set: SetDetail, options: FilterOptions) {
         

@@ -22,9 +22,9 @@ class NewsItemViewController: UIViewController {
 
     var newsItem: RSSItem?
 
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - View Lifecycle
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,9 +59,9 @@ class NewsItemViewController: UIViewController {
     
 }
 
-//==============================================================================
+// =============================================================================
 // MARK: - RSSItem extension
-//==============================================================================
+// =============================================================================
 
 extension RSSItem {
 
@@ -86,7 +86,7 @@ extension RSSItem {
 
                 // Center and add some spacing to any attached images
                 let fullRange = NSRange(location: 0, length: formattedDescription.length)
-                formattedDescription.enumerateAttribute(.attachment, in:fullRange, options: []) { (value, range, _) in
+                formattedDescription.enumerateAttribute(.attachment, in: fullRange, options: []) { (value, range, _) in
                     if value != nil {
                         let paragraphStyle = formattedDescription.attribute(.paragraphStyle, at: range.location, longestEffectiveRange: nil, in: range)
                         if let style = paragraphStyle as? NSParagraphStyle, let newStyle = style.mutableCopy() as? NSMutableParagraphStyle {

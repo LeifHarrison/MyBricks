@@ -21,9 +21,9 @@ class ZoomImageCollectionViewCell: UICollectionViewCell, ReusableView, NibLoadab
     @IBOutlet weak var imageViewTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var imageViewTrailingConstraint: NSLayoutConstraint!
     
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Reuse
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     
     override func prepareForReuse() {
         super.prepareForReuse()
@@ -35,9 +35,9 @@ class ZoomImageCollectionViewCell: UICollectionViewCell, ReusableView, NibLoadab
         updateImageViewConstraints()
     }
     
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Layout
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -45,9 +45,9 @@ class ZoomImageCollectionViewCell: UICollectionViewCell, ReusableView, NibLoadab
         updateImageViewConstraints()
     }
 
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Public
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     
     func populate(with setImage: SetImage) {
         if let imageURLString = setImage.imageURL, let imageURL = URL(string: imageURLString) {
@@ -62,9 +62,9 @@ class ZoomImageCollectionViewCell: UICollectionViewCell, ReusableView, NibLoadab
         }
     }
     
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Private
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     
     fileprivate func updateZoomScales() {
         if imageView.bounds.width > 0, imageView.bounds.height > 0 {
@@ -90,9 +90,9 @@ class ZoomImageCollectionViewCell: UICollectionViewCell, ReusableView, NibLoadab
     
 }
 
-//==============================================================================
+// =============================================================================
 // MARK: - UIScrollViewDelegate
-//==============================================================================
+// =============================================================================
 
 extension ZoomImageCollectionViewCell: UIScrollViewDelegate {
     

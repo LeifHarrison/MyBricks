@@ -14,9 +14,9 @@ class FilterUnreleasedTableViewCell: BorderedGradientTableViewCell, ReusableView
 
     var toggleFilterShowUnreleased: ((Bool) -> Void)?
     
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Nib Loading
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -26,18 +26,18 @@ class FilterUnreleasedTableViewCell: BorderedGradientTableViewCell, ReusableView
         showUnreleasedButton.applyCheckboxStyle()
     }
     
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Actions
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     
     @IBAction func toggleShowUnreleased(_ sender: UIButton) {
         showUnreleasedButton.isSelected = !showUnreleasedButton.isSelected
         toggleFilterShowUnreleased?(showUnreleasedButton.isSelected)
     }
     
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Public
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     
     func populate(with filterOptions: FilterOptions) {
         showUnreleasedButton.isSelected = filterOptions.showUnreleased

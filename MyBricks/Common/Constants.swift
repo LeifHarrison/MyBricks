@@ -8,8 +8,6 @@
 
 import Foundation
 
-// swiftlint:disable nesting
-
 struct Constants {
     
     struct Brickset {
@@ -40,5 +38,3 @@ struct Constants {
     }
 
 }
-
-// swiftlint:enable nesting

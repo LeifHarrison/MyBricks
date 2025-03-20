@@ -20,9 +20,9 @@ class PriceGuideTableViewCell: BorderedGradientTableViewCell, ReusableView, NibL
     let containerBorderWidth: CGFloat = 1.0
     let containerCornerRadius: CGFloat = 8.0
 
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Nib Loading
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -34,9 +34,9 @@ class PriceGuideTableViewCell: BorderedGradientTableViewCell, ReusableView, NibL
         applyOutlineStyle(to: last6MonthsUsedContainer)
     }
 
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Private
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     
     private func applyOutlineStyle(to view: UIView) {
         view.backgroundColor = containerBackgroundColor

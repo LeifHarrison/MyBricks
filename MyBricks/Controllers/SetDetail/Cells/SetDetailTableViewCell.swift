@@ -42,9 +42,9 @@ class SetDetailTableViewCell: BlueGradientTableViewCell, ReusableView, NibLoadab
         }
     }
     
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Nib Loading
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -59,9 +59,9 @@ class SetDetailTableViewCell: BlueGradientTableViewCell, ReusableView, NibLoadab
         prepareForReuse()
     }
 
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Reuse
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
 
     override func prepareForReuse() {
         super.prepareForReuse()
@@ -80,9 +80,9 @@ class SetDetailTableViewCell: BlueGradientTableViewCell, ReusableView, NibLoadab
         availabilityField.text = nil
     }
 
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Actions
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     
     @IBAction func next(_ sender: UIButton) {
         setCurrentPage(page: currentPage+1)
@@ -96,15 +96,15 @@ class SetDetailTableViewCell: BlueGradientTableViewCell, ReusableView, NibLoadab
         setCurrentPage(page: pageControl.currentPage)
     }
     
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Public
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     
     func populate(with set: SetDetail, additionalImages: [SetImage]?) {
         mainImageURL = set.image?.imageURL
         if let images = additionalImages {
             self.additionalImages = images
-            //collectionView.reloadData()
+            // collectionView.reloadData()
         }
 
         setNameField.text = set.name
@@ -114,9 +114,9 @@ class SetDetailTableViewCell: BlueGradientTableViewCell, ReusableView, NibLoadab
         availabilityField.text = set.availabilityDescription()
     }
 
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Private
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     
     private func showPageControls(animated: Bool) {
         let pageIndicator: UIView = (self.additionalImages.count + 1) > 15 ? pageLabel : pageControl
@@ -129,14 +129,14 @@ class SetDetailTableViewCell: BlueGradientTableViewCell, ReusableView, NibLoadab
         previousButton.isHidden = false
         pageIndicator.isHidden = false
         
-        let animations = { () -> Void in
+        let animations = { () in
             self.nextButton.alpha = 1.0
             self.previousButton.alpha = 1.0
             pageIndicator.alpha = 1.0
         }
-        let completion: ((Bool) -> Void) = { finished in
+        let completion: ((Bool) -> Void) = { _ in
         }
-        UIView.animate(withDuration: animated ? 0.5 : 0.0, animations:animations, completion: completion)
+        UIView.animate(withDuration: animated ? 0.5 : 0.0, animations: animations, completion: completion)
     }
     
     private func updatePageIndicater() {
@@ -161,9 +161,9 @@ class SetDetailTableViewCell: BlueGradientTableViewCell, ReusableView, NibLoadab
 
 }
 
-//==============================================================================
+// =============================================================================
 // MARK: - UICollectionViewDataSource
-//==============================================================================
+// =============================================================================
 
 extension SetDetailTableViewCell: UICollectionViewDataSource {
     
@@ -204,9 +204,9 @@ extension SetDetailTableViewCell: UICollectionViewDataSource {
     }
 }
 
-//==============================================================================
+// =============================================================================
 // MARK: - UICollectionViewDelegate
-//==============================================================================
+// =============================================================================
 
 extension SetDetailTableViewCell: UICollectionViewDelegate {
     
@@ -223,9 +223,9 @@ extension SetDetailTableViewCell: UICollectionViewDelegate {
     
 }
 
-//==============================================================================
+// =============================================================================
 // MARK: - UICollectionViewDelegateFlowLayout
-//==============================================================================
+// =============================================================================
 
 extension SetDetailTableViewCell: UICollectionViewDelegateFlowLayout {
 
@@ -235,9 +235,9 @@ extension SetDetailTableViewCell: UICollectionViewDelegateFlowLayout {
 
 }
 
-//==============================================================================
+// =============================================================================
 // MARK: - UIScrollViewDelegate
-//==============================================================================
+// =============================================================================
 
 extension SetDetailTableViewCell: UIScrollViewDelegate {
     

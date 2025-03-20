@@ -104,9 +104,9 @@ class FilterViewController: UIViewController {
 
     private var sections: [TableSection] = []
     
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - View Lifecycle
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -128,9 +128,9 @@ class FilterViewController: UIViewController {
 
     }
     
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Actions
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
 
     @IBAction func cancel(_ sender: AnyObject?) {
         dismiss(animated: true, completion: nil)
@@ -170,9 +170,9 @@ class FilterViewController: UIViewController {
         tableView.reloadData()
     }
     
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Storyboards and Segues
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let viewController = segue.destination as? FilterSelectThemeViewController {
@@ -193,9 +193,9 @@ class FilterViewController: UIViewController {
         }
     }
 
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Private
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     
     private func setupTableView() {
         tableView.alwaysBounceVertical = false
@@ -205,9 +205,9 @@ class FilterViewController: UIViewController {
     }
 }
 
-//==============================================================================
+// =============================================================================
 // MARK: - UITableViewDataSource
-//==============================================================================
+// =============================================================================
 
 extension FilterViewController: UITableViewDataSource {
     
@@ -295,9 +295,9 @@ extension FilterViewController: UITableViewDataSource {
     
 }
 
-//==============================================================================
+// =============================================================================
 // MARK: - UITableViewDelegate
-//==============================================================================
+// =============================================================================
 
 extension FilterViewController: UITableViewDelegate {
     
@@ -338,9 +338,9 @@ extension FilterViewController: UITableViewDelegate {
     }
 }
 
-//==============================================================================
+// =============================================================================
 // MARK: - FilterSelectThemeViewControllerDelegate
-//==============================================================================
+// =============================================================================
 
 extension FilterViewController: FilterSelectThemeViewControllerDelegate {
     
@@ -357,9 +357,9 @@ extension FilterViewController: FilterSelectThemeViewControllerDelegate {
 
 }
 
-//==============================================================================
+// =============================================================================
 // MARK: - FilterSelectSubthemeViewControllerDelegate
-//==============================================================================
+// =============================================================================
 
 extension FilterViewController: FilterSelectSubthemeViewControllerDelegate {
     
@@ -370,9 +370,9 @@ extension FilterViewController: FilterSelectSubthemeViewControllerDelegate {
     
 }
 
-//==============================================================================
+// =============================================================================
 // MARK: - FilterSelectYearViewControllerDelegate
-//==============================================================================
+// =============================================================================
 
 extension FilterViewController: FilterSelectYearViewControllerDelegate {
     
@@ -383,9 +383,9 @@ extension FilterViewController: FilterSelectYearViewControllerDelegate {
     
 }
 
-//==============================================================================
+// =============================================================================
 // MARK: - FilterSelectSortingViewControllerDelegate
-//==============================================================================
+// =============================================================================
 
 extension FilterViewController: FilterSelectSortingViewControllerDelegate {
     

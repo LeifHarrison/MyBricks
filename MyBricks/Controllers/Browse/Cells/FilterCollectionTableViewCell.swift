@@ -20,9 +20,9 @@ class FilterCollectionTableViewCell: BorderedGradientTableViewCell, ReusableView
 
     private var exclusiveSelection = false
     
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Nib Loading
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -32,9 +32,9 @@ class FilterCollectionTableViewCell: BorderedGradientTableViewCell, ReusableView
         wantedCheckboxButton.applyCheckboxStyle()
    }
     
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Actions
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     
     @IBAction func toggleFilterOwned(_ sender: UIButton) {
         sender.isSelected = !sender.isSelected
@@ -59,9 +59,9 @@ class FilterCollectionTableViewCell: BorderedGradientTableViewCell, ReusableView
         }
     }
     
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Public
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     
     func populate(with filterOptions: FilterOptions) {
         ownedCheckboxButton.isSelected = filterOptions.filterOwned

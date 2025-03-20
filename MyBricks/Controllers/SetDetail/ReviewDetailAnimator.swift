@@ -19,16 +19,16 @@ class ReviewDetailAnimator: NSObject {
     
     lazy var animatedTextContainer: UIView = {
         let containerView = UIView(frame: originFrame)
-        containerView.backgroundColor = UIColor(white:0.95, alpha: 1.0)
+        containerView.backgroundColor = UIColor(white: 0.95, alpha: 1.0)
 
         let topSeparator = UIView(frame: CGRect(x: 0, y: 0, width: containerView.frame.size.width, height: 1))
         topSeparator.autoresizingMask = .flexibleBottomMargin
-        topSeparator.backgroundColor = UIColor(white:0.75, alpha: 1.0)
+        topSeparator.backgroundColor = UIColor(white: 0.75, alpha: 1.0)
         containerView.addSubview(topSeparator)
         
         let bottomSeparator = UIView(frame: CGRect(x: 0, y: containerView.frame.size.height-1, width: containerView.frame.size.width, height: 1))
         bottomSeparator.autoresizingMask = .flexibleTopMargin
-        bottomSeparator.backgroundColor = UIColor(white:0.75, alpha: 1.0)
+        bottomSeparator.backgroundColor = UIColor(white: 0.75, alpha: 1.0)
         containerView.addSubview(bottomSeparator)
 
         let textView = self.animatedTextView
@@ -88,7 +88,7 @@ extension ReviewDetailAnimator: UIViewControllerAnimatedTransitioning {
             detailView?.alpha = self.presenting ? 1.0 : 0.0
             self.animatedTextContainer.frame = self.presenting ? self.finalFrame : self.originFrame
         }
-        let completion = { (finished: Bool) -> Void in
+        let completion = { (_: Bool) in
             detailController?.textView.isHidden = false
             detailController?.closeButton.isHidden = false
 

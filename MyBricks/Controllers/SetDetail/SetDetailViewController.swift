@@ -41,9 +41,9 @@ class SetDetailViewController: UIViewController {
     var setDetailRequest: Request?
     var additionalImagesRequest: DataRequest?
 
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - View Lifecycle
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -97,9 +97,9 @@ class SetDetailViewController: UIViewController {
         NotificationCenter.default.removeObserver(self)
     }
     
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Actions
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
 
     @IBAction func share(sender: UIButton) {
         if let urlString = currentSet?.bricksetURL, let url = NSURL(string: urlString) {
@@ -112,9 +112,9 @@ class SetDetailViewController: UIViewController {
         }
     }
     
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Preview Actions
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     
     override var previewActionItems: [UIPreviewActionItem] {
         var actionItems: [UIPreviewActionItem] = []
@@ -169,9 +169,9 @@ class SetDetailViewController: UIViewController {
         NotificationCenter.default.post(name: Notification.Name.Collection.DidUpdate, object: self, userInfo: [Notification.Key.Set: set])
     }
 
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Collection Update Notification
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     
     @objc private func collectionUpdated(_ notification: Notification) {
         if let updatedSet = notification.userInfo?[Notification.Key.Set] as? SetDetail, updatedSet.setID == currentSet?.setID {
@@ -185,9 +185,9 @@ class SetDetailViewController: UIViewController {
         }
     }
     
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Private
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
 
     private func setupTableView() {
         
@@ -323,9 +323,9 @@ class SetDetailViewController: UIViewController {
     
 }
 
-//==============================================================================
+// =============================================================================
 // MARK: - UITableViewDataSource
-//==============================================================================
+// =============================================================================
 
 extension SetDetailViewController: UITableViewDataSource {
 
@@ -336,11 +336,11 @@ extension SetDetailViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let sectionType = sections[section]
         switch sectionType {
-        case .content :
+        case .content:
             return 1
         case .detail:
             return detailRows.count
-        case .tags, .description :
+        case .tags, .description:
             return 1
         }
     }
@@ -351,7 +351,7 @@ extension SetDetailViewController: UITableViewDataSource {
         let section = sections[indexPath.section]
         switch section {
             
-        case .content :
+        case .content:
             // "Content" section - images and primary set information
             let cell: SetDetailTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
             cell.populate(with: set, additionalImages: additionalImages)
@@ -366,35 +366,35 @@ extension SetDetailViewController: UITableViewDataSource {
             let row = detailRows[indexPath.row]
             switch row {
 
-            case .price :
+            case .price:
                 guard let detail = setDetail else { return UITableViewCell()  }
                 let cell: SetPriceTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
                 cell.populate(with: detail)
                 return cell
 
-            case .parts :
+            case .parts:
                 let cell: SetPartsTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
                 cell.populate(with: set)
                 return cell
 
-            case .reviews :
+            case .reviews:
                 let cell: SetReviewsTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
                 cell.populate(with: set)
                 return cell
                 
-            case .instructions :
+            case .instructions:
                 let cell: SetInstructionsTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
                 cell.populate(with: set)
                 return cell
                 
-            case .collection :
+            case .collection:
                 let cell: SetCollectionTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
                 cell.populate(with: set)
                 return cell
                 
             }
             
-        case .tags :
+        case .tags:
             guard let detail = setDetail else { return UITableViewCell()  }
             let cell: SetTagsTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
             cell.populate(with: detail)
@@ -407,7 +407,7 @@ extension SetDetailViewController: UITableViewDataSource {
             
             return cell
             
-        case .description :
+        case .description:
             guard let detail = setDetail else { return UITableViewCell()  }
             let cell: SetDescriptionTableViewCell = tableView.dequeueReusableCell(forIndexPath: indexPath)
             cell.populate(with: detail)
@@ -419,9 +419,9 @@ extension SetDetailViewController: UITableViewDataSource {
 
 }
 
-//==============================================================================
+// =============================================================================
 // MARK: - UITableViewDelegate
-//==============================================================================
+// =============================================================================
 
 extension SetDetailViewController: UITableViewDelegate {
     

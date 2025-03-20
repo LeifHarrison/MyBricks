@@ -22,9 +22,9 @@ class FilterSelectSubthemeViewController: UIViewController {
     weak var delegate: FilterSelectSubthemeViewControllerDelegate?
     var filterOptions: FilterOptions = FilterOptions()
     
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - View Lifecycle
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,18 +52,18 @@ class FilterSelectSubthemeViewController: UIViewController {
         fetchSubthemes()
     }
     
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Actions
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     
     @IBAction func clearFilter(_ sender: AnyObject?) {
         delegate?.selectSubthemeController(self, didSelectSubtheme: nil)
         navigationController?.popViewController(animated: true)
     }
     
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Private
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     
     fileprivate func fetchSubthemes() {
         if let theme = filterOptions.selectedTheme {
@@ -83,7 +83,7 @@ class FilterSelectSubthemeViewController: UIViewController {
             }
             if filterOptions.showingUserSets {
                 BricksetServices.shared.getSubthemes(theme: theme.theme, completion: completion)
-                //BricksetServices.shared.getSubthemesForUser(theme: theme.theme, owned: filterOptions.filterOwned, wanted: filterOptions.filterWanted, completion: completion)
+                // BricksetServices.shared.getSubthemesForUser(theme: theme.theme, owned: filterOptions.filterOwned, wanted: filterOptions.filterWanted, completion: completion)
             }
             else {
                 BricksetServices.shared.getSubthemes(theme: theme.theme, completion: completion)
@@ -94,9 +94,9 @@ class FilterSelectSubthemeViewController: UIViewController {
     
 }
 
-//==============================================================================
+// =============================================================================
 // MARK: - UITableViewDataSource
-//==============================================================================
+// =============================================================================
 
 extension FilterSelectSubthemeViewController: UITableViewDataSource {
     
@@ -122,9 +122,9 @@ extension FilterSelectSubthemeViewController: UITableViewDataSource {
     
 }
 
-//==============================================================================
+// =============================================================================
 // MARK: - UITableViewDelegate
-//==============================================================================
+// =============================================================================
 
 extension FilterSelectSubthemeViewController: UITableViewDelegate {
     

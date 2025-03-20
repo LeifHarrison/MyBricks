@@ -18,9 +18,9 @@ class InstructionsViewController: UIViewController {
     var currentSet: SetDetail?
     var instructions: [SetInstructions] = []
 
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - View Lifecycle
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,9 +40,9 @@ class InstructionsViewController: UIViewController {
         }
     }
     
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Private
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     
     private func setupTableView() {
         tableView.register(InstructionsTableViewCell.self)
@@ -121,7 +121,7 @@ class InstructionsViewController: UIViewController {
     }
     
     fileprivate func saveDownloadedInstructions(_ instructions: SetInstructions, destinationURL: URL) {
-        //NSLog("destinationURL: \(destinationURL)")
+        // NSLog("destinationURL: \(destinationURL)")
         var creationDate = Date()
         var fileSize = 0
         do {
@@ -136,8 +136,8 @@ class InstructionsViewController: UIViewController {
         catch let error {
             NSLog("Error getting resource values: \(error)")
         }
-        //NSLog("creationDate: \(creationDate)")
-        //NSLog("fileSize: \(fileSize)")
+        // NSLog("creationDate: \(creationDate)")
+        // NSLog("fileSize: \(fileSize)")
 
         let container = DataManager.shared.persistentContainer
         let saveBlock = { (context: NSManagedObjectContext) in
@@ -149,7 +149,7 @@ class InstructionsViewController: UIViewController {
                 downloadedInstructions.fileSize = Int64(fileSize)
                 downloadedInstructions.setName = self.currentSet?.name
                 downloadedInstructions.setNumber = self.currentSet?.fullSetNumber
-                //NSLog("downloadedInstructions: \(downloadedInstructions)")
+                // NSLog("downloadedInstructions: \(downloadedInstructions)")
                 try context.save()
             }
             catch {
@@ -172,9 +172,9 @@ class InstructionsViewController: UIViewController {
     }
 }
 
-//==============================================================================
+// =============================================================================
 // MARK: - UITableViewDataSource
-//==============================================================================
+// =============================================================================
 
 extension InstructionsViewController: UITableViewDataSource {
     
@@ -200,9 +200,9 @@ extension InstructionsViewController: UITableViewDataSource {
     
 }
 
-//==============================================================================
+// =============================================================================
 // MARK: - UITableViewDelegate
-//==============================================================================
+// =============================================================================
 
 extension InstructionsViewController: UITableViewDelegate {
     
@@ -228,9 +228,9 @@ extension InstructionsViewController: UITableViewDelegate {
     
 }
 
-//==============================================================================
+// =============================================================================
 // MARK: - UITableViewDelegate
-//==============================================================================
+// =============================================================================
 
 extension InstructionsViewController: UIDocumentInteractionControllerDelegate {
     

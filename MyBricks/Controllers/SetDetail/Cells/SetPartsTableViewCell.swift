@@ -15,22 +15,22 @@ class SetPartsTableViewCell: BlueGradientTableViewCell, ReusableView, NibLoadabl
     @IBOutlet weak var piecesLabel: UILabel!
     @IBOutlet weak var minifiguresLabel: UILabel!
 
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Nib Loading
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
 
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        accessoryView = UIImageView(image: UIImage(named:"disclosure"))
+        accessoryView = UIImageView(image: UIImage(named: "disclosure"))
         accessoryView?.tintColor = UIColor.lightNavy
 
         prepareForReuse()
     }
 
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Reuse
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
 
     override func prepareForReuse() {
         super.prepareForReuse()
@@ -39,9 +39,9 @@ class SetPartsTableViewCell: BlueGradientTableViewCell, ReusableView, NibLoadabl
         minifiguresLabel.text = "N/A"
     }
 
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
     // MARK: - Public
-    //--------------------------------------------------------------------------
+    // -------------------------------------------------------------------------
 
     func populate(with set: SetDetail) {
         partsLabel.text = "Parts List"
